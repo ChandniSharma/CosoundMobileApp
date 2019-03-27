@@ -10,36 +10,64 @@ export default {
     container: {
         flex: 1,
     },
-    textSideTitle: {
+    imgSideTitle: {
         color: 'white',
-        fontSize: 21,
-        margin: 15,
+       // fontSize: 21,
+        margin: '2%',
         alignSelf: 'flex-start',
-        fontFamily: 'Montserrat-Bold',
+      //  fontFamily: 'Montserrat-Bold',
+        flex: 0.3,
+        width:50,
+        height:40
     },
-    textTitleCosound: {
-        color: 'white',
-        fontSize: 42,
+    imgBottomCosound: {
+        // flex:0.3,
+        alignSelf: 'flex-start',
+        width:120,
+        height:30,
+        marginTop:'2%',
+    },
+    imgMainTitle:{
         alignSelf: 'center',
-        // fontFamily: "POLITICA-BOLD",
+        width:200,
+        height:40
     },
     textMusicDescription: {
         color: 'white',
         fontSize: 18,
-        margin: 15,
+        alignSelf:'center',
+        marginTop:'5%', 
+        marginBottom:'1%',
+        fontFamily: 'Montserrat-Light',
     },
+    textMusicDescription2: {
+        color: 'white',
+        fontSize: 18,
+        alignSelf:'center',
+        marginTop:'1%', 
+        marginBottom:'5%',
+        fontFamily: 'Montserrat-Light',
+    },
+
     textTitleCosoundBottom: {
         fontSize: 20,
         alignSelf: 'flex-start',
     },
     textTitleJoin: {
-        // fontFamily: '',
-        fontSize: 22,
-        margin: 15,
+        fontSize: 30,
+        margin: '2%',
+        color:'#262626',
+        fontWeight: '300',
+        fontFamily:'Montserrat-Regular'
     },
     textDescriptionJoin: {
         fontSize: 14,
-        margin: 15,
+        marginTop: '2%',
+        marginLeft:'3%',
+        color:'rgba(38,38,38,0.52)',
+        fontFamily:'Montserrat-Regular',
+        fontWeight:'300',
+        
     },
     mobileImage: {
         alignSelf: 'center',
@@ -49,28 +77,40 @@ export default {
     textOptionTitle: {
         color: 'white',
         fontSize: 15,
-        marginBottom: 10
+        marginBottom: '1%',
+        fontFamily:'Montserrat-Regular',
+        fontWeight:'300',
     },
     textFooterTitle: {
-        marginTop: 15,
-        marginBottom: 15,
+        marginTop: '4%',
+        marginBottom: '4%',
         color: 'white',
-        fontSize: 20
+        fontSize: 16,
+        fontFamily:'Montserrat-Regular',
+        fontWeight:'300',
+        color:'rgba(255,255,255,0.52)',
     },
-    imageMenuBar: {
-        width: 20,
-        height: 20,
-        right: "4%",
-        alignSelf: 'flex-end',
-        top: '10%',
-        marginRight: 2,
-
+    btnMenuBar: {
+        // alignSelf: 'flex-end',
+        top:'1%',
+        right:'4%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex:0.1,
+        width: 40,
+        height: 40,
     },
-    
+    imgMenuBar:{
+        width: 40,
+        height: 40,
+    },
     textBottomDescription: {
         color: 'white',
-        fontSize: 15,
-        margin: 15,
+        fontSize: 14,
+        marginLeft: '5%',
+        fontFamily:'Montserrat-Regular',
+        fontWeight:'300',
+        color:'rgba(255,255,255,0.52)',
     },
     textColorTemp: {
         color: 'white'
@@ -78,18 +118,21 @@ export default {
     viewShareButtons: {
         flexDirection: 'row',
         alignSelf: 'flex-end',
+        flex:0.1,
     },
     viewLoginButton: {
         flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        marginTop:'2%',
+        marginBottom:"7%",
     },
     loginButton: {
-        borderRadius: 14,
+        borderRadius: 22,
         height: 40,
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'center',
-        margin: '10%',
+        // margin: '10%',
         shadowColor: 'rgba(0,0,0,1)',
         shadowOffset: {
             width: .5,
@@ -97,14 +140,19 @@ export default {
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
+        backgroundColor:'white',
+        marginLeft: "1%",
+        marginRight:"5%",
+        
     },
     signupButton: {
-        borderRadius: 14,
+        borderRadius: 22,
         height: 40,
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'center',
-        margin: "10%",
+         marginLeft: "5%",
+         marginRight:"1%",
         shadowColor: 'rgba(0,0,0,1)',
         shadowOffset: {
             width: .5,
@@ -115,7 +163,7 @@ export default {
         backgroundColor: 'rgb(255,38,123)'
     },
     videoStyle: {
-        borderRadius: 10,
+        borderRadius: 12,
         shadowColor: 'rgba(0,0,0,1)',
         shadowOffset: {
             width: .5,
@@ -123,45 +171,50 @@ export default {
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
-        margin: 15
+        //margin: '15%',
+        width:345,
+        height:229,
+        alignSelf:'center',
+        marginTop:'10%',
+        marginBottom:'10%',
     },
     backgroundVideo: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
+        marginLeft:'15%',
+       marginRight:'15%',
+       marginTop: '15%',
+       marginBottom:'15%',
     },
-
     textLoginButtonTitle: {
         fontSize: 16,
+        color:'rgb(33,180,174)',
     },
     textSignupButtonTitle: {
         fontSize: 16,
+        color:'white',
     },
     viewBottom: {
         backgroundColor: 'black',
     },
     viewFooterSocialShareOption: {
         flexDirection: 'row',
-        marginLeft: 15,
-        marginRight: 15,
+        marginLeft: '5%',
+        marginRight: '2%',
     },
     textBottomMark: {
         marginTop: 20,
         marginBottom: 20,
-        fontSize: 15,
+        fontSize: 14,
         color: 'white',
-        marginLeft: 15,
-        marginRight: 15,
+        marginLeft: '5%',
+        
     },
     shareButtons: {
         width: 15,
         height: 15,
-        margin: 15
+       
     },
     viewFooterText: {
-        marginTop: "20%",
-        marginLeft: 15,
+        // marginTop: "20%",
+        marginLeft: '5%',
     },
 };

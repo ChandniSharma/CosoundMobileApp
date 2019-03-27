@@ -6,8 +6,9 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import homeStyle from '../stylesheet/home.style';
 import Video from 'react-native-video';
 
-const { width, height } = Dimensions.get('window');
 
+const { width, height } = Dimensions.get('window');
+console.disableYellowBox = true;
 export default class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -37,17 +38,19 @@ export default class Home extends React.Component {
                         source={require('../assets/logo.svg')}
                         style={{ width: width, height: 200}}
                     /> */}
-                        <View style={{ flexDirection: 'row' }}>
-                            <Text style={homeStyle.textSideTitle}>cosound</Text>
-                            <TouchableOpacity>
-                                <Image style={homeStyle.imageMenuBar} source={require('../assets/close.png')} />
+                        <View style={{ flexDirection: 'row', flex: 1 }}>
+                            {/* <Text style={homeStyle.textSideTitle}>cosound</Text> */}
+                            <Image style={homeStyle.imgSideTitle} />
+                            <View style={{flex:0.6}}/>
+                            <TouchableOpacity style={homeStyle.btnMenuBar}>
+                                {/* <Image style={homeStyle.imgMenuBar} source={require('../assets/close.png')} /> */}
                             </TouchableOpacity>
                         </View>
 
-                        <Text style={homeStyle.textTitleCosound}> cosound</Text>
+                        <Image style={homeStyle.imgMainTitle} source={require('../assets/cosoundTitle.png')}/>
 
                         <Text style={homeStyle.textMusicDescription}> The music industry network and</Text>
-                        <Text style={homeStyle.textMusicDescription}>marketplace</Text>
+                        <Text style={homeStyle.textMusicDescription2}>marketplace</Text>
 
                         <View style={homeStyle.viewLoginButton}>
 
@@ -61,7 +64,7 @@ export default class Home extends React.Component {
                         </View>
                     </View>
                     <Image style={homeStyle.videoStyle} source={require('../assets/homepage-video-placeholder.jpg')} />
-                    {/* <Video source={{uri: ""}}   // Can be a URL or a local file.
+                    {/* <Video source={require('../assets/test.mp4')}   // Can be a URL or a local file.
                         ref={(ref) => {
                             this.player = ref
                         }}                                      // Store reference
@@ -76,18 +79,19 @@ export default class Home extends React.Component {
 
                     <View style={homeStyle.viewBottom}>
                         <View style={homeStyle.viewFooterSocialShareOption}>
-                            <Text style={homeStyle.textTitleCosound}> cosound</Text>
+                            <Image style={homeStyle.imgBottomCosound} source={require('../assets/bottomCosound.png')}/>
+                              <View style={{flex:0.7}}/>
                             <View style={homeStyle.viewShareButtons}>
                                 <TouchableOpacity style={homeStyle.shareButtons}>
-                                    <Text style={homeStyle.textColorTemp}>FB</Text>
+                                    <Text style={homeStyle.textColorTemp}>F</Text>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity style={homeStyle.shareButtons}>
-                                    <Text style={homeStyle.textColorTemp}>Twitter</Text>
+                                    <Text style={homeStyle.textColorTemp}>T</Text>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity style={homeStyle.shareButtons}>
-                                    <Text style={homeStyle.textColorTemp}>Cloud</Text>
+                                    <Text style={homeStyle.textColorTemp}>C</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
