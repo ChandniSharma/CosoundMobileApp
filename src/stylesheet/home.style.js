@@ -12,16 +12,21 @@ export default {
     },
     textSideTitle: {
         color: 'white',
-        fontSize: 25,
+        fontSize: 21,
         margin: 15,
         alignSelf: 'flex-start',
-        // fontFamily: "POLITICA-BOLD",
+        fontFamily: 'Montserrat-Bold',
     },
     textTitleCosound: {
         color: 'white',
-        fontSize: 55,
+        fontSize: 42,
         alignSelf: 'center',
         // fontFamily: "POLITICA-BOLD",
+    },
+    textMusicDescription: {
+        color: 'white',
+        fontSize: 18,
+        margin: 15,
     },
     textTitleCosoundBottom: {
         fontSize: 20,
@@ -61,11 +66,7 @@ export default {
         marginRight: 2,
 
     },
-    textMusicDescription: {
-        color: 'white',
-        fontSize: 18,
-        margin: 15,
-    },
+    
     textBottomDescription: {
         color: 'white',
         fontSize: 15,
@@ -112,7 +113,6 @@ export default {
         shadowOpacity: 0.5,
         shadowRadius: 1,
         backgroundColor: 'rgb(255,38,123)'
-
     },
     videoStyle: {
         borderRadius: 10,
