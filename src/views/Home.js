@@ -102,7 +102,6 @@ export default class Home extends React.Component {
                         </View>
 
                         <Text style={homeStyle.textBottomMark}>(c) elit. Nulla 2018</Text>
-
                     </View>
                 </KeyboardAwareScrollView>
 

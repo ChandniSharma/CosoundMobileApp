@@ -12,6 +12,8 @@
     "react-native": "0.59.1",
     "react-native-keyboard-aware-scroll-view": "^0.8.0",
     "react-native-remote-svg": "^2.0.0",
+    "react-native-svg": "^9.3.6",
+    "react-native-svg-uri": "^1.2.3",
     "react-native-video": "^4.4.0"
   },
   "devDependencies": {
