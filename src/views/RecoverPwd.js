@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { View, Text, SafeAreaView, TouchableHighlight, Image, TextInput, TouchableOpacity } from 'react-native';
 //import SvgUri from 'react-native-svg-uri';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import styles from '../stylesheet/login.style';
-import RecoverPwd from './RecoverPwd';
+import styles from '../stylesheet/recoverPwd.style'
+import * as Animatable from 'react-native-animatable';
 
-export default class Login extends Component {
+export default class RecoverPwd extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -36,7 +36,8 @@ export default class Login extends Component {
                                 </TouchableHighlight>
                             </View>
                         </View>
-                        <Text style={styles.loginText}> Log in</Text>
+
+                        <Animatable.Text animation="fadeInDownBig" style={styles.loginText}> Forgot Password?</Animatable.Text>
                         
                             <TextInput
                                 style={styles.inputStyle}
@@ -44,35 +45,14 @@ export default class Login extends Component {
                                 onChangeText={(text) => this.setState({ email: text })}
                                 value={this.state.email}
                             />
-                       
-                            <TextInput
-                                style={styles.inputStyle}
-                                placeholder={'Password'}
-                                secureTextEntry={true}
-                                onChangeText={(text) => this.setState({ password: text })}
-                                value={this.state.password}
-                            />
                         </View>
-                        <View style={styles.rememberView}>
-                        
-                            <TouchableOpacity style={styles.tickMarkView}>
-                                <Image />
-                            </TouchableOpacity>
-
-                            <TouchableHighlight style={styles.rememberBtn}>
-                                <Text style={styles.rememberText}> Remember me</Text>
-                            </TouchableHighlight>
-                       
-                            <TouchableHighlight style={styles.forgotPwdBtn}>
-                                <Text style={styles.forgotPwdText}> Forgot Password?</Text>
-                            </TouchableHighlight>
-                        </View>
-
-                        <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton]}>
-                            <Text style={styles.textButtonTitle}>Login</Text>
+                       <View style={styles.viewRecoverButton}>
+                       <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton]}>
+                            <Text style={styles.textButtonTitle}>Recover</Text>
                         </TouchableHighlight>
-
-                        <View style={styles.socialMediaLoginView}>
+                       </View>
+                       
+                       <View style={styles.socialMediaLoginView}>
                             <TouchableHighlight underlayColor="#25b6ad" style={styles.buttonLeft}>
                                
                                 <Text style={styles.fbText}>Facebook login</Text>
@@ -92,15 +72,15 @@ export default class Login extends Component {
                             <Text style={styles.textBottomMark}>(c) elit. Nulla 2018</Text>
                             <View style={styles.viewShareButtons}>
                                 <TouchableOpacity style={styles.shareButtons}>
-                                    <Text style={styles.textColorTemp}>F</Text>
+                                    {/* <Text style={styles.textColorTemp}>F</Text> */}
                                 </TouchableOpacity>
 
                                 <TouchableOpacity style={styles.shareButtons}>
-                                    <Text style={styles.textColorTemp}>T</Text>
+                                    {/* <Text style={styles.textColorTemp}>T</Text> */}
                                 </TouchableOpacity>
 
                                 <TouchableOpacity style={styles.shareButtons}>
-                                    <Text style={styles.textColorTemp}>C</Text>
+                                    {/* <Text style={styles.textColorTemp}>C</Text> */}
                                 </TouchableOpacity>
                             </View>
                         </View> 
