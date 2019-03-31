@@ -12,8 +12,8 @@ export default {
     data: {},
     isRequesting: false
   },
-  
-  // Logout state
+
+// Logout state
   logout: {
     isRequesting: false,
     data: {},
