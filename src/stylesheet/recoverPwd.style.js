@@ -41,8 +41,8 @@ export default{
         alignSelf:'flex-end',
     },
     loginText:{
-        marginTop:'10%',
-        marginBottom:'10%',
+        marginTop:'15%',
+        marginBottom:'15%',
         alignSelf:'center',
         fontSize:30,
         color:'white',
@@ -152,26 +152,6 @@ export default{
         marginLeft:'5%',
         marginRight:'5%',
     },
-    fbText:{
-      color:'#4867AA',
-      fontFamily:'Montserrat-Hairline',
-      fontSize:16,
-         fontWeight:'300',
-    },
-    twitterText:{
-        fontFamily:'Montserrat-Hairline',
-        color:'#1CA1F3',
-        fontSize:16,
-         fontWeight:'300',
-       
-    },
-    googlePlusText:{
-        color:'#EA4336',
-        fontSize:16,
-        fontFamily:'Montserrat-Hairline',
-        fontWeight:'300',
-       
-    },
     buttonLeft: {
         borderRadius: 22,
         height: 55,
@@ -237,7 +217,7 @@ export default{
         flex:0.4,
        
         height:50,
-        marginBottom:'5%',
+       // marginBottom:'5%',
         marginLeft:'13%',
         marginRight:'2%'
     },
@@ -245,25 +225,51 @@ export default{
        // color: 'white',
     },
     textBottomMark: {
-        marginTop: 20,
-        marginBottom: 20,
+         marginTop: 20,
+        // marginBottom: 20,
         fontSize: 14,
         color: 'white',
         marginLeft: '5%',
         flex:0.6,
+        height:20
     },
     shareButtons: {
         width: 15,
         height: 15,
        
     },
+    fbText:{
+        color:'#4867AA',
+        fontFamily:'Montserrat-Hairline',
+        fontSize:16,
+           fontWeight:'300',
+      },
+      twitterText:{
+          fontFamily:'Montserrat-Hairline',
+          color:'#1CA1F3',
+          fontSize:16,
+           fontWeight:'300',
+         
+      },
+      googlePlusText:{
+          color:'#EA4336',
+          fontSize:16,
+          fontFamily:'Montserrat-Hairline',
+          fontWeight:'300',
+         
+      },
     viewBottom:{
         backgroundColor:'black',
       //alignItems: 'space-between',
       justifyContent:'center',
       bottom: 1,
       flex:1,
-      flexDirection:'row'
+      flexDirection:'row',
+      marginTop:'5%',
+     // height:80
+    },
+    viewRecoverButton:{
+        marginTop:'20%'
     }
     
 }
