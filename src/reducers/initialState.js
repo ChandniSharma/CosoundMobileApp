@@ -12,7 +12,14 @@ export default {
     data: {},
     isRequesting: false
   },
-
+  
+  // Logout state
+  logout: {
+    isRequesting: false,
+    data: {},
+    error: {}
+  },
+  
   // User state
   user: {
     error: {},
