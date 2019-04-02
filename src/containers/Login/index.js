@@ -8,7 +8,8 @@ import { authActions } from "../../actions";
 
 import Validator from "../../validator";
 
-import { Login } from "../../views/Login";
+import Login from "../../views/Login";
+
 
 class LoginContainer extends React.PureComponent {
   state = {
@@ -47,8 +48,7 @@ class LoginContainer extends React.PureComponent {
    * Input change handlers
    *
    */
-  _handleChange = e => {
-    const { name, value } = e.target;
+  _handleChange = (name, value) => {
     const { data } = this.state;
     if (name === "rememberMe") {
       data[name] = !data[name];
@@ -72,8 +72,10 @@ class LoginContainer extends React.PureComponent {
     const valid = this._isValid();
     if (valid) {
       const { data } = this.state;
-
       return this.props.authActions.login(data).then(() => {
+        alert("login successfully");
+        alert(JSON.stringify(this.props));
+        console.log("login success ",this.props);
         if (isSuccess(this.props.login)) {
           this._navigateToDashboard();
         }
@@ -101,6 +103,9 @@ class LoginContainer extends React.PureComponent {
     });
   };
 
+  _navigateToForgotPassword =() =>{
+        this.props.navigation.navigate("RecoverPwd");
+  }
   render() {
     const { data, errors, fetching } = this.state;
     const { login } = this.props;
@@ -113,6 +118,7 @@ class LoginContainer extends React.PureComponent {
         fetching={fetching}
         onSubmit={this._login}
         handleChange={this._handleChange}
+        navigateToForgotPassword={this._navigateToForgotPassword}
       />
     );
   }
@@ -128,8 +134,7 @@ const mapStateToProps = state => {
 // eslint-disable-next-line
 const mapDispatchToProps = dispatch => {
   return {
-    authActions: bindActionCreators(authActions, dispatch),
-    notificationActions: bindActionCreators(notificationActions, dispatch)
+    authActions: bindActionCreators(authActions, dispatch)
   };
 };
 

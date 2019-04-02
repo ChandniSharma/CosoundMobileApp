@@ -27,11 +27,6 @@ const loginRequest = () => ({
 });
 
 const loginSuccess = (data) => ({
-  type: LOGIN_REQUEST,
-  data: data
-});
-
-const loginSuccess = (data) => ({
   type: LOGIN_SUCCESS,
   error: data
 });
@@ -43,8 +38,8 @@ const loginFailure = (errorMessage) => ({
 
 export const login = (data) => {
   return dispatch => {
-    dispatch(addTodoStarted());
-    axios
+    dispatch(loginRequest());
+    return axios
       .post(`https://cosound.geekydev.com/backend/api/login`, {
         email:"ben@cosound.co",
         password:"helloben",
@@ -52,9 +47,42 @@ export const login = (data) => {
       })
       .then(res => {
         dispatch(loginSuccess(res.data));
+        return true;
       })
       .catch(err => {
-        dispatch(addTodoFailure(err.message));
+        dispatch(loginFailure(err.message));
+        return false;
+      });
+  };
+};
+
+const recoverPasswordRequest = () => ({
+  type: recoverPassword_REQUEST
+});
+
+const recoverPasswordSuccess = (data) => ({
+  type: recoverPassword_SUCCESS,
+  error: data
+});
+
+const recoverPasswordFailure = (errorMessage) => ({
+  type: recoverPassword_FAILURE,
+  error: errorMessage
+});
+
+export const recoverPassword = (data) => {
+  return dispatch => {
+    dispatch(recoverPasswordRequest());
+    return axios
+      .post(`https://cosound.geekydev.com/backend/api/password/forgot`, 
+        {
+          email: "test@gmail.com"
+        })
+      .then(res => {
+        dispatch(recoverPasswordSuccess(res.data));
+      })
+      .catch(err => {
+        dispatch(recoverPasswordFailure(err.message));
       });
   };
 };

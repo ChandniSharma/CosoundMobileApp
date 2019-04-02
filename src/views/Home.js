@@ -1,14 +1,14 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, Dimensions, SafeAreaView, Image } from 'react-native';
+import { View, TouchableOpacity, Text, Dimensions, SafeAreaView, Image,TouchableHighlight } from 'react-native';
 //import Image from 'react-native-remote-svg'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 //import HomeStyle from '../stylesheet/HomeStyle'
 import homeStyle from '../stylesheet/home.style';
 import Video from 'react-native-video';
 
-
 const { width, height } = Dimensions.get('window');
 console.disableYellowBox = true;
+
 export default class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -54,12 +54,12 @@ export default class Home extends React.Component {
 
                         <View style={homeStyle.viewLoginButton}>
 
-                            <TouchableOpacity style={[homeStyle.signupButton, backgroundColor = this.state.bgColorSignupButton]}>
+                            <TouchableHighlight style={[homeStyle.signupButton, backgroundColor = this.state.bgColorSignupButton]}>
                                 <Text style={homeStyle.textSignupButtonTitle}>Sign up</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={[homeStyle.loginButton, backgroundColor = this.state.bgColorLoginButton]}>
+                            </TouchableHighlight>
+                            <TouchableHighlight onPress={this.props.navigation.navigate("Login")} style={[homeStyle.loginButton, backgroundColor = this.state.bgColorLoginButton]}>
                                 <Text style={homeStyle.textLoginButtonTitle}> Login</Text>
-                            </TouchableOpacity>
+                            </TouchableHighlight>
 
                         </View>
                     </View>

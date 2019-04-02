@@ -8,7 +8,7 @@ import { authActions } from "../../actions";
 
 import Validator from "../../validator";
 
-import RecoverPwd from "../../RecoverPwd";
+import RecoverPwd from "../../views/RecoverPwd";
 
 class ResetPassword extends React.Component {
   constructor(props) {

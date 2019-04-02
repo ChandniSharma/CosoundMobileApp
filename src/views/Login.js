@@ -13,7 +13,11 @@ export default class Login extends Component {
             password: '',
         }
     }
+   
+    
     render() {
+        const { data, errors, handleChange, login, onSubmit, fetching,navigateToForgotPassword } = this.props;
+        console.log(" in component =====",errors);
         return (
             <SafeAreaView>
                 <KeyboardAwareScrollView >
@@ -41,16 +45,20 @@ export default class Login extends Component {
                             <TextInput
                                 style={styles.inputStyle}
                                 placeholder={'Email'}
-                                onChangeText={(text) => this.setState({ email: text })}
-                                value={this.state.email}
+                                //onChangeText={(text) => this.setState({ email: text })}
+                                value={data.email}
+                                name={"email"}
+                                onChangeText={val => handleChange('email', val)}
                             />
                        
                             <TextInput
                                 style={styles.inputStyle}
                                 placeholder={'Password'}
                                 secureTextEntry={true}
-                                onChangeText={(text) => this.setState({ password: text })}
-                                value={this.state.password}
+                                //onChangeText={(text) => this.setState({ password: text })}
+                                onChangeText={val => handleChange('password', val)}
+                                value={data.password}
+                                name={"password"}
                             />
                         </View>
                         <View style={styles.rememberView}>
@@ -59,17 +67,17 @@ export default class Login extends Component {
                                 <Image />
                             </TouchableOpacity>
 
-                            <TouchableHighlight style={styles.rememberBtn}>
+                            <TouchableHighlight  style={styles.rememberBtn}>
                                 <Text style={styles.rememberText}> Remember me</Text>
                             </TouchableHighlight>
                        
-                            <TouchableHighlight style={styles.forgotPwdBtn}>
+                            <TouchableHighlight style={styles.forgotPwdBtn} onPress={navigateToForgotPassword}>
                                 <Text style={styles.forgotPwdText}> Forgot Password?</Text>
                             </TouchableHighlight>
                         </View>
 
-                        <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton]}>
-                            <Text style={styles.textButtonTitle}>Login</Text>
+                        <TouchableHighlight underlayColor="#25b6ad" onPress={onSubmit} style={[styles.loginButton]}>
+                            <Text style={styles.textButtonTitle} >Login</Text>
                         </TouchableHighlight>
 
                         <View style={styles.socialMediaLoginView}>
