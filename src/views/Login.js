@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView, TouchableHighlight, Image, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity,Dimensions } from 'react-native';
 //import SvgUri from 'react-native-svg-uri';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../stylesheet/login.style';
 import RecoverPwd from './RecoverPwd';
+import * as Animatable from 'react-native-animatable';
+import {SafeAreaView} from 'react-navigation';
+
+
+const {width,height} = Dimensions.get('window');
 
 export default class Login extends Component {
     constructor(props) {
@@ -11,18 +16,27 @@ export default class Login extends Component {
         this.state = {
             email: '',
             password: '',
+            isRememberMe:false,
+           
         }
     }
-   
-    
+     fadeIn = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished':" cancelled"))
+     fadeIn = () => this.refs.titleText.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished':" cancelled"))
+
+     onClickRememberMe = () =>{
+        this.setState({
+            isRememberMe:!this.state.isRememberMe
+        })
+     }
+     
     render() {
         const { data, errors, handleChange, login, onSubmit, fetching,navigateToForgotPassword } = this.props;
         console.log(" in component =====",errors);
         return (
-            <SafeAreaView>
-                <KeyboardAwareScrollView >
-                    <View style={{flex:1,backgroundColor:'rgb(245,245,245)'}}>
-                <View style={{backgroundColor:'pink'}}>
+            <SafeAreaView forceInset={{ top: 'never', bottom:'never' }} style={styles.container}>
+               <KeyboardAwareScrollView style={{backgroundColor:'rgb(245,245,245)', flex:0.9}}>
+                 <Animatable.View ref={"mainView"} style={styles.container}>
+                  <View style={{backgroundColor:'pink'}}>
                     {/* <SvgUri
                     width="200"
                     height="200"
@@ -34,13 +48,13 @@ export default class Login extends Component {
                             <Image style={styles.imgSideTitle} />
                              <View style={{flex:0.3}} />
                             <View style={styles.leftView}>
-                                <Text style={styles.textDull}>Don't have an account?</Text>
+                                <Animatable.Text animation="fadeInDown" style={styles.textDull}>Don't have an account?</Animatable.Text>
                                 <TouchableHighlight>
-                                    <Text style={styles.getStarted}>Get Started!</Text>
+                                    <Animatable.Text animation="fadeInDown" style={styles.getStarted}>Get Started!</Animatable.Text>
                                 </TouchableHighlight>
                             </View>
                         </View>
-                        <Text style={styles.loginText}> Log in</Text>
+                        <Animatable.Text animation="fadeIn" style={styles.loginText}> Log in</Animatable.Text>
                         
                             <TextInput
                                 style={styles.inputStyle}
@@ -50,7 +64,7 @@ export default class Login extends Component {
                                 name={"email"}
                                 onChangeText={val => handleChange('email', val)}
                             />
-                       
+                            {errors.email?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.email}</Animatable.Text>:null}
                             <TextInput
                                 style={styles.inputStyle}
                                 placeholder={'Password'}
@@ -60,15 +74,18 @@ export default class Login extends Component {
                                 value={data.password}
                                 name={"password"}
                             />
+                            {errors.password?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.password}</Animatable.Text>:null}
+
                         </View>
                         <View style={styles.rememberView}>
                         
-                            <TouchableOpacity style={styles.tickMarkView}>
-                                <Image />
+                            <TouchableOpacity onPress={this.onClickRememberMe} style={styles.tickMarkView}>
+                               {this.state.isRememberMe?<Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />:<Image />} 
                             </TouchableOpacity>
 
-                            <TouchableHighlight  style={styles.rememberBtn}>
-                                <Text style={styles.rememberText}> Remember me</Text>
+                            <TouchableHighlight underlayColor='rgb(245,245,245)' onPress= {this.onClickRememberMe} style={styles.rememberBtn}>
+                            {this.state.isRememberMe? <Text style={[styles.rememberText]}>Remember me</Text>: <Text>Remember me</Text>}
+                               
                             </TouchableHighlight>
                        
                             <TouchableHighlight style={styles.forgotPwdBtn} onPress={navigateToForgotPassword}>
@@ -96,7 +113,12 @@ export default class Login extends Component {
                         </TouchableHighlight>
                        </View>
                       
-                        <View style={styles.viewBottom}>
+                        
+                    
+            </Animatable.View>
+
+                </KeyboardAwareScrollView>
+                <View style={styles.viewBottom}>
                             <Text style={styles.textBottomMark}>(c) elit. Nulla 2018</Text>
                             <View style={styles.viewShareButtons}>
                                 <TouchableOpacity style={styles.shareButtons}>
@@ -112,11 +134,6 @@ export default class Login extends Component {
                                 </TouchableOpacity>
                             </View>
                         </View> 
-                    
-            </View>
-
-                </KeyboardAwareScrollView>
-
             </SafeAreaView>
 
         )

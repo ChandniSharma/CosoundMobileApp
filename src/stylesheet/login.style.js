@@ -1,17 +1,24 @@
-import { Dimensions } from "react-native";
+import { Dimensions, Platform } from "react-native";
 
 const { height, width } = Dimensions.get('window');
 const deviceHeight = height;
 let deviceWidth = width;
 let top;
+const statusBarHeight = Platform.OS === 'ios' ? 0 : 0;
 
 export default{
+    
+    errorText:{
+        margin:'2%',
+        color:'red',
+        alignSelf:'center',
+    },
     container: {
         flex: 1,
     },
     leftView:{
+        marginTop:'15%',
         alignSelf:'flex-end',
-        
         flex:0.4,
        // backgroundColor:'red'
     },
@@ -53,7 +60,7 @@ export default{
     inputStyle:{
       marginLeft: '5%',
       marginRight:'5%',
-      height:55,
+      height:60,
       backgroundColor:'white',
       marginTop:'5%',
       shadowColor: 'rgba(0,0,0,0.7)',
@@ -103,6 +110,12 @@ export default{
         shadowOpacity: 0.5,
         shadowRadius: 1,
         borderRadius:.2,
+        alignItems: 'center',
+        justifyContent:'center'
+    },
+    imgTickMark:{
+        width:24,
+        height:24
     },
     rememberBtn:{
         flex:0.45,
@@ -111,13 +124,13 @@ export default{
       //  backgroundColor:'green',
     },
     rememberText:{
-
+        color: 'rgb(37,182,173)'
     },
     forgotPwdBtn:{
         flex:0.5,
         //alignSelf:'flex-end',
         marginTop:'1%',
-         backgroundColor:'yellow',
+       
     },
     forgotPwdText:{
        alignSelf: 'flex-end',
@@ -246,7 +259,7 @@ export default{
     },
     textBottomMark: {
         marginTop: 20,
-        marginBottom: 20,
+       // marginBottom: 20,
         fontSize: 14,
         color: 'white',
         marginLeft: '5%',
@@ -258,12 +271,12 @@ export default{
        
     },
     viewBottom:{
+        flex:0.1,
+        marginBottom:0,
         backgroundColor:'black',
-      //alignItems: 'space-between',
-      justifyContent:'center',
-      bottom: 1,
-      flex:1,
-      flexDirection:'row'
+       //alignItems: 'space-between',
+       justifyContent:'center',
+       flexDirection:'row',
     }
     
 }

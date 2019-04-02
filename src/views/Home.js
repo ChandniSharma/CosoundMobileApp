@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, Dimensions, SafeAreaView, Image,TouchableHighlight } from 'react-native';
+import { View, TouchableOpacity, Text, Dimensions, Image,TouchableHighlight } from 'react-native';
 //import Image from 'react-native-remote-svg'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 //import HomeStyle from '../stylesheet/HomeStyle'
 import homeStyle from '../stylesheet/home.style';
 import Video from 'react-native-video';
+import {SafeAreaView} from 'react-navigation';
+import * as Animatable from 'react-native-animatable';
 
 const { width, height } = Dimensions.get('window');
 console.disableYellowBox = true;
@@ -21,6 +23,9 @@ export default class Home extends React.Component {
         this.arrayFooterOptions = ["Option One", "Option Two", "Option Three", "Option Four", "Option Five"];
         this.arrayFooterTitles = ["FOOTER MENU 1", "FOOTER MENU 2", "FOOTER MENU 3"];
     }
+    navigateToLogin = () =>{
+        this.props.navigation.navigate("Login")
+    }
 
     render() {
         let footerText = [];
@@ -31,8 +36,8 @@ export default class Home extends React.Component {
             }
         }
         return (
-            <SafeAreaView>
-                <KeyboardAwareScrollView>
+            <SafeAreaView forceInset={{ top: 'never', bottom:'never' }} style={homeStyle.container}>
+               <KeyboardAwareScrollView style={{backgroundColor:'rgb(245,245,245)'}}>
                     <View style={{ backgroundColor: this.state.titleColorLoginButton }}>
                         {/* <Image
                         source={require('../assets/logo.svg')}
@@ -47,17 +52,17 @@ export default class Home extends React.Component {
                             </TouchableOpacity>
                         </View>
 
-                        <Image style={homeStyle.imgMainTitle} source={require('../assets/cosoundTitle.png')}/>
+                        <Animatable.Image animation="fadeInDown" style={homeStyle.imgMainTitle} source={require('../assets/cosoundTitle.png')}/>
 
-                        <Text style={homeStyle.textMusicDescription}> The music industry network and</Text>
-                        <Text style={homeStyle.textMusicDescription2}>marketplace</Text>
+                        <Animatable.Text animation="fadeInDown" style={homeStyle.textMusicDescription}> The music industry network and</Animatable.Text>
+                        <Animatable.Text animation="fadeInDown" style={homeStyle.textMusicDescription2}>marketplace</Animatable.Text>
 
                         <View style={homeStyle.viewLoginButton}>
 
                             <TouchableHighlight style={[homeStyle.signupButton, backgroundColor = this.state.bgColorSignupButton]}>
                                 <Text style={homeStyle.textSignupButtonTitle}>Sign up</Text>
                             </TouchableHighlight>
-                            <TouchableHighlight onPress={this.props.navigation.navigate("Login")} style={[homeStyle.loginButton, backgroundColor = this.state.bgColorLoginButton]}>
+                            <TouchableHighlight onPress={this.navigateToLogin} style={[homeStyle.loginButton, backgroundColor = this.state.bgColorLoginButton]}>
                                 <Text style={homeStyle.textLoginButtonTitle}> Login</Text>
                             </TouchableHighlight>
 
@@ -104,7 +109,7 @@ export default class Home extends React.Component {
                         <Text style={homeStyle.textBottomMark}>(c) elit. Nulla 2018</Text>
                     </View>
                 </KeyboardAwareScrollView>
-
+               
             </SafeAreaView>)
     }
 }

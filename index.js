@@ -19,20 +19,15 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 const AppStackNavigator = createStackNavigator({
     Home:{screen:Home},
     Login:{screen:Login},
-    RecoverPwd:{screen: RecoverPwd}
+    RecoverPwd:{screen: RecoverPwd},
+    
  },{
-    initialRouteName: 'Home',
-    // headerMode: "screen",
-    // mode: Platform.OS === "ios" ? "modal" : "card",
-    // navigationOptions: {
-    // cardStack: {
-    //     gesturesEnabled: false
-    // },
-    // gesturesEnabled: false
-    // },
-    // gesturesEnabled: false,
-    // transitionConfig: TransitionConfiguration,
-})
+        initialRouteName: 'Home',
+        gesturesEnabled: false,
+        headerMode: 'none',
+       
+ })
+ 
 
 const RootNavigator = createAppContainer(AppStackNavigator)
 //export default RootNavigator
@@ -50,3 +45,15 @@ class CoSoundApp extends Component {
 }
 
 AppRegistry.registerComponent(appName, () => CoSoundApp);
+
+//initialRouteName: 'Login',
+    // headerMode: "screen",
+    // mode: Platform.OS === "ios" ? "modal" : "card",
+    // navigationOptions: {
+    // cardStack: {
+    //     gesturesEnabled: false
+    // },
+    // gesturesEnabled: false
+    // },
+    // gesturesEnabled: false,
+    // transitionConfig: TransitionConfiguration,

@@ -30,7 +30,8 @@ export default {
     imgMainTitle:{
         alignSelf: 'center',
         width:200,
-        height:40
+        height:40,
+        marginTop:'5%',
     },
     textMusicDescription: {
         color: 'white',
@@ -193,6 +194,7 @@ export default {
         color:'white',
     },
     viewBottom: {
+        flex:0.2,
         backgroundColor: 'black',
     },
     viewFooterSocialShareOption: {
