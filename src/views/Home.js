@@ -53,7 +53,6 @@ export default class Home extends React.Component {
                         </View>
 
                         <Animatable.Image animation="fadeInDown" style={homeStyle.imgMainTitle} source={require('../assets/cosoundTitle.png')}/>
-
                         <Animatable.Text animation="fadeInDown" style={homeStyle.textMusicDescription}> The music industry network and</Animatable.Text>
                         <Animatable.Text animation="fadeInDown" style={homeStyle.textMusicDescription2}>marketplace</Animatable.Text>
 

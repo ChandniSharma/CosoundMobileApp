@@ -6,9 +6,8 @@ import styles from '../stylesheet/login.style';
 import RecoverPwd from './RecoverPwd';
 import * as Animatable from 'react-native-animatable';
 import {SafeAreaView} from 'react-navigation';
+import CustomFooter from '../components/common/CustomFooter'
 
-
-const {width,height} = Dimensions.get('window');
 
 export default class Login extends Component {
     constructor(props) {
@@ -30,7 +29,7 @@ export default class Login extends Component {
      }
      
     render() {
-        const { data, errors, handleChange, login, onSubmit, fetching,navigateToForgotPassword } = this.props;
+        const { data, errors, handleChange, login, onSubmit, fetching,navigateToForgotPassword, navigateToGetStartedView } = this.props;
         console.log(" in component =====",errors);
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom:'never' }} style={styles.container}>
@@ -49,7 +48,7 @@ export default class Login extends Component {
                              <View style={{flex:0.3}} />
                             <View style={styles.leftView}>
                                 <Animatable.Text animation="fadeInDown" style={styles.textDull}>Don't have an account?</Animatable.Text>
-                                <TouchableHighlight>
+                                <TouchableHighlight onPress={navigateToGetStartedView}>
                                     <Animatable.Text animation="fadeInDown" style={styles.getStarted}>Get Started!</Animatable.Text>
                                 </TouchableHighlight>
                             </View>
@@ -118,22 +117,7 @@ export default class Login extends Component {
             </Animatable.View>
 
                 </KeyboardAwareScrollView>
-                <View style={styles.viewBottom}>
-                            <Text style={styles.textBottomMark}>(c) elit. Nulla 2018</Text>
-                            <View style={styles.viewShareButtons}>
-                                <TouchableOpacity style={styles.shareButtons}>
-                                    <Text style={styles.textColorTemp}>F</Text>
-                                </TouchableOpacity>
-
-                                <TouchableOpacity style={styles.shareButtons}>
-                                    <Text style={styles.textColorTemp}>T</Text>
-                                </TouchableOpacity>
-
-                                <TouchableOpacity style={styles.shareButtons}>
-                                    <Text style={styles.textColorTemp}>C</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View> 
+               <CustomFooter />
             </SafeAreaView>
 
         )

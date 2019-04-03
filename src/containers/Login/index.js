@@ -106,6 +106,9 @@ class LoginContainer extends React.PureComponent {
   _navigateToForgotPassword =() =>{
         this.props.navigation.navigate("RecoverPwd");
   }
+  _navigateToGetStartedView =() =>{
+    this.props.navigation.navigate("GetStartedView");
+}
   render() {
     const { data, errors, fetching } = this.state;
     const { login } = this.props;
@@ -119,6 +122,7 @@ class LoginContainer extends React.PureComponent {
         onSubmit={this._login}
         handleChange={this._handleChange}
         navigateToForgotPassword={this._navigateToForgotPassword}
+        navigateToGetStartedView={this._navigateToGetStartedView}
       />
     );
   }

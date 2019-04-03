@@ -5,6 +5,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import styles from '../stylesheet/recoverPwd.style'
 import * as Animatable from 'react-native-animatable';
 import {SafeAreaView} from 'react-navigation';
+import CustomFooter from '../components/common/CustomFooter'
 
 export default class RecoverPwd extends Component {
     constructor(props) {
@@ -75,22 +76,7 @@ export default class RecoverPwd extends Component {
 
                     </Animatable.View>
                 </KeyboardAwareScrollView>
-                <View style={styles.viewBottom}>
-                    <Text style={styles.textBottomMark}>(c) elit. Nulla 2018</Text>
-                    <View style={styles.viewShareButtons}>
-                        <TouchableOpacity style={styles.shareButtons}>
-                            {/* <Text style={styles.textColorTemp}>F</Text> */}
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.shareButtons}>
-                            {/* <Text style={styles.textColorTemp}>T</Text> */}
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.shareButtons}>
-                            {/* <Text style={styles.textColorTemp}>C</Text> */}
-                        </TouchableOpacity>
-                    </View>
-                </View>
+                <CustomFooter />
             </SafeAreaView>
 
         )
