@@ -96,6 +96,7 @@ export default{
    viewProgressbar:{
       marginTop:'5%',
       marginBottom:'5%',
+      height:500,
    },
     textSelected:{
       marginLeft:'5%',
@@ -142,6 +143,8 @@ export default{
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
+        marginLeft:'4%',
+        //marginTop:'-2%'
         // marginLeft:'-%',
        
     },
@@ -159,7 +162,7 @@ export default{
         shadowOpacity: 0.5,
         shadowRadius: 1,
         borderRadius:.2,
-        marginLeft:'25%'
+        marginLeft:'27.5%'
     },
     
     tickMarkView:{
@@ -314,6 +317,7 @@ export default{
         color:'white',
         fontWeight:'500',
         alignSelf:'center',
+        marginBottom:'14%'
     
     },
     viewShareButtons: {

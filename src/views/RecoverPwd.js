@@ -10,15 +10,17 @@ import CustomFooter from '../components/common/CustomFooter'
 export default class RecoverPwd extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            email: '',
-            password: '',
-        }
     }
-    onSubmit =() =>{
 
-    }
     render() {
+        const {
+            data,
+            error,
+            errors,
+            onSubmit,
+            handleChange,
+            resetPassword
+          } = this.props;
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>
@@ -47,13 +49,16 @@ export default class RecoverPwd extends Component {
                             <TextInput
                                 style={styles.inputStyle}
                                 placeholder={'Email'}
-                                onChangeText={(text) => this.setState({ email: text })}
-                                value={this.state.email}
+                                name={"email"}
+                                value={data.email}
+                                onChangeText={val => handleChange('email', val)}
                             />
+                             {errors.email?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.email}</Animatable.Text>:null}
+                           
                         </View>
                        
                          <View style={styles.viewRecoverButton}>
-                             <TouchableHighlight underlayColor="#25b6ad" onPress={this.onSubmit} style={[styles.loginButton]}>
+                             <TouchableHighlight underlayColor="#25b6ad" onPress={onSubmit} style={[styles.loginButton]}>
                             <Text style={styles.textButtonTitle} >Recover</Text>
                         </TouchableHighlight>
                         </View>

@@ -7,6 +7,10 @@ import homeStyle from '../stylesheet/home.style';
 import Video from 'react-native-video';
 import {SafeAreaView} from 'react-navigation';
 import * as Animatable from 'react-native-animatable';
+import CustomFooter from '../components/common/CustomFooter';
+import SignupStep1 from './SignupStep1';
+
+
 
 const { width, height } = Dimensions.get('window');
 console.disableYellowBox = true;
@@ -23,10 +27,17 @@ export default class Home extends React.Component {
         this.arrayFooterOptions = ["Option One", "Option Two", "Option Three", "Option Four", "Option Five"];
         this.arrayFooterTitles = ["FOOTER MENU 1", "FOOTER MENU 2", "FOOTER MENU 3"];
     }
+    //fadeInLoginView = () => this.refs.loginView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished':" cancelled"))
+
+    componentDidMount(){
+     //  this.fadeInLoginView();
+    }
     navigateToLogin = () =>{
         this.props.navigation.navigate("Login")
     }
-
+    navigateToSignupStep1 = () =>{
+        this.props.navigation.navigate("SignupStep1");
+    }
     render() {
         let footerText = [];
         for (let i = 0; i < this.arrayFooterTitles.length; i++) {
@@ -56,9 +67,9 @@ export default class Home extends React.Component {
                         <Animatable.Text animation="fadeInDown" style={homeStyle.textMusicDescription}> The music industry network and</Animatable.Text>
                         <Animatable.Text animation="fadeInDown" style={homeStyle.textMusicDescription2}>marketplace</Animatable.Text>
 
-                        <View style={homeStyle.viewLoginButton}>
+                        <View ref={'loginView'} style={homeStyle.viewLoginButton}>
 
-                            <TouchableHighlight style={[homeStyle.signupButton, backgroundColor = this.state.bgColorSignupButton]}>
+                            <TouchableHighlight style={[homeStyle.signupButton, backgroundColor = this.state.bgColorSignupButton]} onPress={this.navigateToSignupStep1}>
                                 <Text style={homeStyle.textSignupButtonTitle}>Sign up</Text>
                             </TouchableHighlight>
                             <TouchableHighlight onPress={this.navigateToLogin} style={[homeStyle.loginButton, backgroundColor = this.state.bgColorLoginButton]}>

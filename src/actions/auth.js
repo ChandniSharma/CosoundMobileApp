@@ -57,20 +57,20 @@ export const login = (data) => {
 };
 
 const recoverPasswordRequest = () => ({
-  type: recoverPassword_REQUEST
+  type: RESET_PASSWORD_REQUEST
 });
 
 const recoverPasswordSuccess = (data) => ({
-  type: recoverPassword_SUCCESS,
+  type: RESET_PASSWORD_SUCCESS,
   error: data
 });
 
 const recoverPasswordFailure = (errorMessage) => ({
-  type: recoverPassword_FAILURE,
+  type: RESET_PASSWORD_REQUEST_FAILURE,
   error: errorMessage
 });
 
-export const recoverPassword = (data) => {
+export const resetPassword = (data) => {
   return dispatch => {
     dispatch(recoverPasswordRequest());
     return axios

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions } from 'react-native';
 //import SvgUri from 'react-native-svg-uri';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import styles from '../stylesheet/getStarted.style';
+import styles from '../stylesheet/SignupStep1.style';
 import RecoverPwd from './RecoverPwd';
 import * as Animatable from 'react-native-animatable';
 import { SafeAreaView } from 'react-navigation';
@@ -11,7 +11,7 @@ import CustomFooter from '../components/common/CustomFooter'
 
 const { width, height } = Dimensions.get('window');
 
-export default class GetStartedView extends Component {
+export default class SignupStep1 extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -30,11 +30,15 @@ export default class GetStartedView extends Component {
         })
     }
 
+    navigateToSignupStep2 = () =>{
+        this.props.navigation.navigate("SignupStep2");
+    }
+
     render() {
 
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
-                <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9}}>
+                <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>
                     <Animatable.View ref={"mainView"} style={styles.container}>
                         <View style={{ backgroundColor: 'pink' }}>
                             {/* <SvgUri
@@ -76,15 +80,15 @@ export default class GetStartedView extends Component {
                             {/* {errors.password?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.password}</Animatable.Text>:null} */}
 
                         </View>
-<View style={{marginBottom:'5%'}}>
-     <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton]}>
-                            <Text style={styles.textButtonTitle} >Confirm Location</Text>
-                        </TouchableHighlight>
-</View>
-                        
+                        <View style={{ marginBottom: '5%', marginTop: '5%' }}>
+                            <TouchableHighlight onPress={this.navigateToSignupStep2} underlayColor="#25b6ad" style={[styles.loginButton]}>
+                                <Text style={styles.textButtonTitle} >Confirm Location</Text>
+                            </TouchableHighlight>
+                        </View>
+
                         {/* Progress bar  */}
 
-                        <View style={[styles.viewProgressbar, {flex:1}]}>
+                        <View style={[styles.viewProgressbar]}>
                             <View style={styles.viewSelected}>
                                 <View style={styles.viewCircleFilled}>
                                     <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />
@@ -118,7 +122,7 @@ export default class GetStartedView extends Component {
                     </Animatable.View>
 
                 </KeyboardAwareScrollView>
-              <CustomFooter />
+                <CustomFooter />
             </SafeAreaView>
 
         )

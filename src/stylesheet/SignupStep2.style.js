@@ -96,7 +96,7 @@ export default{
    viewProgressbar:{
       marginTop:'5%',
       marginBottom:'5%',
-      height:'60%',
+      height:500,
    },
     textSelected:{
       marginLeft:'5%',

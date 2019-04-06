@@ -30,7 +30,7 @@ const styles = {
         fontSize: 16,
         color:'white',
         fontWeight:'500',
-        
+        marginTop:'20%'
     },
     viewShareButtons: {
         flexDirection: 'row',

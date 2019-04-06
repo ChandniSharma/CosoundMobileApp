@@ -8,6 +8,11 @@ const statusBarHeight = Platform.OS === 'ios' ? 0 : 0;
 
 export default{
     
+    errorText:{
+        margin:'2%',
+        color:'red',
+        alignSelf:'center',
+    },
     container: {
         flex: 1,
     },
@@ -42,16 +47,115 @@ export default{
         marginRight:'5%',
         alignSelf:'flex-end',
     },
-    loginText:{
-        marginTop:'15%',
-        marginBottom:'15%',
+    textWelcome:{
+        color: 'white',
+        fontSize: 28,
         alignSelf:'center',
-        fontSize:30,
+        marginTop:'5%', 
+        marginBottom:'5%',
+        fontFamily: 'Montserrat-Regular',
+        fontWeight:'300',
+    },
+    imgMainTitle:{
+        alignSelf: 'center',
+        width:200,
+        height:40,
+        marginTop:'15%',
+    },
+    findingView:{
+        backgroundColor:'white',
+        width:100,
+        height:100,
+        borderRadius:50,
+        alignSelf:'center',
+        alignItems: 'center',
+        justifyContent:'center'
+     },
+     imageSearchIcon:{
+        width:18,
+        height:18,
+     },
+     imageCameraIcon:{
+        width:56,
+        height:56,
+    },
+    loginText:{
+        marginTop:'0.5%',
+        marginBottom:'10%',
+        alignSelf:'center',
+        fontSize:14,
         color:'white',
         fontFamily:'Montserrat-Regular',
        // fontWeight:'100',
     },
     
+    inputStyleLeft1:{
+        
+        marginRight:'5%',
+        height:60,
+        backgroundColor:'white',
+        marginTop:'5%',
+        shadowColor: 'rgba(0,0,0,0.7)',
+          shadowOffset: {
+              width: 2,
+              height: 4
+          },
+          shadowOpacity: 0.5,
+          shadowRadius: 1,
+          borderRadius:8,
+          fontFamily:'Montserrat-Regular',
+          fontWeight:'300',
+          fontSize:16,
+          color:'#262626',
+          paddingTop: 21,
+          paddingBottom: 20,
+          paddingLeft: 30,
+          paddingRight: 30 ,
+    },
+    inputStyleCenter:{
+        height:60,
+        backgroundColor:'white',
+        marginTop:'5%',
+        shadowColor: 'rgba(0,0,0,0.7)',
+          shadowOffset: {
+              width: 2,
+              height: 4
+          },
+          shadowOpacity: 0.5,
+          shadowRadius: 1,
+          borderRadius:8,
+          fontFamily:'Montserrat-Regular',
+          fontWeight:'300',
+          fontSize:16,
+          color:'#262626',
+          paddingTop: 21,
+          paddingBottom: 20,
+          paddingLeft: 30,
+          paddingRight: 30 ,
+    },
+    inputStyleRight:{
+        marginLeft: '5%',
+       
+        height:60,
+        backgroundColor:'white',
+        marginTop:'5%',
+        shadowColor: 'rgba(0,0,0,0.7)',
+          shadowOffset: {
+              width: 2,
+              height: 4
+          },
+          shadowOpacity: 0.5,
+          shadowRadius: 1,
+          borderRadius:8,
+          fontFamily:'Montserrat-Regular',
+          fontWeight:'300',
+          fontSize:16,
+          color:'#262626',
+          paddingTop: 21,
+          paddingBottom: 20,
+          paddingLeft: 30,
+          paddingRight: 30 ,
+    },
     inputStyle:{
       marginLeft: '5%',
       marginRight:'5%',
@@ -110,7 +214,9 @@ export default{
     },
     imgTickMark:{
         width:24,
-        height:24
+        height:24,
+        tintColor:'white',
+        alignSelf:'center',
     },
     rememberBtn:{
         flex:0.45,
@@ -131,10 +237,6 @@ export default{
        alignSelf: 'flex-end',
        height:20
     },
-    viewRecoverButton:{
-       marginTop:'15%',
-       marginBottom:'15%'
-    },
     loginButton:{
         borderRadius: 25,
         height: 50,
@@ -152,7 +254,43 @@ export default{
         shadowRadius: 1,
         
         //marginBottom:'10%',
-        backgroundColor: '#ff277b'
+        backgroundColor: '#ff277b',
+        marginTop:'5%',
+        marginBottom:'5%',
+    },
+    viewCircleCompleted:{
+        width:30,
+        height:30,
+        borderRadius:15,
+        backgroundColor:'rgb(41,139,139)',
+        borderColor: 'gray',
+        borderWidth: .2,
+        shadowColor: 'rgba(0,0,0,0.7)',
+        shadowOffset: {
+            width: .5,
+            height: .5
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        // marginLeft:'-%',
+        zIndex:999,
+    },
+    viewSingleLineFilled:{
+        width:'3.5%',
+        height:'22%',
+        backgroundColor:'rgb(41,139,139)',
+        borderColor: 'gray',
+        borderWidth: .2,
+        shadowColor: 'rgba(0,0,0,0.5)',
+        shadowOffset: {
+            width: .5,
+            height: .5
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        borderRadius:.2,
+        marginLeft:'26.5%',
+        marginTop:'-2%'
     },
     socialMediaLoginView:{
         flexDirection: 'row',
@@ -241,13 +379,14 @@ export default{
         fontSize: 16,
         color:'white',
         fontWeight:'500',
-        
+        height:30,
+        alignSelf:'center',
+        marginTop:'20%',
     },
     viewShareButtons: {
         flexDirection: 'row',
         alignSelf: 'flex-end',
         flex:0.4,
-       
         height:50,
         marginBottom:'5%',
         marginLeft:'13%',
@@ -277,10 +416,85 @@ export default{
        justifyContent:'center',
        flexDirection:'row',
     },
-    errorText:{
-        margin:'2%',
-        color:'red',
+    viewSelected:{
         alignSelf:'center',
-    },
+        flexDirection:'row'
+   },
+   viewNotSelected:{
+       // alignSelf:'center',
+       marginLeft:'22.5%',
+        flexDirection:'row',
+        
+   },
+    viewProgressbar:{
+        marginTop:'5%',
+        marginBottom:'5%',
+        height:500,
+     },
+      textSelected:{
+        marginLeft:'5%',
+        marginTop:'2.5%',
+        fontFamily:'Montserrat-Regular',
+        fontSize:18,
+        color: '#2A8B8B',
+      },
+      textNotSelected:{
+          marginLeft:'5%',
+          fontFamily:'Montserrat-Regular',
+          fontSize:18,
+          color:'gray'
+      },
+      viewCircleFilled:{
+          width:50,
+          height:50,
+          borderRadius:25,
+          backgroundColor:'rgb(60,205,53)',
+          borderColor: 'gray',
+          borderWidth: .2,
+          shadowColor: 'rgba(0,0,0,1)',
+          shadowOffset: {
+              width: .5,
+              height: .5
+          },
+          shadowOpacity: 0.5,
+          shadowRadius: 1,
+          alignItems: 'center',
+          alignSelf:'center',
+          justifyContent:'center'
+      },
+      viewCircleEmpty:{
+          width:30,
+          height:30,
+          borderRadius:15,
+          backgroundColor:'rgb(225,225,225)',
+          borderColor: 'gray',
+          borderWidth: .2,
+          shadowColor: 'rgba(0,0,0,0.7)',
+          shadowOffset: {
+              width: .5,
+              height: .5
+          },
+          shadowOpacity: 0.5,
+          shadowRadius: 1,
+          // marginLeft:'-%',
+         
+      },
+      viewSingleLine:{
+          width:'3.5%',
+          height:'20%',
+          backgroundColor:'white',
+          borderColor: 'gray',
+          borderWidth: .2,
+          shadowColor: 'rgba(0,0,0,0.5)',
+          shadowOffset: {
+              width: .5,
+              height: .5
+          },
+          shadowOpacity: 0.5,
+          shadowRadius: 1,
+          borderRadius:.2,
+          marginLeft:'25%'
+      },
+      
     
 }

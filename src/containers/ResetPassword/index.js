@@ -28,8 +28,8 @@ class ResetPassword extends React.Component {
 
   componentDidMount() {
     const { location } = this.props;
-    const { search } = location;
-    this._performAction(search);
+   // const { search } = location;
+   // this._performAction(search);
   }
 
   _performAction = search => {
@@ -60,11 +60,8 @@ class ResetPassword extends React.Component {
   _isValid = (field = null) => {
     const validate = Validator.createValidator(
       {
-        token: ["required"],
         email: ["required", "email"],
-        password: ["required", "minLength|6"],
-        password_confirmation: ["required", "match|password"]
-      },
+     },
       this.state.data,
       field
     );
@@ -77,8 +74,7 @@ class ResetPassword extends React.Component {
   /**
    * Input handlers
    */
-  _handleChange = e => {
-    const { name, value } = e.target;
+  _handleChange = (name, value) => {
     const { data } = this.state;
     data[name] = value;
     this.setState(
@@ -93,13 +89,17 @@ class ResetPassword extends React.Component {
    * On Submit
    */
   _onSubmit = e => {
-    e.preventDefault();
+   // alert("password changed 99");
+    //e.preventDefault();
     const valid = this._isValid();
     if (valid) {
       const { data } = this.state;
+      alert("password changed")
       this._callReset(data).then(() => {
         //performWow(this.props.wowActions);
       });
+    }else{
+      alert("Invalid");
     }
   };
 

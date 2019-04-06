@@ -8,6 +8,11 @@ const statusBarHeight = Platform.OS === 'ios' ? 0 : 0;
 
 export default{
     
+    errorText:{
+        margin:'2%',
+        color:'red',
+        alignSelf:'center',
+    },
     container: {
         flex: 1,
     },
@@ -17,7 +22,15 @@ export default{
         flex:0.4,
        // backgroundColor:'red'
     },
-
+findingView:{
+   backgroundColor:'white',
+   width:100,
+   height:100,
+   borderRadius:50,
+   alignSelf:'center',
+   alignItems: 'center',
+   justifyContent:'center'
+},
     imgSideTitle: {
         color: 'white',
        // fontSize: 21,
@@ -43,8 +56,8 @@ export default{
         alignSelf:'flex-end',
     },
     loginText:{
-        marginTop:'15%',
-        marginBottom:'15%',
+        marginTop:'10%',
+        marginBottom:'10%',
         alignSelf:'center',
         fontSize:30,
         color:'white',
@@ -78,17 +91,120 @@ export default{
     viewForgotPwd:{
 
     },
-    
-    rememberView:{
-        flexDirection: 'row', 
-        flex:1,
-        marginTop:'5%',
-        marginBottom:'5%',
+    viewSelected:{
+        alignSelf:'center',
+        flexDirection:'row'
+   },
+   viewNotSelected:{
+       // alignSelf:'center',
+       marginLeft:'22.5%',
+        flexDirection:'row',
+        
+   },
+   viewProgressbar:{
+      marginTop:'5%',
+      marginBottom:'5%',
+      height:'60%',
+   },
+    textSelected:{
+      marginLeft:'5%',
+      marginTop:'2.5%',
+      fontFamily:'Montserrat-Regular',
+      fontSize:18,
+      color: '#2A8B8B',
+    },
+    textNotSelected:{
         marginLeft:'5%',
-        marginRight:'5%',
+        fontFamily:'Montserrat-Regular',
+        fontSize:18,
+        color:'gray'
+    },
+    viewCircleCompleted:{
+        width:30,
         height:30,
-       // backgroundColor:'pink'
-
+        borderRadius:15,
+        backgroundColor:'rgb(41,139,139)',
+        borderColor: 'gray',
+        borderWidth: .2,
+        shadowColor: 'rgba(0,0,0,0.7)',
+        shadowOffset: {
+            width: .5,
+            height: .5
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        // marginLeft:'-%',
+        zIndex:999,
+    },
+    viewCircleFilled:{
+        width:50,
+        height:50,
+        borderRadius:25,
+        backgroundColor:'rgb(60,205,53)',
+        borderColor: 'gray',
+        borderWidth: .2,
+        shadowColor: 'rgba(0,0,0,1)',
+        shadowOffset: {
+            width: .5,
+            height: .5
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        alignItems: 'center',
+        alignSelf:'center',
+        justifyContent:'center',
+       zIndex:999,
+    },
+    viewCircleEmpty:{
+        width:30,
+        height:30,
+        borderRadius:15,
+        backgroundColor:'rgb(225,225,225)',
+        borderColor: 'gray',
+        borderWidth: .2,
+        shadowColor: 'rgba(0,0,0,0.7)',
+        shadowOffset: {
+            width: .5,
+            height: .5
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        zIndex:999,
+        marginLeft:'3%'
+    },
+    viewSingleLineFilled:{
+        width:'3.5%',
+        height:'22%',
+        backgroundColor:'rgb(41,139,139)',
+        borderColor: 'gray',
+        borderWidth: .2,
+        shadowColor: 'rgba(0,0,0,0.5)',
+        shadowOffset: {
+            width: .5,
+            height: .5
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        borderRadius:.2,
+        marginLeft:'26.5%',
+        marginTop:'-2%'
+    },
+    viewSingleLine:{
+        width:'3.5%',
+        height:'22%',
+        backgroundColor:'white',
+        borderColor: 'gray',
+        borderWidth: .2,
+        shadowColor: 'rgba(0,0,0,0.5)',
+        shadowOffset: {
+            width: .5,
+            height: .5
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        borderRadius:.2,
+        marginLeft:'27%',
+        marginTop:'-2%'
     },
     tickMarkView:{
         width:20,
@@ -109,8 +225,9 @@ export default{
         justifyContent:'center'
     },
     imgTickMark:{
-        width:24,
-        height:24
+        width:34,
+        height:34,
+        tintColor:'white',
     },
     rememberBtn:{
         flex:0.45,
@@ -125,20 +242,17 @@ export default{
         flex:0.5,
         //alignSelf:'flex-end',
         marginTop:'1%',
-       
     },
     forgotPwdText:{
        alignSelf: 'flex-end',
        height:20
     },
-    viewRecoverButton:{
-       marginTop:'15%',
-       marginBottom:'15%'
-    },
-    loginButton:{
-        borderRadius: 25,
-        height: 50,
-        flex: 0.5,
+    bigButton:{
+        borderRadius: 15,
+        height: 172,
+        width:240,
+        borderColor:'rgba(0,0,0,0.12)',
+        alignSelf:'center',
         alignItems: 'center',
         justifyContent: 'center',
          marginLeft: "15%",
@@ -150,9 +264,12 @@ export default{
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
-        
+        borderWidth:0.3,
         //marginBottom:'10%',
-        backgroundColor: '#ff277b'
+        backgroundColor: 'rgba(255,255,255,0.7)',
+        marginTop:"5%",
+        marginBottom:'5%',
+        justifyContent:'center',
     },
     socialMediaLoginView:{
         flexDirection: 'row',
@@ -238,10 +355,30 @@ export default{
         marginLeft:'2%'
     },
     textButtonTitle: {
-        fontSize: 16,
-        color:'white',
-        fontWeight:'500',
-        
+        fontSize: 18,
+        fontFamily:'Montserrat-Regular',
+        color:'rgba(38,38,38,0.52)',
+        fontWeight:'300',
+        alignSelf:'center',
+    },
+    viewButton:{ 
+        //backgroundColor:'pink',
+    flex:1,
+   justifyContent:'center',
+
+    },
+    musician:{
+        width: 40,
+        height: 60,
+        alignSelf:'center',
+        marginBottom:'1%'
+
+    },
+    industryProfessional:{
+        width: 59,
+        height: 63,
+        alignSelf:'center',
+        marginBottom:'1%'
     },
     viewShareButtons: {
         flexDirection: 'row',
@@ -270,17 +407,54 @@ export default{
        
     },
     viewBottom:{
-        flex:0.1,
+        //flex:0.1,
+        marginTop:'5%',
         marginBottom:0,
         backgroundColor:'black',
        //alignItems: 'space-between',
        justifyContent:'center',
        flexDirection:'row',
     },
-    errorText:{
-        margin:'2%',
-        color:'red',
-        alignSelf:'center',
+    imgMainTitle:{
+        alignSelf: 'center',
+        width:200,
+        height:40,
+        marginTop:'15%',
     },
-    
+    textWelcome:{
+        color: 'white',
+        fontSize: 28,
+        alignSelf:'center',
+        marginTop:'5%', 
+        marginBottom:'5%',
+        fontFamily: 'Montserrat-Regular',
+        fontWeight:'300',
+    },
+    viewDescription:{
+        marginLeft:'10%',
+        marginRight:'10%',
+        marginBottom:'2%',
+        marginTop:'5%'
+    },
+    textMusicDescription2: {
+        color: 'rgba(255,255,255,0.52)',
+        fontSize: 14,
+       // alignSelf:'center',
+
+        marginTop:'1%', 
+        marginBottom:'5%',
+        fontFamily: 'Montserrat-Light',
+    },
+    textSubTitle:{
+        marginTop:'5%',
+        marginBottom:'5%',
+        color:'white',
+        fontSize:20,
+        fontFamily: 'Montserrat-Regular',
+    },
+    imageSearchIcon:{
+        width:56,
+        height:56,
+        
+    }
 }

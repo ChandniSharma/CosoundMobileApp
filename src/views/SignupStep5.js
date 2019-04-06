@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions,ScrollView } from 'react-native';
 //import SvgUri from 'react-native-svg-uri';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import styles from '../stylesheet/SignupStep2.style';
+import styles from '../stylesheet/SignupStep5.style';
 import RecoverPwd from './RecoverPwd';
 import * as Animatable from 'react-native-animatable';
 import { SafeAreaView } from 'react-navigation';
-import CustomFooter from '../components/common/CustomFooter'
+import CustomFooter from '../components/common/CustomFooter';
+import CustomHeader from '../components/common/CustomHeader'
+
 
 const { width, height } = Dimensions.get('window');
 
@@ -42,37 +44,23 @@ export default class SignupStep5 extends Component {
          <ScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex:1 }}>
 
                     <Animatable.View ref={"mainView"} style={styles.container}>
-                        <View style={{ backgroundColor: 'pink' }}>
-                            {/* <SvgUri
-                    width="200"
-                    height="200"
-                    source={{uri:'http://thenewcode.com/assets/images/thumbnails/homer-simpson.svg'}}
-                    />  */}
-                        </View>
+                       <CustomHeader />
                         <View style={{ backgroundColor: 'rgb(37,182,173)' }}>
                             
                             <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../assets/cosoundTitle.png')} />
-                            <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Are you...</Animatable.Text>
+                            <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Finding your network suggestions...</Animatable.Text>
 
                             <Animatable.View ref={'view1'} style={{ marginBottom: '5%' }}>
-                                <TouchableHighlight underlayColor="white" style={[styles.bigButton]}>
-                                <View style={styles.viewButton}>
-                                <Image style={styles.musician} source={require('../assets/signup-type-musician.png')} /> 
-                                    <Text style={styles.textButtonTitle} >A Musician</Text>
-                                </View>
-                               
-                                </TouchableHighlight>
+                               <View style={styles.findingView}>
+                                   <Animatable.Image style={styles.imageSearchIcon} source={require('../assets/suggestions-search.png')}/>
+                               </View>
                             </Animatable.View>
 
                         </View>
-                        <Animatable.View ref={'view2'} style={{ marginBottom: '5%'  }}>
-                            <TouchableHighlight underlayColor="white" style={[styles.bigButton]}>
-                            <View style={styles.viewButton}>
-                                <Image style={styles.industryProfessional} source={require('../assets/signup-type-pro.png')} /> 
-                                    <Text style={styles.textButtonTitle} >Industry Professional</Text>
-                                </View>
+                        <Animatable.View ref={'view2'} style={styles.viewDescription}>
+                           
+                                    <Text style={styles.textMusicDescription2}>Using some music magic we're finding the best contacts to help you make the most of cosound. </Text>
                                
-                            </TouchableHighlight>
                         </Animatable.View>
 
                         {/* Progress bar  */}
