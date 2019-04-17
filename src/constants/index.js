@@ -1,7 +1,7 @@
 // Api Url
-//export const API_URL = "https://cosound.geekydev.com/backend/api/";
+export const API_URL = "https://cosound.geekydev.com/backend/api/";
 //export const API_URL = "http://cosound.local.geekydev.com/api/";
-export const API_URL = "http://localhost:8000/api/";
+//export const API_URL = "http://localhost:8000/api/";
 
 
 export const GETSTREAM_API_KEY = "abpggps8m5sv";

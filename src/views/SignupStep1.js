@@ -23,7 +23,12 @@ export default class SignupStep1 extends Component {
     }
     fadeIn = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
     fadeIn = () => this.refs.titleText.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+    bounceInTxt = () => this.refs.viewTxtInput.bounceIn(2000).then(endState => endState.finished ? "finish ": console.log('finish not'));
 
+    bounceInBtn = () => this.refs.viewBtn.bounceIn(2000).then(endState => console.log(endState.finished ? " bounceInFinish" : "cancel bounceIn"))
+
+    fadeInProgressBarView = () => this.refs.progressBarView.fadeIn(2000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+    
     onClickRememberMe = () => {
         this.setState({
             isRememberMe: !this.state.isRememberMe
@@ -32,6 +37,11 @@ export default class SignupStep1 extends Component {
 
     navigateToSignupStep2 = () =>{
         this.props.navigation.navigate("SignupStep2");
+    }
+    componentDidMount(){
+        this.bounceInTxt();
+        this.bounceInBtn();
+        this.fadeInProgressBarView();
     }
 
     render() {
@@ -59,6 +69,8 @@ export default class SignupStep1 extends Component {
                             <Animatable.Text animation="fadeInDown" style={styles.textMusicDescription}> The music industry network and</Animatable.Text>
                             <Animatable.Text animation="fadeInDown" style={styles.textMusicDescription2}>marketplace</Animatable.Text>
 
+                  <Animatable.View ref={"viewTxtInput"}>
+
                             <TextInput
                                 style={styles.inputStyle}
                                 placeholder={'Select Location'}
@@ -77,18 +89,19 @@ export default class SignupStep1 extends Component {
                                 value={this.state.postalCode}
                                 name={"postalCode"}
                             />
+                            </Animatable.View>
                             {/* {errors.password?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.password}</Animatable.Text>:null} */}
 
                         </View>
-                        <View style={{ marginBottom: '5%', marginTop: '5%' }}>
+                        <Animatable.View ref={'viewBtn'} style={{ marginBottom: '5%', marginTop: '5%' }}>
                             <TouchableHighlight onPress={this.navigateToSignupStep2} underlayColor="#25b6ad" style={[styles.loginButton]}>
                                 <Text style={styles.textButtonTitle} >Confirm Location</Text>
                             </TouchableHighlight>
-                        </View>
+                        </Animatable.View>
 
                         {/* Progress bar  */}
 
-                        <View style={[styles.viewProgressbar]}>
+                        <Animatable.View ref={'progressBarView'} style={[styles.viewProgressbar]}>
                             <View style={styles.viewSelected}>
                                 <View style={styles.viewCircleFilled}>
                                     <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />
@@ -117,7 +130,7 @@ export default class SignupStep1 extends Component {
                                 <Text style={styles.textNotSelected}>Meet the music</Text>
                             </View>
 
-                        </View>
+                        </Animatable.View>
 
                     </Animatable.View>
 

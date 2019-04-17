@@ -20,7 +20,10 @@ export default class SignupStep2 extends Component {
 
         }
     }
-    fadeIn = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+    fadeInMain = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"));
+   // fadeInProgressBarView = () => this.refs.progressBarView.fadeIn(2000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"));
+
+
     fadeIn = () => this.refs.titleText.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
 
     fadeIn = () => this.refs.view1.fadeIn().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
@@ -28,6 +31,10 @@ export default class SignupStep2 extends Component {
    
    // bounce = () => this.view.bounce(800).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
 
+   componentDidMount(){
+    this.fadeInMain();
+    //this.fadeInProgressBarView();
+  }
 
     onClickRememberMe = () => {
         this.setState({
@@ -83,12 +90,12 @@ export default class SignupStep2 extends Component {
 
                         {/* Progress bar  */}
 
-                        <View style={[styles.viewProgressbar]}>
+                        <View ref={'progressBarView'} style={[styles.viewProgressbar]}>
                             <View style={styles.viewSelected}>
                                 <View style={styles.viewCircleCompleted}>
-                                    <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />
+                                    <Image style={styles.imgTickMarkInCompleted} source={require('../assets/tickMark.png')} />
                                 </View>
-                                <Text style={styles.textSelected}>Choose Location</Text>
+                                <Text style={styles.textCompleted}>Choose Location</Text>
                             </View>
                             <View style={styles.viewSingleLineFilled}></View>
 
@@ -96,7 +103,7 @@ export default class SignupStep2 extends Component {
                                 <View style={styles.viewCircleFilled}>
                                     <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />
                                 </View>
-                                <Text style={styles.textNotSelected}>Profession</Text>
+                                <Text style={styles.textSelected}>Profession</Text>
                             </View>
                             <View style={styles.viewSingleLine}></View>
 

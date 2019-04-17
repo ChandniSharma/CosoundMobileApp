@@ -84,30 +84,38 @@ export default{
 
     },
     viewSelected:{
-        alignSelf:'center',
-        flexDirection:'row'
+       // alignSelf:'center',
+        flexDirection:'row',
+       
+        marginLeft:'24.5%',
    },
    viewNotSelected:{
        // alignSelf:'center',
        marginLeft:'22.5%',
-        flexDirection:'row',
-        
+       flexDirection:'row',
    },
    viewProgressbar:{
       marginTop:'5%',
       marginBottom:'5%',
       height:500,
    },
+   textCompleted:{
+    marginLeft:'5%',
+    marginTop:'2.5%',
+    fontFamily:'Montserrat-light',
+    fontSize:19,
+    color: '#2A8B8B',
+   },
     textSelected:{
       marginLeft:'5%',
       marginTop:'2.5%',
-      fontFamily:'Montserrat-Regular',
-      fontSize:18,
-      color: '#2A8B8B',
+      fontFamily:'Montserrat-light',
+      fontSize:19,
+      color: 'black',
     },
     textNotSelected:{
         marginLeft:'5%',
-        fontFamily:'Montserrat-Regular',
+        fontFamily:'Montserrat-light',
         fontSize:18,
         color:'gray'
     },
@@ -116,8 +124,8 @@ export default{
         height:30,
         borderRadius:15,
         backgroundColor:'rgb(41,139,139)',
-        borderColor: 'gray',
-        borderWidth: .2,
+        // borderColor: 'gray',
+        // borderWidth: .2,
         shadowColor: 'rgba(0,0,0,0.7)',
         shadowOffset: {
             width: .5,
@@ -127,20 +135,21 @@ export default{
         shadowRadius: 1,
         // marginLeft:'-%',
         zIndex:999,
+        
     },
     viewCircleFilled:{
         width:50,
         height:50,
         borderRadius:25,
         backgroundColor:'rgb(60,205,53)',
-        borderColor: 'gray',
+        borderColor: 'rgb(60,205,53)',
         borderWidth: .2,
-        shadowColor: 'rgba(0,0,0,1)',
+        shadowColor: 'rgb(60,205,53)',
         shadowOffset: {
             width: .5,
-            height: .5
+            height: .9
         },
-        shadowOpacity: 0.5,
+        shadowOpacity: 0.9,
         shadowRadius: 1,
         alignItems: 'center',
         alignSelf:'center',
@@ -151,25 +160,19 @@ export default{
         width:30,
         height:30,
         borderRadius:15,
-        backgroundColor:'rgb(225,225,225)',
-        borderColor: 'gray',
-        borderWidth: .2,
-        shadowColor: 'rgba(0,0,0,0.7)',
-        shadowOffset: {
-            width: .5,
-            height: .5
-        },
-        shadowOpacity: 0.5,
-        shadowRadius: 1,
+        backgroundColor:'white',
+        borderColor: 'rgb(225,225,225)',
+        borderWidth: 3,
+       
         zIndex:999,
         marginLeft:'3%'
     },
     viewSingleLineFilled:{
-        width:'3.5%',
-        height:'22%',
+        width:'1.5%',
+        height:'22.5%',
         backgroundColor:'rgb(41,139,139)',
-        borderColor: 'gray',
-        borderWidth: .2,
+       // borderColor: 'gray',
+       // borderWidth: .2,
         shadowColor: 'rgba(0,0,0,0.5)',
         shadowOffset: {
             width: .5,
@@ -178,25 +181,17 @@ export default{
         shadowOpacity: 0.5,
         shadowRadius: 1,
         borderRadius:.2,
-        marginLeft:'26.5%',
-        marginTop:'-2%'
+        marginLeft:'27.5%',
+        marginTop:'-0.5%'
     },
     viewSingleLine:{
-        width:'3.5%',
+        width:'1.9%',
         height:'22%',
-        backgroundColor:'white',
-        borderColor: 'gray',
-        borderWidth: .2,
-        shadowColor: 'rgba(0,0,0,0.5)',
-        shadowOffset: {
-            width: .5,
-            height: .5
-        },
-        shadowOpacity: 0.5,
-        shadowRadius: 1,
-        borderRadius:.2,
-        marginLeft:'27%',
-        marginTop:'-2%'
+        backgroundColor:'rgb(225,225,225)',
+      
+        marginLeft:'28%',
+        marginTop:'-2%',
+        zIndex:-999
     },
     tickMarkView:{
         width:20,
@@ -220,6 +215,13 @@ export default{
         width:34,
         height:34,
         tintColor:'white',
+    },
+    imgTickMarkInCompleted:{
+        width:34,
+        height:34,
+        tintColor:'white',
+        paddingBottom:'2%',
+        marginBottom:'5%'
     },
     rememberBtn:{
         flex:0.45,
@@ -411,7 +413,7 @@ export default{
         alignSelf: 'center',
         width:200,
         height:40,
-        marginTop:'5%',
+        marginTop:'15%',
     },
     textWelcome:{
         color: 'white',

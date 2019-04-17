@@ -36,14 +36,21 @@ export default class SignupStep5 extends Component {
             isRememberMe: !this.state.isRememberMe
         })
     }
-
+    componentDidMount(){
+        setTimeout(() => {
+            this.navigateToSignupSuggestions()
+        }, 2500);
+    }
+    navigateToSignupSuggestions(){
+        this.props.navigation.navigate("SignupSuggestions");
+    }
     render() {
 
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
          <ScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex:1 }}>
 
-                    <Animatable.View ref={"mainView"} style={styles.container}>
+                    <Animatable.View ref={"mainView"} style={{flex:0.9}}>
                        <CustomHeader />
                         <View style={{ backgroundColor: 'rgb(37,182,173)' }}>
                             
@@ -65,40 +72,44 @@ export default class SignupStep5 extends Component {
 
                         {/* Progress bar  */}
 
-                        <View style={[styles.viewProgressbar]}>
+                        <View ref={'progressBarView'} style={[styles.viewProgressbar]}>
                             <View style={styles.viewSelected}>
                                 <View style={styles.viewCircleCompleted}>
                                     <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />
                                 </View>
-                                <Text style={styles.textSelected}>Choose Location</Text>
+                                <Text style={styles.textCompleted}>Choose Location</Text>
                             </View>
                             <View style={styles.viewSingleLineFilled}></View>
 
+                            <View style={styles.viewSelected}>
+                                <View style={styles.viewCircleCompleted}>
+                                    <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />
+                                </View>
+                                <Text style={styles.textCompleted}>Profession</Text>
+                            </View>
+                            <View style={styles.viewSingleLineFilled}></View>
+
+                            <View style={styles.viewSelected}>
+                                <View style={styles.viewCircleCompleted}>
+                                    <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />
+                                </View>
+                                <Text style={styles.textCompleted}>Tell us more</Text>
+                            </View>
+                            <View style={styles.viewSingleLineFilled}></View>
+
+                            
                             <View style={styles.viewNotSelected}>
                                 <View style={styles.viewCircleFilled}>
                                     <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />
                                 </View>
-                                <Text style={styles.textNotSelected}>Profession</Text>
-                            </View>
-                            <View style={styles.viewSingleLine}></View>
-
-                            <View style={styles.viewNotSelected}>
-                                <View style={styles.viewCircleEmpty}>
-                                </View>
-                                <Text style={styles.textNotSelected}>Tell us more</Text>
-                            </View>
-                            <View style={styles.viewSingleLine}></View>
-
-                            <View style={styles.viewNotSelected}>
-                                <View style={styles.viewCircleEmpty}>
-                                </View>
-                                <Text style={styles.textNotSelected}>Meet the music</Text>
+                                <Text style={styles.textSelected}>Meet the music</Text>
                             </View>
 
                         </View>
-
+                      
+                        <CustomFooter />
                     </Animatable.View>
-                   <CustomFooter />
+                   
                 </ScrollView>
                
             </SafeAreaView>

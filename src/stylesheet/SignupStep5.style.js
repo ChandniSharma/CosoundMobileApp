@@ -92,7 +92,7 @@ findingView:{
 
     },
     viewSelected:{
-        alignSelf:'center',
+        marginLeft:'24.5%',
         flexDirection:'row'
    },
    viewNotSelected:{
@@ -104,51 +104,42 @@ findingView:{
    viewProgressbar:{
       marginTop:'5%',
       marginBottom:'5%',
-      height:'60%',
+      height:500,
    },
+   textCompleted:{
+    marginLeft:'5%',
+    marginTop:'2.5%',
+    fontFamily:'Montserrat-light',
+    fontSize:19,
+    color: '#2A8B8B',
+  },
     textSelected:{
       marginLeft:'5%',
       marginTop:'2.5%',
-      fontFamily:'Montserrat-Regular',
-      fontSize:18,
-      color: '#2A8B8B',
+      fontFamily:'Montserrat-light',
+      fontSize:19,
+      color: 'black',
     },
     textNotSelected:{
         marginLeft:'5%',
-        fontFamily:'Montserrat-Regular',
+        fontFamily:'Montserrat-light',
         fontSize:18,
         color:'gray'
     },
-    viewCircleCompleted:{
-        width:30,
-        height:30,
-        borderRadius:15,
-        backgroundColor:'rgb(41,139,139)',
-        borderColor: 'gray',
-        borderWidth: .2,
-        shadowColor: 'rgba(0,0,0,0.7)',
-        shadowOffset: {
-            width: .5,
-            height: .5
-        },
-        shadowOpacity: 0.5,
-        shadowRadius: 1,
-        // marginLeft:'-%',
-        zIndex:999,
-    },
+    
     viewCircleFilled:{
         width:50,
         height:50,
         borderRadius:25,
         backgroundColor:'rgb(60,205,53)',
-        borderColor: 'gray',
+        borderColor: 'rgb(60,205,53)',
         borderWidth: .2,
-        shadowColor: 'rgba(0,0,0,1)',
+        shadowColor: 'rgb(60,205,53)',
         shadowOffset: {
             width: .5,
-            height: .5
+            height: .9
         },
-        shadowOpacity: 0.5,
+        shadowOpacity: 0.9,
         shadowRadius: 1,
         alignItems: 'center',
         alignSelf:'center',
@@ -159,52 +150,21 @@ findingView:{
         width:30,
         height:30,
         borderRadius:15,
-        backgroundColor:'rgb(225,225,225)',
-        borderColor: 'gray',
-        borderWidth: .2,
-        shadowColor: 'rgba(0,0,0,0.7)',
-        shadowOffset: {
-            width: .5,
-            height: .5
-        },
-        shadowOpacity: 0.5,
-        shadowRadius: 1,
+        backgroundColor:'white',
+        borderColor: 'rgb(225,225,225)',
+        borderWidth: 3,
         zIndex:999,
         marginLeft:'3%'
     },
-    viewSingleLineFilled:{
-        width:'3.5%',
-        height:'22%',
-        backgroundColor:'rgb(41,139,139)',
-        borderColor: 'gray',
-        borderWidth: .2,
-        shadowColor: 'rgba(0,0,0,0.5)',
-        shadowOffset: {
-            width: .5,
-            height: .5
-        },
-        shadowOpacity: 0.5,
-        shadowRadius: 1,
-        borderRadius:.2,
-        marginLeft:'26.5%',
-        marginTop:'-2%'
-    },
+    
     viewSingleLine:{
         width:'3.5%',
         height:'22%',
-        backgroundColor:'white',
-        borderColor: 'gray',
-        borderWidth: .2,
-        shadowColor: 'rgba(0,0,0,0.5)',
-        shadowOffset: {
-            width: .5,
-            height: .5
-        },
-        shadowOpacity: 0.5,
-        shadowRadius: 1,
-        borderRadius:.2,
+        backgroundColor:'rgb(225,225,225)',
+      
         marginLeft:'27%',
-        marginTop:'-2%'
+        marginTop:'-2%',
+        zIndex:-999,
     },
     tickMarkView:{
         width:20,
@@ -408,8 +368,9 @@ findingView:{
     },
     viewBottom:{
         //flex:0.1,
-        marginTop:'5%',
-        marginBottom:0,
+       // marginTop:'5%',
+       position:'absolute',
+        bottom:'0.1%',
         backgroundColor:'black',
        //alignItems: 'space-between',
        justifyContent:'center',
@@ -419,7 +380,7 @@ findingView:{
         alignSelf: 'center',
         width:200,
         height:40,
-        marginTop:'15%',
+        marginTop:'25%',
     },
     textWelcome:{
         color: 'white',
@@ -456,5 +417,47 @@ findingView:{
         width:56,
         height:56,
         
-    }
+    },
+    textCompleted:{
+        marginLeft:'5%',
+        marginTop:'2.5%',
+        fontFamily:'Montserrat-light',
+        fontSize:19,
+        color: '#2A8B8B',
+       },
+    viewCircleCompleted:{
+        width:30,
+        height:30,
+        borderRadius:15,
+        backgroundColor:'rgb(41,139,139)',
+        borderColor: 'gray',
+        borderWidth: .2,
+        shadowColor: 'rgba(0,0,0,0.7)',
+        shadowOffset: {
+            width: .5,
+            height: .5
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        marginTop:'-2%',
+        // marginLeft:'-%',
+        zIndex:999,
+    },
+    viewSingleLineFilled:{
+        width:'1.5%',
+        height:'24%',
+        backgroundColor:'rgb(41,139,139)',
+        borderColor: 'gray',
+        borderWidth: .2,
+        shadowColor: 'rgba(0,0,0,0.5)',
+        shadowOffset: {
+            width: .5,
+            height: .5
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        borderRadius:.2,
+        marginLeft:'27.5%',
+        marginTop:'-2%'
+    },
 }

@@ -101,14 +101,14 @@ export default{
     textSelected:{
       marginLeft:'5%',
       marginTop:'2.5%',
-      fontFamily:'Montserrat-Regular',
-      fontSize:18,
-      color: '#2A8B8B',
+      fontFamily:'Montserrat-light',
+      fontSize:20,
+      color: 'black',//'#2A8B8B',
     },
     textNotSelected:{
         marginLeft:'5%',
-        fontFamily:'Montserrat-Regular',
-        fontSize:18,
+        fontFamily:'Montserrat-light',
+        fontSize:19,
         color:'gray'
     },
     viewCircleFilled:{
@@ -116,53 +116,38 @@ export default{
         height:50,
         borderRadius:25,
         backgroundColor:'rgb(60,205,53)',
-        borderColor: 'gray',
+        borderColor: 'rgb(60,205,53)',
         borderWidth: .2,
-        shadowColor: 'rgba(0,0,0,1)',
+        shadowColor: 'rgb(60,205,53)',
         shadowOffset: {
             width: .5,
-            height: .5
+            height: .9
         },
-        shadowOpacity: 0.5,
+        shadowOpacity: 0.9,
         shadowRadius: 1,
         alignItems: 'center',
         alignSelf:'center',
-        justifyContent:'center'
+        justifyContent:'center',
+        marginLeft:'5.3%'
     },
     viewCircleEmpty:{
         width:30,
         height:30,
         borderRadius:15,
-        backgroundColor:'rgb(225,225,225)',
-        borderColor: 'gray',
-        borderWidth: .2,
-        shadowColor: 'rgba(0,0,0,0.7)',
-        shadowOffset: {
-            width: .5,
-            height: .5
-        },
-        shadowOpacity: 0.5,
-        shadowRadius: 1,
+        backgroundColor:'white',
+        borderColor: 'rgb(225,225,225)',
+        borderWidth: 3,
+       
         marginLeft:'4%',
         //marginTop:'-2%'
         // marginLeft:'-%',
        
     },
     viewSingleLine:{
-        width:'3.5%',
+        width:'1.9%',
         height:'20%',
-        backgroundColor:'white',
-        borderColor: 'gray',
-        borderWidth: .2,
-        shadowColor: 'rgba(0,0,0,0.5)',
-        shadowOffset: {
-            width: .5,
-            height: .5
-        },
-        shadowOpacity: 0.5,
-        shadowRadius: 1,
-        borderRadius:.2,
-        marginLeft:'27.5%'
+        backgroundColor:'rgb(225,225,225)',
+        marginLeft:'28.5%'
     },
     
     tickMarkView:{

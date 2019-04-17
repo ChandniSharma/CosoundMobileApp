@@ -48,7 +48,7 @@ export default class Login extends Component {
                              <View style={{flex:0.3}} />
                             <View style={styles.leftView}>
                                 <Animatable.Text animation="fadeInDown" style={styles.textDull}>Don't have an account?</Animatable.Text>
-                                <TouchableHighlight onPress={navigateToGetStartedView}>
+                                <TouchableHighlight underlayColor='rgb(245,245,245)' onPress={navigateToGetStartedView}>
                                     <Animatable.Text animation="fadeInDown" style={styles.getStarted}>Get Started!</Animatable.Text>
                                 </TouchableHighlight>
                             </View>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity,Dimensions } from 'react-native';
 //import SvgUri from 'react-native-svg-uri';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../stylesheet/SignupStep3Musician.style';
 
 import * as Animatable from 'react-native-animatable';
@@ -11,7 +11,7 @@ import CustomHeader from '../components/common/CustomHeader'
 
 var ImagePicker = require('react-native-image-picker');
 
-export default class SignupStep3Musician extends Component {
+export default class SignupStep3 extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -34,6 +34,9 @@ export default class SignupStep3Musician extends Component {
             isRememberMe:!this.state.isRememberMe
         })
      }
+     navigateToSignupStep5 = () =>{
+      this.props.navigation.navigate("SignupStep5");
+  }
      chooseFile = () => {
         var options = {
           title: 'Select Image',
@@ -77,7 +80,7 @@ export default class SignupStep3Musician extends Component {
                     <View style={{ backgroundColor: 'rgb(37,182,173)' }}>
                     <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../assets/cosoundTitle.png')} />
                     <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Awesome</Animatable.Text>
-                    
+
                     <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>You're a musician</Animatable.Text>
 
 
@@ -192,32 +195,32 @@ export default class SignupStep3Musician extends Component {
                             </TextInput>
                             
 
-                        <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton]}>
+                        <TouchableHighlight onPress={this.navigateToSignupStep5} underlayColor="#25b6ad" style={[styles.loginButton]}>
                             <Text style={styles.textButtonTitle} >Next -></Text>
                         </TouchableHighlight>
 
-                        <View style={[styles.viewProgressbar]}>
+                        <View ref={'progressBarView'} style={[styles.viewProgressbar]}>
                             <View style={styles.viewSelected}>
                                 <View style={styles.viewCircleCompleted}>
                                     <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />
                                 </View>
-                                <Text style={styles.textSelected}>Choose Location</Text>
+                                <Text style={styles.textCompleted}>Choose Location</Text>
                             </View>
                             <View style={styles.viewSingleLineFilled}></View>
 
-                            <View style={styles.viewNotSelected}>
+                            <View style={styles.viewSelected}>
                                 <View style={styles.viewCircleCompleted}>
                                     <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />
                                 </View>
-                                <Text style={styles.textNotSelected}>Profession</Text>
+                                <Text style={styles.textCompleted}>Profession</Text>
                             </View>
                             <View style={styles.viewSingleLineFilled}></View>
 
                             <View style={styles.viewNotSelected}>
                                 <View style={styles.viewCircleFilled}>
-                                <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />
+                                    <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />
                                 </View>
-                                <Text style={styles.textNotSelected}>Tell us more</Text>
+                                <Text style={styles.textSelected}>Tell us more</Text>
                             </View>
                             <View style={styles.viewSingleLine}></View>
 
@@ -226,9 +229,7 @@ export default class SignupStep3Musician extends Component {
                                 </View>
                                 <Text style={styles.textNotSelected}>Meet the music</Text>
                             </View>
-
                         </View>
-                      
                         
                     
             </Animatable.View>

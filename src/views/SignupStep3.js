@@ -11,7 +11,7 @@ import CustomHeader from '../components/common/CustomHeader'
 
 var ImagePicker = require('react-native-image-picker');
 
-export default class SignupStep3 extends Component {
+export default class SignupStep3Musician extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,11 +22,12 @@ export default class SignupStep3 extends Component {
         }
     }
      fadeInMain = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished':" cancelled"))
-     fadeIn = () => this.refs.titleText.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished':" cancelled"))
-     bounceInLeft = () => this.refs.tab1.bounceInLeft(1000).then(endState => endState.finished ? this.flipSecond() : 'Slide down cancelled');
 
+     //fadeInProgressBarView = () => this.refs.progressBarView.fadeIn(2000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+    
      componentDidMount(){
        this.fadeInMain();
+     //  this.fadeInProgressBarView();
      }
 
      onClickRememberMe = () =>{
@@ -34,6 +35,9 @@ export default class SignupStep3 extends Component {
             isRememberMe:!this.state.isRememberMe
         })
      }
+     navigateToSignupStep5 = () =>{
+      this.props.navigation.navigate("SignupStep5");
+  }
      chooseFile = () => {
         var options = {
           title: 'Select Image',
@@ -124,7 +128,7 @@ export default class SignupStep3 extends Component {
                             />
                             {/* {errors.password?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.password}</Animatable.Text>:null} */}
                         </View>
-                       <View style={{flexDirection:'row',marginLeft: '5%', marginRight: '5%',flex:1}}>
+                       <View style={{flexDirection:'row',marginLeft: '5%', marginRight: '5%',flex:1, alignItems: 'space-between',}}>
                        <TextInput
                                 style={styles.inputStyleLeft1}
                                 placeholder={'Date'}
@@ -144,7 +148,7 @@ export default class SignupStep3 extends Component {
                                 // name={"password"}
                             />
                             <TextInput
-                                style={styles.inputStyle}
+                                style={styles.inputStyleRight}
                                 placeholder={'Year'}
                                 //onChangeText={(text) => this.setState({ password: text })}
                                 // onChangeText={val => handleChange('password', val)}
@@ -189,32 +193,32 @@ export default class SignupStep3 extends Component {
                             </TextInput>
                             
 
-                        <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton]}>
+                        <TouchableHighlight onPress={this.navigateToSignupStep5} underlayColor="#25b6ad" style={[styles.loginButton]}>
                             <Text style={styles.textButtonTitle} >Next -></Text>
                         </TouchableHighlight>
 
-                        <View style={[styles.viewProgressbar]}>
+                        <View ref={'progressBarView'} style={[styles.viewProgressbar]}>
                             <View style={styles.viewSelected}>
                                 <View style={styles.viewCircleCompleted}>
                                     <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />
                                 </View>
-                                <Text style={styles.textSelected}>Choose Location</Text>
+                                <Text style={styles.textCompleted}>Choose Location</Text>
                             </View>
                             <View style={styles.viewSingleLineFilled}></View>
 
-                            <View style={styles.viewNotSelected}>
+                            <View style={styles.viewSelected}>
                                 <View style={styles.viewCircleCompleted}>
                                     <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />
                                 </View>
-                                <Text style={styles.textNotSelected}>Profession</Text>
+                                <Text style={styles.textCompleted}>Profession</Text>
                             </View>
                             <View style={styles.viewSingleLineFilled}></View>
 
                             <View style={styles.viewNotSelected}>
                                 <View style={styles.viewCircleFilled}>
-                                <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />
+                                    <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />
                                 </View>
-                                <Text style={styles.textNotSelected}>Tell us more</Text>
+                                <Text style={styles.textSelected}>Tell us more</Text>
                             </View>
                             <View style={styles.viewSingleLine}></View>
 
@@ -223,7 +227,6 @@ export default class SignupStep3 extends Component {
                                 </View>
                                 <Text style={styles.textNotSelected}>Meet the music</Text>
                             </View>
-
                         </View>
                       
                         

@@ -28,7 +28,7 @@ const loginRequest = () => ({
 
 const loginSuccess = (data) => ({
   type: LOGIN_SUCCESS,
-  error: data
+  data: data
 });
 
 const loginFailure = (errorMessage) => ({
@@ -62,7 +62,7 @@ const recoverPasswordRequest = () => ({
 
 const recoverPasswordSuccess = (data) => ({
   type: RESET_PASSWORD_SUCCESS,
-  error: data
+  data: data
 });
 
 const recoverPasswordFailure = (errorMessage) => ({

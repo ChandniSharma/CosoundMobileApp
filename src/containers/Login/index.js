@@ -107,7 +107,7 @@ class LoginContainer extends React.PureComponent {
         this.props.navigation.navigate("RecoverPwd");
   }
   _navigateToGetStartedView =() =>{
-    this.props.navigation.navigate("GetStartedView");
+    this.props.navigation.navigate("SignupStep1");
 }
   render() {
     const { data, errors, fetching } = this.state;

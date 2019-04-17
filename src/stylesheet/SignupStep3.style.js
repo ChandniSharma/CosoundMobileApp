@@ -132,9 +132,10 @@ export default{
           paddingBottom: 20,
           paddingLeft: 30,
           paddingRight: 30 ,
+          marginLeft:'5%',
     },
     inputStyleRight:{
-        marginLeft: '5%',
+        marginLeft: '10%',
        
         height:60,
         backgroundColor:'white',
@@ -263,8 +264,8 @@ export default{
         height:30,
         borderRadius:15,
         backgroundColor:'rgb(41,139,139)',
-        borderColor: 'gray',
-        borderWidth: .2,
+        // borderColor: 'gray',
+        // borderWidth: .2,
         shadowColor: 'rgba(0,0,0,0.7)',
         shadowOffset: {
             width: .5,
@@ -272,12 +273,20 @@ export default{
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
+        marginTop:'-2%',
         // marginLeft:'-%',
         zIndex:999,
     },
+    textCompleted:{
+        marginLeft:'5%',
+        marginTop:'2.5%',
+        fontFamily:'Montserrat-light',
+        fontSize:19,
+        color: '#2A8B8B',
+       },
     viewSingleLineFilled:{
-        width:'3.5%',
-        height:'22%',
+        width:'1.5%',
+        height:'24%',
         backgroundColor:'rgb(41,139,139)',
         borderColor: 'gray',
         borderWidth: .2,
@@ -289,14 +298,13 @@ export default{
         shadowOpacity: 0.5,
         shadowRadius: 1,
         borderRadius:.2,
-        marginLeft:'26.5%',
+        marginLeft:'27.5%',
         marginTop:'-2%'
     },
     socialMediaLoginView:{
         flexDirection: 'row',
         marginTop: '20%',
         marginBottom: '2%',
-       // backgroundColor:'yellow',
         flex:1,
         height:60,
         marginLeft:'5%',
@@ -417,14 +425,12 @@ export default{
        flexDirection:'row',
     },
     viewSelected:{
-        alignSelf:'center',
-        flexDirection:'row'
+        marginLeft:'24.3%',
+        flexDirection:'row',
    },
    viewNotSelected:{
-       // alignSelf:'center',
        marginLeft:'22.5%',
         flexDirection:'row',
-        
    },
     viewProgressbar:{
         marginTop:'5%',
@@ -433,14 +439,14 @@ export default{
      },
       textSelected:{
         marginLeft:'5%',
-        marginTop:'2.5%',
-        fontFamily:'Montserrat-Regular',
-        fontSize:18,
-        color: '#2A8B8B',
+        marginTop:'1.5%',
+        fontFamily:'Montserrat-light',
+        fontSize:20,
+        color: 'black',
       },
       textNotSelected:{
           marginLeft:'5%',
-          fontFamily:'Montserrat-Regular',
+          fontFamily:'Montserrat-light',
           fontSize:18,
           color:'gray'
       },
@@ -449,15 +455,16 @@ export default{
           height:50,
           borderRadius:25,
           backgroundColor:'rgb(60,205,53)',
-          borderColor: 'gray',
-          borderWidth: .2,
-          shadowColor: 'rgba(0,0,0,1)',
-          shadowOffset: {
-              width: .5,
-              height: .5
-          },
-          shadowOpacity: 0.5,
-          shadowRadius: 1,
+         
+        borderColor: 'rgb(60,205,53)',
+        borderWidth: .2,
+        shadowColor: 'rgb(60,205,53)',
+        shadowOffset: {
+            width: .5,
+            height: .9
+        },
+        shadowOpacity: 0.9,
+        shadowRadius: 1,
           alignItems: 'center',
           alignSelf:'center',
           justifyContent:'center'
@@ -466,34 +473,23 @@ export default{
           width:30,
           height:30,
           borderRadius:15,
-          backgroundColor:'rgb(225,225,225)',
-          borderColor: 'gray',
-          borderWidth: .2,
-          shadowColor: 'rgba(0,0,0,0.7)',
-          shadowOffset: {
-              width: .5,
-              height: .5
-          },
-          shadowOpacity: 0.5,
-          shadowRadius: 1,
+          backgroundColor:'white',
+          borderColor: 'rgb(225,225,225)',
+          borderWidth: 3,
+       
+          marginLeft:'3%',
+          marginTop:'-1%',
+          zIndex:999,
           // marginLeft:'-%',
          
       },
       viewSingleLine:{
-          width:'3.5%',
+          width:'1.9%',
           height:'20%',
-          backgroundColor:'white',
-          borderColor: 'gray',
-          borderWidth: .2,
-          shadowColor: 'rgba(0,0,0,0.5)',
-          shadowOffset: {
-              width: .5,
-              height: .5
-          },
-          shadowOpacity: 0.5,
-          shadowRadius: 1,
-          borderRadius:.2,
-          marginLeft:'25%'
+          backgroundColor:'rgb(225,225,225)',
+        
+         
+          marginLeft:'27.5%'
       },
       
     
