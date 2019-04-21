@@ -87,6 +87,7 @@ export default ({ getState }) => next => action => {
 
   return callApi(data, method, endpoint, authenticated, token, formData)
     .then(response => {
+     
       responseHandler(response);
     })
     .catch(error => {

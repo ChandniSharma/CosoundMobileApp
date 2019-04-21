@@ -1,4 +1,5 @@
 import { each, isNull } from "lodash";
+import { CALL_API } from "../middlewares/api";
 import {
   API_URL,
   SET_TOKEN,
@@ -16,13 +17,11 @@ import {
   POST_DETAILS_SUCCESS,
   POST_DETAILS_FAILURE
 } from "../constants";
-import { feedActions, userFeedActions } from "./index";
+import { wowActions, feedActions, userFeedActions } from "./index";
 
 import { getRefreshThreshold } from "../utils";
 
 import { refreshToken } from "../services";
-
-const API_BASE_URL = 'https://cosound.geekydev.com/backend/api';
 
 const submitingPost = () => {
   return {
@@ -103,13 +102,13 @@ export const submit = (data, pathname) => {
 
           if (pathname === "/profile") {
             dispatch(userFeedActions.fetchFeed(1)).then(() => {
-             // dispatch(wowActions.sync());
+              dispatch(wowActions.sync());
             });
 
             dispatch(addToMediaList(resp.data, pathname));
           } else if (pathname === "/") {
             dispatch(feedActions.fetchFeed(1)).then(() => {
-            //  dispatch(wowActions.sync());
+              dispatch(wowActions.sync());
             });
           }
 
@@ -199,20 +198,6 @@ const addToMyImages = source => {
   };
 };
 
-const fetchPostDetailsRequest = () => ({
-    type: POST_DETAILS_REQUEST
-});
-
-const fetchPostDetailsSuccess = (data) => ({
-    type: POST_DETAILS_SUCCESS,
-    data: data
-});
-
-const fetchPostDetailsFailure = (errorMessage) => ({
-    type: POST_DETAILS_FAILURE,
-    error: errorMessage
-});
-  
 export const checkPostStatus = (id, pathname, mediaTypes, interval) => {
   return (dispatch, getState) => {
     const endpoint = `${API_URL}posts/${id}/status`;
@@ -310,34 +295,20 @@ const fetchPostDetails = (id, pathname, mediaTypes) => {
   } else if (pathname === "/") {
     collateral = [REFACTOR_FEED];
   }
-  return dispatch => {
-    dispatch(fetchPostDetailsRequest());
-    return axios
-      .post(`${API_BASE_URL}/${endpoint}`, {})
-      .then(res => {
-        dispatch(fetchPostDetailsSuccess(res.data));
-        return true;
-      })
-      .catch(err => {
-        dispatch(fetchPostDetailsFailure(err.message));
-        return false;
-      });
+  return {
+    [CALL_API]: {
+      types: [
+        POST_DETAILS_REQUEST,
+        POST_DETAILS_SUCCESS,
+        POST_DETAILS_FAILURE,
+        collateral
+      ],
+      id,
+      endpoint,
+      method: "GET",
+      authenticated: true
+    }
   };
-  
-//   return {
-//     [CALL_API]: {
-//       types: [
-//         POST_DETAILS_REQUEST,
-//         POST_DETAILS_SUCCESS,
-//         POST_DETAILS_FAILURE,
-//         collateral
-//       ],
-//       id,
-//       endpoint,
-//       method: "GET",
-//       authenticated: true
-//     }
-//   };
 };
 
 const addToMyMusic = source => {

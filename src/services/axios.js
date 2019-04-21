@@ -25,6 +25,7 @@ export const callApi = (
   const url = API_URL + endpoint;
   headers = { "Content-Type": "application/json" };
 
+  
   if (authenticated) {
     headers = {
       "Content-Type": "application/json",

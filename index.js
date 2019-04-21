@@ -21,8 +21,12 @@ import SignupSuggestions from './src/views/SignupSuggestions';
 import SignupStep3Musician from './src/views/SignupStep3Musician';
 import Plans from './src/views/Plans';
 import Profile from './src/views/Profile';
-import Dashboard from './src/views/Dashboard'
-import Navigator from './src/Navigator'
+//import Profile from './src/containers/Profile';
+import Dashboard from './src/views/Dashboard';
+import Navigator from './src/Navigator';
+import AdvancedSearchView from './src/views/AdvancedSearchView';
+//import Notification from "./src/views/Notification"; 
+
 const AppStackNavigator = createStackNavigator({
     Home: { screen: Home },
     Login: { screen: Login },
@@ -35,7 +39,9 @@ const AppStackNavigator = createStackNavigator({
     SignupStep3Musician:{screen: SignupStep3Musician},
     Plans: { screen: Plans },
     Profile :{screen:Profile},
-    Dashboard:{screen: Dashboard}
+    Dashboard:{screen: Dashboard},
+    AdvancedSearchView:{screen: AdvancedSearchView},
+    //  Notification:{screen: Notification}
 }, {
         initialRouteName: 'Profile',
         gesturesEnabled: false,

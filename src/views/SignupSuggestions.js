@@ -7,7 +7,6 @@ import RecoverPwd from './RecoverPwd';
 import * as Animatable from 'react-native-animatable';
 import { SafeAreaView } from 'react-navigation';
 import CustomFooter from '../components/common/CustomFooter';
-import CustomHeader from '../components/common/CustomHeader'
 
 
 const { width, height } = Dimensions.get('window');
@@ -76,7 +75,7 @@ export default class SignupStep5 extends Component {
                 <ScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 1 }}>
 
                     <Animatable.View ref={"mainView"} style={{ flex: 0.9 }}>
-                        <CustomHeader />
+                        
                         <View style={{ backgroundColor: 'rgb(37,182,173)' }}>
 
                             <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../assets/cosoundTitle.png')} />
@@ -121,7 +120,7 @@ export default class SignupStep5 extends Component {
                         </View>
 
                         <View style={styles.viewRecoverButton}>
-                            <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton]}>
+                            <TouchableHighlight underlayColor="#25b6ad" onPress={()=>this.props.navigation.navigate('Login')} style={[styles.loginButton]}>
                                 <Text style={styles.textButtonTitle} >Done</Text>
                             </TouchableHighlight>
                         </View>

@@ -58,6 +58,7 @@ export const fetchCartCount = () => {
 
 export const fetchMyMusic = pageNo => {
   const endpoint = `uploads/audio?page=${pageNo}`;
+  console.log("call fetchMyMusic")
   return {
     [CALL_API]: {
       types: [

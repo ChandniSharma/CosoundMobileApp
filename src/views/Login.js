@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity,Dimensions } from 'react-native';
+import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity,Dimensions, AsyncStorage } from 'react-native';
 //import SvgUri from 'react-native-svg-uri';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../stylesheet/login.style';
@@ -7,30 +7,22 @@ import RecoverPwd from './RecoverPwd';
 import * as Animatable from 'react-native-animatable';
 import {SafeAreaView} from 'react-navigation';
 import CustomFooter from '../components/common/CustomFooter'
-
+import { checkError } from "../utils";
 
 export default class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            email: '',
-            password: '',
-            isRememberMe:false,
-           
-        }
+       
     }
      fadeIn = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished':" cancelled"))
      fadeIn = () => this.refs.titleText.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished':" cancelled"))
 
-     onClickRememberMe = () =>{
-        this.setState({
-            isRememberMe:!this.state.isRememberMe
-        })
-     }
-     
+
     render() {
-        const { data, errors, handleChange, login, onSubmit, fetching,navigateToForgotPassword, navigateToGetStartedView } = this.props;
-        console.log(" in component =====",errors);
+        const { data, errors, handleChange, login, onSubmit, fetching,navigateToForgotPassword, navigateToGetStartedView, onClickRememberMe } = this.props;
+
+        console.log(" in component =====",this.props);
+        const error = checkError(login.error);
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom:'never' }} style={styles.container}>
                <KeyboardAwareScrollView style={{backgroundColor:'rgb(245,245,245)', flex:0.9}}>
@@ -54,7 +46,8 @@ export default class Login extends Component {
                             </View>
                         </View>
                         <Animatable.Text animation="fadeIn" style={styles.loginText}> Log in</Animatable.Text>
-                        
+                        {error.message?<Animatable.Text animation="fadeIn" style={styles.errorText}> {error.message}</Animatable.Text>:null}
+                           
                             <TextInput
                                 style={styles.inputStyle}
                                 placeholder={'Email'}
@@ -78,12 +71,12 @@ export default class Login extends Component {
                         </View>
                         <View style={styles.rememberView}>
                         
-                            <TouchableOpacity onPress={this.onClickRememberMe} style={styles.tickMarkView}>
-                               {this.state.isRememberMe?<Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />:<Image />} 
+                            <TouchableOpacity onPress={onClickRememberMe} style={styles.tickMarkView}>
+                               {data.rememberMe?<Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />:<Image />} 
                             </TouchableOpacity>
 
-                            <TouchableHighlight underlayColor='rgb(245,245,245)' onPress= {this.onClickRememberMe} style={styles.rememberBtn}>
-                            {this.state.isRememberMe? <Text style={[styles.rememberText]}>Remember me</Text>: <Text>Remember me</Text>}
+                            <TouchableHighlight underlayColor='rgb(245,245,245)'  onPress= {onClickRememberMe} style={styles.rememberBtn}>
+                            {data.rememberMe? <Text name= "rememberMe" style={[styles.rememberText]}>Remember me</Text>: <Text>Remember me</Text>}
                                
                             </TouchableHighlight>
                        
@@ -98,24 +91,20 @@ export default class Login extends Component {
 
                         <View style={styles.socialMediaLoginView}>
                             <TouchableHighlight underlayColor="#25b6ad" style={styles.buttonLeft}>
-                               
                                 <Text style={styles.fbText}>Facebook login</Text>
                             </TouchableHighlight>
                             <TouchableHighlight underlayColor="#25b6ad" style={styles.buttonRight}>
-                               
                                 <Text style={styles.twitterText}>Twitter login</Text>
                             </TouchableHighlight>
                        </View>
+
                        <View style={styles.viewCenterButton}>
                        <TouchableHighlight underlayColor="#25b6ad" style={styles.buttonCenter}>
                                <Text style={styles.googlePlusText}>Google login</Text>
                         </TouchableHighlight>
                        </View>
                       
-                        
-                    
             </Animatable.View>
-
                 </KeyboardAwareScrollView>
                <CustomFooter />
             </SafeAreaView>
@@ -123,6 +112,3 @@ export default class Login extends Component {
         )
     }
 }
-
-{/* */}
-                // </View> */}

@@ -8,6 +8,7 @@ import * as Animatable from 'react-native-animatable';
 import { SafeAreaView } from 'react-navigation';
 import CustomFooter from '../components/common/CustomFooter';
 import CustomHeader from '../components/common/CustomHeader'
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 const { width, height } = Dimensions.get('window');
@@ -37,9 +38,9 @@ export default class SignupStep5 extends Component {
         })
     }
     componentDidMount(){
-        setTimeout(() => {
-            this.navigateToSignupSuggestions()
-        }, 2500);
+        // setTimeout(() => {
+        //     this.navigateToSignupSuggestions()
+        // }, 3000);
     }
     navigateToSignupSuggestions(){
         this.props.navigation.navigate("SignupSuggestions");
@@ -51,7 +52,7 @@ export default class SignupStep5 extends Component {
          <ScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex:1 }}>
 
                     <Animatable.View ref={"mainView"} style={{flex:0.9}}>
-                       <CustomHeader />
+                       
                         <View style={{ backgroundColor: 'rgb(37,182,173)' }}>
                             
                             <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../assets/cosoundTitle.png')} />
@@ -59,20 +60,22 @@ export default class SignupStep5 extends Component {
 
                             <Animatable.View ref={'view1'} style={{ marginBottom: '5%' }}>
                                <View style={styles.findingView}>
-                                   <Animatable.Image style={styles.imageSearchIcon} source={require('../assets/suggestions-search.png')}/>
+                                   <Animatable.Image animation="wobble" easing="linear" iterationCount="infinite" direction="alternate"  style={styles.imageSearchIcon} source={require('../assets/suggestions-search.png')}/>
                                </View>
                             </Animatable.View>
 
                         </View>
+
                         <Animatable.View ref={'view2'} style={styles.viewDescription}>
-                           
                                     <Text style={styles.textMusicDescription2}>Using some music magic we're finding the best contacts to help you make the most of cosound. </Text>
-                               
                         </Animatable.View>
+
+                       
 
                         {/* Progress bar  */}
 
                         <View ref={'progressBarView'} style={[styles.viewProgressbar]}>
+
                             <View style={styles.viewSelected}>
                                 <View style={styles.viewCircleCompleted}>
                                     <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />

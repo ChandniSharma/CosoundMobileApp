@@ -1,4 +1,5 @@
 import React from "react";
+import { AsyncStorage } from 'react-native';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
@@ -22,6 +23,24 @@ class LoginContainer extends React.PureComponent {
     errors: {}
   };
 
+  componentDidMount() {
+    this._getStorageValue();
+  }
+
+  async _getStorageValue() {
+
+    let email = await AsyncStorage.getItem('email');
+    let password = await AsyncStorage.getItem('password');
+
+    let data = this.state.data;
+    data.email = email;
+    data.password = password;
+
+    this.setState({
+      data
+    });
+this.forceUpdate()
+  }
   /**
    * Validation Location
    *
@@ -44,6 +63,17 @@ class LoginContainer extends React.PureComponent {
     return isValid;
   };
 
+  _onClickRememberMe = () => {
+    console.log("_onClickRememberMe");
+    let data = this.state.data;
+    data.rememberMe = !data.rememberMe;
+
+    this.setState({
+      data
+    })
+    this.forceUpdate();
+  }
+
   /**
    * Input change handlers
    *
@@ -64,6 +94,19 @@ class LoginContainer extends React.PureComponent {
     );
   };
 
+  saveCredentials = async () => {
+    const { data } = this.state;
+    console.log(" data from loign veiw ", data);
+
+    if (data.rememberMe) {
+      await AsyncStorage.setItem('email', data.email);
+      await AsyncStorage.setItem('password', data.password);
+    } else {
+      await AsyncStorage.setItem('email', "");
+      await AsyncStorage.setItem('password', "");
+    }
+
+  }
   /**
    * On Login
    */
@@ -73,11 +116,12 @@ class LoginContainer extends React.PureComponent {
     if (valid) {
       const { data } = this.state;
       return this.props.authActions.login(data).then(() => {
-        alert("login successfully");
-        alert(JSON.stringify(this.props));
-        console.log("login success ",this.props);
+        console.log("login success ", this.props);
         if (isSuccess(this.props.login)) {
-          this._navigateToDashboard();
+
+          this.saveCredentials();
+          this._navigateToProfileview();
+          //this._navigateToDashboard();
         }
       });
     }
@@ -103,12 +147,15 @@ class LoginContainer extends React.PureComponent {
     });
   };
 
-  _navigateToForgotPassword =() =>{
-        this.props.navigation.navigate("RecoverPwd");
+  _navigateToForgotPassword = () => {
+    this.props.navigation.navigate("RecoverPwd");
   }
-  _navigateToGetStartedView =() =>{
+  _navigateToGetStartedView = () => {
     this.props.navigation.navigate("SignupStep1");
-}
+  }
+  _navigateToProfileview = () => {
+    this.props.navigation.navigate("Profile");
+  }
   render() {
     const { data, errors, fetching } = this.state;
     const { login } = this.props;
@@ -123,6 +170,8 @@ class LoginContainer extends React.PureComponent {
         handleChange={this._handleChange}
         navigateToForgotPassword={this._navigateToForgotPassword}
         navigateToGetStartedView={this._navigateToGetStartedView}
+        onClickRememberMe={this._onClickRememberMe}
+
       />
     );
   }
