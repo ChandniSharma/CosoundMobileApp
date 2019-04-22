@@ -125,7 +125,7 @@ export default class ProfileComponent extends Component {
                     description: "nice work, congrats"
                 },
             ],
-           
+
         }
     }
 
@@ -138,10 +138,13 @@ export default class ProfileComponent extends Component {
 
     fadeInPremiumView = () => this.refs.viewPremium.fadeIn();
 
+    fadeInUpPostOptionView = () => this.refs.viewPostOption.fadeInUp(1000);
+
+
     componentDidMount() {
         this.fadeInDown();
         console.log(" Profile props ========", this.props);
-
+        this.fadeInUpPostOptionView();
     }
     _navigateToAdvanceSearchView() {
         this.props.navigation.navigate("AdvancedSearchView");
@@ -149,6 +152,7 @@ export default class ProfileComponent extends Component {
     _navigateToNotificationView() {
         this.props.navigation.navigate('Notification');
     }
+
     _showCommentList() {
         console.log("comment method call ");
         this.setState({ isCommentTableShow: !this.state.isCommentTableShow });
@@ -157,7 +161,7 @@ export default class ProfileComponent extends Component {
         console.log("comment method call ");
         this.setState({ isPostOptionShow: true });
     }
-
+  
     rednerPostItem = (item) => {
         console.log(" post Item is ", item);
         return (
@@ -209,7 +213,7 @@ export default class ProfileComponent extends Component {
                     <TouchableOpacity style={{
                         borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10, justifyContent: 'center',
                         alignItems: "center", flexDirection: 'row', height: 40, width: 160
-                    }} onPress={this._showCommentList}>
+                    }} onPress={this._showCommentList.bind(this)}>
 
                         <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
                         <Text style={styles.textCommentCount}>9 Comments</Text>
@@ -263,13 +267,13 @@ export default class ProfileComponent extends Component {
     postOptionView() {
 
         console.log(" postOptionView ====== ");
-        let  arrayPostOptions = ["All", "Copy Link", "Unfollow User", 'Share', 'Report Post '];
+        let arrayPostOptions = ["All", "Copy Link", "Unfollow User", 'Share', 'Report Post'];
         let arrayBtn = [];
 
-        for (let i = 0; i<arrayPostOptions.length; i++) {
-            let btn = <TouchableOpacity style={{ marginTop: '2%', height:30 }}>
-                <Text>  {arrayPostOptions[i]} </Text>
-            </TouchableOpacity>
+        for (let i = 0; i < arrayPostOptions.length; i++) {
+            let btn = <TouchableHighlight underlayColor="black" style={{ marginTop: '2%', height: 40 }}>
+                <Text style={styles.postOptionText}>  {arrayPostOptions[i]} </Text>
+            </TouchableHighlight>
             arrayBtn.push(btn);
         }
         return arrayBtn;
@@ -282,7 +286,6 @@ export default class ProfileComponent extends Component {
                     <View style={{ flex: 9, flexDirection: "row" }}>
                         <Text style={styles.songTitle}>{music.item.id}.</Text>
                         <Text style={styles.songTitle}>{music.item.music}</Text>
-
                     </View>
                     <Text style={styles.songDuration}>{music.item.time}</Text>
                 </View>
@@ -358,11 +361,11 @@ export default class ProfileComponent extends Component {
                         <TouchableOpacity onPress={this._showPostOptions}>
                             <Text style={styles.postDescription}>...</Text>
                         </TouchableOpacity>
-                        {this.state.isPostOptionShow ?
+                        {/* {this.state.isPostOptionShow ?
                             <View style={styles.postOptionView}>
                                 {this.postOptionView()}
                             </View> : null
-                        }
+                        } */}
 
                     </View>
 
@@ -474,7 +477,7 @@ export default class ProfileComponent extends Component {
                         <TouchableOpacity style={{
                             borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10, justifyContent: 'center',
                             alignItems: "center", flexDirection: 'row', height: 40, width: 160
-                        }} onPress={this._showCommentList}>
+                        }} onPress={this._showCommentList.bind(this)}>
 
                             <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
                             <Text style={[styles.textCommentCount]}>9 Comments</Text>
@@ -543,11 +546,7 @@ export default class ProfileComponent extends Component {
                                 <Text style={{ flex: 1, color: "black", fontSize: 30 }}>...</Text>
                             </TouchableOpacity>
 
-                            {this.state.isPostOptionShow ?
-                                <View >
-                                    {this.postOptionView()}
-                                </View> : null
-                            }
+
                         </View>
 
                         <View style={{ marginTop: "5%", marginBottom: "5%", width: "100%", justifyContent: "center", height: 0.5, backgroundColor: "#d3d3d3" }}>
@@ -871,6 +870,13 @@ export default class ProfileComponent extends Component {
                         </View>
 
                     </View>
+                    {this.state.isPostOptionShow ?
+                        <Animatable.View ref={'viewPostOption'} style={styles.postOptionView}>
+                            <View style={{ marginTop: '6%' }}>
+                                {this.postOptionView()}
+                            </View>
+                        </Animatable.View> : null
+                    }
                 </KeyboardAwareScrollView>
 
                 {this.state.isBottomViewShow ?

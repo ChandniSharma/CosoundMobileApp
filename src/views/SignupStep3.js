@@ -40,7 +40,7 @@ export default class SignupStep3Musician extends Component {
   }
      chooseFile = () => {
         var options = {
-          title: 'Select Image',
+          title: 'Image',
           customButtons: [
             { name: 'customOptionKey', title: 'Choose Photo from Custom Option' },
           ],
@@ -71,13 +71,11 @@ export default class SignupStep3Musician extends Component {
         });
       };
     render() {
-        
-       
-        return (
+          return (
             <SafeAreaView forceInset={{ top: 'never', bottom:'never' }} style={styles.container}>
                <KeyboardAwareScrollView style={{backgroundColor:'rgb(245,245,245)', flex:0.9}}>
                  <Animatable.View ref={"mainView"} style={styles.container}>
-                  <CustomHeader />
+                 
                     <View style={{ backgroundColor: 'rgb(37,182,173)' }}>
                     <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../assets/cosoundTitle.png')} />
                     <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Nice Welcome!</Animatable.Text>
@@ -87,7 +85,7 @@ export default class SignupStep3Musician extends Component {
                         <View style={styles.findingView}>
                             <Animatable.Image style={styles.imageCameraIcon} source={require('../assets/suggestions-search.png')}/>
 
-                            {/*  Camera picker
+                             {/* Camera picker */}
                             <TouchableOpacity onPress={this.chooseFile.bind(this)}>
                             <Image 
                               source={{ uri: this.state.filePath.path}} 
@@ -102,7 +100,7 @@ export default class SignupStep3Musician extends Component {
                                 source={{ uri: this.state.filePath.uri }}
                                 style={{ width: 250, height: 250 }}
                               />
-                        </TouchableOpacity> */}
+                        </TouchableOpacity>
 
                         </View>
                         </Animatable.View>

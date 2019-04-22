@@ -43,7 +43,7 @@ const AppStackNavigator = createStackNavigator({
     AdvancedSearchView:{screen: AdvancedSearchView},
     //  Notification:{screen: Notification}
 }, {
-        initialRouteName: 'Profile',
+        initialRouteName: 'SignupStep3',
         gesturesEnabled: false,
         headerMode: 'none',
     })

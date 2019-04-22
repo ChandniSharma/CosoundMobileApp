@@ -1,4 +1,5 @@
 import { Dimensions, Platform } from "react-native";
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 
 const { height, width } = Dimensions.get('window');
 const deviceHeight = height;
@@ -102,15 +103,22 @@ export default {
         fontFamily: 'Montserrat-light',
     },
     postOptionView:{
-        backgroundColor:'pink', width:'40%', height: 120,
+        backgroundColor:'rgb(245,245,245)', 
+        width:scale(130),
+        height: verticalScale(190),
+        top:'39.8%',
         shadowColor: 'rgba(0,0,0,1)',
         shadowOffset: {
-            width: 0,
-            height: 0
+            width: .5,
+            height: .5
         },
-        shadowOpacity: 0.2,
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
         borderBottomLeftRadius:10,
         borderTopLeftRadius: 10,
+        borderBottomRightRadius:10,
+        alignSelf: 'flex-end',
+        position: 'absolute',
     },
     textDescription: {
         color: '#262626',
@@ -120,6 +128,11 @@ export default {
     },
     titleFollow: {
         color: '#20ACAC',
+        fontSize: 15,
+        fontFamily: 'Montserrat-light',
+    },
+    postOptionText: {
+        color: '#8E8E8E',
         fontSize: 13,
         fontFamily: 'Montserrat-light',
     },
