@@ -3,11 +3,12 @@ import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity,Dime
 //import SvgUri from 'react-native-svg-uri';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../stylesheet/SignupStep3.style';
-
+import { Icon } from "native-base";
 import * as Animatable from 'react-native-animatable';
 import {SafeAreaView} from 'react-navigation';
 import CustomFooter from '../components/common/CustomFooter'
-import CustomHeader from '../components/common/CustomHeader'
+import CustomHeader from '../components/common/CustomHeader';
+
 
 var ImagePicker = require('react-native-image-picker');
 
@@ -19,7 +20,10 @@ export default class SignupStep3Musician extends Component {
             password: '',
             isRememberMe:false,
             filePath: {},
+            isImageLoadedFromLiab: false,
         }
+        // this.arrayDate=[];
+        // this.arrayMonth = ['','','','','','','','','','','','',];
     }
      fadeInMain = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished':" cancelled"))
 
@@ -55,17 +59,27 @@ export default class SignupStep3Musician extends Component {
      
           if (response.didCancel) {
             console.log('User cancelled image picker');
+            this.setState({
+              isImageLoadedFromLiab:false
+            })
           } else if (response.error) {
             console.log('ImagePicker Error: ', response.error);
+            this.setState({
+              isImageLoadedFromLiab:false
+            })
           } else if (response.customButton) {
             console.log('User tapped custom button: ', response.customButton);
             alert(response.customButton);
+            this.setState({
+              isImageLoadedFromLiab:false
+            })
           } else {
             let source = response;
             // You can also display the image using data:
             // let source = { uri: 'data:image/jpeg;base64,' + response.data };
             this.setState({
-              filePath: source,
+              isImageLoadedFromLiab:true,
+              filePath: source
             });
           }
         });
@@ -83,23 +97,19 @@ export default class SignupStep3Musician extends Component {
                         <Animatable.View ref={'view1'} style={{ marginBottom: '5%' }}>
                        
                         <View style={styles.findingView}>
-                            <Animatable.Image style={styles.imageCameraIcon} source={require('../assets/suggestions-search.png')}/>
+                           
 
-                             {/* Camera picker */}
-                            <TouchableOpacity onPress={this.chooseFile.bind(this)}>
-                            <Image 
-                              source={{ uri: this.state.filePath.path}} 
-                              style={{width: 100, height: 100}} />
-                              <Image
+                            <TouchableOpacity style={{ marginTop:'30%',height:200, width:100}} onPress={this.chooseFile.bind(this)}>
+                            {!this.state.isImageLoadedFromLiab ? 
+                            <Icon name="camera" style={{fontSize: 60,  marginTop: '50%', color:'gray', alignSelf: 'center',}} /> : 
+                            <Image
                                 source={{
                                   uri: 'data:image/jpeg;base64,' + this.state.filePath.data,
                                 }}
-                                style={{ width: 100, height: 100 }}
-                              />
-                              <Image
-                                source={{ uri: this.state.filePath.uri }}
-                                style={{ width: 250, height: 250 }}
-                              />
+                                style={{ width: 100, height: 100,borderRadius:50 }}
+                              />}
+                               
+                              
                         </TouchableOpacity>
 
                         </View>
@@ -136,6 +146,7 @@ export default class SignupStep3Musician extends Component {
                                 // value={data.password}
                                 // name={"password"}
                             />
+                            
                             <TextInput
                                 style={styles.inputStyleCenter}
                                 placeholder={'Month'}

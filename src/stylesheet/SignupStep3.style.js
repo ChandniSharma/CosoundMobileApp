@@ -78,6 +78,9 @@ export default{
      imageCameraIcon:{
         width:56,
         height:56,
+        marginTop:30,
+        alignSelf:'center'
+        
     },
     loginText:{
         marginTop:'0.5%',
@@ -136,7 +139,7 @@ export default{
     },
     inputStyleRight:{
         marginLeft: '10%',
-       
+       marginRight:'2%',
         height:60,
         backgroundColor:'white',
         marginTop:'5%',
