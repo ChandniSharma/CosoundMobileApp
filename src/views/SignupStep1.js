@@ -14,27 +14,12 @@ const { width, height } = Dimensions.get('window');
 export default class SignupStep1 extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            location: '',
-            postalCode: '',
-
-
-        }
     }
     fadeIn = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
     fadeIn = () => this.refs.titleText.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
     bounceInTxt = () => this.refs.viewTxtInput.bounceIn(2000).then(endState => endState.finished ? "finish ": console.log('finish not'));
-
     bounceInBtn = () => this.refs.viewBtn.bounceIn(2000).then(endState => console.log(endState.finished ? " bounceInFinish" : "cancel bounceIn"))
-
     fadeInProgressBarView = () => this.refs.progressBarView.fadeIn(2000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
-    
-    onClickRememberMe = () => {
-        this.setState({
-            isRememberMe: !this.state.isRememberMe
-        })
-    }
-
     navigateToSignupStep2 = () =>{
         this.props.navigation.navigate("SignupStep2");
     }
@@ -45,17 +30,19 @@ export default class SignupStep1 extends Component {
     }
 
     render() {
+        const {
+          data,
+          errors,
+          handleChange,
+          confirmLocation,
+          retrieveLocation
+        } = this.props;
 
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>
                     <Animatable.View ref={"mainView"} style={styles.container}>
                         <View style={{ backgroundColor: 'pink' }}>
-                            {/* <SvgUri
-                    width="200"
-                    height="200"
-                    source={{uri:'http://thenewcode.com/assets/images/thumbnails/homer-simpson.svg'}}
-                    />  */}
                         </View>
                         <View style={{ backgroundColor: 'rgb(37,182,173)' }}>
                             <View style={{ flexDirection: 'row', flex: 1 }}>
@@ -69,33 +56,35 @@ export default class SignupStep1 extends Component {
                             <Animatable.Text animation="fadeInDown" style={styles.textMusicDescription}> The music industry network and</Animatable.Text>
                             <Animatable.Text animation="fadeInDown" style={styles.textMusicDescription2}>marketplace</Animatable.Text>
 
-                  <Animatable.View ref={"viewTxtInput"}>
+                            <Animatable.View ref={"viewTxtInput"}>
 
                             <TextInput
                                 style={styles.inputStyle}
                                 placeholder={'Select Location'}
-                                //onChangeText={(text) => this.setState({ email: text })}
-                                value={this.state.location}
-                                name={"location"}
-                                onChangeText={val => this.setState({ location: val })}
+                                value={data.address}
+                                name={"address"}
+                                onChangeText={val => handleChange('address', val)}
                             />
-                            {/* {errors.email?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.email}</Animatable.Text>:null} */}
+                            {errors.address?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.address}</Animatable.Text>:null}
                             <TextInput
                                 style={styles.inputStyle}
                                 placeholder={'Postal Code'}
-
-                                //onChangeText={(text) => this.setState({ password: text })}
-                                onChangeText={val => this.setState({ postalCode: val })}
-                                value={this.state.postalCode}
+                                onChangeText={val => handleChange('address', val)}
+                                value={data.postal_code}
                                 name={"postalCode"}
                             />
                             </Animatable.View>
-                            {/* {errors.password?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.password}</Animatable.Text>:null} */}
+                            {errors.postal_code?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.postal_code}</Animatable.Text>:null}
 
                         </View>
                         <Animatable.View ref={'viewBtn'} style={{ marginBottom: '5%', marginTop: '5%' }}>
-                            <TouchableHighlight onPress={this.navigateToSignupStep2} underlayColor="#25b6ad" style={[styles.loginButton]}>
-                                <Text style={styles.textButtonTitle} >Confirm Location</Text>
+                        { 
+                            // <TouchableHighlight onPress={this.navigateToSignupStep2} underlayColor="#25b6ad" style={[styles.loginButton]}>
+                            //     <Text style={styles.textButtonTitle} >Confirm Location</Text>
+                            // </TouchableHighlight>
+                        }
+                            <TouchableHighlight onPress={this.confirmLocation} underlayColor="#25b6ad" style={[styles.loginButton]}>
+                             <Text style={styles.textButtonTitle} >Confirm Location</Text>
                             </TouchableHighlight>
                         </Animatable.View>
 

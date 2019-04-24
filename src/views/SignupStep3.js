@@ -8,7 +8,7 @@ import * as Animatable from 'react-native-animatable';
 import {SafeAreaView} from 'react-navigation';
 import CustomFooter from '../components/common/CustomFooter'
 import CustomHeader from '../components/common/CustomHeader';
-
+import { checkError } from "../../../../utils";
 
 var ImagePicker = require('react-native-image-picker');
 
@@ -31,14 +31,10 @@ export default class SignupStep3Musician extends Component {
     
      componentDidMount(){
        this.fadeInMain();
+       this.props.fetchGenres();
      //  this.fadeInProgressBarView();
      }
 
-     onClickRememberMe = () =>{
-        this.setState({
-            isRememberMe:!this.state.isRememberMe
-        })
-     }
      navigateToSignupStep5 = () =>{
       this.props.navigation.navigate("SignupStep5");
   }
@@ -85,6 +81,23 @@ export default class SignupStep3Musician extends Component {
         });
       };
     render() {
+    const {
+      data,
+      signup,
+      genres,
+      signUp,
+      errors,
+      handleChange,
+      addMoreSocials,
+      handleDateChange,
+      handleKeyPress,
+      handleFileChange,
+      handleSocialLinks,
+      handleMultiSelect
+    } = this.props;
+    const hasFile = !isNull(data.url);
+    const error = checkError(signup.error);
+
           return (
             <SafeAreaView forceInset={{ top: 'never', bottom:'never' }} style={styles.container}>
                <KeyboardAwareScrollView style={{backgroundColor:'rgb(245,245,245)', flex:0.9}}>
@@ -119,22 +132,26 @@ export default class SignupStep3Musician extends Component {
                             <TextInput
                                 style={styles.inputStyle}
                                 placeholder={'First Name'}
-                                //onChangeText={(text) => this.setState({ email: text })}
-                                // value={data.email}
-                                // name={"email"}
-                                // onChangeText={val => handleChange('email', val)}
+                                onChangeText={val => handleChange('first_name', val)}
+                                value={data.first_name}
+                                name={"first_name"}
                             />
-                            {/* {errors.email?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.email}</Animatable.Text>:null} */}
+                            {errors.first_name?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.first_name}</Animatable.Text>:null}
+                            {error &&
+                              error.error &&
+                              error.error.first_name &&
+                              error.error.first_name.map((item, index) => {
+                                return <Animatable.Text animation="fadeIn" style={styles.errorText} key={index}> {item}</Animatable.Text>;
+                              })}
                             <TextInput
                                 style={styles.inputStyle}
                                 placeholder={'Last Name'}
                                 secureTextEntry={true}
-                                //onChangeText={(text) => this.setState({ password: text })}
-                                // onChangeText={val => handleChange('password', val)}
-                                // value={data.password}
-                                // name={"password"}
-                            />
-                            {/* {errors.password?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.password}</Animatable.Text>:null} */}
+                                onChangeText={val => handleChange('last_name', val)}
+                                value={data.last_name}
+                                name={"last_name"}
+                               />
+                            {errors.last_name?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.last_name}</Animatable.Text>:null}
                         </View>
                        <View style={{flexDirection:'row',marginLeft: '5%', marginRight: '5%',flex:1, alignItems: 'space-between',}}>
                        <TextInput
@@ -165,6 +182,16 @@ export default class SignupStep3Musician extends Component {
                                 // name={"password"}
                             />
                        </View>
+                        <TextInput
+                                style={styles.inputStyle}
+                                placeholder={'Artist Name'}
+                                secureTextEntry={true}
+                                onChangeText={val => handleChange('artist_name', val)}
+                                value={data.artist_name}
+                                name={"artist_name"}
+                               />
+                            {errors.artist_name?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.artist_name}</Animatable.Text>:null}
+                       
                        <TextInput
                                 style={styles.inputStyle}
                                 placeholder={'Job Title'}
@@ -187,7 +214,33 @@ export default class SignupStep3Musician extends Component {
                             <Image style={styles.imageSearchIcon} source={require('../assets/suggestions-search.png')}/>
 
                             </TextInput>
-                        
+                            
+                            {data.social_links.map((item, index) => {
+                              if (item.isVisible) {
+                                return (
+                                  <View
+                                    key={index}
+                                  >
+                                <TextInput
+                                style={styles.inputStyle}
+                                placeholder={'Social Links'}
+                                secureTextEntry={true}
+                                onChangeText={val => handleChange(item.id, val)}
+                                value={item.value}
+                                name={item.id}
+                               />
+                                    {!item.isReady && (
+                                        <TouchableHighlight onPress={() => addMoreSocials(item.id)} underlayColor="#25b6ad" style={[styles.loginButton]}>
+                                            <Text style={styles.textButtonTitle} >Add More</Text>
+                                        </TouchableHighlight>  
+                                    )}
+                                    {errors[item.id]?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors[item.id]}</Animatable.Text>:null}
+                                  </View>
+                                );
+                              }
+                              return null;
+                            })}
+
                             <TextInput
                                 style={styles.inputStyle}
                                 placeholder={'Social links'}
@@ -202,7 +255,7 @@ export default class SignupStep3Musician extends Component {
                             </TextInput>
                             
 
-                        <TouchableHighlight onPress={this.navigateToSignupStep5} underlayColor="#25b6ad" style={[styles.loginButton]}>
+                        <TouchableHighlight onPress={this.signUp} underlayColor="#25b6ad" style={[styles.loginButton]}>
                             <Text style={styles.textButtonTitle} >Next -></Text>
                         </TouchableHighlight>
 

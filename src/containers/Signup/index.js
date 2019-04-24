@@ -7,7 +7,7 @@ import {
   history,
   isSuccess,
   fileReader,
-  performWow,
+ // performWow,
   formatLinks,
   enterPressed,
   extractValue,
@@ -20,9 +20,9 @@ import {
 
 import Validator from "../../validator";
 
-import { authActions, genreActions } from "../../actions";
+import { authActi5ons, genreActions } from "../../actions";
 
-import SignupStep1 from "../../views/SignupStep1";
+import SignUp from "../../views/SignUp";
 
 class SignUpContainer extends React.Component {
   state = {
@@ -30,8 +30,8 @@ class SignUpContainer extends React.Component {
     data: {
       address: "",
       pinCode: "",
-      longitude: "",
-      latitude: "",
+      longitude: 37.090240,
+      latitude: -95.712891,
       postal_code: "",
       type: "",
       avatar: null,
@@ -134,9 +134,7 @@ class SignUpContainer extends React.Component {
    *
    * @param event
    */
-  _handleChange = event => {
-    const { name, value } = event.target;
-
+  _handleChange = (name, value) => {
     const { data } = this.state;
     data[name] = value;
     this.setState(
@@ -271,7 +269,8 @@ class SignUpContainer extends React.Component {
         tabIndex
       },
       () => {
-        performWow(this.props.wowActions);
+       //this.props.navigation.navigate("SignupStep2");
+       // performWow(this.props.wowActions);
       }
     );
   };
@@ -286,6 +285,7 @@ class SignUpContainer extends React.Component {
       return false;
     }
     const { tabIndex } = this.state;
+
     this._goToTabIndex(tabIndex + 1);
   };
 
@@ -324,7 +324,8 @@ class SignUpContainer extends React.Component {
 
         return this.props.authActions.signup(signUpData).then(() => {
           if (isSuccess(this.props.signup)) {
-            return history.push("/suggestions");
+            this.props.navigation.navigate("SignupStep5");
+            //return history.push("/suggestions");
           }
         });
       });

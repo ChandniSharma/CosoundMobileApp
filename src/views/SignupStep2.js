@@ -13,43 +13,25 @@ const { width, height } = Dimensions.get('window');
 export default class SignupStep2 extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            location: '',
-            postalCode: '',
-
-
-        }
     }
     fadeInMain = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"));
-   // fadeInProgressBarView = () => this.refs.progressBarView.fadeIn(2000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"));
-
-
     fadeIn = () => this.refs.titleText.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
-
     fadeIn = () => this.refs.view1.fadeIn().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
     fadeIn = () => this.refs.view2.fadeIn().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
-   
-   // bounce = () => this.view.bounce(800).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
-
    componentDidMount(){
     this.fadeInMain();
-    //this.fadeInProgressBarView();
   }
 
-    onClickRememberMe = () => {
-        this.setState({
-            isRememberMe: !this.state.isRememberMe
-        })
-    }
-    navigateToSignupStep3Musician = () =>{
-        this.props.navigation.navigate("SignupStep3Musician");
-    }
-    navigateToSignupStep3 = () =>{
-        this.props.navigation.navigate("SignupStep3");
-    }
+    // navigateToSignupStep3Musician = () =>{
+    //     this.props.navigation.navigate("SignupStep3Musician");
+    // }
+    // navigateToSignupStep3 = () =>{
+    //     this.props.navigation.navigate("SignupStep3");
+    // }
 
     render() {
-
+    const { handleChange } = this.props;
+   
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
          <ScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex:1 }}>
@@ -68,7 +50,7 @@ export default class SignupStep2 extends Component {
                             <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Are you...</Animatable.Text>
 
                             <Animatable.View ref={'view1'} style={{ marginBottom: '5%' }}>
-                                <TouchableHighlight onPress={this.navigateToSignupStep3Musician} underlayColor="white" style={[styles.bigButton]}>
+                                <TouchableHighlight onPress={() => this.handleChange('type', 'musician')} underlayColor="white" style={[styles.bigButton]}>
                                 <View style={styles.viewButton}>
                                 <Image style={styles.musician} source={require('../assets/signup-type-musician.png')} /> 
                                     <Text style={styles.textButtonTitle} >A Musician</Text>
@@ -79,7 +61,7 @@ export default class SignupStep2 extends Component {
 
                         </View>
                         <Animatable.View ref={'view2'} style={{ marginBottom: '5%'  }}>
-                            <TouchableHighlight  onPress={this.navigateToSignupStep3} underlayColor="white" style={[styles.bigButton]}>
+                            <TouchableHighlight  onPress={() => this.handleChange('type', 'professional')} underlayColor="white" style={[styles.bigButton]}>
                             <View style={styles.viewButton}>
                                 <Image style={styles.industryProfessional} source={require('../assets/signup-type-pro.png')} /> 
                                     <Text style={styles.textButtonTitle} >Industry Professional</Text>
