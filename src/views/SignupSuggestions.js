@@ -11,7 +11,7 @@ import CustomFooter from '../components/common/CustomFooter';
 
 const { width, height } = Dimensions.get('window');
 
-export default class SignupStep5 extends Component {
+export default class SignupSuggestions extends Component {
     constructor(props) {
         super(props);
         this.state = {

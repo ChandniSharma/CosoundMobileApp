@@ -50,7 +50,7 @@ export default class SignupStep2 extends Component {
                             <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Are you...</Animatable.Text>
 
                             <Animatable.View ref={'view1'} style={{ marginBottom: '5%' }}>
-                                <TouchableHighlight onPress={() => this.handleChange('type', 'musician')} underlayColor="white" style={[styles.bigButton]}>
+                                <TouchableHighlight onPress={() => handleChange('type', 'musician')} underlayColor="white" style={[styles.bigButton]}>
                                 <View style={styles.viewButton}>
                                 <Image style={styles.musician} source={require('../assets/signup-type-musician.png')} /> 
                                     <Text style={styles.textButtonTitle} >A Musician</Text>
@@ -61,7 +61,7 @@ export default class SignupStep2 extends Component {
 
                         </View>
                         <Animatable.View ref={'view2'} style={{ marginBottom: '5%'  }}>
-                            <TouchableHighlight  onPress={() => this.handleChange('type', 'professional')} underlayColor="white" style={[styles.bigButton]}>
+                            <TouchableHighlight  onPress={() => handleChange('type', 'professional')} underlayColor="white" style={[styles.bigButton]}>
                             <View style={styles.viewButton}>
                                 <Image style={styles.industryProfessional} source={require('../assets/signup-type-pro.png')} /> 
                                     <Text style={styles.textButtonTitle} >Industry Professional</Text>

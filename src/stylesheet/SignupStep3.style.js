@@ -1,12 +1,36 @@
 import { Dimensions, Platform } from "react-native";
 
+
 const { height, width } = Dimensions.get('window');
 const deviceHeight = height;
 let deviceWidth = width;
 let top;
 const statusBarHeight = Platform.OS === 'ios' ? 0 : 0;
+let topOfBtn = '30%';
+
+console.log(" device heigh is ===",deviceHeight);
+if (deviceHeight >= 667 && deviceHeight < 736) {
+    
+    topOfBtn = '40%'
+}else if(deviceHeight >= 736 && deviceHeight < 812) {
+    
+}else if(deviceHeight >= 812 && deviceHeight < 1024 ){
+   
+}else if(deviceHeight >= 1024 && deviceHeight < 1112 ){
+    
+}else if(deviceHeight >= 1112 && deviceHeight < 1194 ){
+   
+}else if(deviceHeight >= 1194 && deviceHeight < 1366 ){
+   
+}else {
+   
+}
+
 
 export default{
+    cameraBtn:{
+         marginTop:topOfBtn,height:200, width:100
+    },
     
     errorText:{
         margin:'2%',
@@ -56,6 +80,7 @@ export default{
         fontFamily: 'Montserrat-Regular',
         fontWeight:'300',
     },
+
     imgMainTitle:{
         alignSelf: 'center',
         width:200,
@@ -160,6 +185,37 @@ export default{
           paddingLeft: 30,
           paddingRight: 30 ,
     },
+    multiSelectStyle:{
+        marginTop:'6%',
+        height:60,
+        backgroundColor:'white',
+      
+        shadowColor: 'rgba(0,0,0,0.7)',
+          shadowOffset: {
+              width: 2,
+              height: 4
+          },
+          shadowOpacity: 0.5,
+          shadowRadius: 1,
+          borderRadius:8,
+          fontFamily:'Montserrat-Regular',
+          fontWeight:'300',
+          fontSize:16,
+          color:'#262626',
+          paddingLeft:30
+    },
+    multiSelectListStyle:{
+  marginTop:'5%', 
+  backgroundColor:'white',
+  shadowColor: 'rgba(0,0,0,0.7)',
+  shadowOffset: {
+      width: 2,
+      height: 4
+  },
+  shadowOpacity: 0.5,
+  shadowRadius: 1,
+  borderRadius:8,
+    }, 
     inputStyle:{
       marginLeft: '5%',
       marginRight:'5%',
@@ -182,6 +238,24 @@ export default{
         paddingBottom: 20,
         paddingLeft: 30,
         paddingRight: 30 ,
+    },
+    datePickerStyle:{
+        marginLeft: '15%',
+         marginRight:'5%',
+        height:60,
+        width:deviceWidth-20,
+        alignSelf:'center',
+        backgroundColor:'transparant',
+        marginTop:'5%',
+        
+          fontFamily:'Montserrat-Regular',
+          fontWeight:'300',
+          fontSize:16,
+          color:'#262626',
+          paddingTop: 21,
+          paddingBottom: 20,
+          paddingLeft: 30,
+          paddingRight: 30 ,
     },
     viewForgotPwd:{
 
@@ -261,6 +335,19 @@ export default{
         backgroundColor: '#ff277b',
         marginTop:'5%',
         marginBottom:'5%',
+    },
+    plusCircleBtn: {
+        color: '#8E5ACD',
+       // marginBottom:5,
+        Right:'-2%',
+        alignSelf:'flex-end',
+        marginTop:'5%',
+        flex:0.1,
+    },
+    plusCircle: {
+        color: '#8E5ACD',
+        marginBottom:5,
+        marginRight:'2%'
     },
     viewCircleCompleted:{
         width:30,

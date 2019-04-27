@@ -69,9 +69,9 @@ export default class SignupStep1 extends Component {
                             <TextInput
                                 style={styles.inputStyle}
                                 placeholder={'Postal Code'}
-                                onChangeText={val => handleChange('address', val)}
+                                onChangeText={val => handleChange('postal_code', val)}
                                 value={data.postal_code}
-                                name={"postalCode"}
+                                name={"postal_code"}
                             />
                             </Animatable.View>
                             {errors.postal_code?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.postal_code}</Animatable.Text>:null}
@@ -83,7 +83,7 @@ export default class SignupStep1 extends Component {
                             //     <Text style={styles.textButtonTitle} >Confirm Location</Text>
                             // </TouchableHighlight>
                         }
-                            <TouchableHighlight onPress={this.confirmLocation} underlayColor="#25b6ad" style={[styles.loginButton]}>
+                            <TouchableHighlight onPress={confirmLocation} underlayColor="#25b6ad" style={[styles.loginButton]}>
                              <Text style={styles.textButtonTitle} >Confirm Location</Text>
                             </TouchableHighlight>
                         </Animatable.View>

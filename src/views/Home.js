@@ -56,7 +56,8 @@ export default class Home extends React.Component {
         this.props.navigation.navigate("Login")
     }
     navigateToSignupStep1 = () =>{
-        this.props.navigation.navigate("SignupStep1");
+       // this.props.navigation.navigate("SignupStep1");
+       this.props.navigation.navigate("Signup");
     }
     render() {
         let footerText = [];

@@ -11,6 +11,7 @@ import { name as appName } from './app.json';
 import Home from './src/views/Home';
  //import Login from './src/views/Login';
 import Login from './src/containers/Login';
+import Signup from './src/containers/Signup';
 //import RecoverPwd from './src/views/RecoverPwd';
 import ResetPassword from './src/containers/ResetPassword';
 import SignupStep1 from './src/views/SignupStep1';
@@ -26,11 +27,14 @@ import Dashboard from './src/views/Dashboard';
 import Navigator from './src/Navigator';
 import AdvancedSearchView from './src/views/AdvancedSearchView';
 //import Notification from "./src/views/Notification"; 
+import Account from "./src/views/Account";
+import Suggestions from './src/containers/Suggestions';
 
 const AppStackNavigator = createStackNavigator({
     Home: { screen: Home },
     Login: { screen: Login },
     RecoverPwd: { screen: ResetPassword },
+    Signup: { screen: Signup },
     SignupStep1: { screen: SignupStep1 },
     SignupStep2: { screen: SignupStep2 },
     SignupStep3: { screen: SignupStep3 },
@@ -41,9 +45,11 @@ const AppStackNavigator = createStackNavigator({
     Profile :{screen:Profile},
     Dashboard:{screen: Dashboard},
     AdvancedSearchView:{screen: AdvancedSearchView},
+    Account:{screen:Account},
+    Suggestions:{ screen: Suggestions }
     //  Notification:{screen: Notification}
 }, {
-        initialRouteName: 'SignupStep3',
+        initialRouteName: 'Login',
         gesturesEnabled: false,
         headerMode: 'none',
     })

@@ -59,7 +59,7 @@ const getTrackName = (index, metadata) => {
 };
 
 const enterPressed = e => {
-  return e.charCode === 13 || e.keyCode === 13;
+  return e.nativeEvent.key == "Enter";
 };
 
 const formatPhoneNumbers = phoneNumbers => {

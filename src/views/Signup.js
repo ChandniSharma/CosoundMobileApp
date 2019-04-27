@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import SignupStep1 from "./SignupStep1";
 import SignupStep2 from "./SignupStep2";
@@ -32,7 +31,7 @@ class Signup extends React.Component {
       handleMultiSelect,
       handleSocialLinks
     } = this.props;
-
+   console.log("data===", data)
     switch (tabIndex) {
       case 1:
         return (

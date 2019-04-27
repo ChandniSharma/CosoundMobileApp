@@ -2,6 +2,7 @@
 import { isEmpty as isEmptyObject, isNull, each } from "lodash";
 import moment from "moment";
 
+
 const isEmpty = value => value === undefined || isNull(value) || value === "";
 
 export const join = rules => (value, data) =>
@@ -165,6 +166,7 @@ export function requiredIf(field) {
 }
 
 export function zipcode(field) {
+  console.log(" in zip code rule filed ",field);
   return (value, data) => {
     if (data) {
       const trimmedValue = value.trim();

@@ -151,7 +151,8 @@ this.forceUpdate()
     this.props.navigation.navigate("RecoverPwd");
   }
   _navigateToGetStartedView = () => {
-    this.props.navigation.navigate("SignupStep1");
+    //this.props.navigation.navigate("SignupStep1");
+    this.props.navigation.navigate("Signup");
   }
   _navigateToProfileview = () => {
     this.props.navigation.navigate("Profile");

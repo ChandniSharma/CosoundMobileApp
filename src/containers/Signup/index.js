@@ -20,30 +20,32 @@ import {
 
 import Validator from "../../validator";
 
-import { authActi5ons, genreActions } from "../../actions";
+import { authActions, genreActions } from "../../actions";
 
-import SignUp from "../../views/SignUp";
+import Signup from "../../views/Signup";
+
 
 class SignUpContainer extends React.Component {
   state = {
     tabIndex: 1,
     data: {
-      address: "",
-      pinCode: "",
+      address: "India",
+      pinCode: "452010",
       longitude: 37.090240,
       latitude: -95.712891,
-      postal_code: "",
       type: "",
+      postal_code:"452010",
       avatar: null,
       url: null,
-      email: "",
-      password: "",
-      first_name: "",
+      email: "test1@gmail.com",
+      password: "123456",
+      first_name: "Test1",
       last_name: "",
       dob: null,
-      artist_name: "",
+      artist_name: "Artist name Test",
       genres: [],
-      social_links: formatLinks([], getRemainingArray(5, 0))
+      social_links: formatLinks([], getRemainingArray(5, 0)),
+      country_id: 1
     },
     errors: {}
   };
@@ -102,7 +104,7 @@ class SignUpContainer extends React.Component {
       this.state.data,
       field
     );
-
+console.log(" data ===", this.state.data, field);
     const { isValid, errors } = validate;
     this.setState({ errors });
     return isValid;
@@ -119,7 +121,7 @@ class SignUpContainer extends React.Component {
       data.latitude = latitude;
       data.pinCode = pinCode;
       data.longitude = longitude;
-      data.postal_code = pinCode;
+      data.postal_code = postal_code;
       const fields = ["address", "postal_code"];
       this.setState({ data }, () => {
         each(fields, item => {
@@ -170,17 +172,13 @@ class SignUpContainer extends React.Component {
    * File handler
    *
    */
-  _handleFileChange = event => {
-    const { name, files } = event.target;
-    if (files[0]) {
+  _handleFileChange = (name, file) => {
+    // const { name, files } = event.target;
+    if (file) {
       const { data } = this.state;
-      data[name] = files[0];
-      this.setState(
-        {
-          data
-        },
-        () => this._setUrl(files[0], "url")
-      );
+      data[name] = file;
+      data['url'] = file;
+      this.setState({ data });
     }
   };
 
@@ -188,6 +186,7 @@ class SignUpContainer extends React.Component {
    * Date Pciker handler
    */
   _handleDateChange = date => {
+   
     this.setState(
       {
         data: Object.assign({}, this.state.data, {
@@ -201,8 +200,7 @@ class SignUpContainer extends React.Component {
   /**
    * Social links handler
    */
-  _handleSocialLinks = e => {
-    const { name, value } = e.target;
+  _handleSocialLinks = (name, value) => {
     const { data } = this.state;
     const id = Number(name);
     const socialLinks = formatLinksState(data.social_links, id, value);
@@ -239,11 +237,8 @@ class SignUpContainer extends React.Component {
    * Key press handler for Social Links
    *
    */
-  _handleKeyPress = e => {
-    if (enterPressed(e)) {
-      e.preventDefault();
-      this._addMoreSocials(e.target.name);
-    }
+  _handleKeyPress = (name) => {
+      this._addMoreSocials(name);
   };
 
   /**
@@ -251,7 +246,10 @@ class SignUpContainer extends React.Component {
    *
    */
   _setUrl = (file, name) => {
+
+    console.log( "File =====", file )
     fileReader(file).then(url => {
+      console.log( "url =====", url )
       const { data } = this.state;
       data[name] = url;
       this.setState({ data });
@@ -280,12 +278,14 @@ class SignUpContainer extends React.Component {
    *
    */
   _confirmLocation = event => {
+    console.log("call confirm location");
     event.preventDefault();
     if (!this._isValid("address") || !this._isValid("postal_code")) {
+      console.log("invalid")
       return false;
     }
     const { tabIndex } = this.state;
-
+    console.log("valid")
     this._goToTabIndex(tabIndex + 1);
   };
 
@@ -307,13 +307,15 @@ class SignUpContainer extends React.Component {
   /**
    * On Signup
    */
-  _signUp = e => {
-    e.preventDefault();
+  _signUp = () => {
     const valid = this._isValid();
+    
+    console.log(" valid== singipp ", valid,"_isValidSocials" ,this._isValidSocials() )
     if (valid && this._isValidSocials()) {
       const { data } = this.state;
-
+      console.log(" Data avtar ", data);
       return fixRotationOfFile(data.avatar).then(blob => {
+       console.log(" in image return ");
         data.avatar = blob;
         const genres = JSON.stringify(extractValue(data.genres));
         const social_links = JSON.stringify(extractValue(data.social_links));
@@ -321,9 +323,12 @@ class SignUpContainer extends React.Component {
           genres,
           social_links
         });
-
+        console.log(" 328 ");
         return this.props.authActions.signup(signUpData).then(() => {
+          console.log(" Success ", this.props);
           if (isSuccess(this.props.signup)) {
+
+            console.log(" Success ", this.props.signup);
             this.props.navigation.navigate("SignupStep5");
             //return history.push("/suggestions");
           }
@@ -337,7 +342,7 @@ class SignUpContainer extends React.Component {
     const { genres, signup } = this.props;
 
     return (
-      <SignUp
+      <Signup
         data={data}
         signup={signup}
         genres={genres}

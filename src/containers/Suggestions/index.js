@@ -29,7 +29,7 @@ class Suggestions extends React.PureComponent {
    */
   _fetchSuggestions = pageNo => {
     const { suggestionActions, user } = this.props;
-
+console.log("user===at 33 line no suggestion container = ", this.props)
     if (!isNull(user.token)) {
       return suggestionActions.fetchSuggestions(pageNo);
     }

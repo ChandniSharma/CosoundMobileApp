@@ -16,12 +16,6 @@ const { width, height } = Dimensions.get('window');
 export default class SignupStep5 extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            location: '',
-            postalCode: '',
-
-
-        }
     }
     fadeIn = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
     fadeIn = () => this.refs.titleText.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
@@ -30,7 +24,6 @@ export default class SignupStep5 extends Component {
     fadeIn = () => this.refs.view2.fadeIn().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
    
    // bounce = () => this.view.bounce(800).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
-
 
     onClickRememberMe = () => {
         this.setState({

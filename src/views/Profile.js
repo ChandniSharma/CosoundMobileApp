@@ -750,7 +750,6 @@ export default class ProfileComponent extends Component {
 
                                             <Text style={styles.musicDescription}>Of Monsters and Men - Dirty Paws (Kygo remix)</Text>
 
-
                                         </View>
 
                                     </View>
