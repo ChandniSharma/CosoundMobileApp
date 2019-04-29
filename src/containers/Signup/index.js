@@ -25,27 +25,29 @@ import { authActions, genreActions } from "../../actions";
 import Signup from "../../views/Signup";
 
 
+
 class SignUpContainer extends React.Component {
   state = {
     tabIndex: 1,
     data: {
+      country_code: "AL",
       address: "India",
       pinCode: "452010",
       longitude: 37.090240,
       latitude: -95.712891,
       type: "",
-      postal_code:"452010",
+      postal_code:"",
       avatar: null,
       url: null,
-      email: "test1@gmail.com",
-      password: "123456",
-      first_name: "Test1",
+      email: "",
+      password: "",
+      first_name: "",
       last_name: "",
       dob: null,
-      artist_name: "Artist name Test",
+      artist_name: "",
       genres: [],
       social_links: formatLinks([], getRemainingArray(5, 0)),
-      country_id: 1
+      country_id: ''
     },
     errors: {}
   };
@@ -90,6 +92,7 @@ class SignUpContainer extends React.Component {
   _isValid = (field = null) => {
     const validate = Validator.createValidator(
       {
+        country_id: ["required"],
         address: ["required"],
         postal_code: ["required", "zipcode|pinCode"],
         type: ["required"],
@@ -278,9 +281,8 @@ console.log(" data ===", this.state.data, field);
    *
    */
   _confirmLocation = event => {
-    console.log("call confirm location");
     event.preventDefault();
-    if (!this._isValid("address") || !this._isValid("postal_code")) {
+    if (!this._isValid("country_id") || !this._isValid("address") || !this._isValid("postal_code")) {
       console.log("invalid")
       return false;
     }
@@ -311,25 +313,27 @@ console.log(" data ===", this.state.data, field);
     const valid = this._isValid();
     
     console.log(" valid== singipp ", valid,"_isValidSocials" ,this._isValidSocials() )
-    if (valid && this._isValidSocials()) {
+          if (valid && this._isValidSocials()) {
       const { data } = this.state;
       console.log(" Data avtar ", data);
       return fixRotationOfFile(data.avatar).then(blob => {
        console.log(" in image return ");
         data.avatar = blob;
-        const genres = JSON.stringify(extractValue(data.genres));
+       // const genres = JSON.stringify(extractValue(data.genres));
+        const genres = data.genres;
         const social_links = JSON.stringify(extractValue(data.social_links));
+        console.log(" social link =====", social_links);
         const signUpData = Object.assign({}, data, {
           genres,
           social_links
         });
-        console.log(" 328 ");
+        console.log(" 328 ", signUpData);
         return this.props.authActions.signup(signUpData).then(() => {
           console.log(" Success ", this.props);
           if (isSuccess(this.props.signup)) {
 
             console.log(" Success ", this.props.signup);
-            this.props.navigation.navigate("SignupStep5");
+            this.props.navigation.navigate("Suggestions");
             //return history.push("/suggestions");
           }
         });

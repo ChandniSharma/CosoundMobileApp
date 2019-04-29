@@ -160,7 +160,7 @@ export default {
         height: 50,
         borderRadius: 25,
         backgroundColor: 'transparant',
-        borderColor: 'gray',
+        // borderColor: 'gray',
         borderWidth: .2,
         shadowColor: 'rgba(0,0,0,0.7)',
         shadowOffset: {
@@ -175,13 +175,12 @@ export default {
         marginTop: '5%',
         marginBottom: '5%',
 
-        // marginLeft:'-%',
-
     },
     imageArtist: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        marginTop:-10
     },
     artistName: {
         color: '#262626',

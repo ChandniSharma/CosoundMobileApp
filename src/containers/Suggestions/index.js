@@ -6,16 +6,24 @@ import { isNull } from "lodash";
 
 //import { performWow } from "../../utils";
 
-import { suggestionActions } from "../../actions";
+import { suggestionActions, userActions } from "../../actions";
 
 import SuggestionComponent from "../../views/SuggestionComponent";
 
 class Suggestions extends React.PureComponent {
+  state = {
+   isShowSuggestion: false
+  }
+
   componentDidMount() {
     const { wowActions, signup } = this.props;
 
     this._fetchSuggestions(1).then(() => {
      // performWow(wowActions);
+     this.setState({
+      isShowSuggestion : true
+     })
+     console.log("fetch suggestion===")
     });
 
     if (signup.data.message) {
@@ -29,8 +37,9 @@ class Suggestions extends React.PureComponent {
    */
   _fetchSuggestions = pageNo => {
     const { suggestionActions, user } = this.props;
-console.log("user===at 33 line no suggestion container = ", this.props)
+    console.log("user====",user)
     if (!isNull(user.token)) {
+      console.log("calling 42====")
       return suggestionActions.fetchSuggestions(pageNo);
     }
   };
@@ -46,13 +55,16 @@ console.log("user===at 33 line no suggestion container = ", this.props)
   };
 
   render() {
-    const { suggestions, follow } = this.props;
+    const { suggestions, follow, navigation } = this.props;
+    const { isShowSuggestion } = this.state;
     return (
       <SuggestionComponent
+        navigate={navigation}
         follow={follow}
         suggestions={suggestions}
         followUser={this._followUser}
         callAPI={this._fetchSuggestions}
+        isShowSuggestion={isShowSuggestion}
       />
     );
   }
@@ -63,14 +75,16 @@ const mapStateToProps = state => {
   return {
     follow: state.follow,
     suggestions: state.suggestions,
-    signup: state.signup
+    signup: state.signup,
+    user: state.user
   };
 };
 
 // eslint-disable-next-line
 const mapDispatchToProps = dispatch => {
   return {
-    suggestionActions: bindActionCreators(suggestionActions, dispatch)
+    suggestionActions: bindActionCreators(suggestionActions, dispatch),
+    userActions: bindActionCreators(userActions, dispatch)
   };
 };
 

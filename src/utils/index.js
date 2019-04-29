@@ -1,5 +1,5 @@
 //import history from "./history";
-//import { initWow, syncWow, performWow } from "./wow";
+import { initWow, syncWow, performWow } from "./wow";
 import {
   rot13,
   isTab,
@@ -76,10 +76,10 @@ export {
   rot13,
   isTab,
   // history,
-  // initWow,
+  initWow,
   getPost,
   isError,
-  // syncWow,
+  syncWow,
   isMobile,
   checkAuth,
   jsUcfirst,
@@ -88,7 +88,7 @@ export {
   checkError,
   extractIds,
   fileReader,
-  //performWow,
+  performWow,
   getUniqueId,
   getUserInfo,
   getMetadata,

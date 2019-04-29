@@ -8,12 +8,15 @@ import { jsUcfirst } from "./index";
 
 import * as avatar from "../assets/avatar1.jpg";
 
+
 const getThumbnail = data => {
+
+  console.log(" in image func ====", data);
   return !isEmpty(data) && data.thumbnail && !isNull(data.thumbnail)
     ? data.thumbnail
     : !isEmpty(data) && data.avatar && !isNull(data.avatar)
     ? data.avatar
-    : avatar;
+    : `https://ui-avatars.com/api/?name=${data.first_name ?data.first_name : ''}+${data.last_name ? data.last_name : ''}`;
 };
 
 const getImageThumbnail = item => {

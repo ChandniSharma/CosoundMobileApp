@@ -16,6 +16,25 @@ export default{
     container: {
         flex: 1,
     },
+    pickerStyle: {
+        fontSize: 16,
+        paddingVertical: 12,
+        paddingHorizontal: 10,
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 4,
+        color: 'black',
+        paddingRight: 30, // to ensure the text is never behind the icon
+        
+      },
+      locationLabel:{
+       
+        fontFamily:'Montserrat-Regular',
+        fontWeight:'300',
+        fontSize:16,
+        color:'#262626',
+        textAlign:'left'
+      },
     leftView:{
         marginTop:'15%',
         alignSelf:'flex-end',

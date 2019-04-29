@@ -1,27 +1,30 @@
 import React from "react";
 
-import SignupSuggestions from "./SignupSuggestions";
-import SignupStep5 from "./SignupStep5";
+import SuggestionWraper from "./SuggestionWraper";
 import { View } from "native-base";
-import { isEmpty } from "lodash";
+import { Paginator } from "../hoc/";
 
 class SuggestionComponent extends React.Component {
   render() {
-    const { follow, callAPI, followUser, suggestions } = this.props;
+    console.log("props====", this.props)
+    const { follow, callAPI, followUser, suggestions, isShowSuggestion, navigate } = this.props;
     const { paginationData } = suggestions;
-    
     return (
-      <View>
-        {suggestions.isRequesting && !callingAPI && <SignupStep5 />}
-        {!suggestions.isRequesting && !isEmpty(suggestions.error) && (
-          <View>{suggestions.error.message} </View>
-        )}
-
-        {!suggestions.isRequesting && !isEmpty(suggestions.error) && (
-          <View>{suggestions.error.message} </View>
-        )}
-        
-        <SignupSuggestions />
+      <View style= {{flex:1}}>
+      
+        <Paginator
+                component={SuggestionWraper}
+                callAPI={callAPI}
+                page_count={paginationData.page_count}
+                page={paginationData.page}
+                suggestions={suggestions}
+                followUser={followUser}
+                follow={follow}
+                isLoaderInternal
+                shouldSyncWOW
+                isShowSuggestion={isShowSuggestion}
+                navigate={navigate}
+              />
 
       </View>
     )

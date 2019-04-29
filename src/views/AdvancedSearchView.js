@@ -66,7 +66,6 @@ export default class AdvanceSearchView extends Component {
         }, 200);
     }
     renderItem(item) {
-        console.log(" item is ", item);
         return (
             <View>
                 
@@ -91,8 +90,6 @@ export default class AdvanceSearchView extends Component {
     }
 
     render() {
-        // const { data, errors, handleChange, login, onSubmit, fetching,navigateToForgotPassword, navigateToGetStartedView } = this.props;
-        // console.log(" in component =====",errors);
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 <CustomHeader showNotificationView={this.showNotificationView} />

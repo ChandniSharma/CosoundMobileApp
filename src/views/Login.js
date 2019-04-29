@@ -105,9 +105,7 @@ viewBox="0 0 233 44"
      }
 
     render() {
-        const { data, errors, handleChange, login, onSubmit, fetching,navigateToForgotPassword, navigateToGetStartedView, onClickRememberMe } = this.props;
-
-        console.log(" in component =====",this.props);
+        const { data, errors, handleChange, login, onSubmit, fetching,navigateToForgotPassword,navigateToGetStartedView, onClickRememberMe } = this.props;
         const error = checkError(login.error);
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom:'never' }} style={styles.container}>
@@ -127,9 +125,9 @@ viewBox="0 0 233 44"
                              <View style={{flex:0.3}} />
                             <View style={styles.leftView}>
                                 <Animatable.Text animation="fadeInDown" style={styles.textDull}>Don't have an account?</Animatable.Text>
-                                <TouchableHighlight underlayColor='rgb(245,245,245)' onPress={navigateToGetStartedView}>
+                                <TouchableOpacity onPress={navigateToGetStartedView}>
                                     <Animatable.Text animation="fadeInDown" style={styles.getStarted}>Get Started!</Animatable.Text>
-                                </TouchableHighlight>
+                                </TouchableOpacity>
                             </View>
                         </View>
                         <Animatable.Text animation="fadeIn" style={styles.loginText}> Log in</Animatable.Text>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, StyleSheet } from 'react-native';
 //import SvgUri from 'react-native-svg-uri';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../stylesheet/SignupStep1.style';
@@ -7,15 +7,19 @@ import RecoverPwd from './RecoverPwd';
 import * as Animatable from 'react-native-animatable';
 import { SafeAreaView } from 'react-navigation';
 import CustomFooter from '../components/common/CustomFooter'
-
+import RNPickerSelect from 'react-native-picker-select';
+import SimplePicker from 'react-native-simple-picker';
+import SelectInput from 'react-native-select-input-ios'
+import { countries } from '../utils/countries';
 
 const { width, height } = Dimensions.get('window');
-
+  
 export default class SignupStep1 extends Component {
     constructor(props) {
         super(props);
+        this.options  = countries;
     }
-    fadeIn = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+        fadeIn = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
     fadeIn = () => this.refs.titleText.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
     bounceInTxt = () => this.refs.viewTxtInput.bounceIn(2000).then(endState => endState.finished ? "finish ": console.log('finish not'));
     bounceInBtn = () => this.refs.viewBtn.bounceIn(2000).then(endState => console.log(endState.finished ? " bounceInFinish" : "cancel bounceIn"))
@@ -23,6 +27,8 @@ export default class SignupStep1 extends Component {
     navigateToSignupStep2 = () =>{
         this.props.navigation.navigate("SignupStep2");
     }
+
+
     componentDidMount(){
         this.bounceInTxt();
         this.bounceInBtn();
@@ -37,6 +43,14 @@ export default class SignupStep1 extends Component {
           confirmLocation,
           retrieveLocation
         } = this.props;
+        
+        const placeholder = {
+            label: 'Select a sport...',
+            value: null,
+            color: '#9EA0A4',
+          };
+
+         
 
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
@@ -57,14 +71,16 @@ export default class SignupStep1 extends Component {
                             <Animatable.Text animation="fadeInDown" style={styles.textMusicDescription2}>marketplace</Animatable.Text>
 
                             <Animatable.View ref={"viewTxtInput"}>
-
-                            <TextInput
+  
+                            {/* <TextInput
                                 style={styles.inputStyle}
                                 placeholder={'Select Location'}
                                 value={data.address}
                                 name={"address"}
                                 onChangeText={val => handleChange('address', val)}
-                            />
+                            /> */}
+                            <SelectInput style= {styles.inputStyle} labelStyle={styles.locationLabel} value={data.country_id} options={this.options} onSubmitEditing={val => handleChange('country_id', val)} />
+                            {errors.country_id?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.country_id}</Animatable.Text>:null}
                             {errors.address?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.address}</Animatable.Text>:null}
                             <TextInput
                                 style={styles.inputStyle}
@@ -131,5 +147,17 @@ export default class SignupStep1 extends Component {
     }
 }
 
-{/* */ }
-                // </View> */}
+const pickerSelectStyles = StyleSheet.create({
+    inputIOS: {
+      fontSize: 16,
+      paddingVertical: 12,
+      paddingHorizontal: 10,
+      borderWidth: 1,
+      borderColor: 'gray',
+      borderRadius: 4,
+      color: 'black',
+      paddingRight: 30, // to ensure the text is never behind the icon
+      backgroundColor:'red'
+    },
+  });
+  

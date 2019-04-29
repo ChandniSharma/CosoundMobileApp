@@ -42,14 +42,11 @@ export default class SignupStep5 extends Component {
 
     }
     showFeatures = () => {
-        console.log(" show features ");
         this.setState({ isFeatureTableVisible: true });
     }
 
     renderItem = (index) => {
-        console.log(" index is ", index);
         let item = index.item; //this.state.arrayArtistData[index];
-        console.log(" item is ", item.item);
 
         return (
 

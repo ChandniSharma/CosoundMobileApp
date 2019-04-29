@@ -31,7 +31,6 @@ class Signup extends React.Component {
       handleMultiSelect,
       handleSocialLinks
     } = this.props;
-   console.log("data===", data)
     switch (tabIndex) {
       case 1:
         return (

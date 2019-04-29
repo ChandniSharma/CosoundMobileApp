@@ -143,27 +143,23 @@ export default class ProfileComponent extends Component {
 
     componentDidMount() {
         this.fadeInDown();
-        console.log(" Profile props ========", this.props);
         this.fadeInUpPostOptionView();
     }
     _navigateToAdvanceSearchView() {
-        this.props.navigation.navigate("AdvancedSearchView");
+        // this.props.navigation.navigate("AdvancedSearchView");
     }
     _navigateToNotificationView() {
-        this.props.navigation.navigate('Notification');
+        // this.props.navigation.navigate('Notification');
     }
 
     _showCommentList() {
-        console.log("comment method call ");
         this.setState({ isCommentTableShow: !this.state.isCommentTableShow });
     }
     _showPostOptions() {
-        console.log("comment method call ");
         this.setState({ isPostOptionShow: true });
     }
-  
+
     rednerPostItem = (item) => {
-        console.log(" post Item is ", item);
         return (
             <TouchableOpacity>
                 <Text> All </Text>
@@ -173,10 +169,8 @@ export default class ProfileComponent extends Component {
 
     }
     renderCommentItem = (item) => {
-        console.log(" Comment item is ", item);
         return (
             <View>
-
                 <TouchableHighlight onPress={this.onClickNotification}>
                     <View style={{ marginTop: '2%' }}>
                         {/* <View>
@@ -205,31 +199,22 @@ export default class ProfileComponent extends Component {
         return (
             <View>
                 <View style={{ marginTop: "5%", marginBottom: '5%', alignItems: "center", flexDirection: 'row' }}>
-
                     <View style={{ flex: 1, height: 1, backgroundColor: "#d3d3d3" }}>
-
                     </View>
-
                     <TouchableOpacity style={{
                         borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10, justifyContent: 'center',
                         alignItems: "center", flexDirection: 'row', height: 40, width: 160
                     }} onPress={this._showCommentList.bind(this)}>
-
                         <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
                         <Text style={styles.textCommentCount}>9 Comments</Text>
-
                         <View style={{
                             marginLeft: 10, flex: 1, borderRadius: 60, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
                             justifyContent: 'center', alignItems: "center", height: 40, width: 160
                         }}>
-
                             <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
-
                         </View>
                     </TouchableOpacity>
-
                     <View style={{ flex: 1, height: 1, backgroundColor: "#d3d3d3" }} />
-
                 </View>
                 {this.state.isCommentTableShow ? <View style={{ width: '100%', marginBottom: '2%' }}>
                     <FlatList
@@ -265,8 +250,6 @@ export default class ProfileComponent extends Component {
     };
 
     postOptionView() {
-
-        console.log(" postOptionView ====== ");
         let arrayPostOptions = ["All", "Copy Link", "Unfollow User", 'Share', 'Report Post'];
         let arrayBtn = [];
 
@@ -289,7 +272,6 @@ export default class ProfileComponent extends Component {
                     </View>
                     <Text style={styles.songDuration}>{music.item.time}</Text>
                 </View>
-
                 <View style={{ marginTop: "5%", marginBottom: "5%", width: "100%", justifyContent: "center", height: 0.5, backgroundColor: "#d3d3d3" }}>
                 </View>
             </View>
@@ -297,10 +279,8 @@ export default class ProfileComponent extends Component {
     };
 
     renderImage = (music) => {
-
         return (
             <View style={{ padding: 10 }}>
-
                 <Image style={{
                     width: 100,
                     height: 100,
@@ -321,7 +301,6 @@ export default class ProfileComponent extends Component {
 
 
     renderPost = (post) => {
-
         return (
             <View style={{ marginBottom: "3%" }}>
                 {post.item.type === "music" ? <View style={{
@@ -336,9 +315,7 @@ export default class ProfileComponent extends Component {
                     },
                     shadowOpacity: 0.2,
                 }}>
-
                     <View style={{ width: "100%", justifyContent: "center", flexDirection: "row" }}>
-
                         <View style={{ flex: 9, flexDirection: "row", marginTop: 5 }}>
                             <View style={{
                                 height: 40, width: 40,
@@ -354,8 +331,8 @@ export default class ProfileComponent extends Component {
                                 shadowOpacity: 0.8,
                             }} />
                             <View style={{ paddingLeft: 10, marginTop: 3 }}>
-                                <Text style={styles.textUserName}>{post.item.name}</Text>
-                                <Text style={styles.textDesignation}>{post.item.occupation}</Text>
+                                <Text style={styles.textUserName}>Test Name</Text>
+                                <Text style={styles.textDesignation}>Test Desigation</Text>
                             </View>
                         </View>
                         <TouchableOpacity onPress={this._showPostOptions}>
@@ -368,16 +345,11 @@ export default class ProfileComponent extends Component {
                         } */}
 
                     </View>
-
                     <View style={{ marginTop: "5%", marginBottom: "5%", width: "100%", justifyContent: "center", height: 0.5, backgroundColor: "#d3d3d3" }}>
-
                     </View>
-
                     <View style={{ padding: 5, marginBottom: "5%" }}>
                         <View style={{ flexDirection: "row", padding: 10 }}>
-
                             <View style={{ flex: 4, }}>
-
                                 <Image style={{
                                     width: 100,
                                     height: 100,
@@ -391,9 +363,7 @@ export default class ProfileComponent extends Component {
                                     zIndex: -1
                                 }}
                                     source={require('../assets/homepage-video-placeholder.jpg')}>
-
                                 </Image>
-
                                 <Image style={{
                                     width: 60,
                                     height: 60,
@@ -410,66 +380,46 @@ export default class ProfileComponent extends Component {
                                     zIndex: 999
                                 }}
                                     source={require('../assets/close.png')}>
-
                                 </Image>
-
                             </View>
-
                             <View style={{ flex: 6 }}>
-
                                 <Text style={styles.musicTitle}>Kygo</Text>
                                 <Text style={styles.musicDescription}>Of Monsters and Men - Dirty Paws (Kygo remix)</Text>
-
                             </View>
-
                         </View>
-
                         <View style={{ width: "100%", backgroundColor: "#d3d3d6" }}>
                             <Image style={{ width: "100%", height: 50 }} source={require('../assets/noise.gif')} />
                         </View>
-
                         <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
-
                             <Text style={styles.musicCurrentTime}>0.00</Text>
                             <Text style={styles.musicDuration}>2.03</Text>
 
                         </View>
                     </View>
-
                     <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
-
                         <View style={{ flex: 9, flexDirection: "row" }}>
                             <View style={{
                                 borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10, justifyContent: 'center',
                                 alignItems: "center", flexDirection: 'row', height: 40, width: 80
                             }}>
-
                                 <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
                                 <Text style={styles.textLikeCount}>10</Text>
                             </View>
-
                             <View style={{
                                 marginLeft: 10, borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
                                 justifyContent: 'center', alignItems: "center", flexDirection: 'row', height: 40, width: 80
                             }}>
-
                                 <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
                                 <Text style={styles.textLikeCount}>56</Text>
-
                             </View>
                         </View>
-
                         <View style={{
                             flex: 1, borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
                             justifyContent: 'center', alignItems: "center", height: 40
                         }}>
-
                             <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
-
                         </View>
-
                     </View>
-
                     {/* Comment btn */}
                     <View style={{ marginTop: "5%", marginBottom: '5%', alignItems: "center", flexDirection: 'row', height: 100 }}>
                         <View style={{ flex: 1, height: 1, backgroundColor: "#d3d3d3" }} />
@@ -486,14 +436,10 @@ export default class ProfileComponent extends Component {
                                 marginLeft: 10, flex: 1, borderRadius: 60, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
                                 justifyContent: 'center', alignItems: "center", height: 40, width: 160
                             }}>
-
                                 <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
-
                             </View>
                         </TouchableOpacity>
-
                         <View style={{ flex: 1, height: 1, backgroundColor: "#d3d3d3" }} />
-
                     </View>
 
                     {this.state.isCommentTableShow ? <View style={{ width: '100%', marginTop: '2%', marginBottom: '2%' }}>
@@ -517,9 +463,7 @@ export default class ProfileComponent extends Component {
                         },
                         shadowOpacity: 0.2,
                     }}>
-
                         <View style={{ width: "100%", justifyContent: "center", flexDirection: "row" }}>
-
                             <View style={{ flex: 9, flexDirection: "row", marginTop: 5 }}>
                                 <Image style={{
                                     height: 40, width: 40,
@@ -545,56 +489,39 @@ export default class ProfileComponent extends Component {
                             <TouchableOpacity onPress={this._showPostOptions}>
                                 <Text style={{ flex: 1, color: "black", fontSize: 30 }}>...</Text>
                             </TouchableOpacity>
-
-
                         </View>
-
                         <View style={{ marginTop: "5%", marginBottom: "5%", width: "100%", justifyContent: "center", height: 0.5, backgroundColor: "#d3d3d3" }}>
-
                         </View>
-
                         <View >
                             <Text style={styles.musicDescription}>{post.item.text}</Text>
                         </View>
-
                         <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
-
                             <View style={{ flex: 9, flexDirection: "row" }}>
                                 <View style={{
                                     borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10, justifyContent: 'center',
                                     alignItems: "center", flexDirection: 'row', height: 40, width: 80
                                 }}>
-
                                     <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
                                     <Text style={styles.textCommentCount}>10</Text>
                                 </View>
-
                                 <View style={{
                                     marginLeft: 10, borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
                                     justifyContent: 'center', alignItems: "center", flexDirection: 'row', height: 40, width: 80
                                 }}>
-
                                     <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
                                     <Text style={styles.textCommentCount}>56</Text>
 
                                 </View>
                             </View>
-
                             <View style={{
                                 flex: 1, borderRadius: 20, borderWidth: 1, borderColor: "#F1F1F1", padding: 10,
                                 justifyContent: 'center', alignItems: "center", height: 40
                             }}>
-
                                 <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
-
                             </View>
-
-
                         </View>
-
                         {this.viewComments()}
                     </View>}
-
                 <View style={{ width: "100%", flexDirection: "row", backgroundColor: "#d3d3d3" }}>
                     <Image style={{
                         height: 40,
@@ -697,7 +624,7 @@ export default class ProfileComponent extends Component {
                             <TouchableHighlight underlayColor="black" style={[styles.loginButton]}>
                                 <Text style={styles.textLoginButtonTitle}>Follow</Text>
                             </TouchableHighlight>
-                            <TouchableHighlight underlayColor="black" onPress={() => this.props.navigation.navigate("Plan")} style={[styles.imageButton]}>
+                            <TouchableHighlight underlayColor="black" style={[styles.imageButton]}>
                                 <Image style={styles.imageSendArraow} source={require('../assets/sendArrow.png')} />
                             </TouchableHighlight>
 
@@ -832,7 +759,7 @@ export default class ProfileComponent extends Component {
                                 <Icon name="ios-musical-notes" size={50} color="rgb(140,91,203)" style={styles.music} />
                                 <Text style={styles.music}>Music</Text>
 
-                                <Icon name="video-image" size={30} color="#20ACAC" style={styles.video} />
+                                <Icon name="video" size={30} color="#20ACAC" style={styles.video} />
                                 <Text style={styles.video}>Video</Text>
 
                                 <Icon name="image" size={30} color="#20ACAC" style={styles.imageIcon} />
@@ -843,13 +770,11 @@ export default class ProfileComponent extends Component {
 
 
                         <View style={styles.viewPostButton}>
-
                             <TouchableHighlight style={[styles.postButton]}>
                                 <Text style={styles.textLoginButtonTitle}>Post -></Text>
                             </TouchableHighlight>
                         </View>
                         <View>
-
                             <FlatList
                                 data={this.state.post}
                                 renderItem={this.renderPost}

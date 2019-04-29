@@ -21,14 +21,6 @@ export default class SignupStep2 extends Component {
    componentDidMount(){
     this.fadeInMain();
   }
-
-    // navigateToSignupStep3Musician = () =>{
-    //     this.props.navigation.navigate("SignupStep3Musician");
-    // }
-    // navigateToSignupStep3 = () =>{
-    //     this.props.navigation.navigate("SignupStep3");
-    // }
-
     render() {
     const { handleChange } = this.props;
    

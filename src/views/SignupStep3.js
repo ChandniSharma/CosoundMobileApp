@@ -49,9 +49,7 @@ export default class SignupStep3Musician extends Component {
   chooseFile = () => {
     var options = {
       title: 'Image',
-      customButtons: [
-        { name: 'customOptionKey', title: 'Choose Photo from Custom Option' },
-      ],
+     
       storageOptions: {
         skipBackup: true,
         path: 'images',
@@ -59,16 +57,16 @@ export default class SignupStep3Musician extends Component {
     };
 
     ImagePicker.showImagePicker(options, response => {
-      console.log('Response = =============', response);
+      // console.log('Response = =============', response);
 
       if (response.didCancel) {
-        console.log('User cancelled image picker');
+        // console.log('User cancelled image picker');
 
       } else if (response.error) {
         console.log('ImagePicker Error: ', response.error);
 
       } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
+        // console.log('User tapped custom button: ', response.customButton);
         alert(response.customButton);
 
       } else {
@@ -97,7 +95,7 @@ export default class SignupStep3Musician extends Component {
       handleSocialLinks,
       handleMultiSelect
     } = this.props;
-    console.log("data url===", data.url);
+    
     const hasFile = !isNull(data.url);
     const error = checkError(signup.error);
     const { selectedItems } = this.state;
@@ -257,9 +255,9 @@ export default class SignupStep3Musician extends Component {
                 })}
 
             <MultiSelect
-             styleDropdownMenu = {styles.multiSelectStyle}
+             styleDropdownMenu = {styles.multiSelectDownStyle}
             styleInputGroup = {styles.multiSelectStyle}
-            styleMainWrapper = {{ marginLeft:'5%', marginRight: '5%',}}
+            styleMainWrapper = {{ marginLeft:'5%', marginRight: '5%',marginTop:'5%'}}
             styleListContainer ={styles.multiSelectListStyle}
               hideTags
               items={genres.data}
@@ -271,11 +269,11 @@ export default class SignupStep3Musician extends Component {
               searchInputPlaceholderText="Select Genres"
               onChangeInput={(text) => console.log(text)}
               altFontFamily="Montserrat-light"
-              tagRemoveIconColor="#CCC"
+              tagRemoveIconColor="black"
               tagBorderColor="#CCC"
-              tagTextColor="#CCC"
-              selectedItemTextColor="#CCC"
-              selectedItemIconColor="#CCC"
+              tagTextColor="#black"
+              selectedItemTextColor="rgb(60, 205, 53)"
+              selectedItemIconColor="rgb(60, 205, 53)"
               itemTextColor="#000"
               displayKey="label"
               searchInputStyle={{ color: '#CCC' }}
@@ -287,15 +285,16 @@ export default class SignupStep3Musician extends Component {
               {this.multiSelect && this.multiSelect.getSelectedItemsExt(data.genres)}
             </View>
 
+           
             {data.social_links.map((item, index) => {
               if (item.isVisible) {
                 return (
                   <View
                     key={index}
-                    style={{flexDirection:'row'}}
+                    style={[styles.viewSocial,{flexDirection: 'row', flex:1}] }
                   >
                     <TextInput
-                      style={[styles.inputStyle, {flex:0.8}]}
+                      style={[styles.socialInput, {flex:0.85}]}
                       placeholder={'Social Links'}
                       onSubmitEditing={() => handleKeyPress(item.id)}
                       onChangeText={val => handleSocialLinks(item.id, val)}
@@ -303,12 +302,12 @@ export default class SignupStep3Musician extends Component {
                       name={item.id}
                     />
                     
-                    {!item.isReady && (
-                      <TouchableHighlight onPress={() => addMoreSocials(item.id)} underlayColor="#25b6ad" style={[styles.plusCircle]}>
-                         <Icon name="ios-add-circle-outline" size={30} color="#ff277b" style={styles.plusCircle} />
-
+                    {/* {!item.isReady && ( */}
+                     <TouchableHighlight onPress={() => addMoreSocials(item.id)} underlayColor="#25b6ad" style={[styles.plusCircleBtn]}>
+                         <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} />
                       </TouchableHighlight>
-                    )}
+                      
+                    {/* )} */}
                     {errors[item.id] ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors[item.id]}</Animatable.Text> : null}
                   </View>
                 );
