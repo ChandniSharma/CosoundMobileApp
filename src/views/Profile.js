@@ -165,8 +165,6 @@ export default class ProfileComponent extends Component {
                 <Text> All </Text>
             </TouchableOpacity>
         )
-
-
     }
     renderCommentItem = (item) => {
         return (

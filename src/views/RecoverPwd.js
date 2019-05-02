@@ -6,6 +6,7 @@ import styles from '../stylesheet/recoverPwd.style'
 import * as Animatable from 'react-native-animatable';
 import {SafeAreaView} from 'react-navigation';
 import CustomFooter from '../components/common/CustomFooter'
+import { isEmpty } from "lodash";
 
 export default class RecoverPwd extends Component {
     constructor(props) {
@@ -21,6 +22,7 @@ export default class RecoverPwd extends Component {
             handleChange,
             resetPassword
           } = this.props;
+          console.log("resetPassword===",resetPassword)
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>
@@ -54,7 +56,13 @@ export default class RecoverPwd extends Component {
                                 onChangeText={val => handleChange('email', val)}
                             />
                              {errors.email?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.email}</Animatable.Text>:null}
-                           
+                            
+                        {/* {resetPassword && !isEmpty(resetPassword.error) && resetPassword.error.message && (
+                        <Animatable.Text animation="fadeIn" style={styles.errorText}> {resetPassword.error}</Animatable.Text>
+                        )}
+                        {resetPassword && !isEmpty(resetPassword.data) && resetPassword.data.message && (
+                        <Animatable.Text animation="fadeIn" style={styles.successText}> Password changed successfully. Please Login to continure.</Animatable.Text>
+                        )} */}
                         </View>
                        
                          <View style={styles.viewRecoverButton}>

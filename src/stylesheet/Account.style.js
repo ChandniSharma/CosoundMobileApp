@@ -42,11 +42,18 @@ export default {
         fontSize: 12,
         fontFamily: 'Montserrat-light',
     },
-    
+
     textAccountPopup: {
         color: 'rgba(38,38,38,0.52)',
         fontSize: 14,
         fontFamily: 'Montserrat-light',
+
+    },
+    textPremium: {
+        color: '#319B9D',
+        fontSize: 13,
+        fontFamily: 'Montserrat-light',
+        marginTop:'3.5%'
     },
     imgMenu: {
         margin: '5%',
@@ -79,6 +86,20 @@ export default {
         paddingLeft: 30,
         paddingRight: 30,
     },
+    btnBottomMob:{
+        marginLeft: '5%',
+        marginRight: '5%',
+        height: 60,
+        backgroundColor: 'red',
+        shadowColor: 'rgba(0,0,0,0.7)',
+        shadowOffset: {
+            width: 2,
+            height: 4
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        borderRadius: 8,
+    },
     viewForgotPwd: {
 
     },
@@ -105,15 +126,12 @@ export default {
         height: 300,
     },
     searchView: {
-
-        marginTop: 60,
-        alignSelf: 'flex-end',
-        marginRight: 10,
-        justifyContent: 'center',
-        flex: 0.2,
-
-        width: 40,
-        height: 40,
+       // alignSelf: 'flex-end',
+        // marginRight:5,
+        // justifyContent: 'center',
+        // width: 30,
+        // height: 30,
+        
     },
     imgMenuBar: {
         width: 40,
@@ -161,7 +179,7 @@ export default {
         alignItems: 'center'
     },
     viewDropDown: {
-       // marginTop: '35%',
+        // marginTop: '35%',
         backgroundColor: 'white',
         width: deviceWidth,
         // height: deviceHeight - 400,
@@ -177,36 +195,45 @@ export default {
     },
     flatList: {
         width: '100%',
-
+        height: deviceHeight-300,
     },
-    viewModal:{
+    flatListSearchbar:{
+        width: '90%',
+       
+        backgroundColor:'white',
+        borderRadius:20,
+        marginTop:-30,
+        alignSelf:'center'
+    },
+    viewModal: {
         //top:-100,
-        backgroundColor:'black',
+        backgroundColor: 'black',
         width: deviceWidth,
         height: deviceHeight,
         position: 'absolute'
     },
-    viewPremium:{
-        flexDirection:'row', 
-    flex:1, 
-    alignSelf:'center',
-   marginTop:'5%',
-},
-btnPremium:{
-    backgroundColor: 'white', 
-    width: '50%',
-     height: '12%', 
-     borderRadius: 30 , 
-     alignSelf:'center',
-     justifyContent:'center',
-marginBottom:'2%', 
+    viewPremium: {
+        flexDirection: 'row',
+        flex: 1,
+        alignSelf: 'center',
+       marginTop:'2%'
+    },
+    btnPremium: {
+        backgroundColor: 'white',
+        width: '40%',
+        height: 40,
+        borderRadius: 30,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        marginBottom: '2%',
+       // backgroundColor:'pink'
     },
 
     textModalData: {
         color: 'white',
         fontSize: 12,
         fontFamily: 'Montserrat-light',
-        alignSelf:'center'
+        alignSelf: 'center'
     },
-   
+
 }

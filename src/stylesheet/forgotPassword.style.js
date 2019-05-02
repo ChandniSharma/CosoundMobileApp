@@ -8,18 +8,13 @@ const statusBarHeight = Platform.OS === 'ios' ? 0 : 0;
 
 export default{
     
-    errorText:{
-        margin:'2%',
-        color:'red',
-        alignSelf:'center',
-    },
     container: {
         flex: 1,
     },
     leftView:{
-        marginTop:'13%',
-        // alignSelf:'flex-end',
-        flex:0.7,
+        marginTop:'15%',
+        alignSelf:'flex-end',
+        flex:0.4,
        // backgroundColor:'red'
     },
 
@@ -38,8 +33,6 @@ export default{
         fontFamily:'Montserrat-Regular',
        // fontWeight:'200',
         fontSize:12,
-         alignSelf:'flex-end',
-        marginRight:'5%'
     },
     getStarted:{
         color:'white',
@@ -50,8 +43,8 @@ export default{
         alignSelf:'flex-end',
     },
     loginText:{
-        marginTop:'10%',
-        marginBottom:'10%',
+        marginTop:'15%',
+        marginBottom:'15%',
         alignSelf:'center',
         fontSize:30,
         color:'white',
@@ -137,6 +130,10 @@ export default{
     forgotPwdText:{
        alignSelf: 'flex-end',
        height:20
+    },
+    viewRecoverButton:{
+       marginTop:'15%',
+       marginBottom:'15%'
     },
     loginButton:{
         borderRadius: 25,
@@ -279,6 +276,11 @@ export default{
        //alignItems: 'space-between',
        justifyContent:'center',
        flexDirection:'row',
-    }
+    },
+    errorText:{
+        margin:'2%',
+        color:'red',
+        alignSelf:'center',
+    },
     
 }

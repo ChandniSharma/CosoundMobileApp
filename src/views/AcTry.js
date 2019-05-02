@@ -9,6 +9,7 @@ import { Icon } from "native-base";
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import { getThumbnail, getUsername, getUserInfo } from "../utils";
+import {Wave} from './common/waveAnimation';
 
 //  import Icon from 'react-native-vector-icons/FontAwesome'
 

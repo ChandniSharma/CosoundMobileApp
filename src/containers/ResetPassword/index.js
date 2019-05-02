@@ -94,12 +94,12 @@ class ResetPassword extends React.Component {
     const valid = this._isValid();
     if (valid) {
       const { data } = this.state;
-      alert("password changed")
       this._callReset(data).then(() => {
+       // alert("Password reset successfully.")
         //performWow(this.props.wowActions);
       });
     }else{
-      alert("Invalid");
+     // alert("Invalid");
     }
   };
 

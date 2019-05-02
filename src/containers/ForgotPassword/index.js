@@ -8,13 +8,15 @@ import { authActions } from "../../actions";
 
 import Validator from "../../validator";
 
-import ForgotPassword from "../../views/ForgotPassword";
+import ForgotPasswordComponent from "../../views/ForgotPassword";
+
 class ForgotPassword extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       data: {
-        email: ""
+        email: "",
+        isShowLoader:false,
       },
       errors: {}
     };
@@ -44,8 +46,7 @@ class ForgotPassword extends React.PureComponent {
   /**
    * Email input handler
    */
-  _handleChange = e => {
-    const { name, value } = e.target;
+  _handleChange = (name, value) => {
     const { data } = this.state;
     data[name] = value;
     this.setState(
@@ -60,9 +61,11 @@ class ForgotPassword extends React.PureComponent {
    * On Submit
    */
   _onSubmit = e => {
-    e.preventDefault();
     const valid = this._isValid();
+    console.log(" _onSubmit ", this.state);
     if (valid) {
+      this.setState({isShowLoader:true})
+
       const { data } = this.state;
       this._callForgot(data).then(() => {
        // performWow(this.props.wowActions);
@@ -71,23 +74,26 @@ class ForgotPassword extends React.PureComponent {
   };
 
   /**
-   * Call forgot password api
+   * Call forgot password apiß
    */
   _callForgot = data => {
     const { authActions } = this.props;
+    this.setState({isShowLoader:false})
+
     return authActions.forgotPassword(data);
   };
 
   render() {
-    const { data, errors } = this.state;
+    const { data, errors,isShowLoader } = this.state;
     const { forgotPassword } = this.props;
     return (
-      <ForgotPassword
+      <ForgotPasswordComponent
         data={data}
         errors={errors}
         onSubmit={this._onSubmit}
         forgotPassword={forgotPassword}
         handleChange={this._handleChange}
+        isShowLoader ={isShowLoader}
       />
     );
   }
