@@ -195,7 +195,7 @@ export default {
     },
     flatList: {
         width: '100%',
-        height: deviceHeight-300,
+        //height: deviceHeight-300,
     },
     flatListSearchbar:{
         width: '90%',

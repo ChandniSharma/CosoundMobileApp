@@ -33,7 +33,7 @@ export default class Account extends Component {
             headerColorMix: ['rgb(42, 173,177)', 'rgb(131, 110, 198)', 'rgb(134, 103, 200)'],
             headerColor: ['rgb(42, 173,177)', 'rgb(93, 152, 179)'],
             isContactInfoClick: false,
-            isDropDownclick: false,
+            isDropDownclick: true,
             isSideMenuClick: false,
             isSearchbarDataShow: false,
             isCrossClick: false,
@@ -200,7 +200,7 @@ export default class Account extends Component {
                     <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
 
                     <View style={{ flex: 0.3 }} />
-                    <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight:'2%' }]} onPress={this._navigateToNotificationView}>
+                    <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight:'5%' }]} onPress={this._navigateToNotificationView}>
                         <Image style={styles.bellIcon} source={require('../../src/assets/Image/Bell128.png')} />
                     </TouchableOpacity>
                 </LinearGradient> : null}
@@ -228,11 +228,12 @@ export default class Account extends Component {
                             </Animatable.View>
                             <Text style={styles.textUserName}> Lois Stokes </Text>
                         </LinearGradient>
-                        <TouchableOpacity style={{ marginTop: '5%', marginBottom:'5%',height:'20%' }} onPress={() => this.setState({ isDropDownclick: true })}>
-                            <View style={{ flexDirection: 'row', }}>
+                        <TouchableOpacity style={{ marginTop: '2%', marginBottom:'2%' }} onPress={() => this.setState({ isDropDownclick: true })}>
+                            <View style={{ flexDirection: 'row' }}>
                                 <Icon name="settings" style={{ marginLeft: '2%', flex: 0.1, color: 'rgb(140,91,204)' }} />
                                 <Text style={[styles.titleAccount, { flex: 0.8, marginTop: '0.5%' }]}> Account Settings</Text>
-                                <Animatable.Image source={require('../assets/suggestions-search.png')} style={{ marginRight: '2%', flex: 0.1, width: 20, height: 20, transform: [{ rotate: '180deg' }] }} />
+                                
+                                <Animatable.Image source={require('../../src/assets/Image/arrow_small_down.png')} style={{borderRadius:13,alignSelf:'flex-end' ,width: 26, height: 26 }} />
                             </View>
                         </TouchableOpacity>
 
@@ -301,11 +302,12 @@ export default class Account extends Component {
 
                         {this.state.isDropDownclick ?
                             <View style={styles.viewModalAccount}>
-                                <TouchableOpacity style={{ marginTop: '53%', backgroundColor: 'white', height: 40 }} onPress={() => this.setState({ isDropDownclick: false })}>
-                                    <View style={{ flexDirection: 'row', height: 40 }}>
+                            
+                                <TouchableOpacity style={{ marginTop: '55.5%', backgroundColor: 'white', height: 40 }} onPress={() => this.setState({ isDropDownclick: false })}>
+                                    <View style={{ flexDirection: 'row', height: 50 }}>
                                         <Icon name="settings" style={{ marginLeft: '2%', flex: 0.1, color: 'rgb(140,91,204)' }} />
                                         <Text style={[styles.titleAccount, { flex: 0.8, marginTop: '2%' }]}> Account Settings</Text>
-                                        <Animatable.Image source={require('../assets/suggestions-search.png')} style={{ marginRight: '5%', flex: 0.1, width: 20, height: 20, transform: [{ rotate: '180deg' }] }} />
+                                        <Animatable.Image source={require('../../src/assets/Image/arrow_small_up.png')} style={{borderRadius:13 ,width: 26, height: 26, marginTop:3}} />
                                     </View>
                                 </TouchableOpacity>
 

@@ -50,7 +50,7 @@ const AppStackNavigator = createStackNavigator({
     Suggestions:{ screen: Suggestions }
     //  Notification:{screen: Notification}
 }, {
-        initialRouteName: 'Login',
+        initialRouteName: 'ForgotPassword',
         gesturesEnabled: false,
         headerMode: 'none',
     })
