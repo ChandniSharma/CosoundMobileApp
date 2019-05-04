@@ -1,11 +1,16 @@
 import { FlatList, Image, Text, View } from "react-native";
-
+import React from "react";
+import { connect } from "react-redux";
+import { isEmpty, isNull } from "lodash";
 import styles from "../../stylesheet/profile.style";
+import { getDuration, getTrackName } from "../../utils";
 
-export default class MusicList extends Component {
+
+class MusicList extends Component {
     constructor(props) {
         super(props);
         this.state = {
+           current: {},  
            music: [
                 {
                     id: 1,
@@ -24,16 +29,54 @@ export default class MusicList extends Component {
                 },
             ]
         }
-    }       
+    } 
+
+    componentDidUpdate() {
+        const { myMusic, postDetails } = this.props;
+        const { data } = myMusic;
+
+        if (!isEmpty(data) && isEmpty(this.state.current)) {
+          const current = data.slice(0, 1)[0];
+          this._setCurrent(current);
+        }
+
+        if (
+          !isEmpty(postDetails.data) &&
+          postDetails.data.data &&
+          !isEmpty(this.state.current)
+        ) {
+          const post = postDetails.data.data;
+          const current = post.media[0];
+          if (
+            current &&
+            current.file_type === "audio" &&
+            this.state.current.id === current.id
+          ) {
+            const { metadata } = current;
+            if (!isNull(metadata)) {
+              this._setCurrent(current);
+            }
+          }
+        }
+    }
+
     renderItem = (music) => {
         return (
+            //() => _setCurrent(music.item)
+            // style={current.id === item.id ? styles.current : null}
+            // const styles = {
+            //   current: {
+            //     color: "#7373c6",
+            //     fontWeight: 500
+            //   }
+            // };
             <View style={{ paddin: 10 }}>
                 <View style={{ flexDirection: "row" }}>
                     <View style={{ flex: 9, flexDirection: "row" }}>
                         <Text style={styles.songTitle}>{music.item.id}.</Text>
-                        <Text style={styles.songTitle}>{music.item.music}</Text>
+                        <Text style={styles.songTitle}>{music.item.music}  { /* getTrackName(index, item.metadata) */ }</Text>
                     </View>
-                    <Text style={styles.songDuration}>{music.item.time}</Text>
+                    <Text style={styles.songDuration}>{music.item.time} { /* getDuration(item.metadata) */ } </Text>
                 </View>
                 <View style={{ marginTop: "5%", marginBottom: "5%", width: "100%", justifyContent: "center", height: 0.5, backgroundColor: "#d3d3d3" }}>
                 </View>
@@ -41,12 +84,23 @@ export default class MusicList extends Component {
         )
     };
 
+  /**
+   * Set Current player track
+   */
+  _setCurrent = current => {
+    this.setState({
+      current
+    });
+  };
+
     render() {
       return (
         <View style= {{flex:1}}>
           <View style={styles.midView}>
         </View>
         <View>
+
+        {!isEmpty(current) && (
             <View style={{ padding: 5, marginBottom: "5%" }}>
                 <View style={{ flexDirection: "row", padding: 10 }}>
                     <View style={{ flex: 4, }}>
@@ -69,16 +123,34 @@ export default class MusicList extends Component {
                     <Text style={styles.musicDescription}>2.03</Text>
                 </View>
             </View>
+        )}
+
             <FlatList
                 data={this.state.music}
                 renderItem={this.renderItem}
                 keyExtractor={(item, index) => index.toString()}
             />
-            <View style={styles.viewMore}>
-                <Text style={styles.textViewMore}>View More...</Text>
-            </View>
+
+            {!isEmpty(data) && (
+                <View style={styles.viewMore}>
+                    <TouchableHighlight underlayColor="#25b6ad" style={[styles.seeMoreBtn]} onPress={loadMore}>
+                        <Text style={styles.textViewMore} > {callingAPI ? "Fetching..." : "View More..."}</Text>
+                    </TouchableHighlight>
+                </View>
+            )}
+
         </View>
         </View>
       );
     }
   }
+
+
+// eslint-disable-next-line
+const mapStateToProps = state => {
+  return {
+    postDetails: state.postDetails
+  };
+};
+
+export default connect(mapStateToProps)(MusicList);

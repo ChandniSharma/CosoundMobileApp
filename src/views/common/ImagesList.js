@@ -6,6 +6,8 @@ export default class ImagesList extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            photoIndex: 0,
+            isOpen: false
             images: [
                 {
                     image: require('../../assets/homepage-video-placeholder.jpg')
@@ -27,8 +29,32 @@ export default class ImagesList extends Component {
                 },
             ]
         }
-    }       
+    }
+
+ /**
+   * Browse through lightbox
+   */
+  _browse = photoIndex => {
+    const { myImages } = this.props;
+    const { data } = myImages;
+    if (photoIndex >= 0 && photoIndex < data.length) {
+      this.setState({ photoIndex });
+    }
+  };
+
+  /**
+   * Toggle Lightbox
+   */
+  _toggleLightbox = photoIndex => {
+    this.setState({
+      isOpen: !this.state.isOpen,
+      photoIndex: isNaN(photoIndex) ? 0 : photoIndex
+    });
+  };
+      
     renderImage = (music) => {
+        const { thumbnail } = music.item;
+        // () => _toggleLightbox(index)
         return (
             <View style={{ padding: 10 }}>
                 <Image style={{
@@ -51,6 +77,11 @@ export default class ImagesList extends Component {
 
 
     render() {
+
+     const { photoIndex, isOpen } = this.state;
+     const { loadMore, callingAPI, myImages } = this.props;
+     const { data } = myImages;
+  
       return (
         <View style= {{flex:1}}>
          <View style={styles.midView}>
@@ -62,9 +93,14 @@ export default class ImagesList extends Component {
                     renderItem={this.renderImage}
                     keyExtractor={(item, index) => index.toString()}
                 />
-                <View style={styles.viewMoreImage}>
-                    <Text style={styles.textViewMore}>View More...</Text>
-                </View>
+            
+                {!isEmpty(data) && (
+                    <View style={styles.viewMoreImage}>
+                        <TouchableHighlight underlayColor="#25b6ad" style={[styles.seeMoreBtn]} onPress={loadMore}>
+                            <Text style={styles.textViewMore} > {callingAPI ? "Fetching..." : "View More..."}</Text>
+                        </TouchableHighlight>
+                    </View>
+                )}
             </View>
         </View>
       );

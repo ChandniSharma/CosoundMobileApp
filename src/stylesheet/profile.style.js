@@ -8,7 +8,27 @@ let top;
 const statusBarHeight = Platform.OS === 'ios' ? 0 : 0;
 
 export default {
-
+     seeMoreBtn:{
+        marginTop:'1%',
+        marginBottom:'1%',
+        borderRadius: 25,
+        height: 50,
+        flex: 0.3,
+        alignItems: 'center',
+        justifyContent: 'center',
+         marginLeft: "15%",
+         marginRight:"15%",
+        shadowColor: 'rgba(0,0,0,0.12)',
+        shadowOffset: {
+            width: .4,
+            height: .11
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        
+        //marginBottom:'10%',
+        backgroundColor: 'white'
+    },
     container: {
         flex: 1,
     },

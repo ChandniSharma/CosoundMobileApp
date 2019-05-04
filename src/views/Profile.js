@@ -12,6 +12,7 @@ import { getThumbnail, getUsername, getUserInfo } from "../utils";
 import { Paginator } from "../hoc";
 // import MusicList from './common/MusicList';
 // import ImagesList from './common/ImagesList';
+// import PostStatus from './common/PostStatus';
 
 //  import Icon from 'react-native-vector-icons/FontAwesome'
 
@@ -664,7 +665,7 @@ export default class ProfileComponent extends Component {
                             </View>
 
                             <View>
-
+                                { /* PostMusicPlayer common/MusicList/PostMusicPlayer */ }
                                 <View style={{ padding: 5, marginBottom: "5%" }}>
                                     <View style={{ flexDirection: "row", padding: 10 }}>
 
@@ -764,7 +765,7 @@ export default class ProfileComponent extends Component {
                                 /> */}
 
                         </View>
-
+                        { /* <PostStatus /> */ }
                         <View style={styles.viewWriteSomething}>
 
                             <TextInput
@@ -799,6 +800,7 @@ export default class ProfileComponent extends Component {
                                 <Text style={styles.textLoginButtonTitle}>Post -></Text>
                             </TouchableHighlight>
                         </View>
+                    { /* PostStatus End */ }
                         <View>
                             <FlatList
                                 data={this.state.post}
