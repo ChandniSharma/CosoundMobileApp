@@ -9,6 +9,9 @@ import { Icon } from "native-base";
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import { getThumbnail, getUsername, getUserInfo } from "../utils";
+import { Paginator } from "../hoc";
+// import MusicList from './common/MusicList';
+// import ImagesList from './common/ImagesList';
 
 //  import Icon from 'react-native-vector-icons/FontAwesome'
 
@@ -545,7 +548,13 @@ export default class ProfileComponent extends Component {
             </View>
         )
     };
-
+    _handleFileChange = e => {
+        const { files } = e.target;
+        if (files[0]) {
+          const { userFeedActions } = this.props;
+          userFeedActions.setTemporaryFile(files[0]);
+        }
+      };
     render() {
         const {
             user,
@@ -650,7 +659,7 @@ export default class ProfileComponent extends Component {
 
                             </View>
 
-                            <View style={styles.midView}>
+                         <View style={styles.midView}>
 
                             </View>
 
@@ -703,8 +712,17 @@ export default class ProfileComponent extends Component {
 
                                 </View>
 
-                            </View>
+                            </View> 
 
+                            {/* <MusicList /> */}
+                            {/* <Paginator
+                            isLoaderInternal
+                            myMusic={myMusic}
+                            component={MusicList}
+                            callAPI={fetchMyMusic}
+                            page={myMusic.paginationData.page}
+                            page_count={myMusic.paginationData.page_count}
+                            />  */}
                         </View>
 
 
@@ -718,7 +736,7 @@ export default class ProfileComponent extends Component {
 
                             </View>
 
-                            <View style={styles.midView}>
+                            {/* <View style={styles.midView}>
                             </View>
 
                             <View>
@@ -734,7 +752,16 @@ export default class ProfileComponent extends Component {
                                     <Text style={styles.textViewMore}>View More...</Text>
                                 </View>
 
-                            </View>
+                            </View> */}
+                            {/* <ImagesList /> */}
+                            {/* <Paginator
+                                isLoaderInternal
+                                myImages={myImages}
+                                component={ImagesList}
+                                callAPI={fetchMyImages}
+                                page={myImages.paginationData.page}
+                                page_count={myImages.paginationData.page_count}
+                                /> */}
 
                         </View>
 
