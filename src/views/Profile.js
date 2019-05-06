@@ -9,11 +9,9 @@ import { Icon } from "native-base";
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import { getThumbnail, getUsername, getUserInfo } from "../utils";
-import { Paginator } from "../hoc";
+import { Paginator, InfiniteScroller } from "../hoc";
 // import MusicList from './common/MusicList';
 // import ImagesList from './common/ImagesList';
-// import PostStatus from './common/PostStatus';
-
 //  import Icon from 'react-native-vector-icons/FontAwesome'
 
 export default class ProfileComponent extends Component {
@@ -568,6 +566,7 @@ export default class ProfileComponent extends Component {
             fetchMyImages,
             userFeedActions
         } = this.props;
+        const { paginationData } = userFeed;
         console.log("props in profile page: ", this.props)
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
@@ -808,9 +807,25 @@ export default class ProfileComponent extends Component {
                                 keyExtractor={(item, index) => index.toString()}
                             />
 
-
+                        
                         </View>
+                        
+                        { /* 
 
+                        <InfiniteScroller
+                          user={user}
+                          isLoaderInternal
+                          feed={userFeed}
+                          component={Posts}
+                          callAPI={fetchFeed}
+                          _restCalls={_restCalls}
+                          page={paginationData.page}
+                          shouldCallAPIInitially={false}
+                          page_count={paginationData.page_count}
+                        />
+
+                    */ }
+          
                         <View style={styles.viewBottom}>
 
                             <View style={{ flexDirection: "row", backgroundColor: "rgb(52,52,52)", marginTop: "5%" }} >

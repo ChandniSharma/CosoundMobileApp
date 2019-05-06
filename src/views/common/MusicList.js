@@ -2,6 +2,8 @@ import { FlatList, Image, Text, View } from "react-native";
 import React from "react";
 import { connect } from "react-redux";
 import { isEmpty, isNull } from "lodash";
+import * as Animatable from 'react-native-animatable';
+
 import styles from "../../stylesheet/profile.style";
 import { getDuration, getTrackName } from "../../utils";
 
