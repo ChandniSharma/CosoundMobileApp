@@ -7,7 +7,7 @@ export default class ImagesList extends Component {
         super(props);
         this.state = {
             photoIndex: 0,
-            isOpen: false
+            isOpen: false,
             images: [
                 {
                     image: require('../../assets/homepage-video-placeholder.jpg')

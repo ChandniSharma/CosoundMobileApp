@@ -10,6 +10,7 @@ import CustomFooter from '../components/common/CustomFooter'
 import { checkError } from "../utils";
 // import Animation from './animation';
 import Logo from './common/logo';
+import WaveAnimation from './common/WaveAnimation';
 
 // import Card from './common/Card'
 // import {Wave, Animate} from 'react-native-wave'
@@ -37,13 +38,9 @@ export default class Login extends Component {
             <SafeAreaView forceInset={{ top: 'never', bottom:'never' }} style={styles.container}>
                <KeyboardAwareScrollView style={{backgroundColor:'rgb(245,245,245)', flex:0.9}}>
                  <Animatable.View ref={"mainView"} style={styles.container}>
-                  <View style={{backgroundColor:'pink'}}>
-                    {/* <SVGUri
-                    width="200"
-                    height="200"
-                    source={{uri:'http://thenewcode.com/assets/images/thumbnails/homer-simpson.svg'}}
-                    />  */}
-                    </View>
+                  {/* <View style={{backgroundColor:'pink'}}> */}
+                   {/* <WaveAnimation /> */}
+                    {/* </View> */}
                    {/* <Animation /> */}
                     {/* <View style={{ backgroundColor: 'rgb(37,182,173)' }}> */}
                     <View style={{ backgroundColor: 'transparant' }}>

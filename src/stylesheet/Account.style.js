@@ -26,6 +26,7 @@ export default {
         color: '#262626',
         fontSize: 14,
         fontFamily: 'Montserrat-light',
+        // marginLeft:'-5%'
 
     },
 
@@ -133,6 +134,9 @@ export default {
         // height: 30,
         
     },
+    bckgndImage:{
+        
+    }, 
     imgMenuBar: {
         width: 40,
         height: 40,
@@ -201,8 +205,8 @@ export default {
         width: '90%',
        
         backgroundColor:'white',
-        borderRadius:20,
-        marginTop:-30,
+        borderRadius:15,
+        marginTop:-20,
         alignSelf:'center'
     },
     viewModal: {
