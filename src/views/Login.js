@@ -10,7 +10,7 @@ import CustomFooter from '../components/common/CustomFooter'
 import { checkError } from "../utils";
 // import Animation from './animation';
 import Logo from './common/logo';
-import WaveAnimation from './common/WaveAnimation';
+//import WaveAnimation from './common/WaveAnimation';
 
 // import Card from './common/Card'
 // import {Wave, Animate} from 'react-native-wave'

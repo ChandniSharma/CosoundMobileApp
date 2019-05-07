@@ -1,14 +1,15 @@
-import { FlatList, Image, Text, View } from "react-native";
-import React from "react";
+import { FlatList, Image, Text, View, TouchableHighlight } from "react-native";
+import React, {Component} from "react";
 import { connect } from "react-redux";
 import { isEmpty, isNull } from "lodash";
 import * as Animatable from 'react-native-animatable';
+import { Icon } from "native-base";
 
 import styles from "../../stylesheet/profile.style";
 import { getDuration, getTrackName } from "../../utils";
 
 
-class MusicList extends Component {
+ class MusicList extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -76,9 +77,9 @@ class MusicList extends Component {
                 <View style={{ flexDirection: "row" }}>
                     <View style={{ flex: 9, flexDirection: "row" }}>
                         <Text style={styles.songTitle}>{music.item.id}.</Text>
-                        <Text style={styles.songTitle}>{music.item.music}  { /* getTrackName(index, item.metadata) */ }</Text>
+                        <Text style={styles.songTitle}>{music.item.path}  { /* getTrackName(index, item.metadata) */ }</Text>
                     </View>
-                    <Text style={styles.songDuration}>{music.item.time} { /* getDuration(item.metadata) */ } </Text>
+                    <Text style={styles.songDuration}>{music.item.created_at.date} { /* getDuration(item.metadata) */ } </Text>
                 </View>
                 <View style={{ marginTop: "5%", marginBottom: "5%", width: "100%", justifyContent: "center", height: 0.5, backgroundColor: "#d3d3d3" }}>
                 </View>
@@ -96,8 +97,13 @@ class MusicList extends Component {
   };
 
     render() {
+      let { current } = this.state;
+      const { myMusic, postDetails, loadMore, callingAPI } = this.props;
+      const { data } = myMusic;
+      console.log(" data === ",data);
+
       return (
-        <View style= {{flex:1}}>
+        <View style= {{backgroundColor:'pink'}}>
           <View style={styles.midView}>
         </View>
         <View>
@@ -128,7 +134,7 @@ class MusicList extends Component {
         )}
 
             <FlatList
-                data={this.state.music}
+                data={data}
                 renderItem={this.renderItem}
                 keyExtractor={(item, index) => index.toString()}
             />

@@ -1,76 +1,81 @@
 import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity } from "react-native";
 
 import React, { Component } from "react";
+// import WaveForm from 'react-native-audiowaveform';
 
-var Sound = require('react-native-sound');
+// var Sound = require('react-native-sound');
 
 export default class SoundPlay extends Component {
     componentDidMount() {
 
         // Enable playback in silence mode
-        Sound.setCategory('Playback');
+        // Sound.setCategory('Playback');
     }
 
-    playSound() {
-        console.log(" play sound ");
-        // Load the sound file 'whoosh.mp3' from the app bundle
-        // See notes below about preloading sounds within initialization code below.
-        let audioUrl = "https://gaana.com/song/mera-naam-mary-1";
-        var whoosh = new Sound('gullal.mp3', Sound.MAIN_BUNDLE, (error) => {
-            if (error) {
-                console.log('failed to load the sound', error);
-                return;
-            }
-            // loaded successfully
-            console.log('duration in seconds: ' + whoosh.getDuration() + 'number of channels: ' + whoosh.getNumberOfChannels());
+    // playSound() {
+    //     console.log(" play sound ");
+    //     // Load the sound file 'whoosh.mp3' from the app bundle
+    //     // See notes below about preloading sounds within initialization code below.
+    //     let audioUrl = "https://gaana.com/song/mera-naam-mary-1";
+    //     var whoosh = new Sound('gullal.mp3', Sound.MAIN_BUNDLE, (error) => {
+    //         if (error) {
+    //             console.log('failed to load the sound', error);
+    //             return;
+    //         }
+    //         // loaded successfully
+    //         console.log('duration in seconds: ' + whoosh.getDuration() + 'number of channels: ' + whoosh.getNumberOfChannels());
 
-            // Play the sound with an onEnd callback
-            whoosh.play((success) => {
-                if (success) {
-                    console.log('successfully finished playing');
-                } else {
-                    console.log('playback failed due to audio decoding errors');
-                }
-            });
-        });
+    //         // Play the sound with an onEnd callback
+    //         whoosh.play((success) => {
+    //             if (success) {
+    //                 console.log('successfully finished playing');
+    //             } else {
+    //                 console.log('playback failed due to audio decoding errors');
+    //             }
+    //         });
+    //     });
 
-        // Reduce the volume by half
-        whoosh.setVolume(0.5);
+    //     // Reduce the volume by half
+    //     whoosh.setVolume(0.5);
 
-        // Position the sound to the full right in a stereo field
-        whoosh.setPan(1);
+    //     // Position the sound to the full right in a stereo field
+    //     whoosh.setPan(1);
 
-        // Loop indefinitely until stop() is called
-        whoosh.setNumberOfLoops(-1);
+    //     // Loop indefinitely until stop() is called
+    //     whoosh.setNumberOfLoops(-1);
 
-        // Get properties of the player instance
-        console.log('volume: ' + whoosh.getVolume());
-        console.log('pan: ' + whoosh.getPan());
-        console.log('loops: ' + whoosh.getNumberOfLoops());
+    //     // Get properties of the player instance
+    //     console.log('volume: ' + whoosh.getVolume());
+    //     console.log('pan: ' + whoosh.getPan());
+    //     console.log('loops: ' + whoosh.getNumberOfLoops());
 
-        // Seek to a specific point in seconds
-        whoosh.setCurrentTime(2.5);
+    //     // Seek to a specific point in seconds
+    //     whoosh.setCurrentTime(2.5);
 
-        // Get the current playback point in seconds
-        whoosh.getCurrentTime((seconds) => console.log('at ' + seconds));
+    //     // Get the current playback point in seconds
+    //     whoosh.getCurrentTime((seconds) => console.log('at ' + seconds));
 
-        // Pause the sound
-        whoosh.pause();
+    //     // Pause the sound
+    //     whoosh.pause();
 
-        // Stop the sound and rewind to the beginning
-        whoosh.stop(() => {
-            // Note: If you want to play a sound after stopping and rewinding it,
-            // it is important to call play() in a callback.
-            whoosh.play();
-        });
+    //     // Stop the sound and rewind to the beginning
+    //     whoosh.stop(() => {
+    //         // Note: If you want to play a sound after stopping and rewinding it,
+    //         // it is important to call play() in a callback.
+    //         whoosh.play();
+    //     });
 
-        // Release the audio player resource
-        whoosh.release();
+    //     // Release the audio player resource
+    //     whoosh.release();
+    // }
+
+    playSoundRemotely(){
+        // <WaveForm source={{uri:'file:///Chandni/Songs/gullal.mp3'}}  />
     }
     render() {
         return (
             <View style={{ flex: 1, backgroundColor: 'pink', justifyContent: 'center', }}>
-                <TouchableOpacity style={{width:100, height:100, alignSelf:'center'}} onPress={() => this.playSound()}>
+                <TouchableOpacity style={{width:100, height:100, alignSelf:'center'}} onPress={() => this.playSoundRemotely()}>
                     <Text> Press me for playing</Text>
                 </TouchableOpacity>
             </View>
