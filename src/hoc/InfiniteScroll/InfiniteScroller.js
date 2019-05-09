@@ -19,7 +19,7 @@ class InfiniteScroller extends React.PureComponent {
   }
 
   componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll, false);
+    // window.addEventListener("scroll", this.handleScroll, false);
     const { callAPI, shouldCallAPIInitially, wowActions } = this.props;
     if (shouldCallAPIInitially) {
       this.setState(
@@ -49,7 +49,7 @@ class InfiniteScroller extends React.PureComponent {
   }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
+   // window.removeEventListener("scroll", this.handleScroll);
   }
 
   handleScroll = () => {

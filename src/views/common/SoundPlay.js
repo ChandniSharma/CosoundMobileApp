@@ -1,10 +1,27 @@
-import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity } from "react-native";
+import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity, StyleSheet } from "react-native";
 
 import React, { Component } from "react";
-// import WaveForm from 'react-native-audiowaveform';
+ //import WaveForm from 'react-native-audiowaveform';
+ //import { AudioControls } from 'react-native-hue-player';
 
-// var Sound = require('react-native-sound');
 
+ const playlistSample = [
+    {
+      key: 'audio01', 
+      title:'Irineu', 
+      author: 'Irineu (Classic)',
+      url: 'http://vocenaosabe.nem/eu.mp3',
+    //   thumbnailLocal: require('../assets/img/thumbnail.jpg')
+    }, 
+    {
+      key: 'audio02', 
+      title:'SerjaoBerranteiro',
+      author: 'Serjão',
+      url: 'http://aquitem.corage',
+      path: 'matadorDeOnca.mp3',
+    //   thumbnailUri: 'http://images.uncyc.org/pt/c/c1/Serj%C3%A3o_entrevista.jpg'
+    }
+  ];
 export default class SoundPlay extends Component {
     componentDidMount() {
 
@@ -72,13 +89,44 @@ export default class SoundPlay extends Component {
     playSoundRemotely(){
         // <WaveForm source={{uri:'file:///Chandni/Songs/gullal.mp3'}}  />
     }
-    render() {
-        return (
-            <View style={{ flex: 1, backgroundColor: 'pink', justifyContent: 'center', }}>
-                <TouchableOpacity style={{width:100, height:100, alignSelf:'center'}} onPress={() => this.playSoundRemotely()}>
-                    <Text> Press me for playing</Text>
-                </TouchableOpacity>
-            </View>
-        )
+    pressOnWave(){
+            console.log(" press on wave ");
     }
+    render() {
+        console.log('playlist', playlist);
+    
+        return (
+          <View style={styles.container}>
+            {/* <AudioControls
+              initialTrack={0}
+              playlist={playlist}
+    
+              activeColor={'#fdfa04'}
+              inactiveColor={'#fdfab1'}
+    
+              hasButtonSkipSeconds
+              timeToSkip={30}
+            /> */}
+          </View>
+        );
+      }
 }
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'black',
+    },
+    welcome: {
+      fontSize: 20,
+      textAlign: 'center',
+      margin: 10,
+    },
+    instructions: {
+      textAlign: 'center',
+      color: '#333333',
+      marginBottom: 5,
+    },
+  });

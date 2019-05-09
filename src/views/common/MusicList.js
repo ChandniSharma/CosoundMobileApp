@@ -6,31 +6,20 @@ import * as Animatable from 'react-native-animatable';
 import { Icon } from "native-base";
 
 import styles from "../../stylesheet/profile.style";
-import { getDuration, getTrackName } from "../../utils";
-
+import { getDuration, getTrackName, getMetadata, formatCurrentTime } from "../../utils";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
  class MusicList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-           current: {},  
-           music: [
-                {
-                    id: 1,
-                    music: "o mere dil ke chain",
-                    time: "5.20"
-                },
-                {
-                    id: 2,
-                    music: "o mere dil ke chain",
-                    time: "5.20"
-                },
-                {
-                    id: 3,
-                    music: "o mere dil ke chain",
-                    time: "5.20"
-                },
-            ]
+          current: {},  
+          pos: 0,
+          volume: 8,
+          isActive: false,
+          isPlaying: false,
+          loading: true
+         
         }
     } 
 
@@ -63,27 +52,28 @@ import { getDuration, getTrackName } from "../../utils";
         }
     }
 
+   
+
     renderItem = (music) => {
+      console.log(" music is ====", music);
+      let { current } = this.state;
+     let style = { paddin: 10 };
+     if(current.id === music.item.id){
+      style = { paddin: 10, color: "#7373c6", fontWeight: 500 };
+     }
         return (
-            //() => _setCurrent(music.item)
-            // style={current.id === item.id ? styles.current : null}
-            // const styles = {
-            //   current: {
-            //     color: "#7373c6",
-            //     fontWeight: 500
-            //   }
-            // };
-            <View style={{ paddin: 10 }}>
+      
+            <TouchableOpacity onPress={() =>this._setCurrent(music.item)} style={{style}}>
                 <View style={{ flexDirection: "row" }}>
                     <View style={{ flex: 9, flexDirection: "row" }}>
-                        <Text style={styles.songTitle}>{music.item.id}.</Text>
-                        <Text style={styles.songTitle}>{music.item.path}  { /* getTrackName(index, item.metadata) */ }</Text>
+                        <Text style={styles.songTitle}>{music.index+1}.</Text>
+                        <Text style={styles.songTitle}>  {  getTrackName(music.index, music.item.metadata)  }</Text>
                     </View>
-                    <Text style={styles.songDuration}>{music.item.created_at.date} { /* getDuration(item.metadata) */ } </Text>
+                    <Text style={styles.songDuration}> {  getDuration(music.item.metadata)  } </Text>
                 </View>
                 <View style={{ marginTop: "5%", marginBottom: "5%", width: "100%", justifyContent: "center", height: 0.5, backgroundColor: "#d3d3d3" }}>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     };
 
@@ -97,15 +87,19 @@ import { getDuration, getTrackName } from "../../utils";
   };
 
     render() {
-      let { current } = this.state;
-      const { myMusic, postDetails, loadMore, callingAPI } = this.props;
+      let { current, pos } = this.state;
+      const { myMusic, postDetails, loadMore, callingAPI, page, page_count, callApi } = this.props;
       const { data } = myMusic;
       console.log(" data === ",data);
-
+      console.log("current====",current)
+      const { duration, albumart, album, artistName, title } = getMetadata(
+        current
+      );
+      const currentTime = formatCurrentTime(pos);
       return (
-        <View style= {{backgroundColor:'pink'}}>
+        <View>
           <View style={styles.midView}>
-        </View>
+          </View>
         <View>
 
         {!isEmpty(current) && (
@@ -118,7 +112,9 @@ import { getDuration, getTrackName } from "../../utils";
                         <Icon name="ios-play" size={40} color={"white"} />
                     </View>
                     <View style={{ flex: 6 }}>
-                        <Text style={styles.musicTitle}>Kygo</Text>
+                        <Text style={styles.musicTitle}> {`${!isNull(album) ? album : ""} ${
+                  !isNull(title) ? ` - ${title}` : ""
+                }`}</Text>
 
                         <Text style={styles.musicDescription}>Of Monsters and Men - Dirty Paws (Kygo remix)</Text>
                     </View>
@@ -127,8 +123,8 @@ import { getDuration, getTrackName } from "../../utils";
                     <Image style={styles.musicAnimatedImg} source={require('../../assets/noise.gif')} />
                 </View>
                 <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
-                    <Text style={styles.musicCurrentTime}>0.00</Text>
-                    <Text style={styles.musicDescription}>2.03</Text>
+                    <Text style={styles.musicCurrentTime}>{duration}</Text>
+                    <Text style={styles.musicDescription}>{currentTime}</Text>
                 </View>
             </View>
         )}
@@ -139,7 +135,7 @@ import { getDuration, getTrackName } from "../../utils";
                 keyExtractor={(item, index) => index.toString()}
             />
 
-            {!isEmpty(data) && (
+            {!isEmpty(data) && !callingAPI && page !== page_count && !isNull(page_count) && !callApi(
                 <View style={styles.viewMore}>
                     <TouchableHighlight underlayColor="#25b6ad" style={[styles.seeMoreBtn]} onPress={loadMore}>
                         <Text style={styles.textViewMore} > {callingAPI ? "Fetching..." : "View More..."}</Text>

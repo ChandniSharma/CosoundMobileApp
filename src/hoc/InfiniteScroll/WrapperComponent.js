@@ -1,6 +1,7 @@
 import React from "react";
+import { Text, View} from "react-native";
 
-import { Loader } from "../../components/Commons";
+// import { Loader } from "../../components/Commons";
 
 const WrapperComponent = props => {
   const {
@@ -14,22 +15,29 @@ const WrapperComponent = props => {
   // if (isLoaderInternal)
   //   return <props.component {...props} callingAPI={callingAPI} />;
 
+  console.log(" in wrapper =====", props);
   return (
-    <React.Fragment>
-      <props.component {...props} />
+    // <View>
+    //             <Text>Hello in Wrapper  </Text>
+    //         </View>
 
-      {callingAPI && (
-        // <div className="row">
-        <div
-          style={Object.assign({}, { textAlign: "center" }, loaderStyles)}
-          className={loaderClassName}
-        >
-          <Loader fill={"#53b2af"} height={"30px"} />
-        </div>
-        // </Re>
-      )}
-    </React.Fragment>
-  );
+     <props.component {...props} />
+
+    // <React.Fragment>
+    //   <props.component {...props} />
+
+    //   {callingAPI && (
+    //     // <div className="row">
+    //     <div
+    //       style={Object.assign({}, { textAlign: "center" }, loaderStyles)}
+    //       className={loaderClassName}
+    //     >
+    //       <Loader fill={"#53b2af"} height={"30px"} />
+    //     </div>
+    //     // </Re>
+    //   )}
+    // </React.Fragment>
+  )
 };
 
 export default WrapperComponent;

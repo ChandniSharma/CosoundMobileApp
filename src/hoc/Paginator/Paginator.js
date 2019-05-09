@@ -91,6 +91,7 @@ class Paginator extends React.PureComponent {
     if (callApi && !callingAPI) {
       // call API
       this.setState({ callingAPI: true }, () => {
+        console.log("call load more")
         callAPI(page + 1)
           .then(() => {
             this.setState({ callingAPI: false });

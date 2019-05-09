@@ -16,6 +16,7 @@ import Icon3 from "react-native-vector-icons/Ionicons";
 
 import SearchBar from 'react-native-search-bar'
 import Hamburger from 'react-native-hamburger';
+import SideMenu from './common/SideMenu';
 
 // import { ScrollView } from "react-native-gesture-handler";
 
@@ -39,7 +40,7 @@ export default class Account extends Component {
             headerColor: ['rgb(42, 173,177)', 'rgb(93, 152, 179)'],
             isContactInfoClick: false,
             isDropDownclick: false,
-            isSideMenuClick: true,
+            isSideMenuClick: false,
             isSearchbarDataShow: false,
             isCrossClick: false,
             active: false,
@@ -96,9 +97,9 @@ export default class Account extends Component {
     showPopup() {
         this.setState({ isSideMenuClick: true })
         console.log(" sidemnu ", this.state.isSideMenuClick);
-        setTimeout(() => {
-            this.zoomInPopup();
-        }, 10);
+        // setTimeout(() => {
+        //     this.zoomInPopup();
+        // }, 10);
 
     }
     hidePopup() {
@@ -230,7 +231,6 @@ export default class Account extends Component {
                 {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: 100, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
 
                     <TouchableOpacity style={{ color: 'white', marginTop: '14%', flex: 0.1 }} onPress={() => this.showPopup()}>
-
                         <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />
                     </TouchableOpacity>
 
@@ -239,10 +239,10 @@ export default class Account extends Component {
 
                     <View style={{ flex: 0.3 }} />
                     <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={this._navigateToNotificationView}>
-                        {/* <Image style={styles.bellIcon} source={require('../../src/assets/Image/Bell128.png')} /> */}
                         <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />
                     </TouchableOpacity>
                 </LinearGradient> : null}
+
                 {/* <View>
 <Icon1 name= "briefcase"  style={{width:30, height:30, fontSize:30, marginLeft:20}} />
                 {/* <ImageBackground
@@ -383,71 +383,8 @@ export default class Account extends Component {
                             </View> : null}
 
                         {/* Side Menu button modal  */}
-                        {this.state.isSideMenuClick ?
-                            <Animatable.View ref={'viewModalRef'} style={styles.viewModal}>
-                                <KeyboardAwareScrollView style={{ flex: 1 }}>
-                                    <TouchableOpacity style={{ color: 'white', marginTop: '14%', flex: 0.1 }} onPress={() => this.hidePopup()}>
-
-                                        <Hamburger color="white" active={true} type="spinCross" onPress={() => this.hidePopup()} />
-                                    </TouchableOpacity>
-
-                                    <View style={{ margin: '5%' }}>
-                                        <SearchBar
-                                            ref='searchBar'
-                                            placeholder='Search'
-                                            onChangeText={this.onChangeSearchText}
-                                            // onSearchButtonPress={...}
-                                            onCancelButtonPress={() => this.setState({ isSearchbarDataShow: false })}
-                                        />
-                                    </View>
-                                    {this.state.isSearchbarDataShow ? <FlatList
-                                        style={styles.flatListSearchbar}
-                                        data={this.arrayData}
-                                        renderItem={this.renderSearchRow}
-                                        keyExtractor={(item, index) => index.toString()}
-                                    /> : null}
-
-                                    <Animatable.View
-                                        ref={'userImageView'}
-                                        style={{
-                                            marginTop: "5%",
-                                            width: 100,
-                                            borderRadius: 50, elevation: 3,
-                                            backgroundColor: "white",
-                                            alignSelf: "center",
-                                            shadowColor: 'rgba(0,0,0,1)',
-                                            shadowOffset: {
-                                                width: 1,
-                                                height: 1
-                                            },
-                                            shadowOpacity: 0.8,
-                                            marginBottom: '5%',
-                                        }}>
-                                        {/* <Image style={styles.imgUser} source={getThumbnail(user.data)} /> */}
-                                        <Image style={styles.imgUser} source={require('../assets/avatar-main-1.jpg')} />
-                                    </Animatable.View>
-
-                                    <TouchableOpacity style={styles.btnPremium} onPress={() => this.props.navigation.navigate("Plan")}>
-                                        <View style={styles.viewPremium}>
-
-
-                                            <Logo color={'rgb(42, 173,177)'} style={{ marginBottom: '15%' }} width="60px" height="30px" />
-
-
-                                            <Text style={styles.textPremium}> Premium</Text>
-                                        </View>
-                                    </TouchableOpacity>
-                                    <Text style={styles.textUserName}> Lois Stokes </Text>
-
-                                    <FlatList
-                                        style={styles.flatList}
-                                        data={this.arrayData}
-                                        renderItem={this.renderModalItem}
-                                        keyExtractor={(item, index) => index.toString()}
-                                    />
-                                </KeyboardAwareScrollView>
-                            </Animatable.View> : null}
-
+                        {this.state.isSideMenuClick ? <SideMenu hidePopup={()=>this.hidePopup()} />:null}
+                           
                     </KeyboardAwareScrollView>
 
                 </View>
@@ -481,7 +418,6 @@ export default class Account extends Component {
     }}>
     {/* <Image style={styles.imgUser} source={getThumbnail(user.data)} /> */}
 
-<Image style={styles.imgUser} source={require('../assets/avatar-main-1.jpg')} />
 
 // </Animatable.View>
 

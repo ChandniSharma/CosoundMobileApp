@@ -10,7 +10,7 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 import { name as appName } from './app.json';
 import Home from './src/views/Home';
  //import Login from './src/views/Login';
-// import Login from './src/containers/Login';
+ import Login from './src/containers/Login';
 import Signup from './src/containers/Signup';
 import RecoverPwd from './src/views/RecoverPwd';
 import ForgotPassword from './src/containers/ForgotPassword';
@@ -29,12 +29,12 @@ import AdvancedSearchView from './src/views/AdvancedSearchView';
 //import Notification from "./src/views/Notification"; 
 import Account from "./src/views/Account";
 import Suggestions from './src/containers/Suggestions';
-import SoundPlay from './src/views/common/SoundPlay';
+import SocialShare from './src/views/common/SocialShare';
 
 
 const AppStackNavigator = createStackNavigator({
-    Home: { screen: Home },
-    // Login: { screen: Login },
+   Home: { screen: Home },
+    Login: { screen: Login },
     ForgotPassword: { screen: ForgotPassword },
     RecoverPwd: { screen: RecoverPwd },
     Signup: { screen: Signup },
@@ -50,9 +50,9 @@ const AppStackNavigator = createStackNavigator({
     AdvancedSearchView:{screen: AdvancedSearchView},
     Account:{screen:Account},
     Suggestions:{ screen: Suggestions },
-    SoundPlay:{screen: SoundPlay}
+     SocialShare:{screen: SocialShare}
 }, {
-        initialRouteName: 'Profile',
+        initialRouteName: 'Login',
         gesturesEnabled: false,
         headerMode: 'none',
     })

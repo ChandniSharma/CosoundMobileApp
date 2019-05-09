@@ -1,11 +1,14 @@
 import React from "react";
 import { isEmpty } from "lodash";
 
-import PostCard from "./PostCard";
 import styles from "../../stylesheet/profile.style";
+import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity,Clipboard, AlertIOS,Platform, ActivityIndicator } from "react-native";
+var ImagePicker = require('react-native-image-picker');
 
-class Posts extends React.PureComponent {
-  this.state = {
+export default class Posts extends React.PureComponent {
+    constructor(props){
+        super(props);
+    this.state = {
             isPostOptionShow: true,
             isBottomViewShow: false,
             isCommentTableShow: true,
@@ -117,6 +120,9 @@ class Posts extends React.PureComponent {
 
         }
     }
+    componentDidMount(){
+        console.log(" post ======", this.props);
+    }
 
      _showPostOptions() {
         this.setState({ isPostOptionShow: true });
@@ -135,7 +141,7 @@ class Posts extends React.PureComponent {
                             <Text>{'\u2022' + " "}</Text>
                         </View> */}
                         <View style={{ flexDirection: 'row', flex: 1 }}>
-                            <Image style={[styles.imgUserInComments]} source={require('../assets/avatar1.jpg')} />
+                            <Image style={[styles.imgUserInComments]} source={require('../../assets/avatar1.jpg')} />
                             <View style={{ flex: 0.9 }}>
                                 <Text style={[styles.textSubTitleNotSelected]}>{item.item.title} </Text>
                                 <Text style={styles.textDescComment}> {item.item.description} </Text>
@@ -163,13 +169,13 @@ class Posts extends React.PureComponent {
                         borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10, justifyContent: 'center',
                         alignItems: "center", flexDirection: 'row', height: 40, width: 160
                     }} onPress={this._showCommentList.bind(this)}>
-                        <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
+                        <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../../assets/tickMark.png")} />
                         <Text style={styles.textCommentCount}>9 Comments</Text>
                         <View style={{
                             marginLeft: 10, flex: 1, borderRadius: 60, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
                             justifyContent: 'center', alignItems: "center", height: 40, width: 160
                         }}>
-                            <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
+                            <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../../assets/tickMark.png")} />
                         </View>
                     </TouchableOpacity>
                     <View style={{ flex: 1, height: 1, backgroundColor: "#d3d3d3" }} />
@@ -471,15 +477,18 @@ class Posts extends React.PureComponent {
 
   render() {
     const { feed, callingAPI, _restCalls } = this.props;
+    console.log(" Feed =====", feed);
     return (
+       
       <React.Fragment>
         {feed.isRequesting && !callingAPI && (
-          <Loader fill={"#53b2af"} height={"30px"} />
+          <ActivityIndicator size="large" color="gray" /> 
         )}
         {!feed.isRequesting && !isEmpty(feed.error) && (
-          <div className="wow fadeInUp" style={styles.loaderWrapper}>
-            <Error message={feed.error.message} />
-          </div>
+            <View >
+                <Text>{feed.error.message}</Text>
+            </View>
+          
         )}
         <View>
           <FlatList
@@ -493,4 +502,3 @@ class Posts extends React.PureComponent {
   }
 }
 
-export default Posts;

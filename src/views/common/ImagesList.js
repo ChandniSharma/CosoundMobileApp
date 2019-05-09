@@ -1,6 +1,8 @@
-import { FlatList, Image, Text, View } from "react-native";
-
+import { FlatList, Image, Text, View, TouchableHighlight } from "react-native";
+import React, {Component} from 'react';
 import styles from "../../stylesheet/profile.style";
+import { isEmpty, isNull } from "lodash";
+import { getImageThumbnail } from "../../utils";
 
 export default class ImagesList extends Component {
     constructor(props) {
@@ -52,8 +54,11 @@ export default class ImagesList extends Component {
     });
   };
       
-    renderImage = (music) => {
-        const { thumbnail } = music.item;
+    renderImage = (image) => {
+        console.log(" Imge is =====", image);
+        const thumbnail = getImageThumbnail(image.item);
+        console.log(" thumnail ====", thumbnail);
+
         // () => _toggleLightbox(index)
         return (
             <View style={{ padding: 10 }}>
@@ -69,7 +74,7 @@ export default class ImagesList extends Component {
                     shadowOpacity: 0.2,
                     zIndex: -1
                 }}
-                    source={require('../../assets/homepage-video-placeholder.jpg')}>
+                    source={{uri:thumbnail}}>
                 </Image>
             </View>
         )
@@ -79,7 +84,10 @@ export default class ImagesList extends Component {
     render() {
 
      const { photoIndex, isOpen } = this.state;
-     const { loadMore, callingAPI, myImages } = this.props;
+     const { loadMore, callingAPI, myImages, page,
+        callAPI,
+        callApi,
+        page_count, } = this.props;
      const { data } = myImages;
   
       return (
@@ -89,12 +97,12 @@ export default class ImagesList extends Component {
             <View>
                 <FlatList
                     numColumns={3}
-                    data={this.state.images}
+                    data={data}
                     renderItem={this.renderImage}
                     keyExtractor={(item, index) => index.toString()}
                 />
             
-                {!isEmpty(data) && (
+                {!isEmpty(data) && !callingAPI && page !== page_count && !isNull(page_count) && !callApi (
                     <View style={styles.viewMoreImage}>
                         <TouchableHighlight underlayColor="#25b6ad" style={[styles.seeMoreBtn]} onPress={loadMore}>
                             <Text style={styles.textViewMore} > {callingAPI ? "Fetching..." : "View More..."}</Text>

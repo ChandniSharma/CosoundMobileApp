@@ -4,15 +4,25 @@ import { SafeAreaView } from 'react-navigation';
 import React from "react";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import homeStyle from "../stylesheet/home.style";
-import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity } from "react-native";
+import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity,Clipboard, AlertIOS,Platform } from "react-native";
 import { Icon } from "native-base";
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import { getThumbnail, getUsername, getUserInfo } from "../utils";
 import { Paginator, InfiniteScroller } from "../hoc";
 import MusicList from './common/MusicList';
-// import ImagesList from './common/ImagesList';
+import ImagesList from './common/ImagesList';
+import Posts from './common/Posts';
+import Hamburger from 'react-native-hamburger';
+import Icon2 from "react-native-vector-icons/EvilIcons";
+import Icon3 from "react-native-vector-icons/FontAwesome";
+import Icon4 from "react-native-vector-icons/Entypo";
+var ImagePicker = require('react-native-image-picker');
+import NewTest from './common/NewTest';
+
 //  import Icon from 'react-native-vector-icons/FontAwesome'
+
+import Logo from './common/logo';
 
 export default class ProfileComponent extends Component {
 
@@ -22,9 +32,15 @@ export default class ProfileComponent extends Component {
             isPostOptionShow: true,
             isBottomViewShow: false,
             isCommentTableShow: true,
+            isSideMenuClick: false,
+            filePath: {},
+            isImageLoadedFromLiab: false,
             text: "Write Something...",
             headerColorMix: ['rgb(42, 173,177)', 'rgb(131, 110, 198)', 'rgb(134, 103, 200)'],
             headerColor: ['rgb(42, 173,177)', 'rgb(93, 152, 179)'],
+            isMusicSingleViewShow: true,  // these are the single line view show on above buttons of music video image, when click on them
+            isVideoSingleViewShow: false,
+            isImageSingleViewShow: false,
             music: [
                 {
                     id: 1,
@@ -133,6 +149,7 @@ export default class ProfileComponent extends Component {
 
 
     fadeInDown = () => this.refs.userImageView.fadeInDown(1000).then(endState => this.fadeInPremiumView())
+    zoomInPopup = () => this.refs.viewModalRef.zoomIn().then(endState => console.log(" now end zoomin"));
 
     fadeInUpBottomView = () => this.refs.viewBottomWhenScroll.slideInUp(50).then(endState => console.log(endState.finished ? 'Finished up' : 'Cancelled upping '));
 
@@ -144,6 +161,7 @@ export default class ProfileComponent extends Component {
 
 
     componentDidMount() {
+       
         this.fadeInDown();
         this.fadeInUpPostOptionView();
     }
@@ -160,7 +178,78 @@ export default class ProfileComponent extends Component {
     _showPostOptions() {
         this.setState({ isPostOptionShow: true });
     }
+    showPopup() {
+        this.setState({ isSideMenuClick: true })
+        console.log(" sidemnu ", this.state.isSideMenuClick);
+        setTimeout(() => {
+            this.zoomInPopup();
+        }, 10);
 
+    }
+    hidePopup() {
+        this.setState({ isSideMenuClick: false })
+    }
+    chooseFile = () => {
+        var options = {
+            title: 'Image',
+            customButtons: [
+                { name: 'customOptionKey', title: 'Choose Photo from Custom Option' },
+            ],
+            storageOptions: {
+                skipBackup: true,
+                path: 'images',
+            },
+        };
+
+        ImagePicker.showImagePicker(options, response => {
+            console.log('Response = ', response);
+
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+                this.setState({
+                    isImageLoadedFromLiab: false
+                })
+            } else if (response.error) {
+                console.log('ImagePicker Error: ', response.error);
+                this.setState({
+                    isImageLoadedFromLiab: false
+                })
+            } else if (response.customButton) {
+                console.log('User tapped custom button: ', response.customButton);
+                alert(response.customButton);
+                this.setState({
+                    isImageLoadedFromLiab: false
+                })
+            } else {
+                let source = response;
+                // You can also display the image using data:
+                // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+                this.setState({
+                    isImageLoadedFromLiab: true,
+                    filePath: source
+                });
+            }
+        });
+    };
+    onClickMusicVideoImage(type) {
+        if (type === 'music') {
+            this.setState({ 
+                isMusicSingleViewShow: true, 
+                isImageSingleViewShow: false, 
+                isVideoSingleViewShow: false });
+        } else if (type === 'video') {
+            this.setState({ 
+                isMusicSingleViewShow: false, 
+                isImageSingleViewShow: false, 
+                isVideoSingleViewShow: true });
+        } else {
+            this.setState({ 
+                isMusicSingleViewShow: false, 
+                isImageSingleViewShow: true, 
+                isVideoSingleViewShow: false });
+        }
+        this.chooseFile()
+    }
     rednerPostItem = (item) => {
         return (
             <TouchableOpacity>
@@ -298,8 +387,6 @@ export default class ProfileComponent extends Component {
             </View>
         )
     };
-
-
     renderPost = (post) => {
         return (
             <View style={{ marginBottom: "3%" }}>
@@ -550,10 +637,10 @@ export default class ProfileComponent extends Component {
     _handleFileChange = e => {
         const { files } = e.target;
         if (files[0]) {
-          const { userFeedActions } = this.props;
-          userFeedActions.setTemporaryFile(files[0]);
+            const { userFeedActions } = this.props;
+            userFeedActions.setTemporaryFile(files[0]);
         }
-      };
+    };
     render() {
         const {
             user,
@@ -571,18 +658,21 @@ export default class ProfileComponent extends Component {
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
 
-                <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: 100, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
+                {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: 60, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
 
-                    <Icon name="ios-menu" style={{ fontSize: 60, color: 'white', alignSelf: 'flex-start', marginTop: 50, marginLeft: 5, width: 100, height: 100, flex: 0.2, marginBottom: 10 }} />
-
-                    <Image style={{ tintColor: 'white', alignSelf: 'center', marginTop: 65, marginLeft: 20, width: 180, height: 30, marginBottom: 10 }} source={require('../assets/Image/logoProfile1.png')} />
-
-                    <View style={{ flex: 0.2 }} />
-                    <TouchableOpacity style={styles.searchView} onPress={this._navigateToAdvanceSearchView}>
-                        <Image style={styles.imgMenuBar} source={require('../assets/suggestions-search.png')} />
-
+                    <TouchableOpacity style={{ color: 'white', marginTop: '14%', flex: 0.1 }} onPress={() => this.showPopup()}>
+                        <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />
                     </TouchableOpacity>
-                </LinearGradient>
+
+
+                    <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
+
+                    <View style={{ flex: 0.3 }} />
+                    <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '1%' }]} onPress={this._navigateToAdvanceSearchView}>
+                        <Icon2 name="search" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '1%', fontSize: 40, tintColor: 'white' }} />
+                    </TouchableOpacity>
+                </LinearGradient> : null}
+
 
                 <KeyboardAwareScrollView onScroll={this._onScroll} style={{ backgroundColor: 'rgb(42, 173,177)' }}>
 
@@ -659,7 +749,7 @@ export default class ProfileComponent extends Component {
 
                             </View>
 
-                         <View style={styles.midView}>
+                            <View style={styles.midView}>
 
                             </View>
 
@@ -716,13 +806,13 @@ export default class ProfileComponent extends Component {
 
                             {/* <MusicList /> */}
                             <Paginator
-                            isLoaderInternal
-                            myMusic={myMusic}
-                            component={MusicList}
-                            callAPI={fetchMyMusic}
-                            page={myMusic.paginationData.page}
-                            page_count={myMusic.paginationData.page_count}
-                            /> 
+                                isLoaderInternal
+                                myMusic={myMusic}
+                                component={MusicList}
+                                callAPI={fetchMyMusic}
+                                page={myMusic.paginationData.page}
+                                page_count={myMusic.paginationData.page_count}
+                            />
                         </View>
 
 
@@ -754,17 +844,17 @@ export default class ProfileComponent extends Component {
 
                             </View> */}
                             {/* <ImagesList /> */}
-                            {/* <Paginator
+                            <Paginator
                                 isLoaderInternal
                                 myImages={myImages}
                                 component={ImagesList}
                                 callAPI={fetchMyImages}
                                 page={myImages.paginationData.page}
                                 page_count={myImages.paginationData.page_count}
-                                /> */}
+                            />
 
                         </View>
-                        { /* <PostStatus /> */ }
+                        { /* <PostStatus /> */}
                         <View style={styles.viewWriteSomething}>
 
                             <TextInput
@@ -772,46 +862,60 @@ export default class ProfileComponent extends Component {
                                 onChangeText={(text) => this.setState({ text })}
                                 value={this.state.text}
                             />
-
+                            {!this.state.isImageLoadedFromLiab ?
+                                <View /> :
+                                <Image
+                                    source={{
+                                        uri: 'data:image/jpeg;base64,' + this.state.filePath.data,
+                                    }}
+                                    style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
+                                />}
 
                             <View style={styles.midView}>
+                                {this.state.isMusicSingleViewShow ? <View style={{ backgroundColor: 'rgb(140,91,203)', height: 1, width: '30%', marginRight: '5%' }} /> : <View style={{ backgroundColor: 'transparent', height: 1, width: '30%', marginRight: '5%' }} />}
 
+                                {this.state.isVideoSingleViewShow ? <View style={{ backgroundColor: '#20ACAC', height: 1, width: '30%', marginRight: '5%' }} /> : <View style={{ backgroundColor: 'transparent', height: 1, width: '30%', marginRight: '5%' }} />}
+
+                                {this.state.isImageSingleViewShow ? <View style={{ backgroundColor: 'rgb(40,190,167)', height: 1, width: '30%' }} /> : <View style={{ backgroundColor: 'transparent', height: 1, width: '30%', marginRight: '5%' }} />}
                             </View>
 
 
                             <View style={styles.viewBottomContent}>
 
-                                <Icon name="ios-musical-notes" size={50} color="rgb(140,91,203)" style={styles.music} />
-                                <Text style={styles.music}>Music</Text>
+                                <TouchableOpacity style={{ paddingLeft: 5, paddingRight: 15, width: '30%', flexDirection: 'row' }} onPress={() => this.onClickMusicVideoImage('music')}>
+                                    <Icon3 name="music" style={[styles.music, { fontSize: 30, color: 'rgb(140,91,203)' }]} />
+                                    <Text style={[styles.music, { marginTop: '5%' }]}>Music</Text>
 
-                                <Icon name="video" size={30} color="#20ACAC" style={styles.video} />
-                                <Text style={styles.video}>Video</Text>
+                                </TouchableOpacity>
 
-                                <Icon name="image" size={30} color="#20ACAC" style={styles.imageIcon} />
-                                <Text style={styles.images}>Images</Text>
+                                <TouchableOpacity style={{ paddingLeft: 5, paddingRight: 15, width: '30%', flexDirection: 'row' }} onPress={() => this.onClickMusicVideoImage('video')}>
+                                    <Icon4 name="video-camera" style={[styles.video, { fontSize: 30, color: '#20ACAC' }]} />
+                                    <Text style={[styles.video, { marginTop: '5%' }]}>Video</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity style={{ paddingLeft: 5, width: '30%', flexDirection: 'row' }} onPress={() => this.onClickMusicVideoImage('image')} >
+                                    <Icon3 name="image" style={[styles.imageIcon, { fontSize: 30, color: 'rgb(40,190,167)' }]} />
+                                    <Text style={[styles.Images, { marginTop: '5%' }]}>Images</Text>
+                                </TouchableOpacity>
                             </View>
 
                         </View>
 
 
                         <View style={styles.viewPostButton}>
-                            <TouchableHighlight style={[styles.postButton]}>
+                            <TouchableHighlight style={[styles.postButton]} >
                                 <Text style={styles.textLoginButtonTitle}>Post -></Text>
                             </TouchableHighlight>
                         </View>
-                    { /* PostStatus End */ }
-                        <View>
+                        { /* PostStatus End */}
+                        {/* <View>
                             <FlatList
                                 data={this.state.post}
                                 renderItem={this.renderPost}
                                 keyExtractor={(item, index) => index.toString()}
                             />
-
-                        
-                        </View>
-                        
-                        { /* 
-
+                        </View> */}
+{/* <NewTest /> */}
                         <InfiniteScroller
                           user={user}
                           isLoaderInternal
@@ -824,8 +928,6 @@ export default class ProfileComponent extends Component {
                           page_count={paginationData.page_count}
                         />
 
-                    */ }
-          
                         <View style={styles.viewBottom}>
 
                             <View style={{ flexDirection: "row", backgroundColor: "rgb(52,52,52)", marginTop: "5%" }} >

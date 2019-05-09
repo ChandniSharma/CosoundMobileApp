@@ -183,7 +183,7 @@ export default {
         marginRight:'2%'
     },
     midView: {
-        marginTop: "5%", marginBottom: "5%", width: "100%", justifyContent: "center", height: 0.5, backgroundColor: "#d3d3d3"
+        marginTop: "5%", marginBottom: "5%", width: "100%", justifyContent: "center", height: 1, backgroundColor: "#d3d3d3", flexDirection:'row'
     },
     musicTitle: {
         color: 'rgba(38,38,38,0.52)',
@@ -340,25 +340,28 @@ export default {
         fontFamily: 'Montserrat-Regular'
     },
     music: {
-        color: "#262626", fontSize: 14, paddingLeft: 5
+        color: "#262626", fontSize: 14, paddingLeft: 5,
+       
+       
     },
     video: {
          fontSize: 14, paddingLeft: 5
     },
     Images: {
-        fontSize: 14, paddingLeft: 5
+        fontSize: 14,
+       paddingLeft:5,
     },
     videoIcon: {
         paddingLeft: 15,
+        paddingRight: 15,
     },
     imageIcon: {
-        paddingLeft: 15
-
+        paddingLeft: 15,
     },
     viewBottomContent: {
         flexDirection: 'row',
         height: 30,
-        
+        marginBottom:'5%'
     },
     viewLoginButton: {
         flex: 1,
@@ -441,7 +444,7 @@ export default {
     },
     textLoginButtonTitle: {
         fontSize: 16,
-        color: '#20ACAC',
+        color: 'rgb(255, 38, 123)',
 
     },
     imageSendArraow: {
