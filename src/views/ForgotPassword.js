@@ -7,6 +7,7 @@ import * as Animatable from 'react-native-animatable';
 import {SafeAreaView} from 'react-navigation';
 import CustomFooter from '../components/common/CustomFooter'
 import { isEmpty } from "lodash";
+import WaveAnimation from './common/WaveAnimation';
 
 export default class ForgotPasswordComponent extends Component {
     constructor(props) {
@@ -27,7 +28,9 @@ export default class ForgotPasswordComponent extends Component {
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>
-                    <Animatable.View style={{ flex: 1, backgroundColor: 'rgb(245,245,245)' }}>
+                <WaveAnimation /> 
+
+                    <Animatable.View style={{ flex: 1, backgroundColor:'transparent',position:'absolute', top:0, width:'100%' }}>
                         <View style={{ backgroundColor: 'pink' }}>
                             {/* <SvgUri
                     width="200"

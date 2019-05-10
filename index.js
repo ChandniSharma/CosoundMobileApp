@@ -53,7 +53,7 @@ const AppStackNavigator = createStackNavigator({
      SocialShare:{screen: SocialShare},
      WaveAnimation:{screen:WaveAnimation}
 }, {
-        initialRouteName: 'WaveAnimation',
+        initialRouteName: 'ForgotPassword',
         gesturesEnabled: false,
         headerMode: 'none',
     })

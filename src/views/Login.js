@@ -10,19 +10,9 @@ import CustomFooter from '../components/common/CustomFooter'
 import { checkError } from "../utils";
 // import Animation from './animation';
 import Logo from './common/logo';
-//import WaveAnimation from './common/WaveAnimation';
+import WaveAnimation from './common/WaveAnimation';
 
-// import Card from './common/Card'
-// import {Wave, Animate} from 'react-native-wave'
 
-// const AnimatedCard = Wave(Card)
-//   .applyAnimation(Animate.marginBottom, 0, 60, 500, AnimationType.timing, Easing.elastic(5))
-//   .applyAnimation(Animate.opacity, 0, 1, 500, AnimationType.spring)
-//   .applyAnimationType(AnimationType.spring)
-//   .applyEasing(Easing.bounce())
-//   .applyDecayVelocity(0.07)
-//   .applyComposition(Composing.parallel)
-//   .animate()
 
 export default class Login extends Component {
     constructor(props) {
@@ -36,14 +26,10 @@ export default class Login extends Component {
         const error = checkError(login.error);
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom:'never' }} style={styles.container}>
-               <KeyboardAwareScrollView style={{backgroundColor:'rgb(245,245,245)', flex:0.9}}>
-                 <Animatable.View ref={"mainView"} style={styles.container}>
-                  {/* <View style={{backgroundColor:'pink'}}> */}
-                   {/* <WaveAnimation /> */}
-                    {/* </View> */}
-                   {/* <Animation /> */}
-                    {/* <View style={{ backgroundColor: 'rgb(37,182,173)' }}> */}
-                    <View style={{ backgroundColor: 'transparant' }}>
+               <KeyboardAwareScrollView style={{backgroundColor:'transparent', flex:0.9}}>
+               <WaveAnimation /> 
+                 <Animatable.View ref={"mainView"} style={[styles.container, {backgroundColor:'transparent',position:'absolute', top:0, width:'100%' } ]}>
+                         <View style={{ backgroundColor: 'transparant' }}>
 
                         <View style={{ flexDirection: 'row', flex:1}}>
                              
