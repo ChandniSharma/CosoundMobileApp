@@ -30,7 +30,7 @@ import AdvancedSearchView from './src/views/AdvancedSearchView';
 import Account from "./src/views/Account";
 import Suggestions from './src/containers/Suggestions';
 import SocialShare from './src/views/common/SocialShare';
-
+import WaveAnimation from './src/views/common/WaveAnimation';
 
 const AppStackNavigator = createStackNavigator({
    Home: { screen: Home },
@@ -50,9 +50,10 @@ const AppStackNavigator = createStackNavigator({
     AdvancedSearchView:{screen: AdvancedSearchView},
     Account:{screen:Account},
     Suggestions:{ screen: Suggestions },
-     SocialShare:{screen: SocialShare}
+     SocialShare:{screen: SocialShare},
+     WaveAnimation:{screen:WaveAnimation}
 }, {
-        initialRouteName: 'Login',
+        initialRouteName: 'WaveAnimation',
         gesturesEnabled: false,
         headerMode: 'none',
     })
