@@ -1,24 +1,18 @@
 import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity, StyleSheet } from "react-native";
 
 import React, { Component } from "react";
-import Video from 'react-native-video';
+//import Video from 'react-native-video';
 
+import VideoPlayer from 'react-native-video-controls';
 
 export default class PlayVideo extends Component {
     render() {
         return (
             <View style= {{flex:1, backgroundColor:'yellow'}}>
-                <Video source={{ uri: "file:///Chandni/Songs/Krishna.mp4" }}   // Can be a URL or a local file.
-                  ref={(ref) => {
-                        this.player = ref
-                    }}               
-                    autoplay = {true}                       // Store reference
-                    onBuffer={this.onBuffer}                // Callback when remote video is buffering
-                    onError={this.videoError}  
-                    muted= {false}
-                    controlsTimeout ={2}
-                    pauseOnPress={true}
-                    style={styles.backgroundVideo} />
+                <VideoPlayer
+    source={{ uri: 'https://vjs.zencdn.net/v/oceans.mp4' }}
+    navigator={ this.props.navigator }
+/>
             </View>
         )
     }

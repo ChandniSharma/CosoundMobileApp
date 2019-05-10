@@ -30,7 +30,7 @@ import AdvancedSearchView from './src/views/AdvancedSearchView';
 import Account from "./src/views/Account";
 import Suggestions from './src/containers/Suggestions';
 import SocialShare from './src/views/common/SocialShare';
-import WaveAnimation from './src/views/common/WaveAnimation';
+import PlayVideo from './src/views/common/PlayVideo';
 
 const AppStackNavigator = createStackNavigator({
    Home: { screen: Home },
@@ -51,9 +51,9 @@ const AppStackNavigator = createStackNavigator({
     Account:{screen:Account},
     Suggestions:{ screen: Suggestions },
      SocialShare:{screen: SocialShare},
-     WaveAnimation:{screen:WaveAnimation}
+     PlayVideo:{screen:PlayVideo}
 }, {
-        initialRouteName: 'ForgotPassword',
+        initialRouteName: 'PlayVideo',
         gesturesEnabled: false,
         headerMode: 'none',
     })
