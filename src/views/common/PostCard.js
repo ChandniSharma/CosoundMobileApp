@@ -250,6 +250,7 @@ class PostCard extends React.PureComponent {
     );
   }
 }
+
 const mapStateToProps = state => {
   return {
     repost: state.repost,

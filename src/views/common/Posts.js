@@ -1,14 +1,31 @@
 import React from "react";
-import { isEmpty } from "lodash";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { isNull, isEmpty } from "lodash";
+import { postActions } from "../../actions";
+
+import {
+  getPost,
+  isSuccess,
+  checkAuth,
+  getPathname,
+  getThumbnail,
+  formatPostMedia
+} from "../../utils";
 
 import styles from "../../stylesheet/profile.style";
 import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity,Clipboard, AlertIOS,Platform, ActivityIndicator } from "react-native";
 var ImagePicker = require('react-native-image-picker');
 
+const config = {};
+const tracks = {};
+
 export default class Posts extends React.PureComponent {
     constructor(props){
         super(props);
-    this.state = {
+        this.state = {
+            isVisible: false,
+            showSocial: false,
             isPostOptionShow: true,
             isBottomViewShow: false,
             isCommentTableShow: true,
@@ -124,6 +141,83 @@ export default class Posts extends React.PureComponent {
         console.log(" post ======", this.props);
     }
 
+    /**
+   * Toggle Card Menu
+   */
+    _toggleVisible = () => {
+        this.setState({
+        isVisible: !this.state.isVisible
+        });
+    };
+
+    /**
+     * Toggle Social Share Menu
+     */
+    _toggleSocial = id => {
+        const { showSocial } = this.state;
+        if (showSocial === id) {
+        return this.setState({ showSocial: false });
+        }
+        return this.setState({ showSocial: id });
+    };
+
+    /**
+     * Like/Unlike Post
+     */
+    _likePost = id => {
+        const { postActions, user, location, match } = this.props;
+        const auth = checkAuth(user);
+        if (auth) {
+        const path = getPathname(location, match);
+        postActions.likePost(id, path);
+        }
+    };
+
+    /**
+     * Delete Post
+     */
+    _deletePost = id => {
+        const { postActions, user } = this.props;
+        const auth = checkAuth(user);
+        if (auth) {
+        postActions.deletePost(id).then(() => {
+            if (isSuccess(this.props.deletePost)) {
+            this.props._restCalls();
+            }
+        });
+        }
+    };
+
+    /**
+     * Confirm pre-repost
+     */
+    _confirmRepost = id => {
+        const { user, postActions } = this.props;
+        const auth = checkAuth(user);
+        if (auth) {
+        confirmAlert({
+            title: "Confirm to repost",
+            message: "Are you sure you want to share.",
+            buttons: [
+            {
+                label: "Yes",
+                onClick: () =>
+                postActions.repost(id).then(() => {
+                    if (isSuccess(this.props.repost)) {
+                    this.props._restCalls();
+                    }
+                })
+            },
+            {
+                label: "No",
+                onClick: () => {}
+            }
+            ]
+        });
+        }
+    };
+
+
      _showPostOptions() {
         this.setState({ isPostOptionShow: true });
     }
@@ -228,6 +322,14 @@ export default class Posts extends React.PureComponent {
    
 
     renderPost = (post) => {
+        const { feed, callingAPI, _restCalls } = this.props;
+        const { user, like, deletePost, repost } = this.props;
+        const { isVisible, showSocial } = this.state;
+        let postData = post.item;
+        //const postedBySelf = postData.user_id === user.data.id;
+        const originalPost = getPost(postData);
+        const { images, notImages } = formatPostMedia(originalPost.media);
+      
       return (
           <View style={{ marginBottom: "3%" }}>
               {post.item.type === "music" ? <View style={{
@@ -477,6 +579,9 @@ export default class Posts extends React.PureComponent {
 
   render() {
     const { feed, callingAPI, _restCalls } = this.props;
+    const { user, like, deletePost, repost } = this.props;
+    const { isVisible, showSocial } = this.state;
+
     console.log(" Feed =====", feed);
     return (
        

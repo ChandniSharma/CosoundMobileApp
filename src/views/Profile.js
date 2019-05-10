@@ -19,6 +19,7 @@ import Icon3 from "react-native-vector-icons/FontAwesome";
 import Icon4 from "react-native-vector-icons/Entypo";
 var ImagePicker = require('react-native-image-picker');
 import NewTest from './common/NewTest';
+import SideMenu from './common/SideMenu';
 
 //  import Icon from 'react-native-vector-icons/FontAwesome'
 
@@ -181,9 +182,9 @@ export default class ProfileComponent extends Component {
     showPopup() {
         this.setState({ isSideMenuClick: true })
         console.log(" sidemnu ", this.state.isSideMenuClick);
-        setTimeout(() => {
-            this.zoomInPopup();
-        }, 10);
+        // setTimeout(() => {
+        //     this.zoomInPopup();
+        // }, 10);
 
     }
     hidePopup() {
@@ -959,6 +960,10 @@ export default class ProfileComponent extends Component {
                         </View>
 
                     </Animatable.View> : null}
+
+                    {/* Side Menu button modal  */}
+                    {this.state.isSideMenuClick ? <SideMenu hidePopup={()=>this.hidePopup()} />:null}
+                       
             </SafeAreaView>
 
 
