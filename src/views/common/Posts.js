@@ -9,6 +9,7 @@ import Icon3 from "react-native-vector-icons/FontAwesome";
 import Icon4 from "react-native-vector-icons/Entypo";
 import Icon5 from "react-native-vector-icons/MaterialIcons";
 import Icon6 from "react-native-vector-icons/AntDesign";
+import {PostComment} from './PostComment';
 
 // import soundPlay from './SoundPlay';
 import {
@@ -24,12 +25,13 @@ import {
 
 import styles from "../../stylesheet/profile.style";
 import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, TouchableWithoutFeedback,View, TouchableOpacity,Clipboard, AlertIOS,Platform, ActivityIndicator } from "react-native";
+import { postComment } from "../../actions/post";
 var ImagePicker = require('react-native-image-picker');
 
 const config = {};
 const tracks = {};
 
-export default class Posts extends React.PureComponent {
+ class Posts extends React.PureComponent {
     constructor(props){
         super(props);
         this.state = {
@@ -830,7 +832,9 @@ export default class Posts extends React.PureComponent {
                 <Icon4 name="forward" style={{fontSize:20, color: "#d3d3d3" }} />
             </TouchableOpacity>
         </View>
-        {this.viewComments()}
+        {/* {this.viewComments()} */}
+        <PostComment user={user} post={postDetail} />
+    
         {this.state.isPostOptionShow == postDetail.id ?
         <Animatable.View ref={'viewPostOption'} style={styles.postOptionView}>
                             <View style={{ marginTop: '6%', marginRight:'2%' }}>
@@ -875,3 +879,24 @@ export default class Posts extends React.PureComponent {
   }
 }
 
+const mapStateToProps = state => {
+    return {
+      repost: state.repost,
+      user: state.user,
+      like: state.like,
+      deletePost: state.deletePost
+    };
+  };
+  
+  // eslint-disable-next-line
+  const mapDispatchToProps = dispatch => {
+    return {
+      postActions: bindActionCreators(postActions, dispatch)
+    };
+  };
+  
+  export default connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )(Posts);
+  
