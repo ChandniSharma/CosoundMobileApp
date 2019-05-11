@@ -158,13 +158,13 @@ export default class ProfileComponent extends Component {
 
     fadeInPremiumView = () => this.refs.viewPremium.fadeIn();
 
-    fadeInUpPostOptionView = () => this.refs.viewPostOption.fadeInUp(1000);
+    // fadeInUpPostOptionView = () => this.refs.viewPostOption.fadeInUp(1000);
 
 
     componentDidMount() {
        
         this.fadeInDown();
-        this.fadeInUpPostOptionView();
+        // this.fadeInUpPostOptionView();
     }
     _navigateToAdvanceSearchView() {
         // this.props.navigation.navigate("AdvancedSearchView");
@@ -939,13 +939,7 @@ export default class ProfileComponent extends Component {
                         </View>
 
                     </View>
-                    {this.state.isPostOptionShow ?
-                        <Animatable.View ref={'viewPostOption'} style={styles.postOptionView}>
-                            <View style={{ marginTop: '6%' }}>
-                                {this.postOptionView()}
-                            </View>
-                        </Animatable.View> : null
-                    }
+                   
                 </KeyboardAwareScrollView>
 
                 {this.state.isBottomViewShow ?

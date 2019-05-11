@@ -3,14 +3,23 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { isNull, isEmpty } from "lodash";
 import { postActions } from "../../actions";
+import * as Animatable from 'react-native-animatable';
+import PlayVideo from './PlayVideo';
+import Icon3 from "react-native-vector-icons/FontAwesome";
+import Icon4 from "react-native-vector-icons/Entypo";
+import Icon5 from "react-native-vector-icons/MaterialIcons";
+import Icon6 from "react-native-vector-icons/AntDesign";
 
+// import soundPlay from './SoundPlay';
 import {
   getPost,
   isSuccess,
   checkAuth,
   getPathname,
   getThumbnail,
-  formatPostMedia
+  formatPostMedia,
+  getUsername,
+  readableCount
 } from "../../utils";
 
 import styles from "../../stylesheet/profile.style";
@@ -263,13 +272,13 @@ export default class Posts extends React.PureComponent {
                         borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10, justifyContent: 'center',
                         alignItems: "center", flexDirection: 'row', height: 40, width: 160
                     }} onPress={this._showCommentList.bind(this)}>
-                        <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../../assets/tickMark.png")} />
-                        <Text style={styles.textCommentCount}>9 Comments</Text>
+                        <Icon3 name="comment" style={{ fontSize:20, color: "#d3d3d3",  marginRight:'2%' }} />
+                         <Text style={styles.textCommentCount}>9 Comments</Text>
                         <View style={{
                             marginLeft: 10, flex: 1, borderRadius: 60, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
                             justifyContent: 'center', alignItems: "center", height: 40, width: 160
                         }}>
-                            <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../../assets/tickMark.png")} />
+                        <Icon6 name="down" style={{ fontSize:20, color: "#d3d3d3",  marginRight:'2%' }} />
                         </View>
                     </TouchableOpacity>
                     <View style={{ flex: 1, height: 1, backgroundColor: "#d3d3d3" }} />
@@ -320,7 +329,7 @@ export default class Posts extends React.PureComponent {
         return arrayBtn;
     }
    
-
+    
     renderPost = (post) => {
         const { feed, callingAPI, _restCalls } = this.props;
         const { user, like, deletePost, repost } = this.props;
@@ -575,7 +584,256 @@ export default class Posts extends React.PureComponent {
               </View>
           </View>
       )
+  }
+  _renderSingleImage = media => {
+    return (
+      <View>
+        <Image source={{uri:
+            !isNull(media.metadata) && media.metadata.thumbnail_normal
+              ? media.metadata.thumbnail_normal
+              : media.path
+          }} />
+      </View>
+    );
   };
+  /**
+   * Post Media Construct
+   */
+  _renderPostBody = (media, postId) => {
+    switch (media.file_type) {
+      case "video":
+        return (
+          <PlayVideo
+            key={media.id}
+            id={`player-${postId}`}
+            mediaType="video"
+            preload="none"
+            controls
+            width={"100%"}
+            height={"100%"}
+            poster={
+              !isNull(media.metadata) && !isNull(media.metadata.thumbnail)
+                ? media.metadata.thumbnail
+                : poster
+            }
+            sources={JSON.stringify(media)}
+            options={JSON.stringify(config)}
+            tracks={JSON.stringify(tracks)}
+          />
+        );
+      case "audio":
+        return  (<View style={{ padding: 5, marginBottom: "5%" }}>
+        <View style={{ flexDirection: "row", padding: 10 }}>
+            <View style={{ flex: 4, }}>
+                <Image style={{
+                    width: 100,
+                    height: 100,
+                    borderRadius: 10,
+                    shadowColor: 'rgba(0,0,0,1)',
+                    shadowOffset: {
+                        width: 0.8,
+                        height: 0.8
+                    },
+                    shadowOpacity: 0.2,
+                    zIndex: -1
+                }}
+                    source={require('../../assets/homepage-video-placeholder.jpg')}>
+                </Image>
+                <Image style={{
+                    width: 60,
+                    height: 60,
+                    borderRadius: 10,
+                    shadowColor: 'rgba(0,0,0,1)',
+                    shadowOffset: {
+                        width: 0.8,
+                        height: 0.8
+                    },
+                    shadowOpacity: 0.2,
+                    position: "relative",
+                    right: "-50%",
+                    top: "-20%",
+                    zIndex: 999
+                }}
+                    source={require('../../assets/close.png')}>
+                </Image>
+            </View>
+            <View style={{ flex: 6 }}>
+                <Text style={styles.musicTitle}>Kygo</Text>
+                <Text style={styles.musicDescription}>Of Monsters and Men - Dirty Paws (Kygo remix)</Text>
+            </View>
+        </View>
+        <View style={{ width: "100%", backgroundColor: "#d3d3d6" }}>
+            <Image style={{ width: "100%", height: 50 }} source={require('../../assets/noise.gif')} />
+        </View>
+        <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
+            <Text style={styles.musicCurrentTime}>0.00</Text>
+            <Text style={styles.musicDuration}>2.03</Text>
+
+        </View>
+    </View>)
+  
+      case "image":
+        return (
+          <View>
+              <Image source={{uri: !isNull(media.metadata) && media.metadata.thumbnail_normal
+                    ? media.metadata.thumbnail_normal
+                    : media.path}}
+              />
+              </View>
+           
+        );
+      default:
+        return null;
+    }
+  };
+
+  
+  renderPostCard = (postData) => {
+    const { feed, callingAPI, _restCalls } = this.props;
+    const { user, like, deletePost, repost } = this.props;
+    const { isVisible, showSocial } = this.state;
+
+    let post =  { item:
+        {
+            type: "video",
+            like: "10",
+            comment: "56",
+            text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, " +
+                "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi " +
+                "ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur " +
+                "adipisicing elit, sed do eiusmod tempor incididunt ut",
+            endTime: "5.02",
+            startTime: "0.00",
+            name: "Bryan Garza",
+            occupation: "Job Title/Artist Name.",
+            image: require('../../assets/avatar1.jpg'),
+
+        }};
+    
+     let postDetail = postData.item; 
+
+    console.log(" :popst -=====", postData);
+     //const postedBySelf = postDetail.user_id === user.data.id;
+    const originalPost = getPost(postDetail);
+    const { images, notImages } = formatPostMedia(originalPost.media);
+    
+    // user name, image, desination
+    // Action, delete option if self created profile
+
+  return (
+    <View style={{
+        width: "100%",
+        backgroundColor: "white",
+        marginTop: 10,
+        padding: 10,
+        shadowColor: 'rgba(0,0,0,1)',
+        shadowOffset: {
+            width: 0,
+            height: 0
+        },
+        shadowOpacity: 0.2,
+    }}>
+        <View style={{ width: "100%", justifyContent: "center", flexDirection: "row" }}>
+            <View style={{ flex: 9, flexDirection: "row", marginTop: 5 }}>
+                <Image style={{
+                    height: 40, width: 40,
+                    borderRadius: 20,
+                    elevation: 3,
+                    backgroundColor: "white",
+                    alignSelf: "center",
+                    shadowColor: 'rgba(0,0,0,1)',
+                    shadowOffset: {
+                        width: 1,
+                        height: 1
+                    },
+                    shadowOpacity: 0.8,
+                }} 
+        resizeMode={"contain"} source={{uri:getThumbnail(postDetail)}} />
+
+                <View style={{ paddingLeft: 10, marginTop: 3 }}>
+                 <Text style={styles.textUserName}>{getUsername(postDetail)}</Text>
+                    
+                    <Text style={styles.textDesignation}>{`${postDetail.type} / ${postDetail.artist_name}`}</Text>
+                </View>
+
+            </View>
+
+            <TouchableOpacity onPress={this._showPostOptions}>
+                <Text style={{ flex: 1, color: "black", fontSize: 30 }}>...</Text>
+            </TouchableOpacity>
+            {/* {this.state.isPostOptionShow ?
+                        <Animatable.View ref={'viewPostOption'} style={styles.postOptionView}>
+                            <View style={{ marginTop: '6%' }}>
+                                {this.postOptionView()}
+                            </View>
+                        </Animatable.View> : null
+                    } */}
+        </View>
+        <View style={{ marginTop: "5%", marginBottom: "5%", width: "100%", justifyContent: "center", height: 0.5, backgroundColor: "#d3d3d3" }}>
+        </View>
+        <View >
+            <Text style={styles.musicDescription}>{originalPost.body}</Text>
+            
+        </View>
+        {!isEmpty(images) && images.length === 1 ? (
+            images.map(item => {
+              return this._renderSingleImage(item);
+            })
+          ) : !isEmpty(images) && images.length > 1 ? (
+            <View>
+              {images.map(item => {
+                return this._renderPostBody(item, post.id);
+              })}
+            </View>
+          ) : null}
+          {notImages.map(item => {
+            return this._renderPostBody(item, post.id);
+          })}
+
+        <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
+            <View style={{ flex: 9, flexDirection: "row" }}> 
+
+                <TouchableOpacity onPress={() => likePost(postDetail.id)} style={{
+                    borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10, justifyContent: 'center',
+                    alignItems: "center", flexDirection: 'row', height: 40, width: 80
+                }}>
+                   {like && like.isRequesting === postDetail.id ? (
+                    <ActivityIndicator size="large" color="gray" /> 
+                    ) : (
+                    <React.Fragment>
+                        <Icon3 name="heart" style={{ fontSize:20, color: "#d3d3d3", marginRight:'2%' }} />
+                                <Text style={styles.textCommentCount}>{readableCount(postDetail.like_count)}</Text>
+                    </React.Fragment>
+                    )}
+                </TouchableOpacity>
+               
+                <TouchableOpacity onPress={() => _confirmRepost(postDetail.id)} style={{
+                    marginLeft: 10, borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
+                    justifyContent: 'center', alignItems: "center", flexDirection: 'row', height: 40, width: 80
+                }}> 
+                {repost && repost.isRequesting === postDetail.id ? (
+                    <ActivityIndicator size="large" color="gray" /> 
+                    ) : (
+                    <React.Fragment>
+                        <Icon5 name="repeat" style={{fontSize:20, color: "#d3d3d3", marginRight:'2%' }} />
+                        <Text style={styles.textCommentCount}>{readableCount(postDetail.repost_count)}</Text>
+                    </React.Fragment>
+                )}
+                    
+                </TouchableOpacity>
+            </View>
+            <View style={{
+                flex: 1, borderRadius: 20, borderWidth: 1, borderColor: "#F1F1F1", padding: 10,
+                justifyContent: 'center', alignItems: "center", height: 40
+            }}>
+                <Icon4 name="forward" style={{fontSize:20, color: "#d3d3d3" }} />
+            </View>
+        </View>
+        {this.viewComments()}
+    </View>
+  )
+};
 
   render() {
     const { feed, callingAPI, _restCalls } = this.props;
@@ -597,8 +855,8 @@ export default class Posts extends React.PureComponent {
         )}
         <View>
           <FlatList
-              data={this.state.post}
-              renderItem={this.renderPost}
+              data={feed.data}
+              renderItem={this.renderPostCard}
               keyExtractor={(item, index) => index.toString()}
           />
       </View>

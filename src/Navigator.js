@@ -68,7 +68,7 @@ const AppStackNavigator = createStackNavigator({
         Login:{screen:Login},
         RecoverPwd:{screen: RecoverPwd}
      },{
-        initialRouteName: 'Home',
+        initialRouteName: 'Login',
         // headerMode: "screen",
         // mode: Platform.OS === "ios" ? "modal" : "card",
         // navigationOptions: {

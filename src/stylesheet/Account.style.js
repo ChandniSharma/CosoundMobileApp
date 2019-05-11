@@ -87,6 +87,26 @@ export default {
         paddingLeft: 30,
         paddingRight: 30,
     },
+    searchBarView:{
+        flexDirection:'row',
+        margin: '5%',
+        height: 60,
+        borderRadius: 25,
+ 
+    },
+    inputSearchStyle: {
+        height: 60,
+        fontFamily: 'Montserrat-Regular',
+        fontWeight: '300',
+        fontSize: 16,
+        width:'70%',
+       color: 'black',
+       marginLeft:'15%',
+        // paddingTop: 21,
+        // paddingBottom: 20,
+        // paddingLeft: 30,
+        // paddingRight: 30,
+    },
     btnBottomMob:{
         marginLeft: '5%',
         marginRight: '5%',

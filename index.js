@@ -30,7 +30,7 @@ import AdvancedSearchView from './src/views/AdvancedSearchView';
 import Account from "./src/views/Account";
 import Suggestions from './src/containers/Suggestions';
 import SocialShare from './src/views/common/SocialShare';
-import PlayVideo from './src/views/common/PlayVideo';
+import SoundPlay from './src/views/common/SoundPlay';
 
 const AppStackNavigator = createStackNavigator({
    Home: { screen: Home },
@@ -51,9 +51,9 @@ const AppStackNavigator = createStackNavigator({
     Account:{screen:Account},
     Suggestions:{ screen: Suggestions },
      SocialShare:{screen: SocialShare},
-     PlayVideo:{screen:PlayVideo}
+     SoundPlay:{screen:SoundPlay}
 }, {
-        initialRouteName: 'PlayVideo',
+        initialRouteName: 'Login',
         gesturesEnabled: false,
         headerMode: 'none',
     })

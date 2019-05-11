@@ -14,7 +14,6 @@ import Icon1 from "react-native-vector-icons/Entypo";
 import Icon2 from "react-native-vector-icons/EvilIcons";
 import Icon3 from "react-native-vector-icons/Ionicons";
 
-import SearchBar from 'react-native-search-bar'
 import Hamburger from 'react-native-hamburger';
 import SideMenu from './common/SideMenu';
 
@@ -40,7 +39,7 @@ export default class Account extends Component {
             headerColor: ['rgb(42, 173,177)', 'rgb(93, 152, 179)'],
             isContactInfoClick: false,
             isDropDownclick: false,
-            isSideMenuClick: false,
+            isSideMenuClick: true,
             isSearchbarDataShow: false,
             isCrossClick: false,
             active: false,
@@ -230,7 +229,7 @@ export default class Account extends Component {
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: 100, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
 
-                    <TouchableOpacity style={{ color: 'white', marginTop: '14%', flex: 0.1 }} onPress={() => this.showPopup()}>
+                    <TouchableOpacity style={{ color: 'white', marginTop: '14%', flex: 0.1, marginLeft:'4%' }} onPress={() => this.showPopup()}>
                         <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />
                     </TouchableOpacity>
 

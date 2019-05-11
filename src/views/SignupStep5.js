@@ -9,6 +9,7 @@ import { SafeAreaView } from 'react-navigation';
 import CustomFooter from '../components/common/CustomFooter';
 import CustomHeader from '../components/common/CustomHeader'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import WaveAnimation from './common/WaveAnimation';
 
 
 const { width, height } = Dimensions.get('window');
@@ -43,8 +44,8 @@ export default class SignupStep5 extends Component {
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
          <ScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex:1 }}>
-
-                    <Animatable.View ref={"mainView"} style={{flex:0.9}}>
+         <WaveAnimation /> 
+                    <Animatable.View ref={"mainView"} style={{flex:0.9,position:'absolute', top:0, width:'100%' }}>
                        
                         <View style={{ backgroundColor: 'rgb(37,182,173)' }}>
                             

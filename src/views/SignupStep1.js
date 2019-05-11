@@ -11,6 +11,7 @@ import RNPickerSelect from 'react-native-picker-select';
 import SimplePicker from 'react-native-simple-picker';
 import SelectInput from 'react-native-select-input-ios'
 import { countries } from '../utils/countries';
+import WaveAnimation from './common/WaveAnimation';
 
 const { width, height } = Dimensions.get('window');
   
@@ -55,7 +56,8 @@ export default class SignupStep1 extends Component {
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>
-                    <Animatable.View ref={"mainView"} style={styles.container}>
+                <WaveAnimation /> 
+                    <Animatable.View ref={"mainView"} style={[styles.container,{position:'absolute', top:0, width:'100%'}]}>
                         <View style={{ backgroundColor: 'pink' }}>
                         </View>
                         <View style={{ backgroundColor: 'rgb(37,182,173)' }}>
