@@ -23,7 +23,7 @@ import {
 } from "../../utils";
 
 import styles from "../../stylesheet/profile.style";
-import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity,Clipboard, AlertIOS,Platform, ActivityIndicator } from "react-native";
+import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, TouchableWithoutFeedback,View, TouchableOpacity,Clipboard, AlertIOS,Platform, ActivityIndicator } from "react-native";
 var ImagePicker = require('react-native-image-picker');
 
 const config = {};
@@ -38,6 +38,7 @@ export default class Posts extends React.PureComponent {
             isPostOptionShow: true,
             isBottomViewShow: false,
             isCommentTableShow: true,
+            isSocialShareClick: false,
             text: "Write Something...",
             headerColorMix: ['rgb(42, 173,177)', 'rgb(131, 110, 198)', 'rgb(134, 103, 200)'],
             headerColor: ['rgb(42, 173,177)', 'rgb(93, 152, 179)'],
@@ -227,8 +228,10 @@ export default class Posts extends React.PureComponent {
     };
 
 
-     _showPostOptions() {
-        this.setState({ isPostOptionShow: true });
+     _showPostOptions = (postId) => {
+         console.log(" Post option view =====");
+        this.setState({ isPostOptionShow: postId });
+        this.forceUpdate();
     }
     
     _showCommentList() {
@@ -722,6 +725,7 @@ export default class Posts extends React.PureComponent {
     // Action, delete option if self created profile
 
   return (
+    <TouchableWithoutFeedback onPress={()=> this.setState({isPostOptionShow:false})}>
     <View style={{
         width: "100%",
         backgroundColor: "white",
@@ -734,6 +738,7 @@ export default class Posts extends React.PureComponent {
         },
         shadowOpacity: 0.2,
     }}>
+    
         <View style={{ width: "100%", justifyContent: "center", flexDirection: "row" }}>
             <View style={{ flex: 9, flexDirection: "row", marginTop: 5 }}>
                 <Image style={{
@@ -752,6 +757,7 @@ export default class Posts extends React.PureComponent {
         resizeMode={"contain"} source={{uri:getThumbnail(postDetail)}} />
 
                 <View style={{ paddingLeft: 10, marginTop: 3 }}>
+                 {/* <Text style={styles.textUserName}>{getUsername(postDetail)}{" post id==="+this.state.isPostOptionShow+"postDetail.id ="+postDetail.id}</Text> */}
                  <Text style={styles.textUserName}>{getUsername(postDetail)}</Text>
                     
                     <Text style={styles.textDesignation}>{`${postDetail.type} / ${postDetail.artist_name}`}</Text>
@@ -759,16 +765,10 @@ export default class Posts extends React.PureComponent {
 
             </View>
 
-            <TouchableOpacity onPress={this._showPostOptions}>
+            <TouchableOpacity onPress={() => this._showPostOptions(postDetail.id)}>
                 <Text style={{ flex: 1, color: "black", fontSize: 30 }}>...</Text>
             </TouchableOpacity>
-            {/* {this.state.isPostOptionShow ?
-                        <Animatable.View ref={'viewPostOption'} style={styles.postOptionView}>
-                            <View style={{ marginTop: '6%' }}>
-                                {this.postOptionView()}
-                            </View>
-                        </Animatable.View> : null
-                    } */}
+            
         </View>
         <View style={{ marginTop: "5%", marginBottom: "5%", width: "100%", justifyContent: "center", height: 0.5, backgroundColor: "#d3d3d3" }}>
         </View>
@@ -823,15 +823,24 @@ export default class Posts extends React.PureComponent {
                     
                 </TouchableOpacity>
             </View>
-            <View style={{
+            <TouchableOpacity style={{
                 flex: 1, borderRadius: 20, borderWidth: 1, borderColor: "#F1F1F1", padding: 10,
                 justifyContent: 'center', alignItems: "center", height: 40
             }}>
                 <Icon4 name="forward" style={{fontSize:20, color: "#d3d3d3" }} />
-            </View>
+            </TouchableOpacity>
         </View>
         {this.viewComments()}
+        {this.state.isPostOptionShow == postDetail.id ?
+        <Animatable.View ref={'viewPostOption'} style={styles.postOptionView}>
+                            <View style={{ marginTop: '6%', marginRight:'2%' }}>
+                                {this.postOptionView()}
+                            </View>
+                        </Animatable.View> 
+                       : null 
+                    }
     </View>
+    </TouchableWithoutFeedback>
   )
 };
 
@@ -856,6 +865,7 @@ export default class Posts extends React.PureComponent {
         <View>
           <FlatList
               data={feed.data}
+              extraData={this.state}
               renderItem={this.renderPostCard}
               keyExtractor={(item, index) => index.toString()}
           />

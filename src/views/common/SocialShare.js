@@ -19,6 +19,10 @@ export default class SocialShare extends Component {
       visible: false
     }
   }
+
+  componentDidMount(){
+   // this.onOpen();
+  }
   onCancel() {
     console.log("CANCEL")
     this.setState({visible:false});
@@ -27,6 +31,7 @@ export default class SocialShare extends Component {
     console.log("OPEN")
     this.setState({visible:true});
   }
+
   render() {
 
     let shareOptions = {
@@ -42,12 +47,11 @@ export default class SocialShare extends Component {
       url: REACT_ICON,
       subject: "Share Link" //  for email
     };
-
     return (
       <View style={styles.container}>
 
 
-        <TouchableOpacity onPress={()=>{
+        {/* <TouchableOpacity onPress={()=>{
           Share.open(shareImageBase64);
         }}>
           <View style={styles.instructions}>
@@ -61,13 +65,13 @@ export default class SocialShare extends Component {
           <View style={styles.instructions}>
             <Text>Simple Share</Text>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
-        <TouchableOpacity onPress={this.onOpen.bind(this)}>
+        {/* <TouchableOpacity onPress={this.onOpen.bind(this)}>
           <View style={styles.instructions}>
             <Text>Share UI Component</Text>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <ShareSheet visible={this.state.visible} onCancel={this.onCancel.bind(this)}>
           <Button iconSrc={{ uri: TWITTER_ICON }}

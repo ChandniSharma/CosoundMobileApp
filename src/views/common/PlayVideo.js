@@ -9,13 +9,14 @@ export default class PlayVideo extends Component {
     render() {
         return (
             <View style= {{flex:1, backgroundColor:'yellow'}}>
-                <VideoPlayer
+                {/* <VideoPlayer
     source={{ uri: 'https://vjs.zencdn.net/v/oceans.mp4' }}
     navigator={ this.props.navigator }
-/>
+/> */}
             </View>
         )
     }
+
 }
 
 var styles = StyleSheet.create({

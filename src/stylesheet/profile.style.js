@@ -123,10 +123,11 @@ export default {
         fontFamily: 'Montserrat-light',
     },
     postOptionView:{
-        backgroundColor:'rgb(245,245,245)', 
+        backgroundColor: 'rgb(245,245,245)', 
         width:scale(130),
         height: verticalScale(190),
-        top:'39.8%',
+        top:'10%',
+        marginRight:'3%',
         shadowColor: 'rgba(0,0,0,1)',
         shadowOffset: {
             width: .5,
