@@ -18,8 +18,8 @@ export default{
     },
     leftView:{
         marginTop:'13%',
-        // alignSelf:'flex-end',
-        flex:0.7,
+    // alignSelf:'flex-end',
+        flex:0.5,
        // backgroundColor:'red'
     },
 

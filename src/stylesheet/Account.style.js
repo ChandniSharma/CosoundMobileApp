@@ -219,6 +219,7 @@ export default {
     },
     flatList: {
         width: '100%',
+        marginBottom:'10%'
         //height: deviceHeight-300,
     },
     flatListSearchbar:{

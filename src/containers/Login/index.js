@@ -39,7 +39,7 @@ class LoginContainer extends React.PureComponent {
     this.setState({
       data
     });
-this.forceUpdate()
+    this.forceUpdate()
   }
   /**
    * Validation Location
@@ -148,7 +148,7 @@ this.forceUpdate()
   };
 
   _navigateToForgotPassword = () => {
-    this.props.navigation.navigate("RecoverPwd");
+    this.props.navigation.navigate("ForgotPassword");
   }
   _navigateToGetStartedView = () => {
     //this.props.navigation.navigate("SignupStep1");
@@ -157,6 +157,10 @@ this.forceUpdate()
   _navigateToProfileview = () => {
     this.props.navigation.navigate("Profile");
   }
+  // _navigateBack =()=>{
+  //   this.props.navigation.goBack();
+
+  // }
   render() {
     const { data, errors, fetching } = this.state;
     const { login } = this.props;
@@ -172,7 +176,7 @@ this.forceUpdate()
         navigateToForgotPassword={this._navigateToForgotPassword}
         navigateToGetStartedView={this._navigateToGetStartedView}
         onClickRememberMe={this._onClickRememberMe}
-
+        navigation={this.props.navigation}
       />
     );
   }

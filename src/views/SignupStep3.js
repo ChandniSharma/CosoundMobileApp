@@ -104,7 +104,7 @@ export default class SignupStep3Musician extends Component {
       <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
         <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>
         <WaveAnimation /> 
-          <Animatable.View ref={"mainView"} style={[styles.container,, {position:'absolute', top:0, width:'100%' }]}>
+          <Animatable.View ref={"mainView"} style={[styles.container, {position:'absolute', top:0, width:'100%' }]}>
 
             <View style={{ backgroundColor: 'rgb(37,182,173)' }}>
               <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../assets/cosoundTitle.png')} />

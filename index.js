@@ -31,12 +31,12 @@ import Account from "./src/views/Account";
 import Suggestions from './src/containers/Suggestions';
 import SocialShare from './src/views/common/SocialShare';
 import SoundPlay from './src/views/common/SoundPlay';
-
+import PlayVideo from './src/views/common/PlayVideo'
 const AppStackNavigator = createStackNavigator({
    Home: { screen: Home },
     Login: { screen: Login },
     ForgotPassword: { screen: ForgotPassword },
-    RecoverPwd: { screen: RecoverPwd },
+    // RecoverPwd: { screen: RecoverPwd },
     Signup: { screen: Signup },
     SignupStep1: { screen: SignupStep1 },
     SignupStep2: { screen: SignupStep2 },
@@ -51,7 +51,7 @@ const AppStackNavigator = createStackNavigator({
     Account:{screen:Account},
     Suggestions:{ screen: Suggestions },
      SocialShare:{screen: SocialShare},
-     SoundPlay:{screen:SoundPlay}
+     PlayVideo:{screen:PlayVideo}
 }, {
         initialRouteName: 'Login',
         gesturesEnabled: false,

@@ -30,7 +30,7 @@ export default class SideMenu extends Component {
             textSearch:'',
             
         }
-        this.arrayData = [{ name: 'Market', image: '', count: 0 }, { name: 'Messages', image: 'message', count: 3 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }]
+        this.arrayData = [{ name: 'Market', image: '', count: 0 }, { name: 'Messages', image: 'message', count: 3 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 },{ name: 'Logout', image: '', count: 0 }]
 
     }
     componentDidMount() {
@@ -103,8 +103,10 @@ export default class SideMenu extends Component {
             viewNotification = <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#424242', justifyContent: 'center' }}>
                 <Text style={styles.textModalData}>{item.item.count}</Text>
             </View>
+        }else if (item.index === 5) {
+            icon = <Icon name="logout" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, tintColor: 'white' }} />
+           
         }
-
         return (
 
             <View style={{ height: 50, justifyContent: 'center' }}>

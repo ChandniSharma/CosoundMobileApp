@@ -348,6 +348,7 @@ console.log(" data ===", this.state.data, field);
     return (
       <Signup
         data={data}
+        navigation={this.props.navigation}
         signup={signup}
         genres={genres}
         errors={errors}

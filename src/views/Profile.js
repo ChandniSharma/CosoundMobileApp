@@ -918,6 +918,7 @@ export default class ProfileComponent extends Component {
                         </View> */}
 {/* <NewTest /> */}
                         <InfiniteScroller
+                        pathName={"/profile"}
                           user={user}
                           isLoaderInternal
                           feed={userFeed}

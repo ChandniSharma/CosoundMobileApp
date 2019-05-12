@@ -32,15 +32,15 @@ class CommentBox extends React.PureComponent {
                   <Text>{'\u2022' + " "}</Text>
               </View> */}
               <View style={{ flexDirection: 'row', flex: 1 }}>
-                  <Image style={[styles.imgUserInComments]} source={require('../../../assets/avatar1.jpg')} />
+                  <Image style={[styles.imgUserInComments]} source={{uri:getThumbnail(comment)}} />
                   <View style={{ flex: 0.9 }}>
-                      <Text style={[styles.textSubTitleNotSelected]}>{item.item.title} </Text>
-                      <Text style={styles.textDescComment}> {item.item.description} </Text>
+                      <Text style={[styles.textSubTitleNotSelected]}>{`${comment.first_name} ${!isNull(comment.last_name) ? comment.last_name : ""}`} </Text>
+                      <Text style={styles.textDescComment}> {comment.body}</Text>
 
                   </View>
                   {/* {this.state.isClick? <Text style={styles.textSubtitleSelected}>Viewed your profile </Text>
           :  <Text style={styles.textSubTitleNotSelected}> Viewed your profile </Text>} */}
-                  <Text style={[styles.textNotificationTime, { flex: 0.3 },]}> {item.item.time}</Text>
+                  <Text style={[styles.textNotificationTime, { flex: 0.3 },]}> {refactorCarbonDate(comment.created_at)}</Text>
               </View>
               <View>
               </View>
@@ -48,21 +48,7 @@ class CommentBox extends React.PureComponent {
           </View>
       </TouchableHighlight>
   </View>
-      // <div className="d-card__comment">
-      //   <div className="avatar avatar--shad">
-      //     <img src={getThumbnail(comment)} alt="avatar3" />
-      //   </div>
-      //   <div className="d-card__comment-content">
-      //     <div className="d-card__comment-author">{`${comment.first_name} ${
-      //       !isNull(comment.last_name) ? comment.last_name : ""
-      //     }`}</div>
-      //     <div className="d-card__comment-text">
-      //       <p>{comment.body}</p>
-      //     </div>
-      //   </div>
-      //   <div className="d-card__comment-date">
-      //     <span>{refactorCarbonDate(comment.created_at)}</span>
-      //   </div>
+     
 
       //   <CardOptions
       //     id={comment.id}

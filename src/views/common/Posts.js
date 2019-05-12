@@ -9,7 +9,10 @@ import Icon3 from "react-native-vector-icons/FontAwesome";
 import Icon4 from "react-native-vector-icons/Entypo";
 import Icon5 from "react-native-vector-icons/MaterialIcons";
 import Icon6 from "react-native-vector-icons/AntDesign";
-import {PostComment} from './PostComment';
+import PostComment from './PostComment';
+import styles from "../../stylesheet/profile.style";
+import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, TouchableWithoutFeedback,View, TouchableOpacity,Clipboard, AlertIOS,Platform, ActivityIndicator, Alert } from "react-native";
+import { postComment } from "../../actions/post";
 
 // import soundPlay from './SoundPlay';
 import {
@@ -23,9 +26,6 @@ import {
   readableCount
 } from "../../utils";
 
-import styles from "../../stylesheet/profile.style";
-import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, TouchableWithoutFeedback,View, TouchableOpacity,Clipboard, AlertIOS,Platform, ActivityIndicator } from "react-native";
-import { postComment } from "../../actions/post";
 var ImagePicker = require('react-native-image-picker');
 
 const config = {};
@@ -41,6 +41,7 @@ const tracks = {};
             isBottomViewShow: false,
             isCommentTableShow: true,
             isSocialShareClick: false,
+            currentLikePostId:'',
             text: "Write Something...",
             headerColorMix: ['rgb(42, 173,177)', 'rgb(131, 110, 198)', 'rgb(134, 103, 200)'],
             headerColor: ['rgb(42, 173,177)', 'rgb(93, 152, 179)'],
@@ -177,11 +178,12 @@ const tracks = {};
      * Like/Unlike Post
      */
     _likePost = id => {
-        const { postActions, user, location, match } = this.props;
+        const { postActions, user, pathName,match } = this.props;
         const auth = checkAuth(user);
         if (auth) {
-        const path = getPathname(location, match);
+        const path = pathName;
         postActions.likePost(id, path);
+        this.setState({currentLikePostId:id});
         }
     };
 
@@ -207,25 +209,23 @@ const tracks = {};
         const { user, postActions } = this.props;
         const auth = checkAuth(user);
         if (auth) {
-        confirmAlert({
-            title: "Confirm to repost",
-            message: "Are you sure you want to share.",
-            buttons: [
-            {
-                label: "Yes",
-                onClick: () =>
-                postActions.repost(id).then(() => {
+            Alert.alert(
+                'Confirm to repost',
+                'Are you sure you want to share.',
+                [
+                  {text: 'Yes', onPress: () => postActions.repost(id).then(() => {
                     if (isSuccess(this.props.repost)) {
                     this.props._restCalls();
                     }
-                })
-            },
-            {
-                label: "No",
-                onClick: () => {}
-            }
-            ]
-        });
+                })},
+                  {
+                    text: 'No',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                  },
+                ],
+                {cancelable: false},
+              );
         }
     };
 
@@ -321,19 +321,30 @@ const tracks = {};
         this.offset = currentOffset;
     };
 
-    postOptionView() {
-        let arrayPostOptions = ["All", "Copy Link", "Unfollow User", 'Share', 'Report Post'];
-        let arrayBtn = [];
+    postOptionView(postedBySelf, id) {
 
+        let arrayPostOptions = ["All", "Copy Link", "Unfollow User", 'Share', 'Report Post'];
+        let arrayBtn = []
+        if(postedBySelf){
+            let btn = <TouchableHighlight onPress={() => this._deletePost(id)} underlayColor="#8e8e8e" style={{ marginTop: '2%', height: 40 }}>
+                <Text style={styles.postOptionText}>{this.props.deletePost.isRequesting === id ? "Deleting.." : "Delete"}
+           </Text>
+            </TouchableHighlight>
+            arrayBtn.push(btn);
+            
+        }else{
         for (let i = 0; i < arrayPostOptions.length; i++) {
-            let btn = <TouchableHighlight underlayColor="black" style={{ marginTop: '2%', height: 40 }}>
+            let btn = <TouchableHighlight underlayColor="#8e8e8e" style={{ marginTop: '2%', height: 40 }}>
                 <Text style={styles.postOptionText}>  {arrayPostOptions[i]} </Text>
             </TouchableHighlight>
             arrayBtn.push(btn);
         }
+        }
         return arrayBtn;
+
     }
-   
+
+
     
     renderPost = (post) => {
         const { feed, callingAPI, _restCalls } = this.props;
@@ -621,7 +632,7 @@ const tracks = {};
                 ? media.metadata.thumbnail
                 : poster
             }
-            sources={JSON.stringify(media)}
+            sources= {media}//{JSON.stringify(media)}
             options={JSON.stringify(config)}
             tracks={JSON.stringify(tracks)}
           />
@@ -694,7 +705,7 @@ const tracks = {};
 
   
   renderPostCard = (postData) => {
-    const { feed, callingAPI, _restCalls } = this.props;
+    const { feed, callingAPI, _restCalls, pathName } = this.props;
     const { user, like, deletePost, repost } = this.props;
     const { isVisible, showSocial } = this.state;
 
@@ -718,8 +729,8 @@ const tracks = {};
     
      let postDetail = postData.item; 
 
-    console.log(" :popst -=====", postData);
-     //const postedBySelf = postDetail.user_id === user.data.id;
+    console.log(" :popst -=====", like, like.isRequesting ,this.state.currentLikePostId, postDetail.id);
+    const postedBySelf = postDetail.user_id === user.data.id;
     const originalPost = getPost(postDetail);
     const { images, notImages } = formatPostMedia(originalPost.media);
     
@@ -796,29 +807,29 @@ const tracks = {};
         <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
             <View style={{ flex: 9, flexDirection: "row" }}> 
 
-                <TouchableOpacity onPress={() => likePost(postDetail.id)} style={{
+                <TouchableOpacity onPress={() => this._likePost(postDetail.id)} style={{
                     borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10, justifyContent: 'center',
-                    alignItems: "center", flexDirection: 'row', height: 40, width: 80
+                    alignItems: "center", flexDirection: 'row', height: 40, width: 80, backgroundColor: postDetail.isLiked ? "#d3d3d3":'transparent'
                 }}>
-                   {like && like.isRequesting === postDetail.id ? (
-                    <ActivityIndicator size="large" color="gray" /> 
+                   {like && like.isRequesting == postDetail.id ? (
+                    <ActivityIndicator color="gray" /> 
                     ) : (
                     <React.Fragment>
-                        <Icon3 name="heart" style={{ fontSize:20, color: "#d3d3d3", marginRight:'2%' }} />
+                        <Icon3 name="heart" style={{ fontSize:20, color: postDetail.isLiked ? "#8e8e8e":'#d3d3d3', marginRight:'2%' }} />
                                 <Text style={styles.textCommentCount}>{readableCount(postDetail.like_count)}</Text>
                     </React.Fragment>
                     )}
                 </TouchableOpacity>
                
-                <TouchableOpacity onPress={() => _confirmRepost(postDetail.id)} style={{
+                <TouchableOpacity onPress={() => this._confirmRepost(postDetail.id)} style={{
                     marginLeft: 10, borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
                     justifyContent: 'center', alignItems: "center", flexDirection: 'row', height: 40, width: 80
                 }}> 
                 {repost && repost.isRequesting === postDetail.id ? (
-                    <ActivityIndicator size="large" color="gray" /> 
+                    <ActivityIndicator color="gray" /> 
                     ) : (
                     <React.Fragment>
-                        <Icon5 name="repeat" style={{fontSize:20, color: "#d3d3d3", marginRight:'2%' }} />
+                        <Icon5 name="repeat" style={{fontSize:20, color: "#8e8e8e", marginRight:'2%' }} />
                         <Text style={styles.textCommentCount}>{readableCount(postDetail.repost_count)}</Text>
                     </React.Fragment>
                 )}
@@ -829,16 +840,16 @@ const tracks = {};
                 flex: 1, borderRadius: 20, borderWidth: 1, borderColor: "#F1F1F1", padding: 10,
                 justifyContent: 'center', alignItems: "center", height: 40
             }}>
-                <Icon4 name="forward" style={{fontSize:20, color: "#d3d3d3" }} />
+                <Icon4 name="forward" style={{fontSize:20, color: "#8e8e8e" }} />
             </TouchableOpacity>
         </View>
         {/* {this.viewComments()} */}
-        <PostComment user={user} post={postDetail} />
-    
+        <PostComment user={user} post={postDetail} pathName={this.props.pathName} />
+            
         {this.state.isPostOptionShow == postDetail.id ?
-        <Animatable.View ref={'viewPostOption'} style={styles.postOptionView}>
+        <Animatable.View ref={'viewPostOption'} style={postedBySelf ? styles.postOptionViewDelete : styles.postOptionView}>
                             <View style={{ marginTop: '6%', marginRight:'2%' }}>
-                                {this.postOptionView()}
+                                {this.postOptionView(postedBySelf, postDetail.id)}
                             </View>
                         </Animatable.View> 
                        : null 
@@ -852,7 +863,10 @@ const tracks = {};
     const { feed, callingAPI, _restCalls } = this.props;
     const { user, like, deletePost, repost } = this.props;
     const { isVisible, showSocial } = this.state;
-
+    const extraData = {
+        ...this.state,
+        ...this.props
+      };
     console.log(" Feed =====", feed);
     return (
        
@@ -869,7 +883,7 @@ const tracks = {};
         <View>
           <FlatList
               data={feed.data}
-              extraData={this.state}
+              extraData={extraData}
               renderItem={this.renderPostCard}
               keyExtractor={(item, index) => index.toString()}
           />

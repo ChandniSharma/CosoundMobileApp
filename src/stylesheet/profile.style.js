@@ -141,6 +141,25 @@ export default {
         alignSelf: 'flex-end',
         position: 'absolute',
     },
+    postOptionViewDelete:{
+        backgroundColor: 'white', 
+        width:scale(130),
+        height: verticalScale(40),
+        top:'10%',
+        marginRight:'3%',
+        shadowColor: 'rgba(0,0,0,1)',
+        shadowOffset: {
+            width: .5,
+            height: .5
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        borderBottomLeftRadius:10,
+        borderTopLeftRadius: 10,
+        borderBottomRightRadius:10,
+        alignSelf: 'flex-end',
+        position: 'absolute',
+    },
     textDescription: {
         color: '#262626',
         fontSize: 13,
@@ -156,6 +175,7 @@ export default {
         color: '#8E8E8E',
         fontSize: 13,
         fontFamily: 'Montserrat-light',
+        marginLeft:'3%'
     },
     myMusicTitle: {
         flex: 9,

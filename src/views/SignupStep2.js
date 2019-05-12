@@ -8,6 +8,8 @@ import * as Animatable from 'react-native-animatable';
 import { SafeAreaView } from 'react-navigation';
 import CustomFooter from '../components/common/CustomFooter'
 import WaveAnimation from './common/WaveAnimation';
+import Logo from './common/logo';
+import BackButton from './common/BackButton';
 
 const { width, height } = Dimensions.get('window');
 
@@ -30,16 +32,10 @@ export default class SignupStep2 extends Component {
          <ScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex:1 }}>
          <WaveAnimation /> 
                     <Animatable.View ref={"mainView"} style={[styles.container,{position:'absolute', top:0, width:'100%'} ]}>
-                        <View style={{ backgroundColor: 'pink' }}>
-                            {/* <SvgUri
-                    width="200"
-                    height="200"
-                    source={{uri:'http://thenewcode.com/assets/images/thumbnails/homer-simpson.svg'}}
-                    />  */}
-                        </View>
-                        <View style={{ backgroundColor: 'rgb(37,182,173)' }}>
-                            
-                            <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../assets/cosoundTitle.png')} />
+                        <View>
+                        <BackButton style= {{fontSize:30, marginTop:'10%', alignSelf:'flex-start', position:'absolute', marginLeft:'4%'}} onPress={()=> this.props.navigation.goBack()}/>
+                            <Logo color={'#ffffff'} style={styles.imgMainTitle} width="230px" height="44px" />
+
                             <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Are you...</Animatable.Text>
 
                             <Animatable.View ref={'view1'} style={{ marginBottom: '5%' }}>

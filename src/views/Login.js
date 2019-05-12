@@ -10,6 +10,7 @@ import CustomFooter from '../components/common/CustomFooter'
 import { checkError } from "../utils";
 // import Animation from './animation';
 import Logo from './common/logo';
+import BackButton from './common/BackButton';
 import WaveAnimation from './common/WaveAnimation';
 
 
@@ -18,8 +19,15 @@ export default class Login extends Component {
     constructor(props) {
         super(props);
     }
-     fadeIn = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished':" cancelled"))
+     fadeInMainView = () => this.refs.mainView.fadeIn(2000).then(endState => console.log(endState.finished ? 'fadein finished':" cancelled"))
      fadeIn = () => this.refs.titleText.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished':" cancelled"))
+    
+     fadeInDownHeader = () => this.refs.headerView.fadeInDown(1000);
+
+     componentDidMount(){
+         this.fadeInDownHeader();
+         this.fadeInMainView();
+     }
 
     render() {
         const { data, errors, handleChange, login, onSubmit, fetching,navigateToForgotPassword,navigateToGetStartedView, onClickRememberMe } = this.props;
@@ -31,9 +39,9 @@ export default class Login extends Component {
                  <Animatable.View ref={"mainView"} style={[styles.container, {backgroundColor:'transparent',position:'absolute', top:0, width:'100%' } ]}>
                          <View style={{ backgroundColor: 'transparant' }}>
 
-                        <View style={{ flexDirection: 'row', flex:1}}>
-                             
-                            <Logo color={'#ffffff'} style={{flex:0.3, marginTop:'13%', marginLeft:'5%'}} width="130px" height="44px" />                           
+                        <Animatable.View ref={"headerView"} style={{ flexDirection: 'row', flex:1}}>
+                        <BackButton style={{fontSize:30, marginTop:'15%', alignSelf:'flex-start'}} onPress={()=> this.props.navigation.goBack()}/>
+                            <Logo color={'#ffffff'} style={{ marginTop:'13%',flex:0.5}} width="130px" height="44px" />                           
                             <View style={styles.leftView}>
                                 <Animatable.Text animation="fadeInDown" style={styles.textDull}>Don't have an account?</Animatable.Text>
                                 <TouchableOpacity onPress={navigateToGetStartedView}>
@@ -41,7 +49,7 @@ export default class Login extends Component {
                                 </TouchableOpacity>
                             </View>
 
-                        </View>
+                        </Animatable.View>
 
         
 

@@ -40,13 +40,15 @@ class Signup extends React.Component {
             handleChange={handleChange}
             confirmLocation={confirmLocation}
             retrieveLocation={retrieveLocation}
+            navigation={this.props.navigation}
           />
         );
       case 2:
-        return <SignupStep2 handleChange={handleChange} />;
+        return <SignupStep2 handleChange={handleChange} navigation={this.props.navigation} />;
       case 3:
         return (
           <SignupStep3
+            navigation={this.props.navigation}
             data={data}
             signup={signup}
             genres={genres}

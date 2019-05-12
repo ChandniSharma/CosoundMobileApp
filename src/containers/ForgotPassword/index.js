@@ -89,6 +89,7 @@ class ForgotPassword extends React.PureComponent {
     return (
       <ForgotPasswordComponent
         data={data}
+        navigation={this.props.navigation}
         errors={errors}
         onSubmit={this._onSubmit}
         forgotPassword={forgotPassword}

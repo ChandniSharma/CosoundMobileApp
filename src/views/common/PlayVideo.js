@@ -6,13 +6,17 @@ import React, { Component } from "react";
 import VideoPlayer from 'react-native-video-controls';
 
 export default class PlayVideo extends Component {
+
     render() {
+        const source = this.props.sources;
         return (
             <View style= {{flex:1, backgroundColor:'yellow'}}>
-                {/* <VideoPlayer
-    source={{ uri: 'https://vjs.zencdn.net/v/oceans.mp4' }}
-    navigator={ this.props.navigator }
-/> */}
+                <VideoPlayer
+                source={{ uri: source.path }}
+                paused={true}
+                repeat={false}  
+                // poster={require('../../assets/homepage-video-placeholder.jpg')}
+            />
             </View>
         )
     }

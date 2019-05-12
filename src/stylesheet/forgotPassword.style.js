@@ -11,13 +11,13 @@ export default{
     container: {
         flex: 1,
     },
+   
     leftView:{
-        marginTop:'15%',
-        alignSelf:'flex-end',
-        flex:0.4,
+        marginTop:'13%',
+        // alignSelf:'flex-end',
+        flex:0.5,
        // backgroundColor:'red'
     },
-
     imgSideTitle: {
         color: 'white',
        // fontSize: 21,
@@ -28,12 +28,16 @@ export default{
         width:50,
         height:40
     },
-    textDull:{
-        color:'rgba(255,255,255,0.72)',
-        fontFamily:'Montserrat-Regular',
-       // fontWeight:'200',
-        fontSize:12,
-    },
+  
+        textDull:{
+            color:'rgba(255,255,255,0.72)',
+            fontFamily:'Montserrat-Regular',
+           // fontWeight:'200',
+            fontSize:12,
+             alignSelf:'flex-end',
+            marginRight:'5%'
+        },
+    
     getStarted:{
         color:'white',
         fontFamily:'Montserrat-Regular',

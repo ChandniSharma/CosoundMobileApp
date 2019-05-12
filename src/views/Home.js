@@ -9,27 +9,8 @@ import {SafeAreaView} from 'react-navigation';
 import * as Animatable from 'react-native-animatable';
 import CustomFooter from '../components/common/CustomFooter';
 import SignupStep1 from './SignupStep1';
-import Svg,{
-    Circle,
-    Ellipse,
-    G,
-    TSpan,
-    TextPath,
-    Path,
-    Polygon,
-    Polyline,
-    Line,
-    Rect,
-    Use,
-    Symbol,
-    Defs,
-    LinearGradient,
-    RadialGradient,
-    Stop,
-    ClipPath,
-    Pattern,
-    Mask,
-} from 'react-native-svg';
+import WaveAnimation from './common/WaveAnimation';
+import Logo from './common/logo';
 
 
 const { width, height } = Dimensions.get('window');
@@ -48,9 +29,12 @@ export default class Home extends React.Component {
         this.arrayFooterTitles = ["FOOTER MENU 1", "FOOTER MENU 2", "FOOTER MENU 3"];
     }
     //fadeInLoginView = () => this.refs.loginView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished':" cancelled"))
+    fadeInMainView = () => this.refs.mainView.fadeIn(2000).then(endState => this.fadeInVideoView())
+    fadeInVideoView = () => this.refs.videoView.fadeInRight(1000).then(endState => console.log(endState.finished ? 'fadein finished':" cancelled"))
+
 
     componentDidMount(){
-     //  this.fadeInLoginView();
+       this.fadeInMainView();
     }
     navigateToLogin = () =>{
         this.props.navigation.navigate("Login")
@@ -69,62 +53,10 @@ export default class Home extends React.Component {
         }
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom:'never' }} style={homeStyle.container}>
-               <KeyboardAwareScrollView style={{backgroundColor:'rgb(245,245,245)'}}>
-               <Svg
-    viewBox="0 0 1920 680"
-    version="1.1"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlnsXlink="http://www.w3.org/1999/xlink"
-  >
-    <Defs>
-      <LinearGradient
-        x1="98.7626139%"
-        y1="5.50013715%"
-        x2="-5.36336263%"
-        y2="82.3432999%"
-        id="linearGradient-home-1"
-      >
-        <Stop stopColor="#2CC1A5" offset="0%" />
-        <Stop stopColor="#1CA9B4" offset="45.2143426%" />
-        <Stop stopColor="#8E5ACD" offset="100%" />
-        <Animate
-          attributeName="x2"
-          dur="4s"
-          from="-5.36336263%"
-          to="-5.36336263%"
-          values="-5.36336263%;30%;-5.36336263%"
-          repeatCount="indefinite"
-        />
-      </LinearGradient>
-    </Defs>
-    <G id="1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-      <G id="Fill-2" fill="url(#linearGradient-home-1)">
-        <Path
-          d="M1920,580.047047 C1869.6412,593.554757 1817.48884,598.299313 1765.37406,595.243269 C1709.84683,591.986579 1655.23193,580.488595 1601.46451,566.690555 C1547.21567,552.768568 1492.08825,538.797604 1439.00523,520.951108 C1343.62574,488.877556 1242.76847,464.691452 1141.74662,479.660584 C1029.83835,496.238947 938.119328,560.79878 844.064913,618.621944 C789.296033,652.295001 730.943157,676.748363 665.85561,678.969243 C604.904931,681.04784 550.377516,658.571547 499.543868,626.711961 C456.822554,599.936728 416.97161,568.373675 371.363886,546.423464 C326.824799,524.987476 278.254008,514.791868 228.855141,517.065113 C147.669928,520.791377 71.1849532,552.895483 -1.24344979e-14,591.781309 L0,0 L1920,0 L1920,580.047057 Z"
-          id="hero-bg-1"
-        >
-          <Animate
-            attributeName="d"
-            begin="0s"
-            dur="12s"
-            repeatCount="indefinite"
-            from="M1920,580.047047 C1869.6412,593.554757 1817.48884,598.299313 1765.37406,595.243269 C1709.84683,591.986579 1655.23193,580.488595 1601.46451,566.690555 C1547.21567,552.768568 1492.08825,538.797604 1439.00523,520.951108 C1343.62574,488.877556 1242.76847,464.691452 1141.74662,479.660584 C1029.83835,496.238947 938.119328,560.79878 844.064913,618.621944 C789.296033,652.295001 730.943157,676.748363 665.85561,678.969243 C604.904931,681.04784 550.377516,658.571547 499.543868,626.711961 C456.822554,599.936728 416.97161,568.373675 371.363886,546.423464 C326.824799,524.987476 278.254008,514.791868 228.855141,517.065113 C147.669928,520.791377 71.1849532,552.895483 -1.24344979e-14,591.781309 L0,0 L1920,0 L1920,580.047057 Z"
-            to="M1920,597.517629 C1881.92467,586.048028 1840.69286,560.717814 1783.04688,576.082411 C1699.90625,598.242187 1653.35937,632.484375 1594.53906,632.484375 C1535.71875,632.484375 1479.51279,597.940378 1429.61719,576.082411 C1337.08594,535.546875 1287.40625,506.435184 1171.85937,506.435184 C1056.3125,506.435184 942.117187,530.757813 882.375,576.082411 C822.632812,621.40701 803.4375,655.671875 732.421875,684.054688 C661.40625,712.4375 603.601562,693.382812 551.414062,673.632812 C499.226562,653.882812 479.921875,602.851562 430.601562,576.082411 C381.28125,549.31326 296.267675,548.786511 245.65625,557.820312 C160.437345,573.031319 76.1567738,635.043931 -1.24344979e-14,685.620764 L0,0 L1920,0 L1920,597.517629 Z"
-            values={`
-            		M1920,580.047047 C1869.6412,593.554757 1817.48884,598.299313 1765.37406,595.243269 C1709.84683,591.986579 1655.23193,580.488595 1601.46451,566.690555 C1547.21567,552.768568 1492.08825,538.797604 1439.00523,520.951108 C1343.62574,488.877556 1242.76847,464.691452 1141.74662,479.660584 C1029.83835,496.238947 938.119328,560.79878 844.064913,618.621944 C789.296033,652.295001 730.943157,676.748363 665.85561,678.969243 C604.904931,681.04784 550.377516,658.571547 499.543868,626.711961 C456.822554,599.936728 416.97161,568.373675 371.363886,546.423464 C326.824799,524.987476 278.254008,514.791868 228.855141,517.065113 C147.669928,520.791377 71.1849532,552.895483 -1.24344979e-14,591.781309 L0,0 L1920,0 L1920,580.047057 Z;
-                M1920,597.517629 C1881.92467,586.048028 1840.69286,560.717814 1783.04688,576.082411 C1699.90625,598.242187 1653.35937,632.484375 1594.53906,632.484375 C1535.71875,632.484375 1479.51279,597.940378 1429.61719,576.082411 C1337.08594,535.546875 1287.40625,506.435184 1171.85937,506.435184 C1056.3125,506.435184 942.117187,530.757813 882.375,576.082411 C822.632812,621.40701 803.4375,655.671875 732.421875,684.054688 C661.40625,712.4375 603.601562,693.382812 551.414062,673.632812 C499.226562,653.882812 479.921875,602.851562 430.601562,576.082411 C381.28125,549.31326 296.267675,548.786511 245.65625,557.820312 C160.437345,573.031319 76.1567738,635.043931 -1.24344979e-14,685.620764 L0,0 L1920,0 L1920,597.517629 Z;
-                M1920,580.047047 C1869.6412,593.554757 1817.48884,598.299313 1765.37406,595.243269 C1709.84683,591.986579 1655.23193,580.488595 1601.46451,566.690555 C1547.21567,552.768568 1492.08825,538.797604 1439.00523,520.951108 C1343.62574,488.877556 1242.76847,464.691452 1141.74662,479.660584 C1029.83835,496.238947 938.119328,560.79878 844.064913,618.621944 C789.296033,652.295001 730.943157,676.748363 665.85561,678.969243 C604.904931,681.04784 550.377516,658.571547 499.543868,626.711961 C456.822554,599.936728 416.97161,568.373675 371.363886,546.423464 C326.824799,524.987476 278.254008,514.791868 228.855141,517.065113 C147.669928,520.791377 71.1849532,552.895483 -1.24344979e-14,591.781309 L0,0 L1920,0 L1920,580.047057 Z
-            		`}
-          />
-        </Path>
-      </G>
-    </G>
-  </Svg>
-                    <View style={{ backgroundColor: this.state.titleColorLoginButton }}>
-                        {/* <Image
-                        source={require('../assets/logo.svg')}
-                        style={{ width: width, height: 200}}
-                    /> */}
+               <KeyboardAwareScrollView style={{backgroundColor:'rgb(245,245,245)', flex:1}}>
+              <WaveAnimation />
+              <Animatable.View ref={"mainView"} style={[{flex:1}, {backgroundColor:'transparent',position:'absolute', top:0, width:'100%' } ]}>
+
                         <View style={{ flexDirection: 'row', flex: 1 }}>
                             {/* <Text style={homeStyle.textSideTitle}>cosound</Text> */}
                             <Image style={homeStyle.imgSideTitle} />
@@ -134,7 +66,8 @@ export default class Home extends React.Component {
                             </TouchableOpacity>
                         </View>
 
-                        <Animatable.Image animation="fadeInDown" style={homeStyle.imgMainTitle} source={require('../assets/cosoundTitle.png')}/>
+                        <Logo color={'#ffffff'} style={{ flex: 0.7,alignSelf: 'center', }} width="260px" height="100px" />
+
                         <Animatable.Text animation="fadeInDown" style={homeStyle.textMusicDescription}> The music industry network and</Animatable.Text>
                         <Animatable.Text animation="fadeInDown" style={homeStyle.textMusicDescription2}>marketplace</Animatable.Text>
 
@@ -148,8 +81,11 @@ export default class Home extends React.Component {
                             </TouchableHighlight>
 
                         </View>
-                    </View>
-                    <Image style={homeStyle.videoStyle} source={require('../assets/homepage-video-placeholder.jpg')} />
+                   
+                   <Animatable.View ref={"videoView"} style={homeStyle.videoStyle}>
+                        <Image source={require('../assets/homepage-video-placeholder.jpg')} />
+                   </Animatable.View>
+                   
                     {/* <Video source={require('../assets/test.mp4')}   // Can be a URL or a local file.
                         ref={(ref) => {
                             this.player = ref
@@ -189,6 +125,7 @@ export default class Home extends React.Component {
 
                         <Text style={homeStyle.textBottomMark}>(c) elit. Nulla 2018</Text>
                     </View>
+                    </Animatable.View>
                 </KeyboardAwareScrollView>
                
             </SafeAreaView>)

@@ -60,17 +60,28 @@ class CommentList extends React.PureComponent {
       showComments,
       fetchComment,
       deleteComment,
-      _deleteComment
+      _deleteComment,
+      page, 
+      page_count, 
+      callApi
     } = this.props;
     const { data } = fetchComment;
+    console.log(" comment list data ===", data);
     return (
 
 <View>
 <FlatList
-              data={this.state.arrayCommentData}
-              renderItem={this.renderCommentItem}
-              keyExtractor={(item, index) => index.toString()}
-          />
+      data={data}
+      renderItem={this.renderCommentItem}
+      keyExtractor={(item, index) => index.toString()}
+  />
+    {!isEmpty(data) && !callingAPI && page !== page_count && !isNull(page_count) && !callApi(
+        <View style={styles.viewMore}>
+            <TouchableHighlight underlayColor="#25b6ad" style={[styles.seeMoreBtn]} onPress={loadMore}>
+                <Text style={styles.textViewMore} > {callingAPI ? "Fetching..." : "View More..."}</Text>
+            </TouchableHighlight>
+        </View>
+    )}
 </View>
 
       // <React.Fragment>
@@ -100,8 +111,8 @@ class CommentList extends React.PureComponent {
 
 export default CommentList;
 
-const styles = {
-  loadMoreButton: {
-    textAlign: "center"
-  }
-};
+// const styles = {
+//   loadMoreButton: {
+//     textAlign: "center"
+//   }
+// };

@@ -12,6 +12,8 @@ import SimplePicker from 'react-native-simple-picker';
 import SelectInput from 'react-native-select-input-ios'
 import { countries } from '../utils/countries';
 import WaveAnimation from './common/WaveAnimation';
+import Logo from './common/logo';
+import BackButton from './common/BackButton';
 
 const { width, height } = Dimensions.get('window');
   
@@ -25,15 +27,19 @@ export default class SignupStep1 extends Component {
     bounceInTxt = () => this.refs.viewTxtInput.bounceIn(2000).then(endState => endState.finished ? "finish ": console.log('finish not'));
     bounceInBtn = () => this.refs.viewBtn.bounceIn(2000).then(endState => console.log(endState.finished ? " bounceInFinish" : "cancel bounceIn"))
     fadeInProgressBarView = () => this.refs.progressBarView.fadeIn(2000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+   
     navigateToSignupStep2 = () =>{
         this.props.navigation.navigate("SignupStep2");
     }
+    fadeInDownHeader = () => this.refs.headerView.fadeInDown(1000);
 
 
     componentDidMount(){
         this.bounceInTxt();
         this.bounceInBtn();
         this.fadeInProgressBarView();
+        // this.fadeInDownHeader();
+        //this.fadeInMainView();
     }
 
     render() {
@@ -56,17 +62,15 @@ export default class SignupStep1 extends Component {
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>
-                <WaveAnimation /> 
-                    <Animatable.View ref={"mainView"} style={[styles.container,{position:'absolute', top:0, width:'100%'}]}>
-                        <View style={{ backgroundColor: 'pink' }}>
-                        </View>
-                        <View style={{ backgroundColor: 'rgb(37,182,173)' }}>
-                            <View style={{ flexDirection: 'row', flex: 1 }}>
-                                <Image style={styles.imgSideTitle} />
-                                <View style={{ flex: 0.3 }} />
+                {/* <View ref={"mainView"} style={styles.container}>
 
-                            </View>
-                            <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../assets/cosoundTitle.png')} />
+                <WaveAnimation />  */}
+                    <Animatable.View ref={"mainView"} style={[styles.container]}>
+                       
+                        <View>
+                        <BackButton style= {{fontSize:30, marginTop:'10%', alignSelf:'flex-start', position:'absolute', marginLeft:'4%'}} onPress={()=> this.props.navigation.goBack()}/>
+                        <Logo color={'#ffffff'} style={{ flex: 0.7,alignSelf: 'center', }} width="260px" height="100px" />
+                       
                             <Animatable.Text animation="fadeInDown" style={styles.textWelcome}> Welcome, user!</Animatable.Text>
 
                             <Animatable.Text animation="fadeInDown" style={styles.textMusicDescription}> The music industry network and</Animatable.Text>
@@ -140,7 +144,7 @@ export default class SignupStep1 extends Component {
                         </Animatable.View>
 
                     </Animatable.View>
-
+{/* </View> */}
                 </KeyboardAwareScrollView>
                 <CustomFooter />
             </SafeAreaView>

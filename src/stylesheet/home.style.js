@@ -174,7 +174,7 @@ export default {
         shadowRadius: 1,
         //margin: '15%',
         width:345,
-        height:229,
+        height:129,
         alignSelf:'center',
         marginTop:'10%',
         marginBottom:'10%',
