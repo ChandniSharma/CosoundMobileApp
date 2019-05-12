@@ -8,6 +8,7 @@ import {SafeAreaView} from 'react-navigation';
 import CustomFooter from '../components/common/CustomFooter';
 import { isEmpty } from "lodash";
 import WaveAnimation from './common/WaveAnimation';
+import BackButton from './common/BackButton';
 
 export default class RecoverPwd extends Component {
     constructor(props) {
@@ -29,16 +30,11 @@ export default class RecoverPwd extends Component {
                 <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>
                 <WaveAnimation /> 
                     <Animatable.View style={{ flex: 1, backgroundColor: 'rgb(245,245,245)',position:'absolute', top:0, width:'100%' }}>
-                        <View style={{ backgroundColor: 'pink' }}>
-                            {/* <SvgUri
-                    width="200"
-                    height="200"
-                    source={{uri:'http://thenewcode.com/assets/images/thumbnails/homer-simpson.svg'}}
-                    />  */}
-                        </View>
-                        <View style={{ backgroundColor: 'rgb(37,182,173)' }}>
+                       
+                        <View>
                             <View style={{ flexDirection: 'row', flex: 1 }}>
-                                <Image style={styles.imgSideTitle} />
+                            <BackButton style= {{fontSize:30, marginTop:'10%', alignSelf:'flex-start', position:'absolute', marginLeft:'4%'}} onPress={()=> this.props.navigation.goBack()}/>
+                            <Logo color={'#ffffff'} style={{flex:0.3, marginTop:'13%', marginLeft:'5%'}} width="130px" height="44px" />      
                                 <View style={{ flex: 0.3 }} />
                                 <View style={styles.leftView}>
                                     <Animatable.Text animation="fadeInDown" style={styles.textDull}>Don't have an account?</Animatable.Text>

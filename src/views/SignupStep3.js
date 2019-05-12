@@ -13,6 +13,8 @@ import { isNull } from "lodash";
 import MultiSelect from 'react-native-multiple-select';
 import DatePicker from 'react-native-datepicker';
 import WaveAnimation from './common/WaveAnimation';
+import BackButton from './common/BackButton';
+import Logo from './common/logo';
 
 const { height, width } = Dimensions.get('window');
 const deviceHeight = height;
@@ -106,8 +108,10 @@ export default class SignupStep3Musician extends Component {
         <WaveAnimation /> 
           <Animatable.View ref={"mainView"} style={[styles.container, {position:'absolute', top:0, width:'100%' }]}>
 
-            <View style={{ backgroundColor: 'rgb(37,182,173)' }}>
-              <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../assets/cosoundTitle.png')} />
+            <View>
+            <BackButton style= {{fontSize:30, marginTop:'10%', alignSelf:'flex-start', position:'absolute', marginLeft:'4%'}} onPress={()=> this.props.navigation.navigate('SignupStep2')}/>
+
+            <Logo color={'#ffffff'} style={{ flex: 0.7,alignSelf: 'center', }} width="260px" height="100px" />
               {data.type === 'professional' && <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>
                 Nice! Welcome
                     </Animatable.Text>

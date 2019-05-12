@@ -9,6 +9,7 @@ import {SafeAreaView} from 'react-navigation';
 import CustomFooter from '../components/common/CustomFooter'
 import CustomHeader from '../components/common/CustomHeader'
 import WaveAnimation from './common/WaveAnimation';
+import BackButton from './common/BackButton';
 
 var ImagePicker = require('react-native-image-picker');
 
@@ -97,7 +98,7 @@ export default class SignupStep3 extends Component {
              <KeyboardAwareScrollView style={{backgroundColor:'rgb(245,245,245)', flex:0.9}}>
              <WaveAnimation /> 
               <Animatable.View ref={"mainView"} style={[styles.container, {position:'absolute', top:0, width:'100%' } ]}>
-                  <View style={{ backgroundColor: 'rgb(37,182,173)' }}>
+                  <View>
                   <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../assets/cosoundTitle.png')} />
                   <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Nice Welcome!</Animatable.Text>
 

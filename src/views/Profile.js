@@ -20,6 +20,7 @@ import Icon4 from "react-native-vector-icons/Entypo";
 var ImagePicker = require('react-native-image-picker');
 import NewTest from './common/NewTest';
 import SideMenu from './common/SideMenu';
+import BackButton from './common/BackButton';
 
 //  import Icon from 'react-native-vector-icons/FontAwesome'
 
@@ -665,6 +666,7 @@ export default class ProfileComponent extends Component {
                         <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />
                     </TouchableOpacity>
 
+                    <BackButton style= {{fontSize:30, marginTop:'10%', alignSelf:'flex-start', position:'absolute', marginLeft:'4%'}} onPress={()=> this.props.navigation.goBack()}/>
 
                     <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
 

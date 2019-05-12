@@ -10,6 +10,7 @@ import CustomFooter from '../components/common/CustomFooter';
 import CustomHeader from '../components/common/CustomHeader'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import WaveAnimation from './common/WaveAnimation';
+import BackButton from './common/BackButton';
 
 
 const { width, height } = Dimensions.get('window');
@@ -47,9 +48,11 @@ export default class SignupStep5 extends Component {
          <WaveAnimation /> 
                     <Animatable.View ref={"mainView"} style={{flex:0.9,position:'absolute', top:0, width:'100%' }}>
                        
-                        <View style={{ backgroundColor: 'rgb(37,182,173)' }}>
-                            
-                            <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../assets/cosoundTitle.png')} />
+                        <View>
+                        <BackButton style= {{fontSize:30, marginTop:'10%', alignSelf:'flex-start', position:'absolute', marginLeft:'4%'}} onPress={()=> this.props.navigation.goBack()}/>
+                        <Logo color={'#ffffff'} style={{ flex: 0.7,alignSelf: 'center', }} width="260px" height="100px" />
+
+                            {/* <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../assets/cosoundTitle.png')} /> */}
                             <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Finding your network suggestions...</Animatable.Text>
 
                             <Animatable.View ref={'view1'} style={{ marginBottom: '5%' }}>

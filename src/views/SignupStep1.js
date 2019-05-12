@@ -62,11 +62,9 @@ export default class SignupStep1 extends Component {
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>
-                {/* <View ref={"mainView"} style={styles.container}>
-
-                <WaveAnimation />  */}
+                <WaveAnimation > 
                     <Animatable.View ref={"mainView"} style={[styles.container]}>
-                       
+                        
                         <View>
                         <BackButton style= {{fontSize:30, marginTop:'10%', alignSelf:'flex-start', position:'absolute', marginLeft:'4%'}} onPress={()=> this.props.navigation.goBack()}/>
                         <Logo color={'#ffffff'} style={{ flex: 0.7,alignSelf: 'center', }} width="260px" height="100px" />
@@ -144,6 +142,7 @@ export default class SignupStep1 extends Component {
                         </Animatable.View>
 
                     </Animatable.View>
+</WaveAnimation>
 {/* </View> */}
                 </KeyboardAwareScrollView>
                 <CustomFooter />

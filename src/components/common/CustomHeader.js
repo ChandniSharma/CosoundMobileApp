@@ -3,14 +3,14 @@ import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dim
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
-
+import Logo from '../../views/common/logo';
 
 export default class CustomHeader extends Component {
     render() {
 
         return (
             <LinearGradient colors={['rgb(42, 173,177)', 'rgb(83,157,179)', 'rgb(55,169,177)']} style={{flexDirection: 'row', height: scale(94) }}>
-                {/* <Image style={styles.imgSideTitle} /> */}
+                 <Logo color={'#ffffff'} style={{flex:0.3, marginTop:'13%', marginLeft:'5%'}} width="130px" height="44px" /> 
                 <View style={{width:'80%'}}/>
                 <TouchableOpacity style={styles.bellButton } onPress = {this.props.showNotificationView} >
                     <Image style={styles.bellIcon} source={require('../../../src/assets/Image/Bell128.png')} />
