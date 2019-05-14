@@ -8,6 +8,10 @@ import * as Animatable from 'react-native-animatable';
 import { SafeAreaView } from 'react-navigation';
 import CustomFooter from '../components/common/CustomFooter';
 import CustomHeader from '../components/common/CustomHeader'
+import Logo from './common/logo';
+import WaveAnimation from './common/WaveAnimation';
+
+import BackButton from './common/BackButton';
 
 
 const { width, height } = Dimensions.get('window');
@@ -88,12 +92,14 @@ export default class SignupStep5 extends Component {
 
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 <ScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 1 }}>
+                <WaveAnimation /> 
+                    <Animatable.View ref={"mainView"} style={{ flex: 0.9 , marginTop:'-175%'}}>
+                        {/* <CustomHeader /> */}
+                        <View style={{ backgroundColor: 'transparent' }}>
+                        <BackButton style= {{fontSize:30, marginTop:'10%', alignSelf:'flex-start', position:'absolute', marginLeft:'4%'}} onPress={()=> this.props.navigation.goBack()}/>
+                            <Logo color={'#ffffff'} style={styles.imgMainTitle} width="230px" height="44px" />
 
-                    <Animatable.View ref={"mainView"} style={{ flex: 0.9 }}>
-                        <CustomHeader />
-                        <View style={{ backgroundColor: 'rgb(37,182,173)' }}>
-
-                            <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../assets/cosoundTitle.png')} />
+                            {/* <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../assets/cosoundTitle.png')} /> */}
                             <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Please select Plan ..</Animatable.Text>
 
 

@@ -4,6 +4,7 @@ import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import Logo from '../../views/common/logo';
+import Icon2 from "react-native-vector-icons/EvilIcons";
 
 export default class CustomHeader extends Component {
     render() {
@@ -13,7 +14,9 @@ export default class CustomHeader extends Component {
                  <Logo color={'#ffffff'} style={{flex:0.3, marginTop:'13%', marginLeft:'5%'}} width="130px" height="44px" /> 
                 <View style={{width:'80%'}}/>
                 <TouchableOpacity style={styles.bellButton } onPress = {this.props.showNotificationView} >
-                    <Image style={styles.bellIcon} source={require('../../../src/assets/Image/Bell128.png')} />
+                <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />
+
+                    {/* <Image style={styles.bellIcon} source={require('../../../src/assets/Image/Bell128.png')} /> */}
                 </TouchableOpacity>
 
                 <View style={{ flex: 0.3 }} />

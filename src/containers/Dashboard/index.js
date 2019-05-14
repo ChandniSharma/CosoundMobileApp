@@ -7,7 +7,7 @@ import { isNull } from "lodash";
 
 import { feedActions, postStatusActions } from "../../actions";
 
-import Dashboard from "../../views/Dashboard";
+import DashboardComponent from "../../views/Dashboard";
 
 //import { performWow } from "../../utils";
 
@@ -19,7 +19,7 @@ class Dashboard extends React.PureComponent {
     this._restCalls();
 
     const { user } = this.props;
-    const { get_stream_token, data } = user;
+    //const {  data } = user;
 
     /* getstream.io subscribe */
 
@@ -110,12 +110,13 @@ class Dashboard extends React.PureComponent {
   };
 
   render() {
-    const { user, feed } = this.props;
+    const { user, feed, navigation } = this.props;
 
     return (
-      <Dashboard
+      <DashboardComponent
+      navigation={navigation}
         user={user}
-        feed={feed}
+        userFeed={feed}      
         _restCalls={this._restCalls}
         fetchFeed={this._fetchFeed}
         resetUnreadCount={this._resetUnreadCount}
@@ -129,7 +130,8 @@ const mapStateToProps = state => {
   return {
     wow: state.wow,
     feed: state.feed,
-    enrich: state.enrich
+    enrich: state.enrich,
+    user: state.user
   };
 };
 

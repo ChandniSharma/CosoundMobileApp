@@ -191,7 +191,7 @@ export default{
         borderRadius: 22,
         height: 55,
         flex: 0.5,
-        alignItems: 'center',
+        // alignItems: 'center',
         justifyContent: 'center',
         shadowColor: 'rgba(0,0,0,0.12)',
         shadowOffset: {

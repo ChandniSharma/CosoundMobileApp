@@ -55,7 +55,7 @@ export default class Home extends React.Component {
             <SafeAreaView forceInset={{ top: 'never', bottom:'never' }} style={homeStyle.container}>
                <KeyboardAwareScrollView style={{backgroundColor:'rgb(245,245,245)', flex:1}}>
               <WaveAnimation />
-              <Animatable.View ref={"mainView"} style={[{flex:1}, {backgroundColor:'transparent',position:'absolute', top:0, width:'100%' } ]}>
+              <Animatable.View ref={"mainView"} style={[{flex:1}, {backgroundColor:'transparent', top:0, width:'100%', position:'absolute' } ]}>
 
                         <View style={{ flexDirection: 'row', flex: 1 }}>
                             {/* <Text style={homeStyle.textSideTitle}>cosound</Text> */}
@@ -93,12 +93,14 @@ export default class Home extends React.Component {
                         onBuffer={this.onBuffer}                // Callback when remote video is buffering
                         onError={this.videoError}               // Callback when video cannot be loaded
                         style={homeStyle.backgroundVideo} /> */}
-
-                    <Text style={homeStyle.textTitleJoin}> Join for free</Text>
+<View style={{marginTop:'35%'}}>
+<Text style={homeStyle.textTitleJoin}> Join for free</Text>
                     <Text style={homeStyle.textDescriptionJoin}> Cosound is the world's first music industry only platform. Built for music industry professionals, musicians and business. Join today for free, and begin sharing, collaborating and developing your career </Text>
 
                     <Image style={homeStyle.mobileImage} source={require('../assets/prefooterMobile.png')} />
 
+</View>
+                    
                     <View style={homeStyle.viewBottom}>
                         <View style={homeStyle.viewFooterSocialShareOption}>
                             <Image style={homeStyle.imgBottomCosound} source={require('../assets/bottomCosound.png')}/>

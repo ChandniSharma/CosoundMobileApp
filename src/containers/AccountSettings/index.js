@@ -9,7 +9,7 @@ import { isError, fixRotationOfFile } from "../../utils";
 import { userActions, genreActions } from "../../actions";
 
 //import { AccountSettingsTabs } from "../../components";
-import AccountSettingsTabs from "../../views/AccountSettingsTabs";
+import Account from "../../views/Account";
 
 const tabs = [
   { id: 0, name: "Contact information" },
@@ -82,7 +82,7 @@ class AccountSettings extends React.PureComponent {
     } = this.props;
 
     return (
-      <AccountSettingsTabs
+      <Account
         tabs={tabs}
         user={user}
         genres={genres}

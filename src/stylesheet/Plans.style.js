@@ -10,12 +10,18 @@ export default {
     container: {
         flex: 1,
     },
-    imgMainTitle: {
+    imgMainTitle:{
         alignSelf: 'center',
-        width: 200,
-        height: 40,
-        marginTop: '25%',
+        width:200,
+        height:40,
+        marginTop:'10%',
     },
+    // imgMainTitle: {
+    //     alignSelf: 'center',
+    //     width: 200,
+    //     height: 40,
+    //     marginTop: '25%',
+    // },
     textWelcome: {
         color: 'white',
         fontSize: 28,

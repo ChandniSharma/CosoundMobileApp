@@ -23,7 +23,7 @@ import SignupStep3Musician from './src/views/SignupStep3Musician';
 import Plans from './src/views/Plans';
 //import Profile from './src/views/Profile';
 import Profile from './src/containers/Profile';
-import Dashboard from './src/views/Dashboard';
+import Dashboard from './src/containers/Dashboard';
 import Navigator from './src/Navigator';
 import AdvancedSearchView from './src/views/AdvancedSearchView';
 //import Notification from "./src/views/Notification"; 
@@ -53,7 +53,7 @@ const AppStackNavigator = createStackNavigator({
      SocialShare:{screen: SocialShare},
      PlayVideo:{screen:PlayVideo}
 }, {
-        initialRouteName: 'Login',
+        initialRouteName: 'Home',
         gesturesEnabled: false,
         headerMode: 'none',
     })

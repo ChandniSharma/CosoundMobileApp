@@ -39,7 +39,7 @@ export default class Account extends Component {
             headerColor: ['rgb(42, 173,177)', 'rgb(93, 152, 179)'],
             isContactInfoClick: false,
             isDropDownclick: false,
-            isSideMenuClick: true,
+            isSideMenuClick: false,
             isSearchbarDataShow: false,
             isCrossClick: false,
             active: false,

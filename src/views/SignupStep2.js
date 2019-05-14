@@ -31,9 +31,9 @@ export default class SignupStep2 extends Component {
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
          <ScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex:1 }}>
          <WaveAnimation /> 
-                    <Animatable.View ref={"mainView"} style={[styles.container,{position:'absolute', top:0, width:'100%'} ]}>
+                    <Animatable.View ref={"mainView"} style={[styles.container,{ width:'100%', marginTop:'-175%'} ]}>
                         <View>
-                        <BackButton style= {{fontSize:30, marginTop:'10%', alignSelf:'flex-start', position:'absolute', marginLeft:'4%'}} onPress={()=> this.props.navigation.goBack()}/>
+                        <BackButton style= {{fontSize:30, marginTop:'10%', alignSelf:'flex-start', position:'absolute', marginLeft:'4%'}} onPress={()=> this.props.navigation.navigate('Login')}/>
                             <Logo color={'#ffffff'} style={styles.imgMainTitle} width="230px" height="44px" />
 
                             <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Are you...</Animatable.Text>

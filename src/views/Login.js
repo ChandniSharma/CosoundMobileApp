@@ -12,7 +12,8 @@ import { checkError } from "../utils";
 import Logo from './common/logo';
 import BackButton from './common/BackButton';
 import WaveAnimation from './common/WaveAnimation';
-
+import Icon from 'react-native-vector-icons/EvilIcons';
+import Icon1 from 'react-native-vector-icons/Entypo';
 
 
 export default class Login extends Component {
@@ -34,7 +35,7 @@ export default class Login extends Component {
         const error = checkError(login.error);
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom:'never' }} style={styles.container}>
-               <KeyboardAwareScrollView style={{backgroundColor:'transparent', flex:0.9}}>
+               <KeyboardAwareScrollView style={{backgroundColor:'rgb(245, 245,245)', flex:0.9}}>
                <WaveAnimation /> 
                  <Animatable.View ref={"mainView"} style={[styles.container, {backgroundColor:'transparent',position:'absolute', top:0, width:'100%' } ]}>
                          <View style={{ backgroundColor: 'transparant' }}>
@@ -99,16 +100,27 @@ export default class Login extends Component {
 
                         <View style={styles.socialMediaLoginView}>
                             <TouchableHighlight underlayColor="#25b6ad" style={styles.buttonLeft}>
-                                <Text style={styles.fbText}>Facebook login</Text>
+                            <View style={{flexDirection:'row'}}>
+                            <Icon name="sc-facebook" style={{fontSize:30, color:'rgb(72,103,170)', marginLeft:'2%'}}/>
+                            <Text style={styles.fbText}>Facebook login</Text>
+                            </View>
                             </TouchableHighlight>
                             <TouchableHighlight underlayColor="#25b6ad" style={styles.buttonRight}>
-                                <Text style={styles.twitterText}>Twitter login</Text>
+                            <View style={{flexDirection:'row'}}>
+                            <Icon name="sc-twitter" style={{fontSize:30, color:'rgb(27, 161,243)', marginLeft:'2%'}}/>
+                            <Text style={styles.twitterText}>Twitter login</Text>
+                            </View>
+                                
                             </TouchableHighlight>
                        </View>
 
                        <View style={styles.viewCenterButton}>
                        <TouchableHighlight underlayColor="#25b6ad" style={styles.buttonCenter}>
-                               <Text style={styles.googlePlusText}>Google login</Text>
+                       <View style={{flexDirection:'row'}}>
+                            <Icon1 name="google-" style={{fontSize:20, color:'rgb(234,67,54)', marginRight:'2%'}}/>
+                            <Text style={styles.googlePlusText}>Google login</Text>
+                            </View>
+                              
                         </TouchableHighlight>
                        </View>
                       

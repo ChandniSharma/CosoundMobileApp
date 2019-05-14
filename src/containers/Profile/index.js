@@ -57,10 +57,11 @@ class Profile extends React.PureComponent {
   };
 
   render() {
-    const { user, userFeed, userFeedActions, myMusic, myImages } = this.props;
+    const { user, userFeed, userFeedActions, myMusic, myImages, navigation } = this.props;
 
     return (
       <ProfileComponent
+      navigation={navigation}
         user={user}
         myMusic={myMusic}
         userFeed={userFeed}

@@ -277,7 +277,7 @@ const tracks = {};
                         borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10, justifyContent: 'center',
                         alignItems: "center", flexDirection: 'row', height: 40, width: 160
                     }} onPress={this._showCommentList.bind(this)}>
-                        <Icon3 name="comment" style={{ fontSize:20, color: "#d3d3d3",  marginRight:'2%' }} />
+                        <Icon3 name="comment" style={{ fontSize:20, color: "#d3d3d3",  marginRight:'5%' }} />
                          <Text style={styles.textCommentCount}>9 Comments</Text>
                         <View style={{
                             marginLeft: 10, flex: 1, borderRadius: 60, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
@@ -626,15 +626,15 @@ const tracks = {};
             preload="none"
             controls
             width={"100%"}
-            height={"100%"}
+            height={'20%'}
             poster={
               !isNull(media.metadata) && !isNull(media.metadata.thumbnail)
                 ? media.metadata.thumbnail
                 : poster
             }
             sources= {media}//{JSON.stringify(media)}
-            options={JSON.stringify(config)}
-            tracks={JSON.stringify(tracks)}
+            // options={JSON.stringify(config)}
+            // tracks={JSON.stringify(tracks)}
           />
         );
       case "audio":
@@ -837,7 +837,7 @@ const tracks = {};
                 </TouchableOpacity>
             </View>
             <TouchableOpacity style={{
-                flex: 1, borderRadius: 20, borderWidth: 1, borderColor: "#F1F1F1", padding: 10,
+                flex: 1, borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
                 justifyContent: 'center', alignItems: "center", height: 40
             }}>
                 <Icon4 name="forward" style={{fontSize:20, color: "#8e8e8e" }} />

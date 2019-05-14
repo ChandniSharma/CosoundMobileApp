@@ -14,9 +14,11 @@ import MusicList from './common/MusicList';
 import ImagesList from './common/ImagesList';
 import Posts from './common/Posts';
 import Hamburger from 'react-native-hamburger';
+import Icon1 from "react-native-vector-icons/AntDesign";
 import Icon2 from "react-native-vector-icons/EvilIcons";
 import Icon3 from "react-native-vector-icons/FontAwesome";
 import Icon4 from "react-native-vector-icons/Entypo";
+
 var ImagePicker = require('react-native-image-picker');
 import NewTest from './common/NewTest';
 import SideMenu from './common/SideMenu';
@@ -477,7 +479,7 @@ export default class ProfileComponent extends Component {
                             </View>
                         </View>
                         <View style={{ width: "100%", backgroundColor: "#d3d3d6" }}>
-                            <Image style={{ width: "100%", height: 50 }} source={require('../assets/noise.gif')} />
+                            <Image style={{ width: "100%", height: 50, backgroundColor:'white' }} source={require('../assets/noise.gif')} />
                         </View>
                         <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
                             <Text style={styles.musicCurrentTime}>0.00</Text>
@@ -907,7 +909,12 @@ export default class ProfileComponent extends Component {
 
                         <View style={styles.viewPostButton}>
                             <TouchableHighlight style={[styles.postButton]} >
-                                <Text style={styles.textLoginButtonTitle}>Post -></Text>
+                            <View style={{flexDirection:'row'}}>
+                            <Text style={styles.textLoginButtonTitle}>Post</Text>
+                            <Icon1 name="arrowright" style={{ marginLeft:'1%',fontSize: 20, color: 'rgb(255, 38, 123)' }} />
+
+                            </View>
+
                             </TouchableHighlight>
                         </View>
                         { /* PostStatus End */}
@@ -959,7 +966,7 @@ export default class ProfileComponent extends Component {
                     </Animatable.View> : null}
 
                     {/* Side Menu button modal  */}
-                    {this.state.isSideMenuClick ? <SideMenu hidePopup={()=>this.hidePopup()} />:null}
+                    {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation} hidePopup={()=>this.hidePopup()} />:null}
                        
             </SafeAreaView>
 

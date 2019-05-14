@@ -14,7 +14,8 @@ export default class PlayVideo extends Component {
                 <VideoPlayer
                 source={{ uri: source.path }}
                 paused={true}
-                repeat={false}  
+                repeat={false} 
+                style={{width:'100%', height:200}} 
                 // poster={require('../../assets/homepage-video-placeholder.jpg')}
             />
             </View>

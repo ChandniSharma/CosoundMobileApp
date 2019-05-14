@@ -14,6 +14,7 @@ import Icon from "react-native-vector-icons/AntDesign";
 import Icon1 from "react-native-vector-icons/Entypo";
 import Icon2 from "react-native-vector-icons/EvilIcons";
 import Icon3 from "react-native-vector-icons/Ionicons";
+import Icon4 from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import SearchBar from 'react-native-search-bar'
 import Hamburger from 'react-native-hamburger';
@@ -24,13 +25,13 @@ export default class SideMenu extends Component {
         this.state = {
             isSearchbarDataShow: false,
             isCrossClick: false,
-            searchBarBgColor:'rgb(64,66, 67)',
-            searchTextColor:'white',
-            searchIconColor:'white',
-            textSearch:'',
-            
+            searchBarBgColor: 'rgb(64,66, 67)',
+            searchTextColor: 'white',
+            searchIconColor: 'white',
+            textSearch: '',
+
         }
-        this.arrayData = [{ name: 'Market', image: '', count: 0 }, { name: 'Messages', image: 'message', count: 3 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 },{ name: 'Logout', image: '', count: 0 }]
+        this.arrayData = [{ name: 'Account Settings', image: '', count: 0 }, { name: 'Plans', image: 'message', count: 0 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }, { name: 'Logout', image: '', count: 0 }]
 
     }
     componentDidMount() {
@@ -43,23 +44,23 @@ export default class SideMenu extends Component {
     zoomInPopup = () => this.refs.viewModalRef.zoomIn().then(endState => console.log(" now end zoomin"));
 
     onChangeSearchText = (text) => {
- console.log(" Lenth ===", text.length, "text ==",text);
-        if(text.length>0){
-            this.setState({ 
+        console.log(" Lenth ===", text.length, "text ==", text);
+        if (text.length > 0) {
+            this.setState({
                 isSearchbarDataShow: true,
-                searchBarBgColor:'white',
-                searchTextColor:'black',
-                searchIconColor:'black'
-             })
-        }else{
+                searchBarBgColor: 'white',
+                searchTextColor: 'black',
+                searchIconColor: 'black'
+            })
+        } else {
             this.setState({
                 isSearchbarDataShow: false,
-                searchBarBgColor:'rgb(64,66, 67)',
-                searchTextColor:'white',
-                searchIconColor:'white',
-             })
+                searchBarBgColor: 'rgb(64,66, 67)',
+                searchTextColor: 'white',
+                searchIconColor: 'white',
+            })
         }
-       
+
     }
     renderSearchRow = (item) => {
         console.log(" item is ", item);
@@ -83,15 +84,25 @@ export default class SideMenu extends Component {
         let viewNotification = <View />
 
         if (item.index === 0) {
-            icon = <Icon1 name="briefcase" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, color: 'white' }} />
+            
+            icon = <TouchableOpacity style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%' }}  onPress={()=>this.props.navigation.navigate('Account')}>
+            <Icon4 name="briefcase-outline" style={{ fontSize: 18, color: 'white' }} />
+        </TouchableOpacity>
+           
 
         } else if (item.index === 1) {
-            icon = <Icon1 color="white" name="message" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18 }} />
-            viewNotification = <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#424242', justifyContent: 'center' }}>
-                <Text style={styles.textModalData}>{item.item.count}</Text>
-            </View>
+            // icon = <Icon4 color="white" name="message-outline" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18 }} />
+            // viewNotification = <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#424242', justifyContent: 'center' }}>
+            //     <Text style={styles.textModalData}>{item.item.count}</Text>
+            // </View>
+            icon = <TouchableOpacity style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%' }}  onPress={()=>this.props.navigation.navigate('Plans')}>
+            <Icon4 name="message-outline" style={{fontSize: 18, color: 'white' }} />
+        </TouchableOpacity>
         } else if (item.index === 2) {
-            icon = <Icon name="user" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, tintColor: 'white' }} />
+            icon = <TouchableOpacity style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%' }}  onPress={()=>this.props.navigation.navigate('Profile')}>
+            <Icon name="user" color="white" style={{fontSize: 18, tintColor: 'white' }} />
+        </TouchableOpacity>
+           
 
         } else if (item.index === 3) {
             icon = <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, tintColor: 'white' }} />
@@ -103,14 +114,16 @@ export default class SideMenu extends Component {
             viewNotification = <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#424242', justifyContent: 'center' }}>
                 <Text style={styles.textModalData}>{item.item.count}</Text>
             </View>
-        }else if (item.index === 5) {
-            icon = <Icon name="logout" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, tintColor: 'white' }} />
-           
+        } else if (item.index === 5) {
+            icon = <TouchableOpacity style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%' }}  onPress={()=>this.props.navigation.navigate('Login')}>
+                    <Icon name="logout" color="white" style={{fontSize: 18, tintColor: 'white' }} />
+                </TouchableOpacity>
+
         }
         return (
 
             <View style={{ height: 50, justifyContent: 'center' }}>
-                <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.setState({ isDropDownclick: false })}>
+                <TouchableOpacity style={{ margin: '2%' }}>
                     <View style={{ flexDirection: "row" }}>
                         {icon}
                         <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
@@ -125,19 +138,19 @@ export default class SideMenu extends Component {
         return (
             <Animatable.View ref={'viewModalRef'} style={styles.viewModal}>
                 <KeyboardAwareScrollView style={{ flex: 1 }}>
-                    <TouchableOpacity style={{ color: 'white', marginTop: '9%', marginLeft:'5%',width:50, height:35 }} onPress={hidePopup}>
+                    <TouchableOpacity style={{ color: 'white', marginTop: '9%', marginLeft: '5%', width: 50, height: 35 }} onPress={hidePopup}>
 
                         <Hamburger color="white" active={true} type="spinCross" onPress={hidePopup} />
                     </TouchableOpacity>
 
-                    <View style={[styles.searchBarView, {backgroundColor:this.state.searchBarBgColor}]}>
-                        <Icon2 name="search" color={this.state.searchIconColor} style={{ position:'absolute',marginLeft: '3%', marginTop: '4%', marginRight: '1%', fontSize: 40 }} />
+                    <View style={[styles.searchBarView, { backgroundColor: this.state.searchBarBgColor }]}>
+                        <Icon2 name="search" color={this.state.searchIconColor} style={{ position: 'absolute', marginLeft: '3%', marginTop: '4%', marginRight: '1%', fontSize: 40 }} />
                         <TextInput
-                           placeholderTextColor={this.state.searchTextColor}
+                            placeholderTextColor={this.state.searchTextColor}
                             placeholder='Search'
-                            style={[styles.inputSearchStyle, {color:'black'}]}
+                            style={[styles.inputSearchStyle, { color: 'black' }]}
                             onChangeText={text => this.onChangeSearchText(text)}
-                    
+
                         />
 
                     </View>
