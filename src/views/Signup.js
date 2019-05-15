@@ -29,12 +29,14 @@ class Signup extends React.Component {
       handleFileChange,
       navigateToProfile,
       handleMultiSelect,
-      handleSocialLinks
+      handleSocialLinks,
+      
     } = this.props;
     switch (tabIndex) {
       case 1:
         return (
           <SignupStep1
+            goToTabIndex={goToTabIndex}
             data={data}
             errors={errors}
             handleChange={handleChange}
@@ -44,10 +46,11 @@ class Signup extends React.Component {
           />
         );
       case 2:
-        return <SignupStep2 handleChange={handleChange} navigation={this.props.navigation} />;
+        return <SignupStep2 goToTabIndex={goToTabIndex} handleChange={handleChange} navigation={this.props.navigation} />;
       case 3:
         return (
           <SignupStep3
+            goToTabIndex={goToTabIndex}
             navigation={this.props.navigation}
             data={data}
             signup={signup}

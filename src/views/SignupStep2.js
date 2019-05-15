@@ -33,7 +33,7 @@ export default class SignupStep2 extends Component {
          <WaveAnimation /> 
                     <Animatable.View ref={"mainView"} style={[styles.container,{ width:'100%', marginTop:'-175%'} ]}>
                         <View>
-                        <BackButton style= {{fontSize:30, marginTop:'10%', alignSelf:'flex-start', position:'absolute', marginLeft:'4%'}} onPress={()=> this.props.navigation.navigate('Login')}/>
+                        <BackButton style= {{fontSize:30, marginTop:'10%', alignSelf:'flex-start', position:'absolute', marginLeft:'4%'}} onPress={()=> this.props.goToTabIndex(1)}/>
                             <Logo color={'#ffffff'} style={styles.imgMainTitle} width="230px" height="44px" />
 
                             <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Are you...</Animatable.Text>

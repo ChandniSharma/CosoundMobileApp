@@ -29,7 +29,8 @@ export default class SignupStep1 extends Component {
     fadeInProgressBarView = () => this.refs.progressBarView.fadeIn(2000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
    
     navigateToSignupStep2 = () =>{
-        this.props.navigation.navigate("SignupStep2");
+        //this.props.goToTabIndex(1);
+        this.props.navigation.goBack();
     }
     fadeInDownHeader = () => this.refs.headerView.fadeInDown(1000);
 

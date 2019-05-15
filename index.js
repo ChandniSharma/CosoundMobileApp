@@ -53,7 +53,7 @@ const AppStackNavigator = createStackNavigator({
      SocialShare:{screen: SocialShare},
      PlayVideo:{screen:PlayVideo}
 }, {
-        initialRouteName: 'Home',
+        initialRouteName: 'AdvancedSearchView',
         gesturesEnabled: false,
         headerMode: 'none',
     })

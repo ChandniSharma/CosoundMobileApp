@@ -815,7 +815,7 @@ const tracks = {};
                     <ActivityIndicator color="gray" /> 
                     ) : (
                     <React.Fragment>
-                        <Icon3 name="heart" style={{ fontSize:20, color: postDetail.isLiked ? "#8e8e8e":'#d3d3d3', marginRight:'2%' }} />
+                        <Icon3 name="heart" style={{ fontSize:20, color: postDetail.isLiked ? "#8e8e8e":'#d3d3d3', marginRight:'4%' }} />
                                 <Text style={styles.textCommentCount}>{readableCount(postDetail.like_count)}</Text>
                     </React.Fragment>
                     )}

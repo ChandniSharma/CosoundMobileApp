@@ -109,7 +109,7 @@ export default class SignupStep3Musician extends Component {
           <Animatable.View ref={"mainView"} style={[styles.container, {marginTop:'-175%', width:'100%' }]}>
 
             <View>
-            <BackButton style= {{fontSize:30, marginTop:'10%', alignSelf:'flex-start', position:'absolute', marginLeft:'4%'}} onPress={()=> this.props.navigation.navigate('SignupStep2')}/>
+            <BackButton style= {{fontSize:30, marginTop:'10%', alignSelf:'flex-start', position:'absolute', marginLeft:'4%'}} onPress={()=> this.props.goToTabIndex(2)}/>
 
             <Logo color={'#ffffff'} style={{ flex: 0.7,alignSelf: 'center', }} width="260px" height="100px" />
               {data.type === 'professional' && <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>
