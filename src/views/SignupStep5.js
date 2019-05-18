@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions,ScrollView } from 'react-native';
+import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 //import SvgUri from 'react-native-svg-uri';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../stylesheet/SignupStep5.style';
@@ -24,50 +24,50 @@ export default class SignupStep5 extends Component {
 
     fadeIn = () => this.refs.view1.fadeIn().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
     fadeIn = () => this.refs.view2.fadeIn().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
-   
-   // bounce = () => this.view.bounce(800).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
+
+    // bounce = () => this.view.bounce(800).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
 
     onClickRememberMe = () => {
         this.setState({
             isRememberMe: !this.state.isRememberMe
         })
     }
-    componentDidMount(){
+    componentDidMount() {
         // setTimeout(() => {
         //     this.navigateToSignupSuggestions()
         // }, 3000);
     }
-    navigateToSignupSuggestions(){
+    navigateToSignupSuggestions() {
         this.props.navigation.navigate("SignupSuggestions");
     }
     render() {
 
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
-         <ScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex:1 }}>
-         <WaveAnimation /> 
-                    <Animatable.View ref={"mainView"} style={{flex:0.9,position:'absolute', top:0, width:'100%' }}>
-                       
+                <ScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 1 }}>
+                    <WaveAnimation />
+                    <Animatable.View ref={"mainView"} style={{ flex: 0.9, position: 'absolute', top: 0, width: '100%' }}>
+
                         <View>
-                        <BackButton style= {{fontSize:30, marginTop:'10%', alignSelf:'flex-start', position:'absolute', marginLeft:'4%'}} onPress={()=> this.props.navigation.goBack()}/>
-                        <Logo color={'#ffffff'} style={{ flex: 0.7,alignSelf: 'center', }} width="260px" height="100px" />
+                            <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.navigation.goBack()} />
+                            <Logo color={'#ffffff'} style={{ flex: 0.7, alignSelf: 'center', }} width="260px" height="100px" />
 
                             {/* <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../assets/cosoundTitle.png')} /> */}
                             <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Finding your network suggestions...</Animatable.Text>
 
                             <Animatable.View ref={'view1'} style={{ marginBottom: '5%' }}>
-                               <View style={styles.findingView}>
-                                   <Animatable.Image animation="wobble" easing="linear" iterationCount="infinite" direction="alternate"  style={styles.imageSearchIcon} source={require('../assets/suggestions-search.png')}/>
-                               </View>
+                                <View style={styles.findingView}>
+                                    <Animatable.Image animation="wobble" easing="linear" iterationCount="infinite" direction="alternate" style={styles.imageSearchIcon} source={require('../assets/suggestions-search.png')} />
+                                </View>
                             </Animatable.View>
 
                         </View>
 
                         <Animatable.View ref={'view2'} style={styles.viewDescription}>
-                                    <Text style={styles.textMusicDescription2}>Using some music magic we're finding the best contacts to help you make the most of cosound. </Text>
+                            <Text style={styles.textMusicDescription2}>Using some music magic we're finding the best contacts to help you make the most of cosound. </Text>
                         </Animatable.View>
 
-                       
+
 
                         {/* Progress bar  */}
 
@@ -97,7 +97,7 @@ export default class SignupStep5 extends Component {
                             </View>
                             <View style={styles.viewSingleLineFilled}></View>
 
-                            
+
                             <View style={styles.viewNotSelected}>
                                 <View style={styles.viewCircleFilled}>
                                     <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />
@@ -106,12 +106,12 @@ export default class SignupStep5 extends Component {
                             </View>
 
                         </View>
-                      
+
                         <CustomFooter />
                     </Animatable.View>
-                   
+
                 </ScrollView>
-               
+
             </SafeAreaView>
 
         )

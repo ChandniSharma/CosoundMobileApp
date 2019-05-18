@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, FlatList, ActivityIndicator } from 'react-native';
 
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
+import styles from '../../../stylesheet/AdvancedSearchView.style'
 
-import { getUsername, getNotificationTitle, getOtherUser } from "../../utils";
+
+import { getUsername, getNotificationTitle, getOtherUser } from "../../../utils";
 
 const RenderPostLink = ({ verb, postId, id, is_read, markAsRead }) => (
 <View style={{flexDirection : "row"}}>

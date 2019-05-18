@@ -9,8 +9,8 @@ import App from './App';
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import { name as appName } from './app.json';
 import Home from './src/views/Home';
- //import Login from './src/views/Login';
- import Login from './src/containers/Login';
+//import Login from './src/views/Login';
+import Login from './src/containers/Login';
 import Signup from './src/containers/Signup';
 import RecoverPwd from './src/views/RecoverPwd';
 import ForgotPassword from './src/containers/ForgotPassword';
@@ -21,6 +21,7 @@ import SignupStep3 from './src/views/SignupStep3';
 import SignupSuggestions from './src/views/SignupSuggestions';
 import SignupStep3Musician from './src/views/SignupStep3Musician';
 import Plans from './src/views/Plans';
+import Notifications from './src/containers/Notifications'
 //import Profile from './src/views/Profile';
 import Profile from './src/containers/Profile';
 import Dashboard from './src/containers/Dashboard';
@@ -31,9 +32,12 @@ import Account from "./src/views/Account";
 import Suggestions from './src/containers/Suggestions';
 import SocialShare from './src/views/common/SocialShare';
 import SoundPlay from './src/views/common/SoundPlay';
-import PlayVideo from './src/views/common/PlayVideo'
+import PlayVideo from './src/views/common/PlayVideo';
+import TestFB from './src/views/animation';
+//import MarketPlace from './src/views/Marketplace';
+
 const AppStackNavigator = createStackNavigator({
-   Home: { screen: Home },
+    Home: { screen: Home },
     Login: { screen: Login },
     ForgotPassword: { screen: ForgotPassword },
     // RecoverPwd: { screen: RecoverPwd },
@@ -43,17 +47,20 @@ const AppStackNavigator = createStackNavigator({
     SignupStep3: { screen: SignupStep3 },
     SignupStep5: { screen: SignupStep5 },
     SignupSuggestions: { screen: SignupSuggestions },
-    SignupStep3Musician:{screen: SignupStep3Musician},
+    SignupStep3Musician: { screen: SignupStep3Musician },
     Plans: { screen: Plans },
-    Profile :{screen:Profile},
-    Dashboard:{screen: Dashboard},
-    AdvancedSearchView:{screen: AdvancedSearchView},
-    Account:{screen:Account},
-    Suggestions:{ screen: Suggestions },
-     SocialShare:{screen: SocialShare},
-     PlayVideo:{screen:PlayVideo}
+    Profile: { screen: Profile },
+    Dashboard: { screen: Dashboard },
+    AdvancedSearchView: { screen: AdvancedSearchView },
+    Account: { screen: Account },
+    Suggestions: { screen: Suggestions },
+    SocialShare: { screen: SocialShare },
+    PlayVideo: { screen: PlayVideo },
+     Notifications: { screen: Notifications },
+    TestFB: {screen: TestFB},
+   // Marketplace:{screen:MarketPlace},
 }, {
-        initialRouteName: 'AdvancedSearchView',
+        initialRouteName: 'Login',
         gesturesEnabled: false,
         headerMode: 'none',
     })

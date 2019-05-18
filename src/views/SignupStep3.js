@@ -51,7 +51,7 @@ export default class SignupStep3Musician extends Component {
   chooseFile = () => {
     var options = {
       title: 'Image',
-     
+
       storageOptions: {
         skipBackup: true,
         path: 'images',
@@ -97,7 +97,7 @@ export default class SignupStep3Musician extends Component {
       handleSocialLinks,
       handleMultiSelect
     } = this.props;
-    
+
     const hasFile = !isNull(data.url);
     const error = checkError(signup.error);
     const { selectedItems } = this.state;
@@ -105,13 +105,13 @@ export default class SignupStep3Musician extends Component {
     return (
       <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
         <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>
-        <WaveAnimation /> 
-          <Animatable.View ref={"mainView"} style={[styles.container, {marginTop:'-175%', width:'100%' }]}>
+          <WaveAnimation />
+          <Animatable.View ref={"mainView"} style={[styles.container, { marginTop: '-175%', width: '100%' }]}>
 
             <View>
-            <BackButton style= {{fontSize:30, marginTop:'10%', alignSelf:'flex-start', position:'absolute', marginLeft:'4%'}} onPress={()=> this.props.goToTabIndex(2)}/>
+              <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.goToTabIndex(2)} />
 
-            <Logo color={'#ffffff'} style={{ flex: 0.7,alignSelf: 'center', }} width="260px" height="100px" />
+              <Logo color={'#ffffff'} style={{ flex: 0.7, alignSelf: 'center', }} width="260px" height="100px" />
               {data.type === 'professional' && <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>
                 Nice! Welcome
                     </Animatable.Text>
@@ -156,7 +156,7 @@ export default class SignupStep3Musician extends Component {
                   return <Animatable.Text animation="fadeIn" style={styles.errorText} key={index}> {item}</Animatable.Text>;
                 })}
 
-<TextInput
+              <TextInput
                 style={styles.inputStyle}
                 placeholder={'Password'}
                 onChangeText={val => handleChange('password', val)}
@@ -244,26 +244,26 @@ export default class SignupStep3Musician extends Component {
               }
             />
 
-<TextInput
-                style={styles.inputStyle}
-                placeholder={'Artist Name'}
-                onChangeText={val => handleChange('artist_name', val)}
-                value={data.artist_name}
-                name={"artist_name"}
-              />
-              {errors.artist_name ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.artist_name}</Animatable.Text> : null}
-              {error &&
-                error.error &&
-                error.error.artist_name &&
-                error.error.artist_name.map((item, index) => {
-                  return <Animatable.Text animation="fadeIn" style={styles.errorText} key={index}> {item}</Animatable.Text>;
-                })}
+            <TextInput
+              style={styles.inputStyle}
+              placeholder={'Artist Name'}
+              onChangeText={val => handleChange('artist_name', val)}
+              value={data.artist_name}
+              name={"artist_name"}
+            />
+            {errors.artist_name ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.artist_name}</Animatable.Text> : null}
+            {error &&
+              error.error &&
+              error.error.artist_name &&
+              error.error.artist_name.map((item, index) => {
+                return <Animatable.Text animation="fadeIn" style={styles.errorText} key={index}> {item}</Animatable.Text>;
+              })}
 
             <MultiSelect
-             styleDropdownMenu = {styles.multiSelectDownStyle}
-            styleInputGroup = {styles.multiSelectStyle}
-            styleMainWrapper = {{ marginLeft:'5%', marginRight: '5%',marginTop:'5%'}}
-            styleListContainer ={styles.multiSelectListStyle}
+              styleDropdownMenu={styles.multiSelectDownStyle}
+              styleInputGroup={styles.multiSelectStyle}
+              styleMainWrapper={{ marginLeft: '5%', marginRight: '5%', marginTop: '5%' }}
+              styleListContainer={styles.multiSelectListStyle}
               hideTags
               items={genres.data}
               uniqueKey="value"
@@ -290,28 +290,28 @@ export default class SignupStep3Musician extends Component {
               {this.multiSelect && this.multiSelect.getSelectedItemsExt(data.genres)}
             </View>
 
-           
+
             {data.social_links.map((item, index) => {
               if (item.isVisible) {
                 return (
                   <View
                     key={index}
-                    style={[styles.viewSocial,{flexDirection: 'row', flex:1}] }
+                    style={[styles.viewSocial, { flexDirection: 'row', flex: 1 }]}
                   >
                     <TextInput
-                      style={[styles.socialInput, {flex:0.85}]}
+                      style={[styles.socialInput, { flex: 0.85 }]}
                       placeholder={'Social Links'}
                       onSubmitEditing={() => handleKeyPress(item.id)}
                       onChangeText={val => handleSocialLinks(item.id, val)}
                       value={item.value}
                       name={item.id}
                     />
-                    
+
                     {/* {!item.isReady && ( */}
-                     <TouchableHighlight onPress={() => addMoreSocials(item.id)} underlayColor="#25b6ad" style={[styles.plusCircleBtn]}>
-                         <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} />
-                      </TouchableHighlight>
-                      
+                    <TouchableHighlight onPress={() => addMoreSocials(item.id)} underlayColor="#25b6ad" style={[styles.plusCircleBtn]}>
+                      <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} />
+                    </TouchableHighlight>
+
                     {/* )} */}
                     {errors[item.id] ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors[item.id]}</Animatable.Text> : null}
                   </View>
@@ -326,7 +326,7 @@ export default class SignupStep3Musician extends Component {
               <Text style={styles.textButtonTitle} >Next -></Text>
             </TouchableHighlight>
 
-{/* Bottom progress view  */}
+            {/* Bottom progress view  */}
             <View ref={'progressBarView'} style={[styles.viewProgressbar]}>
               <View style={styles.viewSelected}>
                 <View style={styles.viewCircleCompleted}>

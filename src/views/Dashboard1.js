@@ -66,7 +66,6 @@ export default class Dashboard extends Component {
                     name:"Bryan Garza",
                     occupation:"Job Title/Artist Name.",
                     image:require('../assets/signup-type-pro.png'),
-
                 },
                 {
                     type:"music",

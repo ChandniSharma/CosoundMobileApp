@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, FlatList, ActivityIndicator } from 'react-native';
 //import SvgUri from 'react-native-svg-uri';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import styles from '../stylesheet/AdvancedSearchView.style';
-import RecoverPwd from './RecoverPwd';
-import * as Animatable from 'react-native-animatable';
-import { SafeAreaView } from 'react-navigation';
+import styles from '../../../stylesheet/AdvancedSearchView.style'
+// import RecoverPwd from './RecoverPwd';
 
 import { isEmpty } from "lodash";
+import { isError } from "../../../utils";
 
-import { isError } from "../../utils";
 
-import { Error, LoadMore, Loader } from "../../components/Commons";
+
+//import { Error, LoadMore, Loader } from "../../components/Commons";
 import {
   getNotificationTitle,
   getThumbnail,
   refactorCarbonDate
-} from "../../utils";
+} from "../../../utils";
 
 import NotificationDescription from "./NotificationDescription";
+
 
 
 class NotificationList extends React.PureComponent {
@@ -63,10 +62,10 @@ class NotificationList extends React.PureComponent {
       page,
 
     } = this.props;
-    
+    console.log(" Notifica==========", notifications); 
     return (
       <View>
-        {notifications.isRequesting && !callingAPI && (
+        {/* {notifications.isRequesting && !callingAPI && (
           <ActivityIndicator color="gray" />
         )}
         {isError(notifications) && (
@@ -85,23 +84,23 @@ class NotificationList extends React.PureComponent {
             
           )}
          
-            <FlatList
+          { notifications && notifications.data &&  <FlatList
           renderItem={this.renderItem}
           data={notifications.data}
           keyExtractor={(item, index) => index.toString()}
-      />
+      />}
           );
         })}
         {/* {!isEmpty(notifications.data) && callApi && (
           <LoadMore loadMore={loadMore} callingAPI={callingAPI} />
         )} */}
-         {!isEmpty(data) && !callingAPI && page !== page_count && !isNull(page_count) && !callApi(
+         {/* {!isEmpty(data) && !callingAPI && page !== page_count && !isNull(page_count) && !callApi(
                 <View style={styles.viewMore}>
                     <TouchableHighlight underlayColor="#25b6ad" style={[styles.seeMoreBtn]} onPress={loadMore}>
                         <Text style={styles.textViewMore} > {callingAPI ? "Fetching..." : "View More..."}</Text>
                     </TouchableHighlight>
                 </View>
-            )}
+            )} */} 
       </View>
     );
   }

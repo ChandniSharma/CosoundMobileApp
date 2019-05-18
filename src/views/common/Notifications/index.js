@@ -1,16 +1,18 @@
 import React from "react";
 import { isNull } from "lodash";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
+// import { withRouter } from "react-router";
 import { bindActionCreators } from "redux";
+import styles from '../../../stylesheet/AdvancedSearchView.style'
+import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, FlatList, ActivityIndicator } from 'react-native';
 
-import { client } from "../../services";
+import { client } from "../../../services";
 
-import { isSuccess, resetNotification, history } from "../../utils";
+import { isSuccess, resetNotification, history } from "../../../utils";
 
-import { notificationActions } from "../../actions";
-
-import { Paginator } from "../../hoc";
+import { notificationActions } from "../../../actions";
+import * as Animatable from 'react-native-animatable';
+import { Paginator } from "../../../hoc";
 import NotificationList from "./NotificationList";
 
 class Notifications extends React.PureComponent {
@@ -22,16 +24,16 @@ class Notifications extends React.PureComponent {
 
     /* getstream.io notification subscribe */
 
-    if (get_stream_token && get_stream_token.notification && data.id) {
-      const notification = client.feed(
-        "notification",
-        data.id,
-        get_stream_token.notification
-      );
-      this.subscription = notification.subscribe(data => {
-        this._handleSubscription(data);
-      });
-    }
+    // if (get_stream_token && get_stream_token.notification && data.id) {
+    //   const notification = client.feed(
+    //     "notification",
+    //     data.id,
+    //     get_stream_token.notification
+    //   );
+    //   this.subscription = notification.subscribe(data => {
+    //     this._handleSubscription(data);
+    //   });
+    // }
   }
 
   /**
@@ -77,6 +79,8 @@ class Notifications extends React.PureComponent {
   render() {
     const { show, notifications, scroll } = this.props;
     const { paginationData } = notifications;
+
+console.log(" notificcations Props ====", this.props);
 
     return (
       <Animatable.View ref={'notificationView'} style={styles.container}>
@@ -134,9 +138,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default withRouter(
-  connect(
+export default  connect(
     mapStateToProps,
     mapDispatchToProps
-  )(Notifications)
-);
+  )(Notifications);

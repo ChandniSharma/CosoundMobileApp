@@ -68,12 +68,12 @@ export default class AdvanceSearchView extends Component {
     renderItem(item) {
         return (
             <View>
-                
+
                 <TouchableHighlight onPress={this.onClickNotification}>
                     <View>
-                    <View>
-                     <Text>{'\u2022' + " "}</Text>
-                     </View>
+                        <View>
+                            <Text>{'\u2022' + " "}</Text>
+                        </View>
                         <View style={{ flexDirection: 'row', margin: '5%', flex: 1 }}>
                             <Text style={[styles.textSubTitleNotSelected, { flex: 0.8 }]}>{item.item.title} </Text>
                             {/* {this.state.isClick? <Text style={styles.textSubtitleSelected}>Viewed your profile </Text>
@@ -81,9 +81,9 @@ export default class AdvanceSearchView extends Component {
                             <Text style={[styles.textNotificationTime, { flex: 0.2 }]}> {item.item.time}</Text>
                         </View>
                         <View>
-                        <Text style={styles.textDescription}> {item.item.description} </Text>
-                    </View>
-                    <View style={{ width: '80%', height: 1, backgroundColor: 'rgb(38,38,38)', marginTop: '2%' }} />
+                            <Text style={styles.textDescription}> {item.item.description} </Text>
+                        </View>
+                        <View style={{ width: '80%', height: 1, backgroundColor: 'rgb(38,38,38)', marginTop: '2%' }} />
                     </View>
                 </TouchableHighlight>
             </View>)

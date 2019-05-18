@@ -92,11 +92,11 @@ export default class SignupStep5 extends Component {
 
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 <ScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 1 }}>
-                <WaveAnimation /> 
-                    <Animatable.View ref={"mainView"} style={{ flex: 0.9 , marginTop:'-175%'}}>
+                    <WaveAnimation />
+                    <Animatable.View ref={"mainView"} style={{ flex: 0.9, marginTop: '-175%' }}>
                         {/* <CustomHeader /> */}
                         <View style={{ backgroundColor: 'transparent' }}>
-                        <BackButton style= {{fontSize:30, marginTop:'10%', alignSelf:'flex-start', position:'absolute', marginLeft:'4%'}} onPress={()=> this.props.navigation.goBack()}/>
+                            <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.navigation.goBack()} />
                             <Logo color={'#ffffff'} style={styles.imgMainTitle} width="230px" height="44px" />
 
                             {/* <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../assets/cosoundTitle.png')} /> */}

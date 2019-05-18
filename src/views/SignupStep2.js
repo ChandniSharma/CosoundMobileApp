@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions,ScrollView } from 'react-native';
+import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 //import SvgUri from 'react-native-svg-uri';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../stylesheet/SignupStep2.style';
@@ -21,41 +21,41 @@ export default class SignupStep2 extends Component {
     fadeIn = () => this.refs.titleText.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
     fadeIn = () => this.refs.view1.fadeIn().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
     fadeIn = () => this.refs.view2.fadeIn().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
-   componentDidMount(){
-    this.fadeInMain();
-  }
+    componentDidMount() {
+        this.fadeInMain();
+    }
     render() {
-    const { handleChange } = this.props;
-   
+        const { handleChange } = this.props;
+
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
-         <ScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex:1 }}>
-         <WaveAnimation /> 
-                    <Animatable.View ref={"mainView"} style={[styles.container,{ width:'100%', marginTop:'-175%'} ]}>
+                <ScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 1 }}>
+                    <WaveAnimation />
+                    <Animatable.View ref={"mainView"} style={[styles.container, { width: '100%', marginTop: '-175%' }]}>
                         <View>
-                        <BackButton style= {{fontSize:30, marginTop:'10%', alignSelf:'flex-start', position:'absolute', marginLeft:'4%'}} onPress={()=> this.props.goToTabIndex(1)}/>
+                            <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.goToTabIndex(1)} />
                             <Logo color={'#ffffff'} style={styles.imgMainTitle} width="230px" height="44px" />
 
                             <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Are you...</Animatable.Text>
 
                             <Animatable.View ref={'view1'} style={{ marginBottom: '5%' }}>
                                 <TouchableHighlight onPress={() => handleChange('type', 'musician')} underlayColor="white" style={[styles.bigButton]}>
-                                <View style={styles.viewButton}>
-                                <Image style={styles.musician} source={require('../assets/signup-type-musician.png')} /> 
-                                    <Text style={styles.textButtonTitle} >A Musician</Text>
-                                </View>
-                               
+                                    <View style={styles.viewButton}>
+                                        <Image style={styles.musician} source={require('../assets/signup-type-musician.png')} />
+                                        <Text style={styles.textButtonTitle} >A Musician</Text>
+                                    </View>
+
                                 </TouchableHighlight>
                             </Animatable.View>
 
                         </View>
-                        <Animatable.View ref={'view2'} style={{ marginBottom: '5%'  }}>
-                            <TouchableHighlight  onPress={() => handleChange('type', 'professional')} underlayColor="white" style={[styles.bigButton]}>
-                            <View style={styles.viewButton}>
-                                <Image style={styles.industryProfessional} source={require('../assets/signup-type-pro.png')} /> 
+                        <Animatable.View ref={'view2'} style={{ marginBottom: '5%' }}>
+                            <TouchableHighlight onPress={() => handleChange('type', 'professional')} underlayColor="white" style={[styles.bigButton]}>
+                                <View style={styles.viewButton}>
+                                    <Image style={styles.industryProfessional} source={require('../assets/signup-type-pro.png')} />
                                     <Text style={styles.textButtonTitle} >Industry Professional</Text>
                                 </View>
-                               
+
                             </TouchableHighlight>
                         </Animatable.View>
 
@@ -94,9 +94,9 @@ export default class SignupStep2 extends Component {
                         </View>
 
                     </Animatable.View>
-                   <CustomFooter />
+                    <CustomFooter />
                 </ScrollView>
-               
+
             </SafeAreaView>
 
         )

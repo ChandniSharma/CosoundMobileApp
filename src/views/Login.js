@@ -14,7 +14,11 @@ import BackButton from './common/BackButton';
 import WaveAnimation from './common/WaveAnimation';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import Icon1 from 'react-native-vector-icons/Entypo';
-
+var FBLoginButton = require('../views/common/FBLoginButton');
+const FBSDK = require('react-native-fbsdk');
+const {
+  LoginManager,
+} = FBSDK;
 
 export default class Login extends Component {
     constructor(props) {
@@ -29,6 +33,25 @@ export default class Login extends Component {
          this.fadeInDownHeader();
          this.fadeInMainView();
      }
+
+     fBLogin(){
+        LoginManager.logOut();
+         console.log(" in fb login button clcick ed");
+         LoginManager.setLoginBehavior('browser');
+        LoginManager.logInWithReadPermissions(['public_profile']).then(
+          function(result) {
+            if (result.isCancelled) {
+              alert('Login was cancelled');
+            } else {
+              alert('Login was successful with permissions: '
+                + result.grantedPermissions.toString());
+            }
+          },
+          function(error) {
+            alert('Login failed with error: ' + error);
+          }
+        );
+      }
 
     render() {
         const { data, errors, handleChange, login, onSubmit, fetching,navigateToForgotPassword,navigateToGetStartedView, onClickRememberMe } = this.props;
@@ -51,8 +74,6 @@ export default class Login extends Component {
                             </View>
 
                         </Animatable.View>
-
-        
 
                        <Animatable.Text animation="fadeIn" style={styles.loginText}> Log in</Animatable.Text>
                         {error.message?<Animatable.Text animation="fadeIn" style={styles.errorText}> {error.message}</Animatable.Text>:null}
@@ -99,7 +120,8 @@ export default class Login extends Component {
                         </TouchableHighlight>
 
                         <View style={styles.socialMediaLoginView}>
-                            <TouchableHighlight underlayColor="#25b6ad" style={styles.buttonLeft}>
+                       
+                            <TouchableHighlight underlayColor="#25b6ad" style={styles.buttonLeft} onPress={()=>this.fBLogin()}>
                             <View style={{flexDirection:'row'}}>
                             <Icon name="sc-facebook" style={{fontSize:30, color:'rgb(72,103,170)', marginLeft:'2%'}}/>
                             <Text style={styles.fbText}>Facebook login</Text>

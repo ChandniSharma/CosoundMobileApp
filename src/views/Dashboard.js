@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-navigation';
 import React from "react";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import homeStyle from "../stylesheet/home.style";
-import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity,Clipboard, AlertIOS,Platform } from "react-native";
+import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity, Clipboard, AlertIOS, Platform } from "react-native";
 import { Icon } from "native-base";
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
@@ -165,7 +165,7 @@ export default class DashboardComponent extends Component {
 
 
     componentDidMount() {
-       
+
         this.fadeInDown();
         // this.fadeInUpPostOptionView();
     }
@@ -237,20 +237,23 @@ export default class DashboardComponent extends Component {
     };
     onClickMusicVideoImage(type) {
         if (type === 'music') {
-            this.setState({ 
-                isMusicSingleViewShow: true, 
-                isImageSingleViewShow: false, 
-                isVideoSingleViewShow: false });
+            this.setState({
+                isMusicSingleViewShow: true,
+                isImageSingleViewShow: false,
+                isVideoSingleViewShow: false
+            });
         } else if (type === 'video') {
-            this.setState({ 
-                isMusicSingleViewShow: false, 
-                isImageSingleViewShow: false, 
-                isVideoSingleViewShow: true });
+            this.setState({
+                isMusicSingleViewShow: false,
+                isImageSingleViewShow: false,
+                isVideoSingleViewShow: true
+            });
         } else {
-            this.setState({ 
-                isMusicSingleViewShow: false, 
-                isImageSingleViewShow: true, 
-                isVideoSingleViewShow: false });
+            this.setState({
+                isMusicSingleViewShow: false,
+                isImageSingleViewShow: true,
+                isVideoSingleViewShow: false
+            });
         }
         this.chooseFile()
     }
@@ -479,7 +482,7 @@ export default class DashboardComponent extends Component {
                             </View>
                         </View>
                         <View style={{ width: "100%", backgroundColor: "#d3d3d6" }}>
-                            <Image style={{ width: "100%", height: 50, backgroundColor:'white' }} source={require('../assets/noise.gif')} />
+                            <Image style={{ width: "100%", height: 50, backgroundColor: 'white' }} source={require('../assets/noise.gif')} />
                         </View>
                         <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
                             <Text style={styles.musicCurrentTime}>0.00</Text>
@@ -677,8 +680,8 @@ export default class DashboardComponent extends Component {
                     </TouchableOpacity>
                 </LinearGradient> : null}
                 <KeyboardAwareScrollView onScroll={this._onScroll} style={{ backgroundColor: 'rgb(245, 245,245)' }}>
-                    <View style={{ backgroundColor: 'white'}} >
-                         <Animatable.View
+                    <View style={{ backgroundColor: 'white' }} >
+                        <Animatable.View
                             ref={'userImageView'}
                             style={{
                                 marginTop: "15%",
@@ -693,14 +696,14 @@ export default class DashboardComponent extends Component {
                                 },
                                 shadowOpacity: 0.8,
                             }}>
-                           <Image style={styles.imgUser} source={{ uri : getThumbnail(user.data)}} />
-                           {/* <Image style={styles.imgUser} source={require('../assets/avatar-main-1.jpg')} /> */}
-                        </Animatable.View>  
-                        <View style={{alignItems:"center",marginTop:25}}>
-                        <Text style={styles.textUserName}>{getUsername(user.data)}</Text>
-                        <Text style={{fontSize:18}}>{getUserInfo(user.data)}</Text>
-                    </View> 
-                       { /* <PostStatus /> */}
+                            <Image style={styles.imgUser} source={{ uri: getThumbnail(user.data) }} />
+                            {/* <Image style={styles.imgUser} source={require('../assets/avatar-main-1.jpg')} /> */}
+                        </Animatable.View>
+                        <View style={{ alignItems: "center", marginTop: 25 }}>
+                            <Text style={styles.textUserName}>{getUsername(user.data)}</Text>
+                            <Text style={{ fontSize: 18 }}>{getUserInfo(user.data)}</Text>
+                        </View>
+                        { /* <PostStatus /> */}
                         <View style={styles.viewWriteSomething}>
                             <TextInput
                                 style={styles.textWriteSomething}
@@ -743,10 +746,10 @@ export default class DashboardComponent extends Component {
 
                         <View style={styles.viewPostButton}>
                             <TouchableHighlight style={[styles.postButton]} >
-                            <View style={{flexDirection:'row'}}>
-                                <Text style={styles.textLoginButtonTitle}>Post</Text>
-                                <Icon1 name="arrowright" style={{ marginLeft:'1%',fontSize: 20, color: 'rgb(255, 38, 123)' }} />
-                            </View>
+                                <View style={{ flexDirection: 'row' }}>
+                                    <Text style={styles.textLoginButtonTitle}>Post</Text>
+                                    <Icon1 name="arrowright" style={{ marginLeft: '1%', fontSize: 20, color: 'rgb(255, 38, 123)' }} />
+                                </View>
                             </TouchableHighlight>
                         </View>
                         { /* PostStatus End */}
@@ -757,18 +760,18 @@ export default class DashboardComponent extends Component {
                                 keyExtractor={(item, index) => index.toString()}
                             />
                         </View> */}
-{/* <NewTest /> */}
+                        {/* <NewTest /> */}
                         <InfiniteScroller
-                        pathName={"/profile"}
-                          user={user}
-                          isLoaderInternal
-                          feed={userFeed}
-                          component={Posts}
-                          callAPI={fetchFeed}
-                          _restCalls={_restCalls}
-                          page={paginationData.page}
-                          shouldCallAPIInitially={false}
-                          page_count={paginationData.page_count}
+                            pathName={"/profile"}
+                            user={user}
+                            isLoaderInternal
+                            feed={userFeed}
+                            component={Posts}
+                            callAPI={fetchFeed}
+                            _restCalls={_restCalls}
+                            page={paginationData.page}
+                            shouldCallAPIInitially={false}
+                            page_count={paginationData.page_count}
                         />
 
                         <View style={styles.viewBottom}>
@@ -778,7 +781,7 @@ export default class DashboardComponent extends Component {
                             </View>
                         </View>
                     </View>
-                   
+
                 </KeyboardAwareScrollView>
 
                 {this.state.isBottomViewShow ?
@@ -791,8 +794,8 @@ export default class DashboardComponent extends Component {
                             </View>
                         </View>
                     </Animatable.View> : null}
-                    {/* Side Menu button modal  */}
-                    {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation} hidePopup={()=>this.hidePopup()} />:null}
+                {/* Side Menu button modal  */}
+                {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation} hidePopup={() => this.hidePopup()} /> : null}
             </SafeAreaView>
         )
     }

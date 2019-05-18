@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-navigation';
 import React from "react";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import homeStyle from "../stylesheet/home.style";
-import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity,Clipboard, AlertIOS,Platform } from "react-native";
+import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity, Clipboard, AlertIOS, Platform } from "react-native";
 import { Icon } from "native-base";
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
@@ -165,7 +165,7 @@ export default class ProfileComponent extends Component {
 
 
     componentDidMount() {
-       
+
         this.fadeInDown();
         // this.fadeInUpPostOptionView();
     }
@@ -237,20 +237,23 @@ export default class ProfileComponent extends Component {
     };
     onClickMusicVideoImage(type) {
         if (type === 'music') {
-            this.setState({ 
-                isMusicSingleViewShow: true, 
-                isImageSingleViewShow: false, 
-                isVideoSingleViewShow: false });
+            this.setState({
+                isMusicSingleViewShow: true,
+                isImageSingleViewShow: false,
+                isVideoSingleViewShow: false
+            });
         } else if (type === 'video') {
-            this.setState({ 
-                isMusicSingleViewShow: false, 
-                isImageSingleViewShow: false, 
-                isVideoSingleViewShow: true });
+            this.setState({
+                isMusicSingleViewShow: false,
+                isImageSingleViewShow: false,
+                isVideoSingleViewShow: true
+            });
         } else {
-            this.setState({ 
-                isMusicSingleViewShow: false, 
-                isImageSingleViewShow: true, 
-                isVideoSingleViewShow: false });
+            this.setState({
+                isMusicSingleViewShow: false,
+                isImageSingleViewShow: true,
+                isVideoSingleViewShow: false
+            });
         }
         this.chooseFile()
     }
@@ -479,7 +482,7 @@ export default class ProfileComponent extends Component {
                             </View>
                         </View>
                         <View style={{ width: "100%", backgroundColor: "#d3d3d6" }}>
-                            <Image style={{ width: "100%", height: 50, backgroundColor:'white' }} source={require('../assets/noise.gif')} />
+                            <Image style={{ width: "100%", height: 50, backgroundColor: 'white' }} source={require('../assets/noise.gif')} />
                         </View>
                         <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
                             <Text style={styles.musicCurrentTime}>0.00</Text>
@@ -668,7 +671,7 @@ export default class ProfileComponent extends Component {
                         <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />
                     </TouchableOpacity>
 
-                    <BackButton style= {{fontSize:30, marginTop:'10%', alignSelf:'flex-start', position:'absolute', marginLeft:'4%'}} onPress={()=> this.props.navigation.goBack()}/>
+                    <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.navigation.goBack()} />
 
                     <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
 
@@ -909,11 +912,11 @@ export default class ProfileComponent extends Component {
 
                         <View style={styles.viewPostButton}>
                             <TouchableHighlight style={[styles.postButton]} >
-                            <View style={{flexDirection:'row'}}>
-                            <Text style={styles.textLoginButtonTitle}>Post</Text>
-                            <Icon1 name="arrowright" style={{ marginLeft:'1%',fontSize: 20, color: 'rgb(255, 38, 123)' }} />
+                                <View style={{ flexDirection: 'row' }}>
+                                    <Text style={styles.textLoginButtonTitle}>Post</Text>
+                                    <Icon1 name="arrowright" style={{ marginLeft: '1%', fontSize: 20, color: 'rgb(255, 38, 123)' }} />
 
-                            </View>
+                                </View>
 
                             </TouchableHighlight>
                         </View>
@@ -925,18 +928,18 @@ export default class ProfileComponent extends Component {
                                 keyExtractor={(item, index) => index.toString()}
                             />
                         </View> */}
-{/* <NewTest /> */}
+                        {/* <NewTest /> */}
                         <InfiniteScroller
-                        pathName={"/profile"}
-                          user={user}
-                          isLoaderInternal
-                          feed={userFeed}
-                          component={Posts}
-                          callAPI={fetchFeed}
-                          _restCalls={_restCalls}
-                          page={paginationData.page}
-                          shouldCallAPIInitially={false}
-                          page_count={paginationData.page_count}
+                            pathName={"/profile"}
+                            user={user}
+                            isLoaderInternal
+                            feed={userFeed}
+                            component={Posts}
+                            callAPI={fetchFeed}
+                            _restCalls={_restCalls}
+                            page={paginationData.page}
+                            shouldCallAPIInitially={false}
+                            page_count={paginationData.page_count}
                         />
 
                         <View style={styles.viewBottom}>
@@ -949,7 +952,7 @@ export default class ProfileComponent extends Component {
                         </View>
 
                     </View>
-                   
+
                 </KeyboardAwareScrollView>
 
                 {this.state.isBottomViewShow ?
@@ -965,9 +968,9 @@ export default class ProfileComponent extends Component {
 
                     </Animatable.View> : null}
 
-                    {/* Side Menu button modal  */}
-                    {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation} hidePopup={()=>this.hidePopup()} />:null}
-                       
+                {/* Side Menu button modal  */}
+                {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation} hidePopup={() => this.hidePopup()} /> : null}
+
             </SafeAreaView>
 
 
