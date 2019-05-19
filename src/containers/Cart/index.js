@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux";
 
 import { cartActions } from "../../actions";
 
-//import { CartComponent } from "../../components";
+import CartComponent from "../../views/Cart";
 import AccountSetCartComponenttingsTabs from "../../views/CartComponent";
 
 class Cart extends React.PureComponent {

@@ -47,6 +47,17 @@ export default{
         marginRight:'5%',
         alignSelf:'flex-end',
     },
+
+    noNotificationText:{
+        marginTop:'20%',
+       // marginBottom:'10%',
+        alignSelf:'center',
+        fontSize:24,
+       color:'#262626',
+        fontFamily:'Montserrat-light',
+       // fontWeight:'100',
+    },
+
     loginText:{
         marginTop:'20%',
         marginBottom:'10%',

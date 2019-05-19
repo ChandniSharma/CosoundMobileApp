@@ -1,15 +1,14 @@
 import React from "react";
 import { isNull } from "lodash";
 import { connect } from "react-redux";
-i//mport { toast } from "react-toastify";
 import { bindActionCreators } from "redux";
 //performWow, 
 import { isError, fixRotationOfFile } from "../../utils";
 
 import { userActions, genreActions } from "../../actions";
 
-//import { AccountSettingsTabs } from "../../components";
-import Account from "../../views/Account";
+import AccountSettingsTabs from "../../views/AccountSettingsTabs";
+//import Account from "../../views/Account";
 
 const tabs = [
   { id: 0, name: "Contact information" },
@@ -82,7 +81,7 @@ class AccountSettings extends React.PureComponent {
     } = this.props;
 
     return (
-      <Account
+      <AccountSettingsTabs
         tabs={tabs}
         user={user}
         genres={genres}
@@ -109,7 +108,8 @@ const mapStateToProps = state => {
     profilePic: state.profilePic,
     contactInfo: state.contactInfo,
     paymentDetails: state.paymentDetails,
-    changePassword: state.changePassword
+    changePassword: state.changePassword,
+    user: state.user
   };
 };
 

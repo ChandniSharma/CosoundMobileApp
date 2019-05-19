@@ -21,6 +21,7 @@ class Notifications extends React.PureComponent {
   componentDidMount() {
     const { user } = this.props;
     const { get_stream_token, data } = user;
+    this.props.fetchNotifications();
 
     /* getstream.io notification subscribe */
 

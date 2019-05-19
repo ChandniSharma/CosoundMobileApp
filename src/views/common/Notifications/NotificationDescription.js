@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, FlatList, ActivityIndicator } from 'react-native';
 
 //import { Link } from "react-router-dom";
-import styles from '../../../stylesheet/AdvancedSearchView.style'
-
+import styles from '../../../stylesheet/notification.style';
 
 import { getUsername, getNotificationTitle, getOtherUser } from "../../../utils";
 
@@ -26,6 +25,7 @@ const RenderPostLink = ({ verb, postId, id, is_read, markAsRead }) => (
 
 
 const NotificationDescription = ({ item, markAsRead }) => {
+ 
   const { actor_count, activities, verb, is_read, post, id } = item;
   const { id: postId } = post;
   const user = activities[0].user;
@@ -42,10 +42,11 @@ const NotificationDescription = ({ item, markAsRead }) => {
     case 1:
       return (
         <View>
-          <TouchableOpacity onPress={() => markAsRead()
+        <View style={{flexDirection:'row', marginTop:'2%'}}>
+          <TouchableOpacity style={{marginRight:'2%'}} onPress={() => markAsRead()
           // Redirect to perticular profile detai
           }>
-            <Text> {getUsername(user)}</Text>
+            <Text style={styles.textComment}> {getUsername(user)}</Text>
           </TouchableOpacity>
 
           {/* <Link to={`/profile/${user.id}`} onClick={() => markAsRead()}>
@@ -59,23 +60,26 @@ const NotificationDescription = ({ item, markAsRead }) => {
             is_read={is_read}
             markAsRead={markAsRead}
           />
-          {activities[0].comment ? ` "${activities[0].comment}"` : null}
+        </View>
+        <Text numberOfLines={5}>{activities[0].comment ? ` "${activities[0].comment}"` : null}</Text>
+
         </View>
       );
     case 2:
       return (
         <View>
-          <TouchableOpacity onPress={() => markAsRead()
+          <TouchableOpacity  style={{marginLeft:'2%',marginRight:'2%'}} onPress={() => markAsRead()
           // Redirect to perticular profile detai
           }>
-            <Text> {getUsername(user)}</Text>
+            <Text style={styles.textComment}> {getUsername(user)}</Text>
           </TouchableOpacity>
+
           {/* <Link to={`/profile/${user.id}`} onClick={() => markAsRead()}>
             {getUsername(user)}
           </Link> */}
          <Text> {" and "} </Text> 
 
-         <TouchableOpacity onPress={() => markAsRead()
+         <TouchableOpacity  style={{marginLeft:'2%',marginRight:'2%'}} onPress={() => markAsRead()
           // Redirect to perticular profile detai
           }>
             <Text> {getUsername(secondUser)}</Text>
@@ -94,9 +98,10 @@ const NotificationDescription = ({ item, markAsRead }) => {
         </View>
       );
     case 3:
+    return null;
       return (
         <View>
-          <TouchableOpacity onPress={() => markAsRead()
+          <TouchableOpacity  style={{marginLeft:'2%',marginRight:'2%'}} onPress={() => markAsRead()
           // Redirect to perticular profile detai
           }>
             <Text>  {getUsername(user)}</Text>
@@ -106,7 +111,7 @@ const NotificationDescription = ({ item, markAsRead }) => {
           </Link> */}
          <Tex> {", "} </Tex> 
 
-         <TouchableOpacity onPress={() => markAsRead()
+         <TouchableOpacity  style={{marginLeft:'2%',marginRight:'2%'}} onPress={() => markAsRead()
           // Redirect to perticular profile detai
           }>
             <Text> {getUsername(secondUser)}</Text>
@@ -117,7 +122,7 @@ const NotificationDescription = ({ item, markAsRead }) => {
           </Link> */}
           {" and "}
 
-          <TouchableOpacity onPress={() => markAsRead()
+          <TouchableOpacity  style={{marginLeft:'2%',marginRight:'2%'}} onPress={() => markAsRead()
           // Redirect to perticular profile detai
           }>
             <Text> {getUsername(thirdUser)}</Text>
@@ -136,10 +141,11 @@ const NotificationDescription = ({ item, markAsRead }) => {
         </View>
       );
     default:
+      return null;
       return (
         <View>
 
-<TouchableOpacity onPress={() => markAsRead()
+<TouchableOpacity  style={{marginLeft:'2%',marginRight:'2%'}} onPress={() => markAsRead()
           // Redirect to perticular profile detai
           }>
             <Text>  {getUsername(user)}</Text>
@@ -150,7 +156,7 @@ const NotificationDescription = ({ item, markAsRead }) => {
           </Link> */}
   <Tex> {", "} </Tex> 
 
-  <TouchableOpacity onPress={() => markAsRead()
+  <TouchableOpacity  style={{marginLeft:'2%',marginRight:'2%'}} onPress={() => markAsRead()
           // Redirect to perticular profile detai
           }>
             <Text> {getUsername(secondUser)}</Text>
@@ -174,3 +180,4 @@ const NotificationDescription = ({ item, markAsRead }) => {
 };
 
 export default NotificationDescription;
+

@@ -8,6 +8,7 @@ import * as Animatable from 'react-native-animatable';
 import { SafeAreaView } from 'react-navigation';
 import CustomFooter from '../components/common/CustomFooter';
 import CustomHeader from '../components/common/CustomHeader';
+import Notifications from '../containers/Notifications';
 
 export default class AdvanceSearchView extends Component {
     constructor(props) {
@@ -161,15 +162,17 @@ export default class AdvanceSearchView extends Component {
                     </KeyboardAwareScrollView> :
                     <Animatable.View ref={'notificationView'} style={styles.container}>
 
-                        <View style={styles.topView}>
+<Notifications />
+                        {/* <View style={styles.topView}>
                             <Text style={styles.textTitle}> Notifications </Text>
                         </View>
                         <FlatList
                             renderItem={this.renderItem}
                             data={this.arrayNotificationData}
                             keyExtractor={(item, index) => index.toString()}
-                        />
-                    </Animatable.View>}
+                        /> */}
+                    </Animatable.View>
+                }
                 {this.state.isNotificationViewShow ? <CustomFooter /> : null}
 
             </SafeAreaView>
