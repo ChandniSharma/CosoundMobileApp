@@ -28,7 +28,8 @@ import Dashboard from './src/containers/Dashboard';
 import Navigator from './src/Navigator';
 import AdvancedSearchView from './src/views/AdvancedSearchView';
 //import Notification from "./src/views/Notification"; 
-import Account from "./src/views/Account";
+// import Account from "./src/views/Account";
+import AccountSettings from './src/containers/AccountSettings';
 import Suggestions from './src/containers/Suggestions';
 import SocialShare from './src/views/common/SocialShare';
 import SoundPlay from './src/views/common/SoundPlay';
@@ -52,12 +53,12 @@ const AppStackNavigator = createStackNavigator({
     Profile: { screen: Profile },
     Dashboard: { screen: Dashboard },
     AdvancedSearchView: { screen: AdvancedSearchView },
-    Account: { screen: Account },
+    // Account: { screen: Account },
     Suggestions: { screen: Suggestions },
     SocialShare: { screen: SocialShare },
     PlayVideo: { screen: PlayVideo },
      Notifications: { screen: Notifications },
-    TestFB: {screen: TestFB},
+    AccountSettings: {screen: AccountSettings},
    // Marketplace:{screen:MarketPlace},
 }, {
         initialRouteName: 'Login',

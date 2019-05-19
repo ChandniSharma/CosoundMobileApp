@@ -24,6 +24,7 @@ const buttonName = {
     changePassword: 'Change Password',
     paymentDetail: "Payment Details",
     other: "Other",
+    notificationSettings:'Notification Settings'
 }
 
 class AccountSettingsTabs extends React.PureComponent {
@@ -175,6 +176,19 @@ class AccountSettingsTabs extends React.PureComponent {
                     </TouchableHighlight>
 
                 </View>
+                <View>
+                    <TabComponent
+                        user={user}
+                        genres={genres}
+                        details={details}
+                        tabIndex={tabIndex}
+                        contactInfo={contactInfo}
+                        _updateUser={_updateUser}
+                        paymentDetails={paymentDetails}
+                        changePassword={changePassword}
+                        _changePassword={_changePassword}
+                    />
+                </View>
                 {this.state.isDropDownclick ?
                     <View style={styles.viewModalAccount}>
 
@@ -198,19 +212,7 @@ class AccountSettingsTabs extends React.PureComponent {
                             />
                         </View>
                     </View> : null}
-                <View>
-                    <TabComponent
-                        user={user}
-                        genres={genres}
-                        details={details}
-                        tabIndex={tabIndex}
-                        contactInfo={contactInfo}
-                        _updateUser={_updateUser}
-                        paymentDetails={paymentDetails}
-                        changePassword={changePassword}
-                        _changePassword={_changePassword}
-                    />
-                </View>
+                
                  {/* Side Menu button modal  */}
                         {this.state.isSideMenuClick ? <SideMenu hidePopup={()=>this.hidePopup()} />:null}
                        

@@ -292,4 +292,44 @@ export default {
         alignSelf: 'center'
     },
 
+    viewSocial: {
+        marginLeft: '5%',
+        marginRight: '5%',
+        height: 60,
+        backgroundColor: 'white',
+        marginTop: '5%',
+        shadowColor: 'rgba(0,0,0,0.7)',
+        shadowOffset: {
+            width: 2,
+            height: 4
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        borderRadius: 8,
+        fontFamily: 'Montserrat-Regular',
+        fontWeight: '300',
+        fontSize: 16,
+        color: '#262626',
+        justifyContent:'center',
+        // paddingTop: 21,
+        // paddingBottom: 20,
+        // paddingLeft: 30,
+        // paddingRight: 30,
+    },
+    socialInput:{
+        marginLeft: '5%',
+        marginRight: '2%',
+        height: 60,
+       
+    
+        fontFamily: 'Montserrat-Regular',
+        fontWeight: '300',
+        fontSize: 16,
+        color: '#262626',
+        // paddingTop: 21,
+        // paddingBottom: 20,
+        // paddingLeft: 30,
+        // paddingRight: 30,
+    },
+
 }

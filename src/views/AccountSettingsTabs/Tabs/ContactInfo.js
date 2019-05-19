@@ -146,7 +146,7 @@ class ContactInfo extends React.Component {
     const { data, errors } = this.state;
     const { user, contactInfo } = this.props;
     return (
-      <View>
+      <View style={{flex:1, backgroundColor:"red"}}>
        
         <TextInput
                 style={styles.inputStyle}
@@ -214,7 +214,7 @@ class ContactInfo extends React.Component {
                     />
 
                     {/* {!item.isReady && ( */}
-                    <TouchableHighlight onPress={() => addMoreSocials(item.id)} underlayColor="#25b6ad" style={[styles.plusCircleBtn]}>
+                    <TouchableHighlight onPress={() => _addMoreSocials(item.id)} underlayColor="#25b6ad" style={[styles.plusCircleBtn]}>
                       <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} />
                     </TouchableHighlight>
 
