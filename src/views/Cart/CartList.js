@@ -1,11 +1,12 @@
 import React from "react";
 import { isEmpty } from "lodash";
 import { FlatList, Image, ImageBackground, Text, TextInput, Modal, TouchableHighlight, View, TouchableOpacity, ScrollView, ActivityIndicator } from "react-native";
-
+import styles from "../../stylesheet/Cart.style";
 //import { Loader, ViewMoreFlat, NoDataWithLink, Error } from "../Commons";
-import CartItem from "./CartItem";
+//import CartItem from "./CartItem";
 
 import { noDataProps } from "./data";
+import { CardOptions } from "./CardOptions";
 
 class CartList extends React.PureComponent {
   constructor (props){
