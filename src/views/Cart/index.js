@@ -4,7 +4,7 @@ import { Paginator } from "../../hoc";
 import CartList from "./CartList";
 // import Sidebar from "./Sidebar";
 import { FlatList, Image, ImageBackground, Text, TextInput, Modal, TouchableHighlight, View, TouchableOpacity, ScrollView, ActivityIndicator } from "react-native";
-import styles from "../stylesheet/Cart.style";
+import styles from "../../stylstylesheet/Cart.style";
 
 class Cart extends React.PureComponent {
   render() {
