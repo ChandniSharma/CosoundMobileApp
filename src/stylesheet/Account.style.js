@@ -26,6 +26,34 @@ export default {
         shadowOpacity: 0.8,
         marginBottom: '5%',
     },
+    loginText:{
+        // marginTop:'5%',
+        marginBottom:'5%',
+        alignSelf:'center',
+        fontSize:14,
+        color:'white',
+        fontFamily:'Montserrat-light',
+       // fontWeight:'100',
+    },
+    loginButton:{
+        borderRadius: 25,
+        height: 50,
+        flex: 0.5,
+        alignItems: 'center',
+        justifyContent: 'center',
+         marginLeft: "15%",
+         marginRight:"15%",
+        shadowColor: 'rgba(0,0,0,0.12)',
+        shadowOffset: {
+            width: .4,
+            height: .11
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        
+        //marginBottom:'10%',
+        backgroundColor: '#ff277b'
+    },
     findingView: {
         backgroundColor: 'white',
         width: 100,
@@ -331,5 +359,39 @@ export default {
         // paddingLeft: 30,
         // paddingRight: 30,
     },
-
+    plusCircleBtn: {
+        // color: '#8E5ACD',
+        // marginBottom:5,
+        right: '3%',
+        // alignSelf: 'flex-end',
+         marginTop: '1%',
+        flex: 0.15,
+        width:40,
+        height:40,
+        justifyContent:'center',
+        alignItems: 'center',
+    },
+    plusCircle: {
+       // color: 'gray',
+        // marginBottom: 5,
+       
+    },
+    viewCircleCompleted: {
+        width: 30,
+        height: 30,
+        borderRadius: 15,
+        backgroundColor: 'rgb(41,139,139)',
+        // borderColor: 'gray',
+        // borderWidth: .2,
+        shadowColor: 'rgba(0,0,0,0.7)',
+        shadowOffset: {
+            width: .5,
+            height: .5
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        marginTop: '-2%',
+        // marginLeft:'-%',
+        zIndex: 999,
+    },
 }

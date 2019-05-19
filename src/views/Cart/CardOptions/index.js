@@ -6,16 +6,22 @@ import { FlatList, Image, ImageBackground, Text, TextInput, Modal, TouchableHigh
 import styles from "../../../stylesheet/Cart.style";
 
 const CardOptions = ({
-  ...rest,
   className,
-  toggleVisible
-}) => (
-  <View>
+  toggleVisible,
+  ...rest
+}) => {
+  console.log(" ion card options***************")
+  
+  return (
+    <View style={{flex: 1,backgroundColor:'pink'}}>
     <TouchableOpacity onPress={() => toggleVisible()}>
       <Text>...</Text>
       { /* style={styles.postDescription} */ }
       
     </TouchableOpacity>
+    <View style={{backgroundColor:'orange'}}>
+    <OptionComponent {...rest} />
+    </View>
   </View>
   // <div className={`${className}__options`}>
   //   <div className={`${className}__options-wrap`}>
@@ -28,6 +34,6 @@ const CardOptions = ({
   //     <OptionComponent {...rest} />
   //   </div>
   // </div>
-);
-
+ );
+  }
 export default CardOptions;

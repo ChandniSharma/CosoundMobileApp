@@ -45,6 +45,7 @@ export default class ProfileComponent extends Component {
             isMusicSingleViewShow: true,  // these are the single line view show on above buttons of music video image, when click on them
             isVideoSingleViewShow: false,
             isImageSingleViewShow: false,
+            isClickToUpload: false,
             music: [
                 {
                     id: 1,
@@ -196,9 +197,7 @@ export default class ProfileComponent extends Component {
     chooseFile = () => {
         var options = {
             title: 'Image',
-            customButtons: [
-                { name: 'customOptionKey', title: 'Choose Photo from Custom Option' },
-            ],
+            
             storageOptions: {
                 skipBackup: true,
                 path: 'images',
@@ -211,18 +210,21 @@ export default class ProfileComponent extends Component {
             if (response.didCancel) {
                 console.log('User cancelled image picker');
                 this.setState({
-                    isImageLoadedFromLiab: false
+                    isImageLoadedFromLiab: false,
+                    isClickToUpload: false
                 })
             } else if (response.error) {
                 console.log('ImagePicker Error: ', response.error);
                 this.setState({
-                    isImageLoadedFromLiab: false
+                    isImageLoadedFromLiab: false,
+                    isClickToUpload: false
                 })
             } else if (response.customButton) {
                 console.log('User tapped custom button: ', response.customButton);
                 alert(response.customButton);
                 this.setState({
-                    isImageLoadedFromLiab: false
+                    isImageLoadedFromLiab: false,
+                    isClickToUpload: false
                 })
             } else {
                 let source = response;
@@ -230,7 +232,8 @@ export default class ProfileComponent extends Component {
                 // let source = { uri: 'data:image/jpeg;base64,' + response.data };
                 this.setState({
                     isImageLoadedFromLiab: true,
-                    filePath: source
+                    filePath: source,
+                    isClickToUpload: false
                 });
             }
         });
@@ -255,7 +258,11 @@ export default class ProfileComponent extends Component {
                 isVideoSingleViewShow: false
             });
         }
-        this.chooseFile()
+        if(!this.state.isClickToUpload){
+            this.setState({isClickToUpload:true})
+            this.chooseFile()
+        }
+       
     }
     rednerPostItem = (item) => {
         return (

@@ -4,7 +4,7 @@ import { Paginator } from "../../hoc";
 import CartList from "./CartList";
 // import Sidebar from "./Sidebar";
 import { FlatList, Image, ImageBackground, Text, TextInput, Modal, TouchableHighlight, View, TouchableOpacity, ScrollView, ActivityIndicator } from "react-native";
-import styles from "../../stylstylesheet/Cart.style";
+import styles from "../../stylesheet/Cart.style";
 
 class Cart extends React.PureComponent {
   render() {
@@ -12,7 +12,7 @@ class Cart extends React.PureComponent {
     const { paginationData } = cart;
 
     return(
-      <View style={{flex: 1,}}>
+      <View style={{flex: 1, backgroundColor:'red'}}>
         <Text >Your Cart</Text>
         <View>
               <Paginator

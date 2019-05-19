@@ -49,7 +49,7 @@ class ContactInfo extends React.Component {
   };
 
   _submit = e => {
-   // e.preventDefault();
+    // e.preventDefault();
     if (this._isValidSocials()) {
       this.setState({ errors: {} });
       const { _updateUser, user } = this.props;
@@ -66,12 +66,12 @@ class ContactInfo extends React.Component {
         const { contactInfo } = this.props;
         if (isSuccess(contactInfo)) {
           alert("Contact info updated");
-         // return toast.info("Contact info updated");
+          // return toast.info("Contact info updated");
         }
 
         if (isError(contactInfo)) {
           alert(contactInfo.error.message);
-         // return toast.error(contactInfo.error.message);
+          // return toast.error(contactInfo.error.message);
         }
       });
     }
@@ -146,27 +146,27 @@ class ContactInfo extends React.Component {
     const { data, errors } = this.state;
     const { user, contactInfo } = this.props;
     return (
-      <View style={{flex:1, backgroundColor:"red"}}>
-       
+      <View style={{ flex: 1 }}>
+
         <TextInput
-                style={styles.inputStyle}
-                placeholder={'Email'}
-                onChangeText={val => handleChange('email', val)}
-                value={data.email}
-                editable={false} selectTextOnFocus={false}
-                name={"email"}
-              />
-              
-              <TextInput
-                style={styles.inputStyle}
-                placeholder={'Phones'}
-                onChangeText={val => handleChange('phone_numbers', val)}
-                value={data.phone_numbers}
-                name={"phone_numbers"}
-              />
-             
-{/* Multiselect  */}
- {/* <MultiSelect
+          style={styles.inputStyle}
+          placeholder={'Email'}
+          onChangeText={val => handleChange('email', val)}
+          value={data.email}
+          editable={false} selectTextOnFocus={false}
+          name={"email"}
+        />
+
+        <TextInput
+          style={styles.inputStyle}
+          placeholder={'Phones'}
+          onChangeText={val => handleChange('phone_numbers', val)}
+          value={data.phone_numbers}
+          name={"phone_numbers"}
+        />
+
+        {/* Multiselect  */}
+        {/* <MultiSelect
               styleDropdownMenu={styles.multiSelectDownStyle}
               styleInputGroup={styles.multiSelectStyle}
               styleMainWrapper={{ marginLeft: '5%', marginRight: '5%', marginTop: '5%' }}
@@ -197,45 +197,45 @@ class ContactInfo extends React.Component {
               {this.multiSelect && this.multiSelect.getSelectedItemsExt(data.genres)}
             </View> */}
 
-            {data.social_links.map((item, index) => {
-              if (item.isVisible) {
-                return (
-                  <View
-                    key={index}
-                    style={[styles.viewSocial, { flexDirection: 'row', flex: 1 }]}
-                  >
-                    <TextInput
-                      style={[styles.socialInput, { flex: 0.85 }]}
-                      placeholder={'Social Links'}
-                      onSubmitEditing={() => handleKeyPress(item.id)}
-                      onChangeText={val => handleSocialLinks(item.id, val)}
-                      value={item.value}
-                      name={item.id}
-                    />
+        {data.social_links.map((item, index) => {
+          if (item.isVisible) {
+            return (
+              <View
+                key={index}
+                style={[styles.viewSocial, { flexDirection: 'row', flex: 1 }]}
+              >
+                <TextInput
+                  style={[styles.socialInput, { flex: 0.85 }]}
+                  placeholder={'Social Links'}
+                  onSubmitEditing={() => handleKeyPress(item.id)}
+                  onChangeText={val => handleSocialLinks(item.id, val)}
+                  value={item.value}
+                  name={item.id}
+                />
 
-                    {/* {!item.isReady && ( */}
-                    <TouchableHighlight onPress={() => _addMoreSocials(item.id)} underlayColor="#25b6ad" style={[styles.plusCircleBtn]}>
-                      <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} />
-                    </TouchableHighlight>
+                {/* {!item.isReady && ( */}
+                <TouchableHighlight onPress={() => _addMoreSocials(item.id)} underlayColor="#25b6ad" style={[styles.plusCircleBtn]}>
+                  <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} />
+                </TouchableHighlight>
 
-                    {/* )} */}
-                    {errors[item.id] ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors[item.id]}</Animatable.Text> : null}
-                  </View>
-                );
-              }
-              return null;
-            })}
- <TouchableOpacity style={{alignSelf:'center', marginTop:'5%', width:'20%', height:'20%', backgroundColor: '#20ACAC'}}
-          onPress={()=> !contactInfo.isRequesting && this._submit()}
+                {/* )} */}
+                {errors[item.id] ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors[item.id]}</Animatable.Text> : null}
+              </View>
+            );
+          }
+          return null;
+        })}
+        <TouchableOpacity style={{ alignSelf: 'center', justifyContent: 'center', marginTop: '5%', width: '40%', height: '15%', borderRadius: 10, backgroundColor: '#ff277b' }}
+          onPress={() => !contactInfo.isRequesting && this._submit()}
 
-          // disabled={changePassword.isRequesting}
+        // disabled={changePassword.isRequesting}
         >
           {contactInfo.isRequesting ? (
             <ActivityIndicator color='gray' />
           ) : (
-            <Text >Update</Text>
-          )}
-        </TouchableOpacity> 
+              <Text style={styles.loginText}>Update</Text>
+            )}
+        </TouchableOpacity>
       </View>
     )
     // return (
@@ -291,10 +291,10 @@ class ContactInfo extends React.Component {
     //       }
     //       return null;
     //     })}
-        // <UpdateButton
-        //   onClick={this._submit}
-        //   loading={contactInfo.isRequesting}
-        // />
+    // <UpdateButton
+    //   onClick={this._submit}
+    //   loading={contactInfo.isRequesting}
+    // />
     //   </div>
     // );
   }

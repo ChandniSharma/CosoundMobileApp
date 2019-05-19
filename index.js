@@ -35,6 +35,8 @@ import SocialShare from './src/views/common/SocialShare';
 import SoundPlay from './src/views/common/SoundPlay';
 import PlayVideo from './src/views/common/PlayVideo';
 import TestFB from './src/views/animation';
+import Cart from './src/containers/Cart';
+
 //import MarketPlace from './src/views/Marketplace';
 
 const AppStackNavigator = createStackNavigator({
@@ -59,6 +61,8 @@ const AppStackNavigator = createStackNavigator({
     PlayVideo: { screen: PlayVideo },
      Notifications: { screen: Notifications },
     AccountSettings: {screen: AccountSettings},
+    Cart: {screen: Cart},
+
    // Marketplace:{screen:MarketPlace},
 }, {
         initialRouteName: 'Login',

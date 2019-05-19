@@ -141,7 +141,7 @@ class AccountSettingsTabs extends React.PureComponent {
                 />
                 <TouchableOpacity style={{ marginTop: '2%', marginBottom: '2%' }} onPress={() => this.setState({ isDropDownclick: true })}>
                     <View style={{ flexDirection: 'row' }}>
-                        <Icon3 name="ios-settings" style={{ marginLeft: '2%', marginBottom: '1%', flex: 0.1, color: 'rgb(140,91,204)', fontSize: 18 }} />
+                        <Icon3 name="ios-settings" style={{ marginLeft: '2%', marginBottom: '1%', flex: 0.1, color: 'rgb(140,91,204)', fontSize: 25 }} />
                         <Text style={[styles.titleAccount, { flex: 0.8, marginTop: '0.5%' }]}> Account Settings</Text>
 
                         <View style={{ width: 30, height: 30, borderRadius: 18, marginRight: '5%', marginBottom: '5%', flex: 0.1, backgroundColor: 'white' }}>
@@ -167,7 +167,7 @@ class AccountSettingsTabs extends React.PureComponent {
                         <Text style={styles.textSettings}>{buttonName.changePassword}</Text>
                     </TouchableHighlight>
 
-                    <TouchableHighlight style={[styles.buttonSettings]} underlayColor="white" onPress={() => switchTab(3)}>
+                    <TouchableHighlight style={[styles.buttonSettings]} underlayColor="white" onPress={() => alert('Coming Soon!')}>
                         <Text style={styles.textSettings}>{buttonName.notificationSettings}</Text>
                     </TouchableHighlight>
 
@@ -192,9 +192,9 @@ class AccountSettingsTabs extends React.PureComponent {
                 {this.state.isDropDownclick ?
                     <View style={styles.viewModalAccount}>
 
-                        <TouchableOpacity style={{ marginTop: '55.5%', backgroundColor: 'white', height: 40 }} onPress={() => this.setState({ isDropDownclick: false })}>
+                        <TouchableOpacity style={{ marginTop: '54.0%', backgroundColor: 'white', height: 40 }} onPress={() => this.setState({ isDropDownclick: false })}>
                             <View style={{ flexDirection: 'row', height: 50, marginTop: '2%' }}>
-                                <Icon3 name="ios-settings" style={{ marginLeft: '2%', marginBottom: '1%', flex: 0.1, color: 'rgb(140,91,204)', fontSize: 18 }} />
+                                <Icon3 name="ios-settings" style={{ marginLeft: '2%', marginBottom: '1%', flex: 0.1, color: 'rgb(140,91,204)', fontSize: 25 }} />
                                 <Text style={[styles.titleAccount, { flex: 0.8 }]}> Account Settings</Text>
                                 <View style={{ width: 30, height: 30, borderRadius: 18, marginRight: '5%', marginBottom: '5%', flex: 0.1, backgroundColor: 'white', borderColor: '#8E8E8E', borderWidth: 0.3 }}>
                                     <Icon name="up" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />

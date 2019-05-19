@@ -115,7 +115,7 @@ class ChangePassword extends React.PureComponent {
         />
         {errors.password_confirmation?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.password_confirmation}</Animatable.Text>:null} 
         
-        <TouchableOpacity
+        <TouchableOpacity style={{ alignSelf: 'center', justifyContent: 'center', marginTop: '5%', width: '40%', height: '15%', borderRadius: 10, backgroundColor: '#ff277b' }}
           onPress={()=> !changePassword.isRequesting && this._submit()}
 
           // disabled={changePassword.isRequesting}
@@ -123,7 +123,7 @@ class ChangePassword extends React.PureComponent {
           {changePassword.isRequesting ? (
             <ActivityIndicator color='gray' />
           ) : (
-            <Text>Update</Text>
+            <Text style={styles.loginText}>Update</Text>
           )}
         </TouchableOpacity>                  
       </View>
