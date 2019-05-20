@@ -13,8 +13,17 @@ export default{
         color:'red',
         alignSelf:'center',
     },
-    container: {
+    container:{
         flex: 1,
+    },
+    containerNotification: {
+        flex: 1,
+        position:'absolute',
+       // marginTop:44,
+        width:deviceWidth,
+        height:deviceHeight-44,
+        backgroundColor:'rgb(255, 255,255)',
+        marginBottom:'12%'
     },
     leftView:{
         marginTop:'15%',
@@ -306,7 +315,7 @@ export default{
 
     topView: {
         backgroundColor: 'rgb(245,245,245)',
-        height:'7%',
+        height:'5%',
         width:'100%', 
         justifyContent:'center',
     },

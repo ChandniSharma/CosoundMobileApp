@@ -59,7 +59,7 @@ const AppStackNavigator = createStackNavigator({
     Suggestions: { screen: Suggestions },
     SocialShare: { screen: SocialShare },
     PlayVideo: { screen: PlayVideo },
-     Notifications: { screen: Notifications },
+    Notifications: { screen: Notifications },
     AccountSettings: {screen: AccountSettings},
     Cart: {screen: Cart},
 

@@ -12,6 +12,7 @@ import Icon3 from "react-native-vector-icons/Ionicons";
 import Hamburger from 'react-native-hamburger';
 import SideMenu from '../common/SideMenu';
 import SettingsHeader from '../common/SettingsHeader';
+import Notifications from '../../../src/containers/Notifications'
 
 // import { SettingsHeader, TabHeader, FormToast } from "../Commons";
 import TabComponent from "./TabComponent";
@@ -42,6 +43,7 @@ class AccountSettingsTabs extends React.PureComponent {
             active: false,
             isBottomMobileShow: true,
             mobileNumber: '',
+            isNotificationShow: false,
         }
         this.arrayMobileNumber = [];
         this.arrayButtons = [];
@@ -95,7 +97,13 @@ class AccountSettingsTabs extends React.PureComponent {
     hidePopup() {
         this.setState({ isSideMenuClick: false })
     }
-
+    hideNotificationView(){
+        this.setState({isNotificationShow: false})
+    }
+    _navigateToNotificationView() {
+        this.setState({isNotificationShow: true})
+        //this.props.navigation.navigate('Notification');
+    }
     render() {
         const {
             user,
@@ -122,11 +130,11 @@ class AccountSettingsTabs extends React.PureComponent {
                         <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />
                     </TouchableOpacity>
 
-
-                    <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
+{/* 
+                    <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" /> */}
 
                     <View style={{ flex: 0.3 }} />
-                    <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={this._navigateToNotificationView}>
+                    <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={()=>this.setState({isNotificationShow: !this.state.isNotificationShow})}>
                         <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />
                     </TouchableOpacity>
                 </LinearGradient> : null}
@@ -148,11 +156,10 @@ class AccountSettingsTabs extends React.PureComponent {
                             <Icon name="down" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
                         </View>
 
-
                         {/* <Animatable.Image source={require('../../src/assets/Image/arrow_small_down.png')} style={{borderRadius:13,alignSelf:'flex-end' ,width: 26, height: 26 }} /> */}
                     </View>
                 </TouchableOpacity>
-                <View style={{ flexDirection: "row", alignSelf: 'center' }}>
+                <View style={{ flexDirection: "row", alignSelf: 'center', marginTop:'2%' }}>
                     <TouchableHighlight style={[styles.buttonSettings]} underlayColor="white" onPress={() => switchTab(0)}>
                         <Text style={styles.textSettings}>{buttonName.contactInfo}</Text>
                     </TouchableHighlight>
@@ -217,6 +224,8 @@ class AccountSettingsTabs extends React.PureComponent {
                         {this.state.isSideMenuClick ? <SideMenu hidePopup={()=>this.hidePopup()} />:null}
                        
                 </KeyboardAwareScrollView>
+                {/* notification view show */}
+                {this.state.isNotificationShow ? <Notifications hidePopup={()=>this.hideNotificationView()} />:null}
                 </View>
             </SafeAreaView>
         )

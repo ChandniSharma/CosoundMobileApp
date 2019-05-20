@@ -35,12 +35,17 @@ import {
 
 class Notifications extends React.PureComponent {
   checkIfRefreshedInterval = null;
+  
   componentDidMount() {
+   
     this._hideSpinner();
     this._restCalls();
+
    // this.props.wowActions.initialize();
   }
 
+  
+ 
   _restCalls = () => {
     if (!isNull(this.props.user.token)) {
       const refreshThreshold = getRefreshThreshold(this.props.user.expiresAt);

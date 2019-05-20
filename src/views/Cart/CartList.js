@@ -7,7 +7,7 @@ import styles from "../../stylesheet/Cart.style";
 import { getServiceLink, getThumbnail, getServiceThumbnail } from "../../utils";
 
 import { noDataProps } from "./data";
-import  CardOptions  from "./CardOptions";
+import CardOptions from "./CardOptions";
 
 class CartList extends React.PureComponent {
   constructor(props) {
@@ -15,40 +15,42 @@ class CartList extends React.PureComponent {
     this.state = {
       isVisible: false
     }
-
   }
 
   renderCartItem = (itemDetail) => {
     let item = itemDetail.item;
-console.log(" itemde-----", itemDetail);
+    console.log(" itemde-----", itemDetail);
     const { isVisible } = this.state;
     const { removeFromCart, _removeFromCart } = this.props;
     return (
-      <View style={{flex:1, backgroundColor:'yellow'}}>
-        <TouchableOpacity>
-          <Image source={{ uri: getServiceThumbnail(item.media) }} />
+      <View style={{ flex: 1, }}>
+        {/* View single line */}
+        <View style={{ width: '80%', alignSelf: 'center',marginTop:'2%', height: 1, backgroundColor: 'gray' }} />
+
+        <TouchableOpacity style={{alignSelf:'center', width:100, height:100, marginTop:'5%', marginBottom:'2%',}}>
+          <Image style={{ alignSelf: 'center', width:100, height:100, borderRadius:10 }} source={{ uri: getServiceThumbnail(item.media) }} />
         </TouchableOpacity>
 
-        <View>
-          <Image source={{ uri: getServiceThumbnail(item.media) }} />
+        <View style={{ flexDirection: 'row', flex:1, marginBottom:'2%', marginTop:'2%',height:200 }}>
+
+          <Image style={[styles.imgUser, {marginRight:'2%', marginLeft:'2%', flex:0.2, marginBottom:'2%', marginTop:'2%'} ]} source={require('../../assets/avatar-main-1.jpg')} />
+
+          {/* <Image style={{ width: 50, height: 50, borderRadius: 25, marginTop: '33.5%' }} source={{ uri: getServiceThumbnail(item.media) }} /> */}
+
+          <View style={{ flex:0.65}}>
+            <TouchableOpacity style={{marginTop:'2%'}}>
+              <Text style={styles.textServiceTitle}> {item.title}</Text>
+            </TouchableOpacity>
+            <View style={{ flexDirection: 'row', marginTop:'2%',marginLeft:'2%' }}>
+              {/* Rating view */}
+              <Text style={styles.textServiceTitle}>Star Rating </Text>
+              <Text style={styles.textRatingCount}>{item.review_count}</Text>
+            </View>
+          </View>
+          <Text style={[styles.textPrice, { flex:0.15}]}>${item.price}  </Text>
         </View>
 
-        <TouchableOpacity>
-          <Text> {item.title}</Text>
-        </TouchableOpacity>
-
-        {/* Rating view */}
-
-        <View style={{ flexDirection: 'row' }}>
-          <Text>Star Rating </Text>
-          <Text>{item.review_count}</Text>
-        </View>
-
-        <View>
-          <Text>{item.price}  </Text>
-        </View>
-
-        <CardOptions
+        {/* <CardOptions
           id={item.id}
           postedBySelf={true}
           isVisible={isVisible}
@@ -56,7 +58,7 @@ console.log(" itemde-----", itemDetail);
           _delete={_removeFromCart}
           deleteState={removeFromCart}
           toggleVisible={this._toggleVisible}
-        />
+        /> */}
       </View>
     )
   }
@@ -118,7 +120,8 @@ console.log(" itemde-----", itemDetail);
     console.log(" rendeer ================-----");
 
     return (
-      <View style={{ flex: 1 }}>
+
+      <View style={{ width: '100%', backgroundColor: 'white', marginTop:'5%', height:'40%' }}>
         <View>
           {isRequesting && !callingAPI && (
             <ActivityIndicator color='gray' />
@@ -136,12 +139,12 @@ console.log(" itemde-----", itemDetail);
           )}
         </View>
         <View>
-          {/* <FlatList
-            numColumns={3}
+          <FlatList
+
             data={cart.data}
             renderItem={this.renderCartItem}
             keyExtractor={(item, index) => index.toString()}
-          /> */}
+          />
 
           {!isEmpty(data) && !callingAPI && page !== page_count && !isNull(page_count) && !callApi(
             <View style={styles.viewMoreImage}>
@@ -176,7 +179,7 @@ console.log(" itemde-----", itemDetail);
     //       <ViewMoreFlat callingAPI={callingAPI} loadMore={loadMore} />
     //     )}
     //   </div>
-    // );
+    //  );
   }
 }
 

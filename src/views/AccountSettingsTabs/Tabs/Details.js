@@ -195,7 +195,8 @@ class Details extends React.PureComponent {
     const { details, genres } = this.props;
     const error = checkError(details.error);
     return (
-      <View style={{flex:1, backgroundColor:'pink'}}>
+      <View style={{backgroundColor:'pink', height:'100%'}}>
+
         <TextInput
           style={styles.inputStyle}
           placeholder={'Bio'}

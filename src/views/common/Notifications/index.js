@@ -17,10 +17,13 @@ import NotificationList from "./NotificationList";
 
 class Notifications extends React.PureComponent {
   subscription = null;
+  fadeInDown = () => this.refs.notificationView.fadeInDown(1000);
+  fadeInUp = () => this.refs.notificationView.fadeInUp(500);
 
   componentDidMount() {
     const { user } = this.props;
     const { get_stream_token, data } = user;
+    this.fadeInUp();
     this.props.fetchNotifications();
 
     /* getstream.io notification subscribe */
@@ -46,9 +49,12 @@ class Notifications extends React.PureComponent {
 
   /* cancel subscribe on unmount */
   componentWillUnmount() {
+    
     if (!isNull(this.subscription)) {
       this.subscription.cancel();
     }
+    this.fadeInDown();
+    
   }
 
   /**
@@ -84,7 +90,7 @@ class Notifications extends React.PureComponent {
 console.log(" notificcations Props ====", this.props);
 
     return (
-      <Animatable.View ref={'notificationView'} style={styles.container}>
+      <Animatable.View ref={'notificationView'} style={styles.containerNotification}>
 
       <View style={styles.topView}>
           <Text style={styles.textTitle}> Notifications </Text>

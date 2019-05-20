@@ -9,27 +9,28 @@ class Sidebar extends React.PureComponent {
   render() {
     const { cart } = this.props;
       return (
-      <View>
+      <View style={{backgroundColor:'pink', alignSelf:'center', borderRadius:20, marginTop:'5%', marginBottom:'5%'}}>
+            <Text style={[styles.titleAccount, {alignSelf:'center', marginBottom:'2%', marginTop:'2%'}]}>Summary</Text>
+
         <View>
-          <View>Summary</View>
           <View>
-            <View>
+            <View style={{flexDirection:'row'}}>
               <Text>Subtotal</Text>
-              $<Text>{cart.sub_total} </Text>
+              <Text>{cart.sub_total} </Text>
             </View>
 
-            <View>
+            <View style={{flexDirection:'row'}}>
               <Text>Tax</Text>
-              $<Text>{cart.vat} </Text>
+              <Text>{cart.vat} </Text>
             </View>
           </View>
         </View>
 
         <View>
           <View>
-            <View>
-              <span>Total</span>
-              $<Text>{cart.total} </Text>
+            <View style={{flexDirection:'row'}}>
+              <Text>Total</Text>
+              <Text>{cart.total} </Text>
             </View>
           </View>
           <View>

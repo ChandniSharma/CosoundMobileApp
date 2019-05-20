@@ -47,7 +47,7 @@ export default {
     },
     titleAccount: {
         color: '#262626',
-        fontSize: 14,
+        fontSize: 26,
         fontFamily: 'Montserrat-light',
         // marginLeft:'-5%'
 
@@ -75,17 +75,22 @@ export default {
         fontFamily: 'Montserrat-light',
     },
 
-    textAccountPopup: {
+    textRatingCount: {
         color: 'rgba(38,38,38,0.52)',
         fontSize: 14,
         fontFamily: 'Montserrat-light',
 
     },
-    textPremium: {
-        color: '#319B9D',
-        fontSize: 13,
+    textServiceTitle: {
+        color: '#262626',
+        fontSize: 16,
         fontFamily: 'Montserrat-light',
-        marginTop:'3.5%'
+       
+    },
+    textPrice:{
+        color: '#28E5ACD',
+        fontSize: 26,
+        fontFamily: 'Montserrat-light',
     },
     imgMenu: {
         margin: '5%',
@@ -155,6 +160,7 @@ export default {
     viewForgotPwd: {
 
     },
+    
 
     rememberView: {
         flexDirection: 'row',
@@ -212,10 +218,12 @@ export default {
         height: 64,
     },
     imgUser: {
-        width: 100,
-        height: 100,
-        borderRadius: 50,
-        alignSelf: 'center',
+         marginTop:'2%',
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        marginBottom:'2%'
+       
     },
     textUserName: {
         color: '#ffffff',
