@@ -23,6 +23,7 @@ var ImagePicker = require('react-native-image-picker');
 import NewTest from './common/NewTest';
 import SideMenu from './common/SideMenu';
 import BackButton from './common/BackButton';
+import PostStatus from './common/PostStatus';
 
 //  import Icon from 'react-native-vector-icons/FontAwesome'
 
@@ -703,8 +704,9 @@ export default class DashboardComponent extends Component {
                             <Text style={styles.textUserName}>{getUsername(user.data)}</Text>
                             <Text style={{ fontSize: 18 }}>{getUserInfo(user.data)}</Text>
                         </View>
-                        { /* <PostStatus /> */}
-                        <View style={styles.viewWriteSomething}>
+                        <PostStatus  pathName={"/profile"}/>
+                        { /*  */}
+                        {/* <View style={styles.viewWriteSomething}>
                             <TextInput
                                 style={styles.textWriteSomething}
                                 onChangeText={(text) => this.setState({ text })}
@@ -742,9 +744,9 @@ export default class DashboardComponent extends Component {
                                 </TouchableOpacity>
                             </View>
                         </View>
+ */}
 
-
-                        <View style={styles.viewPostButton}>
+                        {/* <View style={styles.viewPostButton}>
                             <TouchableHighlight style={[styles.postButton]} >
                                 <View style={{ flexDirection: 'row' }}>
                                     <Text style={styles.textLoginButtonTitle}>Post</Text>

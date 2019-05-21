@@ -37,7 +37,7 @@ render() {
   const {user, profilePic, uploadProfilePic, uploadable} = this.props;
     return (
 
-<LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.headerColorMix} style={{ width: '100%', height: '30%' }}>
+<LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.headerColorMix} style={{ width: '100%', height: '100%' }}>
 
  <Animatable.View ref={'userImageView'} style={{ marginBottom: '5%', marginTop:'5%' }}>
 

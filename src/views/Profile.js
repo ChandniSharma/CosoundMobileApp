@@ -284,7 +284,6 @@ export default class ProfileComponent extends Component {
                             <View style={{ flex: 0.9 }}>
                                 <Text style={[styles.textSubTitleNotSelected]}>{item.item.title} </Text>
                                 <Text style={styles.textDescComment}> {item.item.description} </Text>
-
                             </View>
                             {/* {this.state.isClick? <Text style={styles.textSubtitleSelected}>Viewed your profile </Text>
                     :  <Text style={styles.textSubTitleNotSelected}> Viewed your profile </Text>} */}

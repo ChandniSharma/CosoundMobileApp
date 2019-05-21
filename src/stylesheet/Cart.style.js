@@ -12,7 +12,7 @@ export default {
     container: {
         flex: 1,
     },
-    topUserImage:{
+    topUserImage: {
         marginTop: "5%",
         width: 100,
         borderRadius: 50, elevation: 3,
@@ -26,6 +26,54 @@ export default {
         shadowOpacity: 0.8,
         marginBottom: '5%',
     },
+    textButtonTitle: {
+        fontSize: 16,
+        color: 'white',
+        fontWeight: '500',
+    },
+    textCartButtonTitle: {
+        color: '#ff277b',
+        fontSize: 16,
+        fontWeight: '500',
+
+    },
+    viewSubtotal:{
+        
+        // shadowColor: 'rgba(0,0,0,0.12)',
+        // shadowOffset: {
+        //     width: 0.9,
+        //     height: 1
+        // },
+        // shadowOpacity: 0.6,
+        // shadowRadius: 3,
+        backgroundColor:'white'
+    },
+    ViewSingleLine:{
+        shadowColor: 'rgba(0,0,0)',
+        shadowOffset: {
+            width: 0.2,
+            height: 0.8
+        },
+        shadowOpacity: 0.9,
+        shadowRadius: 0.8,
+       height:0.2,
+       width:'95%',
+      backgroundColor:'rgba(245,245,245, 0.3)',
+       alignSelf:'center'
+
+    },
+    viewTotal:{
+        alignSelf:'center', marginBottom:'2%', 
+        shadowColor: 'rgba(0,0,0,0.12)',
+        shadowOffset: {
+            width: .4,
+            height: .11
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+
+  
+    },
     findingView: {
         backgroundColor: 'white',
         width: 100,
@@ -34,6 +82,25 @@ export default {
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    loginButton: {
+        borderRadius: 25,
+        height: 40,
+       
+        alignItems: 'center',
+        justifyContent: 'center',
+        // marginLeft: "15%",
+        // marginRight: "15%",
+        shadowColor: 'rgba(0,0,0,0.12)',
+        shadowOffset: {
+            width: .4,
+            height: .11
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        alignSelf:'center',
+        //marginBottom:'10%',
+        backgroundColor: '#ff277b'
     },
     imgSideTitle: {
         color: 'white',
@@ -85,10 +152,10 @@ export default {
         color: '#262626',
         fontSize: 16,
         fontFamily: 'Montserrat-light',
-       
+
     },
-    textPrice:{
-        color: '#28E5ACD',
+    textPrice: {
+        color: '#8E5ACD',
         fontSize: 26,
         fontFamily: 'Montserrat-light',
     },
@@ -123,27 +190,27 @@ export default {
         paddingLeft: 30,
         paddingRight: 30,
     },
-    searchBarView:{
-        flexDirection:'row',
+    searchBarView: {
+        flexDirection: 'row',
         margin: '5%',
         height: 60,
         borderRadius: 25,
- 
+
     },
     inputSearchStyle: {
         height: 60,
         fontFamily: 'Montserrat-Regular',
         fontWeight: '300',
         fontSize: 16,
-        width:'70%',
-       color: 'black',
-       marginLeft:'15%',
+        width: '70%',
+        color: 'black',
+        marginLeft: '15%',
         // paddingTop: 21,
         // paddingBottom: 20,
         // paddingLeft: 30,
         // paddingRight: 30,
     },
-    btnBottomMob:{
+    btnBottomMob: {
         marginLeft: '5%',
         marginRight: '5%',
         height: 60,
@@ -160,7 +227,7 @@ export default {
     viewForgotPwd: {
 
     },
-    
+
 
     rememberView: {
         flexDirection: 'row',
@@ -184,16 +251,16 @@ export default {
         height: 300,
     },
     searchView: {
-       // alignSelf: 'flex-end',
+        // alignSelf: 'flex-end',
         // marginRight:5,
         // justifyContent: 'center',
         // width: 30,
         // height: 30,
-        
+
     },
-    bckgndImage:{
-        
-    }, 
+    bckgndImage: {
+
+    },
     imgMenuBar: {
         width: 40,
         height: 40,
@@ -218,13 +285,27 @@ export default {
         height: 64,
     },
     imgUser: {
-         marginTop:'2%',
         width: 40,
         height: 40,
         borderRadius: 20,
-        marginBottom:'2%'
-       
     },
+    textSummary: {
+        color: '#262626',
+        fontSize: 16,
+        fontFamily: 'Montserrat-light',
+    },
+
+    textSubtotal: {
+        color: 'rgba(38, 38, 38, 0.52)',
+        fontSize: 14,
+        fontFamily: 'Montserrat-light',
+    },
+    textSubtotalValue: {
+        color: '#262626',
+        fontSize: 14,
+        fontFamily: 'Montserrat-light',
+    },
+
     textUserName: {
         color: '#ffffff',
         fontSize: 34,
@@ -258,16 +339,16 @@ export default {
     },
     flatList: {
         width: '100%',
-        marginBottom:'10%'
+        marginBottom: '10%'
         //height: deviceHeight-300,
     },
-    flatListSearchbar:{
+    flatListSearchbar: {
         width: '90%',
-       
-        backgroundColor:'white',
-        borderRadius:15,
-        marginTop:-20,
-        alignSelf:'center'
+
+        backgroundColor: 'white',
+        borderRadius: 15,
+        marginTop: -20,
+        alignSelf: 'center'
     },
     viewModal: {
         //top:-100,
@@ -280,7 +361,7 @@ export default {
         flexDirection: 'row',
         flex: 1,
         alignSelf: 'center',
-       marginTop:'2%'
+        marginTop: '2%'
     },
     btnPremium: {
         backgroundColor: 'white',
@@ -290,7 +371,7 @@ export default {
         alignSelf: 'center',
         justifyContent: 'center',
         marginBottom: '2%',
-       // backgroundColor:'pink'
+        // backgroundColor:'pink'
     },
 
     textModalData: {

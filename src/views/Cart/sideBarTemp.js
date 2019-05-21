@@ -6,59 +6,77 @@ import styles from "../../stylesheet/Cart.style";
 //import { Svg, DollarSpan } from "../Commons";
 
 class Sidebar extends React.PureComponent {
+    
   render() {
-    const { cart } = this.props;
+  
       return (
-        <View style={{height:'80%', marginBottom:'40%'}}>
-      <View style={{backgroundColor:'white', alignSelf:'center', borderRadius:20, marginTop:'5%', marginBottom:'5%', width:'75%'}}>
+        <View style={{flex:1}}>
+
+      <View style={{backgroundColor:'white', alignSelf:'center', borderRadius:20, marginTop:'5%', marginBottom:'5%', width:'60%'}}>
             <Text style={[styles.titleAccount, {alignSelf:'center', marginBottom:'2%', marginTop:'4%'}]}>Summary</Text>
 
-        <View style={[styles.viewSubtotal, {width:'100%',marginTop:'10%', height:100,  justifyContent:'center', alignItems:'center'}]}>
+        <View style={[styles.viewSubtotal, {width:'100%',marginTop:'10%', height:100,  justifyContent:'center'}]}>
           
-            <View style={{flexDirection:'row', marginBottom:'2%', marginTop:'2%', marginLeft:'20%', marginRight:'20%' }}>
+            <View style={{flexDirection:'row', marginBottom:'2%', marginTop:'2%', alignSelf:'center',}}>
               <Text style={[styles.textSubtotal, {marginBottom:'2%',flex:0.5, alignSelf:'flex-start'} ]}>Subtotal</Text>
-              <Text style={[styles.textSubtotalValue,{marginBottom:'2%',flex:0.5} ]}>${cart.sub_total} </Text>
+              {/* <Text style={[styles.textSubtotalValue,{marginBottom:'2%',flex:0.5} ]}>{cart.sub_total} </Text> */}
+              <Text style={[styles.textSubtotalValue,{marginBottom:'2%',flex:0.5} ]}>120 </Text>
+
             </View>
 
-            <View style={{flexDirection:'row', marginBottom:'2%', flex:1,marginLeft:'20%', marginRight:'20%' }}>
+            <View style={{flexDirection:'row', marginBottom:'2%', flex:1,alignSelf:'center',}}>
               <Text style={[styles.textSubtotal, {marginBottom:'2%',flex:0.5, alignSelf:'flex-start' }]}>Tax</Text>
-              <Text style={[styles.textSubtotalValue, {marginBottom:'2%',flex:0.5} ]}>{cart.vat} </Text>
+              {/* <Text style={[styles.textSubtotalValue, {marginBottom:'2%',flex:0.5} ]}>{cart.vat} </Text> */}
+              <Text style={[styles.textSubtotalValue, {marginBottom:'2%',flex:0.5} ]}>11 </Text>
+
             </View>
           
         </View>
-<View style={styles.ViewSingleLine}/>
-        <View style={[styles.viewTotal, {width:'100%', marginBottom:'5%', height:100, justifyContent:'center', alignItems:'center'}]}>
+
+        <View style={[styles.viewTotal, {width:'100%', marginBottom:'5%', height:100, backgroundColor:'pink'}]}>
           
-            <View style={{flexDirection:'row',  marginLeft:'20%', marginRight:'20%', alignSelf:'center'}}>
+            <View style={{flexDirection:'row',  marginLeft:'20%', marginRight:'20%', flex:1}}>
               <Text style={[styles.textSubtotalValue,{flex:0.5,}]}>Total</Text>
-              <Text style={[styles.textSubtotalValue, {flex:0.5,}]}>${cart.total} </Text>
+              {/* <Text style={[styles.textSubtotalValue, {flex:0.5,}]}>{cart.total} </Text> */}
+              <Text style={[styles.textSubtotalValue, {flex:0.5,}]}>200</Text>
+
             </View>
          
-            <View style={{flexDirection:'row',marginTop:'2%',marginLeft:'20%', marginRight:'20%',alignSelf:'center'}}>
+            <View style={{flexDirection:'row', flex:1,marginLeft:'20%', marginRight:'20%'}}>
               <Text style={[styles.textSubtotalValue, {flex:0.5,} ]}>Delivery Time</Text>
-              <Text style={[styles.textSubtotalValue, {flex:0.5,}]}>{cart.total}days </Text>
+              <Text style={[styles.textSubtotalValue, {flex:0.5,}]}>20 mins</Text>
+
+              {/* <Text style={[styles.textSubtotalValue, {flex:0.5,}]}>{cart.total} </Text> */}
             </View>
           </View>
 
-            {!isEmpty(cart.data) && (
+          <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton, {marginTop:'10%'}]}>
+                <Text style={[styles.textButtonTitle, {marginLeft:'10%', marginRight:'10%'}]}>Proceed to payment</Text>
+          </TouchableHighlight>
+            )}
+            <TouchableHighlight underlayColor="#25b6ad" style={{marginBottom:'5%', alignSelf:'center'}}>
+                <Text style={styles.textCartButtonTitle}>Add To Cart</Text>
+          </TouchableHighlight>
+
+            {/* {!isEmpty(cart.data) && (
               // Redirect to checkout page
               // <Link
               //   to={"/checkout"}
               //   className="btn btn-primary btn-primary--red"
               // >
               // </Link>
-              <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton, {marginTop:'2%'}]}>
+              <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton, {marginTop:'10%'}]}>
                 <Text style={[styles.textButtonTitle, {marginLeft:'10%', marginRight:'10%'}]}>Proceed to payment</Text>
           </TouchableHighlight>
             )}
-            <TouchableHighlight underlayColor="#25b6ad" style={{marginBottom:'5%', alignSelf:'center', marginTop:'10%', height:'10%'}}>
+            <TouchableHighlight underlayColor="#25b6ad" style={{marginBottom:'5%', alignSelf:'center'}}>
                 <Text style={styles.textCartButtonTitle}>Add To Cart</Text>
-          </TouchableHighlight>
+          </TouchableHighlight> */}
 
          
         </View>
 
-        {/* <View>
+        <View>
           <View>
           { /*
             <i className="icon icon-pay-discover" />
@@ -69,20 +87,20 @@ class Sidebar extends React.PureComponent {
             <i className="icon icon-pay-amex" />
             <i className="icon icon-pay-mastercard-old" />
             */ }
-          {/* </View>
+          </View>
           <View>
             <Text>Payment Methods Accepted</Text>
           </View>
-        </View> */}
+        </View>
 
-        {/* <View>
+        <View>
           <View>
             { /* <Svg name="ico-ssl" /> */ }
-          {/* </View>
+          </View>
           <View>
           <Text>Secure Payment SLL</Text>
           </View>
-        </View>  */}
+        </View>
       </View>
     );
   }

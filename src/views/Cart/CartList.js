@@ -5,7 +5,7 @@ import styles from "../../stylesheet/Cart.style";
 //import { Loader, ViewMoreFlat, NoDataWithLink, Error } from "../Commons";
 //import CartItem from "./CartItem";
 import { getServiceLink, getThumbnail, getServiceThumbnail } from "../../utils";
-
+import StarView from '../common/StarView';
 import { noDataProps } from "./data";
 import CardOptions from "./CardOptions";
 
@@ -23,28 +23,30 @@ class CartList extends React.PureComponent {
     const { isVisible } = this.state;
     const { removeFromCart, _removeFromCart } = this.props;
     return (
-      <View style={{ flex: 1, }}>
+      <View style={{ flex: 1 }}>
         {/* View single line */}
-        <View style={{ width: '80%', alignSelf: 'center',marginTop:'2%', height: 1, backgroundColor: 'gray' }} />
+        <View style={{ width: '95%', alignSelf: 'center',marginTop:'2%', height: 0.5, backgroundColor: 'lightgray' }} />
 
+{/* Main service Image */}
         <TouchableOpacity style={{alignSelf:'center', width:100, height:100, marginTop:'5%', marginBottom:'2%',}}>
           <Image style={{ alignSelf: 'center', width:100, height:100, borderRadius:10 }} source={{ uri: getServiceThumbnail(item.media) }} />
         </TouchableOpacity>
 
-        <View style={{ flexDirection: 'row', flex:1, marginBottom:'2%', marginTop:'2%',height:200 }}>
+        <View style={{ flexDirection: 'row', flex:1, marginBottom:'2%', marginTop:'2%' }}>
 
-          <Image style={[styles.imgUser, {marginRight:'2%', marginLeft:'2%', flex:0.2, marginBottom:'2%', marginTop:'2%'} ]} source={require('../../assets/avatar-main-1.jpg')} />
+          <Image style={[styles.imgUser, {marginRight:'2%', marginLeft:'2%',  marginBottom:'2%', marginTop:'2%'} ]} source={require('../../assets/avatar-main-1.jpg')} />
 
           {/* <Image style={{ width: 50, height: 50, borderRadius: 25, marginTop: '33.5%' }} source={{ uri: getServiceThumbnail(item.media) }} /> */}
 
-          <View style={{ flex:0.65}}>
+          <View style={{flex:0.85}}>
             <TouchableOpacity style={{marginTop:'2%'}}>
               <Text style={styles.textServiceTitle}> {item.title}</Text>
             </TouchableOpacity>
-            <View style={{ flexDirection: 'row', marginTop:'2%',marginLeft:'2%' }}>
+            <View style={{ flexDirection: 'row', marginTop:'5%',marginLeft:'0.5%' }}>
               {/* Rating view */}
-              <Text style={styles.textServiceTitle}>Star Rating </Text>
-              <Text style={styles.textRatingCount}>{item.review_count}</Text>
+              {/* <Text style={styles.textServiceTitle}>Star Rating </Text> */}
+              <StarView />
+              <Text style={[styles.textRatingCount, {marginLeft:'2%'}]}>{item.review_count}</Text>
             </View>
           </View>
           <Text style={[styles.textPrice, { flex:0.15}]}>${item.price}  </Text>
@@ -139,6 +141,8 @@ class CartList extends React.PureComponent {
           )}
         </View>
         <View>
+        <Text style={[styles.titleAccount, {marginTop:'5%', marginLeft:'2%'} ]}>Your Service</Text>
+
           <FlatList
 
             data={cart.data}

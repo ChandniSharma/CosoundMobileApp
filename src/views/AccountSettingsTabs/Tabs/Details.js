@@ -191,11 +191,25 @@ class Details extends React.PureComponent {
   };
 
   render() {
+    const {
+      details,
+      genres,
+      handleMultiSelect,
+      handleChange,
+      handleDateChange,
+      addMoreSocials,
+      handleKeyPress,
+      handleFileChange,
+      handleSocialLinks,
+      signUp,
+    
+    } = this.props;
+
     const { data, errors } = this.state;
-    const { details, genres } = this.props;
+    // const { details, genres } = this.props;
     const error = checkError(details.error);
     return (
-      <View style={{backgroundColor:'pink', height:'100%'}}>
+      <View style={{backgroundColor:'pink', height:'100%', marginBottom:'5%'}}>
 
         <TextInput
           style={styles.inputStyle}
@@ -300,7 +314,7 @@ class Details extends React.PureComponent {
               items={genres.data}
               uniqueKey="value"
               ref={(component) => { this.multiSelect = component }}
-              onSelectedItemsChange={(selectedItems) => handleMultiSelect(selectedItems, 'genres')}
+              onSelectedItemsChange={(selectedItems) => this._handleMultiSelect(selectedItems, 'genres')}
               selectedItems={data.genres}
               selectText="Select Genres"
               searchInputPlaceholderText="Select Genres"

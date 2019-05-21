@@ -72,7 +72,7 @@ class Cart extends React.PureComponent {
 
         <View style={{ flex: 1 }}>
           <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)' }}>
-            <Text style={[styles.titleAccount, {marginTop:'2%', marginLeft:'2%'} ]}>Your Service</Text>
+            {/* <Text style={[styles.titleAccount, {marginTop:'2%', marginLeft:'2%'} ]}>Your Service</Text> */}
 
             <Paginator
               isLoaderInternal

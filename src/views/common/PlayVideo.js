@@ -12,7 +12,7 @@ export default class PlayVideo extends Component {
         return (
             <View style= {{flex:1, backgroundColor:'yellow'}}>
                 <VideoPlayer
-                source={{ uri: source.path }}
+                source={{ uri: this.props.parentComponent === "renderTempFile" ?this.props.uri : source.path }}
                 paused={true}
                 repeat={false} 
                 style={{width:'100%', height:200}} 

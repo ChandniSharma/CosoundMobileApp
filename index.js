@@ -36,6 +36,8 @@ import SoundPlay from './src/views/common/SoundPlay';
 import PlayVideo from './src/views/common/PlayVideo';
 import TestFB from './src/views/animation';
 import Cart from './src/containers/Cart';
+import StarView from './src/views/common/StarView';
+import Sidebar from './src/views/Cart/sideBarTemp';
 
 //import MarketPlace from './src/views/Marketplace';
 
@@ -62,7 +64,8 @@ const AppStackNavigator = createStackNavigator({
     Notifications: { screen: Notifications },
     AccountSettings: {screen: AccountSettings},
     Cart: {screen: Cart},
-
+    StarView: {screen: StarView},
+    Sidebar: { screen: Sidebar },
    // Marketplace:{screen:MarketPlace},
 }, {
         initialRouteName: 'Login',

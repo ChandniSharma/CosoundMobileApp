@@ -101,6 +101,8 @@ export default {
         color: 'rgba(38,38,38,0.52)',
         fontSize: 12,
         fontFamily: 'Montserrat-light',
+        marginLeft:'3%',
+        marginRight:'3%'
     },
 
     textAccountPopup: {
@@ -122,6 +124,24 @@ export default {
         alignSelf: 'center',
         margin: '5%',
 
+    },
+    datePickerStyle: {
+        marginLeft: '15%',
+        marginRight: '5%',
+        height: 60,
+        width: deviceWidth - 20,
+        alignSelf: 'center',
+        backgroundColor: 'transparant',
+        marginTop: '5%',
+
+        fontFamily: 'Montserrat-Regular',
+        fontWeight: '300',
+        fontSize: 16,
+        color: '#262626',
+        paddingTop: 21,
+        paddingBottom: 20,
+        paddingLeft: 30,
+        paddingRight: 30,
     },
     inputStyle: {
         marginLeft: '5%',
@@ -313,6 +333,12 @@ export default {
        // backgroundColor:'pink'
     },
 
+    errorText: {
+        margin: '2%',
+        color: 'red',
+        alignSelf: 'center',
+    },
+
     textModalData: {
         color: 'white',
         fontSize: 12,
@@ -393,5 +419,56 @@ export default {
         marginTop: '-2%',
         // marginLeft:'-%',
         zIndex: 999,
+    },
+    multiSelectDownStyle: {
+        // marginTop:'6%',
+        height: 60,
+        backgroundColor: 'white',
+        marginRight: '2%',
+        shadowColor: 'rgba(0,0,0,0.7)',
+        shadowOffset: {
+            width: 2,
+            height: 4
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        borderRadius: 8,
+        fontFamily: 'Montserrat-Regular',
+        fontWeight: '300',
+        fontSize: 16,
+        color: '#262626',
+        paddingLeft: 30
+    },
+    multiSelectStyle: {
+        marginTop: '2%',
+        height: 60,
+        backgroundColor: 'white',
+        marginRight: '2%',
+        shadowColor: 'rgba(0,0,0,0.7)',
+        shadowOffset: {
+            width: 2,
+            height: 4
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        borderRadius: 8,
+        fontFamily: 'Montserrat-Regular',
+        fontWeight: '300',
+        fontSize: 16,
+        color: '#262626',
+        paddingLeft: 30
+    },
+    multiSelectListStyle: {
+        marginTop: '5%',
+        backgroundColor: 'white',
+        shadowColor: 'rgba(0,0,0,0.7)',
+        shadowOffset: {
+            width: 2,
+            height: 4
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        borderRadius: 8,
+        marginBottom:'2%',
     },
 }

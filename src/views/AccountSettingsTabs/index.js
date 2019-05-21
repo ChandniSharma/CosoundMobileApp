@@ -138,16 +138,19 @@ class AccountSettingsTabs extends React.PureComponent {
                         <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />
                     </TouchableOpacity>
                 </LinearGradient> : null}
+
                 <View style={{ flex: 1 }}>
                 <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)' }}>
 
+<View style={{flex:0.3, backgroundColor:'red'}}>
                 <SettingsHeader
                     user={user}
                     profilePic={profilePic}
                     uploadProfilePic={uploadProfilePic}
                     uploadable={true}
                 />
-                <TouchableOpacity style={{ marginTop: '2%', marginBottom: '2%' }} onPress={() => this.setState({ isDropDownclick: true })}>
+         </View>       
+                <TouchableOpacity style={{ marginTop:'2%',marginBottom: '2%', flex:0.1 }} onPress={() => this.setState({ isDropDownclick: true })}>
                     <View style={{ flexDirection: 'row' }}>
                         <Icon3 name="ios-settings" style={{ marginLeft: '2%', marginBottom: '1%', flex: 0.1, color: 'rgb(140,91,204)', fontSize: 25 }} />
                         <Text style={[styles.titleAccount, { flex: 0.8, marginTop: '0.5%' }]}> Account Settings</Text>
@@ -159,7 +162,7 @@ class AccountSettingsTabs extends React.PureComponent {
                         {/* <Animatable.Image source={require('../../src/assets/Image/arrow_small_down.png')} style={{borderRadius:13,alignSelf:'flex-end' ,width: 26, height: 26 }} /> */}
                     </View>
                 </TouchableOpacity>
-                <View style={{ flexDirection: "row", alignSelf: 'center', marginTop:'2%' }}>
+                <View style={{ flexDirection: "row", alignSelf: 'center', marginTop:'2%', flex:0.1 }}>
                     <TouchableHighlight style={[styles.buttonSettings]} underlayColor="white" onPress={() => switchTab(0)}>
                         <Text style={styles.textSettings}>{buttonName.contactInfo}</Text>
                     </TouchableHighlight>
@@ -168,7 +171,7 @@ class AccountSettingsTabs extends React.PureComponent {
                         <Text style={styles.textSettings}>{buttonName.details}</Text>
                     </TouchableHighlight>
                 </View>
-                <View style={{ flexDirection: "row", marginBottom: '2%', alignSelf: 'center' }}>
+                <View style={{ flexDirection: "row", marginBottom: '2%', marginLeft:'2%', marginRight:'2%', flex:0.1 }}>
 
                     <TouchableHighlight style={styles.buttonSettings} underlayColor="white" onPress={() => switchTab(2)}>
                         <Text style={styles.textSettings}>{buttonName.changePassword}</Text>
@@ -183,7 +186,7 @@ class AccountSettingsTabs extends React.PureComponent {
                     </TouchableHighlight>
 
                 </View>
-                <View>
+                <View style={{ flex:0.4 }}>
                     <TabComponent
                         user={user}
                         genres={genres}
