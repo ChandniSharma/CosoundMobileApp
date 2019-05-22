@@ -3,9 +3,13 @@ import React from "react";
 import { isEmpty } from "lodash";
 import { FlatList, Image, ImageBackground, Text, TextInput, Modal, TouchableHighlight, View, TouchableOpacity, ScrollView, ActivityIndicator } from "react-native";
 import styles from "../../stylesheet/Cart.style";
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+
 //import { Svg, DollarSpan } from "../Commons";
 
 class Sidebar extends React.PureComponent {
+  
   render() {
     const { cart } = this.props;
       return (
@@ -57,6 +61,11 @@ class Sidebar extends React.PureComponent {
 
          
         </View>
+{/* <View style={{flexDirection:'row'}}>
+  <TouchableOpacity style={{marginLeft:'1%'}}>
+    <Icon name="cc-visa" style={{fontSize:18}}/>
+  </TouchableOpacity>
+</View> */}
 
         {/* <View>
           <View>

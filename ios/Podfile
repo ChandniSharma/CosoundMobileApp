@@ -1,0 +1,34 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'CosoundApp' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for CosoundApp
+  
+pod 'DCTAuth', :git => 'https://github.com/danielctull/DCTAuth.git'
+pod 'Firebase/Core'
+pod 'GoogleSignIn', '~> 4.4.0'
+#pod 'RNGoogleSignin', :path => "rnfolder/node_modules/react-native-google-signin"
+
+  target 'CosoundApp-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+#    pod 'RNGoogleSignin', :path => '../node_modules/react-native-google-signin'
+
+  end
+
+  target 'CosoundAppTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+target 'CosoundApp-tvOS' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+
+end

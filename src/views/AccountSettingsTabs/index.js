@@ -130,8 +130,8 @@ class AccountSettingsTabs extends React.PureComponent {
                         <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />
                     </TouchableOpacity>
 
-{/* 
-                    <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" /> */}
+ 
+                    <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" /> 
 
                     <View style={{ flex: 0.3 }} />
                     <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={()=>this.setState({isNotificationShow: !this.state.isNotificationShow})}>
@@ -177,7 +177,7 @@ class AccountSettingsTabs extends React.PureComponent {
                         <Text style={styles.textSettings}>{buttonName.changePassword}</Text>
                     </TouchableHighlight>
 
-                    <TouchableHighlight style={[styles.buttonSettings]} underlayColor="white" onPress={() => alert('Coming Soon!')}>
+                    <TouchableHighlight style={[styles.buttonSettings]} underlayColor="white" onPress={() => switchTab(4)}>
                         <Text style={styles.textSettings}>{buttonName.notificationSettings}</Text>
                     </TouchableHighlight>
 

@@ -71,8 +71,7 @@ class ChangePassword extends React.PureComponent {
     }
   };
 
-  _handleChange = e => {
-    const { name, value } = e.target;
+  handleChange = (name, value)=> {
     const { data } = this.state;
     data[name] = value;
     this.setState(
@@ -93,7 +92,7 @@ class ChangePassword extends React.PureComponent {
           placeholder={'Current Password'}
           name={"old_password"}
           value={data.old_password}
-          onChangeText={val => handleChange('old_password', val)}
+          onChangeText={val => this.handleChange('old_password', val)}
         />
         {errors.old_password?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.old_password}</Animatable.Text>:null}
       
@@ -102,7 +101,7 @@ class ChangePassword extends React.PureComponent {
           placeholder={'Password'}
           name={"new_password"}
           value={data.new_password}
-          onChangeText={val => handleChange('new_password', val)}
+          onChangeText={val =>this.handleChange('new_password', val)}
         />
         {errors.new_password?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.new_password}</Animatable.Text>:null}  
 
@@ -111,7 +110,7 @@ class ChangePassword extends React.PureComponent {
           placeholder={'Password'}
           name={"password_confirmation"}
           value={data.password_confirmation}
-          onChangeText={val => handleChange('password_confirmation', val)}
+          onChangeText={val =>this.handleChange('password_confirmation', val)}
         />
         {errors.password_confirmation?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.password_confirmation}</Animatable.Text>:null} 
         

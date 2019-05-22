@@ -35,10 +35,23 @@ export default {
         fontFamily:'Montserrat-light',
        // fontWeight:'100',
     },
+    noServiceText:{
+        marginBottom:'5%',
+        alignSelf:'center',
+        fontSize:26,
+        color:'#262626',
+        fontFamily:'Montserrat-Regular',
+    },
+    textLight:{
+        alignSelf:'center',
+        fontSize:14,
+        color:'rgba(38, 38, 38, 0.52)',
+        fontFamily:'Montserrat-light',
+    },
     loginButton:{
         borderRadius: 25,
         height: 50,
-        flex: 0.5,
+        
         alignItems: 'center',
         justifyContent: 'center',
          marginLeft: "15%",
@@ -52,7 +65,14 @@ export default {
         shadowRadius: 1,
         
         //marginBottom:'10%',
-        backgroundColor: '#ff277b'
+        backgroundColor: '#ff277b',
+        marginBottom:'15%',
+    },
+    textButtonTitle: {
+        fontSize: 16,
+        color:'white',
+        fontWeight:'500',
+        marginBottom:'10%'
     },
     findingView: {
         backgroundColor: 'white',

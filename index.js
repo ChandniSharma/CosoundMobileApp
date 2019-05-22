@@ -38,6 +38,9 @@ import TestFB from './src/views/animation';
 import Cart from './src/containers/Cart';
 import StarView from './src/views/common/StarView';
 import Sidebar from './src/views/Cart/sideBarTemp';
+import NoService from './src/views/NoService';
+import Checkout from './src/views/Checkout';
+import GooglesignIn from './src/views/common/GooglesignIn';
 
 //import MarketPlace from './src/views/Marketplace';
 
@@ -66,9 +69,12 @@ const AppStackNavigator = createStackNavigator({
     Cart: {screen: Cart},
     StarView: {screen: StarView},
     Sidebar: { screen: Sidebar },
+    NoService: { screen: NoService },
+     GooglesignIn:{screen:GooglesignIn},
+Checkout:{screen:Checkout}
    // Marketplace:{screen:MarketPlace},
 }, {
-        initialRouteName: 'Login',
+        initialRouteName: 'GooglesignIn',
         gesturesEnabled: false,
         headerMode: 'none',
     })

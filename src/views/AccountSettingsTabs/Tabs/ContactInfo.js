@@ -48,7 +48,7 @@ class ContactInfo extends React.Component {
     });
   };
 
-  _submit = e => {
+  _submit = ()=> {
     // e.preventDefault();
     if (this._isValidSocials()) {
       this.setState({ errors: {} });
@@ -78,7 +78,7 @@ class ContactInfo extends React.Component {
   };
 
   /* creatable handler | phone_numbers */
-  _handleCreatable = (value, name) => {
+  _handleCreatable = ( name,value) => {
     const { data } = this.state;
     data[name] = value;
     this.setState({
@@ -87,8 +87,7 @@ class ContactInfo extends React.Component {
   };
 
   /* social_links handler */
-  _handleSocialLinks = e => {
-    const { name, value } = e.target;
+  handleSocialLinks = (name,value) => {
     const { data } = this.state;
     const id = Number(name);
     const socialLinks = formatLinksState(data.social_links, id, value);
@@ -138,8 +137,18 @@ class ContactInfo extends React.Component {
    */
   _handleKeyPress = e => {
     if (enterPressed(e)) {
-      this._addMoreSocials(e.target.name);
+      this._addMoreSocials(e);
     }
+  };
+  handleChange = (name, value)=> {
+    const { data } = this.state;
+    data[name] = value;
+    this.setState(
+      {
+        data
+      },
+      () => this._isValid(name)
+    );
   };
 
   render() {
@@ -151,7 +160,6 @@ class ContactInfo extends React.Component {
         <TextInput
           style={styles.inputStyle}
           placeholder={'Email'}
-          onChangeText={val => handleChange('email', val)}
           value={data.email}
           editable={false} selectTextOnFocus={false}
           name={"email"}
@@ -160,7 +168,7 @@ class ContactInfo extends React.Component {
         <TextInput
           style={styles.inputStyle}
           placeholder={'Phones'}
-          onChangeText={val => handleChange('phone_numbers', val)}
+          onChangeText={val => this._handleCreatable('phone_numbers', val)}
           value={data.phone_numbers}
           name={"phone_numbers"}
         />
@@ -207,14 +215,14 @@ class ContactInfo extends React.Component {
                 <TextInput
                   style={[styles.socialInput, { flex: 0.85 }]}
                   placeholder={'Social Links'}
-                  onSubmitEditing={() => handleKeyPress(item.id)}
-                  onChangeText={val => handleSocialLinks(item.id, val)}
+                  onSubmitEditing={() => this._handleKeyPress(item.id)}
+                  onChangeText={val => this.handleSocialLinks(item.id, val)}
                   value={item.value}
                   name={item.id}
                 />
 
                 {/* {!item.isReady && ( */}
-                <TouchableHighlight onPress={() => _addMoreSocials(item.id)} underlayColor="#25b6ad" style={[styles.plusCircleBtn]}>
+                <TouchableHighlight onPress={() => this._addMoreSocials(item.id)} underlayColor="#25b6ad" style={[styles.plusCircleBtn]}>
                   <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} />
                 </TouchableHighlight>
 

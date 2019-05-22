@@ -143,8 +143,7 @@ class Details extends React.PureComponent {
   /**
    * Text input handler
    */
-  _handleChange = e => {
-    const { name, value } = e.target;
+  _handleChange = (name, value) => {
     const { data } = this.state;
     data[name] = value;
     this.setState(
@@ -194,27 +193,18 @@ class Details extends React.PureComponent {
     const {
       details,
       genres,
-      handleMultiSelect,
-      handleChange,
-      handleDateChange,
-      addMoreSocials,
-      handleKeyPress,
-      handleFileChange,
-      handleSocialLinks,
-      signUp,
-    
     } = this.props;
 
     const { data, errors } = this.state;
     // const { details, genres } = this.props;
     const error = checkError(details.error);
     return (
-      <View style={{backgroundColor:'pink', height:'100%', marginBottom:'5%'}}>
+      <View style={{ height:'100%', marginBottom:'5%'}}>
 
         <TextInput
           style={styles.inputStyle}
           placeholder={'Bio'}
-          onChangeText={val => handleChange('bio', val)}
+          onChangeText={val => this._handleChange('bio', val)}
           value={data.bio}
           name={"bio"}
         />
@@ -222,7 +212,7 @@ class Details extends React.PureComponent {
         <TextInput
           style={styles.inputStyle}
           placeholder={'First Name'}
-          onChangeText={val => handleChange('first_name', val)}
+          onChangeText={val => this._handleChange('first_name', val)}
           value={data.first_name}
           name={"first_name"}
         />
@@ -237,7 +227,7 @@ class Details extends React.PureComponent {
         <TextInput
           style={styles.inputStyle}
           placeholder={'Last Name'}
-          onChangeText={val => handleChange('last_name', val)}
+          onChangeText={val => this._handleChange('last_name', val)}
           value={data.last_name}
           name={"last_name"}
         />
@@ -286,14 +276,14 @@ class Details extends React.PureComponent {
             // ... You can check the source to find the other keys.
           }}
           onDateChange={(date) =>
-            handleDateChange(date)
+            this._handleDateChange(date)
           }
         />
         {errors.dob && <ErrorMsg message={errors.dob} />}
         <TextInput
           style={styles.inputStyle}
           placeholder={'Artist Name'}
-          onChangeText={val => handleChange('artist_name', val)}
+          onChangeText={val => this._handleChange('artist_name', val)}
           value={data.artist_name}
           name={"artist_name"}
         />
@@ -335,7 +325,17 @@ class Details extends React.PureComponent {
             <View>
               {this.multiSelect && this.multiSelect.getSelectedItemsExt(data.genres)}
             </View>
+            <TouchableOpacity style={{ alignSelf: 'center', justifyContent: 'center', marginTop: '5%', width: '40%', height: '15%', borderRadius: 10, backgroundColor: '#ff277b' }}
+          onPress={() => !details.isRequesting && this._submit()}
 
+        // disabled={changePassword.isRequesting}
+        >
+          {details.isRequesting ? (
+            <ActivityIndicator color='gray' />
+          ) : (
+              <Text style={styles.loginText}>Update</Text>
+            )}
+        </TouchableOpacity>
       </View>
     );
     // return (
