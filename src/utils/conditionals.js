@@ -66,14 +66,15 @@ const enterPressed = e => {
 };
 
 const formatPhoneNumbers = phoneNumbers => {
-  return !isNull(phoneNumbers)
+  console.log(" phone n0 ******", phoneNumbers);
+  return !isNull(phoneNumbers) && phoneNumbers.length > 0
     ? phoneNumbers.map(item => {
         let newItem = { label: "", value: "" };
         newItem.label = item;
         newItem.value = item;
         return newItem;
       })
-    : [];
+    : [{label: "", value: ""}];
 };
 
 const formatLinks = (socialLinks, remainingArray) => {

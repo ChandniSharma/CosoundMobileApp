@@ -269,10 +269,10 @@ this.setState({current:type});
             // let source = { uri: 'data:image/jpeg;base64,' + response.data };
             
             this.setState({
-                isImageLoadedFromLiab: true,
+                isImageLoadedFromLiab: false,
                 filePath: source
             });;
-            this._handleFileChange("files", [response])
+        this._handleFileChange("files", [response])
         }
     });
 };

@@ -54,7 +54,9 @@ export default class NoService extends Component {
             mobileNumber: '',
             isNotificationShow: false,
             isCreateServiceViewShow:false,
+            isServiceDescViewShow:false,
         }
+        this.arrayGeneres =["Blues", "Classic", 'Jazz'];
         this.arrayMobileNumber = [];
         this.arrayButtons = [];
         this.dropDownOptions = [{ name: 'Offered Services', image: '' }, { name: 'Historic', image: 'wechat' }, { name: 'Support Center', image: 'customerservice' }],
@@ -63,7 +65,9 @@ export default class NoService extends Component {
     }
     fadeInDown = () => this.refs.userImageView.fadeInDown(1000);
     fadeInCreateView = () => this.refs.createServiceView.fadeIn(2000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
-   
+    fadeInUpServiceDescView = () => this.refs.serviceDescView.fadeInUp(1000);
+
+    
     
     zoomInPopup = () => this.refs.viewModalRef.zoomIn().then(endState => console.log(" now end zoomin"));
 
@@ -142,6 +146,12 @@ export default class NoService extends Component {
             mobileNumber: ''
         });
         return this.arrayButtons
+    }
+    showServiceDescView (){
+        this.setState({isServiceDescViewShow:true});
+        setTimeout(() => {
+            this.fadeInUpServiceDescView();
+        }, 100);
     }
     removeMobileNumber() {
 
@@ -248,11 +258,11 @@ export default class NoService extends Component {
         styleMainWrapper={{ marginLeft: '5%', marginRight: '5%', marginTop: '5%' }}
         styleListContainer={styles.multiSelectListStyle}
         hideTags
-        items={genres.data}
+        items={this.genres}
         uniqueKey="value"
         ref={(component) => { this.multiSelect = component }}
         onSelectedItemsChange={(selectedItems) => handleMultiSelect(selectedItems, 'genres')}
-        selectedItems={data.genres}
+        selectedItems={this.genres}
         selectText="Select Genres"
         searchInputPlaceholderText="Select Genres"
         onChangeInput={(text) => console.log(text)}
@@ -270,7 +280,7 @@ export default class NoService extends Component {
         name="genres"
       />
       <View>
-        {this.multiSelect && this.multiSelect.getSelectedItemsExt(data.genres)}
+        {this.multiSelect && this.multiSelect.getSelectedItemsExt(this.genres)}
       </View>
     </View>
         )
@@ -357,17 +367,27 @@ export default class NoService extends Component {
                         </TouchableOpacity>
 
                        {this.state.isCreateServiceViewShow? <Animatable.View ref={"createServiceView"} style={{ alignSelf: 'center', marginTop: '10%', flex: 0.7 }}>
-                            <View style={{ alignSelf: 'center' }}>
-                                <Icon name="close" color='#20ACAC' style={{ fontSize: 25 }} />
-                                <Icon5 name="hand-holding" color='#20ACAC' style={{ fontSize: 25 }} />
-
-                            </View>
+                            
                             <Text style={[styles.noServiceText, { marginLeft: '10%', marginRight: '10%', marginTop: '5%' }]}> Nice! Let's create your first service! </Text>
-                            <Text style={[styles.textLight, { alignSelf: 'center', marginTop: '5%' }]}> What type of service are you offering?</Text>
-                            {/* Music genres */}
-                            {this.multiSelect}
-                            <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton, { marginTop: '5%', justifyContent: 'center', }]} onPress={this.showCreateService}>
-                                <Text style={styles.textButtonTitle} >Create Service</Text>
+                           {this.state.isServiceDescViewShow?<Animatable.View ref={"serviceDescView"} style={{height:'40%'}}>
+                           <Text style={[styles.subTitle, { marginLeft: '10%', marginRight: '10%', marginTop: '5%' }]}> Nice… describe your service in more detail! (give as much information as possible!) </Text>
+                           <TextInput
+              style={[styles.inputStyle, {height:'30%'}]}
+              placeholder={'Description'}
+              numberOfLines={5}
+            //   onChangeText={val => handleChange('artist_name', val)}
+            //   value={data.artist_name}
+            //   name={"artist_name"}
+            />
+                           </Animatable.View>:
+                           <View>
+                                <Text style={[styles.textLight, { alignSelf: 'center', marginTop: '5%' }]}> What type of service are you offering?</Text>
+                                {/* Music genres */}
+                                {this.multiSelect()}
+                            </View>
+                           }
+                            <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton, { marginTop: '5%', justifyContent: 'center', }]} onPress={()=>this.showServiceDescView()} >
+                                <Text style={styles.textButtonTitle} >Next</Text>
                             </TouchableHighlight>
                             </Animatable.View> : 
                             

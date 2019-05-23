@@ -8,6 +8,8 @@ import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dim
 import styles from "../../../stylesheet/Account.style";
 import MultiSelect from 'react-native-multiple-select';
 import * as Animatable from 'react-native-animatable';
+import SelectInput from 'react-native-select-input-ios'
+import { countries } from '../../../utils/countries';
 
 import Validator from "../../../validator";
 
@@ -20,6 +22,10 @@ import Validator from "../../../validator";
 import { extractValue, checkError, isError, isSuccess } from "../../../utils";
 
 class Details extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.options = countries;
+  }
   state = {
     data: {
       bio: "",
@@ -36,7 +42,7 @@ class Details extends React.PureComponent {
     },
     errors: {}
   };
-
+ 
   componentDidMount() {
     this._initializeState();
   }
@@ -58,6 +64,7 @@ class Details extends React.PureComponent {
         last_name: !isNull(user.data.last_name) ? user.data.last_name : "",
         dob: !isNull(user.data.dob) ? moment.utc(user.data.dob) : null,
         artist_name: user.data.artist_name,
+        country_id:user.data.country_id,
         genres: user.data.genres.map(item => {
           const newItem = { value: "", label: "" };
           newItem.value = item.id;
@@ -74,7 +81,7 @@ class Details extends React.PureComponent {
   _isValid = (field = null) => {
     const validate = Validator.createValidator(
       {
-        address: ["required"],
+        // address: ["required"],
         postal_code: ["required", "zipcode|pinCode"],
         first_name: ["required"],
         artist_name: ["required"],
@@ -93,8 +100,9 @@ class Details extends React.PureComponent {
   /**
    * On Submit
    */
-  _submit = e => {
-  //  e.preventDefault();
+  _submit = () => {
+    //  e.preventDefault();
+
     if (this._isValid()) {
       const { _updateUser, user } = this.props;
       const { data } = this.state;
@@ -196,10 +204,13 @@ class Details extends React.PureComponent {
     } = this.props;
 
     const { data, errors } = this.state;
+
+    console.log(" Errors =====", errors);
     // const { details, genres } = this.props;
     const error = checkError(details.error);
+
     return (
-      <View style={{ height:'100%', marginBottom:'5%'}}>
+      <View style={{ height: '100%', marginBottom: '15%' }}>
 
         <TextInput
           style={styles.inputStyle}
@@ -266,7 +277,7 @@ class Details extends React.PureComponent {
               // marginLeft: '5%',
               // marginRight:'5%',
               height: 60,
-             // width: deviceWidth,
+              // width: deviceWidth,
               fontFamily: 'Montserrat-Regular',
               fontWeight: '300',
               fontSize: 16,
@@ -295,37 +306,54 @@ class Details extends React.PureComponent {
             return <Animatable.Text animation="fadeIn" style={styles.errorText} key={index}> {item}</Animatable.Text>;
           })}
 
-<MultiSelect
-              styleDropdownMenu={styles.multiSelectDownStyle}
-              styleInputGroup={styles.multiSelectStyle}
-              styleMainWrapper={{ marginLeft: '5%', marginRight: '5%', marginTop: '5%' }}
-              styleListContainer={styles.multiSelectListStyle}
-              hideTags
-              items={genres.data}
-              uniqueKey="value"
-              ref={(component) => { this.multiSelect = component }}
-              onSelectedItemsChange={(selectedItems) => this._handleMultiSelect(selectedItems, 'genres')}
-              selectedItems={data.genres}
-              selectText="Select Genres"
-              searchInputPlaceholderText="Select Genres"
-              onChangeInput={(text) => console.log(text)}
-              altFontFamily="Montserrat-light"
-              tagRemoveIconColor="black"
-              tagBorderColor="#CCC"
-              tagTextColor="#black"
-              selectedItemTextColor="rgb(60, 205, 53)"
-              selectedItemIconColor="rgb(60, 205, 53)"
-              itemTextColor="#000"
-              displayKey="label"
-              searchInputStyle={{ color: '#CCC' }}
-              submitButtonColor="#ff277b"
-              submitButtonText="Submit"
-              name="genres"
-            />
-            <View>
-              {this.multiSelect && this.multiSelect.getSelectedItemsExt(data.genres)}
-            </View>
-            <TouchableOpacity style={{ alignSelf: 'center', justifyContent: 'center', marginTop: '5%', width: '40%', height: '15%', borderRadius: 10, backgroundColor: '#ff277b' }}
+        <MultiSelect
+          styleDropdownMenu={styles.multiSelectDownStyle}
+          styleInputGroup={styles.multiSelectStyle}
+          styleMainWrapper={{ marginLeft: '5%', marginRight: '5%', marginTop: '5%' }}
+          styleListContainer={styles.multiSelectListStyle}
+          hideTags
+          items={genres.data}
+          uniqueKey="value"
+          ref={(component) => { this.multiSelect = component }}
+          onSelectedItemsChange={(selectedItems) => this._handleMultiSelect(selectedItems, 'genres')}
+          selectedItems={data.genres}
+          selectText="Select Genres"
+          searchInputPlaceholderText="Select Genres"
+          onChangeInput={(text) => console.log(text)}
+          altFontFamily="Montserrat-light"
+          tagRemoveIconColor="black"
+          tagBorderColor="#CCC"
+          tagTextColor="#black"
+          selectedItemTextColor="rgb(60, 205, 53)"
+          selectedItemIconColor="rgb(60, 205, 53)"
+          itemTextColor="#000"
+          displayKey="label"
+          searchInputStyle={{ color: '#CCC' }}
+          submitButtonColor="#ff277b"
+          submitButtonText="Submit"
+          name="genres"
+        />
+        <View>
+          {this.multiSelect && this.multiSelect.getSelectedItemsExt(data.genres)}
+        </View>
+      
+        <Animatable.View ref={"viewTxtInput"}>
+
+         {/* for location selection  */}
+          <SelectInput style={styles.inputStyle} labelStyle={styles.locationLabel} value={data.country_id} options={this.options} onSubmitEditing={val =>this._handleChange('country_id', val)} />
+          {errors.country_id ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.country_id}</Animatable.Text> : null}
+          {errors.address ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.address}</Animatable.Text> : null}
+          <TextInput
+            style={styles.inputStyle}
+            placeholder={'Postal Code'}
+            onChangeText={val => this._handleChange('postal_code', val)}
+            value={data.postal_code}
+            name={"postal_code"}
+          />
+        </Animatable.View>
+        {errors.postal_code ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.postal_code}</Animatable.Text> : null}
+
+        <TouchableOpacity style={{ alignSelf: 'center', justifyContent: 'center', marginTop: '5%', width: '40%', height: '15%', borderRadius: 10, backgroundColor: '#ff277b', marginBottom: '5%' , height:60}}
           onPress={() => !details.isRequesting && this._submit()}
 
         // disabled={changePassword.isRequesting}
@@ -336,6 +364,7 @@ class Details extends React.PureComponent {
               <Text style={styles.loginText}>Update</Text>
             )}
         </TouchableOpacity>
+
       </View>
     );
     // return (

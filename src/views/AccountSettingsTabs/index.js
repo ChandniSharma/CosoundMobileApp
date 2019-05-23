@@ -118,9 +118,11 @@ class AccountSettingsTabs extends React.PureComponent {
             changePassword,
             paymentDetails,
             _changePassword,
-            uploadProfilePic
+            uploadProfilePic,
+            navigation
         } = this.props;
 
+        console.log("this.props-=", this.props)
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
 
@@ -224,11 +226,11 @@ class AccountSettingsTabs extends React.PureComponent {
                     </View> : null}
                 
                  {/* Side Menu button modal  */}
-                        {this.state.isSideMenuClick ? <SideMenu hidePopup={()=>this.hidePopup()} />:null}
+                        {this.state.isSideMenuClick ? <SideMenu navigation={navigation} hidePopup={()=>this.hidePopup()} />:null}
                        
                 </KeyboardAwareScrollView>
                 {/* notification view show */}
-                {this.state.isNotificationShow ? <Notifications hidePopup={()=>this.hideNotificationView()} />:null}
+                {this.state.isNotificationShow ? <Notifications navigation={navigation} hidePopup={()=>this.hideNotificationView()} />:null}
                 </View>
             </SafeAreaView>
         )

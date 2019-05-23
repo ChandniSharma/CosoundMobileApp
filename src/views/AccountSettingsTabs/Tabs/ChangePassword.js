@@ -56,7 +56,7 @@ class ChangePassword extends React.PureComponent {
     if (this._isValid()) {
       const { _changePassword } = this.props;
       const { data } = this.state;
-      changePassword.isRequesting
+     
       _changePassword(data).then(() => {
         this._resetState();
         const { changePassword } = this.props;
@@ -92,6 +92,7 @@ class ChangePassword extends React.PureComponent {
           placeholder={'Current Password'}
           name={"old_password"}
           value={data.old_password}
+          secureTextEntry
           onChangeText={val => this.handleChange('old_password', val)}
         />
         {errors.old_password?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.old_password}</Animatable.Text>:null}
@@ -101,14 +102,16 @@ class ChangePassword extends React.PureComponent {
           placeholder={'Password'}
           name={"new_password"}
           value={data.new_password}
+          secureTextEntry
           onChangeText={val =>this.handleChange('new_password', val)}
         />
         {errors.new_password?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.new_password}</Animatable.Text>:null}  
 
         <TextInput
           style={styles.inputStyle}
-          placeholder={'Password'}
+          placeholder={'Confirm Password'}
           name={"password_confirmation"}
+          secureTextEntry
           value={data.password_confirmation}
           onChangeText={val =>this.handleChange('password_confirmation', val)}
         />

@@ -102,6 +102,8 @@ export default class SignupStep3Musician extends Component {
     const error = checkError(signup.error);
     const { selectedItems } = this.state;
 
+
+    
     return (
       <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
         <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>
