@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { isEmpty } from "lodash";
@@ -195,7 +194,7 @@ class CreateService extends React.Component {
    */
   _handleKeyPress = e => {
     if (enterPressed(e)) {
-      e.preventDefault();
+     
       this._addMoreKeypoints(e.target.name);
     }
   };
@@ -241,7 +240,7 @@ class CreateService extends React.Component {
    * @param Event e
    */
   _submitCategory = e => {
-    e.preventDefault();
+   
     if (!this._isValid("category_id") || !this._isValid("sub_category_id")) {
       return false;
     }
@@ -254,7 +253,7 @@ class CreateService extends React.Component {
    * @param Event e
    */
   _submitDescription = e => {
-    e.preventDefault();
+   
     if (!this._isValid("about") || !this._isValid("description")) {
       return false;
     }
@@ -267,7 +266,7 @@ class CreateService extends React.Component {
    * @param Event e
    */
   _submitKeypoints = e => {
-    e.preventDefault();
+   
     if (!this._isValidKeypoints()) return false;
     return this._goToTabIndex(this.state.tabIndex + 1);
   };
@@ -278,7 +277,7 @@ class CreateService extends React.Component {
    * @param Event e
    */
   _submitDeliveryTime = e => {
-    e.preventDefault();
+   
     if (!this._isValid("delivery_time") || !this._isValid("delivery_time_unit"))
       return false;
     return this._goToTabIndex(this.state.tabIndex + 1);
@@ -290,7 +289,7 @@ class CreateService extends React.Component {
    * @param Event e
    */
   _submitPrice = e => {
-    e.preventDefault();
+   
     if (!this._isValid("price")) return false;
     return this._goToTabIndex(this.state.tabIndex + 1);
   };
@@ -301,7 +300,7 @@ class CreateService extends React.Component {
    * @param Event e
    */
   _submitTitle = e => {
-    e.preventDefault();
+   
     if (!this._isValid("title")) return false;
     return this._goToTabIndex(this.state.tabIndex + 1);
   };
@@ -312,7 +311,7 @@ class CreateService extends React.Component {
    * @param Event e
    */
   _publishService = e => {
-    e.preventDefault();
+   
     if (!this._isValid()) return false;
     const publishData = formatPublishServicedata(this.state.data);
 
@@ -390,9 +389,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default withRouter(
-  connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(CreateService)
-);
+  )(CreateService);

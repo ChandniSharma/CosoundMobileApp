@@ -41,6 +41,7 @@ import Sidebar from './src/views/Cart/sideBarTemp';
 import NoService from './src/views/NoService';
 import Checkout from './src/views/Checkout';
 import GooglesignIn from './src/views/common/GooglesignIn';
+import CreateService from './src/containers/CreateService';
 
 //import MarketPlace from './src/views/Marketplace';
 
@@ -71,7 +72,8 @@ const AppStackNavigator = createStackNavigator({
     Sidebar: { screen: Sidebar },
     NoService: { screen: NoService },
     GooglesignIn:{screen:GooglesignIn},
-    Checkout:{screen:Checkout}
+    Checkout:{screen:Checkout},
+    CreateService:{screen:CreateService}
    // Marketplace:{screen:MarketPlace},
 }, {
         initialRouteName: 'Login',
