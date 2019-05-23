@@ -74,7 +74,7 @@ const AppStackNavigator = createStackNavigator({
 Checkout:{screen:Checkout}
    // Marketplace:{screen:MarketPlace},
 }, {
-        initialRouteName: 'GooglesignIn',
+        initialRouteName: 'Home',
         gesturesEnabled: false,
         headerMode: 'none',
     })

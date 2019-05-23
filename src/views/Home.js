@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, Dimensions, Image, TouchableHighlight } from 'react-native';
+import {View, TouchableOpacity, Text, Dimensions, Image, TouchableHighlight, ScrollView} from 'react-native';
 //import Image from 'react-native-remote-svg'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 //import HomeStyle from '../stylesheet/HomeStyle'
@@ -53,9 +53,12 @@ export default class Home extends React.Component {
         }
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={homeStyle.container}>
+
                 <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 1 }}>
+
+
                     <WaveAnimation />
-                    <Animatable.View ref={"mainView"} style={[{ flex: 1 }, { backgroundColor: 'transparent', top: 0, width: '100%', position: 'absolute' }]}>
+                    <Animatable.View ref={"mainView"} style={[{ flex: 1 }, { backgroundColor: 'transparent', width: '100%' }]}>
 
                         <View style={{ flexDirection: 'row', flex: 1 }}>
                             {/* <Text style={homeStyle.textSideTitle}>cosound</Text> */}
@@ -73,10 +76,10 @@ export default class Home extends React.Component {
 
                         <View ref={'loginView'} style={homeStyle.viewLoginButton}>
 
-                            <TouchableHighlight style={[homeStyle.signupButton, backgroundColor = this.state.bgColorSignupButton]} onPress={this.navigateToSignupStep1}>
+                            <TouchableHighlight style={[homeStyle.signupButton, {backgroundColor :this.state.bgColorSignupButton}]} onPress={this.navigateToSignupStep1}>
                                 <Text style={homeStyle.textSignupButtonTitle}>Sign up</Text>
                             </TouchableHighlight>
-                            <TouchableHighlight onPress={this.navigateToLogin} style={[homeStyle.loginButton, backgroundColor = this.state.bgColorLoginButton]}>
+                            <TouchableHighlight onPress={this.navigateToLogin} style={[homeStyle.loginButton, {backgroundColor : this.state.bgColorLoginButton}]}>
                                 <Text style={homeStyle.textLoginButtonTitle}> Login</Text>
                             </TouchableHighlight>
 
@@ -128,7 +131,10 @@ export default class Home extends React.Component {
                             <Text style={homeStyle.textBottomMark}>(c) elit. Nulla 2018</Text>
                         </View>
                     </Animatable.View>
+
+
                 </KeyboardAwareScrollView>
+
 
             </SafeAreaView>)
     }

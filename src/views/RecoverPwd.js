@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 //import SvgUri from 'react-native-svg-uri';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../stylesheet/recoverPwd.style'
@@ -27,8 +27,10 @@ export default class RecoverPwd extends Component {
           console.log("resetPassword===",resetPassword)
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
+                <ScrollView>
                 <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>
-                <WaveAnimation /> 
+
+                    <WaveAnimation/>
                     <Animatable.View style={{ flex: 1, backgroundColor: 'rgb(245,245,245)',position:'absolute', top:0, width:'100%' }}>
                        
                         <View>
@@ -86,7 +88,9 @@ export default class RecoverPwd extends Component {
                         </View>
 
                     </Animatable.View>
+
                 </KeyboardAwareScrollView>
+                </ScrollView>
                 <CustomFooter />
             </SafeAreaView>
 
