@@ -6,15 +6,17 @@ import { Rating, AirbnbRating } from 'react-native-ratings';
 
 export default class StarView extends React.Component {
     render() {
+        const {starCount} = this.props
         return (
-            <View style={{ height:50,marginTop:'-10%'  }}>
+            <View style={{ height:50, marginTop:'-10%' }}>
                 
                 <AirbnbRating
-                    count={6}
-                    // reviews={["Terrible", "Bad", "Meh", "OK", "Good", "Hmm...", "Very Good", "Wow", "Amazing", "Unbelievable", "Jesus"]}
-                    defaultRating={3}
+                    count={5}
+                    reviews={[""]}
+                    defaultRating={starCount}
+                    readonly={true}
                     size={20}
-                    
+                    isDisabled={true}
                 />
 
             </View>

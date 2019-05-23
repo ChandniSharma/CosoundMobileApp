@@ -34,9 +34,7 @@ class CartList extends React.PureComponent {
 
         <View style={{ flexDirection: 'row', flex:1, marginBottom:'2%', marginTop:'2%' }}>
 
-          <Image style={[styles.imgUser, {marginRight:'2%', marginLeft:'2%',  marginBottom:'2%', marginTop:'2%'} ]} source={require('../../assets/avatar-main-1.jpg')} />
-
-          {/* <Image style={{ width: 50, height: 50, borderRadius: 25, marginTop: '33.5%' }} source={{ uri: getServiceThumbnail(item.media) }} /> */}
+          <Image style={[styles.imgUser, {marginRight:'2%', marginLeft:'2%',  marginBottom:'2%', marginTop:'2%'} ]}  source={{ uri: getServiceThumbnail(item.media) }} />
 
           <View style={{flex:0.85}}>
             <TouchableOpacity style={{marginTop:'2%'}}>
@@ -45,14 +43,14 @@ class CartList extends React.PureComponent {
             <View style={{ flexDirection: 'row', marginTop:'5%',marginLeft:'0.5%' }}>
               {/* Rating view */}
               {/* <Text style={styles.textServiceTitle}>Star Rating </Text> */}
-              <StarView />
+              <StarView  starCount={3}/>
               <Text style={[styles.textRatingCount, {marginLeft:'2%'}]}>{item.review_count}</Text>
             </View>
           </View>
           <Text style={[styles.textPrice, { flex:0.15}]}>${item.price}  </Text>
         </View>
 
-        {/* <CardOptions
+        <CardOptions
           id={item.id}
           postedBySelf={true}
           isVisible={isVisible}
@@ -60,7 +58,7 @@ class CartList extends React.PureComponent {
           _delete={_removeFromCart}
           deleteState={removeFromCart}
           toggleVisible={this._toggleVisible}
-        /> */}
+        />
       </View>
     )
   }
@@ -124,39 +122,38 @@ class CartList extends React.PureComponent {
     return (
 
       <View style={{ width: '100%', backgroundColor: 'white', marginTop:'5%', height:'40%' }}>
+       
+        <View>
+        <Text style={[styles.titleAccount, {marginTop:'5%', marginLeft:'2%'} ]}>Your Cart</Text>
         <View>
           {isRequesting && !callingAPI && (
-            <ActivityIndicator color='gray' />
+            <ActivityIndicator color='gray' style={{marginTop:'10%', alignSelf:'center'}}/>
           )}
-          {!isRequesting && !isEmpty(error) && <Text>{error.message}</Text>}
+          {!isRequesting && !isEmpty(error) && <Text style={styles.errorText}>{error.message}</Text>}
           {isEmpty(data) && !isRequesting && isEmpty(error) && (
             <View>
-              <Text>{noDataProps.noDataMessage} </Text>
-              <Text> {noDataProps.noDataDesc}</Text>
-              <TouchableOpacity>
-                <Text>move to market place </Text>
+              <Text style={[styles.titleAccount, {marginBottom:'5%', marginTop:'10%', alignSelf:'center'}]}>{noDataProps.noDataMessage} </Text>
+              <Text style={[styles.textSettings,{marginBottom:'5%', alignSelf:'center'}]}> {noDataProps.noDataDesc}</Text>
+              <TouchableOpacity style={styles.loginButton}>
+                <Text style={[styles.textButtonTitle,{marginLeft:'10%', marginRight:'10%'}]}>Purchase Service </Text>
               </TouchableOpacity>
 
             </View>
           )}
         </View>
-        <View>
-        <Text style={[styles.titleAccount, {marginTop:'5%', marginLeft:'2%'} ]}>Your Service</Text>
-
           <FlatList
-
             data={cart.data}
             renderItem={this.renderCartItem}
             keyExtractor={(item, index) => index.toString()}
           />
-
+          
           {!isEmpty(data) && !callingAPI && page !== page_count && !isNull(page_count) && !callApi(
             <View style={styles.viewMoreImage}>
               <TouchableHighlight underlayColor="#25b6ad" style={[styles.seeMoreBtn]} onPress={loadMore}>
                 <Text style={styles.textViewMore} > {callingAPI ? "Fetching..." : "View More..."}</Text>
               </TouchableHighlight>
             </View>
-          )}
+          )} 
         </View>
       </View>
     );

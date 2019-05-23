@@ -62,7 +62,7 @@ class Cart extends React.PureComponent {
           </TouchableOpacity>
 
 
-          {/* <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" /> */}
+          <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
 
           <View style={{ flex: 0.3 }} />
           <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]}  onPress={()=>this.setState({isNotificationShow: !this.state.isNotificationShow})}>

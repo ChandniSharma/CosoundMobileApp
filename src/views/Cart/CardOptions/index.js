@@ -13,13 +13,13 @@ const CardOptions = ({
   console.log(" ion card options***************")
   
   return (
-    <View style={{flex: 1,backgroundColor:'pink', position:'absolute',marginTop:0,marginRight:'2%', width:100, height:100, }}>
+    <View style={{flex: 1, position:'absolute',marginTop:0,right:'2%', width:100, height:50, }}>
     <TouchableOpacity onPress={() => toggleVisible()}>
-      <Text>...</Text>
+      
       { /* style={styles.postDescription} */ }
       
     </TouchableOpacity>
-    <View style={{backgroundColor:'orange'}}>
+    <View style={{backgroundColor:'rgb(245, 245, 245)'}}>
     <OptionComponent {...rest} />
     </View>
   </View>

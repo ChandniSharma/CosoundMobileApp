@@ -26,7 +26,7 @@ class Sidebar extends React.PureComponent {
 
             <View style={{flexDirection:'row', marginBottom:'2%', flex:1,marginLeft:'20%', marginRight:'20%' }}>
               <Text style={[styles.textSubtotal, {marginBottom:'2%',flex:0.5, alignSelf:'flex-start' }]}>Tax</Text>
-              <Text style={[styles.textSubtotalValue, {marginBottom:'2%',flex:0.5} ]}>{cart.vat} </Text>
+              <Text style={[styles.textSubtotalValue, {marginBottom:'2%',flex:0.5} ]}>${cart.vat} </Text>
             </View>
           
         </View>

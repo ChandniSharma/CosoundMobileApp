@@ -12,6 +12,32 @@ export default {
     container: {
         flex: 1,
     },
+    errorText: {
+        margin: '2%',
+        color: 'red',
+        alignSelf: 'center',
+    },
+    seeMoreBtn:{
+        marginTop:'1%',
+        marginBottom:'1%',
+        borderRadius: 25,
+        height: 50,
+        flex: 0.3,
+        alignItems: 'center',
+        justifyContent: 'center',
+         marginLeft: "15%",
+         marginRight:"15%",
+        shadowColor: 'rgba(0,0,0,0.12)',
+        shadowOffset: {
+            width: .4,
+            height: .11
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        
+        //marginBottom:'10%',
+        backgroundColor: 'white'
+    },
     topUserImage: {
         marginTop: "5%",
         width: 100,
@@ -56,7 +82,7 @@ export default {
         },
         shadowOpacity: 0.9,
         shadowRadius: 0.8,
-       height:0.2,
+       height:0.5,
        width:'95%',
       backgroundColor:'rgba(245,245,245, 0.3)',
        alignSelf:'center'
@@ -71,8 +97,6 @@ export default {
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
-
-  
     },
     findingView: {
         backgroundColor: 'white',
@@ -119,6 +143,8 @@ export default {
         // marginLeft:'-5%'
 
     },
+   
+   
     findingView: {
         backgroundColor: 'white',
         width: 100,
@@ -152,6 +178,7 @@ export default {
         color: '#262626',
         fontSize: 16,
         fontFamily: 'Montserrat-light',
+        backgroundColor:'white',
 
     },
     textPrice: {
