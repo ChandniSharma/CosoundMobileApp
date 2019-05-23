@@ -45,20 +45,45 @@ const postSuccess = data => {
 
 let postPollInterval = null;
 
+
+
+const createFormData = (photo, body) => {
+  const data = new FormData();
+
+  data.append("photo", {
+    name: photo.fileName,
+    type: photo.type,
+    uri:
+      Platform.OS === "android" ? photo.uri : photo.uri.replace("file://", "")
+  });
+
+  Object.keys(body).forEach(key => {
+    data.append(key, body[key]);
+  });
+
+  return data;
+};
+
 export const submit = (data, pathname) => {
   return (dispatch, getState) => {
     dispatch(submitingPost());
     const formData = new FormData();
-
-    each(data, (value, key) => {
-      if (key === "files") {
-        each(value, item => {
-          formData.append("files[]", item.file);
-        });
-      } else {
-        formData.append([key], value);
-      }
-    });
+console.log("data===", data)
+formData.append("files[]", {
+  name: data.files[0].file.fileName,
+  type: data.files[0].file.type,
+  uri:
+    data.files[0].file.uri.replace("file://", "")
+});
+    // each(data, (value, key) => {
+    //   if (key === "files") {
+    //     each(value, item => {
+    //       formData.append("files[]", item.file);
+    //     });
+    //   } else {
+    //  //   formData.append([key], value);
+    //   }
+    // });
     const endpoint = `${API_URL}posts`;
     const { token, expiresAt } = getState().user;
 
@@ -67,10 +92,12 @@ export const submit = (data, pathname) => {
       Accept: "application/json",
       Authorization: `Bearer ${token}`
     };
+    console.log("formData === ", formData);
 
     const refreshThreshold = getRefreshThreshold(expiresAt);
 
     const winnowResponse = response => {
+      console.log("response === ", response);
       if (response.response) {
         const { data: error } = response.response;
         dispatch(postFailure(error));

@@ -70,11 +70,11 @@ const AppStackNavigator = createStackNavigator({
     StarView: {screen: StarView},
     Sidebar: { screen: Sidebar },
     NoService: { screen: NoService },
-     GooglesignIn:{screen:GooglesignIn},
-Checkout:{screen:Checkout}
+    GooglesignIn:{screen:GooglesignIn},
+    Checkout:{screen:Checkout}
    // Marketplace:{screen:MarketPlace},
 }, {
-        initialRouteName: 'GooglesignIn',
+        initialRouteName: 'Login',
         gesturesEnabled: false,
         headerMode: 'none',
     })

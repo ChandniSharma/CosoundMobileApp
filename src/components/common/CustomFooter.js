@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions } from 'react-native';
+import { Platform,View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions } from 'react-native';
+const { height, width } = Dimensions.get('window');
+const deviceHeight = height;
+let deviceWidth = width;
 
 export default class CustomFooter extends Component{
     render(){
@@ -59,12 +62,14 @@ const styles = {
        
     },
     viewBottom:{
-        flex:0.1,
-        marginBottom:0,
+        
+        marginTop:deviceHeight-170,
+        alignSelf:'flex-end',
         backgroundColor:'black',
        //alignItems: 'space-between',
        justifyContent:'center',
        flexDirection:'row',
+       position:'absolute',
     }
     
 }

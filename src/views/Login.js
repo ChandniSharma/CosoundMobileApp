@@ -15,7 +15,7 @@ import WaveAnimation from './common/WaveAnimation';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import Icon1 from 'react-native-vector-icons/Entypo';
 var FBLoginButton = require('../views/common/FBLoginButton');
-import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
+//import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 
 const FBSDK = require('react-native-fbsdk');
 const {
@@ -36,33 +36,33 @@ export default class Login extends Component {
         this.fadeInMainView();
        // this.setupGoogleSignin();
     }
-    googleAuth() {
-        GoogleSignin.signIn()
-            .then((user) => {
-                console.log(user);
-            })
-            .catch((err) => {
-                console.log('WRONG SIGNIN', err);
-            })
-            .done();
-    }
+    // googleAuth() {
+    //     GoogleSignin.signIn()
+    //         .then((user) => {
+    //             console.log(user);
+    //         })
+    //         .catch((err) => {
+    //             console.log('WRONG SIGNIN', err);
+    //         })
+    //         .done();
+    // }
 
-    async setupGoogleSignin() {
-        try {
-            await GoogleSignin.hasPlayServices({ autoResolve: true });
-            await GoogleSignin.configure({
-                iosClientId: settings.iOSClientId,
-                webClientId: settings.webClientId,
-                offlineAccess: false
-            });
+    // async setupGoogleSignin() {
+    //     try {
+    //         await GoogleSignin.hasPlayServices({ autoResolve: true });
+    //         await GoogleSignin.configure({
+    //             iosClientId: settings.iOSClientId,
+    //             webClientId: settings.webClientId,
+    //             offlineAccess: false
+    //         });
 
-            const user = await GoogleSignin.currentUserAsync();
-            console.log(user);
-        }
-        catch (err) {
-            console.log("Google signin error", err.code, err.message);
-        }
-    }
+    //         const user = await GoogleSignin.currentUserAsync();
+    //         console.log(user);
+    //     }
+    //     catch (err) {
+    //         console.log("Google signin error", err.code, err.message);
+    //     }
+    // }
     fBLogin() {
         LoginManager.logOut();
         console.log(" in fb login button clcick ed");
@@ -166,19 +166,19 @@ export default class Login extends Component {
                         </View>
 
                         <View style={styles.viewCenterButton}>
-                            <GoogleSigninButton
+                            {/* <GoogleSigninButton
                                 style={{ width: 192, height: 48 }}
                                 size={GoogleSigninButton.Size.Wide}
                                 color={GoogleSigninButton.Color.Dark}
                                 onPress={this._signIn}
-                                disabled={this.state.isSigninInProgress} />
-                            {/* <TouchableHighlight underlayColor="#25b6ad" style={styles.buttonCenter} onPress={this.googleAuth.bind(this)}>
+                                disabled={this.state.isSigninInProgress} /> */}
+                            <TouchableHighlight underlayColor="#25b6ad" style={styles.buttonCenter} >
                        <View style={{flexDirection:'row'}}>
                             <Icon1 name="google-" style={{fontSize:20, color:'rgb(234,67,54)', marginRight:'2%'}}/>
                             <Text style={styles.googlePlusText}>Google login</Text>
                             </View>
                               
-                        </TouchableHighlight> */}
+                        </TouchableHighlight>
                         </View>
 
                     </Animatable.View>

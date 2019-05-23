@@ -198,7 +198,7 @@ class PostStatus extends React.PureComponent {
         const { postStatusActions, location } = this.props;
         const { pathname } = this.props;
         const data = Object.assign({}, { body, files });
-
+console.log("call submit function = data = ", data)
         postStatusActions.submit(data, pathname).then(() => {
           this._resetState();
         });

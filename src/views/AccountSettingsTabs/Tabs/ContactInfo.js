@@ -160,7 +160,7 @@ class ContactInfo extends React.Component {
         <TextInput
           style={styles.inputStyle}
           placeholder={'Email'}
-          value={data.email}
+          value={user.data.email}
           editable={false} selectTextOnFocus={false}
           name={"email"}
         />
