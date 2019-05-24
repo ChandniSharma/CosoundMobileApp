@@ -44,7 +44,7 @@ render() {
 <View style={styles.findingView}>
 
   <TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }} onPress={this.chooseFile.bind(this)}>
-    {profilePic.isRequesting ?
+    {profilePic && profilePic.isRequesting ?
       <Icon name="camera" style={{ fontSize: 60, marginTop: '50%', color: 'gray', alignSelf: 'center', }} /> :
       <Image
         source={{

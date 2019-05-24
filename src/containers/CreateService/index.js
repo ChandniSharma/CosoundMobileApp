@@ -20,7 +20,7 @@ import Validator from "../../validator";
 
 import { marketPlaceActions, userServicesActions } from "../../actions";
 
-import CreateServiceComponent from "../../views/error.message)";
+import CreateServiceComponent from "../../views/CreateService";
 //import { toast } from "react-toastify";
 
 class CreateService extends React.Component {
@@ -378,7 +378,7 @@ class CreateService extends React.Component {
 
 // eslint-disable-next-line
 const mapStateToProps = state => {
-  return { categories: state.categories, publishService: state.publishService };
+  return { categories: state.categories, publishService: state.publishService, user: state.user };
 };
 
 // eslint-disable-next-line

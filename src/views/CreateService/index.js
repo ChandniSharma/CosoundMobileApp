@@ -1,21 +1,24 @@
 import React from "react";
 // import Helmet from "react-helmet";
+import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions } from 'react-native';
+import styles from '../../stylesheet/createservice.style';
 
-import { SettingsHeader, FormToast } from "../Commons";
+import SettingsHeader  from "../common/SettingsHeader";
 //TabHeader
 // import { servicesHeaders } from "../../constants/tabs";
 
 import CreateServiceForm from "./CreateServiceForm";
 
-class CreateService extends React.Component {
+class CreateServiceComponent extends React.Component {
   render() {
     return (
-      <View>
+      <View style={{ flex: 1 }}>
+        <Text> Creat servic e Component</Text>
         <View>
           <SettingsHeader user={this.props.user} />
           <View>
            { /* <TabHeader headers={servicesHeaders} /> */ } 
-          </View>
+        </View>
           <View>
             <View>
               <View>
@@ -28,7 +31,7 @@ class CreateService extends React.Component {
               </View>
             </View>
           </View>
-        </View>
+        </View> 
         { /* <FormToast /> */ }
       </View>
     );
@@ -61,4 +64,4 @@ class CreateService extends React.Component {
   }
 }
 
-export default CreateService;
+export default CreateServiceComponent;
