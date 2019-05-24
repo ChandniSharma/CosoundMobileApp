@@ -2,38 +2,99 @@ import React from "react";
 // import Helmet from "react-helmet";
 import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions } from 'react-native';
 import styles from '../../stylesheet/createservice.style';
-
-import SettingsHeader  from "../common/SettingsHeader";
+import LinearGradient from 'react-native-linear-gradient';
+import Icon from "react-native-vector-icons/AntDesign";
+import Icon1 from "react-native-vector-icons/Entypo";
+import Icon2 from "react-native-vector-icons/EvilIcons";
+import Icon3 from "react-native-vector-icons/Ionicons";
+import Hamburger from 'react-native-hamburger';
+import SideMenu from '../common/SideMenu';
+import Logo from '../common/logo';
+import Notifications from '../../../src/containers/Notifications'
+import SettingsHeader from "../common/SettingsHeader";
 //TabHeader
 // import { servicesHeaders } from "../../constants/tabs";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { SafeAreaView } from 'react-navigation';
+
 
 import CreateServiceForm from "./CreateServiceForm";
 
 class CreateServiceComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isScrollDown: false,
+      headerColorMix: ['rgb(42, 173,177)', 'rgb(131, 110, 198)', 'rgb(134, 103, 200)'],
+      headerColor: ['rgb(42, 173,177)', 'rgb(93, 152, 179)'],
+      isContactInfoClick: false,
+      isDropDownclick: false,
+      isSideMenuClick: false,
+      isSearchbarDataShow: false,
+      isCrossClick: false,
+      active: false,
+      isBottomMobileShow: true,
+      mobileNumber: '',
+      isNotificationShow: false,
+    }
+  }
+  showPopup() {
+    this.setState({ isSideMenuClick: true })
+    console.log(" sidemnu ", this.state.isSideMenuClick);
+  }
+  hidePopup() {
+    this.setState({ isSideMenuClick: false })
+  }
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <Text> Creat servic e Component</Text>
-        <View>
-          <SettingsHeader user={this.props.user} />
-          <View>
-           { /* <TabHeader headers={servicesHeaders} /> */ } 
-        </View>
-          <View>
-            <View>
-              <View>
-                <View>
-                 <Text>
-                  {"Nice! Let's create your service!"}
-                  </Text>
-                </View>
-                <CreateServiceForm {...this.props} />
-              </View>
+      <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={{ flex: 1 }}>
+
+        {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: 100, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
+
+          <TouchableOpacity style={{ color: 'white', marginTop: '14%', flex: 0.1, marginLeft: '4%' }} onPress={() => this.showPopup()}>
+            <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />
+          </TouchableOpacity>
+
+
+          <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
+
+          <View style={{ flex: 0.3 }} />
+          <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}>
+            <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />
+          </TouchableOpacity>
+        </LinearGradient> : null}
+
+        <View style={{ flex: 1, backgroundColor: 'pink' }}>
+          <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)' }}>
+
+            <View style={{ flex: 0.3, backgroundColor: 'red' }}>
+              <SettingsHeader
+                user={this.props.user}
+                uploadable={false}
+              />
             </View>
-          </View>
-        </View> 
-        { /* <FormToast /> */ }
-      </View>
+            <View style={{flex:0.2}}>
+              <Text style={[styles.noServiceText, { marginLeft: '10%', marginRight: '10%', marginTop: '5%', textAlign: 'center' }]}>
+                {"Nice! Let's create your service!"}
+              </Text>
+            </View>
+            <View style={{flex:0.5, marginBottom:'10%'}}>
+              <CreateServiceForm {...this.props} />
+
+            </View>
+
+
+            { /* <FormToast /> */}
+            {/* Side Menu button modal  */}
+            {this.state.isSideMenuClick ? <SideMenu navigation={navigation} hidePopup={() => this.hidePopup()} /> : null}
+
+          </KeyboardAwareScrollView>
+
+          {/* notification view show */}
+          {this.state.isNotificationShow ? <Notifications navigation={navigation} hidePopup={() => this.hideNotificationView()} /> : null}
+
+        </View>
+      </SafeAreaView>
     );
     //  return (
     //   <React.Fragment>
@@ -60,7 +121,7 @@ class CreateServiceComponent extends React.Component {
     //     <FormToast />
     //   </React.Fragment>
     // );
-    
+
   }
 }
 

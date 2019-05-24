@@ -2,17 +2,29 @@ import React from "react";
 import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions } from 'react-native';
 import styles from '../../../stylesheet/createservice.style';
 // import { ErrorMsg, Svg, SubmitButtonDiv } from "../../Commons";
+import * as Animatable from 'react-native-animatable';
+
+import Icon1 from "react-native-vector-icons/AntDesign";
+
 
 class Price extends React.PureComponent {
+
+  moveTextUp1 = () => this.refs.viewTxtInput1.fadeInUp(1000);
+
+
+  componentDidMount() {
+    this.moveTextUp1();
+  }
+
   render() {
-    const { data, errors, handleChange, submitPrice } = this.props;
+    const { data, errors, handleChange, submitPrice, submitKeypoints } = this.props;
     return (
       <View>
-        <View>
+        <Animatable.View ref={"viewTxtInput1"}>
           <View>
-            <Text>
+            <Text style={styles.subTitle}>
               What is the cost
-              &#36; of
+             of
               this service?
             </Text>
              <TextInput
@@ -20,19 +32,20 @@ class Price extends React.PureComponent {
                 onChangeText={val => handleChange("price", val)}
                 value={data.price}
                 name={"price"}
+                style={styles.inputStyle}
               />
-            {errors.price && <Text>{errors.price} </Text>}
+            {errors.price && <Text style={styles.errorText}>{errors.price} </Text>}
           </View>
-          <View>
-            <Text>Price will be given after a consultation</Text>
-            {/*<Svg name="ico-check-outline" />*/}
+          <View style={{flexDirection: 'row', marginTop:'5%', alignSelf:'center'}}>
+            <Animatable.Text animation="fadeIn" style={styles.priceText}>Price will be given after a consultation</Animatable.Text>
+            <Icon1 name= "checkcircleo"  style={{fontSize:25, color: '#3B93BB', marginLeft:'2%'}}/>
           </View>
-          <TouchableOpacity style={{ alignSelf: 'center', justifyContent: 'center', marginTop: '5%', width: '40%', height: '15%', borderRadius: 10, backgroundColor: '#ff277b' }}
+          <TouchableOpacity style={[styles.loginButton, { marginTop: '15%', justifyContent: 'center', }]}
           onPress={()=> submitKeypoints()}
            >
-            <Text style={styles.buttonText}>Next</Text>
+            <Text style={styles.loginText}>Next</Text>
           </TouchableOpacity>
-        </View>
+        </Animatable.View>
       </View>
     );
     // return (

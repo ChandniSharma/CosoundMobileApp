@@ -321,6 +321,11 @@ export default {
         fontSize: 16,
         fontFamily: 'Montserrat-light',
     },
+    textDays:{
+        color: '#262626',
+        fontSize: 14,
+        fontFamily: 'Montserrat-light',
+    },
 
     textSubtotal: {
         color: 'rgba(38, 38, 38, 0.52)',

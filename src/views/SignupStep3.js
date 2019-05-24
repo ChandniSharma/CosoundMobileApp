@@ -26,10 +26,7 @@ export default class SignupStep3Musician extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
-
       isShowDatePicker: true,
-
     }
 
   }

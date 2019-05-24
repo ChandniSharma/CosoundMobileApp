@@ -2,30 +2,41 @@ import React from "react";
 
 import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions } from 'react-native';
 import styles from '../../../stylesheet/createservice.style';
+import * as Animatable from 'react-native-animatable';
+
+import Icon1 from "react-native-vector-icons/AntDesign";
+
 
 class Title extends React.PureComponent {
+  moveTextUp1 = () => this.refs.viewTxtInput1.fadeInUp(1000);
+
+
+  componentDidMount() {
+    this.moveTextUp1();
+  }
   render() {
     const { data, errors, handleChange, submitTitle } = this.props;
      return (
-      <View>
-        <View>
+      
+      <Animatable.View ref={"viewTxtInput1"}>
           <View>
-            <Text>Name your service</Text>
+            <Text style={styles.subTitle}>Name your service</Text>
             <TextInput
               placeholder={'Service name'}
               onChangeText={val => handleChange("title", val)}
               value={data.title}
               name={"title"}
+              style={styles.inputStyle}
             />
-            {errors.title && <Text>{errors.title} </Text>}
+            {errors.title && <Text style={styles.errorText}>{errors.title} </Text>}
           </View>
-          <TouchableOpacity style={{ alignSelf: 'center', justifyContent: 'center', marginTop: '5%', width: '40%', height: '15%', borderRadius: 10, backgroundColor: '#ff277b' }}
+          <TouchableOpacity style={[styles.loginButton, { marginTop: '15%', justifyContent: 'center', }]}
           onPress={()=> submitTitle()}
            >
-            <Text style={styles.buttonText}>Next</Text>
+            <Text style={styles.loginText}>Next</Text>
           </TouchableOpacity>
-        </View>
-      </View>
+        </Animatable.View>
+    
     );
     // return (
     //   <View className="services-create__step is-active" data-step="6">

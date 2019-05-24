@@ -48,8 +48,7 @@ class AccountSettingsTabs extends React.PureComponent {
         this.arrayMobileNumber = [];
         this.arrayButtons = [];
         this.dropDownOptions = [{ name: 'Privacy', image: '' }, { name: 'Communication', image: 'wechat' }, { name: 'Support Center', image: 'customerservice' }],
-
-            this.arrayData = [{ name: 'Market', image: '', count: 0 }, { name: 'Messages', image: 'message', count: 3 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }]
+        this.arrayData = [{ name: 'Market', image: '', count: 0 }, { name: 'Messages', image: 'message', count: 3 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }]
 
     }
     onClickSettingsButton(name) {
@@ -89,10 +88,6 @@ class AccountSettingsTabs extends React.PureComponent {
     showPopup() {
         this.setState({ isSideMenuClick: true })
         console.log(" sidemnu ", this.state.isSideMenuClick);
-        // setTimeout(() => {
-        //     this.zoomInPopup();
-        // }, 10);
-
     }
     hidePopup() {
         this.setState({ isSideMenuClick: false })

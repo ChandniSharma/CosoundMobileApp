@@ -37,12 +37,13 @@ import PlayVideo from './src/views/common/PlayVideo';
 import TestFB from './src/views/animation';
 import Cart from './src/containers/Cart';
 import StarView from './src/views/common/StarView';
-import Sidebar from './src/views/Cart/sideBarTemp';
+import Sidebar from './src/views/Checkout/SideBarCheckout';
 import NoService from './src/views/NoService';
 import Checkout from './src/views/Checkout';
 import GooglesignIn from './src/views/common/GooglesignIn';
 import CreateService from './src/containers/CreateService';
-
+import CheckoutComponent from './src/views/CheckoutComponent';
+import ImagesTemp from './src/views/CreateService/Form/ImagesTemp'
 //import MarketPlace from './src/views/Marketplace';
 
 const AppStackNavigator = createStackNavigator({
@@ -73,7 +74,10 @@ const AppStackNavigator = createStackNavigator({
     NoService: { screen: NoService },
     GooglesignIn:{screen:GooglesignIn},
     Checkout:{screen:Checkout},
-    CreateService:{screen:CreateService}
+    CreateService:{screen:CreateService},
+    CheckoutComponent:{screen:CheckoutComponent},
+    ImagesTemp:{screen:ImagesTemp}
+
    // Marketplace:{screen:MarketPlace},
 }, {
         initialRouteName: 'Login',

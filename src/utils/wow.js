@@ -17,6 +17,6 @@ export const performWow = wowActions => {
   try {
     wowActions.sync();
   } catch (e) {
-    wowActions.initialize();
+  //  wowActions.initialize();
   }
 };

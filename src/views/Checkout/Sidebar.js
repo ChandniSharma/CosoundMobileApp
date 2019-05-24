@@ -1,5 +1,9 @@
 import React from "react";
 //import { Link } from "react-router-dom";
+import { isEmpty } from "lodash";
+import styles from "../../stylesheet/Cart.style";
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 //import { Svg, DollarSpan, SubmitButtonDiv, Loader } from "../Commons";
 import { FlatList, Image, ImageBackground, Text, TextInput, Modal, TouchableHighlight, View, TouchableOpacity, ScrollView, ActivityIndicator } from "react-native";

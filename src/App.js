@@ -37,7 +37,7 @@ class App extends React.PureComponent {
     componentDidMount() {
         this._hideSpinner();
         this._restCalls();
-        this.props.wowActions.initialize();
+        // this.props.wowActions.initialize();
     }
 
     _restCalls = () => {

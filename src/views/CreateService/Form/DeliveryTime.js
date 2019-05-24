@@ -1,4 +1,6 @@
 import React from "react";
+import * as Animatable from 'react-native-animatable';
+import SelectInput from 'react-native-select-input-ios'
 
 // import { Select, ErrorMsg, SubmitButtonDiv } from "../../Commons";
 
@@ -7,6 +9,20 @@ import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dim
 import styles from '../../../stylesheet/createservice.style';
 
 class DeliveryTime extends React.PureComponent {
+
+  moveTextUp1 = () => this.refs.viewTxtInput1.fadeInUp(1000).then(this.moveSecondViewUp());
+
+  moveTextUp2 = () => this.refs.viewTxtInput2.fadeInUp(2000).then(endState => endState.finished ? "finish " : console.log('finish not'));
+
+  componentDidMount() {
+    this.moveTextUp1();
+  }
+  moveSecondViewUp() {
+    setTimeout(() => {
+      this.moveTextUp2();
+    }, 100);
+  }
+
   render() {
     const {
       data,
@@ -15,22 +31,29 @@ class DeliveryTime extends React.PureComponent {
       handleChange,
       submitDeliveryTime
     } = this.props;
+
+
+    console.log(" Delivery times ===", deliveryTimes);
     return (
       <View>
-        <View>
-          <View>
-            <Text>What would be the delivery time of your service ?</Text>
+       
+          <Animatable.View ref={"viewTxtInput1"}>
+            <Text style={styles.subTitle}>What would be the delivery time of your service ?</Text>
             <TextInput
-              placeholder={'Password'}
+              placeholder={'Delivery Time'}
               onChangeText={val => handleChange('delivery_time', val)}
               value={data.delivery_time}
-              name={"password"}
+              name={"delivery_time"}
+              style={styles.inputStyle}
             />
             {errors.delivery_time && (
-              <Text>{errors.delivery_time} </Text>
+              <Text style={styles.errorText}>{errors.delivery_time} </Text>
             )}
-          </View>
-          <View>
+          </Animatable.View>
+
+          <Animatable.View ref={"viewTxtInput2"}>
+          <SelectInput style={styles.inputStyle}  placeholder={"Select Delivery Time Unit"} labelStyle={styles.locationLabel} value={data.delivery_time_unit} options={deliveryTimes.data} onSubmitEditing={val => handleSelect(val, 'label')} />
+        
             { /* <Select
               name={"delivery_time_unit"}
               resource={deliveryTimes}
@@ -39,15 +62,16 @@ class DeliveryTime extends React.PureComponent {
               selectedId={data.delivery_time_unit}
             /> */ }
             {errors.delivery_time_unit && (
-              <Text>{errors.delivery_time_unit}</Text>
+              <Text style={styles.errorText}>{errors.delivery_time_unit}</Text>
             )}
-          </View>
-          <TouchableOpacity style={{ alignSelf: 'center', justifyContent: 'center', marginTop: '5%', width: '40%', height: '15%', borderRadius: 10, backgroundColor: '#ff277b' }}
+          </Animatable.View>
+
+          <TouchableOpacity style={[styles.loginButton, { marginTop: '15%', justifyContent: 'center', }]}
           onPress={()=> submitDeliveryTime()}
            >
-              <Text style={styles.buttonText}>Next</Text>
+              <Text style={styles.loginText}>Next</Text>
           </TouchableOpacity> 
-        </View>
+        
       </View>
     );
   }

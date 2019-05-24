@@ -103,8 +103,8 @@ class CreateService extends React.Component {
    * @param Object selectedOption
    * @param String name
    */
-  _handleSelect = (selectedOption, name) => {
-    const { value } = selectedOption;
+  _handleSelect = (value, name) => {
+    //const { value } = selectedOption;
     const { data } = this.state;
     data[name] = value;
     if (name === "category_id") {
@@ -123,8 +123,8 @@ class CreateService extends React.Component {
    *
    * @param event
    */
-  _handleChange = event => {
-    const { name, value } = event.target;
+  _handleChange = (name,value) => {
+    // const { name, value } = event.target;
 
     const { data } = this.state;
     data[name] = value;
@@ -139,8 +139,8 @@ class CreateService extends React.Component {
   /**
    * Social links handler
    */
-  _handleKeypoints = e => {
-    const { name, value } = e.target;
+  _handleKeypoints = (name,value) => {
+    // const { name, value } = e.target;
     const { data } = this.state;
     const id = Number(name);
     const keypoints = formatLinksState(data.key_points, id, value);
@@ -278,8 +278,8 @@ class CreateService extends React.Component {
    */
   _submitDeliveryTime = e => {
    
-    if (!this._isValid("delivery_time") || !this._isValid("delivery_time_unit"))
-      return false;
+    // if (!this._isValid("delivery_time") || !this._isValid("delivery_time_unit"))
+    //   return false;
     return this._goToTabIndex(this.state.tabIndex + 1);
   };
 
