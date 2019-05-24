@@ -9,6 +9,7 @@ let top;
 export default {
     container: {
         flex: 1,
+        position: "relative",
     },
     imgSideTitle: {
         color: 'white',
@@ -85,7 +86,7 @@ export default {
     textFooterTitle: {
         marginTop: '4%',
         marginBottom: '4%',
-        color: 'white',
+
         fontSize: 16,
         fontFamily:'Montserrat-Regular',
         fontWeight:'300',
@@ -106,7 +107,7 @@ export default {
         height: 40,
     },
     textBottomDescription: {
-        color: 'white',
+
         fontSize: 14,
         marginLeft: '5%',
         fontFamily:'Montserrat-Regular',

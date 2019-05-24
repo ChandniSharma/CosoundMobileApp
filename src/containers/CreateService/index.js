@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { isEmpty } from "lodash";
@@ -21,7 +20,7 @@ import Validator from "../../validator";
 
 import { marketPlaceActions, userServicesActions } from "../../actions";
 
-import CreateServiceComponent from "../../views/error.message)";
+import CreateServiceComponent from "../../views/CreateService";
 //import { toast } from "react-toastify";
 
 class CreateService extends React.Component {
@@ -104,8 +103,8 @@ class CreateService extends React.Component {
    * @param Object selectedOption
    * @param String name
    */
-  _handleSelect = (selectedOption, name) => {
-    const { value } = selectedOption;
+  _handleSelect = (value, name) => {
+    //const { value } = selectedOption;
     const { data } = this.state;
     data[name] = value;
     if (name === "category_id") {
@@ -124,8 +123,8 @@ class CreateService extends React.Component {
    *
    * @param event
    */
-  _handleChange = event => {
-    const { name, value } = event.target;
+  _handleChange = (name,value) => {
+    // const { name, value } = event.target;
 
     const { data } = this.state;
     data[name] = value;
@@ -140,8 +139,8 @@ class CreateService extends React.Component {
   /**
    * Social links handler
    */
-  _handleKeypoints = e => {
-    const { name, value } = e.target;
+  _handleKeypoints = (name,value) => {
+    // const { name, value } = e.target;
     const { data } = this.state;
     const id = Number(name);
     const keypoints = formatLinksState(data.key_points, id, value);
@@ -195,7 +194,7 @@ class CreateService extends React.Component {
    */
   _handleKeyPress = e => {
     if (enterPressed(e)) {
-      e.preventDefault();
+     
       this._addMoreKeypoints(e.target.name);
     }
   };
@@ -241,7 +240,7 @@ class CreateService extends React.Component {
    * @param Event e
    */
   _submitCategory = e => {
-    e.preventDefault();
+   
     if (!this._isValid("category_id") || !this._isValid("sub_category_id")) {
       return false;
     }
@@ -254,7 +253,7 @@ class CreateService extends React.Component {
    * @param Event e
    */
   _submitDescription = e => {
-    e.preventDefault();
+   
     if (!this._isValid("about") || !this._isValid("description")) {
       return false;
     }
@@ -267,7 +266,7 @@ class CreateService extends React.Component {
    * @param Event e
    */
   _submitKeypoints = e => {
-    e.preventDefault();
+   
     if (!this._isValidKeypoints()) return false;
     return this._goToTabIndex(this.state.tabIndex + 1);
   };
@@ -278,9 +277,9 @@ class CreateService extends React.Component {
    * @param Event e
    */
   _submitDeliveryTime = e => {
-    e.preventDefault();
-    if (!this._isValid("delivery_time") || !this._isValid("delivery_time_unit"))
-      return false;
+   
+    // if (!this._isValid("delivery_time") || !this._isValid("delivery_time_unit"))
+    //   return false;
     return this._goToTabIndex(this.state.tabIndex + 1);
   };
 
@@ -290,7 +289,7 @@ class CreateService extends React.Component {
    * @param Event e
    */
   _submitPrice = e => {
-    e.preventDefault();
+   
     if (!this._isValid("price")) return false;
     return this._goToTabIndex(this.state.tabIndex + 1);
   };
@@ -301,7 +300,7 @@ class CreateService extends React.Component {
    * @param Event e
    */
   _submitTitle = e => {
-    e.preventDefault();
+   
     if (!this._isValid("title")) return false;
     return this._goToTabIndex(this.state.tabIndex + 1);
   };
@@ -312,7 +311,7 @@ class CreateService extends React.Component {
    * @param Event e
    */
   _publishService = e => {
-    e.preventDefault();
+   
     if (!this._isValid()) return false;
     const publishData = formatPublishServicedata(this.state.data);
 
@@ -379,7 +378,7 @@ class CreateService extends React.Component {
 
 // eslint-disable-next-line
 const mapStateToProps = state => {
-  return { categories: state.categories, publishService: state.publishService };
+  return { categories: state.categories, publishService: state.publishService, user: state.user };
 };
 
 // eslint-disable-next-line
@@ -390,9 +389,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default withRouter(
-  connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(CreateService)
-);
+  )(CreateService);

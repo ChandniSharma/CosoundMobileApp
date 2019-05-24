@@ -42,6 +42,13 @@ export default {
         color:'#262626',
         fontFamily:'Montserrat-Regular',
     },
+    subTitle:{
+        marginBottom:'5%',
+        alignSelf:'center',
+        fontSize:14,
+        color:'#262626',
+        fontFamily:'Montserrat-Regular',
+    },
     textLight:{
         alignSelf:'center',
         fontSize:14,
@@ -163,6 +170,14 @@ export default {
         paddingLeft: 30,
         paddingRight: 30,
     },
+    locationLabel:{
+       
+        fontFamily:'Montserrat-Regular',
+        fontWeight:'300',
+        fontSize:16,
+        color:'#262626',
+        textAlign:'left'
+      },
     inputStyle: {
         marginLeft: '5%',
         marginRight: '5%',
@@ -186,6 +201,8 @@ export default {
         paddingLeft: 30,
         paddingRight: 30,
     },
+    
+    
     searchBarView:{
         flexDirection:'row',
         margin: '5%',

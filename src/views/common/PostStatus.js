@@ -198,7 +198,7 @@ class PostStatus extends React.PureComponent {
         const { postStatusActions, location } = this.props;
         const { pathname } = this.props;
         const data = Object.assign({}, { body, files });
-
+console.log("call submit function = data = ", data)
         postStatusActions.submit(data, pathname).then(() => {
           this._resetState();
         });
@@ -269,10 +269,10 @@ this.setState({current:type});
             // let source = { uri: 'data:image/jpeg;base64,' + response.data };
             
             this.setState({
-                isImageLoadedFromLiab: true,
+                isImageLoadedFromLiab: false,
                 filePath: source
             });;
-            this._handleFileChange("files", [response])
+        this._handleFileChange("files", [response])
         }
     });
 };

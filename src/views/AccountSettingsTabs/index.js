@@ -48,8 +48,7 @@ class AccountSettingsTabs extends React.PureComponent {
         this.arrayMobileNumber = [];
         this.arrayButtons = [];
         this.dropDownOptions = [{ name: 'Privacy', image: '' }, { name: 'Communication', image: 'wechat' }, { name: 'Support Center', image: 'customerservice' }],
-
-            this.arrayData = [{ name: 'Market', image: '', count: 0 }, { name: 'Messages', image: 'message', count: 3 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }]
+        this.arrayData = [{ name: 'Market', image: '', count: 0 }, { name: 'Messages', image: 'message', count: 3 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }]
 
     }
     onClickSettingsButton(name) {
@@ -89,10 +88,6 @@ class AccountSettingsTabs extends React.PureComponent {
     showPopup() {
         this.setState({ isSideMenuClick: true })
         console.log(" sidemnu ", this.state.isSideMenuClick);
-        // setTimeout(() => {
-        //     this.zoomInPopup();
-        // }, 10);
-
     }
     hidePopup() {
         this.setState({ isSideMenuClick: false })
@@ -118,9 +113,11 @@ class AccountSettingsTabs extends React.PureComponent {
             changePassword,
             paymentDetails,
             _changePassword,
-            uploadProfilePic
+            uploadProfilePic,
+            navigation
         } = this.props;
 
+        console.log("this.props-=", this.props)
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
 
@@ -224,11 +221,11 @@ class AccountSettingsTabs extends React.PureComponent {
                     </View> : null}
                 
                  {/* Side Menu button modal  */}
-                        {this.state.isSideMenuClick ? <SideMenu hidePopup={()=>this.hidePopup()} />:null}
+                        {this.state.isSideMenuClick ? <SideMenu navigation={navigation} hidePopup={()=>this.hidePopup()} />:null}
                        
                 </KeyboardAwareScrollView>
                 {/* notification view show */}
-                {this.state.isNotificationShow ? <Notifications hidePopup={()=>this.hideNotificationView()} />:null}
+                {this.state.isNotificationShow ? <Notifications navigation={navigation} hidePopup={()=>this.hideNotificationView()} />:null}
                 </View>
             </SafeAreaView>
         )

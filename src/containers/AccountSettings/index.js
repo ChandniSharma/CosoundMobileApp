@@ -95,6 +95,7 @@ class AccountSettings extends React.PureComponent {
         changePassword={changePassword}
         _changePassword={this._changePassword}
         uploadProfilePic={this._uploadProfilePic}
+        navigation = {this.props.navigation}
       />
     );
   }

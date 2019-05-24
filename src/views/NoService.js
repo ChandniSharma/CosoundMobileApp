@@ -15,9 +15,10 @@ import Icon2 from "react-native-vector-icons/EvilIcons";
 import Icon3 from "react-native-vector-icons/Ionicons";
 import Icon4 from "react-native-vector-icons/MaterialIcons";
 import Icon5 from 'react-native-vector-icons/FontAwesome';
-import Icon6 from 'react-native-vector-icons/Feather';
+import Icon6 from 'react-native-vector-icons/FontAwesome5';
 import CustomFooter from '../components/common/CustomFooter'
 import Notifications from '../../src/views/common/Notifications';
+import MultiSelect from 'react-native-multiple-select';
 
 // import custom from './c'
 
@@ -53,7 +54,10 @@ export default class NoService extends Component {
             isBottomMobileShow: true,
             mobileNumber: '',
             isNotificationShow: false,
+            isCreateServiceViewShow:false,
+            isServiceDescViewShow:false,
         }
+        this.arrayGeneres =["Blues", "Classic", 'Jazz'];
         this.arrayMobileNumber = [];
         this.arrayButtons = [];
         this.dropDownOptions = [{ name: 'Offered Services', image: '' }, { name: 'Historic', image: 'wechat' }, { name: 'Support Center', image: 'customerservice' }],
@@ -61,7 +65,11 @@ export default class NoService extends Component {
             this.arrayData = [{ name: 'Market', image: '', count: 0 }, { name: 'Messages', image: 'message', count: 3 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }]
     }
     fadeInDown = () => this.refs.userImageView.fadeInDown(1000);
+    fadeInCreateView = () => this.refs.createServiceView.fadeIn(2000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+    fadeInUpServiceDescView = () => this.refs.serviceDescView.fadeInUp(1000);
 
+    
+    
     zoomInPopup = () => this.refs.viewModalRef.zoomIn().then(endState => console.log(" now end zoomin"));
 
 
@@ -139,6 +147,12 @@ export default class NoService extends Component {
             mobileNumber: ''
         });
         return this.arrayButtons
+    }
+    showServiceDescView (){
+        this.setState({isServiceDescViewShow:true});
+        setTimeout(() => {
+            this.fadeInUpServiceDescView();
+        }, 100);
     }
     removeMobileNumber() {
 
@@ -227,7 +241,51 @@ export default class NoService extends Component {
             </View>
         )
     }
+    showCreateService =() =>{
+       
+        this.setState({isCreateServiceViewShow:true});
+        setTimeout(() => {
+            this.fadeInCreateView();
+        }, 50);
+       
+    }
 
+    multiSelectView(){
+        return(
+            <View>
+        <MultiSelect
+        styleDropdownMenu={styles.multiSelectDownStyle}
+        styleInputGroup={styles.multiSelectStyle}
+        styleMainWrapper={{ marginLeft: '5%', marginRight: '5%', marginTop: '5%' }}
+        styleListContainer={styles.multiSelectListStyle}
+        hideTags
+        items={this.genres}
+        uniqueKey="value"
+        ref={(component) => { this.multiSelect = component }}
+        onSelectedItemsChange={(selectedItems) => handleMultiSelect(selectedItems, 'genres')}
+        selectedItems={this.genres}
+        selectText="Select Genres"
+        searchInputPlaceholderText="Select Genres"
+        onChangeInput={(text) => console.log(text)}
+        altFontFamily="Montserrat-light"
+        tagRemoveIconColor="black"
+        tagBorderColor="#CCC"
+        tagTextColor="#black"
+        selectedItemTextColor="rgb(60, 205, 53)"
+        selectedItemIconColor="rgb(60, 205, 53)"
+        itemTextColor="#000"
+        displayKey="label"
+        searchInputStyle={{ color: '#CCC' }}
+        submitButtonColor="#ff277b"
+        submitButtonText="Submit"
+        name="genres"
+      />
+      <View>
+        {this.multiSelect && this.multiSelect.getSelectedItemsExt(this.genres)}
+      </View>
+    </View>
+        )
+    }
 
     render() {
 
@@ -309,7 +367,32 @@ export default class NoService extends Component {
                             </View>
                         </TouchableOpacity>
 
-                        <View style={{ alignSelf: 'center', marginTop: '10%', flex: 0.7 }}>
+                       {this.state.isCreateServiceViewShow? <Animatable.View ref={"createServiceView"} style={{ alignSelf: 'center', marginTop: '10%', flex: 0.7 }}>
+                            
+                            <Text style={[styles.noServiceText, { marginLeft: '10%', marginRight: '10%', marginTop: '5%' }]}> Nice! Let's create your first service! </Text>
+                           {this.state.isServiceDescViewShow?<Animatable.View ref={"serviceDescView"} style={{height:'40%'}}>
+                           <Text style={[styles.subTitle, { marginLeft: '10%', marginRight: '10%', marginTop: '5%' }]}> Nice… describe your service in more detail! (give as much information as possible!) </Text>
+                           <TextInput
+              style={[styles.inputStyle, {height:'30%'}]}
+              placeholder={'Description'}
+              numberOfLines={5}
+            //   onChangeText={val => handleChange('artist_name', val)}
+            //   value={data.artist_name}
+            //   name={"artist_name"}
+            />
+                           </Animatable.View>:
+                           <View>
+                                <Text style={[styles.textLight, { alignSelf: 'center', marginTop: '5%' }]}> What type of service are you offering?</Text>
+                                {/* Music genres */}
+                                {this.multiSelect()}
+                            </View>
+                           }
+                            <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton, { marginTop: '5%', justifyContent: 'center', }]} onPress={()=>this.showServiceDescView()} >
+                                <Text style={styles.textButtonTitle} >Next</Text>
+                            </TouchableHighlight>
+                            </Animatable.View> : 
+                            
+                            <View style={{ alignSelf: 'center', marginTop: '10%', flex: 0.7 }}>
                             <View style={{ alignSelf: 'center' }}>
                                 <Icon name="close" color='#20ACAC' style={{ fontSize: 25 }} />
                                 <Icon5 name="hand-holding" color='#20ACAC' style={{ fontSize: 25 }} />
@@ -317,10 +400,12 @@ export default class NoService extends Component {
                             </View>
                             <Text style={[styles.noServiceText, { marginLeft: '10%', marginRight: '10%', marginTop: '5%' }]}> You don't offer any services :( </Text>
                             <Text style={[styles.textLight, { alignSelf: 'center', marginTop: '5%' }]}> Want to create your first one now? </Text>
-                            <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton, { marginTop: '5%', justifyContent: 'center', }]}>
+                            <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton, { marginTop: '5%', justifyContent: 'center', }]} onPress={this.showCreateService}>
                                 <Text style={styles.textButtonTitle} >Create Service</Text>
                             </TouchableHighlight>
-                        </View>
+                            </View> 
+                       
+                     }
 
 
                         {/* Show Account Setting button dropdown  */}

@@ -13,7 +13,6 @@ export default class WaveAnimation extends Component{
       }
 
     render() {
-      const {children} = this.props;
     return (
       <View style={styles.container}>
         <View>
@@ -30,7 +29,7 @@ export default class WaveAnimation extends Component{
             loop={true}
             source={anim}
           />
-          {children}
+
         </View>
 
       </View>

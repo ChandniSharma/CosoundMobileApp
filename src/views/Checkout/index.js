@@ -90,8 +90,6 @@ hidePopup() {
         </LinearGradient> : null}
 
 
-
-
         <View>
           <View>
             <View>
