@@ -30,7 +30,9 @@ export default class RecoverPwd extends Component {
                 <ScrollView>
                 <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>
 
-                    <WaveAnimation/>
+                <View style={{ position: 'absolute',top:0}}>
+                            <WaveAnimation />
+                        </View>
                     <Animatable.View style={{ flex: 1, backgroundColor: 'rgb(245,245,245)',position:'absolute', top:0, width:'100%' }}>
                        
                         <View>

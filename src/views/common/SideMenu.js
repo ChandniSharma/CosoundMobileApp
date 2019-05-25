@@ -19,11 +19,14 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { searchActions } from "../../actions/";
 import { isEmpty, isNull } from "lodash";
+import Notifications from '../common/Notifications';
 
-import { getSubcategories, getThumbnail, getUsername, getUserInfo,  isError,
+import {
+    getSubcategories, getThumbnail, getUsername, getUserInfo, isError,
     getSearchType,
     getSearchPlaceholder,
-    getCategoryDataFromPath  } from "../../utils";
+    getCategoryDataFromPath
+} from "../../utils";
 
 import SearchBar from 'react-native-search-bar'
 import Hamburger from 'react-native-hamburger';
@@ -39,105 +42,105 @@ class SideMenu extends Component {
             searchIconColor: 'white',
             textSearch: '',
             query: "",
-            visible: true
-
+            visible: true,
+            isNotificationShow: false,
         }
         this.arrayData = [{ name: 'Account Settings', image: '', count: 0 }, { name: 'Plans', image: 'message', count: 0 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }, { name: 'Logout', image: '', count: 0 }]
 
     }
 
-//   componentDidUpdate(prevProps) {
-//     if (
-//       prevProps."user" !== this.props."user" &&
-//       this.state.visible
-//     ) {
-//       this.setState({
-//         visible: false
-//       });
-//     }
-//   }
+    //   componentDidUpdate(prevProps) {
+    //     if (
+    //       prevProps."user" !== this.props."user" &&
+    //       this.state.visible
+    //     ) {
+    //       this.setState({
+    //         visible: false
+    //       });
+    //     }
+    //   }
     componentDidMount() {
         setTimeout(() => {
             this.zoomInPopup();
-        }, 10);
+        }, 5);
     }
 
     /**
    * Get category from route :slug
    */
-  _getCategoryId = () => {
-    const { headerCategories, location } = this.props;
-    return getCategoryDataFromPath(headerCategories.data, "user")
-      .categoryId;
-  };
+    _getCategoryId = () => {
+        const { headerCategories, location } = this.props;
+        return getCategoryDataFromPath(headerCategories.data, "user")
+            .categoryId;
+    };
 
-  _search = query => {
-    const type = getSearchType('user');
-    switch (type) {
-      case "user":
-        return this.props.searchActions.searchUsers(type, query);
-      case "marketplace":
-        if (!isNull(this._getCategoryId())) {
-          return this.props.searchActions.searchServices(
-            type,
-            this._getCategoryId(),
-            query
-          );
+    _search = query => {
+        const type = getSearchType('user');
+        switch (type) {
+            case "user":
+                return this.props.searchActions.searchUsers(type, query);
+            case "marketplace":
+                if (!isNull(this._getCategoryId())) {
+                    return this.props.searchActions.searchServices(
+                        type,
+                        this._getCategoryId(),
+                        query
+                    );
+                }
         }
-    }
-  };
+    };
 
-  _applyRef = node => {
-    this.node = node;
-  };
+    _applyRef = node => {
+        this.node = node;
+    };
 
-  _resetState = () => {
-    return this.props.searchActions.resetState();
-  };
+    _resetState = () => {
+        return this.props.searchActions.resetState();
+    };
 
-  _onChange = (name,value) => {
-    let text = value;
-    if (text.length > 0) {
-        this.setState({
-            isSearchbarDataShow: true,
-            searchBarBgColor: 'white',
-            searchTextColor: 'black',
-            searchIconColor: 'black'
-        })
-    } else {
-        this.setState({
-            isSearchbarDataShow: false,
-            searchBarBgColor: 'rgb(64,66, 67)',
-            searchTextColor: 'white',
-            searchIconColor: 'white',
-        })
-    }
-    this.setState(
-      {
-        [name]: value
-      },
-      () => {
-        const query = value.trim();
-        if (!isEmpty(query)) {
-          this._search(query);
+    _onChange = (name, value) => {
+        let text = value;
+        if (text.length > 0) {
+            this.setState({
+                isSearchbarDataShow: true,
+                searchBarBgColor: 'white',
+                searchTextColor: 'black',
+                searchIconColor: 'black'
+            })
         } else {
-          this._resetState();
+            this.setState({
+                isSearchbarDataShow: false,
+                searchBarBgColor: 'rgb(64,66, 67)',
+                searchTextColor: 'white',
+                searchIconColor: 'white',
+            })
         }
-      }
-    );
-  };
+        this.setState(
+            {
+                [name]: value
+            },
+            () => {
+                const query = value.trim();
+                if (!isEmpty(query)) {
+                    this._search(query);
+                } else {
+                    this._resetState();
+                }
+            }
+        );
+    };
 
-  _hideResults = () => {
-    this.setState({
-      visible: false
-    });
-  };
+    _hideResults = () => {
+        this.setState({
+            visible: false
+        });
+    };
 
-  _onFocus = () => {
-    this.setState({
-      visible: true
-    });
-  };
+    _onFocus = () => {
+        this.setState({
+            visible: true
+        });
+    };
 
     fadeInDown = () => this.refs.userImageView.fadeInDown(1000);
 
@@ -162,13 +165,19 @@ class SideMenu extends Component {
     //     }
 
     // }
+    moveToUserProfile(userId) {
+        this.setState({ isDropDownclick: false });
+        this.props.navigation.navigate('UserProfile', { id: userId });
+    }
+
+
     renderSearchRow = (item) => {
         console.log(" item is ", item);
 
         return (
 
             <View style={{ height: 50, justifyContent: 'center' }}>
-                <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.setState({ isDropDownclick: false })}>
+                <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.moveToUserProfile(item.item.id)}>
                     <View style={{ flexDirection: "row" }}>
                         <Image style={{ width: 25, height: 25 }} />
                         <Text style={[styles.textModalData, { marginRight: '5%', color: 'black' }]}> {getUsername(item.item)}</Text>
@@ -189,7 +198,7 @@ class SideMenu extends Component {
 
         if (item.index === 0) {
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
-                <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Account')}>
+                <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('AccountSettings')}>
                     <View style={{ flexDirection: "row" }}>
                         <Icon4 name="briefcase-outline" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, color: 'white' }} />
                         <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
@@ -215,7 +224,7 @@ class SideMenu extends Component {
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Profile')}>
                     <View style={{ flexDirection: "row" }}>
-                        <Icon name="user" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, tintColor: 'white' }}  />
+                        <Icon name="user" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, tintColor: 'white' }} />
                         <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
 
                     </View>
@@ -225,7 +234,8 @@ class SideMenu extends Component {
         } else if (item.index === 3) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
-                <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Notifications')}>
+                <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}>
+
                     <View style={{ flexDirection: "row" }}>
                         <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, tintColor: 'white' }} />
                         <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
@@ -241,47 +251,46 @@ class SideMenu extends Component {
 
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
-            <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Profile')}>
-                <View style={{ flexDirection: "row" }}>
-                <Icon name="shoppingcart" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, tintColor: 'white' }} />
-                    <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
-                    <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#424242', justifyContent: 'center' }}>
-                <Text style={styles.textModalData}>{item.item.count}</Text>
+                <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Cart')}>
+                    <View style={{ flexDirection: "row" }}>
+                        <Icon name="shoppingcart" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, tintColor: 'white' }} />
+                        <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
+                        <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#424242', justifyContent: 'center' }}>
+                            <Text style={styles.textModalData}>{item.item.count}</Text>
+                        </View>
+                    </View>
+                </TouchableOpacity>
             </View>
-                </View>
-            </TouchableOpacity>
-        </View>
 
 
         } else if (item.index === 5) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
-            <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Login')}>
-                <View style={{ flexDirection: "row" }}>
-                    <Icon name="logout" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, color: 'white' }} />
-                    <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
+                <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Login')}>
+                    <View style={{ flexDirection: "row" }}>
+                        <Icon name="logout" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, color: 'white' }} />
+                        <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
 
-                </View>
-            </TouchableOpacity>
-        </View>
+                    </View>
+                </TouchableOpacity>
+            </View>
         }
         return (
-<View>
-{ viewComplete }
-</View>
-           
+            <View>
+                {viewComplete}
+            </View>
+
         )
     }
-    /* this.props.navigation.navigate('List', { wordList: this.props.navigation.state.params.wordList, wordLength: this.state.wordLength, id: this.state.id });
-   */
+
     render() {
-    const { query, visible } = this.state;
-    const { searchResults, location, headerCategories } = this.props;
-    const { data, type, isRequesting } = searchResults;
-    const placeholder = getSearchPlaceholder(
-      headerCategories.data,
-      "user"
-    );
+        const { query, visible } = this.state;
+        const { searchResults, location, headerCategories } = this.props;
+        const { data, type, isRequesting } = searchResults;
+        const placeholder = getSearchPlaceholder(
+            headerCategories.data,
+            "user"
+        );
 
         const { hidePopup, user } = this.props;
         console.log("user====", user)
@@ -300,11 +309,11 @@ class SideMenu extends Component {
                             placeholder='Search ...'
                             style={[styles.inputSearchStyle, { color: 'black' }]}
                             value={query}
-                            onChangeText={text => this._onChange("query",text)}
+                            onChangeText={text => this._onChange("query", text)}
                             name="query"
 
                         />
-                         {/* <input
+                        {/* <input
             type="text"
             name="query"
             value={query}
@@ -317,22 +326,22 @@ class SideMenu extends Component {
                     </View>
                     {/* Search bar flatlist  */}
                     {isRequesting && (
-                   
+
                         <ActivityIndicator color="white" />
-                    
+
                     )}
                     {isError(searchResults) && (
-                   
-                   <Text style={styles.errorText}> {searchResults.error.message}</Text>
-                                       )}
 
-                    {this.state.isSearchbarDataShow ? 
-                    <FlatList
-                        style={styles.flatListSearchbar}
-                        data={data}
-                        renderItem={this.renderSearchRow}
-                        keyExtractor={(item, index) => index.toString()}
-                    /> : null}
+                        <Text style={styles.errorText}> {searchResults.error.message}</Text>
+                    )}
+
+                    {this.state.isSearchbarDataShow ?
+                        <FlatList
+                            style={styles.flatListSearchbar}
+                            data={data}
+                            renderItem={this.renderSearchRow}
+                            keyExtractor={(item, index) => index.toString()}
+                        /> : null}
 
                     <Animatable.View
                         ref={'userImageView'}
@@ -350,7 +359,7 @@ class SideMenu extends Component {
                             shadowOpacity: 0.8,
                             marginBottom: '5%',
                         }}>
-                        <Image style={styles.imgUser} source={{uri:getThumbnail(user.data)}} />
+                        <Image style={styles.imgUser} source={{ uri: getThumbnail(user.data) }} />
                         {/* <Image style={styles.imgUser} source={require('../../assets/avatar-main-1.jpg')} /> */}
                     </Animatable.View>
 
@@ -370,6 +379,9 @@ class SideMenu extends Component {
                         keyExtractor={(item, index) => index.toString()}
                     />
                 </KeyboardAwareScrollView>
+                 {/* notification view show */}
+          {/* {this.state.isNotificationShow ? <Notifications navigation={this.props.navigation} hidePopup={() => this.hideNotificationView()} /> : null} */}
+      
             </Animatable.View>
 
         )
@@ -379,23 +391,23 @@ class SideMenu extends Component {
 // eslint-disable-next-line
 const mapStateToProps = state => {
     return {
-      user: state.user,
-      searchResults: state.searchResults,
-      headerCategories: state.headerCategories
+        user: state.user,
+        searchResults: state.searchResults,
+        headerCategories: state.headerCategories
     };
-  };
-  
-  // eslint-disable-next-line
-  const mapDispatchToProps = dispatch => {
+};
+
+// eslint-disable-next-line
+const mapDispatchToProps = dispatch => {
     return {
-      searchActions: bindActionCreators(searchActions, dispatch)
+        searchActions: bindActionCreators(searchActions, dispatch)
     };
-  };  
-  
-  export default connect(
+};
+
+export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(SideMenu);
-  
+)(SideMenu);
+
 
 {/* */ }

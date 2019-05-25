@@ -64,7 +64,7 @@ export default class Login extends Component {
     //     }
     // }
     fBLogin() {
-        LoginManager.logOut();
+       /* LoginManager.logOut();
         console.log(" in fb login button clcick ed");
         LoginManager.setLoginBehavior('browser');
         LoginManager.logInWithReadPermissions(['public_profile']).then(
@@ -79,15 +79,20 @@ export default class Login extends Component {
             function (error) {
                 alert('Login failed with error: ' + error);
             }
-        );
+        ); */
     }
+googleLogin(){
 
+}
+twitterLogin(){
+
+}
     render() {
         const { data, errors, handleChange, login, onSubmit, fetching, navigateToForgotPassword, navigateToGetStartedView, onClickRememberMe } = this.props;
         const error = checkError(login.error);
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
-                <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245, 245,245)', flex: 0.9 }}>
+                <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245, 245,245)', flex: 1}}>
                     <WaveAnimation />
                     <Animatable.View ref={"mainView"} style={[styles.container, { backgroundColor: 'transparent', position: 'absolute', top: 0, width: '100%' }]}>
                         <View style={{ backgroundColor: 'transparant' }}>
@@ -156,7 +161,7 @@ export default class Login extends Component {
                                     <Text style={styles.fbText}>Facebook login</Text>
                                 </View>
                             </TouchableHighlight>
-                            <TouchableHighlight underlayColor="#25b6ad" style={styles.buttonRight}>
+                            <TouchableHighlight underlayColor="#25b6ad" style={styles.buttonRight} onPress={()=>this.twitterLogin()}>
                                 <View style={{ flexDirection: 'row' }}>
                                     <Icon name="sc-twitter" style={{ fontSize: 30, color: 'rgb(27, 161,243)', marginLeft: '2%' }} />
                                     <Text style={styles.twitterText}>Twitter login</Text>
@@ -172,7 +177,7 @@ export default class Login extends Component {
                                 color={GoogleSigninButton.Color.Dark}
                                 onPress={this._signIn}
                                 disabled={this.state.isSigninInProgress} /> */}
-                            <TouchableHighlight underlayColor="#25b6ad" style={styles.buttonCenter} >
+                            <TouchableHighlight underlayColor="#25b6ad" style={styles.buttonCenter} onPress={()=>this.googleLogin()}>
                                 <View style={{flexDirection:'row'}}>
                             <Icon1 name="google-" style={{fontSize:20, color:'rgb(234,67,54)', marginRight:'2%'}}/>
                             <Text style={styles.googlePlusText}>Google login</Text>

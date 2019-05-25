@@ -24,6 +24,7 @@ import NewTest from './common/NewTest';
 import SideMenu from './common/SideMenu';
 import BackButton from './common/BackButton';
 import PostStatus from './common/PostStatus';
+import CustomFooter from '../components/common/CustomFooter';
 
 //  import Icon from 'react-native-vector-icons/FontAwesome'
 
@@ -170,8 +171,8 @@ export default class DashboardComponent extends Component {
         this.fadeInDown();
         // this.fadeInUpPostOptionView();
     }
-    _navigateToAdvanceSearchView() {
-        // this.props.navigation.navigate("AdvancedSearchView");
+    _navigateToAdvanceSearchView =() => {
+         this.props.navigation.navigate("AdvancedSearchView");
     }
     _navigateToNotificationView() {
         // this.props.navigation.navigate('Notification');
@@ -778,14 +779,9 @@ export default class DashboardComponent extends Component {
                             page_count={paginationData.page_count}
                         />
 
-                        <View style={styles.viewBottom}>
-                            <View style={{ flexDirection: "row", backgroundColor: "rgb(52,52,52)", marginTop: "5%" }} >
-                                <Text style={{ flex: 8, color: "#fff", fontSize: 20 }}>   (c)elit.Nulla 2018</Text>
-                                {/* <Text style={{flex:2,color:"#fff",fontSize:20}}>+ - +</Text> */}
-                            </View>
-                        </View>
+                     
                     </View>
-
+                    <CustomFooter />
                 </KeyboardAwareScrollView>
 
                 {this.state.isBottomViewShow ?

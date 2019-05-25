@@ -1,10 +1,12 @@
 import React from "react";
+import {View, Text} from 'react-native';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { isNull } from "lodash";
 import { performWow, getValueFromParams } from "../../utils";
 import { userProfileActions } from "../../actions";
-import Profile from "../../views/Profile";
+import UserProfileComponent from "../../views/UserProfile";
+import Account from '../../views/AcTry';
 
 class UserProfile extends React.PureComponent {
   componentDidMount() {
@@ -47,7 +49,7 @@ class UserProfile extends React.PureComponent {
   };
 
   _getUserId = () => {
-    return getValueFromParams(this.props.match.params, "id");
+    return this.props.navigation.state.params.id;
   };
 
   _fetchUser = (id, authenticated) => {
@@ -84,6 +86,7 @@ class UserProfile extends React.PureComponent {
     );
   };
 
+  
   render() {
     const {
       match,
@@ -92,19 +95,22 @@ class UserProfile extends React.PureComponent {
       userProfile,
       userProfileFeed
     } = this.props;
-    const { params } = match;
+    //const { params } = match;
 
+   console.log(" param ====",this.props.navigation )
+   
     return (
-      <Profile
-        id={params.id}
+      <UserProfileComponent
+
+        id={this.props.navigation.state.params.id}
         user={userProfile}
-        userMusic={userMusic}
-        userImages={userImages}
+        myMusic={userMusic}
+        myImages={userImages}
         _restCalls={this._restCalls}
-        userProfileFeed={userProfileFeed}
-        fetchUserFeed={this._fetchUserFeed}
-        fetchUserMusic={this._fetchUserMusic}
-        fetchUserImages={this._fetchUserImages}
+        userFeed={userProfileFeed}
+        fetchFeed={this._fetchUserFeed}
+        fetchMyMusic={this._fetchUserMusic}
+        fetchMyImages={this._fetchUserImages}
       />
     );
   }
@@ -116,7 +122,8 @@ const mapStateToProps = state => {
     userMusic: state.userMusic,
     userImages: state.userImages,
     userProfile: state.userProfile,
-    userProfileFeed: state.userProfileFeed
+    userProfileFeed: state.userProfileFeed,
+    user: state.user
   };
 };
 

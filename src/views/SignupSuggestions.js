@@ -9,6 +9,9 @@ import { SafeAreaView } from 'react-navigation';
 import CustomFooter from '../components/common/CustomFooter';
 import { isEmpty } from "lodash";
 import { getThumbnail, getUsername } from "../utils";
+import WaveAnimation from './common/WaveAnimation';
+import BackButton from './common/BackButton';
+import Logo from './common/logo';
 
 const { width, height } = Dimensions.get('window');
 
@@ -80,10 +83,22 @@ export default class SignupSuggestions extends Component {
         const { data, paginationData } = suggestions;
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
+
                 <ScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 1 }}>
+
                     <Animatable.View ref={"mainView"} style={{ flex: 0.9 }}>
-                        <View style={{ backgroundColor: 'rgb(37,182,173)' }}>
-                            <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../assets/cosoundTitle.png')} />
+
+                    <View style={{ position: 'absolute',top:0}}>
+                            <WaveAnimation />
+                        </View>
+
+                        <View>
+
+                        <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.navigation.goBack()} />
+                            <Logo color={'#ffffff'} style={{ flex: 0.7, alignSelf: 'center',marginTop:'13%' }} width="230px" height="44px" />
+ <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.navigation.goBack()} />
+
+
                             <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Here are suggested connections ..</Animatable.Text>
                             <Animatable.View ref={'view2'} style={styles.viewDescription}>
                                 <Text style={styles.textMusicDescription2}>We think these suggestions are going to  help you move forward! </Text>

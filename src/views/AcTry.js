@@ -39,6 +39,7 @@ export default class Account extends Component {
 
     componentDidMount() {
         this.fadeInDown();
+        console.log(" Account ======", this.props.id);
     }
     _navigateToAdvanceSearchView() {
         // this.props.navigation.navigate("AdvancedSearchView");

@@ -18,7 +18,7 @@ import Hamburger from 'react-native-hamburger';
 import SideMenu from '../common/SideMenu';
 import SettingsHeader from '../common/SettingsHeader';
 import Notifications from '../../../src/containers/Notifications'
-
+import CustomFooter from '../../components/common/CustomFooter';
 
 class Cart extends React.PureComponent {
   constructor(props) {
@@ -71,7 +71,7 @@ class Cart extends React.PureComponent {
         </LinearGradient> : null}
 
         <View style={{ flex: 1 }}>
-          <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)' }}>
+          <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex:1 }}>
             {/* <Text style={[styles.titleAccount, {marginTop:'2%', marginLeft:'2%'} ]}>Your Service</Text> */}
 
             <Paginator
@@ -86,7 +86,7 @@ class Cart extends React.PureComponent {
             />
 
             <Sidebar cart={cart} />
-
+<CustomFooter />
           </KeyboardAwareScrollView>
           {/* Side Menu button modal  */}
           {this.state.isSideMenuClick ? <SideMenu hidePopup={() => this.hidePopup()} /> : null}

@@ -61,11 +61,13 @@ export default class SignupStep1 extends Component {
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9,  overflow:'scroll' }}>
-                    <WaveAnimation />
-                    <Animatable.View ref={"mainView"} style={[styles.container, { width: '100%', position:'absolute', marginTop:'2%'}]}>
 
+                    <Animatable.View ref={"mainView"} style={[styles.container, { width: '100%'}]}>
+                        <View style={{ position: 'absolute',top:0}}>
+                            <WaveAnimation />
+                        </View>
                         <View>
-                            <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.navigation.goBack()} />
+                            <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', marginLeft: '4%' }} onPress={() => this.props.navigation.goBack()} />
                             <Logo color={'#ffffff'} style={{ flex: 0.7, alignSelf: 'center', }} width="260px" height="100px" />
 
                             <Animatable.Text animation="fadeInDown" style={styles.textWelcome}> Welcome, user!</Animatable.Text>
@@ -91,6 +93,7 @@ export default class SignupStep1 extends Component {
                                     onChangeText={val => handleChange('postal_code', val)}
                                     value={data.postal_code}
                                     name={"postal_code"}
+                                    
                                 />
                             </Animatable.View>
                             {errors.postal_code ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.postal_code}</Animatable.Text> : null}
@@ -142,9 +145,10 @@ export default class SignupStep1 extends Component {
 
                     </Animatable.View>
 
+                    <CustomFooter />
                     {/* </View> */}
                 </KeyboardAwareScrollView>
-                <CustomFooter />
+
             </SafeAreaView>
 
         )

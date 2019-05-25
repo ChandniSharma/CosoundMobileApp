@@ -45,6 +45,7 @@ export default class AdvanceSearchView extends Component {
 
     componentDidMount() {
         // this.fadeIn();
+        
     }
     onClickRememberMe = () => {
         this.setState({
@@ -158,7 +159,7 @@ export default class AdvanceSearchView extends Component {
 
 
                         </Animatable.View>
-
+                        <CustomFooter />
                     </KeyboardAwareScrollView> :
                     <Animatable.View ref={'notificationView'} style={styles.container}>
 

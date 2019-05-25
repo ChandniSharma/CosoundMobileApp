@@ -16,7 +16,7 @@ import SettingsHeader from "../common/SettingsHeader";
 // import { servicesHeaders } from "../../constants/tabs";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { SafeAreaView } from 'react-navigation';
-
+import CustomFooter from '../../components/common/CustomFooter'
 
 import CreateServiceForm from "./CreateServiceForm";
 
@@ -91,7 +91,7 @@ class CreateServiceComponent extends React.Component {
             { /* <FormToast /> */}
             {/* Side Menu button modal  */}
             {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation} hidePopup={() => this.hidePopup()} /> : null}
-
+            <CustomFooter />
           </KeyboardAwareScrollView>
 
           {/* notification view show */}

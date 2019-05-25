@@ -185,6 +185,7 @@ const tracks = {};
         postActions.likePost(id, path);
         this.setState({currentLikePostId:id});
         }
+        this.forceUpdate();
     };
 
     /**
@@ -267,7 +268,11 @@ const tracks = {};
             </View>)
     }
 
-    viewComments() {
+    viewComments =() => {
+        const extraData = {
+            ...this.state,
+            ...this.props
+          };
         return (
             <View>
                 <View style={{ marginTop: "5%", marginBottom: '5%', alignItems: "center", flexDirection: 'row' }}>
@@ -291,6 +296,7 @@ const tracks = {};
                 {this.state.isCommentTableShow ? <View style={{ width: '100%', marginBottom: '2%' }}>
                     <FlatList
                         data={this.state.arrayCommentData}
+                        extraData={extraData}
                         renderItem={this.renderCommentItem}
                         keyExtractor={(item, index) => index.toString()}
                     />
@@ -344,8 +350,6 @@ const tracks = {};
 
     }
 
-
-    
     renderPost = (post) => {
         const { feed, callingAPI, _restCalls } = this.props;
         const { user, like, deletePost, repost } = this.props;
@@ -355,6 +359,10 @@ const tracks = {};
         const originalPost = getPost(postData);
         const { images, notImages } = formatPostMedia(originalPost.media);
       
+        const extraData = {
+            ...this.state,
+            ...this.props
+          };
       return (
           <View style={{ marginBottom: "3%" }}>
               {post.item.type === "music" ? <View style={{
@@ -499,6 +507,7 @@ const tracks = {};
                   {this.state.isCommentTableShow ? <View style={{ width: '100%', marginTop: '2%', marginBottom: '2%' }}>
                       <FlatList
                           data={this.state.arrayCommentData}
+                          extraData={extraData}
                           renderItem={this.renderCommentItem}
                           keyExtractor={(item, index) => index.toString()}
                       />

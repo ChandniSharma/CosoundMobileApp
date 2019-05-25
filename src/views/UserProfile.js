@@ -24,12 +24,12 @@ import NewTest from './common/NewTest';
 import SideMenu from './common/SideMenu';
 import BackButton from './common/BackButton';
 import PostStatus from './common/PostStatus';
-import CustomFooter from '../components/common/CustomFooter';
+import CustomFooter from '../components/common/CustomFooter'
 //  import Icon from 'react-native-vector-icons/FontAwesome'
 
 import Logo from './common/logo';
 
-export default class ProfileComponent extends Component {
+export default class UserProfileComponent extends Component {
 
     constructor(props) {
         super(props);
@@ -166,7 +166,7 @@ export default class ProfileComponent extends Component {
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
 
-                {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: '10%', width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
+                {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: 60, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
 
                     <TouchableOpacity style={{ color: 'white', marginTop: '14%', flex: 0.1 }} onPress={() => this.showPopup()}>
                         <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />

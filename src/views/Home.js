@@ -54,13 +54,16 @@ export default class Home extends React.Component {
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={homeStyle.container}>
 
-                <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 1 ,height:1000 }}>
+                <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 1  }}>
 
+                    <Animatable.View ref={"mainView"} style={[{ flex: 1 }, { backgroundColor: 'transparent', width: '100%',
+                       }]}>
 
-                    <WaveAnimation />
-                    <Animatable.View ref={"mainView"} style={[{ flex: 1 }, { backgroundColor: 'transparent', top: 0, width: '100%', position: 'absolute' }]}>
+                        <View style={{top:0,position:'absolute'}}>
+                        <WaveAnimation style={{backgroundColor:'red'}} />
+                        </View>
 
-                        <View style={{ flexDirection: 'row', flex: 1 }}>
+                        <View style={{ flexDirection: 'row', flex: 1,marginTop:'5%'}}>
                             {/* <Text style={homeStyle.textSideTitle}>cosound</Text> */}
                             <Image style={homeStyle.imgSideTitle} />
                             <View style={{ flex: 0.6 }} />

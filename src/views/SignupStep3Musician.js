@@ -96,8 +96,11 @@ export default class SignupStep3 extends Component {
     return (
       <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
         <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>
-          <WaveAnimation />
-          <Animatable.View ref={"mainView"} style={[styles.container, { position: 'absolute', top: 0, width: '100%' }]}>
+         
+          <Animatable.View ref={"mainView"} style={[styles.container, { width: '100%' }]}>
+          <View style={{ position: 'absolute',top:0}}>
+                            <WaveAnimation />
+                        </View>
             <View>
               <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../assets/cosoundTitle.png')} />
               <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Nice Welcome!</Animatable.Text>
