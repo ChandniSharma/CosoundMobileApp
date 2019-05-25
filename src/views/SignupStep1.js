@@ -62,7 +62,7 @@ export default class SignupStep1 extends Component {
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9,  overflow:'scroll' }}>
 
-                    <Animatable.View ref={"mainView"} style={[styles.container, { width: '100%', marginTop:'2%'}]}>
+                    <Animatable.View ref={"mainView"} style={[styles.container, { width: '100%'}]}>
                         <View style={{ position: 'absolute',top:0}}>
                             <WaveAnimation />
                         </View>
@@ -93,6 +93,7 @@ export default class SignupStep1 extends Component {
                                     onChangeText={val => handleChange('postal_code', val)}
                                     value={data.postal_code}
                                     name={"postal_code"}
+                                    
                                 />
                             </Animatable.View>
                             {errors.postal_code ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.postal_code}</Animatable.Text> : null}

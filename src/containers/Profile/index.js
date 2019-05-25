@@ -82,7 +82,8 @@ const mapStateToProps = state => {
     userFeed: state.userFeed,
     postStatus: state.postStatus,
     myMusic: state.myMusic,
-    myImages: state.myImages
+    myImages: state.myImages,
+    user: state.user
   };
 };
 

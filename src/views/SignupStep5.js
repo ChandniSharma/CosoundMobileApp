@@ -11,6 +11,7 @@ import CustomHeader from '../components/common/CustomHeader'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import WaveAnimation from './common/WaveAnimation';
 import BackButton from './common/BackButton';
+import Logo from './common/logo';
 
 
 const { width, height } = Dimensions.get('window');
@@ -38,19 +39,21 @@ export default class SignupStep5 extends Component {
         // }, 3000);
     }
     navigateToSignupSuggestions() {
-        this.props.navigation.navigate("SignupSuggestions");
+        //this.props.navigation.navigate("SignupSuggestions");
     }
     render() {
 
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 <ScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 1 }}>
-                    <WaveAnimation />
-                    <Animatable.View ref={"mainView"} style={{ flex: 0.9, position: 'absolute', top: 0, width: '100%' }}>
-
-                        <View>
+                    
+                    <Animatable.View ref={"mainView"} style={{ flex:1,width: '100%' }}>
+                    <View style={{ position: 'absolute',top:0}}>
+                            <WaveAnimation />
+                        </View>
+                        <View >
                             <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.navigation.goBack()} />
-                            <Logo color={'#ffffff'} style={{ flex: 0.7, alignSelf: 'center', }} width="260px" height="100px" />
+                            <Logo color={'#ffffff'} style={{ flex: 0.7, alignSelf: 'center',marginTop:'10%' }} width="230px" height="44px" />
 
                             {/* <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../assets/cosoundTitle.png')} /> */}
                             <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Finding your network suggestions...</Animatable.Text>
@@ -107,9 +110,9 @@ export default class SignupStep5 extends Component {
 
                         </View>
 
-                        <CustomFooter />
+                       
                     </Animatable.View>
-
+                    <CustomFooter />
                 </ScrollView>
 
             </SafeAreaView>

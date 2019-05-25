@@ -92,16 +92,17 @@ export default class SignupStep5 extends Component {
 
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 <ScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 1 }}>
-                    <WaveAnimation />
-                    <Animatable.View ref={"mainView"} style={{ flex: 0.9, marginTop: '-175%' }}>
+                    <Animatable.View ref={"mainView"} style={{ flex: 0.9 }}>
+                    <View style={{ position: 'absolute',top:0}}>
+                            <WaveAnimation />
+                        </View>
                         {/* <CustomHeader /> */}
                         <View style={{ backgroundColor: 'transparent' }}>
                             <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.navigation.goBack()} />
-                            <Logo color={'#ffffff'} style={styles.imgMainTitle} width="230px" height="44px" />
+                            <Logo color={'#ffffff'} style={{flex: 0.7, alignSelf: 'center',marginTop:'13%'}} width="230px" height="44px" />
 
                             {/* <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../assets/cosoundTitle.png')} /> */}
-                            <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Please select Plan ..</Animatable.Text>
-
+                            <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Please Select Plan...</Animatable.Text>
 
                             <Animatable.View ref={'view2'} style={styles.viewDescription}>
 
@@ -133,9 +134,9 @@ export default class SignupStep5 extends Component {
                         </View> : null}
 
 
-                        <CustomFooter />
+                       
                     </Animatable.View>
-
+                    <CustomFooter />
                 </ScrollView>
             </SafeAreaView>)
     }

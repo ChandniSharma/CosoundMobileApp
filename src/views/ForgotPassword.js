@@ -40,10 +40,12 @@ export default class ForgotPasswordComponent extends Component {
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>
-                <WaveAnimation /> 
+                
 
-                    <Animatable.View ref={"mainView"} style={{ flex: 1, backgroundColor:'transparent',position:'absolute', top:0, width:'100%' }}>
-                        
+                    <Animatable.View ref={"mainView"} style={{ flex: 1, backgroundColor:'transparent', width:'100%' }}>
+                    <View style={{ position: 'absolute',top:0}}>
+                            <WaveAnimation />
+                        </View>
                         <View>
                         <Animatable.View ref={"headerView"} style={{ flexDirection: 'row', flex:1}}>
                              
@@ -102,8 +104,9 @@ export default class ForgotPasswordComponent extends Component {
                         </View>
 
                     </Animatable.View>
+                    <CustomFooter />
                 </KeyboardAwareScrollView>
-                <CustomFooter />
+               
             </SafeAreaView>
 
         )

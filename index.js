@@ -24,6 +24,7 @@ import Plans from './src/views/Plans';
 import Notifications from './src/containers/Notifications'
 //import Profile from './src/views/Profile';
 import Profile from './src/containers/Profile';
+import UserProfile from './src/containers/UserProfile';
 import Dashboard from './src/containers/Dashboard';
 import Navigator from './src/Navigator';
 import AdvancedSearchView from './src/views/AdvancedSearchView';
@@ -45,6 +46,7 @@ import CreateService from './src/containers/CreateService';
 import CheckoutComponent from './src/views/CheckoutComponent';
 import ImagesTemp from './src/views/CreateService/Form/ImagesTemp'
 import PurchasedServicesComponent from './src/views/PurchasedServicesComponent';
+import audioWave from './src/views/common/audioWaveView';
 
 const AppStackNavigator = createStackNavigator({
     Home: { screen: Home },
@@ -78,7 +80,8 @@ const AppStackNavigator = createStackNavigator({
     CheckoutComponent:{screen:CheckoutComponent},
     ImagesTemp:{screen:ImagesTemp},
     PurchasedServicesComponent:{screen:PurchasedServicesComponent},
-
+    audioWave:{screen:audioWave},
+    UserProfile:{screen:UserProfile},
    // Marketplace:{screen:MarketPlace},
 }, {
         initialRouteName: 'Home',

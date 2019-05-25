@@ -24,6 +24,7 @@ import NewTest from './common/NewTest';
 import SideMenu from './common/SideMenu';
 import BackButton from './common/BackButton';
 import PostStatus from './common/PostStatus';
+import CustomFooter from '../components/common/CustomFooter';
 
 //  import Icon from 'react-native-vector-icons/FontAwesome'
 
@@ -170,8 +171,8 @@ export default class DashboardComponent extends Component {
         this.fadeInDown();
         // this.fadeInUpPostOptionView();
     }
-    _navigateToAdvanceSearchView() {
-        // this.props.navigation.navigate("AdvancedSearchView");
+    _navigateToAdvanceSearchView =() => {
+         this.props.navigation.navigate("AdvancedSearchView");
     }
     _navigateToNotificationView() {
         // this.props.navigation.navigate('Notification');
@@ -666,10 +667,10 @@ export default class DashboardComponent extends Component {
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
 
-                {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: 60, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
+                {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: '10%', width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
 
-                    <TouchableOpacity style={{ color: 'white', marginTop: '14%', flex: 0.1 }} onPress={() => this.showPopup()}>
-                        <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />
+                    <TouchableOpacity style={{ color: 'white', marginTop: '20%', flex: 0.15, height:38,  }} onPress={() => this.showPopup()}>
+                        <Hamburger color="white" style={{paddingTop: '12%',}} active={false} type="spinCross" onPress={() => this.showPopup()} />
                     </TouchableOpacity>
 
 
@@ -680,6 +681,8 @@ export default class DashboardComponent extends Component {
                         <Icon2 name="search" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '1%', fontSize: 40, tintColor: 'white' }} />
                     </TouchableOpacity>
                 </LinearGradient> : null}
+
+
                 <KeyboardAwareScrollView onScroll={this._onScroll} style={{ backgroundColor: 'rgb(245, 245,245)' }}>
                     <View style={{ backgroundColor: 'white' }} >
                         <Animatable.View
@@ -776,14 +779,9 @@ export default class DashboardComponent extends Component {
                             page_count={paginationData.page_count}
                         />
 
-                        <View style={styles.viewBottom}>
-                            <View style={{ flexDirection: "row", backgroundColor: "rgb(52,52,52)", marginTop: "5%" }} >
-                                <Text style={{ flex: 8, color: "#fff", fontSize: 20 }}>   (c)elit.Nulla 2018</Text>
-                                {/* <Text style={{flex:2,color:"#fff",fontSize:20}}>+ - +</Text> */}
-                            </View>
-                        </View>
+                     
                     </View>
-
+                    <CustomFooter />
                 </KeyboardAwareScrollView>
 
                 {this.state.isBottomViewShow ?
@@ -797,7 +795,7 @@ export default class DashboardComponent extends Component {
                         </View>
                     </Animatable.View> : null}
                 {/* Side Menu button modal  */}
-                {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation} hidePopup={() => this.hidePopup()} /> : null}
+                {this.state.isSideMenuClick ? <SideMenu  navigation={this.props.navigation}  hidePopup={() => this.hidePopup()} /> : null}
             </SafeAreaView>
         )
     }

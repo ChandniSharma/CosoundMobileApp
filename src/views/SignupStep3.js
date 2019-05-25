@@ -104,13 +104,15 @@ export default class SignupStep3Musician extends Component {
     return (
       <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
         <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>
-          <WaveAnimation />
-          <Animatable.View ref={"mainView"} style={[styles.container, { marginTop: '-175%', width: '100%' }]}>
-
+         
+          <Animatable.View ref={"mainView"} style={[styles.container, { width: '100%' }]}>
+          <View style={{ position: 'absolute',top:0}}>
+                            <WaveAnimation />
+                        </View>
             <View>
               <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.goToTabIndex(2)} />
 
-              <Logo color={'#ffffff'} style={{ flex: 0.7, alignSelf: 'center', }} width="260px" height="100px" />
+              <Logo color={'#ffffff'} style={{ flex: 0.7, alignSelf: 'center',marginTop:'13%' }} width="230px" height="44px" />
               {data.type === 'professional' && <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>
                 Nice! Welcome
                     </Animatable.Text>
@@ -360,9 +362,9 @@ export default class SignupStep3Musician extends Component {
 
 
           </Animatable.View>
-
+          <CustomFooter />
         </KeyboardAwareScrollView>
-        <CustomFooter />
+        
       </SafeAreaView>
 
     )

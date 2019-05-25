@@ -214,7 +214,7 @@ class PostComment extends React.Component {
         value={comment}
         placeholder="Write a comment"
         disabled={postComment.isRequesting}
-        onSubmitEditing={() => handleKeyPress()}
+        onSubmitEditing={() => this._handleKeyPress()}
       
     />
  {/* <textarea

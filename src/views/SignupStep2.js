@@ -30,8 +30,11 @@ export default class SignupStep2 extends Component {
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 <ScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 1 }}>
-                    <WaveAnimation />
-                    <Animatable.View ref={"mainView"} style={[styles.container, { width: '100%', marginTop: '-175%' }]}>
+                   
+                    <Animatable.View ref={"mainView"} style={[styles.container, { width: '100%' }]}>
+                    <View style={{ position: 'absolute',top:0}}>
+                            <WaveAnimation />
+                        </View>
                         <View>
                             <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.goToTabIndex(1)} />
                             <Logo color={'#ffffff'} style={styles.imgMainTitle} width="230px" height="44px" />

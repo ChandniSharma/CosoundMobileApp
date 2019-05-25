@@ -214,7 +214,7 @@ class PurchasedServicesComponent extends React.PureComponent {
 
                 {/* Notification view */}
                 <View style={{ flex: 0.4 }}>
-
+ 
                 </View>
                 {this.state.isDropDownclick ?
                   <View style={styles.viewModalAccount}>
