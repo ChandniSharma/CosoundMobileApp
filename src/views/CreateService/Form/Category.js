@@ -31,7 +31,7 @@ moveSecondViewUp(){
       submitCategory
     } = this.props;
 
-console.log(" ******** categ====", this.props);
+console.log(" ******** categ====", this.props, );
 
     const subCategories = getSubcategories(data.category_id, categories.data);
     console.log("subCategories===", subCategories)

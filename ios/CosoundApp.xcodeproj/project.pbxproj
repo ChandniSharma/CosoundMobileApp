@@ -85,6 +85,7 @@
 		C8EBD26746C046BA93D575AB /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC59CFBF0E05492D8A56CE97 /* libRNGestureHandler.a */; };
 		CCF466095A734203B65511C8 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDDB54682E5A4BB7AAFB25AF /* libRCTFBSDK.a */; };
 		D2EB5F329B314D75B80D548A /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE4714EFAEAD4649B3C207CA /* Roboto.ttf */; };
+		D410663EFA214CCCBBE2CCCF /* libOGReactNativeWaveform.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE9A64C577E457C9A22536C /* libOGReactNativeWaveform.a */; };
 		DEA071C99BF3DBECFF6BA4E4 /* libPods-CosoundAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1795D711758661E6A9BE0A5F /* libPods-CosoundAppTests.a */; };
 		DFF9A63E072941979F1BD0A5 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 99523E4980C44A36A92DB2FC /* FontAwesome5_Regular.ttf */; };
 		E5FA60330C44460EBB6EC34F /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E8959AB57B2428CB9B5469E /* AntDesign.ttf */; };
@@ -468,6 +469,13 @@
 			remoteGlobalIDString = A39873CE1EA65EE60051E01A;
 			remoteInfo = "RNVectorIcons-tvOS";
 		};
+		99289E342298F68A00672650 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 89684D321DCA4401AF5130B1 /* OGReactNativeWaveform.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = OGReactNativeWaveform;
+		};
 		99619150228C77A600AA6572 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 816DAA7A98F1481FBB4A789E /* RCTFBSDK.xcodeproj */;
@@ -598,6 +606,7 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8350755437614941A4CCBDC4 /* RNSearchBar.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSearchBar.xcodeproj; path = "../node_modules/react-native-search-bar/ios/RNSearchBar.xcodeproj"; sourceTree = "<group>"; };
 		842B17EF1D4246A187F31739 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
+		89684D321DCA4401AF5130B1 /* OGReactNativeWaveform.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = OGReactNativeWaveform.xcodeproj; path = "../node_modules/react-native-audiowaveform/ios/OGReactNativeWaveform.xcodeproj"; sourceTree = "<group>"; };
 		8BA9A47EB44D4652B92BA296 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		8F80566772504534A38A325B /* RNSVG.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSVG.xcodeproj; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; };
 		921B8585857D4403A37C7CFE /* OAuthManager.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = OAuthManager.xcodeproj; path = "../node_modules/react-native-oauth/ios/OAuthManager.xcodeproj"; sourceTree = "<group>"; };
@@ -622,6 +631,7 @@
 		9B7EC8E3C6C7426F87F4E709 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		9C7072A35439412C80FE1AC0 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/native-base/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		9DA91CF40D314255978B624B /* libRNSVG-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNSVG-tvOS.a"; sourceTree = "<group>"; };
+		9DE9A64C577E457C9A22536C /* libOGReactNativeWaveform.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libOGReactNativeWaveform.a; sourceTree = "<group>"; };
 		9E370E00297F3359816D3F54 /* Pods-CosoundApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CosoundApp.release.xcconfig"; path = "Target Support Files/Pods-CosoundApp/Pods-CosoundApp.release.xcconfig"; sourceTree = "<group>"; };
 		A168937C9F8B35363CAA94F1 /* Pods-CosoundApp-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CosoundApp-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-CosoundApp-tvOSTests/Pods-CosoundApp-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A8D24B9C58FB4137B86AC61C /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
@@ -695,6 +705,7 @@
 				CCF466095A734203B65511C8 /* libRCTFBSDK.a in Frameworks */,
 				B35D3FC09B514726B4F80E65 /* libOAuthManager.a in Frameworks */,
 				B96DA14FDB22C7FEA64A3694 /* libPods-CosoundApp.a in Frameworks */,
+				D410663EFA214CCCBBE2CCCF /* libOGReactNativeWaveform.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -927,6 +938,7 @@
 				70AA854B1355446FAD3C0944 /* MusicControl.xcodeproj */,
 				816DAA7A98F1481FBB4A789E /* RCTFBSDK.xcodeproj */,
 				921B8585857D4403A37C7CFE /* OAuthManager.xcodeproj */,
+				89684D321DCA4401AF5130B1 /* OGReactNativeWaveform.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1040,6 +1052,7 @@
 				73FE4292DFAC4A62A2649EBF /* libMusicControl-tvOS.a */,
 				CDDB54682E5A4BB7AAFB25AF /* libRCTFBSDK.a */,
 				4DE8C3BFD338405BA7189473 /* libOAuthManager.a */,
+				9DE9A64C577E457C9A22536C /* libOGReactNativeWaveform.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1109,6 +1122,14 @@
 			children = (
 				992495302281FF4400DFC917 /* libRNVectorIcons.a */,
 				992495322281FF4400DFC917 /* libRNVectorIcons-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		99289E312298F68800672650 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				99289E352298F68A00672650 /* libOGReactNativeWaveform.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1313,6 +1334,10 @@
 				{
 					ProductGroup = 99198610229441D20072CEBE /* Products */;
 					ProjectRef = 921B8585857D4403A37C7CFE /* OAuthManager.xcodeproj */;
+				},
+				{
+					ProductGroup = 99289E312298F68800672650 /* Products */;
+					ProjectRef = 89684D321DCA4401AF5130B1 /* OGReactNativeWaveform.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
@@ -1771,6 +1796,13 @@
 			remoteRef = 992495312281FF4400DFC917 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		99289E352298F68A00672650 /* libOGReactNativeWaveform.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libOGReactNativeWaveform.a;
+			remoteRef = 99289E342298F68A00672650 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		99619151228C77A600AA6572 /* libRCTFBSDK.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -2134,6 +2166,7 @@
 					"$(SRCROOT)/../node_modules/react-native-music-control/ios",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-oauth/ios/OAuthManager/**",
+					"$(SRCROOT)/../node_modules/react-native-audiowaveform/ios/**",
 				);
 				INFOPLIST_FILE = CosoundAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2141,6 +2174,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)/System/Library/Frameworks\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2174,6 +2208,7 @@
 					"$(SRCROOT)/../node_modules/react-native-music-control/ios",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-oauth/ios/OAuthManager/**",
+					"$(SRCROOT)/../node_modules/react-native-audiowaveform/ios/**",
 				);
 				INFOPLIST_FILE = CosoundAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2181,6 +2216,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)/System/Library/Frameworks\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2222,6 +2258,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-oauth/ios/OAuthManager/**",
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios",
+					"$(SRCROOT)/../node_modules/react-native-audiowaveform/ios/**",
 				);
 				INFOPLIST_FILE = CosoundApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2265,6 +2302,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-oauth/ios/OAuthManager/**",
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios",
+					"$(SRCROOT)/../node_modules/react-native-audiowaveform/ios/**",
 				);
 				INFOPLIST_FILE = CosoundApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2308,12 +2346,14 @@
 					"$(SRCROOT)/../node_modules/react-native-music-control/ios",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-oauth/ios/OAuthManager/**",
+					"$(SRCROOT)/../node_modules/react-native-audiowaveform/ios/**",
 				);
 				INFOPLIST_FILE = "CosoundApp-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)/System/Library/Frameworks\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2356,12 +2396,14 @@
 					"$(SRCROOT)/../node_modules/react-native-music-control/ios",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-oauth/ios/OAuthManager/**",
+					"$(SRCROOT)/../node_modules/react-native-audiowaveform/ios/**",
 				);
 				INFOPLIST_FILE = "CosoundApp-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)/System/Library/Frameworks\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2403,12 +2445,14 @@
 					"$(SRCROOT)/../node_modules/react-native-music-control/ios",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-oauth/ios/OAuthManager/**",
+					"$(SRCROOT)/../node_modules/react-native-audiowaveform/ios/**",
 				);
 				INFOPLIST_FILE = "CosoundApp-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)/System/Library/Frameworks\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2450,12 +2494,14 @@
 					"$(SRCROOT)/../node_modules/react-native-music-control/ios",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-oauth/ios/OAuthManager/**",
+					"$(SRCROOT)/../node_modules/react-native-audiowaveform/ios/**",
 				);
 				INFOPLIST_FILE = "CosoundApp-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)/System/Library/Frameworks\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

@@ -797,7 +797,7 @@ export default class DashboardComponent extends Component {
                         </View>
                     </Animatable.View> : null}
                 {/* Side Menu button modal  */}
-                {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation} hidePopup={() => this.hidePopup()} /> : null}
+                {this.state.isSideMenuClick ? <SideMenu  navigation={this.props.navigation}  hidePopup={() => this.hidePopup()} /> : null}
             </SafeAreaView>
         )
     }

@@ -221,7 +221,7 @@ class AccountSettingsTabs extends React.PureComponent {
                     </View> : null}
                 
                  {/* Side Menu button modal  */}
-                        {this.state.isSideMenuClick ? <SideMenu navigation={navigation} hidePopup={()=>this.hidePopup()} />:null}
+                        {this.state.isSideMenuClick ? <SideMenu  navigation={navigation} hidePopup={()=>this.hidePopup()} />:null}
                        
                 </KeyboardAwareScrollView>
                 {/* notification view show */}
