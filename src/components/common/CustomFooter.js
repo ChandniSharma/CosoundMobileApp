@@ -62,14 +62,14 @@ const styles = {
        
     },
     viewBottom:{
-        
-        marginTop:deviceHeight-100,
-        alignSelf:'flex-end',
+
+        marginTop:20,
+
         backgroundColor:'black',
        //alignItems: 'space-between',
        justifyContent:'center',
        flexDirection:'row',
-       position:'absolute',
+
     }
     
 }
