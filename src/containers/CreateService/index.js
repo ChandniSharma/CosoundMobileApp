@@ -371,6 +371,7 @@ class CreateService extends React.Component {
         handleFileChange={this._handleFileChange}
         submitDescription={this._submitDescription}
         submitDeliveryTime={this._submitDeliveryTime}
+        navigation={this.props.navigation}
       />
     );
   }
