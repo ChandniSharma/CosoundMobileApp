@@ -80,7 +80,7 @@ const AppStackNavigator = createStackNavigator({
 
    // Marketplace:{screen:MarketPlace},
 }, {
-        initialRouteName: 'Login',
+        initialRouteName: 'Home',
         gesturesEnabled: false,
         headerMode: 'none',
     })

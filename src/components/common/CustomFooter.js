@@ -63,7 +63,7 @@ const styles = {
     },
     viewBottom:{
         
-        marginTop:deviceHeight-170,
+        marginTop:deviceHeight-100,
         alignSelf:'flex-end',
         backgroundColor:'black',
        //alignItems: 'space-between',
