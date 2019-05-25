@@ -20,12 +20,13 @@ import Icon3 from "react-native-vector-icons/FontAwesome";
 import Icon4 from "react-native-vector-icons/Entypo";
 import WaveForm from 'react-native-audiowaveform';
 import SoundCloudWaveform from 'react-native-soundcloud-waveform';
+
 var ImagePicker = require('react-native-image-picker');
 import NewTest from './common/NewTest';
 import SideMenu from './common/SideMenu';
 import BackButton from './common/BackButton';
 import PostStatus from './common/PostStatus';
-import CustomFooter from '../components/common/CustomFooter';
+
 //  import Icon from 'react-native-vector-icons/FontAwesome'
 
 import Logo from './common/logo';
@@ -35,7 +36,6 @@ export default class ProfileComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            timer: null,
             isPostOptionShow: true,
             isBottomViewShow: false,
             isCommentTableShow: true,
@@ -49,7 +49,6 @@ export default class ProfileComponent extends Component {
             isVideoSingleViewShow: false,
             isImageSingleViewShow: false,
             isClickToUpload: false,
-<<<<<<< HEAD
             playAudio: false,
             stopAudio: true,
             counter: 0,
@@ -159,54 +158,65 @@ export default class ProfileComponent extends Component {
         }
     }
 
-    tick =() => {
-        this.setState({
-            counter: this.state.counter + 1
-        });
-    }
 
-=======
-        }
-    }
-
->>>>>>> 1542e0e04aff5c6526f3717c141979de80fdc436
     fadeInDown = () => this.refs.userImageView.fadeInDown(1000).then(endState => this.fadeInPremiumView())
+    zoomInPopup = () => this.refs.viewModalRef.zoomIn().then(endState => console.log(" now end zoomin"));
+
     fadeInUpBottomView = () => this.refs.viewBottomWhenScroll.slideInUp(50).then(endState => console.log(endState.finished ? 'Finished up' : 'Cancelled upping '));
+
     fadeInDownBottomView = () => this.refs.viewBottomWhenScroll.slideInDown(1000).then(endState => console.log(endState.finished ? " finished downing the view" : 'not down view'));
+
     fadeInPremiumView = () => this.refs.viewPremium.fadeIn();
 
     // fadeInUpPostOptionView = () => this.refs.viewPostOption.fadeInUp(1000);
 
 
     componentDidMount() {
-<<<<<<< HEAD
 
         let timer = setInterval(this.tick, 1000);
         this.setState({timer});
 
-=======
->>>>>>> 1542e0e04aff5c6526f3717c141979de80fdc436
         this.fadeInDown();
         // this.fadeInUpPostOptionView();
     }
     _navigateToAdvanceSearchView() {
-         this.props.navigation.navigate("AdvancedSearchView");
+        // this.props.navigation.navigate("AdvancedSearchView");
     }
-  
+    _navigateToNotificationView() {
+        // this.props.navigation.navigate('Notification');
+    }
 
+    tick =() => {
+        this.setState({
+            counter: this.state.counter + 1
+        });
+    }
+
+    changestate = () => {
+        this.setState({ playAudio: !this.state.playAudio });
+    }
+
+    _showCommentList() {
+        this.setState({ isCommentTableShow: !this.state.isCommentTableShow });
+    }
+    _showPostOptions() {
+        this.setState({ isPostOptionShow: true });
+    }
     showPopup() {
         this.setState({ isSideMenuClick: true })
         console.log(" sidemnu ", this.state.isSideMenuClick);
+        // setTimeout(() => {
+        //     this.zoomInPopup();
+        // }, 10);
 
     }
     hidePopup() {
         this.setState({ isSideMenuClick: false })
     }
-<<<<<<< HEAD
     chooseFile = () => {
         var options = {
             title: 'Image',
-            
+
             storageOptions: {
                 skipBackup: true,
                 path: 'images',
@@ -247,11 +257,6 @@ export default class ProfileComponent extends Component {
             }
         });
     };
-
-    changestate = () => {
-        this.setState({ playAudio: !this.state.playAudio });
-    }
-
     onClickMusicVideoImage(type) {
         if (type === 'music') {
             this.setState({
@@ -276,7 +281,7 @@ export default class ProfileComponent extends Component {
             this.setState({isClickToUpload:true})
             this.chooseFile()
         }
-       
+
     }
     rednerPostItem = (item) => {
         return (
@@ -343,9 +348,6 @@ export default class ProfileComponent extends Component {
         )
     }
 
-=======
-   
->>>>>>> 1542e0e04aff5c6526f3717c141979de80fdc436
     _onScroll = event => {
         const currentOffset = event.nativeEvent.contentOffset.y;
         const dif = currentOffset - (this.offset || 0);
@@ -367,12 +369,6 @@ export default class ProfileComponent extends Component {
         }
         this.offset = currentOffset;
     };
-
-    setTime = () => {
-        let timer = setInterval(this.tick, 1000);
-
-
-    }
 
     postOptionView() {
         let arrayPostOptions = ["All", "Copy Link", "Unfollow User", 'Share', 'Report Post'];
@@ -418,164 +414,161 @@ export default class ProfileComponent extends Component {
                     shadowOpacity: 0.2,
                     zIndex: -1
                 }}
-                    source={require('../assets/homepage-video-placeholder.jpg')}>
+                       source={require('../assets/homepage-video-placeholder.jpg')}>
                 </Image>
             </View>
         )
     };
-<<<<<<< HEAD
     renderPost = (post) => {
         return (
             <View style={{ marginBottom: "3%" }}>
                 {post.item.type === "music" ? <View style={{
-                    width: "100%",
-                    backgroundColor: "white",
-                    marginTop: 10,
-                    padding: 10,
-                    shadowColor: 'rgba(0,0,0,1)',
-                    shadowOffset: {
-                        width: 0,
-                        height: 0
-                    },
-                    shadowOpacity: 0.2,
-                }}>
-                    <View style={{ width: "100%", justifyContent: "center", flexDirection: "row" }}>
-                        <View style={{ flex: 9, flexDirection: "row", marginTop: 5 }}>
-                            <View style={{
-                                height: 40, width: 40,
-                                borderRadius: 20,
-                                elevation: 3,
-                                backgroundColor: "white",
-                                alignSelf: "center",
-                                shadowColor: 'rgba(0,0,0,1)',
-                                shadowOffset: {
-                                    width: 1,
-                                    height: 1
-                                },
-                                shadowOpacity: 0.8,
-                            }} />
-                            <View style={{ paddingLeft: 10, marginTop: 3 }}>
-                                <Text style={styles.textUserName}>Test Name</Text>
-                                <Text style={styles.textDesignation}>Test Desigation</Text>
+                        width: "100%",
+                        backgroundColor: "white",
+                        marginTop: 10,
+                        padding: 10,
+                        shadowColor: 'rgba(0,0,0,1)',
+                        shadowOffset: {
+                            width: 0,
+                            height: 0
+                        },
+                        shadowOpacity: 0.2,
+                    }}>
+                        <View style={{ width: "100%", justifyContent: "center", flexDirection: "row" }}>
+                            <View style={{ flex: 9, flexDirection: "row", marginTop: 5 }}>
+                                <View style={{
+                                    height: 40, width: 40,
+                                    borderRadius: 20,
+                                    elevation: 3,
+                                    backgroundColor: "white",
+                                    alignSelf: "center",
+                                    shadowColor: 'rgba(0,0,0,1)',
+                                    shadowOffset: {
+                                        width: 1,
+                                        height: 1
+                                    },
+                                    shadowOpacity: 0.8,
+                                }} />
+                                <View style={{ paddingLeft: 10, marginTop: 3 }}>
+                                    <Text style={styles.textUserName}>Test Name</Text>
+                                    <Text style={styles.textDesignation}>Test Desigation</Text>
+                                </View>
                             </View>
-                        </View>
-                        <TouchableOpacity onPress={this._showPostOptions}>
-                            <Text style={styles.postDescription}>...</Text>
-                        </TouchableOpacity>
-                        {/* {this.state.isPostOptionShow ?
+                            <TouchableOpacity onPress={this._showPostOptions}>
+                                <Text style={styles.postDescription}>...</Text>
+                            </TouchableOpacity>
+                            {/* {this.state.isPostOptionShow ?
                             <View style={styles.postOptionView}>
                                 {this.postOptionView()}
                             </View> : null
                         } */}
 
-
-
-                    </View>
-                    <View style={{ marginTop: "5%", marginBottom: "5%", width: "100%", justifyContent: "center", height: 0.5, backgroundColor: "#d3d3d3" }}>
-                    </View>
-                    <View style={{ padding: 5, marginBottom: "5%" }}>
-                        <View style={{ flexDirection: "row", padding: 10 }}>
-                            <View style={{ flex: 4, }}>
-                                <Image style={{
-                                    width: 100,
-                                    height: 100,
-                                    borderRadius: 10,
-                                    shadowColor: 'rgba(0,0,0,1)',
-                                    shadowOffset: {
-                                        width: 0.8,
-                                        height: 0.8
-                                    },
-                                    shadowOpacity: 0.2,
-                                    zIndex: -1
-                                }}
-                                    source={require('../assets/homepage-video-placeholder.jpg')}>
-                                </Image>
-                                <Image style={{
-                                    width: 60,
-                                    height: 60,
-                                    borderRadius: 10,
-                                    shadowColor: 'rgba(0,0,0,1)',
-                                    shadowOffset: {
-                                        width: 0.8,
-                                        height: 0.8
-                                    },
-                                    shadowOpacity: 0.2,
-                                    position: "relative",
-                                    right: "-50%",
-                                    top: "-20%",
-                                    zIndex: 999
-                                }}
-                                    source={require('../assets/close.png')}>
-                                </Image>
-                            </View>
-                            <View style={{ flex: 6 }}>
-                                <Text style={styles.musicTitle}>Kygo</Text>
-                                <Text style={styles.musicDescription}>Of Monsters and Men - Dirty Paws (Kygo remix)</Text>
-                            </View>
                         </View>
-                        <View style={{ width: "100%", backgroundColor: "#d3d3d6" }}>
-                            <Image style={{ width: "100%", height: 50, backgroundColor: 'white' }} source={require('../assets/noise.gif')} />
+                        <View style={{ marginTop: "5%", marginBottom: "5%", width: "100%", justifyContent: "center", height: 0.5, backgroundColor: "#d3d3d3" }}>
+                        </View>
+                        <View style={{ padding: 5, marginBottom: "5%" }}>
+                            <View style={{ flexDirection: "row", padding: 10 }}>
+                                <View style={{ flex: 4, }}>
+                                    <Image style={{
+                                        width: 100,
+                                        height: 100,
+                                        borderRadius: 10,
+                                        shadowColor: 'rgba(0,0,0,1)',
+                                        shadowOffset: {
+                                            width: 0.8,
+                                            height: 0.8
+                                        },
+                                        shadowOpacity: 0.2,
+                                        zIndex: -1
+                                    }}
+                                           source={require('../assets/homepage-video-placeholder.jpg')}>
+                                    </Image>
+                                    <Image style={{
+                                        width: 60,
+                                        height: 60,
+                                        borderRadius: 10,
+                                        shadowColor: 'rgba(0,0,0,1)',
+                                        shadowOffset: {
+                                            width: 0.8,
+                                            height: 0.8
+                                        },
+                                        shadowOpacity: 0.2,
+                                        position: "relative",
+                                        right: "-50%",
+                                        top: "-20%",
+                                        zIndex: 999
+                                    }}
+                                           source={require('../assets/close.png')}>
+                                    </Image>
+                                </View>
+                                <View style={{ flex: 6 }}>
+                                    <Text style={styles.musicTitle}>Kygo</Text>
+                                    <Text style={styles.musicDescription}>Of Monsters and Men - Dirty Paws (Kygo remix)</Text>
+                                </View>
+                            </View>
+                            <View style={{ width: "100%", backgroundColor: "#d3d3d6" }}>
+                                <Image style={{ width: "100%", height: 50, backgroundColor: 'white' }} source={require('../assets/noise.gif')} />
+                            </View>
+                            <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
+                                <Text style={styles.musicCurrentTime}>0.00</Text>
+                                <Text style={styles.musicDuration}>2.03</Text>
+
+                            </View>
                         </View>
                         <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
-                            <Text style={styles.musicCurrentTime}>0.00</Text>
-                            <Text style={styles.musicDuration}>2.03</Text>
-
-                        </View>
-                    </View>
-                    <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
-                        <View style={{ flex: 9, flexDirection: "row" }}>
+                            <View style={{ flex: 9, flexDirection: "row" }}>
+                                <View style={{
+                                    borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10, justifyContent: 'center',
+                                    alignItems: "center", flexDirection: 'row', height: 40, width: 80
+                                }}>
+                                    <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
+                                    <Text style={styles.textLikeCount}>10</Text>
+                                </View>
+                                <View style={{
+                                    marginLeft: 10, borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
+                                    justifyContent: 'center', alignItems: "center", flexDirection: 'row', height: 40, width: 80
+                                }}>
+                                    <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
+                                    <Text style={styles.textLikeCount}>56</Text>
+                                </View>
+                            </View>
                             <View style={{
+                                flex: 1, borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
+                                justifyContent: 'center', alignItems: "center", height: 40
+                            }}>
+                                <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
+                            </View>
+                        </View>
+                        {/* Comment btn */}
+                        <View style={{ marginTop: "5%", marginBottom: '5%', alignItems: "center", flexDirection: 'row', height: 100 }}>
+                            <View style={{ flex: 1, height: 1, backgroundColor: "#d3d3d3" }} />
+
+                            <TouchableOpacity style={{
                                 borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10, justifyContent: 'center',
-                                alignItems: "center", flexDirection: 'row', height: 40, width: 80
-                            }}>
+                                alignItems: "center", flexDirection: 'row', height: 40, width: 160
+                            }} onPress={this._showCommentList.bind(this)}>
+
                                 <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
-                                <Text style={styles.textLikeCount}>10</Text>
-                            </View>
-                            <View style={{
-                                marginLeft: 10, borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
-                                justifyContent: 'center', alignItems: "center", flexDirection: 'row', height: 40, width: 80
-                            }}>
-                                <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
-                                <Text style={styles.textLikeCount}>56</Text>
-                            </View>
+                                <Text style={[styles.textCommentCount]}>9 Comments</Text>
+
+                                <View style={{
+                                    marginLeft: 10, flex: 1, borderRadius: 60, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
+                                    justifyContent: 'center', alignItems: "center", height: 40, width: 160
+                                }}>
+                                    <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
+                                </View>
+                            </TouchableOpacity>
+                            <View style={{ flex: 1, height: 1, backgroundColor: "#d3d3d3" }} />
                         </View>
-                        <View style={{
-                            flex: 1, borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
-                            justifyContent: 'center', alignItems: "center", height: 40
-                        }}>
-                            <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
-                        </View>
+
+                        {this.state.isCommentTableShow ? <View style={{ width: '100%', marginTop: '2%', marginBottom: '2%' }}>
+                            <FlatList
+                                data={this.state.arrayCommentData}
+                                renderItem={this.renderCommentItem}
+                                keyExtractor={(item, index) => index.toString()}
+                            />
+                        </View> : null}
                     </View>
-                    {/* Comment btn */}
-                    <View style={{ marginTop: "5%", marginBottom: '5%', alignItems: "center", flexDirection: 'row', height: 100 }}>
-                        <View style={{ flex: 1, height: 1, backgroundColor: "#d3d3d3" }} />
-
-                        <TouchableOpacity style={{
-                            borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10, justifyContent: 'center',
-                            alignItems: "center", flexDirection: 'row', height: 40, width: 160
-                        }} onPress={this._showCommentList.bind(this)}>
-
-                            <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
-                            <Text style={[styles.textCommentCount]}>9 Comments</Text>
-
-                            <View style={{
-                                marginLeft: 10, flex: 1, borderRadius: 60, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
-                                justifyContent: 'center', alignItems: "center", height: 40, width: 160
-                            }}>
-                                <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../assets/tickMark.png")} />
-                            </View>
-                        </TouchableOpacity>
-                        <View style={{ flex: 1, height: 1, backgroundColor: "#d3d3d3" }} />
-                    </View>
-
-                    {this.state.isCommentTableShow ? <View style={{ width: '100%', marginTop: '2%', marginBottom: '2%' }}>
-                        <FlatList
-                            data={this.state.arrayCommentData}
-                            renderItem={this.renderCommentItem}
-                            keyExtractor={(item, index) => index.toString()}
-                        />
-                    </View> : null}
-                </View>
                     :
                     <View style={{
                         width: "100%",
@@ -680,10 +673,12 @@ export default class ProfileComponent extends Component {
             userFeedActions.setTemporaryFile(files[0]);
         }
     };
-=======
-   
-    
->>>>>>> 1542e0e04aff5c6526f3717c141979de80fdc436
+
+    setTime = () => {
+        let timer = setInterval(this.tick, 1000);
+
+
+    }
     render() {
         const {
             user,
@@ -701,13 +696,13 @@ export default class ProfileComponent extends Component {
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
 
-                {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: '10%', width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
+                {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: 60, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
 
                     <TouchableOpacity style={{ color: 'white', marginTop: '14%', flex: 0.1 }} onPress={() => this.showPopup()}>
                         <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />
                     </TouchableOpacity>
 
-                    {/* <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.navigation.goBack()} /> */}
+                    <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.navigation.goBack()} />
 
                     <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
 
@@ -745,15 +740,22 @@ export default class ProfileComponent extends Component {
                                 },
                                 shadowOpacity: 0.8,
                             }}>
-                            <Image style={styles.imgUser} source={getThumbnail(user.data)} />
-                            {/* <Image style={styles.imgUser} source={require('../assets/avatar-main-1.jpg')} /> */}
-                           
+                            {/* <Image style={styles.imgUser} source={getThumbnail(user.data)} /> */}
+                            <Image style={styles.imgUser} source={require('../assets/avatar-main-1.jpg')} />
+
                         </Animatable.View>
 
-                        <Text style={[styles.textUserName, {marginTop:'10%', alignSelf:'center'} ]}>{getUsername(user.data)}</Text>
-                            <Text style={[styles.textDesignation, {marginBottom:'10%', alignSelf:'center'} ]}>{getUserInfo(user.data)}</Text>
+                        <View style={{ alignItems: "center", marginTop: 25 }}>
+                            {/* <Text style={styles.textUserName}>{getUsername(user.data)}</Text>
+                            <Text style={styles.textDesignation}>{getUserInfo(user.data)}</Text>
+                            <Text style={styles.textConnectionCount}>275k+</Text>
+                            <Text style={styles.textConnection}>Connections</Text>
+                            <View style={{ marginRight: 30, marginLeft: 30 }}>
+                                <Text style={styles.textDescription}>{getUserInfo(user.data)}</Text>
+                            </View> */}
+                        </View>
 
-                        {/* <View style={styles.viewLoginButton}>
+                        <View style={styles.viewLoginButton}>
 
                             <TouchableHighlight underlayColor="black" style={[styles.loginButton]}>
                                 <Text style={styles.textLoginButtonTitle}>Follow</Text>
@@ -762,27 +764,23 @@ export default class ProfileComponent extends Component {
                                 <Image style={styles.imageSendArraow} source={require('../assets/sendArrow.png')} />
                             </TouchableHighlight>
 
-                        </View> */}
+                        </View>
 
-
-
-
-                            <WaveForm
-                                style={{flex: 1,
-                                    margin: 10,
-                                    backgroundColor: "white",height:50}}
-                                onPress={()=>this.changestate()}
-                                source={require('../assets/the_sentence.mp3')}
-                                stop={this.state.stopAudio}
-                                play={this.state.playAudio}
-                                autoPlay={false}
-                                waveFormStyle={{waveColor:'gray', scrubColor:'red',width:'auto'}}
-                            />
+                        <WaveForm
+                            style={{flex: 1,
+                                margin: 10,
+                                backgroundColor: "white",height:50}}
+                            onPress={()=>this.changestate()}
+                            source={require('../assets/the_sentence.mp3')}
+                            stop={this.state.stopAudio}
+                            play={this.state.playAudio}
+                            autoPlay={false}
+                            waveFormStyle={{waveColor:'gray', scrubColor:'red',width:'auto'}}
+                        />
 
 
                         <SoundCloudWaveform waveformUrl="https://w1.sndcdn.com/PP3Eb34ToNki_m.png" setTime={this.setTime}
                                             percentPlayed={this.state.counter} percentPlayable={1} />
-
 
                         <View style={{
                             width: "100%",
@@ -802,11 +800,47 @@ export default class ProfileComponent extends Component {
                                 <Text style={styles.myMusicTitle}>My Music</Text>
 
                                 <Icon name="ios-add-circle-outline" size={30} color="purple" style={styles.plusCircle} />
+
+
                             </View>
 
                             <View style={styles.midView}>
 
                             </View>
+
+                            {/* <View>
+                                { // PostMusicPlayer common/MusicList/PostMusicPlayer }
+                                <View style={{ padding: 5, marginBottom: "5%" }}>
+                                    <View style={{ flexDirection: "row", padding: 10 }}>
+                                        <View style={{ flex: 4, }}>
+                                            <Image style={styles.videoPlaceholder}
+                                                source={require('../assets/homepage-video-placeholder.jpg')}>
+                                            </Image>
+                                            <Icon name="ios-play" size={40} color={"white"} />
+                                        </View>
+                                        <View style={{ flex: 6 }}>
+                                            <Text style={styles.musicTitle}>Kygo</Text>
+                                            <Text style={styles.musicDescription}>Of Monsters and Men - Dirty Paws (Kygo remix)</Text>
+                                        </View>
+                                    </View>
+                                    <View style={styles.viewMusicImage}>
+                                        <Image style={styles.musicAnimatedImg} source={require('../assets/noise.gif')} />
+                                    </View>
+                                    <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
+                                        <Text style={styles.musicCurrentTime}>0.00</Text>
+                                        <Text style={styles.musicDescription}>2.03</Text>
+                                    </View>
+                                </View>
+                                <FlatList
+                                    data={this.state.music}
+                                    renderItem={this.renderItem}
+                                    keyExtractor={(item, index) => index.toString()}
+                                />
+                                <View style={styles.viewMore}>
+                                    <Text style={styles.textViewMore}>View More...</Text>
+                                </View>
+                            </View>  */}
+
                             {/* <MusicList /> */}
                             <Paginator
                                 isLoaderInternal
@@ -829,7 +863,19 @@ export default class ProfileComponent extends Component {
 
                             </View>
 
-                         
+                            {/* <View style={styles.midView}>
+                            </View>
+                            <View>
+                                <FlatList
+                                    numColumns={3}
+                                    data={this.state.images}
+                                    renderItem={this.renderImage}
+                                    keyExtractor={(item, index) => index.toString()}
+                                />
+                                <View style={styles.viewMoreImage}>
+                                    <Text style={styles.textViewMore}>View More...</Text>
+                                </View>
+                            </View> */}
                             {/* <ImagesList /> */}
                             <Paginator
                                 isLoaderInternal
@@ -842,7 +888,57 @@ export default class ProfileComponent extends Component {
 
                         </View>
                         <PostStatus  pathName={"/profile"}/>
-                        
+                        { /* <PostStatus /> */}
+                        {/* <View style={styles.viewWriteSomething}>
+                            <TextInput
+                                style={styles.textWriteSomething}
+                                onChangeText={(text) => this.setState({ text })}
+                                value={this.state.text}
+                            />
+                            {!this.state.isImageLoadedFromLiab ?
+                                <View /> :
+                                <Image
+                                    source={{
+                                        uri: 'data:image/jpeg;base64,' + this.state.filePath.data,
+                                    }}
+                                    style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
+                                />}
+                            <View style={styles.midView}>
+                                {this.state.isMusicSingleViewShow ? <View style={{ backgroundColor: 'rgb(140,91,203)', height: 1, width: '30%', marginRight: '5%' }} /> : <View style={{ backgroundColor: 'transparent', height: 1, width: '30%', marginRight: '5%' }} />}
+                                {this.state.isVideoSingleViewShow ? <View style={{ backgroundColor: '#20ACAC', height: 1, width: '30%', marginRight: '5%' }} /> : <View style={{ backgroundColor: 'transparent', height: 1, width: '30%', marginRight: '5%' }} />}
+                                {this.state.isImageSingleViewShow ? <View style={{ backgroundColor: 'rgb(40,190,167)', height: 1, width: '30%' }} /> : <View style={{ backgroundColor: 'transparent', height: 1, width: '30%', marginRight: '5%' }} />}
+                            </View>
+                            <View style={styles.viewBottomContent}>
+                                <TouchableOpacity style={{ paddingLeft: 5, paddingRight: 15, width: '30%', flexDirection: 'row' }} onPress={() => this.onClickMusicVideoImage('music')}>
+                                    <Icon3 name="music" style={[styles.music, { fontSize: 30, color: 'rgb(140,91,203)' }]} />
+                                    <Text style={[styles.music, { marginTop: '5%' }]}>Music</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={{ paddingLeft: 5, paddingRight: 15, width: '30%', flexDirection: 'row' }} onPress={() => this.onClickMusicVideoImage('video')}>
+                                    <Icon4 name="video-camera" style={[styles.video, { fontSize: 30, color: '#20ACAC' }]} />
+                                    <Text style={[styles.video, { marginTop: '5%' }]}>Video</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={{ paddingLeft: 5, width: '30%', flexDirection: 'row' }} onPress={() => this.onClickMusicVideoImage('image')} >
+                                    <Icon3 name="image" style={[styles.imageIcon, { fontSize: 30, color: 'rgb(40,190,167)' }]} />
+                                    <Text style={[styles.Images, { marginTop: '5%' }]}>Images</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        <View style={styles.viewPostButton}>
+                            <TouchableHighlight style={[styles.postButton]} >
+                                <View style={{ flexDirection: 'row' }}>
+                                    <Text style={styles.textLoginButtonTitle}>Post</Text>
+                                    <Icon1 name="arrowright" style={{ marginLeft: '1%', fontSize: 20, color: 'rgb(255, 38, 123)' }} />
+                                </View>
+                            </TouchableHighlight>
+                        </View> */}
+                        { /* PostStatus End */}
+                        {/* <View>
+                            <FlatList
+                                data={this.state.post}
+                                renderItem={this.renderPost}
+                                keyExtractor={(item, index) => index.toString()}
+                            />
+                        </View> */}
                         {/* <NewTest /> */}
                         <InfiniteScroller
                             pathName={"/profile"}
@@ -867,24 +963,24 @@ export default class ProfileComponent extends Component {
                         </View>
 
                     </View>
-                    <CustomFooter />
+
                 </KeyboardAwareScrollView>
 
                 {this.state.isBottomViewShow ?
                     <Animatable.View ref={"viewBottomWhenScroll"} style={styles.viewBottomWhenScroll}>
 
                         <View style={{ flexDirection: 'row', margin: '2%' }}>
-                            <Image style={styles.imgUser} source={getThumbnail(user.data)} />
+                            <Image style={styles.imgUserInBottom} source={require('../assets/avatar-main-1.jpg')} />
                             <View>
-                                <Text style={styles.userNameInBottom}>{getUsername(user.data)}</Text>
-                                <Text style={styles.JobDetailInBottom}>{getUserInfo(user.data)}</Text>
+                                <Text style={styles.userNameInBottom}>Benjamin Rees</Text>
+                                <Text style={styles.JobDetailInBottom}>CEO of the famous company</Text>
                             </View>
                         </View>
 
                     </Animatable.View> : null}
 
                 {/* Side Menu button modal  */}
-                {this.state.isSideMenuClick ? <SideMenu  navigation={this.props.navigation} hidePopup={() => this.hidePopup()} /> : null}
+                {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation} hidePopup={() => this.hidePopup()} /> : null}
 
             </SafeAreaView>
 
