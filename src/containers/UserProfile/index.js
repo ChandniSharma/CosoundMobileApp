@@ -11,26 +11,26 @@ class UserProfile extends React.PureComponent {
     this._restCallsOnMount();
   }
 
-  componentDidUpdate(prevProps) {
-    if (
-      getValueFromParams(prevProps.match.params, "id") !==
-      getValueFromParams(this.props.match.params, "id")
-    ) {
-      this._restCallsOnMount();
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (
+  //     getValueFromParams(prevProps.match.params, "id") !==
+  //     getValueFromParams(this.props.match.params, "id")
+  //   ) {
+  //     this._restCallsOnMount();
+  //   }
+  // }
 
   _restCallsOnMount = () => {
-    const { wowActions, user } = this.props;
+    const { user } = this.props;
     const id = this._getUserId();
 
     if (!isNull(id)) {
       this._fetchUser(id, !isNull(user.token)).then(() => {
-        performWow(wowActions);
+      //  performWow(wowActions);
         this._fetchUserMusic(1).then(() => {
           this._fetchUserImages(1).then(() => {
             this._fetchUserFeed(1).then(() => {
-              performWow(wowActions);
+             // performWow(wowActions);
             });
           });
         });
@@ -41,7 +41,7 @@ class UserProfile extends React.PureComponent {
   _restCalls = () => {
     if (!isNull(this._getUserId())) {
       this._fetchUserFeed(1).then(() => {
-        performWow(this.props.wowActions);
+       // performWow(this.props.wowActions);
       });
     }
   };

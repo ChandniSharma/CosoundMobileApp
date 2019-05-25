@@ -23,6 +23,7 @@ var ImagePicker = require('react-native-image-picker');
 import NewTest from './common/NewTest';
 import SideMenu from './common/SideMenu';
 import BackButton from './common/BackButton';
+import PostStatus from './common/PostStatus';
 
 //  import Icon from 'react-native-vector-icons/FontAwesome'
 
@@ -868,8 +869,9 @@ export default class ProfileComponent extends Component {
                             />
 
                         </View>
+                        <PostStatus  pathName={"/profile"}/>
                         { /* <PostStatus /> */}
-                        <View style={styles.viewWriteSomething}>
+                        {/* <View style={styles.viewWriteSomething}>
 
                             <TextInput
                                 style={styles.textWriteSomething}
@@ -925,8 +927,8 @@ export default class ProfileComponent extends Component {
                                 </View>
 
                             </TouchableHighlight>
-                        </View>
-                        { /* PostStatus End */}
+                        </View> */}
+                        { /* PostStatus End */} 
                         {/* <View>
                             <FlatList
                                 data={this.state.post}

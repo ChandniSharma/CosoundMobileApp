@@ -24,6 +24,7 @@ import Plans from './src/views/Plans';
 import Notifications from './src/containers/Notifications'
 //import Profile from './src/views/Profile';
 import Profile from './src/containers/Profile';
+import UserProfile from './src/containers/UserProfile';
 import Dashboard from './src/containers/Dashboard';
 import Navigator from './src/Navigator';
 import AdvancedSearchView from './src/views/AdvancedSearchView';
@@ -80,7 +81,7 @@ const AppStackNavigator = createStackNavigator({
     ImagesTemp:{screen:ImagesTemp},
     PurchasedServicesComponent:{screen:PurchasedServicesComponent},
     audioWave:{screen:audioWave},
-
+    UserProfile:{screen:UserProfile},
    // Marketplace:{screen:MarketPlace},
 }, {
         initialRouteName: 'Home',

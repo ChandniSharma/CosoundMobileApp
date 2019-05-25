@@ -666,10 +666,10 @@ export default class DashboardComponent extends Component {
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
 
-                {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: 60, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
+                {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: '10%', width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
 
-                    <TouchableOpacity style={{ color: 'white', marginTop: '14%', flex: 0.1 }} onPress={() => this.showPopup()}>
-                        <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />
+                    <TouchableOpacity style={{ color: 'white', marginTop: '20%', flex: 0.15, height:38,  }} onPress={() => this.showPopup()}>
+                        <Hamburger color="white" style={{paddingTop: '12%',}} active={false} type="spinCross" onPress={() => this.showPopup()} />
                     </TouchableOpacity>
 
 
@@ -680,6 +680,8 @@ export default class DashboardComponent extends Component {
                         <Icon2 name="search" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '1%', fontSize: 40, tintColor: 'white' }} />
                     </TouchableOpacity>
                 </LinearGradient> : null}
+
+
                 <KeyboardAwareScrollView onScroll={this._onScroll} style={{ backgroundColor: 'rgb(245, 245,245)' }}>
                     <View style={{ backgroundColor: 'white' }} >
                         <Animatable.View

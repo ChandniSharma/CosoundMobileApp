@@ -3,7 +3,7 @@ import { Component } from "react";
 import styles from "../../stylesheet/Account.style";
 import { SafeAreaView } from 'react-navigation';
 import React from "react";
-import { FlatList, Image, ImageBackground, Text, TextInput, Modal, TouchableHighlight, View, TouchableOpacity, ScrollView } from "react-native";
+import { FlatList, Image, ImageBackground, Text, TextInput, Modal, TouchableHighlight, View, TouchableOpacity, ScrollView, ActivityIndicator } from "react-native";
 //import { Icon, Row } from "native-base";
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
@@ -16,8 +16,14 @@ import Icon2 from "react-native-vector-icons/EvilIcons";
 import Icon3 from "react-native-vector-icons/Ionicons";
 import Icon4 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { searchActions } from "../../actions/";
+import { isEmpty, isNull } from "lodash";
 
-import { getSubcategories, getThumbnail, getUsername, getUserInfo  } from "../../utils";
+import { getSubcategories, getThumbnail, getUsername, getUserInfo,  isError,
+    getSearchType,
+    getSearchPlaceholder,
+    getCategoryDataFromPath  } from "../../utils";
 
 import SearchBar from 'react-native-search-bar'
 import Hamburger from 'react-native-hamburger';
@@ -32,39 +38,130 @@ class SideMenu extends Component {
             searchTextColor: 'white',
             searchIconColor: 'white',
             textSearch: '',
+            query: "",
+            visible: true
 
         }
         this.arrayData = [{ name: 'Account Settings', image: '', count: 0 }, { name: 'Plans', image: 'message', count: 0 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }, { name: 'Logout', image: '', count: 0 }]
 
     }
+
+//   componentDidUpdate(prevProps) {
+//     if (
+//       prevProps."user" !== this.props."user" &&
+//       this.state.visible
+//     ) {
+//       this.setState({
+//         visible: false
+//       });
+//     }
+//   }
     componentDidMount() {
         setTimeout(() => {
             this.zoomInPopup();
         }, 10);
     }
+
+    /**
+   * Get category from route :slug
+   */
+  _getCategoryId = () => {
+    const { headerCategories, location } = this.props;
+    return getCategoryDataFromPath(headerCategories.data, "user")
+      .categoryId;
+  };
+
+  _search = query => {
+    const type = getSearchType('user');
+    switch (type) {
+      case "user":
+        return this.props.searchActions.searchUsers(type, query);
+      case "marketplace":
+        if (!isNull(this._getCategoryId())) {
+          return this.props.searchActions.searchServices(
+            type,
+            this._getCategoryId(),
+            query
+          );
+        }
+    }
+  };
+
+  _applyRef = node => {
+    this.node = node;
+  };
+
+  _resetState = () => {
+    return this.props.searchActions.resetState();
+  };
+
+  _onChange = (name,value) => {
+    let text = value;
+    if (text.length > 0) {
+        this.setState({
+            isSearchbarDataShow: true,
+            searchBarBgColor: 'white',
+            searchTextColor: 'black',
+            searchIconColor: 'black'
+        })
+    } else {
+        this.setState({
+            isSearchbarDataShow: false,
+            searchBarBgColor: 'rgb(64,66, 67)',
+            searchTextColor: 'white',
+            searchIconColor: 'white',
+        })
+    }
+    this.setState(
+      {
+        [name]: value
+      },
+      () => {
+        const query = value.trim();
+        if (!isEmpty(query)) {
+          this._search(query);
+        } else {
+          this._resetState();
+        }
+      }
+    );
+  };
+
+  _hideResults = () => {
+    this.setState({
+      visible: false
+    });
+  };
+
+  _onFocus = () => {
+    this.setState({
+      visible: true
+    });
+  };
+
     fadeInDown = () => this.refs.userImageView.fadeInDown(1000);
 
     zoomInPopup = () => this.refs.viewModalRef.zoomIn().then(endState => console.log(" now end zoomin"));
 
-    onChangeSearchText = (text) => {
-        console.log(" Lenth ===", text.length, "text ==", text);
-        if (text.length > 0) {
-            this.setState({
-                isSearchbarDataShow: true,
-                searchBarBgColor: 'white',
-                searchTextColor: 'black',
-                searchIconColor: 'black'
-            })
-        } else {
-            this.setState({
-                isSearchbarDataShow: false,
-                searchBarBgColor: 'rgb(64,66, 67)',
-                searchTextColor: 'white',
-                searchIconColor: 'white',
-            })
-        }
+    // onChangeSearchText = (text) => {
+    //     console.log(" Lenth ===", text.length, "text ==", text);
+    //     if (text.length > 0) {
+    //         this.setState({
+    //             isSearchbarDataShow: true,
+    //             searchBarBgColor: 'white',
+    //             searchTextColor: 'black',
+    //             searchIconColor: 'black'
+    //         })
+    //     } else {
+    //         this.setState({
+    //             isSearchbarDataShow: false,
+    //             searchBarBgColor: 'rgb(64,66, 67)',
+    //             searchTextColor: 'white',
+    //             searchIconColor: 'white',
+    //         })
+    //     }
 
-    }
+    // }
     renderSearchRow = (item) => {
         console.log(" item is ", item);
 
@@ -74,7 +171,7 @@ class SideMenu extends Component {
                 <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.setState({ isDropDownclick: false })}>
                     <View style={{ flexDirection: "row" }}>
                         <Image style={{ width: 25, height: 25 }} />
-                        <Text style={[styles.textModalData, { marginRight: '5%', color: 'black' }]}>{item.item.name}</Text>
+                        <Text style={[styles.textModalData, { marginRight: '5%', color: 'black' }]}> {getUsername(item.item)}</Text>
 
                     </View>
                 </TouchableOpacity>
@@ -175,7 +272,17 @@ class SideMenu extends Component {
            
         )
     }
+    /* this.props.navigation.navigate('List', { wordList: this.props.navigation.state.params.wordList, wordLength: this.state.wordLength, id: this.state.id });
+   */
     render() {
+    const { query, visible } = this.state;
+    const { searchResults, location, headerCategories } = this.props;
+    const { data, type, isRequesting } = searchResults;
+    const placeholder = getSearchPlaceholder(
+      headerCategories.data,
+      "user"
+    );
+
         const { hidePopup, user } = this.props;
         console.log("user====", user)
         return (
@@ -190,16 +297,39 @@ class SideMenu extends Component {
                         <Icon2 name="search" color={this.state.searchIconColor} style={{ position: 'absolute', marginLeft: '3%', marginTop: '4%', marginRight: '1%', fontSize: 40 }} />
                         <TextInput
                             placeholderTextColor={this.state.searchTextColor}
-                            placeholder='Search'
+                            placeholder='Search ...'
                             style={[styles.inputSearchStyle, { color: 'black' }]}
-                            onChangeText={text => this.onChangeSearchText(text)}
+                            value={query}
+                            onChangeText={text => this._onChange("query",text)}
+                            name="query"
 
                         />
+                         {/* <input
+            type="text"
+            name="query"
+            value={query}
+            autoComplete="off"
+            placeholder={placeholder}
+            onFocus={this._onFocus}
+            onChange={this._onChange}
+          /> */}
 
                     </View>
-                    {this.state.isSearchbarDataShow ? <FlatList
+                    {/* Search bar flatlist  */}
+                    {isRequesting && (
+                   
+                        <ActivityIndicator color="white" />
+                    
+                    )}
+                    {isError(searchResults) && (
+                   
+                   <Text style={styles.errorText}> {searchResults.error.message}</Text>
+                                       )}
+
+                    {this.state.isSearchbarDataShow ? 
+                    <FlatList
                         style={styles.flatListSearchbar}
-                        data={this.arrayData}
+                        data={data}
                         renderItem={this.renderSearchRow}
                         keyExtractor={(item, index) => index.toString()}
                     /> : null}
@@ -249,15 +379,22 @@ class SideMenu extends Component {
 // eslint-disable-next-line
 const mapStateToProps = state => {
     return {
-      user: state.user
+      user: state.user,
+      searchResults: state.searchResults,
+      headerCategories: state.headerCategories
     };
   };
   
   // eslint-disable-next-line
+  const mapDispatchToProps = dispatch => {
+    return {
+      searchActions: bindActionCreators(searchActions, dispatch)
+    };
+  };  
   
   export default connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
   )(SideMenu);
   
 
