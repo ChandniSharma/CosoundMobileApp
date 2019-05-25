@@ -69,7 +69,7 @@ class CreateServiceComponent extends React.Component {
         </LinearGradient> : null}
 
         <View style={{ flex: 1, backgroundColor: 'pink' }}>
-          <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)' }}>
+          <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)',overflow: 'scroll' }}>
 
             <View style={{ flex: 0.3, backgroundColor: 'red' }}>
               <SettingsHeader

@@ -74,17 +74,17 @@ render()
   } = this.props;
 
   return(
-    <Animatable.View ref={'view1'}>
+    <Animatable.View ref={'view1'} style={{height:1700}}>
 
     <View>
     <Text style={[styles.addPictureText, {marginTop:'10%',alignSelf:'center', }]}>
         Add some pictures to your service!
         </Text>
-    
 
-        <View style={styles.findingView}>
 
-          <TouchableOpacity style={{  height: 80, width: 80, borderRadius:40, backgroundColor:'white', justifyContent:'center' }} onPress={this.chooseFile.bind(this)}>
+        <View style={{marginTop:10}}>
+
+          <TouchableOpacity style={styles.findingView} onPress={this.chooseFile.bind(this)}>
             {/* {!data.url ? */}
             <Icon name="camera" style={{ fontSize: 60,  color: 'gray', alignSelf: 'center', }} /> 
 
@@ -96,25 +96,30 @@ render()
               />} */}
 
           </TouchableOpacity>
-
         </View>
-        <Text style={[styles.featuredText,{marginTop:'10%', alignSelf:'center' }]}> Featured picture </Text>
 
+      <Text style={[styles.featuredText,{marginTop:'10%', alignSelf:'center' }]}> Featured picture </Text>
+
+      <View style={{marginTop:10,marginBottom:10}}>
         <TouchableOpacity style={styles.viewAddImage} onPress={this.chooseFile.bind(this)}>
-    <Icon2 name= "pluscircleo" style={{alignSelf:'center', fontSize:45, color:'#20ACAC'}}/>
-    </TouchableOpacity>
-
-    <TouchableOpacity style={styles.viewAddImage} onPress={this.chooseFile.bind(this)}>
-    <Icon2 name= "pluscircleo" style={{alignSelf:'center', fontSize:45, color:'#20ACAC'}}/>
-    </TouchableOpacity>
-
-    <TouchableOpacity style={styles.viewAddImage} onPress={this.chooseFile.bind(this)}>
-    <Icon2 name= "pluscircleo" style={{alignSelf:'center', fontSize:45, color:'#20ACAC'}}/>
-    </TouchableOpacity>
-
-    <TouchableOpacity style={styles.viewAddImage} onPress={this.chooseFile.bind(this)}>
-    <Icon2 name= "pluscircleo" style={{alignSelf:'center', fontSize:45, color:'#20ACAC'}}/>
-    </TouchableOpacity>
+            <Icon2 name= "pluscircleo" style={{alignSelf:'center', fontSize:45, color:'#20ACAC'}}/>
+        </TouchableOpacity>
+      </View>
+      <View style={{marginTop:10,marginBottom:10}}>
+        <TouchableOpacity style={styles.viewAddImage} onPress={this.chooseFile.bind(this)}>
+          <Icon2 name= "pluscircleo" style={{alignSelf:'center', fontSize:45, color:'#20ACAC'}}/>
+        </TouchableOpacity>
+      </View>
+      <View style={{marginTop:10,marginBottom:10}}>
+        <TouchableOpacity style={styles.viewAddImage} onPress={this.chooseFile.bind(this)}>
+          <Icon2 name= "pluscircleo" style={{alignSelf:'center', fontSize:45, color:'#20ACAC'}}/>
+        </TouchableOpacity>
+      </View>
+      <View style={{marginTop:10,marginBottom:10}}>
+        <TouchableOpacity style={styles.viewAddImage} onPress={this.chooseFile.bind(this)}>
+          <Icon2 name= "pluscircleo" style={{alignSelf:'center', fontSize:45, color:'#20ACAC'}}/>
+        </TouchableOpacity>
+      </View>
 
       { /* <input
           type="file"

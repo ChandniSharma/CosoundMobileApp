@@ -23,7 +23,7 @@
     "react-native-datepicker": "^1.7.2",
     "react-native-fbsdk": "^0.8.0",
     "react-native-gesture-handler": "^1.1.0",
-    "react-native-google-signin": "2.0.0",
+    "react-native-google-signin": "^2.0.0",
     "react-native-hamburger": "0.0.2",
     "react-native-image-picker": "^0.28.1",
     "react-native-keyboard-aware-scroll-view": "^0.8.0",

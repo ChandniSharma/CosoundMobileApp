@@ -173,7 +173,7 @@ export default class Login extends Component {
                                 onPress={this._signIn}
                                 disabled={this.state.isSigninInProgress} /> */}
                             <TouchableHighlight underlayColor="#25b6ad" style={styles.buttonCenter} >
-                       <View style={{flexDirection:'row'}}>
+                                <View style={{flexDirection:'row'}}>
                             <Icon1 name="google-" style={{fontSize:20, color:'rgb(234,67,54)', marginRight:'2%'}}/>
                             <Text style={styles.googlePlusText}>Google login</Text>
                             </View>
@@ -182,8 +182,9 @@ export default class Login extends Component {
                         </View>
 
                     </Animatable.View>
+                    <CustomFooter />
                 </KeyboardAwareScrollView>
-                <CustomFooter />
+
             </SafeAreaView>
 
         )

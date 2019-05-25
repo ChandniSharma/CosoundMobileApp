@@ -30,12 +30,10 @@ export default {
     viewAddImage: {
         alignSelf: 'center',
         width: '90%',
-        height: '40%',
+        height: 300,
         justifyContent: 'center',
         alignItems: 'center', 
         backgroundColor:'white',
-        marginTop:'5%',
-        marginBottom:'5%', 
         borderRadius:20
     },
     topUserImage: {
@@ -60,7 +58,6 @@ export default {
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop:'5%',
     },
     imageSearchIcon: {
         width: 18,
@@ -291,6 +288,7 @@ export default {
         // backgroundColor:'pink'
 
     },
+
     imgMenuBar: {
         width: 40,
         height: 40,
@@ -312,12 +310,7 @@ export default {
     bckgndImage: {
 
     },
-    imgMenuBar: {
-        width: 40,
-        height: 40,
-        tintColor: 'white',
-        alignSelf: 'flex-end',
-    },
+
     viewBottomContent: {
         flexDirection: 'row',
         height: 30,
