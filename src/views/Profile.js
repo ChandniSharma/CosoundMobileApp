@@ -18,7 +18,8 @@ import Icon1 from "react-native-vector-icons/AntDesign";
 import Icon2 from "react-native-vector-icons/EvilIcons";
 import Icon3 from "react-native-vector-icons/FontAwesome";
 import Icon4 from "react-native-vector-icons/Entypo";
-
+import WaveForm from 'react-native-audiowaveform';
+import SoundCloudWaveform from 'react-native-soundcloud-waveform';
 var ImagePicker = require('react-native-image-picker');
 import NewTest from './common/NewTest';
 import SideMenu from './common/SideMenu';
@@ -33,6 +34,7 @@ export default class ProfileComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            timer: null,
             isPostOptionShow: true,
             isBottomViewShow: false,
             isCommentTableShow: true,
@@ -46,6 +48,9 @@ export default class ProfileComponent extends Component {
             isVideoSingleViewShow: false,
             isImageSingleViewShow: false,
             isClickToUpload: false,
+            playAudio: false,
+            stopAudio: true,
+            counter: 0,
             music: [
                 {
                     id: 1,
@@ -152,6 +157,11 @@ export default class ProfileComponent extends Component {
         }
     }
 
+    tick =() => {
+        this.setState({
+            counter: this.state.counter + 1
+        });
+    }
 
     fadeInDown = () => this.refs.userImageView.fadeInDown(1000).then(endState => this.fadeInPremiumView())
     zoomInPopup = () => this.refs.viewModalRef.zoomIn().then(endState => console.log(" now end zoomin"));
@@ -166,6 +176,9 @@ export default class ProfileComponent extends Component {
 
 
     componentDidMount() {
+
+        let timer = setInterval(this.tick, 1000);
+        this.setState({timer});
 
         this.fadeInDown();
         // this.fadeInUpPostOptionView();
@@ -238,6 +251,11 @@ export default class ProfileComponent extends Component {
             }
         });
     };
+
+    changestate = () => {
+        this.setState({ playAudio: !this.state.playAudio });
+    }
+
     onClickMusicVideoImage(type) {
         if (type === 'music') {
             this.setState({
@@ -351,6 +369,12 @@ export default class ProfileComponent extends Component {
         this.offset = currentOffset;
     };
 
+    setTime = () => {
+        let timer = setInterval(this.tick, 1000);
+
+
+    }
+
     postOptionView() {
         let arrayPostOptions = ["All", "Copy Link", "Unfollow User", 'Share', 'Report Post'];
         let arrayBtn = [];
@@ -443,6 +467,8 @@ export default class ProfileComponent extends Component {
                                 {this.postOptionView()}
                             </View> : null
                         } */}
+
+
 
                     </View>
                     <View style={{ marginTop: "5%", marginBottom: "5%", width: "100%", justifyContent: "center", height: 0.5, backgroundColor: "#d3d3d3" }}>
@@ -740,6 +766,26 @@ export default class ProfileComponent extends Component {
                             </TouchableHighlight>
 
                         </View>
+
+
+
+
+                            <WaveForm
+                                style={{flex: 1,
+                                    margin: 10,
+                                    backgroundColor: "white",height:50}}
+                                onPress={()=>this.changestate()}
+                                source={require('../assets/the_sentence.mp3')}
+                                stop={this.state.stopAudio}
+                                play={this.state.playAudio}
+                                autoPlay={false}
+                                waveFormStyle={{waveColor:'gray', scrubColor:'red',width:'auto'}}
+                            />
+
+
+                        <SoundCloudWaveform waveformUrl="https://w1.sndcdn.com/PP3Eb34ToNki_m.png" setTime={this.setTime}
+                                            percentPlayed={this.state.counter} percentPlayable={1} />
+
 
                         <View style={{
                             width: "100%",
