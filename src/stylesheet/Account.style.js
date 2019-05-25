@@ -26,6 +26,71 @@ export default {
         shadowOpacity: 0.8,
         marginBottom: '5%',
     },
+    buttonSort1:{
+        height:40,
+     //    shadowColor: 'rgba(0,0,0,1)',
+     //    shadowOffset: {
+     //        width: .5,
+     //        height: .5
+     //    },
+     //    shadowOpacity: 0.5,
+     //    shadowRadius: 1,
+         justifyContent:'center',
+          backgroundColor:'white',   
+          borderTopLeftRadius: 10,
+          borderTopRightRadius: 10, 
+          marginTop:'1%'    
+     },
+    buttonSort:{
+       height:40,
+    //    shadowColor: 'rgba(0,0,0,1)',
+    //    shadowOffset: {
+    //        width: .5,
+    //        height: .5
+    //    },
+    //    shadowOpacity: 0.5,
+    //    shadowRadius: 1,
+        justifyContent:'center',
+         backgroundColor:'white',        
+    },
+    buttonSort3:{
+        height:40,
+     //    shadowColor: 'rgba(0,0,0,1)',
+     //    shadowOffset: {
+     //        width: .5,
+     //        height: .5
+     //    },
+     //    shadowOpacity: 0.5,
+     //    shadowRadius: 1,
+         justifyContent:'center',
+          backgroundColor:'white',
+          borderBottomLeftRadius: 10,
+          borderBottomRightRadius: 10,        
+     },
+    viewSort:{
+        backgroundColor: 'rgb(245,245,245)', 
+        width:scale(130),
+        height: verticalScale(95),
+        top:'90%',
+        right:20,
+        shadowColor: 'rgba(0,0,0,1)',
+        shadowOffset: {
+            width: .5,
+            height: .5
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+       borderRadius:20,
+        alignSelf: 'flex-end',
+        position: 'absolute',
+    },
+    popupText:{
+       
+        fontSize:13,
+        color:'rgba(38, 38, 38, 0.52)',
+        fontFamily:'Montserrat-light',
+       marginLeft:'10%'
+    },
     loginText:{
         // marginTop:'5%',
         marginBottom:'5%',

@@ -44,7 +44,7 @@ import GooglesignIn from './src/views/common/GooglesignIn';
 import CreateService from './src/containers/CreateService';
 import CheckoutComponent from './src/views/CheckoutComponent';
 import ImagesTemp from './src/views/CreateService/Form/ImagesTemp'
-//import MarketPlace from './src/views/Marketplace';
+import PurchasedServicesComponent from './src/views/PurchasedServicesComponent';
 
 const AppStackNavigator = createStackNavigator({
     Home: { screen: Home },
@@ -76,7 +76,8 @@ const AppStackNavigator = createStackNavigator({
     Checkout:{screen:Checkout},
     CreateService:{screen:CreateService},
     CheckoutComponent:{screen:CheckoutComponent},
-    ImagesTemp:{screen:ImagesTemp}
+    ImagesTemp:{screen:ImagesTemp},
+    PurchasedServicesComponent:{screen:PurchasedServicesComponent},
 
    // Marketplace:{screen:MarketPlace},
 }, {

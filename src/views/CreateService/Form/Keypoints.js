@@ -13,6 +13,18 @@ class Keypoints extends React.Component {
     this.moveTextUp1();
   }
 
+showInputWithAddButton = (index) => {
+  let data = this.props.data;
+  let inputKey = null;
+  if(index < 2){
+  return <TouchableHighlight onPress={() => this.props.addMoreKeypoints(index)} underlayColor="#25b6ad" style={[styles.plusCircleBtn]}>
+  {index + 1 === data.key_points.length ? <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} /> : <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} />}
+  </TouchableHighlight>
+  }
+  return inputKey;
+}
+
+
   render() {
     const {
       data,
@@ -22,6 +34,8 @@ class Keypoints extends React.Component {
       handleKeypoints,
       addMoreKeypoints
     } = this.props;
+
+    
     return (
       <View>
         <Animatable.View ref={"viewTxtInput1"}>
@@ -56,9 +70,8 @@ class Keypoints extends React.Component {
                         handleClick={() => addMoreKeypoints(item.id)}
                       />
                     )*/}
-                    <TouchableHighlight onPress={() => addMoreKeypoints(item.id)} underlayColor="#25b6ad" style={[styles.plusCircleBtn]}>
-                      {index + 1 === data.key_points.length ? <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} /> : <Icon1 name="close" size={25} color="gray" style={styles.plusCircle} />}
-                    </TouchableHighlight>
+
+                   {this.showInputWithAddButton(index)}
 
                     {errors[item.id] && <Text style={styles.errorText}>{errors[item.id]} </Text>}
                   </View>

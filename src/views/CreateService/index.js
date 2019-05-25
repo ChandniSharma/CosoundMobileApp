@@ -39,11 +39,15 @@ class CreateServiceComponent extends React.Component {
     }
   }
   showPopup() {
-    this.setState({ isSideMenuClick: true })
+    this.setState({ isSideMenuClick: true,isNotificationShow: false })
     console.log(" sidemnu ", this.state.isSideMenuClick);
+    
   }
   hidePopup() {
-    this.setState({ isSideMenuClick: false })
+    this.setState({ isSideMenuClick: false,
+      
+     })
+   
   }
   render() {
     return (
@@ -59,7 +63,7 @@ class CreateServiceComponent extends React.Component {
           <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
 
           <View style={{ flex: 0.3 }} />
-          <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}>
+          <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow, isSideMenuClick: false })}>
             <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />
           </TouchableOpacity>
         </LinearGradient> : null}
@@ -86,12 +90,12 @@ class CreateServiceComponent extends React.Component {
 
             { /* <FormToast /> */}
             {/* Side Menu button modal  */}
-            {this.state.isSideMenuClick ? <SideMenu navigation={navigation} hidePopup={() => this.hidePopup()} /> : null}
+            {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation} hidePopup={() => this.hidePopup()} /> : null}
 
           </KeyboardAwareScrollView>
 
           {/* notification view show */}
-          {this.state.isNotificationShow ? <Notifications navigation={navigation} hidePopup={() => this.hideNotificationView()} /> : null}
+          {this.state.isNotificationShow ? <Notifications navigation={this.props.navigation} hidePopup={() => this.hideNotificationView()} /> : null}
 
         </View>
       </SafeAreaView>
