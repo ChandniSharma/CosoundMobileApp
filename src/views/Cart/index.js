@@ -91,7 +91,7 @@ class Cart extends React.PureComponent {
 
             </View>
             <View style={{ flex: 0.3 }}>
-              <Sidebar cart={cart} />
+              <Sidebar cart={cart} navigation={this.props.navigation} />
             </View>
             <View style={{ flex: 0.2 }}>
               <CustomFooter />

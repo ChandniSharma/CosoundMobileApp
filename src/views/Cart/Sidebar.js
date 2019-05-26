@@ -6,12 +6,14 @@ import styles from "../../stylesheet/Cart.style";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
+
 //import { Svg, DollarSpan } from "../Commons";
 
 class Sidebar extends React.PureComponent {
   
   render() {
     const { cart } = this.props;
+    console.log(" Props Sde bar ====", this.props); 
       return (
         <View style={{height:'80%', marginBottom:'40%', backgroundColor:'rgb(245,245,245)'}}>
       <View style={{backgroundColor:'white', alignSelf:'center', borderRadius:20, marginTop:'5%', marginBottom:'5%', width:'75%'}}>
@@ -39,7 +41,7 @@ class Sidebar extends React.PureComponent {
             </View>
          
             <View style={{flexDirection:'row',marginTop:'2%',marginLeft:'20%', marginRight:'20%',alignSelf:'center'}}>
-              <Text style={[styles.textSubtotalValue, {flex:0.5,} ]}>Delivery Time</Text>
+              <Text style={[styles.textSubtotalValue, {flex:0.5,marginRight:'2%'} ]}>Delivery Time</Text>
               <Text style={[styles.textSubtotalValue, {flex:0.5,}]}>{cart.total}days </Text>
             </View>
           </View>
@@ -51,7 +53,7 @@ class Sidebar extends React.PureComponent {
               //   className="btn btn-primary btn-primary--red"
               // >
               // </Link>
-              <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton, {marginTop:'2%'}]}>
+              <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton, {marginTop:'2%'}]} onPress={()=> this.props.navigation.navigate('CheckoutComponent')}>
                 <Text style={[styles.textButtonTitle, {marginLeft:'10%', marginRight:'10%'}]}>Proceed to payment</Text>
           </TouchableHighlight>
             )}

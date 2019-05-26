@@ -45,7 +45,7 @@ class NotificationList extends React.PureComponent {
                   <Text style={[styles.textNotificationTime, { flex: 0.2 }]}> {refactorCarbonDate({ date: item.updated_at })}</Text>
                 </View>
                 <View >
-                  <NotificationDescription item={item} marksRead={this.props.markAsRead} />
+                  <NotificationDescription item={item} markAsRead={this.props.markAsRead} />
                 </View>
               </View>
 
