@@ -18,6 +18,8 @@ import Icon1 from "react-native-vector-icons/AntDesign";
 import Icon2 from "react-native-vector-icons/EvilIcons";
 import Icon3 from "react-native-vector-icons/FontAwesome";
 import Icon4 from "react-native-vector-icons/Entypo";
+import WaveForm from 'react-native-audiowaveform';
+import SoundCloudWaveform from 'react-native-soundcloud-waveform';
 
 var ImagePicker = require('react-native-image-picker');
 import NewTest from './common/NewTest';
@@ -47,7 +49,26 @@ export default class ProfileComponent extends Component {
             isVideoSingleViewShow: false,
             isImageSingleViewShow: false,
             isClickToUpload: false,
+            playAudio: false,
+            stopAudio: true,
+            counter: 0,
+            timer: null,
         }
+    }c
+
+    tick =() => {
+        this.setState({
+            counter: this.state.counter + 1
+        });
+    }
+
+    changestate = () => {
+        this.setState({ playAudio: !this.state.playAudio });
+    }
+
+    setTime = () => {
+        let timer = setInterval(this.tick, 1000);
+
     }
 
     fadeInDown = () => this.refs.userImageView.fadeInDown(1000).then(endState => this.fadeInPremiumView())
@@ -59,13 +80,15 @@ export default class ProfileComponent extends Component {
 
 
     componentDidMount() {
+        let timer = setInterval(this.tick, 1000);
+        this.setState({timer});
         this.fadeInDown();
         // this.fadeInUpPostOptionView();
     }
     _navigateToAdvanceSearchView() {
-         this.props.navigation.navigate("AdvancedSearchView");
+        this.props.navigation.navigate("AdvancedSearchView");
     }
-  
+
 
     showPopup() {
         this.setState({ isSideMenuClick: true })
@@ -75,7 +98,7 @@ export default class ProfileComponent extends Component {
     hidePopup() {
         this.setState({ isSideMenuClick: false })
     }
-   
+
     _onScroll = event => {
         const currentOffset = event.nativeEvent.contentOffset.y;
         const dif = currentOffset - (this.offset || 0);
@@ -142,13 +165,13 @@ export default class ProfileComponent extends Component {
                     shadowOpacity: 0.2,
                     zIndex: -1
                 }}
-                    source={require('../assets/homepage-video-placeholder.jpg')}>
+                       source={require('../assets/homepage-video-placeholder.jpg')}>
                 </Image>
             </View>
         )
     };
-   
-    
+
+
     render() {
         const {
             user,
@@ -212,23 +235,37 @@ export default class ProfileComponent extends Component {
                             }}>
                             <Image style={styles.imgUser} source={getThumbnail(user.data)} />
                             {/* <Image style={styles.imgUser} source={require('../assets/avatar-main-1.jpg')} /> */}
-                           
+
                         </Animatable.View>
 
                         <Text style={[styles.textUserName, {marginTop:'10%', alignSelf:'center'} ]}>{getUsername(user.data)}</Text>
-                            <Text style={[styles.textDesignation, {marginBottom:'10%', alignSelf:'center'} ]}>{getUserInfo(user.data)}</Text>
+                        <Text style={[styles.textDesignation, {marginBottom:'10%', alignSelf:'center'} ]}>{getUserInfo(user.data)}</Text>
 
                         {/* <View style={styles.viewLoginButton}>
-
                             <TouchableHighlight underlayColor="black" style={[styles.loginButton]}>
                                 <Text style={styles.textLoginButtonTitle}>Follow</Text>
                             </TouchableHighlight>
                             <TouchableHighlight underlayColor="black" style={[styles.imageButton]}>
                                 <Image style={styles.imageSendArraow} source={require('../assets/sendArrow.png')} />
                             </TouchableHighlight>
-
                         </View> */}
 
+
+                        <WaveForm
+                            style={{flex: 1,
+                                margin: 10,
+                                backgroundColor: "white",height:50}}
+                            onPress={()=>this.changestate()}
+                            source={require('../assets/the_sentence.mp3')}
+                            stop={this.state.stopAudio}
+                            play={this.state.playAudio}
+                            autoPlay={false}
+                            waveFormStyle={{waveColor:'gray', scrubColor:'red',width:'auto'}}
+                        />
+
+
+                        <SoundCloudWaveform waveformUrl="https://w1.sndcdn.com/PP3Eb34ToNki_m.png" setTime={this.setTime}
+                                            percentPlayed={this.state.counter} percentPlayable={1} />
                         <View style={{
                             width: "100%",
                             backgroundColor: "white",
@@ -274,7 +311,7 @@ export default class ProfileComponent extends Component {
 
                             </View>
 
-                         
+
                             {/* <ImagesList /> */}
                             <Paginator
                                 isLoaderInternal
@@ -287,7 +324,7 @@ export default class ProfileComponent extends Component {
 
                         </View>
                         <PostStatus  pathName={"/profile"}/>
-                        
+
                         {/* <NewTest /> */}
                         <InfiniteScroller
                             pathName={"/profile"}

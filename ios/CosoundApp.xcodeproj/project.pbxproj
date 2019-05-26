@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -38,15 +39,18 @@
 		2D02E4C71E0B4AEC006451C7 /* libRCTText-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E941DF850E9000B6D8A /* libRCTText-tvOS.a */; };
 		2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */; };
 		2D16E6881FA4F8E400B85C8A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D16E6891FA4F8E400B85C8A /* libReact.a */; };
+		2D219AF2229974CB00E554BF /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D219AF1229974CB00E554BF /* Lottie.framework */; };
+		2D219AF32299767000E554BF /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D219AF1229974CB00E554BF /* Lottie.framework */; };
+		2D219AF42299767000E554BF /* Lottie.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D219AF1229974CB00E554BF /* Lottie.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2DCD954D1E0B4F2C00145EB5 /* CosoundAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* CosoundAppTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
+		32E49A581D4548BFAEF7505D /* libOGReactNativeWaveform.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C3A20C3CD7B4920B622BFE7 /* libOGReactNativeWaveform.a */; };
 		3B174C9D8D8947C9B9ED9CDA /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E113B13AD4AD4EEAB8333B3B /* Roboto_medium.ttf */; };
 		411F49AE92C941838D23F42D /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29957D3C6AD1448AA15CA6D4 /* libRNVectorIcons.a */; };
 		475498E0EF89481D8DC97263 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BE603F63D1D4D5C88875E5E /* libRNImagePicker.a */; };
 		4A4D42143B174F16A429F017 /* libLottieReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5F6F72B0464A048DD36405 /* libLottieReactNative.a */; };
 		4D31027980584CE1AD44A6F0 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8CAAC001B50495DBE69D391 /* MaterialCommunityIcons.ttf */; };
 		584DA21F79DD46CC8033E20C /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A66972809A9442497D76127 /* Entypo.ttf */; };
-		5925A306E1BF45FE9B856545 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A6710A265C479C952DDC18 /* Lottie.framework */; };
 		624F2C7562AB4E6D9C2E0B7C /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C7072A35439412C80FE1AC0 /* Ionicons.ttf */; };
 		684CFC7EE531459EB1BBD064 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CDA8F054BCD4180A562D3DE /* FontAwesome5_Solid.ttf */; };
 		69F24E18EAE04644B72425F1 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8D24B9C58FB4137B86AC61C /* libBVLinearGradient.a */; };
@@ -187,6 +191,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 3DBE0D0D1F3B181C0099AA32;
 			remoteInfo = "fishhook-tvOS";
+		};
+		2D219AEF2299538600E554BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2DD0275573964EB281A5B7EB /* OGReactNativeWaveform.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = OGReactNativeWaveform;
 		};
 		2DF0FFDE2056DD460020B375 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -547,6 +558,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2D219AF52299767100E554BF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2D219AF42299767000E554BF /* Lottie.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
@@ -582,6 +607,8 @@
 		2D02E47B1E0B4A5D006451C7 /* CosoundApp-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CosoundApp-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* CosoundApp-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CosoundApp-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D219AF1229974CB00E554BF /* Lottie.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Lottie.framework; sourceTree = "<group>"; };
+		2DD0275573964EB281A5B7EB /* OGReactNativeWaveform.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = OGReactNativeWaveform.xcodeproj; path = "../node_modules/react-native-audiowaveform/ios/OGReactNativeWaveform.xcodeproj"; sourceTree = "<group>"; };
 		3500B957020F9A590B4ED56C /* libPods-CosoundApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CosoundApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		385D9B62414240D48D6D5C33 /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
 		3921B956E7DA433DAF195A5C /* libRCTVideo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTVideo.a; sourceTree = "<group>"; };
@@ -589,6 +616,7 @@
 		3B2B432C1FB976D865D0BF3E /* Pods-CosoundApp-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CosoundApp-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-CosoundApp-tvOSTests/Pods-CosoundApp-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		45F4626288A2434C89CD773F /* LottieReactNative.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = LottieReactNative.xcodeproj; path = "../node_modules/lottie-react-native/src/ios/LottieReactNative.xcodeproj"; sourceTree = "<group>"; };
 		472E8A2E7CB344F79EDAF0A2 /* RNShare.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNShare.xcodeproj; path = "../node_modules/react-native-share/ios/RNShare.xcodeproj"; sourceTree = "<group>"; };
+		4C3A20C3CD7B4920B622BFE7 /* libOGReactNativeWaveform.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libOGReactNativeWaveform.a; sourceTree = "<group>"; };
 		4DE8C3BFD338405BA7189473 /* libOAuthManager.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libOAuthManager.a; sourceTree = "<group>"; };
 		5A670371F30F3AFDC0061739 /* Pods-CosoundApp-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CosoundApp-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-CosoundApp-tvOS/Pods-CosoundApp-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
@@ -646,7 +674,6 @@
 		C40330AF4F054489A054F6CF /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		C66DC765C97D4F3BAB9B85E3 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		CDDB54682E5A4BB7AAFB25AF /* libRCTFBSDK.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTFBSDK.a; sourceTree = "<group>"; };
-		D2A6710A265C479C952DDC18 /* Lottie.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Lottie.framework; path = System/Library/Frameworks/Lottie.framework; sourceTree = SDKROOT; };
 		D4BCCAC211C64206561B733C /* Pods-CosoundAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CosoundAppTests.debug.xcconfig"; path = "Target Support Files/Pods-CosoundAppTests/Pods-CosoundAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC7DB9B68D6C42B3A8C5BF70 /* libLottie.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libLottie.a; sourceTree = "<group>"; };
 		E113B13AD4AD4EEAB8333B3B /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
@@ -682,6 +709,7 @@
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
+				2D219AF2229974CB00E554BF /* Lottie.framework in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
@@ -696,7 +724,7 @@
 				411F49AE92C941838D23F42D /* libRNVectorIcons.a in Frameworks */,
 				7CBDF757BE8A46DD9A4D4CB4 /* libRCTVideo.a in Frameworks */,
 				B51C7F4884A041D8B01FC69B /* libRNShare.a in Frameworks */,
-				5925A306E1BF45FE9B856545 /* Lottie.framework in Frameworks */,
+				2D219AF32299767000E554BF /* Lottie.framework in Frameworks */,
 				F19D91855AFD40759137059E /* libLottie.a in Frameworks */,
 				4A4D42143B174F16A429F017 /* libLottieReactNative.a in Frameworks */,
 				99619155228C787000AA6572 /* FBSDKCoreKit.framework in Frameworks */,
@@ -704,7 +732,8 @@
 				CCF466095A734203B65511C8 /* libRCTFBSDK.a in Frameworks */,
 				B35D3FC09B514726B4F80E65 /* libOAuthManager.a in Frameworks */,
 				B96DA14FDB22C7FEA64A3694 /* libPods-CosoundApp.a in Frameworks */,
-				D410663EFA214CCCBBE2CCCF /* libOGReactNativeWaveform.a in Frameworks */,
+				32E49A581D4548BFAEF7505D /* libOGReactNativeWaveform.a in Frameworks */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -861,6 +890,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2D219AF1229974CB00E554BF /* Lottie.framework */,
 				99619152228C786F00AA6572 /* FBSDKCoreKit.framework */,
 				99619154228C787000AA6572 /* FBSDKLoginKit.framework */,
 				99619153228C787000AA6572 /* FBSDKShareKit.framework */,
@@ -872,6 +902,14 @@
 				1795D711758661E6A9BE0A5F /* libPods-CosoundAppTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2D219AEC2299538500E554BF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2D219AF02299538600E554BF /* libOGReactNativeWaveform.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		3FD5DAC5640A5C4A83505743 /* Pods */ = {
@@ -937,7 +975,8 @@
 				70AA854B1355446FAD3C0944 /* MusicControl.xcodeproj */,
 				816DAA7A98F1481FBB4A789E /* RCTFBSDK.xcodeproj */,
 				921B8585857D4403A37C7CFE /* OAuthManager.xcodeproj */,
-				89684D321DCA4401AF5130B1 /* OGReactNativeWaveform.xcodeproj */,
+				2DD0275573964EB281A5B7EB /* OGReactNativeWaveform.xcodeproj */,
+
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1044,14 +1083,15 @@
 				9DA91CF40D314255978B624B /* libRNSVG-tvOS.a */,
 				B4451422A9E341C7987A4BC3 /* libRNVectorIcons-tvOS.a */,
 				174743D5B44D4826B90EDDA7 /* libRNShare.a */,
-				D2A6710A265C479C952DDC18 /* Lottie.framework */,
 				DC7DB9B68D6C42B3A8C5BF70 /* libLottie.a */,
 				5F5F6F72B0464A048DD36405 /* libLottieReactNative.a */,
 				94ECF7BB05C5406BA527FCAA /* libMusicControl.a */,
 				73FE4292DFAC4A62A2649EBF /* libMusicControl-tvOS.a */,
 				CDDB54682E5A4BB7AAFB25AF /* libRCTFBSDK.a */,
 				4DE8C3BFD338405BA7189473 /* libOAuthManager.a */,
-				9DE9A64C577E457C9A22536C /* libOGReactNativeWaveform.a */,
+
+				4C3A20C3CD7B4920B622BFE7 /* libOGReactNativeWaveform.a */,
+
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1218,6 +1258,7 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				920B55659808153E308A01CB /* [CP] Copy Pods Resources */,
+				2D219AF52299767100E554BF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1277,10 +1318,12 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						ProvisioningStyle = Manual;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 8BZ53LM9H4;
+						DevelopmentTeam = 94W363WF54;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1335,8 +1378,10 @@
 					ProjectRef = 921B8585857D4403A37C7CFE /* OAuthManager.xcodeproj */;
 				},
 				{
-					ProductGroup = 99289E312298F68800672650 /* Products */;
-					ProjectRef = 89684D321DCA4401AF5130B1 /* OGReactNativeWaveform.xcodeproj */;
+
+					ProductGroup = 2D219AEC2299538500E554BF /* Products */;
+					ProjectRef = 2DD0275573964EB281A5B7EB /* OGReactNativeWaveform.xcodeproj */;
+
 				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
@@ -1513,6 +1558,13 @@
 			fileType = archive.ar;
 			path = "libfishhook-tvOS.a";
 			remoteRef = 2D16E6851FA4F8DC00B85C8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2D219AF02299538600E554BF /* libOGReactNativeWaveform.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libOGReactNativeWaveform.a;
+			remoteRef = 2D219AEF2299538600E554BF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		2DF0FFDF2056DD460020B375 /* libjsinspector.a */ = {
@@ -2145,6 +2197,7 @@
 			baseConfigurationReference = D4BCCAC211C64206561B733C /* Pods-CosoundAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Manual;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -2190,6 +2243,7 @@
 			baseConfigurationReference = FD2B3FD45589C1FEB7E0F71C /* Pods-CosoundAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2233,9 +2287,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CosoundApp/CosoundApp.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raj Parmar (33Z22SS432)";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = 8BZ53LM9H4;
+				DEVELOPMENT_TEAM = 94W363WF54;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2268,6 +2324,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kkpl.CosoundApp;
 				PRODUCT_NAME = CosoundApp;
+				PROVISIONING_PROFILE_SPECIFIER = CosoundDevProfile;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -2278,8 +2335,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CosoundApp/CosoundApp.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raj Parmar (33Z22SS432)";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8BZ53LM9H4;
+				DEVELOPMENT_TEAM = 94W363WF54;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2312,6 +2371,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kkpl.CosoundApp;
 				PRODUCT_NAME = CosoundApp;
+				PROVISIONING_PROFILE_SPECIFIER = CosoundDevProfile;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -2517,6 +2577,7 @@
 		83CBBA201A601CBA00E9B192 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -2541,7 +2602,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raj Parmar (33Z22SS432)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Raj Parmar (33Z22SS432)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -2570,6 +2632,7 @@
 		83CBBA211A601CBA00E9B192 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -2594,7 +2657,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raj Parmar (33Z22SS432)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Raj Parmar (33Z22SS432)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
