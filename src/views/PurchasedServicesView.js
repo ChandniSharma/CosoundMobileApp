@@ -100,6 +100,9 @@ class PurchasedServicesView extends React.PureComponent {
         this.setState({isNotificationShow: true})
         //this.props.navigation.navigate('Notification');
     }
+    showNotification() {
+        this.setState({ isNotificationShow: true, isSideMenuClick: false })
+      }
     render() {
         const {
             user,
@@ -194,7 +197,7 @@ class PurchasedServicesView extends React.PureComponent {
                     </View> : null}
                 
                  {/* Side Menu button modal  */}
-                        {this.state.isSideMenuClick ? <SideMenu navigation={navigation} hidePopup={()=>this.hidePopup()} />:null}
+                 {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation}  hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
                        
                 </KeyboardAwareScrollView>
                 {/* notification view show */}

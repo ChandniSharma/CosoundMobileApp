@@ -76,6 +76,7 @@ class Service extends React.PureComponent {
         addToCart={addToCart}
         _addToCart={this._addToCart}
         fetchReviews={this._fetchReviews}
+        navigation={this.props.navigation}
       />
     );
   }

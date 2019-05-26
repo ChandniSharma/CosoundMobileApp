@@ -49,6 +49,9 @@ class CreateServiceComponent extends React.Component {
      })
    
   }
+  showNotification() {
+    this.setState({ isNotificationShow: true, isSideMenuClick: false })
+  }
   render() {
     return (
       <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={{ flex: 1 }}>
@@ -90,7 +93,7 @@ class CreateServiceComponent extends React.Component {
 
             { /* <FormToast /> */}
             {/* Side Menu button modal  */}
-            {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation} hidePopup={() => this.hidePopup()} /> : null}
+            {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation}  hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
             <CustomFooter />
           </KeyboardAwareScrollView>
 

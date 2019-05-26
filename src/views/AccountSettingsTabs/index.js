@@ -16,6 +16,7 @@ import Notifications from '../../../src/containers/Notifications'
 
 // import { SettingsHeader, TabHeader, FormToast } from "../Commons";
 import TabComponent from "./TabComponent";
+import CustomFooter from "../../components/common/CustomFooter";
 
 //  import { settingsHeaders } from "../constants/tabs";
 
@@ -51,6 +52,9 @@ class AccountSettingsTabs extends React.PureComponent {
         this.arrayData = [{ name: 'Market', image: '', count: 0 }, { name: 'Messages', image: 'message', count: 3 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }]
 
     }
+    showNotification() {
+        this.setState({ isNotificationShow: true, isSideMenuClick: false })
+      }
     onClickSettingsButton(name) {
         //   switch(name){
         //       case buttonName.contactInfo:
@@ -224,8 +228,9 @@ class AccountSettingsTabs extends React.PureComponent {
                     </View> : null}
                 
                  {/* Side Menu button modal  */}
-                        {this.state.isSideMenuClick ? <SideMenu  navigation={navigation} hidePopup={()=>this.hidePopup()} />:null}
-                       
+                 {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation}  hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
+
+                       <CustomFooter />
                 </KeyboardAwareScrollView>
                 {/* notification view show */}
                 

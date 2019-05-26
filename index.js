@@ -33,7 +33,7 @@ import AdvancedSearchView from './src/views/AdvancedSearchView';
 import AccountSettings from './src/containers/AccountSettings';
 import Suggestions from './src/containers/Suggestions';
 import SocialShare from './src/views/common/SocialShare';
-import SoundPlay from './src/views/common/SoundPlay';
+//import SoundPlay from './src/views/common/SoundPlay';
 import PlayVideo from './src/views/common/PlayVideo';
 import TestFB from './src/views/animation';
 import Cart from './src/containers/Cart';
@@ -46,7 +46,7 @@ import CreateService from './src/containers/CreateService';
 import CheckoutComponent from './src/views/CheckoutComponent';
 import ImagesTemp from './src/views/CreateService/Form/ImagesTemp'
 import PurchasedServicesComponent from './src/views/PurchasedServicesComponent';
-import audioWave from './src/views/common/audioWaveView';
+//import audioWave from './src/views/common/audioWaveView';
 
 const AppStackNavigator = createStackNavigator({
     Home: { screen: Home },
@@ -80,8 +80,9 @@ const AppStackNavigator = createStackNavigator({
     CheckoutComponent:{screen:CheckoutComponent},
     ImagesTemp:{screen:ImagesTemp},
     PurchasedServicesComponent:{screen:PurchasedServicesComponent},
-    audioWave:{screen:audioWave},
+    // audioWave:{screen:audioWave},
     UserProfile:{screen:UserProfile},
+    // SoundPlay:{screen:SoundPlay},
    // Marketplace:{screen:MarketPlace},
 }, {
         initialRouteName: 'Login',

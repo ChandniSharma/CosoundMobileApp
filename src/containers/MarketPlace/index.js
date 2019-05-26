@@ -97,6 +97,7 @@ class MarketPlace extends React.PureComponent {
         categories={categories}
         featuredServices={featuredServices}
         fetchServices={this._fetchServices}
+        navigation={this.props.navigation}
       />
     );
   }

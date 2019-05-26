@@ -52,6 +52,7 @@ class PurchasedServices extends React.PureComponent {
         sort={this._sort}
         purchasedServices={purchasedServices}
         fetchPurchasedServices={this._fetchPurchasedServices}
+        navigation={this.props.navigation}
       />
     );
   }

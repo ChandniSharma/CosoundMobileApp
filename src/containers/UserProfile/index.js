@@ -111,6 +111,7 @@ class UserProfile extends React.PureComponent {
         fetchFeed={this._fetchUserFeed}
         fetchMyMusic={this._fetchUserMusic}
         fetchMyImages={this._fetchUserImages}
+        navigation={this.props.navigation}
       />
     );
   }

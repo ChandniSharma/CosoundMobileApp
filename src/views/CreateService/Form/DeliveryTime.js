@@ -52,7 +52,7 @@ class DeliveryTime extends React.PureComponent {
           </Animatable.View>
 
           <Animatable.View ref={"viewTxtInput2"}>
-          <SelectInput style={styles.inputStyle}  placeholder={"Select Delivery Time Unit"} labelStyle={styles.locationLabel} value={data.delivery_time_unit} options={deliveryTimes.data} onSubmitEditing={val => handleSelect(val, 'label')} />
+          <SelectInput style={styles.inputStyle}  placeholder={"Select Delivery Time Unit"} labelStyle={styles.locationLabel} value={data.delivery_time_unit} options={deliveryTimes.data} onSubmitEditing={val => handleSelect(val,"delivery_time_unit")} />
         
             { /* <Select
               name={"delivery_time_unit"}
@@ -64,13 +64,16 @@ class DeliveryTime extends React.PureComponent {
             {errors.delivery_time_unit && (
               <Text style={styles.errorText}>{errors.delivery_time_unit}</Text>
             )}
-          </Animatable.View>
 
-          <TouchableOpacity style={[styles.loginButton, { marginTop: '15%', justifyContent: 'center', }]}
+<TouchableOpacity style={[styles.loginButton, { marginTop: '15%', justifyContent: 'center', }]}
           onPress={()=> submitDeliveryTime()}
            >
               <Text style={styles.loginText}>Next</Text>
           </TouchableOpacity> 
+          
+          </Animatable.View>
+
+        
         
       </View>
     );

@@ -18,6 +18,7 @@ import Icon1 from "react-native-vector-icons/AntDesign";
 import Icon2 from "react-native-vector-icons/EvilIcons";
 import Icon3 from "react-native-vector-icons/FontAwesome";
 import Icon4 from "react-native-vector-icons/Entypo";
+import Notifications from '../containers/Notifications'
 
 var ImagePicker = require('react-native-image-picker');
 import NewTest from './common/NewTest';
@@ -57,7 +58,9 @@ export default class UserProfileComponent extends Component {
 
     // fadeInUpPostOptionView = () => this.refs.viewPostOption.fadeInUp(1000);
 
-
+    showNotification() {
+        this.setState({ isNotificationShow: true, isSideMenuClick: false })
+      }
     componentDidMount() {
         this.fadeInDown();
         // this.fadeInUpPostOptionView();
@@ -210,7 +213,7 @@ export default class UserProfileComponent extends Component {
                                 },
                                 shadowOpacity: 0.8,
                             }}>
-                            <Image style={styles.imgUser} source={getThumbnail(user.data)} />
+                            <Image style={styles.imgUser} source={{ uri: getThumbnail(user.data) }} />
                             {/* <Image style={styles.imgUser} source={require('../assets/avatar-main-1.jpg')} /> */}
                            
                         </Animatable.View>
@@ -302,14 +305,7 @@ export default class UserProfileComponent extends Component {
                             page_count={paginationData.page_count}
                         />
 
-                        <View style={styles.viewBottom}>
-
-                            <View style={{ flexDirection: "row", backgroundColor: "rgb(52,52,52)", marginTop: "5%" }} >
-                                <Text style={{ flex: 8, color: "#fff", fontSize: 20 }}>   (c)elit.Nulla 2018</Text>
-                                {/* <Text style={{flex:2,color:"#fff",fontSize:20}}>+ - +</Text> */}
-                            </View>
-
-                        </View>
+                      
 
                     </View>
                     {!userFeed.isRequesting && <CustomFooter />}
@@ -319,7 +315,7 @@ export default class UserProfileComponent extends Component {
                     <Animatable.View ref={"viewBottomWhenScroll"} style={styles.viewBottomWhenScroll}>
 
                         <View style={{ flexDirection: 'row', margin: '2%' }}>
-                            <Image style={styles.imgUser} source={{ uri: getThumbnail(user.data) }} />
+                            <Image style={styles.imgUserInBottom} source={{ uri: getThumbnail(user.data) }} />
                             <View>
                                 <Text style={styles.userNameInBottom}>{getUsername(user.data)}</Text>
                                 <Text style={styles.JobDetailInBottom}>{getUserInfo(user.data)}</Text>
@@ -329,7 +325,7 @@ export default class UserProfileComponent extends Component {
                     </Animatable.View> : null}
 
                 {/* Side Menu button modal  */}
-                {this.state.isSideMenuClick ? <SideMenu  navigation={this.props.navigation} hidePopup={() => this.hidePopup()} /> : null}
+                {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation}  hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
 
             </SafeAreaView>
 

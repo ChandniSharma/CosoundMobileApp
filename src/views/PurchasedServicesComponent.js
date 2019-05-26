@@ -164,7 +164,9 @@ class PurchasedServicesComponent extends React.PureComponent {
   }
 
 
-
+  showNotification() {
+    this.setState({ isNotificationShow: true, isSideMenuClick: false })
+  }
   
   render() {
     const {
@@ -318,7 +320,7 @@ class PurchasedServicesComponent extends React.PureComponent {
 
 
                 {/* Side Menu button modal  */}
-                {this.state.isSideMenuClick ? <SideMenu navigation={navigation} hidePopup={() => this.hidePopup()} /> : null}
+                {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation}  hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
                        
                        <CustomFooter />
                 </KeyboardAwareScrollView>

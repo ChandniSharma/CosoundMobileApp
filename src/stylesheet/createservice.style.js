@@ -70,6 +70,16 @@ export default {
         alignSelf: 'center'
 
     },
+    textPublish:{
+        height: 50,
+       
+        //  marginBottom:'7%',
+        textAlign: 'center',
+        alignSelf: 'center',
+        fontSize: 14,
+        color: 'white',
+        fontFamily: 'Montserrat-light',
+    },
     loginText: {
         // marginTop:'5%',
         height: 50,

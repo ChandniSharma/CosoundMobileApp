@@ -214,7 +214,7 @@ class ContactInfo extends React.Component {
         // disabled={changePassword.isRequesting}
         >
           {contactInfo.isRequesting ? (
-            <ActivityIndicator color='gray' />
+            <ActivityIndicator color='white' />
           ) : (
               <Text style={styles.loginText}>Update</Text>
             )}

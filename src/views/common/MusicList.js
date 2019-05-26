@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { isEmpty, isNull } from "lodash";
 import * as Animatable from 'react-native-animatable';
 import { Icon } from "native-base";
+//import WaveForm from 'react-native-audiowaveform';
 
 import styles from "../../stylesheet/profile.style";
 import { getDuration, getTrackName, getMetadata, formatCurrentTime } from "../../utils";
@@ -90,8 +91,9 @@ import { TouchableOpacity } from "react-native-gesture-handler";
       let { current, pos } = this.state;
       const { myMusic, postDetails, loadMore, callingAPI, page, page_count, callApi } = this.props;
       const { data } = myMusic;
-      console.log(" data === ",data);
+      console.log(" data === ",myMusic);
       console.log("current====",current)
+
       const { duration, albumart, album, artistName, title } = getMetadata(
         current
       );
@@ -120,7 +122,19 @@ import { TouchableOpacity } from "react-native-gesture-handler";
                     </View>
                 </View>
                 <View style={styles.viewMusicImage}>
-                    <Image style={styles.musicAnimatedImg} source={require('../../assets/noise.gif')} />
+                    {/* <Image style={styles.musicAnimatedImg} source={require('../../assets/noise.gif')} /> */}
+                    {/* <WaveForm
+                            style={{flex: 1,
+                                margin: 10,
+                                backgroundColor: "white",height:50}}
+                            onPress={()=>this.changestate()}
+                            source={require('../assets/the_sentence.mp3')}
+                            stop={this.state.stopAudio}
+                            play={this.state.playAudio}
+                            autoPlay={false}
+                            waveFormStyle={{waveColor:'lightgray', scrubColor:'purple',width:'auto'}}
+                        /> */}
+
                 </View>
                 <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
                     <Text style={styles.musicCurrentTime}>{duration}</Text>

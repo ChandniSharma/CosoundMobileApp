@@ -20,6 +20,7 @@ import Icon3 from "react-native-vector-icons/FontAwesome";
 import Icon4 from "react-native-vector-icons/Entypo";
 import WaveForm from 'react-native-audiowaveform';
 import SoundCloudWaveform from 'react-native-soundcloud-waveform';
+import Notifications from '../containers/Notifications'
 
 var ImagePicker = require('react-native-image-picker');
 import NewTest from './common/NewTest';
@@ -53,6 +54,7 @@ export default class ProfileComponent extends Component {
             stopAudio: true,
             counter: 0,
             timer: null,
+            isNotificationShow: false,
         }
     }c
 
@@ -120,7 +122,9 @@ export default class ProfileComponent extends Component {
         }
         this.offset = currentOffset;
     };
-
+    showNotification() {
+        this.setState({ isNotificationShow: true, isSideMenuClick: false })
+      }
     postOptionView() {
         let arrayPostOptions = ["All", "Copy Link", "Unfollow User", 'Share', 'Report Post'];
         let arrayBtn = [];
@@ -206,7 +210,7 @@ export default class ProfileComponent extends Component {
                 </LinearGradient> : null}
 
 
-                <KeyboardAwareScrollView onScroll={this._onScroll} style={{ backgroundColor: 'rgb(42, 173,177)' }}>
+                {!this.state.isNotificationShow?   <KeyboardAwareScrollView onScroll={this._onScroll} style={{ backgroundColor: 'rgb(42, 173,177)',}}>
 
                     <View style={{ backgroundColor: 'rgb(248,249,248)' }} >
 
@@ -233,7 +237,8 @@ export default class ProfileComponent extends Component {
                                 },
                                 shadowOpacity: 0.8,
                             }}>
-                            <Image style={styles.imgUser} source={getThumbnail(user.data)} />
+                                
+                            <Image style={styles.imgUser} source={{ uri: getThumbnail(user.data) }} />
                             {/* <Image style={styles.imgUser} source={require('../assets/avatar-main-1.jpg')} /> */}
 
                         </Animatable.View>
@@ -251,18 +256,7 @@ export default class ProfileComponent extends Component {
                         </View> */}
 
 
-                        <WaveForm
-                            style={{flex: 1,
-                                margin: 10,
-                                backgroundColor: "white",height:50}}
-                            onPress={()=>this.changestate()}
-                            source={require('../assets/the_sentence.mp3')}
-                            stop={this.state.stopAudio}
-                            play={this.state.playAudio}
-                            autoPlay={false}
-                            waveFormStyle={{waveColor:'gray', scrubColor:'red',width:'auto'}}
-                        />
-
+                       
 
                         {/* <SoundCloudWaveform waveformUrl="https://w1.sndcdn.com/PP3Eb34ToNki_m.png" setTime={this.setTime}
                                             percentPlayed={this.state.counter} percentPlayable={1} /> */}
@@ -339,24 +333,22 @@ export default class ProfileComponent extends Component {
                             page_count={paginationData.page_count}
                         />
 
-                        <View style={styles.viewBottom}>
-
-                            <View style={{ flexDirection: "row", backgroundColor: "rgb(52,52,52)", marginTop: "5%" }} >
-                                <Text style={{ flex: 8, color: "#fff", fontSize: 20 }}>   (c)elit.Nulla 2018</Text>
-                                {/* <Text style={{flex:2,color:"#fff",fontSize:20}}>+ - +</Text> */}
-                            </View>
-
-                        </View>
+                       
 
                     </View>
-                    {!userFeed.isRequesting && <CustomFooter />}
-                </KeyboardAwareScrollView>
+                    {!userFeed.isRequesting? <View> 
+                                                    <CustomFooter /> 
+                                                </View>:
+                                                    <View />}
+                </KeyboardAwareScrollView> :
+                  <View>
+                <Notifications /></View> }
 
                 {this.state.isBottomViewShow ?
                     <Animatable.View ref={"viewBottomWhenScroll"} style={styles.viewBottomWhenScroll}>
 
                         <View style={{ flexDirection: 'row', margin: '2%' }}>
-                            <Image style={styles.imgUser} source={{ uri: getThumbnail(user.data) }} />
+                            <Image style={styles.imgUserInBottom} source={{ uri: getThumbnail(user.data) }} />
                             <View>
                                 <Text style={styles.userNameInBottom}>{getUsername(user.data)}</Text>
                                 <Text style={styles.JobDetailInBottom}>{getUserInfo(user.data)}</Text>
@@ -366,7 +358,7 @@ export default class ProfileComponent extends Component {
                     </Animatable.View> : null}
 
                 {/* Side Menu button modal  */}
-                {this.state.isSideMenuClick ? <SideMenu  navigation={this.props.navigation} hidePopup={() => this.hidePopup()} /> : null}
+          {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation}  hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
 
             </SafeAreaView>
 

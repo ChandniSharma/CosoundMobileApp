@@ -45,7 +45,7 @@ class SideMenu extends Component {
             visible: true,
             isNotificationShow: false,
         }
-        this.arrayData = [{ name: 'Account Settings', image: '', count: 0 }, { name: 'Plans', image: 'message', count: 0 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }, { name: 'Logout', image: '', count: 0 }]
+        this.arrayData = [{ name: 'Account Settings', image: '', count: 0 }, { name: 'Plans', image: 'message', count: 0 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 },{ name: 'Music Service', image: '', count: 0 },{ name: 'Logout', image: '', count: 0 }]
 
     }
 
@@ -188,7 +188,8 @@ class SideMenu extends Component {
         )
     }
     renderModalItem = (item) => {
-        console.log(" item is ", item);
+
+        console.log(" Props is ====== ", this.props);
         let icon = "";
         let viewNotification = <View />
 
@@ -198,43 +199,43 @@ class SideMenu extends Component {
 
         if (item.index === 0) {
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
-                <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('AccountSettings')}>
+                <TouchableHighlight underlayColor='' style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('AccountSettings')}>
                     <View style={{ flexDirection: "row" }}>
                         <Icon4 name="briefcase-outline" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, color: 'white' }} />
                         <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
 
                     </View>
-                </TouchableOpacity>
+                </TouchableHighlight>
             </View>
 
         } else if (item.index === 1) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
-                <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Plans')}>
+                <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Plans')}>
                     <View style={{ flexDirection: "row" }}>
                         <Icon4 name="message-outline" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, color: 'white' }} />
                         <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
 
                     </View>
-                </TouchableOpacity>
+                </TouchableHighlight>
             </View>
 
         } else if (item.index === 2) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
-                <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Profile')}>
+                <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Profile')}>
                     <View style={{ flexDirection: "row" }}>
                         <Icon name="user" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, tintColor: 'white' }} />
                         <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
 
                     </View>
-                </TouchableOpacity>
+                </TouchableHighlight>
             </View>
 
         } else if (item.index === 3) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
-                <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.props.showNotification()}>
+                <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.showNotification()}>
 
                     <View style={{ flexDirection: "row" }}>
                         <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, tintColor: 'white' }} />
@@ -243,7 +244,7 @@ class SideMenu extends Component {
                             <Text style={styles.textModalData}>{item.item.count}</Text>
                         </View>
                     </View>
-                </TouchableOpacity>
+                </TouchableHighlight>
             </View>
 
 
@@ -251,7 +252,7 @@ class SideMenu extends Component {
 
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
-                <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Cart')}>
+                <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Cart')}>
                     <View style={{ flexDirection: "row" }}>
                         <Icon name="shoppingcart" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, tintColor: 'white' }} />
                         <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
@@ -259,20 +260,32 @@ class SideMenu extends Component {
                             <Text style={styles.textModalData}>{item.item.count}</Text>
                         </View>
                     </View>
-                </TouchableOpacity>
+                </TouchableHighlight>
             </View>
 
 
-        } else if (item.index === 5) {
+        }else if (item.index === 5) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
-                <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Login')}>
+                <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('NoService')}>
+                    <View style={{ flexDirection: "row" }}>
+                        <Icon name="customerservice" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, color: 'white' }} />
+                        <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
+
+                    </View>
+                </TouchableHighlight>
+            </View>
+        }
+         else if (item.index === 6) {
+
+            viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
+                <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Login')}>
                     <View style={{ flexDirection: "row" }}>
                         <Icon name="logout" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, color: 'white' }} />
                         <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
 
                     </View>
-                </TouchableOpacity>
+                </TouchableHighlight>
             </View>
         }
         return (
@@ -297,10 +310,10 @@ class SideMenu extends Component {
         return (
             <Animatable.View ref={'viewModalRef'} style={styles.viewModal}>
                 <KeyboardAwareScrollView style={{ flex: 1 }}>
-                    <TouchableOpacity style={{ color: 'white', marginTop: '9%', marginLeft: '5%', width: 50, height: 35 }} onPress={hidePopup}>
+                    <TouchableHighlight style={{ color: 'white', marginTop: '9%', marginLeft: '5%', width: 50, height: 35 }} onPress={hidePopup}>
 
                         <Hamburger color="white" active={true} type="spinCross" onPress={hidePopup} />
-                    </TouchableOpacity>
+                    </TouchableHighlight>
 
                     <View style={[styles.searchBarView, { backgroundColor: this.state.searchBarBgColor }]}>
                         <Icon2 name="search" color={this.state.searchIconColor} style={{ position: 'absolute', marginLeft: '3%', marginTop: '4%', marginRight: '1%', fontSize: 40 }} />
@@ -350,17 +363,21 @@ class SideMenu extends Component {
                             shadowOpacity: 0.8,
                             marginBottom: '5%',
                         }}>
+                            {/* <TouchableOpacity onPress={() => this.props.navigation.navigate('Dashboard')}> */}
+
+                           
                         <Image style={styles.imgUser} source={{ uri: getThumbnail(user.data) }} />
                         {/* <Image style={styles.imgUser} source={require('../../assets/avatar-main-1.jpg')} /> */}
+                        {/* </TouchableOpacity> */}
                     </Animatable.View>
 
-                    <TouchableOpacity style={styles.btnPremium} onPress={() => this.props.navigation.navigate("Plan")}>
+                    <TouchableHighlight style={styles.btnPremium} onPress={() => this.props.navigation.navigate("Plan")}>
                         <View style={styles.viewPremium}>
                             <Logo color={'rgb(42, 173,177)'} style={{ marginBottom: '15%' }} width="60px" height="30px" />
 
                             <Text style={styles.textPremium}> Premium</Text>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableHighlight>
                     <Text style={styles.textUserName}> {getUsername(user.data)} </Text>
 
                     <FlatList

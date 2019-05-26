@@ -122,6 +122,7 @@ class ResetPassword extends React.Component {
         resetPassword={resetPassword}
         handleChange={this._handleChange}
         error={error}
+        navigation={this.props.navigation}
       />
     );
   }

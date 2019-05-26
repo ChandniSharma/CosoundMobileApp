@@ -49,6 +49,7 @@ class Cart extends React.PureComponent {
         fetchCart={this._fetchCart}
         removeFromCart={removeFromCart}
         _removeFromCart={this._removeFromCart}
+        navigation={this.props.navigation}
       />
     );
   }

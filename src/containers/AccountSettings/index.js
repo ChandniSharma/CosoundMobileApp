@@ -82,6 +82,7 @@ class AccountSettings extends React.PureComponent {
 
     return (
       <AccountSettingsTabs
+      
         tabs={tabs}
         user={user}
         genres={genres}

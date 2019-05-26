@@ -98,6 +98,7 @@ class Checkout extends React.PureComponent {
         cardDetails={cardDetails}
         onRadioSelect={this._onRadioSelect}
         confirmPayment={this._confirmPayment}
+        navigation={this.props.navigation}
       />
     );
   }

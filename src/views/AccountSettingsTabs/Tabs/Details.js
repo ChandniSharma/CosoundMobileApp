@@ -353,7 +353,10 @@ class Details extends React.PureComponent {
         </Animatable.View>
         {errors.postal_code ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.postal_code}</Animatable.Text> : null}
 
-        <TouchableOpacity style={{ alignSelf: 'center', justifyContent: 'center', marginTop: '5%', width: '40%', height: '15%', borderRadius: 10, backgroundColor: '#ff277b', marginBottom: '5%' , height:60}}
+<View style={{ alignSelf: 'center', justifyContent: 'center', marginTop: '5%', width: '40%', height: '15%', borderRadius: 10, backgroundColor: '#ff277b', marginBottom: '5%' , height:60}}>
+
+
+        <TouchableOpacity 
           onPress={() => !details.isRequesting && this._submit()}
 
         // disabled={changePassword.isRequesting}
@@ -361,10 +364,10 @@ class Details extends React.PureComponent {
           {details.isRequesting ? (
             <ActivityIndicator color='gray' />
           ) : (
-              <Text style={styles.loginText}>Update</Text>
+              <Text style={styles.updateDetailText}>Update</Text>
             )}
         </TouchableOpacity>
-
+        </View>
       </View>
     );
     // return (

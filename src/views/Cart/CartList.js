@@ -117,6 +117,8 @@ class CartList extends React.PureComponent {
       _removeFromCart
     } = this.props;
     const { isRequesting, data, error } = cart;
+    console.log(" cart list props===", this.props)
+
     console.log(" rendeer ================-----");
 
     return (

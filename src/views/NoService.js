@@ -19,6 +19,8 @@ import Icon6 from 'react-native-vector-icons/FontAwesome5';
 import CustomFooter from '../components/common/CustomFooter'
 import Notifications from '../containers/Notifications'
 import MultiSelect from 'react-native-multiple-select';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 // import custom from './c'
 
@@ -37,7 +39,7 @@ const buttonName = {
     other: "Other",
 
 }
-export default class NoService extends Component {
+class NoService extends Component {
 
     constructor(props) {
         super(props);
@@ -242,52 +244,55 @@ export default class NoService extends Component {
         )
     }
     showCreateService =() =>{
-       
-        this.setState({isCreateServiceViewShow:true});
-        setTimeout(() => {
-            this.fadeInCreateView();
-        }, 50);
+       this.props.navigation.navigate("CreateService");
+        // this.setState({isCreateServiceViewShow:true});
+        // setTimeout(() => {
+        //     this.fadeInCreateView();
+        // }, 50);
        
     }
-
-    multiSelectView(){
-        return(
-            <View>
-        <MultiSelect
-        styleDropdownMenu={styles.multiSelectDownStyle}
-        styleInputGroup={styles.multiSelectStyle}
-        styleMainWrapper={{ marginLeft: '5%', marginRight: '5%', marginTop: '5%' }}
-        styleListContainer={styles.multiSelectListStyle}
-        hideTags
-        items={this.genres}
-        uniqueKey="value"
-        ref={(component) => { this.multiSelect = component }}
-        onSelectedItemsChange={(selectedItems) => handleMultiSelect(selectedItems, 'genres')}
-        selectedItems={this.genres}
-        selectText="Select Genres"
-        searchInputPlaceholderText="Select Genres"
-        onChangeInput={(text) => console.log(text)}
-        altFontFamily="Montserrat-light"
-        tagRemoveIconColor="black"
-        tagBorderColor="#CCC"
-        tagTextColor="#black"
-        selectedItemTextColor="rgb(60, 205, 53)"
-        selectedItemIconColor="rgb(60, 205, 53)"
-        itemTextColor="#000"
-        displayKey="label"
-        searchInputStyle={{ color: '#CCC' }}
-        submitButtonColor="#ff277b"
-        submitButtonText="Submit"
-        name="genres"
-      />
-      <View>
-        {this.multiSelect && this.multiSelect.getSelectedItemsExt(this.genres)}
-      </View>
-    </View>
-        )
-    }
+    showNotification() {
+        this.setState({ isNotificationShow: true, isSideMenuClick: false })
+      }
+    // multiSelectView(){
+    //     return(
+    //         <View>
+    //     <MultiSelect
+    //     styleDropdownMenu={styles.multiSelectDownStyle}
+    //     styleInputGroup={styles.multiSelectStyle}
+    //     styleMainWrapper={{ marginLeft: '5%', marginRight: '5%', marginTop: '5%' }}
+    //     styleListContainer={styles.multiSelectListStyle}
+    //     hideTags
+    //     items={this.genres}
+    //     uniqueKey="value"
+    //     ref={(component) => { this.multiSelect = component }}
+    //     onSelectedItemsChange={(selectedItems) => handleMultiSelect(selectedItems, 'genres')}
+    //     selectedItems={this.genres}
+    //     selectText="Select Genres"
+    //     searchInputPlaceholderText="Select Genres"
+    //     onChangeInput={(text) => console.log(text)}
+    //     altFontFamily="Montserrat-light"
+    //     tagRemoveIconColor="black"
+    //     tagBorderColor="#CCC"
+    //     tagTextColor="#black"
+    //     selectedItemTextColor="rgb(60, 205, 53)"
+    //     selectedItemIconColor="rgb(60, 205, 53)"
+    //     itemTextColor="#000"
+    //     displayKey="label"
+    //     searchInputStyle={{ color: '#CCC' }}
+    //     submitButtonColor="#ff277b"
+    //     submitButtonText="Submit"
+    //     name="genres"
+    //   />
+    //   <View>
+    //     {this.multiSelect && this.multiSelect.getSelectedItemsExt(this.genres)}
+    //   </View>
+    // </View>
+    //     )
+    // }
 
     render() {
+        const {user} = this.props;
 
         return (
 
@@ -311,13 +316,12 @@ export default class NoService extends Component {
                 <View style={{ flex: 1 }}>
                     <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)' }}>
 
-                        {/* Once api setup use this code for showing user  */}
-                        {/* <View style={{flex:0.3, backgroundColor:'red'}}>
+                        {/* Once api setup use this code for showing user 
+                        <View style={{flex:0.3, backgroundColor:'red'}}>
                 <SettingsHeader
                     user={user}
-                    profilePic={profilePic}
-                    uploadProfilePic={uploadProfilePic}
-                    uploadable={true}
+                  
+                    uploadable={false}
                 />
          </View>        */}
 
@@ -341,10 +345,10 @@ export default class NoService extends Component {
                                     shadowOpacity: 0.8,
                                     marginBottom: '5%',
                                 }}>
-                                {/* <Image style={styles.imgUser} source={getThumbnail(user.data)} /> */}
-                                <Image style={styles.imgUser} source={require('../assets/avatar-main-1.jpg')} />
+                                <Image style={styles.imgUser} source={{ uri:getThumbnail(user.data)}} />
+                                {/* <Image style={styles.imgUser} source={require('../assets/avatar-main-1.jpg')} /> */}
                             </Animatable.View>
-                            <Text style={styles.textUserName}> Lois Stokes </Text>
+                            <Text style={styles.textUserName}> {getUsername(user.data)} </Text>
                         </LinearGradient>
 
 
@@ -394,12 +398,13 @@ export default class NoService extends Component {
                             
                             <View style={{ alignSelf: 'center', marginTop: '10%', flex: 0.7 }}>
                             <View style={{ alignSelf: 'center' }}>
-                                <Icon name="close" color='#20ACAC' style={{ fontSize: 25 }} />
-                                <Icon5 name="hand-holding" color='#20ACAC' style={{ fontSize: 25 }} />
+                                <Icon  color='#20ACAC' style={{ fontSize: 25 }} />
+                                <Icon5  color='#20ACAC' style={{ fontSize: 25 }} />
 
                             </View>
                             <Text style={[styles.noServiceText, { marginLeft: '10%', marginRight: '10%', marginTop: '5%' }]}> You don't offer any services :( </Text>
                             <Text style={[styles.textLight, { alignSelf: 'center', marginTop: '5%' }]}> Want to create your first one now? </Text>
+                          
                             <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton, { marginTop: '5%', justifyContent: 'center', }]} onPress={this.showCreateService}>
                                 <Text style={styles.textButtonTitle} >Create Service</Text>
                             </TouchableHighlight>
@@ -434,12 +439,14 @@ export default class NoService extends Component {
                                     />
                                 </View>
                             </View> : null}
-
-                        <CustomFooter />
+<View style={{marginTop:'20%'}}>
+<CustomFooter />
+</View>
+                       
                     </KeyboardAwareScrollView>
 
                     {/* Side Menu button modal  */}
-                    {this.state.isSideMenuClick ? <SideMenu hidePopup={() => this.hidePopup()} /> : null}
+                    {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation}   hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
 
                     {/* notification view show */}
                     {this.state.isNotificationShow ? <Notifications hidePopup={() => this.hideNotificationView()} /> : null}
@@ -451,6 +458,23 @@ export default class NoService extends Component {
     }
 
 }
+
+
+// eslint-disable-next-line
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    };
+};
+
+// eslint-disable-next-line
+
+
+export default connect(
+    mapStateToProps,
+    null
+)(NoService);
+
 
 
 {/* <KeyboardAwareScrollView onScroll={this._onScroll} style={{ backgroundColor: 'rgb(42, 173,177)' }}>

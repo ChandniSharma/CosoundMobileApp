@@ -35,20 +35,27 @@ console.log(" ******** categ====", this.props, );
 
     const subCategories = getSubcategories(data.category_id, categories.data);
     console.log("subCategories===", subCategories)
+
+    let placeholder = [{"label": "Select Category", value: null}];
+    let categoriesData = placeholder.concat(categories.data);
+
+    let placeholderSubCat = [{"label": "Select Subcategory", value: null}];
+    let subCategoriesData = placeholderSubCat.concat(subCategories.data);
+
     return (
     <View>
         <Animatable.View ref={"viewTxtInputCat"}>
         <Animatable.Text animation="fadeIn" style={[styles.textLight, { alignSelf: 'center', marginTop: '5%' }]}>What type of service are you offering?</Animatable.Text>
 
        
-        <SelectInput style={styles.inputStyle}  placeholder={"Select Category"} labelStyle={styles.locationLabel} value={data.category_id} options={categories.data} onSubmitEditing={val => handleSelect(val, 'category_id')} />
+        <SelectInput style={styles.inputStyle}  placeholder={"Select Category"} labelStyle={styles.locationLabel} value={data.category_id} options={categoriesData} onSubmitEditing={val => handleSelect(val, 'category_id')} />
                             
          
           {errors.category_id && <Text style={styles.errorText}>{errors.category_id}</Text>}
         </Animatable.View>
 
         <Animatable.View ref={"viewTxtInputSubCat"}>
-        <SelectInput style={styles.inputStyle} labelStyle={styles.locationLabel} value={data.sub_category_id} options={subCategories.data} onSubmitEditing={val => handleSelect(val,'sub_category_id')} />
+        <SelectInput style={styles.inputStyle} labelStyle={styles.locationLabel} value={data.sub_category_id} options={subCategoriesData} onSubmitEditing={val => handleSelect(val,'sub_category_id')} />
       
          <TouchableOpacity style={[styles.loginButton, { marginTop: '5%', justifyContent: 'center', }]}
           onPress={()=> submitCategory()}

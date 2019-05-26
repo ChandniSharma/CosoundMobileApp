@@ -51,6 +51,7 @@ class OfferedServices extends React.PureComponent {
         sort={this._sort}
         offeredServices={offeredServices}
         fetchOfferedServices={this._fetchOfferedServices}
+        navigation={this.props.navigation}
       />
     );
   }

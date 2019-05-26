@@ -140,10 +140,16 @@ render()
         </Animatable.Text>
       )}
     </View>
-    <TouchableOpacity style={[styles.loginButton, { marginTop: '15%', justifyContent: 'center',marginBottom:'10%' }]}
+    {/* <TouchableOpacity style={[styles.loginButton, { marginTop: '15%', justifyContent: 'center',marginBottom:'10%' }]}
           onPress={()=> submitDescription()}
            >
-            <Text style={styles.loginText}>publish Service</Text>
+            <Text style={[styles.textPublish ]}>publish Service</Text>
+          </TouchableOpacity> */}
+
+           <TouchableOpacity style={[styles.loginButton, { marginTop: '15%', justifyContent: 'center',marginBottom:'10%' }]}
+          onPress={()=> this.props.navigation.navigate('Dashboard')}
+           >
+            <Text style={[styles.textPublish ]}>publish Service</Text>
           </TouchableOpacity>
     </Animatable.View>
   )

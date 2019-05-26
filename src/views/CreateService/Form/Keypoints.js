@@ -70,8 +70,8 @@ showInputWithAddButton = (index) => {
                         handleClick={() => addMoreKeypoints(item.id)}
                       />
                     )*/}
-
-                   {this.showInputWithAddButton(index)}
+{/* for adding multiple keypoints  */}
+                   {/* {this.showInputWithAddButton(index)} */}
 
                     {errors[item.id] && <Text style={styles.errorText}>{errors[item.id]} </Text>}
                   </View>

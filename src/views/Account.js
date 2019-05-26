@@ -152,6 +152,9 @@ export default class Account extends Component {
             </View>
         )
     }
+    showNotification() {
+        this.setState({ isNotificationShow: true, isSideMenuClick: false })
+      }
 
     renderModalItem = (item) => {
         console.log(" item is ", item);
@@ -382,7 +385,8 @@ export default class Account extends Component {
                             </View> : null}
 
                         {/* Side Menu button modal  */}
-                        {this.state.isSideMenuClick ? <SideMenu hidePopup={()=>this.hidePopup()} />:null}
+                        {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation}  hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
+
                            
                     </KeyboardAwareScrollView>
 

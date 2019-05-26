@@ -17,7 +17,7 @@ import Icon5 from 'react-native-vector-icons/FontAwesome';
 import Icon6 from 'react-native-vector-icons/Feather';
 import CustomFooter from '../../components/common/CustomFooter'
 
-import Notifications from '../../../src/views/common/Notifications';
+import Notifications from '../../containers/Notifications';
 
 import Hamburger from 'react-native-hamburger';
 import SideMenu from '../common/SideMenu';

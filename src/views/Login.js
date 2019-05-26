@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, AsyncStorage, Easing } from 'react-native';
+import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, AsyncStorage, Easing, ActivityIndicator } from 'react-native';
 //import SvgUri from 'react-native-svg-uri';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../stylesheet/login.style';
@@ -93,8 +93,13 @@ twitterLogin(){
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245, 245,245)', flex: 1}}>
-                    <WaveAnimation />
-                    <Animatable.View ref={"mainView"} style={[styles.container, { backgroundColor: 'transparent', position: 'absolute', top: 0, width: '100%' }]}>
+                   
+                    <Animatable.View ref={"mainView"} style={[styles.container, { backgroundColor: 'transparent', width: '100%' }]}>
+
+                    <View style={{top:0,position:'absolute'}}>
+                        <WaveAnimation style={{backgroundColor:'red'}} />
+                        </View>
+
                         <View style={{ backgroundColor: 'transparant' }}>
 
                             <Animatable.View ref={"headerView"} style={{ flexDirection: 'row', flex: 1 }}>
@@ -150,7 +155,7 @@ twitterLogin(){
                         </View>
 
                         <TouchableHighlight underlayColor="#25b6ad" onPress={onSubmit} style={[styles.loginButton]}>
-                            <Text style={styles.textButtonTitle} >Login</Text>
+                           {(login.isRequesting || fetching) ? <ActivityIndicator color="white" />: <Text style={styles.textButtonTitle} >Login</Text>}
                         </TouchableHighlight>
 
                         <View style={styles.socialMediaLoginView}>
@@ -187,7 +192,10 @@ twitterLogin(){
                         </View>
 
                     </Animatable.View>
+                    <View style={{marginTop:'22%'}}>
                     <CustomFooter />
+                    </View>
+                   
                 </KeyboardAwareScrollView>
 
             </SafeAreaView>

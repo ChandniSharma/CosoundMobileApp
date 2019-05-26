@@ -49,7 +49,9 @@ export default class CheckoutComponent extends Component {
   hidePopup() {
     this.setState({ isSideMenuClick: false })
   }
-
+  showNotification() {
+    this.setState({ isNotificationShow: true, isSideMenuClick: false })
+  }
   render() {
     const {navigation} = this.props;
     return (
@@ -190,7 +192,7 @@ export default class CheckoutComponent extends Component {
           </KeyboardAwareScrollView>
 
           {/* Side Menu button modal  */}
-          {this.state.isSideMenuClick ? <SideMenu navigation={navigation} hidePopup={() => this.hidePopup()} /> : null}
+          {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation}  hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
 
           {/* notification view show */}
           {this.state.isNotificationShow ? <Notifications navigation={navigation} hidePopup={() => this.hideNotificationView()} /> : null}

@@ -91,6 +91,13 @@ export default {
         fontFamily:'Montserrat-light',
        marginLeft:'10%'
     },
+    updateDetailText:{
+        alignSelf:'center',
+        fontSize:14,
+        color:'white',
+        fontFamily:'Montserrat-light',
+       // fontWeight:'100',
+    },
     loginText:{
         // marginTop:'5%',
         marginBottom:'5%',

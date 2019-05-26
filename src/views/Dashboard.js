@@ -25,6 +25,7 @@ import SideMenu from './common/SideMenu';
 import BackButton from './common/BackButton';
 import PostStatus from './common/PostStatus';
 import CustomFooter from '../components/common/CustomFooter';
+import Notifications from '../containers/Notifications'
 
 //  import Icon from 'react-native-vector-icons/FontAwesome'
 
@@ -47,6 +48,7 @@ export default class DashboardComponent extends Component {
             isMusicSingleViewShow: true,  // these are the single line view show on above buttons of music video image, when click on them
             isVideoSingleViewShow: false,
             isImageSingleViewShow: false,
+            isNotificationShow: false,
             music: [
                 {
                     id: 1,
@@ -259,6 +261,9 @@ export default class DashboardComponent extends Component {
         }
         this.chooseFile()
     }
+    showNotification() {
+        this.setState({ isNotificationShow: true, isSideMenuClick: false })
+      }
     rednerPostItem = (item) => {
         return (
             <TouchableOpacity>
@@ -683,21 +688,21 @@ export default class DashboardComponent extends Component {
                 </LinearGradient> : null}
 
 
-                <KeyboardAwareScrollView onScroll={this._onScroll} style={{ backgroundColor: 'rgb(245, 245,245)' }}>
+                {!this.state.isNotificationShow? <KeyboardAwareScrollView onScroll={this._onScroll} style={{ backgroundColor: 'rgb(245, 245,245)' }}>
                     <View style={{ backgroundColor: 'white' }} >
                         <Animatable.View
                             ref={'userImageView'}
                             style={{
                                 marginTop: "15%",
                                 height: 80, width: 80,
-                                borderRadius: 40, elevation: 3,
+                                borderRadius: 40,
                                 backgroundColor: "white",
                                 alignSelf: "center",
                                 shadowColor: 'rgba(0,0,0,1)',
-                                shadowOffset: {
-                                    width: 1,
-                                    height: 1
-                                },
+                                // shadowOffset: {
+                                //     width: 0.5,
+                                //     height: 0.5
+                                // },
                                 shadowOpacity: 0.8,
                             }}>
                             <Image style={styles.imgUser} source={{ uri: getThumbnail(user.data) }} />
@@ -782,7 +787,10 @@ export default class DashboardComponent extends Component {
                      
                     </View>
                     {!userFeed.isRequesting && <CustomFooter />}
-                </KeyboardAwareScrollView>
+                </KeyboardAwareScrollView>:
+                  <View>
+            <Notifications /></View> 
+}
 
                 {this.state.isBottomViewShow ?
                     <Animatable.View ref={"viewBottomWhenScroll"} style={styles.viewBottomWhenScroll}>
@@ -795,7 +803,7 @@ export default class DashboardComponent extends Component {
                         </View>
                     </Animatable.View> : null}
                 {/* Side Menu button modal  */}
-                {this.state.isSideMenuClick ? <SideMenu  navigation={this.props.navigation}  hidePopup={() => this.hidePopup()} /> : null}
+          {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation}  hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
             </SafeAreaView>
         )
     }

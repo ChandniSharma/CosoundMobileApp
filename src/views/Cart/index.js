@@ -56,6 +56,8 @@ class Cart extends React.PureComponent {
     const { cart, fetchCart, _removeFromCart, removeFromCart } = this.props;
     const { paginationData } = cart;
 
+    console.log(" cart props===", this.props)
+
     return (
       <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
         {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: 100, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
@@ -84,6 +86,7 @@ class Cart extends React.PureComponent {
                 removeFromCart={removeFromCart}
                 _removeFromCart={_removeFromCart}
                 page_count={paginationData.page_count}
+                navigation ={this.props.navigation}
               />
 
             </View>
@@ -99,7 +102,7 @@ class Cart extends React.PureComponent {
             <Notifications hidePopup={() => this.hideNotificationView()} />
           </View>}
           {/* Side Menu button modal  */}
-          {this.state.isSideMenuClick ? <SideMenu hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
+          {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation}  hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
         </View>
       </SafeAreaView>
 
