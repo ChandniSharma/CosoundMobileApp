@@ -13,6 +13,7 @@ import PostComment from './PostComment';
 import styles from "../../stylesheet/profile.style";
 import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, TouchableWithoutFeedback,View, TouchableOpacity,Clipboard, AlertIOS,Platform, ActivityIndicator, Alert } from "react-native";
 import { postComment } from "../../actions/post";
+import WaveForm from 'react-native-audiowaveform';
 
 // import soundPlay from './SoundPlay';
 import {
@@ -23,7 +24,10 @@ import {
   getThumbnail,
   formatPostMedia,
   getUsername,
-  readableCount
+  readableCount,
+  getMetadata,
+  formatCurrentTime
+
 } from "../../utils";
 
 var ImagePicker = require('react-native-image-picker');
@@ -35,6 +39,9 @@ const tracks = {};
     constructor(props){
         super(props);
         this.state = {
+            playAudio: false,
+            stopAudio: true,
+            counter: 0,
             isVisible: false,
             showSocial: false,
             isPostOptionShow: true,
@@ -350,266 +357,6 @@ const tracks = {};
 
     }
 
-    renderPost = (post) => {
-        const { feed, callingAPI, _restCalls } = this.props;
-        const { user, like, deletePost, repost } = this.props;
-        const { isVisible, showSocial } = this.state;
-        let postData = post.item;
-        //const postedBySelf = postData.user_id === user.data.id;
-        const originalPost = getPost(postData);
-        const { images, notImages } = formatPostMedia(originalPost.media);
-      
-        const extraData = {
-            ...this.state,
-            ...this.props
-          };
-      return (
-          <View style={{ marginBottom: "3%" }}>
-              {post.item.type === "music" ? <View style={{
-                  width: "100%",
-                  backgroundColor: "white",
-                  marginTop: 10,
-                  padding: 10,
-                  shadowColor: 'rgba(0,0,0,1)',
-                  shadowOffset: {
-                      width: 0,
-                      height: 0
-                  },
-                  shadowOpacity: 0.2,
-              }}>
-                  <View style={{ width: "100%", justifyContent: "center", flexDirection: "row" }}>
-                      <View style={{ flex: 9, flexDirection: "row", marginTop: 5 }}>
-                          <View style={{
-                              height: 40, width: 40,
-                              borderRadius: 20,
-                              elevation: 3,
-                              backgroundColor: "white",
-                              alignSelf: "center",
-                              shadowColor: 'rgba(0,0,0,1)',
-                              shadowOffset: {
-                                  width: 1,
-                                  height: 1
-                              },
-                              shadowOpacity: 0.8,
-                          }} />
-                          <View style={{ paddingLeft: 10, marginTop: 3 }}>
-                              <Text style={styles.textUserName}>Test Name</Text>
-                              <Text style={styles.textDesignation}>Test Desigation</Text>
-                          </View>
-                      </View>
-                      <TouchableOpacity onPress={this._showPostOptions}>
-                          <Text style={styles.postDescription}>...</Text>
-                      </TouchableOpacity>
-                      {/* {this.state.isPostOptionShow ?
-                          <View style={styles.postOptionView}>
-                              {this.postOptionView()}
-                          </View> : null
-                      } */}
-
-                  </View>
-                  <View style={{ marginTop: "5%", marginBottom: "5%", width: "100%", justifyContent: "center", height: 0.5, backgroundColor: "#d3d3d3" }}>
-                  </View>
-                  <View style={{ padding: 5, marginBottom: "5%" }}>
-                      <View style={{ flexDirection: "row", padding: 10 }}>
-                          <View style={{ flex: 4, }}>
-                              <Image style={{
-                                  width: 100,
-                                  height: 100,
-                                  borderRadius: 10,
-                                  shadowColor: 'rgba(0,0,0,1)',
-                                  shadowOffset: {
-                                      width: 0.8,
-                                      height: 0.8
-                                  },
-                                  shadowOpacity: 0.2,
-                                  zIndex: -1
-                              }}
-                                  source={require('../../assets/homepage-video-placeholder.jpg')}>
-                              </Image>
-                              <Image style={{
-                                  width: 60,
-                                  height: 60,
-                                  borderRadius: 10,
-                                  shadowColor: 'rgba(0,0,0,1)',
-                                  shadowOffset: {
-                                      width: 0.8,
-                                      height: 0.8
-                                  },
-                                  shadowOpacity: 0.2,
-                                  position: "relative",
-                                  right: "-50%",
-                                  top: "-20%",
-                                  zIndex: 999
-                              }}
-                                  source={require('../../assets/close.png')}>
-                              </Image>
-                          </View>
-                          <View style={{ flex: 6 }}>
-                              <Text style={styles.musicTitle}>Kygo</Text>
-                              <Text style={styles.musicDescription}>Of Monsters and Men - Dirty Paws (Kygo remix)</Text>
-                          </View>
-                      </View>
-                      <View style={{ width: "100%", backgroundColor: "#d3d3d6" }}>
-                          <Image style={{ width: "100%", height: 50 }} source={require('../../assets/noise.gif')} />
-                      </View>
-                      <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
-                          <Text style={styles.musicCurrentTime}>0.00</Text>
-                          <Text style={styles.musicDuration}>2.03</Text>
-
-                      </View>
-                  </View>
-                  <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
-                      <View style={{ flex: 9, flexDirection: "row" }}>
-                          <View style={{
-                              borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10, justifyContent: 'center',
-                              alignItems: "center", flexDirection: 'row', height: 40, width: 80
-                          }}>
-                              <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../../assets/tickMark.png")} />
-                              <Text style={styles.textLikeCount}>10</Text>
-                          </View>
-                          <View style={{
-                              marginLeft: 10, borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
-                              justifyContent: 'center', alignItems: "center", flexDirection: 'row', height: 40, width: 80
-                          }}>
-                              <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../../assets/tickMark.png")} />
-                              <Text style={styles.textLikeCount}>56</Text>
-                          </View>
-                      </View>
-                      <View style={{
-                          flex: 1, borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
-                          justifyContent: 'center', alignItems: "center", height: 40
-                      }}>
-                          <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../../assets/tickMark.png")} />
-                      </View>
-                  </View>
-                  {/* Comment btn */}
-                  <View style={{ marginTop: "5%", marginBottom: '5%', alignItems: "center", flexDirection: 'row', height: 100 }}>
-                      <View style={{ flex: 1, height: 1, backgroundColor: "#d3d3d3" }} />
-
-                      <TouchableOpacity style={{
-                          borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10, justifyContent: 'center',
-                          alignItems: "center", flexDirection: 'row', height: 40, width: 160
-                      }} onPress={this._showCommentList.bind(this)}>
-
-                          <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../../assets/tickMark.png")} />
-                          <Text style={[styles.textCommentCount]}>9 Comments</Text>
-
-                          <View style={{
-                              marginLeft: 10, flex: 1, borderRadius: 60, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
-                              justifyContent: 'center', alignItems: "center", height: 40, width: 160
-                          }}>
-                              <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../../assets/tickMark.png")} />
-                          </View>
-                      </TouchableOpacity>
-                      <View style={{ flex: 1, height: 1, backgroundColor: "#d3d3d3" }} />
-                  </View>
-
-                  {this.state.isCommentTableShow ? <View style={{ width: '100%', marginTop: '2%', marginBottom: '2%' }}>
-                      <FlatList
-                          data={this.state.arrayCommentData}
-                          extraData={extraData}
-                          renderItem={this.renderCommentItem}
-                          keyExtractor={(item, index) => index.toString()}
-                      />
-                  </View> : null}
-              </View>
-                  :
-                  <View style={{
-                      width: "100%",
-                      backgroundColor: "white",
-                      marginTop: 10,
-                      padding: 10,
-                      shadowColor: 'rgba(0,0,0,1)',
-                      shadowOffset: {
-                          width: 0,
-                          height: 0
-                      },
-                      shadowOpacity: 0.2,
-                  }}>
-                      <View style={{ width: "100%", justifyContent: "center", flexDirection: "row" }}>
-                          <View style={{ flex: 9, flexDirection: "row", marginTop: 5 }}>
-                              <Image style={{
-                                  height: 40, width: 40,
-                                  borderRadius: 20,
-                                  elevation: 3,
-                                  backgroundColor: "white",
-                                  alignSelf: "center",
-                                  shadowColor: 'rgba(0,0,0,1)',
-                                  shadowOffset: {
-                                      width: 1,
-                                      height: 1
-                                  },
-                                  shadowOpacity: 0.8,
-                              }} resizeMode={"contain"} source={post.item.image} />
-
-                              <View style={{ paddingLeft: 10, marginTop: 3 }}>
-                                  <Text style={styles.textUserName}>{post.item.name}</Text>
-                                  <Text style={styles.textDesignation}>{post.item.occupation}</Text>
-                              </View>
-
-                          </View>
-
-                          <TouchableOpacity onPress={this._showPostOptions}>
-                              <Text style={{ flex: 1, color: "black", fontSize: 30 }}>...</Text>
-                          </TouchableOpacity>
-                      </View>
-                      <View style={{ marginTop: "5%", marginBottom: "5%", width: "100%", justifyContent: "center", height: 0.5, backgroundColor: "#d3d3d3" }}>
-                      </View>
-                      <View >
-                          <Text style={styles.musicDescription}>{post.item.text}</Text>
-                      </View>
-                      <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
-                          <View style={{ flex: 9, flexDirection: "row" }}>
-                              <View style={{
-                                  borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10, justifyContent: 'center',
-                                  alignItems: "center", flexDirection: 'row', height: 40, width: 80
-                              }}>
-                                  <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../../assets/tickMark.png")} />
-                                  <Text style={styles.textCommentCount}>10</Text>
-                              </View>
-                              <View style={{
-                                  marginLeft: 10, borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
-                                  justifyContent: 'center', alignItems: "center", flexDirection: 'row', height: 40, width: 80
-                              }}>
-                                  <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../../assets/tickMark.png")} />
-                                  <Text style={styles.textCommentCount}>56</Text>
-
-                              </View>
-                          </View>
-                          <View style={{
-                              flex: 1, borderRadius: 20, borderWidth: 1, borderColor: "#F1F1F1", padding: 10,
-                              justifyContent: 'center', alignItems: "center", height: 40
-                          }}>
-                              <Image style={{ width: 20, height: 20, tintColor: "#d3d3d3" }} resizeMode={"contain"} source={require("../../assets/tickMark.png")} />
-                          </View>
-                      </View>
-                      {this.viewComments()}
-                  </View>}
-              <View style={{ width: "100%", flexDirection: "row", backgroundColor: "#d3d3d3" }}>
-                  <Image style={{
-                      height: 40,
-                      width: 40,
-                      marginLeft: 10,
-                      borderRadius: 20,
-                      elevation: 3,
-                      backgroundColor: "white",
-                      alignSelf: "center",
-                      shadowColor: 'rgba(0,0,0,1)',
-                      shadowOffset: {
-                          width: 1,
-                          height: 1
-                      },
-                      shadowOpacity: 0.8,
-                  }} resizeMode={"contain"} source={post.item.image} />
-                  <TextInput
-                      style={styles.textStyle}
-                      onChangeText={(text) => this.setState({ text })}
-                      value={this.state.text}
-                  />
-              </View>
-          </View>
-      )
-  }
   _renderSingleImage = media => {
     return (
       <View>
@@ -625,6 +372,9 @@ const tracks = {};
    * Post Media Construct
    */
   _renderPostBody = (media, postId) => {
+    
+    //   const currentTime = formatCurrentTime(pos);
+   
     switch (media.file_type) {
       case "video":
         return (
@@ -647,6 +397,9 @@ const tracks = {};
           />
         );
       case "audio":
+           let { duration, albumart, album, artistName, title } = getMetadata(
+                media
+              );
         return  (<View style={{ padding: 5, marginBottom: "5%" }}>
         <View style={{ flexDirection: "row", padding: 10 }}>
             <View style={{ flex: 4, }}>
@@ -683,16 +436,30 @@ const tracks = {};
                 </Image>
             </View>
             <View style={{ flex: 6 }}>
-                <Text style={styles.musicTitle}>Kygo</Text>
-                <Text style={styles.musicDescription}>Of Monsters and Men - Dirty Paws (Kygo remix)</Text>
+                <Text style={styles.musicTitle}>{artistName}</Text>
+                <Text style={styles.musicDescription}>{title}</Text>
             </View>
         </View>
         <View style={{ width: "100%", backgroundColor: "#d3d3d6" }}>
-            <Image style={{ width: "100%", height: 50 }} source={require('../../assets/noise.gif')} />
+            {/* <Image style={{ width: "100%", height: 50 }} source={require('../../assets/noise.gif')} /> */}
+
+            <WaveForm
+                            style={{flex: 1,
+                                margin: 10,
+                                backgroundColor: "white",height:50}}
+                            onPress={()=>this.changestate()}
+                            source={{uri: 'https://sample-videos.com/audio/mp3/crowd-cheering.mp3'}}
+                            stop={this.state.stopAudio}
+                            play={this.state.playAudio}
+                            autoPlay={false}
+                            waveFormStyle={{waveColor:'gray', scrubColor:'red',width:'auto'}}
+                        />
+
+
         </View>
         <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
             <Text style={styles.musicCurrentTime}>0.00</Text>
-            <Text style={styles.musicDuration}>2.03</Text>
+            <Text style={styles.musicDuration}>{duration}</Text>
 
         </View>
     </View>)
@@ -712,7 +479,11 @@ const tracks = {};
     }
   };
 
-  
+  changestate = () => {
+    this.setState({ playAudio: !this.state.playAudio });
+}
+
+
   renderPostCard = (postData) => {
     const { feed, callingAPI, _restCalls, pathName } = this.props;
     const { user, like, deletePost, repost } = this.props;

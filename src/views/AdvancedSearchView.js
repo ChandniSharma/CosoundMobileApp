@@ -25,6 +25,9 @@ export default class AdvanceSearchView extends Component {
             isRememberMe: false,
             isClick: false,
             isNotificationShow: false,
+            email:'',
+            password:'', 
+            genres:'',
         }
 
         this.arrayNotificationData = [
@@ -136,10 +139,10 @@ export default class AdvanceSearchView extends Component {
                         <TextInput
                             style={styles.inputStyle}
                             placeholder={'Studio Engineers'}
-                            //onChangeText={(text) => this.setState({ email: text })}
+                            onChangeText={(text) => this.setState({ email: text })}
                             // value={data.email}
                             name={"email"}
-                            onChangeText={val => handleChange('email', val)}
+                            // onChangeText={val => handleChange('email', val)}
                         />
                         {/* {errors.email?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.email}</Animatable.Text>:null} */}
 
@@ -149,8 +152,8 @@ export default class AdvanceSearchView extends Component {
                             style={styles.inputStyle}
                             placeholder={'San Diego'}
 
-                            //onChangeText={(text) => this.setState({ password: text })}
-                            onChangeText={val => handleChange('password', val)}
+                            onChangeText={(text) => this.setState({ password: text })}
+                            // onChangeText={val => handleChange('password', val)}
                             // value={data.password}
                             name={"password"}
                         />
@@ -162,7 +165,7 @@ export default class AdvanceSearchView extends Component {
                             style={styles.inputStyle}
                             placeholder={'Search genres'}
 
-                            //onChangeText={(text) => this.setState({ password: text })}
+                            onChangeText={(text) => this.setState({ password: text })}
                             // onChangeText={val => handleChange('password', val)}
                             // value={data.password}
                             name={"password"}

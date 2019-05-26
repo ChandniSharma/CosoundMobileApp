@@ -71,10 +71,9 @@ export default {
 
     },
     textPublish:{
-        height: 50,
-       
+        marginTop:'10%',
         //  marginBottom:'7%',
-        textAlign: 'center',
+       
         alignSelf: 'center',
         fontSize: 14,
         color: 'white',

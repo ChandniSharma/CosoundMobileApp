@@ -58,7 +58,7 @@ export default{
     },
 
     noNotificationText:{
-        marginTop:'20%',
+       
        // marginBottom:'10%',
         alignSelf:'center',
         fontSize:24,

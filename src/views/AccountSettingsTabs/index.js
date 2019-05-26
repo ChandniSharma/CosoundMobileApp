@@ -26,7 +26,7 @@ const buttonName = {
     changePassword: 'Change Password',
     paymentDetail: "Payment Details",
     other: "Other",
-    notificationSettings:'Notification Settings'
+    notificationSettings: 'Notification Settings'
 }
 
 class AccountSettingsTabs extends React.PureComponent {
@@ -49,12 +49,12 @@ class AccountSettingsTabs extends React.PureComponent {
         this.arrayMobileNumber = [];
         this.arrayButtons = [];
         this.dropDownOptions = [{ name: 'Privacy', image: '' }, { name: 'Communication', image: 'wechat' }, { name: 'Support Center', image: 'customerservice' }],
-        this.arrayData = [{ name: 'Market', image: '', count: 0 }, { name: 'Messages', image: 'message', count: 3 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }]
+            this.arrayData = [{ name: 'Market', image: '', count: 0 }, { name: 'Messages', image: 'message', count: 3 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }]
 
     }
     showNotification() {
         this.setState({ isNotificationShow: true, isSideMenuClick: false })
-      }
+    }
     onClickSettingsButton(name) {
         //   switch(name){
         //       case buttonName.contactInfo:
@@ -96,11 +96,11 @@ class AccountSettingsTabs extends React.PureComponent {
     hidePopup() {
         this.setState({ isSideMenuClick: false })
     }
-    hideNotificationView(){
-        this.setState({isNotificationShow: false})
+    hideNotificationView() {
+        this.setState({ isNotificationShow: false })
     }
     _navigateToNotificationView() {
-        this.setState({isNotificationShow: true})
+        this.setState({ isNotificationShow: true })
         //this.props.navigation.navigate('Notification');
     }
     render() {
@@ -131,110 +131,112 @@ class AccountSettingsTabs extends React.PureComponent {
                         <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />
                     </TouchableOpacity>
 
- 
-                    <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" /> 
+
+                    <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
 
                     <View style={{ flex: 0.3 }} />
-                    <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={()=>this.setState({isNotificationShow: !this.state.isNotificationShow})}>
-                       
+                    <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}>
 
-                        {this.state.isNotificationShow?<Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} />: <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />}
+
+                        {this.state.isNotificationShow ? <Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} /> : <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />}
 
                     </TouchableOpacity>
                 </LinearGradient> : null}
 
                 <View style={{ flex: 1 }}>
-                <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)' }}>
+                    <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)' }}>
 
-<View style={{flex:0.3, backgroundColor:'red'}}>
-                <SettingsHeader
-                    user={user}
-                    profilePic={profilePic}
-                    uploadProfilePic={uploadProfilePic}
-                    uploadable={true}
-                />
-         </View>       
-                <TouchableOpacity style={{ marginTop:'2%',marginBottom: '2%', flex:0.1 }} onPress={() => this.setState({ isDropDownclick: true })}>
-                    <View style={{ flexDirection: 'row' }}>
-                        <Icon3 name="ios-settings" style={{ marginLeft: '2%', marginBottom: '1%', flex: 0.1, color: 'rgb(140,91,204)', fontSize: 25 }} />
-                        <Text style={[styles.titleAccount, { flex: 0.8, marginTop: '0.5%' }]}> Account Settings</Text>
-
-                        <View style={{ width: 30, height: 30, borderRadius: 18, marginRight: '5%', marginBottom: '5%', flex: 0.1, backgroundColor: 'white' }}>
-                            <Icon name="down" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
-                        </View>
-
-                        {/* <Animatable.Image source={require('../../src/assets/Image/arrow_small_down.png')} style={{borderRadius:13,alignSelf:'flex-end' ,width: 26, height: 26 }} /> */}
-                    </View>
-                </TouchableOpacity>
-                <View style={{ flexDirection: "row", alignSelf: 'center', marginTop:'2%', flex:0.1 }}>
-                    <TouchableHighlight style={[styles.buttonSettings]} underlayColor="white" onPress={() => switchTab(0)}>
-                        <Text style={styles.textSettings}>{buttonName.contactInfo}</Text>
-                    </TouchableHighlight>
-
-                    <TouchableHighlight style={styles.buttonSettings} underlayColor="white" onPress={() => switchTab(1)}>
-                        <Text style={styles.textSettings}>{buttonName.details}</Text>
-                    </TouchableHighlight>
-                </View>
-                <View style={{ flexDirection: "row", marginBottom: '2%', marginLeft:'2%', marginRight:'2%', flex:0.1 }}>
-
-                    <TouchableHighlight style={styles.buttonSettings} underlayColor="white" onPress={() => switchTab(2)}>
-                        <Text style={styles.textSettings}>{buttonName.changePassword}</Text>
-                    </TouchableHighlight>
-
-                    <TouchableHighlight style={[styles.buttonSettings]} underlayColor="white" onPress={() => switchTab(4)}>
-                        <Text style={styles.textSettings}>{buttonName.notificationSettings}</Text>
-                    </TouchableHighlight>
-
-                    <TouchableHighlight style={styles.buttonSettings} underlayColor="white" onPress={() => switchTab(4)}>
-                        <Text style={styles.textSettings}>{buttonName.other}</Text>
-                    </TouchableHighlight>
-
-                </View>
-                <View style={{ flex:0.4 }}>
-                    <TabComponent
-                        user={user}
-                        genres={genres}
-                        details={details}
-                        tabIndex={tabIndex}
-                        contactInfo={contactInfo}
-                        _updateUser={_updateUser}
-                        paymentDetails={paymentDetails}
-                        changePassword={changePassword}
-                        _changePassword={_changePassword}
-                    />
-                </View>
-                {this.state.isDropDownclick ?
-                    <View style={styles.viewModalAccount}>
-
-                        <TouchableOpacity style={{ marginTop: '54.0%', backgroundColor: 'white', height: 40 }} onPress={() => this.setState({ isDropDownclick: false })}>
-                            <View style={{ flexDirection: 'row', height: 50, marginTop: '2%' }}>
-                                <Icon3 name="ios-settings" style={{ marginLeft: '2%', marginBottom: '1%', flex: 0.1, color: 'rgb(140,91,204)', fontSize: 25 }} />
-                                <Text style={[styles.titleAccount, { flex: 0.8 }]}> Account Settings</Text>
-                                <View style={{ width: 30, height: 30, borderRadius: 18, marginRight: '5%', marginBottom: '5%', flex: 0.1, backgroundColor: 'white', borderColor: '#8E8E8E', borderWidth: 0.3 }}>
-                                    <Icon name="up" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
-                                </View>
-
-                            </View>
-                        </TouchableOpacity>
-
-                        <View style={styles.viewDropDown}>
-                            <FlatList
-                                style={styles.flatList}
-                                data={this.dropDownOptions}
-                                renderItem={this.renderItem}
-                                keyExtractor={(item, index) => index.toString()}
+                        <View style={{ flex: 0.3, backgroundColor: 'red' }}>
+                            <SettingsHeader
+                                user={user}
+                                profilePic={profilePic}
+                                uploadProfilePic={uploadProfilePic}
+                                uploadable={true}
                             />
                         </View>
-                    </View> : null}
-                
-                 {/* Side Menu button modal  */}
-                 {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation}  hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
+                        <TouchableOpacity style={{ marginTop: '2%', marginBottom: '2%', flex: 0.1 }} onPress={() => this.setState({ isDropDownclick: true })}>
+                            <View style={{ flexDirection: 'row' }}>
+                                <Icon3 name="ios-settings" style={{ marginLeft: '2%', marginBottom: '1%', flex: 0.1, color: 'rgb(140,91,204)', fontSize: 25 }} />
+                                <Text style={[styles.titleAccount, { flex: 0.8, marginTop: '0.5%' }]}> Account Settings</Text>
 
-                       <CustomFooter />
-                </KeyboardAwareScrollView>
-                {/* notification view show */}
-                
-                {this.state.isNotificationShow ? <Notifications navigation={navigation} hidePopup={()=>this.hideNotificationView()} />:null}
+                                <View style={{ width: 30, height: 30, borderRadius: 18, marginRight: '5%', marginBottom: '5%', flex: 0.1, backgroundColor: 'white' }}>
+                                    <Icon name="down" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
+                                </View>
+
+                                {/* <Animatable.Image source={require('../../src/assets/Image/arrow_small_down.png')} style={{borderRadius:13,alignSelf:'flex-end' ,width: 26, height: 26 }} /> */}
+                            </View>
+                        </TouchableOpacity>
+                        <View style={{ flexDirection: "row", alignSelf: 'center', marginTop: '2%', flex: 0.1 }}>
+                            <TouchableHighlight style={[styles.buttonSettings]} underlayColor="white" onPress={() => switchTab(0)}>
+                                <Text style={styles.textSettings}>{buttonName.contactInfo}</Text>
+                            </TouchableHighlight>
+
+                            <TouchableHighlight style={styles.buttonSettings} underlayColor="white" onPress={() => switchTab(1)}>
+                                <Text style={styles.textSettings}>{buttonName.details}</Text>
+                            </TouchableHighlight>
+                        </View>
+                        <View style={{ flexDirection: "row", marginBottom: '2%', marginLeft: '2%', marginRight: '2%', flex: 0.1 }}>
+
+                            <TouchableHighlight style={styles.buttonSettings} underlayColor="white" onPress={() => switchTab(2)}>
+                                <Text style={styles.textSettings}>{buttonName.changePassword}</Text>
+                            </TouchableHighlight>
+
+                            <TouchableHighlight style={[styles.buttonSettings]} underlayColor="white" onPress={() => switchTab(4)}>
+                                <Text style={styles.textSettings}>{buttonName.notificationSettings}</Text>
+                            </TouchableHighlight>
+
+                            <TouchableHighlight style={styles.buttonSettings} underlayColor="white" onPress={() => switchTab(4)}>
+                                <Text style={styles.textSettings}>{buttonName.other}</Text>
+                            </TouchableHighlight>
+
+                        </View>
+                        <View style={{ flex: 0.4 }}>
+                            <TabComponent
+                                user={user}
+                                genres={genres}
+                                details={details}
+                                tabIndex={tabIndex}
+                                contactInfo={contactInfo}
+                                _updateUser={_updateUser}
+                                paymentDetails={paymentDetails}
+                                changePassword={changePassword}
+                                _changePassword={_changePassword}
+                            />
+                        </View>
+                        {this.state.isDropDownclick ?
+                            <View style={styles.viewModalAccount}>
+
+                                <TouchableOpacity style={{ marginTop: '54.0%', backgroundColor: 'white', height: 40 }} onPress={() => this.setState({ isDropDownclick: false })}>
+                                    <View style={{ flexDirection: 'row', height: 50, marginTop: '2%' }}>
+                                        <Icon3 name="ios-settings" style={{ marginLeft: '2%', marginBottom: '1%', flex: 0.1, color: 'rgb(140,91,204)', fontSize: 25 }} />
+                                        <Text style={[styles.titleAccount, { flex: 0.8 }]}> Account Settings</Text>
+                                        <View style={{ width: 30, height: 30, borderRadius: 18, marginRight: '5%', marginBottom: '5%', flex: 0.1, backgroundColor: 'white', borderColor: '#8E8E8E', borderWidth: 0.3 }}>
+                                            <Icon name="up" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
+                                        </View>
+
+                                    </View>
+                                </TouchableOpacity>
+
+                                <View style={styles.viewDropDown}>
+                                    <FlatList
+                                        style={styles.flatList}
+                                        data={this.dropDownOptions}
+                                        renderItem={this.renderItem}
+                                        keyExtractor={(item, index) => index.toString()}
+                                    />
+                                </View>
+                            </View> : null}
+
+                        {/* Side Menu button modal  */}
+                        {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation} hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
+                        { (tabIndex === 0 || tabIndex === 1 || tabIndex === 2 || tabIndex === 3) && (<View style={{ marginTop: '7%' }}>
+                            <CustomFooter />
+                        </View>)}
+
+                    </KeyboardAwareScrollView>
+                    {/* notification view show */}
+
+                    {this.state.isNotificationShow ? <Notifications navigation={navigation} hidePopup={() => this.hideNotificationView()} /> : null}
                 </View>
             </SafeAreaView>
         )

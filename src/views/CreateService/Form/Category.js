@@ -60,7 +60,7 @@ console.log(" ******** categ====", this.props, );
          <TouchableOpacity style={[styles.loginButton, { marginTop: '5%', justifyContent: 'center', }]}
           onPress={()=> submitCategory()}
          >
-            <Text style={styles.textButtonTitle}>Next</Text>
+            <Text style={[styles.textButtonTitle, {marginBottom:'15%'}]}>Next</Text>
         </TouchableOpacity>  
         </Animatable.View>
         </View>

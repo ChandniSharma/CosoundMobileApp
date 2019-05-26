@@ -33,7 +33,7 @@ class Title extends React.PureComponent {
           <TouchableOpacity style={[styles.loginButton, { marginTop: '15%', justifyContent: 'center', }]}
           onPress={()=> submitTitle()}
            >
-            <Text style={styles.loginText}>Next</Text>
+            <Text style={[styles.loginText, {marginBottom:'3%'}]}>Next</Text>
           </TouchableOpacity>
         </Animatable.View>
     

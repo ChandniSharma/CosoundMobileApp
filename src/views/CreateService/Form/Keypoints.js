@@ -84,7 +84,7 @@ showInputWithAddButton = (index) => {
           <TouchableOpacity style={[styles.loginButton, { marginTop: '5%', justifyContent: 'center', }]}
             onPress={() => submitKeypoints()}
           >
-            <Text style={[styles.loginText, {marginTop:'4%'} ]}>Next</Text>
+            <Text style={[styles.textButtonTitle, {marginBottom:'15%'}]}>Next</Text>
           </TouchableOpacity>
         </Animatable.View>
       </View>

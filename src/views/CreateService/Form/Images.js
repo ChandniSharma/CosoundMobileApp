@@ -146,7 +146,7 @@ render()
             <Text style={[styles.textPublish ]}>publish Service</Text>
           </TouchableOpacity> */}
 
-           <TouchableOpacity style={[styles.loginButton, { marginTop: '15%', justifyContent: 'center',marginBottom:'10%' }]}
+           <TouchableOpacity style={[styles.loginButton, { marginTop: '15%', justifyContent: 'center' }]}
           onPress={()=> this.props.navigation.navigate('Dashboard')}
            >
             <Text style={[styles.textPublish ]}>publish Service</Text>

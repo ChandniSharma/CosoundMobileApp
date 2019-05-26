@@ -42,7 +42,7 @@ class Details extends React.PureComponent {
     },
     errors: {}
   };
- 
+
   componentDidMount() {
     this._initializeState();
   }
@@ -64,7 +64,7 @@ class Details extends React.PureComponent {
         last_name: !isNull(user.data.last_name) ? user.data.last_name : "",
         dob: !isNull(user.data.dob) ? moment.utc(user.data.dob) : null,
         artist_name: user.data.artist_name,
-        country_id:user.data.country_id,
+        country_id: user.data.country_id,
         genres: user.data.genres.map(item => {
           const newItem = { value: "", label: "" };
           newItem.value = item.id;
@@ -336,11 +336,11 @@ class Details extends React.PureComponent {
         <View>
           {this.multiSelect && this.multiSelect.getSelectedItemsExt(data.genres)}
         </View>
-      
+
         <Animatable.View ref={"viewTxtInput"}>
 
-         {/* for location selection  */}
-          <SelectInput style={styles.inputStyle} labelStyle={styles.locationLabel} value={data.country_id} options={this.options} onSubmitEditing={val =>this._handleChange('country_id', val)} />
+          {/* for location selection  */}
+          <SelectInput style={styles.inputStyle} labelStyle={styles.locationLabel} value={data.country_id} options={this.options} onSubmitEditing={val => this._handleChange('country_id', val)} />
           {errors.country_id ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.country_id}</Animatable.Text> : null}
           {errors.address ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.address}</Animatable.Text> : null}
           <TextInput
@@ -353,20 +353,20 @@ class Details extends React.PureComponent {
         </Animatable.View>
         {errors.postal_code ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.postal_code}</Animatable.Text> : null}
 
-<View style={{ alignSelf: 'center', justifyContent: 'center', marginTop: '5%', width: '40%', height: '15%', borderRadius: 10, backgroundColor: '#ff277b', marginBottom: '5%' , height:60}}>
+        <View style={{ marginTop: '5%', marginBottom: '5%' }}>
 
 
-        <TouchableOpacity 
-          onPress={() => !details.isRequesting && this._submit()}
-
-        // disabled={changePassword.isRequesting}
-        >
-          {details.isRequesting ? (
-            <ActivityIndicator color='gray' />
-          ) : (
-              <Text style={styles.updateDetailText}>Update</Text>
-            )}
-        </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => !details.isRequesting && this._submit()}
+            style={{ alignSelf: 'center', justifyContent: 'center', width: '40%', borderRadius: 10, backgroundColor: '#ff277b', height: 60 }}
+          // disabled={changePassword.isRequesting}
+          >
+            {details.isRequesting ? (
+              <ActivityIndicator color='gray' />
+            ) : (
+                <Text style={styles.updateDetailText}>Update</Text>
+              )}
+          </TouchableOpacity>
         </View>
       </View>
     );

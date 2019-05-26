@@ -68,7 +68,7 @@ class DeliveryTime extends React.PureComponent {
 <TouchableOpacity style={[styles.loginButton, { marginTop: '15%', justifyContent: 'center', }]}
           onPress={()=> submitDeliveryTime()}
            >
-              <Text style={styles.loginText}>Next</Text>
+              <Text style={[styles.textButtonTitle, {marginBottom:'17%'}]}>Next</Text>
           </TouchableOpacity> 
           
           </Animatable.View>

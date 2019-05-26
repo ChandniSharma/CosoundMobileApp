@@ -405,8 +405,9 @@ class NoService extends Component {
                             <Text style={[styles.noServiceText, { marginLeft: '10%', marginRight: '10%', marginTop: '5%' }]}> You don't offer any services :( </Text>
                             <Text style={[styles.textLight, { alignSelf: 'center', marginTop: '5%' }]}> Want to create your first one now? </Text>
                           
+                          
                             <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton, { marginTop: '5%', justifyContent: 'center', }]} onPress={this.showCreateService}>
-                                <Text style={styles.textButtonTitle} >Create Service</Text>
+                                <Text style={[styles.textButtonTitle,{marginBottom:'15%'}]} >Create Service</Text>
                             </TouchableHighlight>
                             </View> 
                        
@@ -439,9 +440,10 @@ class NoService extends Component {
                                     />
                                 </View>
                             </View> : null}
-<View style={{marginTop:'20%'}}>
-<CustomFooter />
-</View>
+                        <View style={{marginTop:'22%'}}>
+                            <CustomFooter />
+
+                        </View>
                        
                     </KeyboardAwareScrollView>
 

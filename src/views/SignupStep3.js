@@ -126,7 +126,8 @@ export default class SignupStep3Musician extends Component {
 
                 <View style={styles.findingView}>
 
-                  <TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }} onPress={this.chooseFile.bind(this)}>
+                  {/* <TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }} onPress={this.chooseFile.bind(this)}> */}
+                  <TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }}>
                     {!data.url ?
                       <Icon name="camera" style={{ fontSize: 60, marginTop: '50%', color: 'gray', alignSelf: 'center', }} /> :
                       <Image

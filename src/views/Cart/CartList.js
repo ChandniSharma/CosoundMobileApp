@@ -123,7 +123,7 @@ class CartList extends React.PureComponent {
 
     return (
 
-      <View style={{ width: '100%', backgroundColor: 'white', marginTop:'5%', height:'40%' }}>
+      <View style={{ width: '100%', backgroundColor: 'white', height:'40%', marginBottom:'5%' }}>
        
         <View>
         <Text style={[styles.titleAccount, {marginTop:'5%', marginLeft:'2%'} ]}>Your Cart</Text>

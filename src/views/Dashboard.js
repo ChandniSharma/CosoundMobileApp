@@ -786,10 +786,13 @@ export default class DashboardComponent extends Component {
 
                      
                     </View>
-                    {!userFeed.isRequesting && <CustomFooter />}
-                </KeyboardAwareScrollView>:
-                  <View>
-            <Notifications /></View> 
+                    {!userFeed.isRequesting ? <View style={{marginTop:'40%'}}> 
+                                            <CustomFooter /> 
+                                            </View> 
+                              :<View />
+                    }
+                </KeyboardAwareScrollView>: <View>
+                                   <Notifications /></View> 
 }
 
                 {this.state.isBottomViewShow ?

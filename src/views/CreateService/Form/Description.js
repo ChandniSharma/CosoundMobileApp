@@ -71,7 +71,7 @@ class DescriptionForm extends React.PureComponent {
         <TouchableOpacity style={[styles.loginButton, { marginTop: '15%', justifyContent: 'center', }]}
           onPress={() => submitDescription()}
         >
-          <Text style={styles.loginText}>Next</Text>
+          <Text style={[styles.textButtonTitle, {marginBottom:'15%'}]}>Next</Text>
         </TouchableOpacity>
         </Animatable.View>
       </View>

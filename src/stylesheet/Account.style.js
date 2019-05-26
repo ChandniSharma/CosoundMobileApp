@@ -96,7 +96,7 @@ export default {
         fontSize:14,
         color:'white',
         fontFamily:'Montserrat-light',
-       // fontWeight:'100',
+           // fontWeight:'100',
     },
     loginText:{
         // marginTop:'5%',
@@ -151,7 +151,7 @@ export default {
         fontSize: 16,
         color:'white',
         fontWeight:'500',
-        marginBottom:'10%'
+        // marginBottom:'15%'
     },
     findingView: {
         backgroundColor: 'white',

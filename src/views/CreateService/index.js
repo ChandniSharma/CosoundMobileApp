@@ -12,6 +12,9 @@ import SideMenu from '../common/SideMenu';
 import Logo from '../common/logo';
 import Notifications from '../../containers/Notifications';
 import SettingsHeader from "../common/SettingsHeader";
+const { height, width } = Dimensions.get('window');
+const deviceHeight = height;
+let deviceWidth = width;
 //TabHeader
 // import { servicesHeaders } from "../../constants/tabs";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -71,22 +74,25 @@ class CreateServiceComponent extends React.Component {
           </TouchableOpacity>
         </LinearGradient> : null}
 
-        <View style={{ flex: 1, backgroundColor: 'pink' }}>
+        <View style={{ flex: 1 }}>
           <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)',overflow: 'scroll' }}>
 
-            <View style={{ flex: 0.3, backgroundColor: 'red' }}>
-              <SettingsHeader
-                user={this.props.user}
-                uploadable={false}
-              />
-            </View>
-            <View style={{flex:0.2}}>
-              <Text style={[styles.noServiceText, { marginLeft: '10%', marginRight: '10%', marginTop: '5%', textAlign: 'center' }]}>
-                {"Nice! Let's create your service!"}
-              </Text>
-            </View>
-            <View style={{flex:0.5, marginBottom:'10%'}}>
-              <CreateServiceForm {...this.props} />
+            <View style={{minHeight:deviceHeight-150}}>
+              <View style={{ flex: 0.3 }}>
+                <SettingsHeader
+                  user={this.props.user}
+                  uploadable={false}
+                />
+              </View>
+              <View style={{flex:0.2}}>
+                <Text style={[styles.noServiceText, { marginLeft: '10%', marginRight: '10%', marginTop: '5%', textAlign: 'center' }]}>
+                  {"Nice! Let's create your service!"}
+                </Text>
+              </View>
+              <View style={{flex:0.5, marginBottom:'10%'}}>
+                <CreateServiceForm {...this.props} />
+
+              </View>
 
             </View>
 
@@ -94,8 +100,14 @@ class CreateServiceComponent extends React.Component {
             { /* <FormToast /> */}
             {/* Side Menu button modal  */}
             {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation}  hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
-            <CustomFooter />
+
+            <View style={{marginTop:'10%'}}>
+              <CustomFooter />
+            </View>
+
           </KeyboardAwareScrollView>
+
+
 
           {/* notification view show */}
           {this.state.isNotificationShow ? <Notifications navigation={this.props.navigation} hidePopup={() => this.hideNotificationView()} /> : null}

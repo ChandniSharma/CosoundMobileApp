@@ -86,7 +86,7 @@ class NotificationList extends React.PureComponent {
         {!isError(notifications) &&
           !notifications.isRequesting &&
           isEmpty(notifications.data) && (
-            <View>
+            <View style={{alignSelf:'center', justifyContent:'center', height:100}}>
               <Text style={styles.noNotificationText}>No notifications to show </Text>
             </View>)}
 

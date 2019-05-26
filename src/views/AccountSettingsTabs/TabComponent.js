@@ -1,6 +1,7 @@
 import React from "react";
 
-import { ContactInfo, Details, ChangePassword, Payment } from "./Tabs";
+
+import { ContactInfo, Details, ChangePassword, Payment, NotFound } from "./Tabs";
 
 const TabComponent = ({ tabIndex, ...rest }) => {
   switch (tabIndex) {
@@ -11,9 +12,9 @@ const TabComponent = ({ tabIndex, ...rest }) => {
     case 2:
       return <ChangePassword {...rest} />;
     case 3:
-      return <Payment {...rest} />;
+      return <NotFound {...rest} />;
     default:
-      return null;
+      return <NotFound {...rest} />;
   }
 };
 

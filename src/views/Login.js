@@ -94,7 +94,7 @@ export default class Login extends Component {
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245, 245,245)', flex: 1}}>
                    
-                    <Animatable.View ref={"mainView"} style={[styles.container, { backgroundColor: 'transparent', width: '100%' }]}>
+                    <Animatable.View ref={"mainView"} style={[styles.container, { backgroundColor: 'transparent',width: '100%' }]}>
 
                     <View style={{top:0,position:'absolute'}}>
                         <WaveAnimation style={{backgroundColor:'red'}} />
@@ -191,12 +191,17 @@ export default class Login extends Component {
                         </TouchableHighlight>
                         </View>
 
+
                     </Animatable.View>
                     <View style={{marginTop:'22%'}}>
                     <CustomFooter />
                     </View>
-                   
+
+
                 </KeyboardAwareScrollView>
+
+
+
 
             </SafeAreaView>
 
