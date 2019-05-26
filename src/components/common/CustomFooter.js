@@ -12,7 +12,7 @@ export default class CustomFooter extends Component{
     render(){
         
         return(
-            <View style={[styles.viewBottom, {height:100, width:'100%'}]}>
+            <View style={styles.viewBottom}>
             <Text style={styles.textBottomMark}>(c) elit. Nulla 2018</Text>
             <View style={styles.viewShareButtons}>
                 <TouchableOpacity style={styles.shareButtons}>
@@ -74,6 +74,9 @@ const styles = {
        //alignItems: 'space-between',
        justifyContent:'center',
        flexDirection:'row',
+       height:100, width:'100%',
+position:'absolute',
+bottom: 0
     }
     
 }

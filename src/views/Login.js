@@ -192,7 +192,7 @@ export default class Login extends Component {
                         </View>
 
                     </Animatable.View>
-                    <View style={{marginTop:'22%'}}>
+                    <View>
                     <CustomFooter />
                     </View>
                    
