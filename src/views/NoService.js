@@ -439,9 +439,10 @@ class NoService extends Component {
                                     />
                                 </View>
                             </View> : null}
-<View style={{marginTop:'20%'}}>
-<CustomFooter />
-</View>
+                        <View style={{marginTop:'10%'}}>
+                            <CustomFooter />
+
+                        </View>
                        
                     </KeyboardAwareScrollView>
 

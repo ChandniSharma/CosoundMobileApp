@@ -72,11 +72,10 @@ const styles = {
         // marginTop:20,
         backgroundColor:'black',
        //alignItems: 'space-between',
-       justifyContent:'center',
-       flexDirection:'row',
-       height:100, width:'100%',
-position:'absolute',
-bottom: 0
+        justifyContent:'center',
+        flexDirection:'row',
+        height:100,
+        width:'100%',
     }
     
 }
