@@ -45,13 +45,13 @@ export default class AdvanceSearchView extends Component {
             },
         ]
     }
-    fadeIn = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+    fadeIn = () => this.refs.mainView.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
     fadeInUp = () => this.refs.notificationView.fadeInUp(500).then(endState => console.log(" end state"))
     // bounceInUp = () => this.refs.audio.bounceInUp(300).then(endState => endState.finished ?this.flipFirst():null);
 
 
     componentDidMount() {
-        // this.fadeIn();
+         this.fadeIn();
 
     }
     onClickRememberMe = () => {
@@ -109,22 +109,24 @@ export default class AdvanceSearchView extends Component {
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
 
-                <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors= {['rgb(42, 173,177)', 'rgb(131, 110, 198)', 'rgb(134, 103, 200)']} style={{ flexDirection: 'row', height: 100, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
+                <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={['rgb(42, 173,177)', 'rgb(131, 110, 198)', 'rgb(134, 103, 200)']} style={{ flexDirection: 'row', height: 100, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
 
-                <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.goToTabIndex(1)} />
+                    <BackButton style={{ fontSize: 30, marginTop: '10%', marginLeft: '4%' }} onPress={() => this.props.navigation.goBack(null)} />
 
 
                     <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
 
                     <View style={{ flex: 0.3 }} />
                     <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}>
-                        <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />
+
+                        {this.state.isNotificationShow?<Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} />:<Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />}
+                        
                     </TouchableOpacity>
-                </LinearGradient> 
+                </LinearGradient>
 
 
-               
-                <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.8 }}>
+
+               {!this.state.isNotificationShow? <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9}}>
 
                     <Animatable.View ref={"mainView"} style={styles.container}>
 
@@ -184,11 +186,20 @@ export default class AdvanceSearchView extends Component {
 
 
                     </Animatable.View>
-                    <CustomFooter />
-                </KeyboardAwareScrollView>
-                {/* notification view show */}
 
-                {this.state.isNotificationShow ? <Notifications /> : null}
+                    
+                     <View style={{flex:0.1, marginTop:'12%'}}>
+                     <CustomFooter />
+                         </View>
+                   
+
+                </KeyboardAwareScrollView>:
+                
+        <View>
+            <Notifications /></View> 
+        }
+
+
 
 
 

@@ -49,6 +49,9 @@ class Cart extends React.PureComponent {
   hidePopup() {
     this.setState({ isSideMenuClick: false })
   }
+  showNotification() {
+    this.setState({ isNotificationShow: true, isSideMenuClick: false })
+  }
   render() {
     const { cart, fetchCart, _removeFromCart, removeFromCart } = this.props;
     const { paginationData } = cart;
@@ -60,18 +63,16 @@ class Cart extends React.PureComponent {
           <TouchableOpacity style={{ color: 'white', marginTop: '14%', flex: 0.1, marginLeft: '4%' }} onPress={() => this.showPopup()}>
             <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />
           </TouchableOpacity>
-
-
           <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
-
           <View style={{ flex: 0.3 }} />
           <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}>
-            <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />
+          {this.state.isNotificationShow?<Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} />:<Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />}
+                      
           </TouchableOpacity>
         </LinearGradient> : null}
 
         <View style={{ flex: 1 }}>
-          <KeyboardAwareScrollView style={{ backgroundColor: 'white' }}>
+        {!this.state.isNotificationShow ? <KeyboardAwareScrollView style={{ backgroundColor: 'white' }}>
             {/* <Text style={[styles.titleAccount, {marginTop:'2%', marginLeft:'2%'} ]}>Your Service</Text> */}
             <View style={{ flex: 0.5 }}>
               <Paginator
@@ -93,13 +94,12 @@ class Cart extends React.PureComponent {
               <CustomFooter />
             </View>
 
-          </KeyboardAwareScrollView>
+          </KeyboardAwareScrollView> : 
+          <View>
+            <Notifications hidePopup={() => this.hideNotificationView()} />
+          </View>}
           {/* Side Menu button modal  */}
-          {this.state.isSideMenuClick ? <SideMenu hidePopup={() => this.hidePopup()} /> : null}
-          {/* notification view show */}
-          {this.state.isNotificationShow ? <Notifications hidePopup={() => this.hideNotificationView()} /> : null}
-
-
+          {this.state.isSideMenuClick ? <SideMenu hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
         </View>
       </SafeAreaView>
 

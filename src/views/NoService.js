@@ -17,7 +17,7 @@ import Icon4 from "react-native-vector-icons/MaterialIcons";
 import Icon5 from 'react-native-vector-icons/FontAwesome';
 import Icon6 from 'react-native-vector-icons/FontAwesome5';
 import CustomFooter from '../components/common/CustomFooter'
-import Notifications from '../../src/views/common/Notifications';
+import Notifications from '../containers/Notifications'
 import MultiSelect from 'react-native-multiple-select';
 
 // import custom from './c'
@@ -303,7 +303,7 @@ export default class NoService extends Component {
 
                     <View style={{ flex: 0.3 }} />
                     <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}>
-                        <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />
+                    {this.state.isNotificationShow?<Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} />: <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />}
                     </TouchableOpacity>
                 </LinearGradient> : null}
 

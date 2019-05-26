@@ -234,7 +234,7 @@ class SideMenu extends Component {
         } else if (item.index === 3) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
-                <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}>
+                <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.props.showNotification()}>
 
                     <View style={{ flexDirection: "row" }}>
                         <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, tintColor: 'white' }} />
@@ -313,16 +313,7 @@ class SideMenu extends Component {
                             name="query"
 
                         />
-                        {/* <input
-            type="text"
-            name="query"
-            value={query}
-            autoComplete="off"
-            placeholder={placeholder}
-            onFocus={this._onFocus}
-            onChange={this._onChange}
-          /> */}
-
+                        
                     </View>
                     {/* Search bar flatlist  */}
                     {isRequesting && (
@@ -380,7 +371,7 @@ class SideMenu extends Component {
                     />
                 </KeyboardAwareScrollView>
                  {/* notification view show */}
-          {this.state.isNotificationShow ? <Notifications navigation={this.props.navigation} hidePopup={() => this.hideNotificationView()} /> : null}
+          {/* {this.state.isNotificationShow ? <Notifications /> : null} */}
       
             </Animatable.View>
 

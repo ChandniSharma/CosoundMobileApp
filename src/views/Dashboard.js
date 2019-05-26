@@ -231,7 +231,7 @@ export default class DashboardComponent extends Component {
                 // You can also display the image using data:
                 // let source = { uri: 'data:image/jpeg;base64,' + response.data };
                 this.setState({
-                    isImageLoadedFromLiab: true,
+                    isImageLoadedFromLiab: false,
                     filePath: source
                 });
             }

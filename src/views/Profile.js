@@ -264,8 +264,8 @@ export default class ProfileComponent extends Component {
                         />
 
 
-                        <SoundCloudWaveform waveformUrl="https://w1.sndcdn.com/PP3Eb34ToNki_m.png" setTime={this.setTime}
-                                            percentPlayed={this.state.counter} percentPlayable={1} />
+                        {/* <SoundCloudWaveform waveformUrl="https://w1.sndcdn.com/PP3Eb34ToNki_m.png" setTime={this.setTime}
+                                            percentPlayed={this.state.counter} percentPlayable={1} /> */}
                         <View style={{
                             width: "100%",
                             backgroundColor: "white",

@@ -14,7 +14,7 @@ import Hamburger from 'react-native-hamburger';
 import SideMenu from '../../src/views/common/SideMenu';
 import Logo from '../../src/views/common/logo';
 import CustomFooter from '../components/common/CustomFooter';
-import Notifications from '../../src/views/common/Notifications'
+import Notifications from '../containers/Notifications'
 //TabHeader
 // import { servicesHeaders } from "../../constants/tabs";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -67,8 +67,10 @@ export default class CheckoutComponent extends Component {
 
           <View style={{ flex: 0.3 }} />
           <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}>
-            <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />
-          </TouchableOpacity>
+          {this.state.isNotificationShow?<Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} />: <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />}
+
+
+</TouchableOpacity>
         </LinearGradient> : null}
 
         <View style={{ flex: 1 }}>
