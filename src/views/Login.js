@@ -64,7 +64,7 @@ export default class Login extends Component {
     //     }
     // }
     fBLogin() {
-       /* LoginManager.logOut();
+        LoginManager.logOut();
         console.log(" in fb login button clcick ed");
         LoginManager.setLoginBehavior('browser');
         LoginManager.logInWithReadPermissions(['public_profile']).then(
@@ -79,14 +79,14 @@ export default class Login extends Component {
             function (error) {
                 alert('Login failed with error: ' + error);
             }
-        ); */
+        );
     }
-googleLogin(){
+    googleLogin(){
 
-}
-twitterLogin(){
+    }
+    twitterLogin(){
 
-}
+    }
     render() {
         const { data, errors, handleChange, login, onSubmit, fetching, navigateToForgotPassword, navigateToGetStartedView, onClickRememberMe } = this.props;
         const error = checkError(login.error);

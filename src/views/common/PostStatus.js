@@ -73,7 +73,9 @@ class PostStatus extends React.PureComponent {
   };
 
   _isValid = (field = null) => {
+
     const validate = Validator.createValidator(
+
       {
         body: ["requiredIf|files"],
         files: ["requiredIf|body", "maxArrayLength|5", "fileSize|10000000"]
@@ -83,6 +85,7 @@ class PostStatus extends React.PureComponent {
     );
 
     const { isValid, errors } = validate;
+
     this.setState({ errors });
     return isValid;
   };
@@ -131,6 +134,7 @@ class PostStatus extends React.PureComponent {
   _handleFileChange = (name, files) => {
    // const { name, files } = e.target;
     const { files: filesInState } = this.state;
+
     let newFiles = [...filesInState];
     each(files, file => {
       if (file) {
@@ -156,6 +160,7 @@ class PostStatus extends React.PureComponent {
    */
 
   _setUrl = (file, id) => {
+
     fileReader(file).then(url => {
       this.setState(
         {
@@ -198,7 +203,7 @@ class PostStatus extends React.PureComponent {
         const { postStatusActions, location } = this.props;
         const { pathname } = this.props;
         const data = Object.assign({}, { body, files });
-console.log("call submit function = data = ", data)
+
         postStatusActions.submit(data, pathname).then(() => {
           this._resetState();
         });
@@ -207,27 +212,8 @@ console.log("call submit function = data = ", data)
   };
   
   onClickMusicVideoImage(type) {
-this.setState({current:type});
-      // if (type === 'music') {
-      //     this.setState({
-            
-      //         isMusicSingleViewShow: true,
-      //         isImageSingleViewShow: false,
-      //         isVideoSingleViewShow: false
-      //     });
-      // } else if (type === 'video') {
-      //     this.setState({
-      //         isMusicSingleViewShow: false,
-      //         isImageSingleViewShow: false,
-      //         isVideoSingleViewShow: true
-      //     });
-      // } else {
-      //     this.setState({
-      //         isMusicSingleViewShow: false,
-      //         isImageSingleViewShow: true,
-      //         isVideoSingleViewShow: false
-      //     });
-      // }
+    this.setState({current:type});
+
       if(!this.state.isClickToUpload){
           this.setState({isClickToUpload:true})
           this.chooseFile()
@@ -245,41 +231,41 @@ this.setState({current:type});
     };
 
     ImagePicker.showImagePicker(options, response => {
-        console.log('Responseimage ======**********= ', response);
+
 
         if (response.didCancel) {
-            console.log('User cancelled image picker');
+
             this.setState({
-                isImageLoadedFromLiab: false
+                isClickToUpload: false
             })
         } else if (response.error) {
-            console.log('ImagePicker Error: ', response.error);
+
             this.setState({
-                isImageLoadedFromLiab: false
+                isClickToUpload: false
             })
         } else if (response.customButton) {
-            console.log('User tapped custom button: ', response.customButton);
+
             alert(response.customButton);
             this.setState({
-                isImageLoadedFromLiab: false
+                isClickToUpload: false
             })
         } else {
             let source = response;
             // You can also display the image using data:
             // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-            
+
             this.setState({
-                isImageLoadedFromLiab: false,
+                isClickToUpload: true,
                 filePath: source
             });;
-        this._handleFileChange("files", [response])
+            this._handleFileChange("files", [response])
         }
     });
 };
   render() {
     const { body, current, urls, errors } = this.state;
-    console.log("current state====", this.state)
     const { postStatus } = this.props;
+
       return (
         <View>
         <View style={styles.viewWriteSomething}>
@@ -299,14 +285,14 @@ this.setState({current:type});
               removeMedia={this._removeMedia}
             />
 
-        {!this.state.isImageLoadedFromLiab ?
-            <View /> :
+        {this.state.filePath ?
+
             <Image
                 source={{
                     uri: 'data:image/jpeg;base64,' + this.state.filePath.data,
                 }}
                 style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
-            />}
+            />:<View /> }
         <View style={styles.midView}>
             {this.state.current==='music' ? <View style={{ backgroundColor: 'rgb(140,91,203)', height: 1, width: '30%', marginRight: '5%' }} /> : <View style={{ backgroundColor: 'transparent', height: 1, width: '30%', marginRight: '5%' }} />}
 
