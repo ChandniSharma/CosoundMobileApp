@@ -65,28 +65,34 @@ class Cart extends React.PureComponent {
           <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
 
           <View style={{ flex: 0.3 }} />
-          <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]}  onPress={()=>this.setState({isNotificationShow: !this.state.isNotificationShow})}>
+          <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}>
             <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />
           </TouchableOpacity>
         </LinearGradient> : null}
 
         <View style={{ flex: 1 }}>
-          <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex:1 }}>
+          <KeyboardAwareScrollView style={{ backgroundColor: 'white' }}>
             {/* <Text style={[styles.titleAccount, {marginTop:'2%', marginLeft:'2%'} ]}>Your Service</Text> */}
+            <View style={{ flex: 0.5 }}>
+              <Paginator
+                isLoaderInternal
+                cart={cart}
+                callAPI={fetchCart}
+                component={CartList}
+                page={paginationData.page}
+                removeFromCart={removeFromCart}
+                _removeFromCart={_removeFromCart}
+                page_count={paginationData.page_count}
+              />
 
-            <Paginator
-              isLoaderInternal
-              cart={cart}
-              callAPI={fetchCart}
-              component={CartList}
-              page={paginationData.page}
-              removeFromCart={removeFromCart}
-              _removeFromCart={_removeFromCart}
-              page_count={paginationData.page_count}
-            />
+            </View>
+            <View style={{ flex: 0.3 }}>
+              <Sidebar cart={cart} />
+            </View>
+            <View style={{ flex: 0.2 }}>
+              <CustomFooter />
+            </View>
 
-            <Sidebar cart={cart} />
-<CustomFooter />
           </KeyboardAwareScrollView>
           {/* Side Menu button modal  */}
           {this.state.isSideMenuClick ? <SideMenu hidePopup={() => this.hidePopup()} /> : null}

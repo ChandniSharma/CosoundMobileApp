@@ -84,7 +84,7 @@ const AppStackNavigator = createStackNavigator({
     UserProfile:{screen:UserProfile},
    // Marketplace:{screen:MarketPlace},
 }, {
-        initialRouteName: 'Home',
+        initialRouteName: 'Login',
         gesturesEnabled: false,
         headerMode: 'none',
     })

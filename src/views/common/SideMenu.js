@@ -19,7 +19,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { searchActions } from "../../actions/";
 import { isEmpty, isNull } from "lodash";
-import Notifications from '../common/Notifications';
+import Notifications from '../../containers/Notifications';
 
 import {
     getSubcategories, getThumbnail, getUsername, getUserInfo, isError,
@@ -380,7 +380,7 @@ class SideMenu extends Component {
                     />
                 </KeyboardAwareScrollView>
                  {/* notification view show */}
-          {/* {this.state.isNotificationShow ? <Notifications navigation={this.props.navigation} hidePopup={() => this.hideNotificationView()} /> : null} */}
+          {this.state.isNotificationShow ? <Notifications navigation={this.props.navigation} hidePopup={() => this.hideNotificationView()} /> : null}
       
             </Animatable.View>
 

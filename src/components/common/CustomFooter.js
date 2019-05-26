@@ -69,7 +69,7 @@ const styles = {
         justifyContent:'center'
     },
     viewBottom:{
-        marginTop:20,
+        // marginTop:20,
         backgroundColor:'black',
        //alignItems: 'space-between',
        justifyContent:'center',

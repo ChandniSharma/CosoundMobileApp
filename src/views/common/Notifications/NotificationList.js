@@ -90,7 +90,8 @@ class NotificationList extends React.PureComponent {
               <Text style={styles.noNotificationText}>No notifications to show </Text>
             </View>)}
 
-        {notifications && notifications.data && <FlatList
+        {notifications && notifications.data && 
+        <FlatList
           renderItem={this.renderItem}
           extraData={this.props}
           data={notifications.data}

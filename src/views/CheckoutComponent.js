@@ -5,9 +5,11 @@ import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dim
 import styles from '../stylesheet/Checkout.style';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from "react-native-vector-icons/AntDesign";
-import Icon1 from "react-native-vector-icons/Entypo";
+import Icon1 from "react-native-vector-icons/Zocial";
 import Icon2 from "react-native-vector-icons/EvilIcons";
-import Icon3 from "react-native-vector-icons/Ionicons";
+import Icon3 from "react-native-vector-icons/FontAwesome";
+import Icon4 from "react-native-vector-icons/MaterialIcons";
+
 import Hamburger from 'react-native-hamburger';
 import SideMenu from '../../src/views/common/SideMenu';
 import Logo from '../../src/views/common/logo';
@@ -18,7 +20,6 @@ import Notifications from '../../src/views/common/Notifications'
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { SafeAreaView } from 'react-navigation';
 import CardView from '../views/common/CardView';
-
 import { getServiceLink, getThumbnail, getServiceThumbnail } from "../utils";
 import Card from "../views/common/CardView";
 import SidebarCheckout from "./Checkout/SideBarCheckout";
@@ -85,30 +86,31 @@ export default class CheckoutComponent extends Component {
               {/* A/c Balance View */}
               <CardView>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: '5%', marginBottom: '5%', }}>
-                  <TouchableOpacity style={styles.circleButton} >
+                <View style={{ flexDirection: 'row', marginTop: '5%', marginBottom: '5%' }}>
+                  <TouchableOpacity style={[styles.circleButton, {marginLeft:'5%'} ]} >
                     {/* <Icon name="checkcircleo" style={{ fontSize: '', marginLeft: '5%', }} /> */}
                   </TouchableOpacity>
-                  <Image style={{ marginLeft: '2%', width: 40, height: 40, borderRadius: 20 }} source={require('../../src/assets/avatar1.jpg')} />
+                  <Icon4 name= "account-balance"  style={{marginLeft: '2%',fontSize:25}}/>
+                 
                   {/* <Image style={{ marginLeft: '2%', width: 80, height: 80, borderRadius: 40 }} source={{ uri: getThumbnail(user.data) }} />  */}
                   <Text style={[styles.subTitle, { marginLeft: '2%', }]}>Account balance</Text>
 
                 </View>
                 {/* Single line row */}
-                <View style={{ width: '95%', height: 0.5, backgroundColor: 'lightgray', alignSelf: 'center', bottom: 0 }} />
+                <View style={{ width: '95%', height: 0.5, backgroundColor: 'lightgray', alignSelf: 'center', bottom: 5 }} />
               </CardView>
 
               {/* Credit Card View */}
               <CardView>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: '5%', marginBottom: '5%', }}>
-                  <TouchableOpacity style={styles.circleButton} >
+                <View style={{ flexDirection: 'row',  marginTop: '5%', marginBottom: '5%', }}>
+                  <TouchableOpacity style={[styles.circleButton, {marginLeft:'5%'} ]} >
                     {/* <Icon name="checkcircleo" style={{ fontSize: '', marginLeft: '5%', }} /> */}
                   </TouchableOpacity>
 
                   {/* <Image source={{uri:getCardIcon(cardDetails.data)}} /> this will replace user image*/}
 
-                  <Image style={{ marginLeft: '2%', width: 40, height: 40, borderRadius: 20 }} source={require('../../src/assets/avatar1.jpg')} />
+                  <Icon name="creditcard" style={{marginLeft: '2%',fontSize:25}}/>
                   {/* <Image style={{ marginLeft: '2%', width: 80, height: 80, borderRadius: 40 }} source={{ uri: getThumbnail(user.data) }} />  */}
                   <Text style={[styles.subTitle, { marginLeft: '2%', }]}>Credit Card</Text>
 
@@ -121,14 +123,14 @@ export default class CheckoutComponent extends Component {
               {/* Credit Card View */}
               <CardView>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: '5%', marginBottom: '5%', }}>
-                  <TouchableOpacity style={styles.circleButton} >
+                <View style={{ flexDirection: 'row', marginTop: '5%', marginBottom: '5%', }}>
+                  <TouchableOpacity style={[styles.circleButton, {marginLeft:'5%'} ]} >
                     {/* <Icon name="checkcircleo" style={{ fontSize: '', marginLeft: '5%', }} /> */}
                   </TouchableOpacity>
 
                   {/* <Image source={{uri:getCardIcon(cardDetails.data)}} /> this will replace user image*/}
+                  <Icon1 name="paypal" style={{marginLeft: '2%',fontSize:25}}/>
 
-                  <Image style={{ marginLeft: '2%', width: 40, height: 40, borderRadius: 20 }} source={require('../../src/assets/avatar1.jpg')} />
                   {/* <Image style={{ marginLeft: '2%', width: 80, height: 80, borderRadius: 40 }} source={{ uri: getThumbnail(user.data) }} />  */}
                   <Text style={[styles.subTitle, { marginLeft: '2%', }]}>Paypal</Text>
 
@@ -139,14 +141,15 @@ export default class CheckoutComponent extends Component {
 
               {/* Credit Card View */}
               <CardView>
-                <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: '5%', marginBottom: '5%', }}>
-                  <TouchableOpacity style={styles.circleButton} >
+                <View style={{ flexDirection: 'row', marginTop: '5%', marginBottom: '5%', }}>
+                  <TouchableOpacity style={[styles.circleButton, {marginLeft:'5%'} ]} >
                     {/* <Icon name="checkcircleo" style={{ fontSize: '', marginLeft: '5%', }} /> */}
                   </TouchableOpacity>
 
                   {/* <Image source={{uri:getCardIcon(cardDetails.data)}} /> this will replace user image*/}
+                  <Icon3 name="bitcoin" style={{marginLeft: '2%',fontSize:25}}/>
 
-                  <Image style={{ marginLeft: '2%', width: 40, height: 40, borderRadius: 20 }} source={require('../../src/assets/avatar1.jpg')} />
+                  
                   {/* <Image style={{ marginLeft: '2%', width: 80, height: 80, borderRadius: 40 }} source={{ uri: getThumbnail(user.data) }} />  */}
                   <Text style={[styles.subTitle, { marginLeft: '2%', }]}>Bitcoin</Text>
 
@@ -157,12 +160,12 @@ export default class CheckoutComponent extends Component {
 
               {/* Credit Card View */}
               <CardView>
-                <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: '5%', marginBottom: '5%', }}>
+                <View style={{ flexDirection: 'row', marginTop: '5%', marginBottom: '5%', }}>
 
                   {/* <Image source={{uri:getCardIcon(cardDetails.data)}} /> this will replace user image*/}
 
                   {/* <Image style={{ marginLeft: '2%', width: 80, height: 80, borderRadius: 40 }} source={{ uri: getThumbnail(user.data) }} />  */}
-                  <Text style={[styles.addPaymentText, { marginLeft: '2%', }]}>Add Payment Option</Text>
+                  <Text style={[styles.addPaymentText, { marginLeft: '5%', }]}>Add Payment Option</Text>
 
                   <TouchableOpacity style={{ marginLeft: '2%' }} >
                     <Icon name="pluscircle" style={{ fontSize: 30, marginLeft: '2%', color: '#20ACAC' }} />
@@ -179,8 +182,9 @@ export default class CheckoutComponent extends Component {
 
             </View>
             <View style={{ flex: 0.3 }}>
-
+            <CustomFooter />
             </View>
+           
           </KeyboardAwareScrollView>
 
           {/* Side Menu button modal  */}
@@ -189,7 +193,7 @@ export default class CheckoutComponent extends Component {
           {/* notification view show */}
           {this.state.isNotificationShow ? <Notifications navigation={navigation} hidePopup={() => this.hideNotificationView()} /> : null}
         </View>
-        <CustomFooter />
+       
       </SafeAreaView>
     )
   }

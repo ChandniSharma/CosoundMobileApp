@@ -204,7 +204,7 @@ export default{
         marginRight:'2%'
     },
     viewCenterButton:{
-      marginBottom:'10%'
+     
     },
     buttonCenter: {
         borderRadius: 22,

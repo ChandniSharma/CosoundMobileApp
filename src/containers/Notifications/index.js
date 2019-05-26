@@ -131,6 +131,8 @@ return(
     headerCategories={headerCategories}
     notificationCount={notificationCount}
     fetchNotifications={this._fetchNotifications}
+    navigation ={this.props.navigation}
+
     />
 )
 

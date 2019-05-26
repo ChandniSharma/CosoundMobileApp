@@ -13,7 +13,7 @@ class Sidebar extends React.PureComponent {
   render() {
     const { cart } = this.props;
       return (
-        <View style={{height:'80%', marginBottom:'40%'}}>
+        <View style={{height:'80%', marginBottom:'40%', backgroundColor:'rgb(245,245,245)'}}>
       <View style={{backgroundColor:'white', alignSelf:'center', borderRadius:20, marginTop:'5%', marginBottom:'5%', width:'75%'}}>
             <Text style={[styles.titleAccount, {alignSelf:'center', marginBottom:'2%', marginTop:'4%'}]}>Summary</Text>
 

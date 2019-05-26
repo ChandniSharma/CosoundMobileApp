@@ -781,16 +781,16 @@ export default class DashboardComponent extends Component {
 
                      
                     </View>
-                    <CustomFooter />
+                    {!userFeed.isRequesting && <CustomFooter />}
                 </KeyboardAwareScrollView>
 
                 {this.state.isBottomViewShow ?
                     <Animatable.View ref={"viewBottomWhenScroll"} style={styles.viewBottomWhenScroll}>
                         <View style={{ flexDirection: 'row', margin: '2%' }}>
-                            <Image style={styles.imgUserInBottom} source={require('../assets/avatar-main-1.jpg')} />
+                            <Image style={styles.imgUserInBottom} source={{ uri: getThumbnail(user.data) }} />
                             <View>
-                                <Text style={styles.userNameInBottom}>Benjamin Rees</Text>
-                                <Text style={styles.JobDetailInBottom}>CEO of the famous company</Text>
+                                <Text style={styles.userNameInBottom}>{getUsername(user.data)}</Text>
+                                <Text style={styles.JobDetailInBottom}>{getUserInfo(user.data)}</Text>
                             </View>
                         </View>
                     </Animatable.View> : null}

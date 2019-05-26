@@ -225,6 +225,7 @@ class AccountSettingsTabs extends React.PureComponent {
                        
                 </KeyboardAwareScrollView>
                 {/* notification view show */}
+                
                 {this.state.isNotificationShow ? <Notifications navigation={navigation} hidePopup={()=>this.hideNotificationView()} />:null}
                 </View>
             </SafeAreaView>

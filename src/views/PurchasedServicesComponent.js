@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, FlatList, ActivityIndicator } from 'react-native';
-import styles from "../stylesheet/Account.style";
+import styles from "../stylesheet/PurchasedService.style";
 import { SafeAreaView } from 'react-navigation';
 import LinearGradient from 'react-native-linear-gradient';
 import Logo from '../views/common/logo';
@@ -13,6 +13,8 @@ import Hamburger from 'react-native-hamburger';
 import SideMenu from '../views/common/SideMenu';
 import SettingsHeader from '../views/common/SettingsHeader';
 import Notifications from '../../src/containers/Notifications';
+import CustomFooter from '../components/common/CustomFooter'
+import * as Animatable from 'react-native-animatable';
 
 // import { SettingsHeader, TabHeader, FormToast } from "../Commons";
 // import TabComponent from "./TabComponent";
@@ -46,7 +48,7 @@ class PurchasedServicesComponent extends React.PureComponent {
       mobileNumber: '',
       isNotificationShow: false,
       selectedSortValue: "Name",
-      isSortValuePopupShow: true,
+      isSortValuePopupShow: false,
     }
     this.arrayMobileNumber = [];
     this.arrayButtons = [];
@@ -54,7 +56,14 @@ class PurchasedServicesComponent extends React.PureComponent {
     this.dropDownOptions = [{ name: 'Privacy', image: '' }, { name: 'Communication', image: 'wechat' }, { name: 'Support Center', image: 'customerservice' }],
       this.arrayData = [{ name: 'Market', image: '', count: 0 }, { name: 'Messages', image: 'message', count: 3 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }]
 
-  }
+  this.arrayData = [
+    {Title:"Service Title", subTitle:"Bassline Drift ", description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation"},
+
+    {Title:"Service Title", subTitle:"Bassline Drift ", description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation"},
+
+    {Title:"Long Service Title which may be in another line ", subTitle:"Bassline Drift ", description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation"},
+]
+    }
   onClickSettingsButton(name) {
     //   switch(name){
     //       case buttonName.contactInfo:
@@ -121,6 +130,41 @@ class PurchasedServicesComponent extends React.PureComponent {
     )
   }
 
+  renderServiceItem = (itemDetail) => {
+
+    let item = itemDetail.item;
+    console.log("read &&&&&& ", this.props);
+    return (
+      <View>
+
+        <TouchableHighlight>
+          <View>
+            <View style={{ flexDirection: 'row' }}>
+
+              <Image style={{ marginLeft: '2%', marginTop: '2%' }} source={require('../assets/avatar3.jpg')} />
+
+              <View style={{ margin: '2%', flex: 1 }}>
+
+               
+                  <Text style={[styles.textSubTitleNotSelected, { flex: 0.8, color: item.is_read ? "#20acac" : "#8e5acd" }]}>Service Title </Text>
+                 
+                  <Text style={[styles.textSubTitleNotSelected, { flex: 0.8, color: item.is_read ? "#20acac" : "#8e5acd" }]}>Subtitle of Service </Text>
+               
+
+                <View >
+                 <Text style={styles.textDescription}> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation </Text>
+                </View>
+              </View>
+
+            </View>
+            <View style={{ width: '80%', height: 1, backgroundColor: 'rgba(38,38,38, 0.52)', marginTop: '2%', alignSelf: 'center' }} />
+          </View>
+        </TouchableHighlight>
+      </View>)
+  }
+
+
+
   
   render() {
     const {
@@ -163,6 +207,31 @@ class PurchasedServicesComponent extends React.PureComponent {
           <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)' }}>
 
             <View style={{ flex: 0.3, backgroundColor: 'red' }}>
+            <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.headerColorMix} style={{ width: '100%', height: 200 }}>
+                            {/* <SvgUri width="200" height="200" source={require('../assets/Image/SVG/sprite.svg')} /> */}
+
+
+                            <Animatable.View
+                                ref={'userImageView'}
+                                style={{
+                                    marginTop: "5%",
+                                    width: 100,
+                                    borderRadius: 50, elevation: 3,
+                                    backgroundColor: "white",
+                                    alignSelf: "center",
+                                    shadowColor: 'rgba(0,0,0,1)',
+                                    shadowOffset: {
+                                        width: 1,
+                                        height: 1
+                                    },
+                                    shadowOpacity: 0.8,
+                                    marginBottom: '5%',
+                                }}>
+                                {/* <Image style={styles.imgUser} source={getThumbnail(user.data)} /> */}
+                                <Image style={styles.imgUser} source={require('../assets/avatar-main-1.jpg')} />
+                            </Animatable.View>
+                            <Text style={styles.textUserName}> Lois Stokes </Text>
+                        </LinearGradient>
               {/* <SettingsHeader
                     user={user}
                     profilePic={profilePic}
@@ -185,10 +254,10 @@ class PurchasedServicesComponent extends React.PureComponent {
                 </TouchableOpacity>
 
                 <View style={{ flexDirection: 'row', alignSelf:'flex-end', marginRight:'5%' }}>
-                  <Text>Sort By</Text>
+                  <Text>Sort By:</Text>
                   <View>
                     <TouchableOpacity onPress={this.showSortValuePopup.bind(this)}>
-                      <Text> name</Text>
+                      <Text style={styles.selectedText}>Name</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -240,9 +309,18 @@ class PurchasedServicesComponent extends React.PureComponent {
                     </View>
                   </View> : null}
 
+                  <FlatList
+          renderItem={this.renderServiceItem}
+          extraData={this.props}
+          data={this.arrayData}
+          keyExtractor={(item, index) => index.toString()}
+        />
+
+
                 {/* Side Menu button modal  */}
                 {this.state.isSideMenuClick ? <SideMenu navigation={navigation} hidePopup={() => this.hidePopup()} /> : null}
                        
+                       <CustomFooter />
                 </KeyboardAwareScrollView>
               {/* notification view show */}
               {this.state.isNotificationShow ? <Notifications navigation={navigation} hidePopup={() => this.hideNotificationView()} /> : null}

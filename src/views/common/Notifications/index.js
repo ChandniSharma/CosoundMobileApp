@@ -22,7 +22,7 @@ class Notifications extends React.PureComponent {
 
   componentDidMount() {
     const { user } = this.props;
-    const { get_stream_token, data } = user;
+    const { data } = user;
     this.fadeInUp();
     this.props.fetchNotifications();
 

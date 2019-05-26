@@ -9,6 +9,13 @@ import { SafeAreaView } from 'react-navigation';
 import CustomFooter from '../components/common/CustomFooter';
 import CustomHeader from '../components/common/CustomHeader';
 import Notifications from '../containers/Notifications';
+import BackButton from './common/BackButton';
+import LinearGradient from 'react-native-linear-gradient';
+import Logo from './common/logo';
+import Icon from "react-native-vector-icons/AntDesign";
+import Icon1 from "react-native-vector-icons/Entypo";
+import Icon2 from "react-native-vector-icons/EvilIcons";
+import Icon3 from "react-native-vector-icons/Ionicons";
 
 export default class AdvanceSearchView extends Component {
     constructor(props) {
@@ -17,7 +24,7 @@ export default class AdvanceSearchView extends Component {
 
             isRememberMe: false,
             isClick: false,
-            isNotificationViewShow: false,
+            isNotificationShow: false,
         }
 
         this.arrayNotificationData = [
@@ -45,12 +52,15 @@ export default class AdvanceSearchView extends Component {
 
     componentDidMount() {
         // this.fadeIn();
-        
+
     }
     onClickRememberMe = () => {
         this.setState({
             isRememberMe: !this.state.isRememberMe
         })
+    }
+    hideNotificationView() {
+        this.setState({ isNotificationShow: false })
     }
 
     onSubmit = () => {
@@ -58,6 +68,10 @@ export default class AdvanceSearchView extends Component {
     }
     onClickNotification = () => {
         this.setState({ isClick: !this.state.isClick })
+    }
+
+    hideNotificationView() {
+        this.setState({ isNotificationShow: false })
     }
 
     showNotificationView = () => {
@@ -94,87 +108,89 @@ export default class AdvanceSearchView extends Component {
     render() {
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
-                <CustomHeader showNotificationView={this.showNotificationView} />
-                <TouchableOpacity onPress={this.showNotificationView}>
-                    {/* <Text style={{marginTop:30}}> Notification </Text> */}
-                </TouchableOpacity>
-                {!this.state.isNotificationViewShow ?
-                    <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.8 }}>
 
-                        <Animatable.View ref={"mainView"} style={styles.container}>
+                <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors= {['rgb(42, 173,177)', 'rgb(131, 110, 198)', 'rgb(134, 103, 200)']} style={{ flexDirection: 'row', height: 100, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
 
-                            <Animatable.Text animation="fadeIn" style={styles.loginText}>Advanced Search</Animatable.Text>
+                <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.goToTabIndex(1)} />
 
-                            <Text style={styles.textSideTitle}> I'm looking for:</Text>
-                            <TextInput
-                                style={styles.inputStyle}
-                                placeholder={'Studio Engineers'}
-                                //onChangeText={(text) => this.setState({ email: text })}
-                                // value={data.email}
-                                name={"email"}
-                                onChangeText={val => handleChange('email', val)}
-                            />
-                            {/* {errors.email?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.email}</Animatable.Text>:null} */}
 
-                            <Text style={styles.textSideTitle}> Location (optional)</Text>
+                    <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
 
-                            <TextInput
-                                style={styles.inputStyle}
-                                placeholder={'San Diego'}
+                    <View style={{ flex: 0.3 }} />
+                    <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}>
+                        <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />
+                    </TouchableOpacity>
+                </LinearGradient> 
 
-                                //onChangeText={(text) => this.setState({ password: text })}
-                                onChangeText={val => handleChange('password', val)}
-                                // value={data.password}
-                                name={"password"}
-                            />
-                            {/* {errors.password?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.password}</Animatable.Text>:null} */}
 
-                            <Text style={styles.textSideTitle}> Genres (optional)</Text>
+               
+                <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.8 }}>
 
-                            <TextInput
-                                style={styles.inputStyle}
-                                placeholder={'Search genres'}
+                    <Animatable.View ref={"mainView"} style={styles.container}>
 
-                                //onChangeText={(text) => this.setState({ password: text })}
-                                // onChangeText={val => handleChange('password', val)}
-                                // value={data.password}
-                                name={"password"}
-                            />
-                            {/* </View> */}
-                            <View style={styles.rememberView}>
+                        <Animatable.Text animation="fadeIn" style={styles.loginText}>Advanced Search</Animatable.Text>
 
-                                <TouchableOpacity onPress={this.onClickRememberMe} style={styles.tickMarkView}>
-                                    {this.state.isRememberMe ? <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} /> : <Image />}
-                                </TouchableOpacity>
+                        <Text style={styles.textSideTitle}> I'm looking for:</Text>
+                        <TextInput
+                            style={styles.inputStyle}
+                            placeholder={'Studio Engineers'}
+                            //onChangeText={(text) => this.setState({ email: text })}
+                            // value={data.email}
+                            name={"email"}
+                            onChangeText={val => handleChange('email', val)}
+                        />
+                        {/* {errors.email?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.email}</Animatable.Text>:null} */}
 
-                                <TouchableHighlight underlayColor='rgb(245,245,245)' onPress={this.onClickRememberMe} style={styles.rememberBtn}>
-                                    {this.state.isRememberMe ? <Text style={[styles.rememberText]}>Is a service provider (optional)</Text> : <Text style={styles.rememberTextNotSelected}>Is a service provider (optional)</Text>}
+                        <Text style={styles.textSideTitle}> Location (optional)</Text>
 
-                                </TouchableHighlight>
-                            </View>
+                        <TextInput
+                            style={styles.inputStyle}
+                            placeholder={'San Diego'}
 
-                            <TouchableHighlight underlayColor="#25b6ad" onPress={this.onSubmit} style={[styles.loginButton]}>
-                                <Text style={styles.textButtonTitle} >Search</Text>
+                            //onChangeText={(text) => this.setState({ password: text })}
+                            onChangeText={val => handleChange('password', val)}
+                            // value={data.password}
+                            name={"password"}
+                        />
+                        {/* {errors.password?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.password}</Animatable.Text>:null} */}
+
+                        <Text style={styles.textSideTitle}> Genres (optional)</Text>
+
+                        <TextInput
+                            style={styles.inputStyle}
+                            placeholder={'Search genres'}
+
+                            //onChangeText={(text) => this.setState({ password: text })}
+                            // onChangeText={val => handleChange('password', val)}
+                            // value={data.password}
+                            name={"password"}
+                        />
+                        {/* </View> */}
+                        <View style={styles.rememberView}>
+
+                            <TouchableOpacity onPress={this.onClickRememberMe} style={styles.tickMarkView}>
+                                {this.state.isRememberMe ? <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} /> : <Image />}
+                            </TouchableOpacity>
+
+                            <TouchableHighlight underlayColor='rgb(245,245,245)' onPress={this.onClickRememberMe} style={styles.rememberBtn}>
+                                {this.state.isRememberMe ? <Text style={[styles.rememberText]}>Is a service provider (optional)</Text> : <Text style={styles.rememberTextNotSelected}>Is a service provider (optional)</Text>}
+
                             </TouchableHighlight>
-
-
-                        </Animatable.View>
-                        <CustomFooter />
-                    </KeyboardAwareScrollView> :
-                    <Animatable.View ref={'notificationView'} style={styles.container}>
-
-<Notifications />
-                        {/* <View style={styles.topView}>
-                            <Text style={styles.textTitle}> Notifications </Text>
                         </View>
-                        <FlatList
-                            renderItem={this.renderItem}
-                            data={this.arrayNotificationData}
-                            keyExtractor={(item, index) => index.toString()}
-                        /> */}
+
+                        <TouchableHighlight underlayColor="#25b6ad" onPress={this.onSubmit} style={[styles.loginButton]}>
+                            <Text style={styles.textButtonTitle} >Search</Text>
+                        </TouchableHighlight>
+
+
                     </Animatable.View>
-                }
-                {this.state.isNotificationViewShow ? <CustomFooter /> : null}
+                    <CustomFooter />
+                </KeyboardAwareScrollView>
+                {/* notification view show */}
+
+                {this.state.isNotificationShow ? <Notifications /> : null}
+
+
 
             </SafeAreaView>
 

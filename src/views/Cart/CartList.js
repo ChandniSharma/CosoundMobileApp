@@ -134,7 +134,7 @@ class CartList extends React.PureComponent {
             <View>
               <Text style={[styles.titleAccount, {marginBottom:'5%', marginTop:'10%', alignSelf:'center'}]}>{noDataProps.noDataMessage} </Text>
               <Text style={[styles.textSettings,{marginBottom:'5%', alignSelf:'center'}]}> {noDataProps.noDataDesc}</Text>
-              <TouchableOpacity style={styles.loginButton}>
+              <TouchableOpacity style={styles.loginButton} onPress={()=> this.props.naviation.navigate("PurchasedServicesComponent")}>
                 <Text style={[styles.textButtonTitle,{marginLeft:'10%', marginRight:'10%'}]}>Purchase Service </Text>
               </TouchableOpacity>
 

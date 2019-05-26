@@ -312,14 +312,14 @@ export default class UserProfileComponent extends Component {
                         </View>
 
                     </View>
-                    <CustomFooter />
+                    {!userFeed.isRequesting && <CustomFooter />}
                 </KeyboardAwareScrollView>
 
                 {this.state.isBottomViewShow ?
                     <Animatable.View ref={"viewBottomWhenScroll"} style={styles.viewBottomWhenScroll}>
 
                         <View style={{ flexDirection: 'row', margin: '2%' }}>
-                            <Image style={styles.imgUser} source={getThumbnail(user.data)} />
+                            <Image style={styles.imgUser} source={{ uri: getThumbnail(user.data) }} />
                             <View>
                                 <Text style={styles.userNameInBottom}>{getUsername(user.data)}</Text>
                                 <Text style={styles.JobDetailInBottom}>{getUserInfo(user.data)}</Text>
