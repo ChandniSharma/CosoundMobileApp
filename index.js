@@ -85,7 +85,7 @@ const AppStackNavigator = createStackNavigator({
     // SoundPlay:{screen:SoundPlay},
    // Marketplace:{screen:MarketPlace},
 }, {
-        initialRouteName: 'Login',
+        initialRouteName: 'Home',
         gesturesEnabled: false,
         headerMode: 'none',
     })

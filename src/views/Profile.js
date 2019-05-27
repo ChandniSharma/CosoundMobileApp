@@ -56,9 +56,9 @@ export default class ProfileComponent extends Component {
             timer: null,
             isNotificationShow: false,
         }
-    }c
+    } c
 
-    tick =() => {
+    tick = () => {
         this.setState({
             counter: this.state.counter + 1
         });
@@ -83,7 +83,7 @@ export default class ProfileComponent extends Component {
 
     componentDidMount() {
         let timer = setInterval(this.tick, 1000);
-        this.setState({timer});
+        this.setState({ timer });
         this.fadeInDown();
         // this.fadeInUpPostOptionView();
     }
@@ -124,7 +124,7 @@ export default class ProfileComponent extends Component {
     };
     showNotification() {
         this.setState({ isNotificationShow: true, isSideMenuClick: false })
-      }
+    }
     postOptionView() {
         let arrayPostOptions = ["All", "Copy Link", "Unfollow User", 'Share', 'Report Post'];
         let arrayBtn = [];
@@ -169,7 +169,7 @@ export default class ProfileComponent extends Component {
                     shadowOpacity: 0.2,
                     zIndex: -1
                 }}
-                       source={require('../assets/homepage-video-placeholder.jpg')}>
+                    source={require('../assets/homepage-video-placeholder.jpg')}>
                 </Image>
             </View>
         )
@@ -195,11 +195,10 @@ export default class ProfileComponent extends Component {
 
                 {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: '10%', width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
 
-                    <TouchableOpacity style={{ color: 'white', marginTop: '14%', flex: 0.1 }} onPress={() => this.showPopup()}>
-                        <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />
+                    <TouchableOpacity style={{ color: 'white', marginTop: '20%', flex: 0.15, height: 38, }} onPress={() => this.showPopup()}>
+                        <Hamburger color="white" style={{ paddingTop: '12%', }} active={false} type="spinCross" onPress={() => this.showPopup()} />
                     </TouchableOpacity>
 
-                    {/* <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.navigation.goBack()} /> */}
 
                     <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
 
@@ -210,7 +209,7 @@ export default class ProfileComponent extends Component {
                 </LinearGradient> : null}
 
 
-                {!this.state.isNotificationShow?   <KeyboardAwareScrollView onScroll={this._onScroll} style={{ backgroundColor: 'rgb(42, 173,177)',}}>
+                {!this.state.isNotificationShow ? <KeyboardAwareScrollView onScroll={this._onScroll} style={{ backgroundColor: 'rgb(42, 173,177)', }}>
 
                     <View style={{ backgroundColor: 'rgb(248,249,248)' }} >
 
@@ -237,14 +236,14 @@ export default class ProfileComponent extends Component {
                                 },
                                 shadowOpacity: 0.8,
                             }}>
-                                
+
                             <Image style={styles.imgUser} source={{ uri: getThumbnail(user.data) }} />
                             {/* <Image style={styles.imgUser} source={require('../assets/avatar-main-1.jpg')} /> */}
 
                         </Animatable.View>
 
-                        <Text style={[styles.textUserName, {marginTop:'10%', alignSelf:'center'} ]}>{getUsername(user.data)}</Text>
-                        <Text style={[styles.textDesignation, {marginBottom:'10%', alignSelf:'center'} ]}>{getUserInfo(user.data)}</Text>
+                        <Text style={[styles.textUserName, { marginTop: '10%', alignSelf: 'center' }]}>{getUsername(user.data)}</Text>
+                        <Text style={[styles.textDesignation, { marginBottom: '10%', alignSelf: 'center' }]}>{getUserInfo(user.data)}</Text>
 
                         {/* <View style={styles.viewLoginButton}>
                             <TouchableHighlight underlayColor="black" style={[styles.loginButton]}>
@@ -256,7 +255,7 @@ export default class ProfileComponent extends Component {
                         </View> */}
 
 
-                       
+
 
                         {/* <SoundCloudWaveform waveformUrl="https://w1.sndcdn.com/PP3Eb34ToNki_m.png" setTime={this.setTime}
                                             percentPlayed={this.state.counter} percentPlayable={1} /> */}
@@ -317,7 +316,7 @@ export default class ProfileComponent extends Component {
                             />
 
                         </View>
-                        <PostStatus  pathName={"/profile"}/>
+                        <PostStatus pathName={"/profile"} />
 
                         {/* <NewTest /> */}
                         <InfiniteScroller
@@ -333,16 +332,16 @@ export default class ProfileComponent extends Component {
                             page_count={paginationData.page_count}
                         />
 
-                       
+
 
                     </View>
-                    {!userFeed.isRequesting? <View> 
-                                                    <CustomFooter /> 
-                                                </View>:
-                                                    <View />}
+                    {!userFeed.isRequesting ? <View>
+                        <CustomFooter />
+                    </View> :
+                        <View />}
                 </KeyboardAwareScrollView> :
-                  <View>
-                <Notifications /></View> }
+                    <View>
+                        <Notifications /></View>}
 
                 {this.state.isBottomViewShow ?
                     <Animatable.View ref={"viewBottomWhenScroll"} style={styles.viewBottomWhenScroll}>
@@ -358,7 +357,7 @@ export default class ProfileComponent extends Component {
                     </Animatable.View> : null}
 
                 {/* Side Menu button modal  */}
-          {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation}  hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
+                {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation} hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
 
             </SafeAreaView>
 

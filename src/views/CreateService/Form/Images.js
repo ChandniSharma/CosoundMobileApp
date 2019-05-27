@@ -20,7 +20,7 @@ class Images extends React.Component {
   }
 
 
-  moveViewUp1= () => this.refs.view1.fadeInUp(2000);
+  moveViewUp1 = () => this.refs.view1.fadeInUp(2000);
   // moveViewUp2= () => this.refs.view2.fadeInUp(2000).then(this.moveViewUp3());
   // moveViewUp3= () => this.refs.view3.fadeInUp(2000).then(this.moveViewUp4());
   // moveViewUp4= () => this.refs.view4.fadeInUp(2000);
@@ -56,37 +56,36 @@ class Images extends React.Component {
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
-       // this.props.handleFileChange('avatar', 'data:image/jpeg;base64,' + source.data)
+        // this.props.handleFileChange('avatar', 'data:image/jpeg;base64,' + source.data)
 
       }
     });
   };
 
 
-render()
-{
-  const {
-    data,
-    errors,
-    publishService,
-    _publishService,
-    handleFileChange
-  } = this.props;
+  render() {
+    const {
+      data,
+      errors,
+      publishService,
+      _publishService,
+      handleFileChange
+    } = this.props;
 
-  return(
-    <Animatable.View ref={'view1'} style={{height:1700}}>
+    return (
+      <Animatable.View ref={'view1'} style={{ height: 1700 }}>
 
-    <View>
-    <Text style={[styles.addPictureText, {marginTop:'10%',alignSelf:'center', }]}>
-        Add some pictures to your service!
+        <View>
+          <Text style={[styles.addPictureText, { marginTop: '10%', alignSelf: 'center', }]}>
+            Add some pictures to your service!
         </Text>
 
 
-        <View style={{marginTop:10}}>
+          <View style={{ marginTop: 10 }}>
 
-          <TouchableOpacity style={styles.findingView} onPress={this.chooseFile.bind(this)}>
-            {/* {!data.url ? */}
-            <Icon name="camera" style={{ fontSize: 60,  color: 'gray', alignSelf: 'center', }} /> 
+            <TouchableOpacity style={styles.findingView} onPress={this.chooseFile.bind(this)}>
+              {/* {!data.url ? */}
+              <Icon name="camera" style={{ fontSize: 60, color: 'gray', alignSelf: 'center', }} />
 
               {/* : <Image
                 source={{
@@ -95,65 +94,70 @@ render()
                 style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
               />} */}
 
-          </TouchableOpacity>
-        </View>
+            </TouchableOpacity>
+          </View>
 
-      <Text style={[styles.featuredText,{marginTop:'10%', alignSelf:'center' }]}> Featured picture </Text>
+          <Text style={[styles.featuredText, { marginTop: '10%', alignSelf: 'center' }]}> Featured picture </Text>
 
-      <View style={{marginTop:10,marginBottom:10}}>
-        <TouchableOpacity style={styles.viewAddImage} onPress={this.chooseFile.bind(this)}>
-            <Icon2 name= "pluscircleo" style={{alignSelf:'center', fontSize:45, color:'#20ACAC'}}/>
-        </TouchableOpacity>
-      </View>
-      <View style={{marginTop:10,marginBottom:10}}>
-        <TouchableOpacity style={styles.viewAddImage} onPress={this.chooseFile.bind(this)}>
-          <Icon2 name= "pluscircleo" style={{alignSelf:'center', fontSize:45, color:'#20ACAC'}}/>
-        </TouchableOpacity>
-      </View>
-      <View style={{marginTop:10,marginBottom:10}}>
-        <TouchableOpacity style={styles.viewAddImage} onPress={this.chooseFile.bind(this)}>
-          <Icon2 name= "pluscircleo" style={{alignSelf:'center', fontSize:45, color:'#20ACAC'}}/>
-        </TouchableOpacity>
-      </View>
-      <View style={{marginTop:10,marginBottom:10}}>
-        <TouchableOpacity style={styles.viewAddImage} onPress={this.chooseFile.bind(this)}>
-          <Icon2 name= "pluscircleo" style={{alignSelf:'center', fontSize:45, color:'#20ACAC'}}/>
-        </TouchableOpacity>
-      </View>
+          <View style={{ marginTop: 10, marginBottom: 10 }}>
+            <TouchableOpacity style={styles.viewAddImage} onPress={this.chooseFile.bind(this)}>
+              <Icon2 name="pluscircleo" style={{ alignSelf: 'center', fontSize: 45, color: '#20ACAC' }} />
+            </TouchableOpacity>
+          </View>
+          <View style={{ marginTop: 10, marginBottom: 10 }}>
+            <TouchableOpacity style={styles.viewAddImage} onPress={this.chooseFile.bind(this)}>
+              <Icon2 name="pluscircleo" style={{ alignSelf: 'center', fontSize: 45, color: '#20ACAC' }} />
+            </TouchableOpacity>
+          </View>
+          <View style={{ marginTop: 10, marginBottom: 10 }}>
+            <TouchableOpacity style={styles.viewAddImage} onPress={this.chooseFile.bind(this)}>
+              <Icon2 name="pluscircleo" style={{ alignSelf: 'center', fontSize: 45, color: '#20ACAC' }} />
+            </TouchableOpacity>
+          </View>
+          <View style={{ marginTop: 10, marginBottom: 10 }}>
+            <TouchableOpacity style={styles.viewAddImage} onPress={this.chooseFile.bind(this)}>
+              <Icon2 name="pluscircleo" style={{ alignSelf: 'center', fontSize: 45, color: '#20ACAC' }} />
+            </TouchableOpacity>
+          </View>
 
-      { /* <input
+          { /* <input
           type="file"
           name="image"
           id="image"
           onChange={handleFileChange}
           accept="image/png, image/jpeg"
         /> */ }
-      <View>
-        { /* 
+          <View>
+            { /* 
             <img src={data.url} alt="photo-uploader__placeholder" />
             <Svg name="ico-camera" />
           */ }
-      </View>
-      {errors.image && (
-        <Animatable.Text animation="fadeIn" style={styles.errorText}>
-          {errors.image}
-        </Animatable.Text>
-      )}
-    </View>
-    {/* <TouchableOpacity style={[styles.loginButton, { marginTop: '15%', justifyContent: 'center',marginBottom:'10%' }]}
-          onPress={()=> submitDescription()}
-           >
-            <Text style={[styles.textPublish ]}>publish Service</Text>
-          </TouchableOpacity> */}
+          </View>
+          {errors.image && (
+            <Animatable.Text animation="fadeIn" style={styles.errorText}>
+              {errors.image}
+            </Animatable.Text>
+          )}
+        </View>
 
-           <TouchableOpacity style={[styles.loginButton, { marginTop: '15%', justifyContent: 'center' }]}
-          onPress={()=> this.props.navigation.navigate('Dashboard')}
-           >
-            <Text style={[styles.textPublish ]}>publish Service</Text>
+        <View style={{ marginTop: '5%', marginBottom: '5%' }}>
+
+
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('Dashboard')}
+            style={{ alignSelf: 'center', justifyContent: 'center', width: '40%', borderRadius: 10, backgroundColor: '#ff277b', height: 60 }}
+          // disabled={changePassword.isRequesting}
+          >
+
+            <Text style={styles.updateDetailText}>publish Service</Text>
+
           </TouchableOpacity>
-    </Animatable.View>
-  )
-}
+        </View>
+
+
+      </Animatable.View>
+    )
+  }
 
   // render1() {
   //   const {

@@ -2167,7 +2167,7 @@
 			baseConfigurationReference = D4BCCAC211C64206561B733C /* Pods-CosoundAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: community of sound limited (94W363WF54)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: startupdigitaltechnology@gmail.com (JCHLW97X4L)";
 				CODE_SIGN_STYLE = Manual;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -2214,7 +2214,7 @@
 			baseConfigurationReference = FD2B3FD45589C1FEB7E0F71C /* Pods-CosoundAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: community of sound limited (94W363WF54)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: startupdigitaltechnology@gmail.com (JCHLW97X4L)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				HEADER_SEARCH_PATHS = (
@@ -2259,7 +2259,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CosoundApp/CosoundApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: community of sound limited (94W363WF54)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: startupdigitaltechnology@gmail.com (JCHLW97X4L)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
@@ -2296,7 +2296,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kkpl.CosoundApp;
 				PRODUCT_NAME = CosoundApp;
-				PROVISIONING_PROFILE_SPECIFIER = CosoundDistProfile;
+				PROVISIONING_PROFILE_SPECIFIER = CosoundDevProfile;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -2307,7 +2307,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CosoundApp/CosoundApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: community of sound limited (94W363WF54)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: startupdigitaltechnology@gmail.com (JCHLW97X4L)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 94W363WF54;
@@ -2343,7 +2343,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kkpl.CosoundApp;
 				PRODUCT_NAME = CosoundApp;
-				PROVISIONING_PROFILE_SPECIFIER = CosoundDistProfile;
+				PROVISIONING_PROFILE_SPECIFIER = CosoundDevProfile;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -2358,7 +2358,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: community of sound limited (94W363WF54)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: startupdigitaltechnology@gmail.com (JCHLW97X4L)";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 94W363WF54;
@@ -2412,7 +2412,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: community of sound limited (94W363WF54)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: startupdigitaltechnology@gmail.com (JCHLW97X4L)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -2465,7 +2465,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: community of sound limited (94W363WF54)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: startupdigitaltechnology@gmail.com (JCHLW97X4L)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2515,7 +2515,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: community of sound limited (94W363WF54)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: startupdigitaltechnology@gmail.com (JCHLW97X4L)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2584,7 +2584,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: community of sound limited (94W363WF54)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: startupdigitaltechnology@gmail.com (JCHLW97X4L)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Raj Parmar (33Z22SS432)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
@@ -2640,7 +2640,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: community of sound limited (94W363WF54)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: startupdigitaltechnology@gmail.com (JCHLW97X4L)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Raj Parmar (33Z22SS432)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = YES;

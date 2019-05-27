@@ -15,7 +15,7 @@ import DatePicker from 'react-native-datepicker';
 import WaveAnimation from './common/WaveAnimation';
 import BackButton from './common/BackButton';
 import Logo from './common/logo';
-
+import Icon1 from 'react-native-vector-icons/AntDesign';
 const { height, width } = Dimensions.get('window');
 const deviceHeight = height;
 let deviceWidth = width;
@@ -55,28 +55,28 @@ export default class SignupStep3Musician extends Component {
       },
     };
 
-    ImagePicker.showImagePicker(options, response => {
-      // console.log('Response = =============', response);
+    // ImagePicker.showImagePicker(options, response => {
+    //   // console.log('Response = =============', response);
 
-      if (response.didCancel) {
-        // console.log('User cancelled image picker');
+    //   if (response.didCancel) {
+    //     // console.log('User cancelled image picker');
 
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
+    //   } else if (response.error) {
+    //     console.log('ImagePicker Error: ', response.error);
 
-      } else if (response.customButton) {
-        // console.log('User tapped custom button: ', response.customButton);
-        alert(response.customButton);
+    //   } else if (response.customButton) {
+    //     // console.log('User tapped custom button: ', response.customButton);
+    //     alert(response.customButton);
 
-      } else {
-        let source = response;
-        // You can also display the image using data:
-        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+    //   } else {
+    //     let source = response;
+    //     // You can also display the image using data:
+    //     // let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
-        this.props.handleFileChange('avatar', 'data:image/jpeg;base64,' + source.data)
+    //     this.props.handleFileChange('avatar', 'data:image/jpeg;base64,' + source.data)
 
-      }
-    });
+    //   }
+    // });
   };
 
   render() {
@@ -99,7 +99,7 @@ export default class SignupStep3Musician extends Component {
     const error = checkError(signup.error);
     const { selectedItems } = this.state;
 
-
+console.log(" errors ^^^^ ======", error, errors );
     
     return (
       <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
@@ -126,8 +126,8 @@ export default class SignupStep3Musician extends Component {
 
                 <View style={styles.findingView}>
 
-                  {/* <TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }} onPress={this.chooseFile.bind(this)}> */}
-                  <TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }}>
+                  <TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }} onPress={this.chooseFile.bind(this)}>
+                  {/* <TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }}> */}
                     {!data.url ?
                       <Icon name="camera" style={{ fontSize: 60, marginTop: '50%', color: 'gray', alignSelf: 'center', }} /> :
                       <Image
@@ -325,7 +325,12 @@ export default class SignupStep3Musician extends Component {
 
 
             <TouchableHighlight onPress={signUp} underlayColor="#25b6ad" style={[styles.loginButton]}>
-              <Text style={styles.textButtonTitle} >Next -></Text>
+              <View style={{flexDirection:'row'}}>
+              <Text style={styles.textButtonTitle} >Next</Text>
+              <Icon1 name="arrowright" style={{ marginLeft: '1%', fontSize: 20, color: 'white' }} />
+              </View>
+             
+
             </TouchableHighlight>
 
             {/* Bottom progress view  */}
