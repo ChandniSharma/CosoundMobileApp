@@ -47,7 +47,7 @@ import CheckoutComponent from './src/views/CheckoutComponent';
 import ImagesTemp from './src/views/CreateService/Form/ImagesTemp'
 import PurchasedServicesComponent from './src/views/PurchasedServicesComponent';
 //import audioWave from './src/views/common/audioWaveView';
-
+import MarketPlace from './src/views/Marketplace';
 const AppStackNavigator = createStackNavigator({
     Home: { screen: Home },
     Login: { screen: Login },
@@ -83,9 +83,9 @@ const AppStackNavigator = createStackNavigator({
     // audioWave:{screen:audioWave},
     UserProfile:{screen:UserProfile},
     // SoundPlay:{screen:SoundPlay},
-   // Marketplace:{screen:MarketPlace},
+    Marketplace:{screen:MarketPlace},
 }, {
-        initialRouteName: 'Home',
+        initialRouteName: 'Marketplace',
         gesturesEnabled: false,
         headerMode: 'none',
     })

@@ -160,7 +160,8 @@ class LoginContainer extends React.PureComponent {
     //this.props.navigation.navigate("AccountSettings");
     //this.props.navigation.navigate("CreateService");
     // this.props.navigation.navigate("Cart");
-   
+    this.props.navigation.navigate("Plan");
+
 
   }
   // _navigateBack =()=>{
