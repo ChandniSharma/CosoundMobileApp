@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { isNull, min } from "lodash";
 import styles from "../../../stylesheet/profile.style";
-import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, TouchableWithoutFeedback,View, TouchableOpacity,Clipboard, AlertIOS,Platform, ActivityIndicator } from "react-native";
+import { Text, TextInput, View, TouchableOpacity, ActivityIndicator } from "react-native";
 import Icon3 from "react-native-vector-icons/FontAwesome";
 import Icon6 from "react-native-vector-icons/AntDesign";
 
@@ -20,7 +20,6 @@ import {
 
 import Validator from "../../../validator";
 
-//import { Svg, Loader } from "../../../components/Commons";
 import { Paginator } from "../../../hoc";
 import CommentList from "./CommentList";
 
@@ -28,7 +27,7 @@ class PostComment extends React.Component {
   state = {
     comment: "",
     showComments: false,
-    isCommentTableShow:true,
+    isCommentTableShow: true,
 
   };
 
@@ -86,8 +85,8 @@ class PostComment extends React.Component {
   _handleKeyPress = () => {
     // if (e.charCode === 13 || e.keyCode === 13) {
     //   e.preventDefault();
-       this._submit();
-    }
+    this._submit();
+  }
   // };
 
   _resetState = () => {
@@ -151,84 +150,73 @@ class PostComment extends React.Component {
       postActions.deleteComment(post.id, commentId, minId, path);
     }
   };
-//   _showCommentList() {
-//     this.setState({ isCommentTableShow: !this.state.isCommentTableShow });
-// }
+  //   _showCommentList() {
+  //     this.setState({ isCommentTableShow: !this.state.isCommentTableShow });
+  // }
   render() {
     const { post, user, postComment, fetchComment, deleteComment } = this.props;
     const { comment, showComments } = this.state;
     const { paginationData } = fetchComment;
- console.log(" showcome ====", showComments);
+    console.log(" showcome ====", showComments);
     return (
-      <View style={{flex:1}}>
-      <View>
-      <View style={{ marginTop: "5%", marginBottom: '5%', alignItems: "center", flexDirection: 'row' }}>
-          <View style={{ flex: 1, height: 1, backgroundColor: "#d3d3d3" }}>
-          </View>
-          <TouchableOpacity style={{
+      <View style={{ flex: 1 }}>
+        <View>
+          <View style={{ marginTop: "5%", marginBottom: '5%', alignItems: "center", flexDirection: 'row' }}>
+            <View style={{ flex: 1, height: 1, backgroundColor: "#d3d3d3" }}>
+            </View>
+            <TouchableOpacity style={{
               borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", justifyContent: 'center',
               alignItems: "center", flexDirection: 'row', height: 40, width: 160
-          }} onPress={() => this._toggleComments(post.id)}>
+            }} onPress={() => this._toggleComments(post.id)}>
 
-              <Icon3 name="comment" style={{ fontSize:20, color: "#8e8e8e",  marginLeft:'2%',marginRight:'2%' }} />
-               <Text style={[styles.textCommentCount, {marginRight:'2%'}]}>{`${readableCount(post.comment_count)} comments`}</Text>
+              <Icon3 name="comment" style={{ fontSize: 20, color: "#8e8e8e", marginLeft: '2%', marginRight: '2%' }} />
+              <Text style={[styles.textCommentCount, { marginRight: '2%' }]}>{`${readableCount(post.comment_count)} comments`}</Text>
               <View style={{
-                   flex: 1, borderRadius: 60, borderWidth: 1, borderColor: "#d3d3d3", 
-                  justifyContent: 'center', alignItems: "center", height: 40, width: 60,marginTop:'2%'
+                flex: 1, borderRadius: 60, borderWidth: 1, borderColor: "#d3d3d3",
+                justifyContent: 'center', alignItems: "center", height: 40, width: 60, marginTop: '2%'
               }}>
-                 {/* {fetchComment.isRequesting !== post.id && !showComments  ? <Icon6 name="down" style={{ fontSize:20, color: "#d3d3d3" }} />:null} */}
+                {/* {fetchComment.isRequesting !== post.id && !showComments  ? <Icon6 name="down" style={{ fontSize:20, color: "#d3d3d3" }} />:null} */}
 
-              {fetchComment.isRequesting === post.id && !showComments ? (
-          <ActivityIndicator color="gray"/>
-        ) : 
-            <Icon6 name={showComments ? "up" : "down"} style={{ fontSize:18, color: "#8e8e8e" }} />
-        }
-              
+                {fetchComment.isRequesting === post.id && !showComments ? (
+                  <ActivityIndicator color="gray" />
+                ) :
+                  <Icon6 name={showComments ? "up" : "down"} style={{ fontSize: 18, color: "#8e8e8e" }} />
+                }
+
 
               </View>
-          </TouchableOpacity>
-          <View style={{ flex: 1, height: 1, backgroundColor: "#d3d3d3" }} />
-      </View>
-      {showComments ? <View style={{ width: '100%', marginBottom: '2%' }}>
-      <Paginator
-          user={user}
-          isLoaderInternal
-          shouldCallAPIInitially
-          component={CommentList}
-          page={paginationData.page}
-          fetchComment={fetchComment}
-          showComments={showComments}
-          deleteComment={deleteComment}
-          callAPI={this._fetchComments}
-          _deleteComment={this._deleteComment}
-          page_count={paginationData.page_count}
-        />
-        
-      </View> : null}
-  </View>
-     
-       
-<TextInput
-        style={styles.textWriteSomething}
-        onChangeText={(text) => this._handleChange('comment',text)}
-        value={comment}
-        placeholder="Write a comment"
-        disabled={postComment.isRequesting}
-        onSubmitEditing={() => this._handleKeyPress()}
-      
-    />
- {/* <textarea
-            name="comment"
-            value={comment}
-            placeholder="Write a comment"
-            onSubmitEditing={() => handleKeyPress()}
+            </TouchableOpacity>
+            <View style={{ flex: 1, height: 1, backgroundColor: "#d3d3d3" }} />
+          </View>
+          {showComments ? <View style={{ width: '100%', marginBottom: '2%' }}>
+            <Paginator
+              user={user}
+              isLoaderInternal
+              shouldCallAPIInitially
+              component={CommentList}
+              page={paginationData.page}
+              fetchComment={fetchComment}
+              showComments={showComments}
+              deleteComment={deleteComment}
+              callAPI={this._fetchComments}
+              _deleteComment={this._deleteComment}
+              page_count={paginationData.page_count}
+            />
 
-            // onKeyPress={e => this._handleKeyPress(e)}
-            onChange={e => this._handleChange(e)}
-            disabled={postComment.isRequesting}
-          /> */}
-       </View>
-        
+          </View> : null}
+        </View>
+
+
+        <TextInput
+          style={styles.textWriteSomething}
+          onChangeText={(text) => this._handleChange('comment', text)}
+          value={comment}
+          placeholder="Write a comment"
+          disabled={postComment.isRequesting}
+          onSubmitEditing={() => this._handleKeyPress()}
+        />
+      </View>
+
     );
   }
 }
@@ -251,22 +239,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(PostComment);
-
- 
-      // <div className="d-card__reply">
-        //   <div className="avatar avatar--shad">
-        //     <img src={getThumbnail(user.data)} alt="avatar" />
-        //   </div>
-        //   <textarea
-        //     name="comment"
-        //     value={comment}
-        //     placeholder="Write a comment"
-        //     onKeyPress={e => this._handleKeyPress(e)}
-        //     onChange={e => this._handleChange(e)}
-        //     disabled={postComment.isRequesting}
-        //   />
-        // </div>
-      // </div>
+  mapStateToProps,
+  mapDispatchToProps
+)(PostComment);

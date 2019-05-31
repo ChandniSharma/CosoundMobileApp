@@ -20,7 +20,7 @@ import SignupStep5 from './src/views/SignupStep5';
 import SignupStep3 from './src/views/SignupStep3';
 import SignupSuggestions from './src/views/SignupSuggestions';
 import SignupStep3Musician from './src/views/SignupStep3Musician';
-import Plans from './src/views/Plans';
+import Plans from './src/views/Plans/Plans';
 import Notifications from './src/containers/Notifications'
 //import Profile from './src/views/Profile';
 import Profile from './src/containers/Profile';
@@ -47,7 +47,9 @@ import CheckoutComponent from './src/views/CheckoutComponent';
 import ImagesTemp from './src/views/CreateService/Form/ImagesTemp'
 import PurchasedServicesComponent from './src/views/PurchasedServicesComponent';
 //import audioWave from './src/views/common/audioWaveView';
-import MarketPlace from './src/views/Marketplace';
+import MarketPlaceContainer from './src/containers/MarketPlace';
+import MarketplaceDetail from './src/views/MarketplaceDetail';
+
 const AppStackNavigator = createStackNavigator({
     Home: { screen: Home },
     Login: { screen: Login },
@@ -69,23 +71,25 @@ const AppStackNavigator = createStackNavigator({
     SocialShare: { screen: SocialShare },
     PlayVideo: { screen: PlayVideo },
     Notifications: { screen: Notifications },
-    AccountSettings: {screen: AccountSettings},
-    Cart: {screen: Cart},
-    StarView: {screen: StarView},
+    AccountSettings: { screen: AccountSettings },
+    Cart: { screen: Cart },
+    StarView: { screen: StarView },
     Sidebar: { screen: Sidebar },
     NoService: { screen: NoService },
-    GooglesignIn:{screen:GooglesignIn},
-    Checkout:{screen:Checkout},
-    CreateService:{screen:CreateService},
-    CheckoutComponent:{screen:CheckoutComponent},
-    ImagesTemp:{screen:ImagesTemp},
-    PurchasedServicesComponent:{screen:PurchasedServicesComponent},
+    GooglesignIn: { screen: GooglesignIn },
+    Checkout: { screen: Checkout },
+    CreateService: { screen: CreateService },
+    CheckoutComponent: { screen: CheckoutComponent },
+    ImagesTemp: { screen: ImagesTemp },
+    PurchasedServicesComponent: { screen: PurchasedServicesComponent },
     // audioWave:{screen:audioWave},
-    UserProfile:{screen:UserProfile},
+    UserProfile: { screen: UserProfile },
     // SoundPlay:{screen:SoundPlay},
-    Marketplace:{screen:MarketPlace},
+    MarketPlaceContainer: { screen: MarketPlaceContainer },
+    MarketplaceDetail: { screen: MarketplaceDetail },
 }, {
-        initialRouteName: 'Marketplace',
+        // initialRouteName: 'MarketplaceDetail',
+        initialRouteName: 'Login',
         gesturesEnabled: false,
         headerMode: 'none',
     })

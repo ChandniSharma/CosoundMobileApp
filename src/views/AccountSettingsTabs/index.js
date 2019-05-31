@@ -14,11 +14,8 @@ import SideMenu from '../common/SideMenu';
 import SettingsHeader from '../common/SettingsHeader';
 import Notifications from '../../../src/containers/Notifications'
 
-// import { SettingsHeader, TabHeader, FormToast } from "../Commons";
 import TabComponent from "./TabComponent";
 import CustomFooter from "../../components/common/CustomFooter";
-
-//  import { settingsHeaders } from "../constants/tabs";
 
 const buttonName = {
     contactInfo: "Contact Information",
@@ -59,7 +56,6 @@ class AccountSettingsTabs extends React.PureComponent {
         //   switch(name){
         //       case buttonName.contactInfo:
         //          this.setState({isContactInfoClick:true})
-
         //   }
     }
     renderItem = (item, ) => {
@@ -79,9 +75,7 @@ class AccountSettingsTabs extends React.PureComponent {
             <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.setState({ isDropDownclick: false })}>
                     <View style={{ flexDirection: "row" }}>
-
                         {icon}
-
                         <Text style={styles.textAccountPopup}>{item.item.name}</Text>
                     </View>
                 </TouchableOpacity>
@@ -126,26 +120,19 @@ class AccountSettingsTabs extends React.PureComponent {
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
 
                 {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: 100, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
-
                     <TouchableOpacity style={{ color: 'white', marginTop: '14%', flex: 0.1, marginLeft: '4%' }} onPress={() => this.showPopup()}>
                         <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />
                     </TouchableOpacity>
 
-
                     <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
-
                     <View style={{ flex: 0.3 }} />
                     <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}>
-
-
                         {this.state.isNotificationShow ? <Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} /> : <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />}
-
                     </TouchableOpacity>
                 </LinearGradient> : null}
 
                 <View style={{ flex: 1 }}>
                     <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)' }}>
-
                         <View style={{ flex: 0.3, backgroundColor: 'red' }}>
                             <SettingsHeader
                                 user={user}
@@ -240,61 +227,7 @@ class AccountSettingsTabs extends React.PureComponent {
                 </View>
             </SafeAreaView>
         )
-        //   return (
-        //     <React.Fragment>
-        //       {/* <Helmet title={"Account Settings"} /> */}
-
-        //       <div className="profile">
-        //         <SettingsHeader
-        //           user={user}
-        //           profilePic={profilePic}
-        //           uploadProfilePic={uploadProfilePic}
-        //           uploadable={true}
-        //         />
-
-        //         <div className="container">
-        //           {/* Router tabs */}
-        //           <TabHeader />
-        //           {/* Router tabs end */}
-        //           <div className="profile-tabs">
-        //             <div
-        //               className="profile-tabs__sidebar wow fadeInLeft"
-        //               data-wow-delay=".5s"
-        //             >
-        //               <ul className="profile-tabs__links">
-        //                 {tabs.map(item => {
-        //                   return (
-        //                     <li
-        //                       className={tabIndex === item.id ? "is-active" : ""}
-        //                       key={item.id}
-        //                       onClick={() => switchTab(item.id)}
-        //                     >
-        //                       {item.name}
-        //                     </li>
-        //                   );
-        //                 })}
-        //               </ul>
-        //             </div>
-        //             <div className="profile-tabs__content wow fadeInUp">
-        // <TabComponent
-        //   user={user}
-        //   genres={genres}
-        //   details={details}
-        //   tabIndex={tabIndex}
-        //   contactInfo={contactInfo}
-        //   _updateUser={_updateUser}
-        //   paymentDetails={paymentDetails}
-        //   changePassword={changePassword}
-        //   _changePassword={_changePassword}
-        // />
-        //             </div>
-        //           </div>
-        //         </div>
-        //       </div>
-
-        //       <FormToast />
-        //     </React.Fragment>
-        //   );
+       
     }
 }
 

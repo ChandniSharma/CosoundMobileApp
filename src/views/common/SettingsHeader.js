@@ -9,62 +9,62 @@ import { getThumbnail, getUsername, getUserInfo } from "../../utils";
 import Icon from 'react-native-vector-icons/Entypo';
 var ImagePicker = require('react-native-image-picker');
 
-export default class SettingsHeader extends Component{
+export default class SettingsHeader extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            isScrollDown: false,
-            headerColorMix: ['rgb(42, 173,177)', 'rgb(131, 110, 198)', 'rgb(134, 103, 200)'],
-            headerColor: ['rgb(42, 173,177)', 'rgb(93, 152, 179)'],
-            isContactInfoClick: false,
-            isDropDownclick: false,
-            isSideMenuClick: false,
-            isSearchbarDataShow: false,
-            isCrossClick: false,
-            active: false,
-            isBottomMobileShow: true,
-            mobileNumber: '',
+  constructor(props) {
+    super(props);
+    this.state = {
+      isScrollDown: false,
+      headerColorMix: ['rgb(42, 173,177)', 'rgb(131, 110, 198)', 'rgb(134, 103, 200)'],
+      headerColor: ['rgb(42, 173,177)', 'rgb(93, 152, 179)'],
+      isContactInfoClick: false,
+      isDropDownclick: false,
+      isSideMenuClick: false,
+      isSearchbarDataShow: false,
+      isCrossClick: false,
+      active: false,
+      isBottomMobileShow: true,
+      mobileNumber: '',
 
-        }
     }
-    fadeInDown = () => this.refs.userImageView.fadeInDown(1000);
+  }
+  fadeInDown = () => this.refs.userImageView.fadeInDown(1000);
 
-    componentDidMount(){
-      this.fadeInDown();
-    }
-render() {
-  const {user, profilePic, uploadProfilePic, uploadable} = this.props;
+  componentDidMount() {
+    this.fadeInDown();
+  }
+  render() {
+    const { user, profilePic, uploadProfilePic, uploadable } = this.props;
     return (
 
-<LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.headerColorMix} style={{ width: '100%', height: '100%' }}>
+      <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.headerColorMix} style={{ width: '100%', height: '100%' }}>
 
- <Animatable.View ref={'userImageView'} style={{ marginBottom: '5%', marginTop:'5%' }}>
+        <Animatable.View ref={'userImageView'} style={{ marginBottom: '5%', marginTop: '5%' }}>
 
-<View style={styles.findingView}>
+          <View style={styles.findingView}>
 
-  <TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }} onPress={this.chooseFile.bind(this)}>
-    {profilePic && profilePic.isRequesting ?
-      <Icon name="camera" style={{ fontSize: 60, marginTop: '50%', color: 'gray', alignSelf: 'center', }} /> :
-      <Image
-        source={{
-          uri:getThumbnail(user.data)
-        }}
-        style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
-      />
-      } 
-  </TouchableOpacity>
+            <TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }} onPress={this.chooseFile.bind(this)}>
+              {profilePic && profilePic.isRequesting ?
+                <Icon name="camera" style={{ fontSize: 60, marginTop: '50%', color: 'gray', alignSelf: 'center', }} /> :
+                <Image
+                  source={{
+                    uri: getThumbnail(user.data)
+                  }}
+                  style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
+                />
+              }
+            </TouchableOpacity>
 
-</View>
-</Animatable.View> 
- 
+          </View>
+        </Animatable.View>
 
-<Text style={styles.textUserName}>  {getUsername(user.data)} </Text>
-</LinearGradient>)
+
+        <Text style={styles.textUserName}>  {getUsername(user.data)} </Text>
+      </LinearGradient>)
 
   }
 
-  
+
   chooseFile = () => {
     var options = {
       title: 'Image',
@@ -107,10 +107,10 @@ render() {
                   name="avatar"
                   onChange={uploadProfilePic}
                 /> */}
-                 {/* <Image style={styles.imgUser} source={getThumbnail(user.data)} /> */}
-  
+{/* <Image style={styles.imgUser} source={getThumbnail(user.data)} /> */ }
 
-                 {/* <TouchableOpacity>
+
+{/* <TouchableOpacity>
     ref={'userImageView'}
     style={styles.topUserImage }>
 

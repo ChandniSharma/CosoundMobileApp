@@ -4,10 +4,8 @@ import { connect } from "react-redux";
 // import { withRouter } from "react-router";
 import { bindActionCreators } from "redux";
 import styles from '../../../stylesheet/AdvancedSearchView.style'
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, FlatList, ActivityIndicator } from 'react-native';
-
+import { View, Text } from 'react-native';
 import { client } from "../../../services";
-
 import { isSuccess, resetNotification, history } from "../../../utils";
 
 import { notificationActions } from "../../../actions";
@@ -49,12 +47,12 @@ class Notifications extends React.PureComponent {
 
   /* cancel subscribe on unmount */
   componentWillUnmount() {
-    
+
     if (!isNull(this.subscription)) {
       this.subscription.cancel();
     }
     this.fadeInDown();
-    
+
   }
 
   /**
@@ -87,48 +85,23 @@ class Notifications extends React.PureComponent {
     const { show, notifications, scroll } = this.props;
     const { paginationData } = notifications;
 
-console.log(" notificcations Props ====", this.props);
-
     return (
       <Animatable.View ref={'notificationView'} style={styles.containerNotification}>
-
-      <View style={styles.topView}>
+        <View style={styles.topView}>
           <Text style={styles.textTitle}> Notifications </Text>
-      </View>
-      <Paginator
-            isLoaderInternal
-            shouldCallAPIInitially
-            page={paginationData.page}
-            component={NotificationList}
-            markAsRead={this._markAsRead}
-            notifications={notifications}
-            callApi={paginationData.callApi}
-            callAPI={this._fetchNotifications}
-          />
-  </Animatable.View>
-
+        </View>
+        <Paginator
+          isLoaderInternal
+          shouldCallAPIInitially
+          page={paginationData.page}
+          component={NotificationList}
+          markAsRead={this._markAsRead}
+          notifications={notifications}
+          callApi={paginationData.callApi}
+          callAPI={this._fetchNotifications}
+        />
+      </Animatable.View>
     );
-    // return (
-    //   <
-    //     className={`ntf ntf--fixed ${show ? "is-active" : ""} ${
-    //       scroll ? "is-scrolled" : ""
-    //     }`}
-    //   >
-    //     <div className="ntf__title">Notifications</div>
-    //     <div className="ntf__wrapper">
-    //       <Paginator
-    //         isLoaderInternal
-    //         shouldCallAPIInitially
-    //         page={paginationData.page}
-    //         component={NotificationList}
-    //         markAsRead={this._markAsRead}
-    //         notifications={notifications}
-    //         callApi={paginationData.callApi}
-    //         callAPI={this._fetchNotifications}
-    //       />
-    //     </div>
-    //   </div>
-    // );
   }
 }
 
@@ -145,7 +118,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Notifications);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Notifications);

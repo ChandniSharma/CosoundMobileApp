@@ -9,8 +9,8 @@ import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, 
 const RenderTempFile = ({ urls, applyRef, applyAudioRef, removeMedia }) => {
   return (
 
-<View style={styles.wrapper}>
-{urls.map(item => {
+    <View style={styles.wrapper}>
+      {urls.map(item => {
         if (isNull(item.type)) return null;
 
         const typeArray = item.type.split("/");
@@ -18,7 +18,7 @@ const RenderTempFile = ({ urls, applyRef, applyAudioRef, removeMedia }) => {
         return (
           <View
             style={styles.main}
-           
+
           >
             <RenderMedia
               item={item}
@@ -30,31 +30,7 @@ const RenderTempFile = ({ urls, applyRef, applyAudioRef, removeMedia }) => {
           </View>
         );
       })}
-</View>
-
-    // <div style={styles.wrapper}>
-    //   {urls.map(item => {
-    //     if (isNull(item.type)) return null;
-
-    //     const typeArray = item.type.split("/");
-    //     const primaryType = typeArray[0];
-    //     return (
-    //       <div
-    //         className={"photo-uploader has-file"}
-    //         style={styles.main}
-    //         key={item.id}
-    //       >
-    //         <RenderMedia
-    //           item={item}
-    //           removeMedia={removeMedia}
-    //           applyRef={applyRef}
-    //           primaryType={primaryType}
-    //           applyAudioRef={applyAudioRef}
-    //         />
-    //       </div>
-    //     );
-    //   })}
-    // </div>
+    </View>
   );
 };
 
@@ -73,25 +49,21 @@ const RenderMedia = ({
         <View>
           {/* <CloseIcon close={removeMedia} id={item.id} /> */}
 
-<TouchableOpacity style={{width:30, height:30}} onPress={()=>removeMedia(item.id)}>
-  <Icon name= "circle-with-cross" style={{fontSize:20}}/>
-</TouchableOpacity>
-<View style={styles.content}>
-<Image source ={{uri:item.url}}/>
-</View>
-
-          {/* <div className="photo-uploader__placeholder" style={styles.content}>
-            <img src={item.url} alt="photo-uploader__placeholder" />
-          </div> */}
+          <TouchableOpacity style={{ width: 30, height: 30 }} onPress={() => removeMedia(item.id)}>
+            <Icon name="circle-with-cross" style={{ fontSize: 20 }} />
+          </TouchableOpacity>
+          <View style={styles.content}>
+            <Image source={{ uri: item.url }} />
+          </View>
         </View>
       );
     case "video":
       return (
         <View>
-          <TouchableOpacity style={{width:30, height:30}} onPress={()=>removeMedia(item.id)}>
-  <Icon name= "circle-with-cross" style={{fontSize:20}}/>
-</TouchableOpacity>
-<PlayVideo
+          <TouchableOpacity style={{ width: 30, height: 30 }} onPress={() => removeMedia(item.id)}>
+            <Icon name="circle-with-cross" style={{ fontSize: 20 }} />
+          </TouchableOpacity>
+          <PlayVideo
             key={item.id}
             id={`player-${item.id}`}
             mediaType="video"
@@ -104,47 +76,23 @@ const RenderMedia = ({
             //     ? media.metadata.thumbnail
             //     : poster
             // }
-            uri= {item.url}//{JSON.stringify(media)}
+            uri={item.url}//{JSON.stringify(media)}
             // options={JSON.stringify(config)}
             // tracks={JSON.stringify(tracks)}
             parentComponent="renderTempFile"
           />
-</View>
-          // <CloseIcon close={removeMedia} id={item.id} />
-          // <div className="photo-uploader__placeholder" style={styles.content}>
-          //   <video
-          //     width="320"
-          //     height="240"
-          //     controls
-          //     ref={applyRef}
-          //     controlsList="nodownload"
-          //     id={item.id}
-          //   >
-          //     <source src={item.url} type={item.type} />
-          //   </video>
-          // </div>
-       
+        </View>
+
       );
     case "audio":
       return (
         <View>
-          <TouchableOpacity style={{width:30, height:30}} onPress={()=>removeMedia(item.id)}>
-  <Icon name= "circle-with-cross" style={{fontSize:20}}/>
-</TouchableOpacity>
+          <TouchableOpacity style={{ width: 30, height: 30 }} onPress={() => removeMedia(item.id)}>
+            <Icon name="circle-with-cross" style={{ fontSize: 20 }} />
+          </TouchableOpacity>
 
-<Text>Render Temp Audio file</Text> 
+          <Text>Render Temp Audio file</Text>
 
-          {/* <CloseIcon close={removeMedia} id={item.id} /> */}
-          {/* <div className="photo-uploader__placeholder" style={styles.content}>
-            <audio
-              controls
-              ref={applyAudioRef}
-              controlsList="nodownload"
-              id={item.id}
-            >
-              <source src={item.url} type={item.type} />
-            </audio>
-          </div> */}
         </View>
       );
     default:
@@ -156,7 +104,7 @@ const styles = {
   wrapper: {
 
     flex: 1,
-    backgroundColor:'pink'
+    backgroundColor: 'pink'
   },
   main: { margin: '5%' },
   content: {

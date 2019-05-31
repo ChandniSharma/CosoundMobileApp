@@ -17,6 +17,13 @@ export default {
         color: '#3B93BB',
         fontFamily: 'Montserrat-light',
     },
+    updateDetailText:{
+        alignSelf:'center',
+        fontSize:14,
+        color:'white',
+        fontFamily:'Montserrat-light',
+           // fontWeight:'100',
+    },
     featuredText: {
         fontSize: 20,
         color: '#262626',

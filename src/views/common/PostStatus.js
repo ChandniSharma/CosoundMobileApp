@@ -326,128 +326,6 @@ class PostStatus extends React.PureComponent {
       </View>
     </View>
       )
-      { /* return (
-        <div
-          className="d-card d-card--mobile-btn-offset wow fadeInUp"
-          data-wow-delay=".2s"
-        >
-          <form action="#" className="create-post">
-            <div className="create-post__writting">
-              <textarea
-                name="body"
-                placeholder="Share your thoughts, music or inspiration.."
-                rows="5"
-                data-min-rows="5"
-                onChange={this._handleChange}
-                value={body}
-              />
-              {errors.body && <ErrorMsg message={errors.body} mobile />}
-              {errors.files && <ErrorMsg message={errors.files} mobile />}
-            </div>
-            <RenderTempFile
-              urls={urls}
-              applyRef={this._applyRef}
-              applyAudioRef={this._applyAudioRef}
-              removeMedia={this._removeMedia}
-            />
-  
-            <div className="create-post__actions">
-              <div className="create-post__types">
-                <div
-                  className={`create-post__type create-post__type--music ${current ===
-                    "music" && "is-current"}`}
-                  onClick={() => this.setState({ current: "music" })}
-                >
-                  <input
-                    type="file"
-                    name="files"
-                    id="music"
-                    multiple
-                    onChange={this._handleFileChange}
-                    accept="audio/mp3,audio/*"
-                  />
-                  <label htmlFor="music">
-                    <Svg name="ico-music" />
-                    <span>Music</span>
-                  </label>
-                </div>
-                <div
-                  className={`create-post__type create-post__type--video ${current ===
-                    "video" && "is-current"}`}
-                  onClick={() => this.setState({ current: "video" })}
-                >
-                  <input
-                    type="file"
-                    name="files"
-                    id="video"
-                    multiple
-                    onChange={this._handleFileChange}
-                    accept="video/mp4,video/x-m4v,video/*"
-                  />
-                  <label htmlFor="video">
-                    <Svg name="ico-video" />
-                    <span>Video</span>
-                  </label>
-                </div>
-                <div
-                  className={`create-post__type create-post__type--images ${current ===
-                    "image" && "is-current"}`}
-                  onClick={() => this.setState({ current: "image" })}
-                >
-                  <input
-                    type="file"
-                    name="files"
-                    id="image"
-                    multiple
-                    onChange={this._handleFileChange}
-                    accept="image/*"
-                  />
-                  <label htmlFor="image">
-                    <Svg name="ico-images" />
-                    <span>Images</span>
-                  </label>
-                </div>
-              </div>
-              <SubmitButtonDiv
-                className="create-post"
-                onClick={this._submitPost}
-                loading={postStatus.isRequesting}
-                loaderComponent={
-                  <Loader fill={"#53b2af"} height={"15px"} width={"15px"} />
-                }
-                buttonText={<ButtonText />}
-              />
-            </div>
-          </form>
-        </div>
-      ); */ }
-    // return (
-    //   <View>
-    //     <View style={styles.viewWriteSomething}>
-    //       <TextInput
-    //           style={styles.textWriteSomething}
-    //           onChangeText={(text) => this.setState({ text })}
-    //           value={this.state.text}
-    //       />
-    //       <View style={styles.midView}>
-    //       </View>
-    //       <View style={styles.viewBottomContent}>
-    //           <Icon name="ios-musical-notes" size={50} color="rgb(140,91,203)" style={styles.music} />
-    //           <Text style={styles.music}>Music</Text>
-    //           <Icon name="video" size={30} color="#20ACAC" style={styles.video} />
-    //           <Text style={styles.video}>Video</Text>
-    //           <Icon name="image" size={30} color="#20ACAC" style={styles.imageIcon} />
-    //           <Text style={styles.images}>Images</Text>
-    //       </View>
-    //     </View>
-    //     <View style={styles.viewPostButton}>
-    //         <TouchableHighlight style={[styles.postButton]}>
-    //             <Text style={styles.textLoginButtonTitle}>Post -></Text>
-    //         </TouchableHighlight>
-    //     </View>
-    //   </View>
-    // );
-
   }
 }
 
@@ -455,7 +333,7 @@ class PostStatus extends React.PureComponent {
 const mapStateToProps = state => {
   return {
     postStatus: state.postStatus,
-    tempFile: state.tempFile
+    tempFile: state.tempFileƒ
   };
 };
 

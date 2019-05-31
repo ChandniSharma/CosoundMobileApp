@@ -17,6 +17,8 @@ export default class StarView extends React.Component {
                     readonly={true}
                     size={20}
                     isDisabled={true}
+                    ratingColor='red'
+                    ratingBackgroundColor="red"
                 />
 
             </View>

@@ -7,26 +7,28 @@ import { getCategoryId, getSubCategoryId } from "../../utils";
 
 import {marketPlaceActions } from "../../actions";
 
-import MarketPlace from "../../views/Marketplace";
+import MarketPlaceComponent from "../../views/MarketPlaceComponent";
 
-class MarketPlace extends React.PureComponent {
+
+class MarketPlaceContainer extends React.PureComponent {
   state = {};
   componentDidMount() {
+    console.log(" in market place ======");
     this._restCalls();
   }
 
   componentDidUpdate(prevProps) {
-    const updateCondition =
-      (this.props.match.params.slug !== prevProps.match.params.slug ||
-        this.props.match.params.subcategorySlug !==
-          prevProps.match.params.subcategorySlug) &&
-      !isNull(this._getCategoryId());
+    // const updateCondition =
+    //   (this.props.match.params.slug !== prevProps.match.params.slug ||
+    //     this.props.match.params.subcategorySlug !==
+    //       prevProps.match.params.subcategorySlug) &&
+    //   !isNull(this._getCategoryId());
 
-    if (updateCondition) {
-      this._fetchServices(1).then(() => {
-      //  performWow(this.props.wowActions);
-      });
-    }
+    // if (updateCondition) {
+    //   this._fetchServices(1).then(() => {
+    //   //  performWow(this.props.wowActions);
+    //   });
+    // }
   }
 
   /**
@@ -88,10 +90,12 @@ class MarketPlace extends React.PureComponent {
   };
 
   render() {
+
+    console.log(" in market place ======");
     const { user, services, categories, featuredServices } = this.props;
 
     return (
-      <MarketPlace
+      <MarketPlaceComponent
         user={user}
         services={services}
         categories={categories}
@@ -123,4 +127,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(MarketPlace);
+  )(MarketPlaceContainer);

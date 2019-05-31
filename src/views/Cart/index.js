@@ -3,20 +3,16 @@ import React from "react";
 import { Paginator } from "../../hoc";
 import CartList from "./CartList";
 import Sidebar from "./Sidebar";
-import { FlatList, Image, ImageBackground, Text, TextInput, Modal, TouchableHighlight, View, TouchableOpacity, ScrollView, ActivityIndicator } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import styles from "../../stylesheet/Cart.style";
 import { SafeAreaView } from 'react-navigation';
-import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import Logo from '../common/logo';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Icon from "react-native-vector-icons/AntDesign";
-import Icon1 from "react-native-vector-icons/Entypo";
 import Icon2 from "react-native-vector-icons/EvilIcons";
-import Icon3 from "react-native-vector-icons/Ionicons";
 import Hamburger from 'react-native-hamburger';
 import SideMenu from '../common/SideMenu';
-import SettingsHeader from '../common/SettingsHeader';
 import Notifications from '../../../src/containers/Notifications'
 import CustomFooter from '../../components/common/CustomFooter';
 
@@ -68,13 +64,13 @@ class Cart extends React.PureComponent {
           <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
           <View style={{ flex: 0.3 }} />
           <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}>
-          {this.state.isNotificationShow?<Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} />:<Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />}
-                      
+            {this.state.isNotificationShow ? <Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} /> : <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />}
+
           </TouchableOpacity>
         </LinearGradient> : null}
 
         <View style={{ flex: 1 }}>
-        {!this.state.isNotificationShow ? <KeyboardAwareScrollView style={{ backgroundColor: 'white' }}>
+          {!this.state.isNotificationShow ? <KeyboardAwareScrollView style={{ backgroundColor: 'white' }}>
             {/* <Text style={[styles.titleAccount, {marginTop:'2%', marginLeft:'2%'} ]}>Your Service</Text> */}
             <View style={{ flex: 0.5 }}>
               <Paginator
@@ -86,7 +82,7 @@ class Cart extends React.PureComponent {
                 removeFromCart={removeFromCart}
                 _removeFromCart={_removeFromCart}
                 page_count={paginationData.page_count}
-                navigation ={this.props.navigation}
+                navigation={this.props.navigation}
               />
 
             </View>
@@ -97,50 +93,14 @@ class Cart extends React.PureComponent {
               <CustomFooter />
             </View>
 
-          </KeyboardAwareScrollView> : 
-          <View>
-            <Notifications hidePopup={() => this.hideNotificationView()} />
-          </View>}
+          </KeyboardAwareScrollView> :
+            <View>
+              <Notifications hidePopup={() => this.hideNotificationView()} />
+            </View>}
           {/* Side Menu button modal  */}
-          {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation}  hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
+          {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation} hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
         </View>
       </SafeAreaView>
-
-
-      //   <View style={{flex: 1, backgroundColor:'red', marginTop:'20%', }}>
-      //     <Text >Your Cart</Text>
-      //     <View>
-
-      //     <Text >Cosound </Text>
-
-      //   </View>
-      // )
-      // return (
-      //   <React.Fragment>
-      //     <Helmet title={"Cart"} />
-      //     <div className="cart">
-      //       <div className="container container--wide">
-      //         <div className="product__wrapper">
-      //           <div className="product__content">
-      //             <div className="product__box wow fadeInUp">
-      //               <div className="product__title">Your Cart</div>
-      // <Paginator
-      //   isLoaderInternal
-      //   cart={cart}
-      //   callAPI={fetchCart}
-      //   component={CartList}
-      //   page={paginationData.page}
-      //   removeFromCart={removeFromCart}
-      //   _removeFromCart={_removeFromCart}
-      //   page_count={paginationData.page_count}
-      // />
-      //             </div>
-      //           </div>
-      // <Sidebar cart={cart} />
-      //         </div>
-      //       </div>
-      //     </div>
-      //   </React.Fragment>
     );
   }
 }

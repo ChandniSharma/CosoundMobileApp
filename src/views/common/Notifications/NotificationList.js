@@ -56,11 +56,7 @@ class NotificationList extends React.PureComponent {
       </View>)
   }
 
-
-
   render() {
-
-
     const {
       callApi,
       loadMore,
@@ -71,47 +67,31 @@ class NotificationList extends React.PureComponent {
       page,
 
     } = this.props;
-    console.log(" Notifica==========", this.props);
     return (
-      <View style={{marginBottom:'5%'}}>
-
+      <View style={{ marginBottom: '5%' }}>
         {notifications.isRequesting && !callingAPI && (
-          <ActivityIndicator color="gray" size="large" style={{marginTop:'10%'}}/>
+          <ActivityIndicator color="gray" size="large" style={{ marginTop: '10%' }} />
         )}
         {isError(notifications) && (
           <View>
             <Animatable.Text animation="fadeIn" style={styles.errorText}> {notifications.error.message}  </Animatable.Text>
           </View>)}
-
         {!isError(notifications) &&
           !notifications.isRequesting &&
           isEmpty(notifications.data) && (
-            <View style={{alignSelf:'center', justifyContent:'center', height:100}}>
+            <View style={{ alignSelf: 'center', justifyContent: 'center', height: 100 }}>
               <Text style={styles.noNotificationText}>No notifications to show </Text>
             </View>)}
-
-        {notifications && notifications.data && 
-        <FlatList
-          renderItem={this.renderItem}
-          extraData={this.props}
-          data={notifications.data}
-          keyExtractor={(item, index) => index.toString()}
-        />}
-
+        {notifications && notifications.data &&
+          <FlatList
+            renderItem={this.renderItem}
+            extraData={this.props}
+            data={notifications.data}
+            keyExtractor={(item, index) => index.toString()}
+          />}
       </View>
     );
   }
 }
 
 export default NotificationList;
-
-{/* {!isEmpty(notifications.data) && callApi && (
-          <LoadMore loadMore={loadMore} callingAPI={callingAPI} />
-        )} */}
-{/* {!isEmpty(data) && !callingAPI && page !== page_count && !isNull(page_count) && !callApi(
-                <View style={styles.viewMore}>
-                    <TouchableHighlight underlayColor="#25b6ad" style={[styles.seeMoreBtn]} onPress={loadMore}>
-                        <Text style={styles.textViewMore} > {callingAPI ? "Fetching..." : "View More..."}</Text>
-                    </TouchableHighlight>
-                </View>
-         )} */}

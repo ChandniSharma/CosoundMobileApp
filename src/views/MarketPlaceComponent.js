@@ -1,3 +1,7 @@
+import { isNull, isEmpty } from "lodash";
+
+import { getServiceNormalImage, getServiceLink } from "../utils";
+
 import { Component } from "react";
 import { SafeAreaView } from 'react-navigation';
 import React from "react";
@@ -30,7 +34,8 @@ import MarketplaceDetail from './MarketplaceDetail';
 const { deviceWidth, deviceHeight } = Dimensions.get('window');
 let screenWidth = deviceWidth - 100;
 
-export default class MarketPlace extends React.Component {
+
+export default class MarketPlaceComponent extends React.Component {
 
     constructor(props) {
         super(props);
@@ -118,35 +123,34 @@ export default class MarketPlace extends React.Component {
     };
 
     moveToMarketPlaceDetailView = () => {
-console.log(" move to Detail view ");
+        console.log(" move to Detail view ");
         this.setState({ isMarketDetailViewShow: true });
-      
-    }
-    _renderCarouselItem({ item, index }) {
 
+    }
+    _renderCarouselItem(itemDetail, index) {
+        console.log("itemDetail====", itemDetail)
+        let item = itemDetail.item;
+        //let item = itemDetail;
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', borderRadius: 20, }}>
-                <ImageBackground source={require('../assets/marketGrid-12.jpg')} style={{ width: 500, height: 500 }}>
-
+                <ImageBackground source={{
+                    uri: getServiceNormalImage(
+                        item.media
+                    )
+                }} style={{ width: 500, height: 500 }}>
                     <View style={{ backgroundColor: 'rgba(0,0,0,0.6)', width: '100%', height: '100%', borderRadius: 20, alignItems: 'center' }}>
                         <View style={{ width: '60%', height: '100%', marginRight: '10%' }}>
-                            <Text style={styles.titleCarousel} >{item.title}</Text>
-                            <Text style={styles.titleMainCarousel} >{item.MainTitle}</Text>
-                            <Text style={styles.descriptionCarousel} >{item.Description}</Text>
-
+                            <Text style={styles.titleCarousel} >{item.category.name}</Text>
+                            <Text style={styles.titleMainCarousel} >{item.title}</Text>
+                            <Text style={styles.descriptionCarousel} >{item.description}</Text>
                             <View style={{ marginLeft: "15%", marginRight: "15%", }}>
                                 <TouchableHighlight underlayColor="#25b6ad" style={[styles.seeMoreBtn]} onPress={this.moveToMarketPlaceDetailView}>
                                     <Text style={styles.textButtonTitle}>See more...</Text>
                                 </TouchableHighlight>
                             </View>
-
                         </View>
-
-
                     </View>
-
                 </ImageBackground>
-
             </View>
         )
     }
@@ -215,6 +219,10 @@ console.log(" move to Detail view ");
     }
 
     render() {
+        const { user, services, fetchServices, featuredServices } = this.props;
+        const paginationData = services;
+        const { isRequesting, error, data } = featuredServices;
+        console.log("data====", data)
         return (
 
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
@@ -253,8 +261,8 @@ console.log(" move to Detail view ");
 
                 <KeyboardAwareScrollView onScroll={this._onScroll} style={{ backgroundColor: 'rgb(245, 245,245)' }}>
 
-                    {this.state.isMarketDetailViewShow ? <Animatable.View  style={{ backgroundColor: 'white', flex: 1 }}>
-                            <MarketplaceDetail />
+                    {this.state.isMarketDetailViewShow ? <Animatable.View style={{ backgroundColor: 'white', flex: 1, marginTop: '20%' }}>
+                        <MarketplaceDetail />
                     </Animatable.View> :
                         <Animatable.View ref={'mainView'} style={{ backgroundColor: 'white', flex: 1 }} >
 
@@ -270,18 +278,30 @@ console.log(" move to Detail view ");
                                 {/* <View style={{ width: 30, height: 30, borderRadius: 18, backgroundColor: 'white' }}>
                                 <Icon1 name="down" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
                             </View> */}
+                                {/* {isRequesting && (
+                                <Loader fill={"#53b2af"} height={"18px"} className={"playLoader"} />
+                                )}
+                                {!isRequesting && !isEmpty(error) && error.message && (
+                                <Error message={error.message} />
+                                )}
 
-                                <Carousel
-                                    layout={'default'} layoutCardOffset={`18`}
-                                    ref={ref => this.carousel = ref}
-                                    data={this.state.carouselItems}
-                                    sliderWidth={350}
-                                    itemWidth={400}
-                                    renderItem={this._renderCarouselItem}
-                                    onSnapToItem={index => this.setState({ activeIndex: index })}
-                                // onSnapToItem={this.handleSnapToItem.bind(this)}
+                                {!isRequesting && data.data && isEmpty(data.data) && isEmpty(error) && (
+                                <NoData {...noDataProps} />
+                                )} */}
+                                {!isRequesting && data && data.data && !isEmpty(data.data) && (
+                                    <Carousel
+                                        layout={'default'} layoutCardOffset={`18`}
+                                        ref={ref => this.carousel = ref}
+                                        // data={this.state.carouselItems}
+                                        data={data.data}
+                                        sliderWidth={350}
+                                        itemWidth={400}
+                                        renderItem={this._renderCarouselItem}
+                                        onSnapToItem={index => this.setState({ activeIndex: index })}
+                                    // onSnapToItem={this.handleSnapToItem.bind(this)}
 
-                                />
+                                    />
+                                )}
 
                                 {/* <View style={{ width: 30, height: 30, borderRadius: 18, backgroundColor: 'white' }}>
                                 <Icon1 name="down" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', fontWeight: 'bold' }} />
@@ -302,14 +322,20 @@ console.log(" move to Detail view ");
                                 <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton]}>
                                     <Text style={styles.textButtonTitle} >My Market</Text>
                                 </TouchableHighlight>
-
                                 <Text style={styles.personalRecommended}> Your Personal Reccomendations</Text>
-
                                 <FlatList
                                     data={this.state.arrayPersonalRecommendations}
                                     renderItem={this.renderItem}
                                     keyExtractor={(item, index) => index.toString()}
                                 />
+                                {/* <Paginator
+                                    isLoaderInternal
+                                    services={services}
+                                    component={ServiceGrid}
+                                    callAPI={fetchServices}
+                                    page={paginationData.page}
+                                    page_count={paginationData.page_count}
+                                /> */}
                             </View>
                             <View>
                                 <CustomFooter />

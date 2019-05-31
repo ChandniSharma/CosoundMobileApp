@@ -1,26 +1,22 @@
 import React from "react";
-//import { Link } from "react-router-dom";
-import { FlatList, Image, ImageBackground, Text, TextInput, Modal, TouchableHighlight, View, TouchableOpacity, ScrollView, ActivityIndicator } from "react-native";
+import { Text, TouchableHighlight, View } from "react-native";
 import styles from "../../../stylesheet/Cart.style";
 
 const OptionComponent = ({
   id,
   _delete,
-  className,
-  isVisible,
   deleteState,
   postedBySelf,
-  visitorLinks
 }) => {
   let arrayPostOptions = ["All", "Copy Link", "Unfollow User", 'Share', 'Report Post'];
   let arrayBtn = []
   if (postedBySelf) {
-    let btn =  <View style={{ marginTop: '15%', height: 40 }}>
-        <TouchableHighlight onPress={() => _delete(id)} underlayColor="#8e8e8e" >
-          <Text style={styles.postOptionText}>{deleteState.isRequesting === id ? "Deleting.." : "Delete"}
-          </Text>
-        </TouchableHighlight>
-      </View>
+    let btn = <View style={{ marginTop: '15%', height: 40 }}>
+      <TouchableHighlight onPress={() => _delete(id)} underlayColor="#8e8e8e" >
+        <Text style={styles.postOptionText}>{deleteState.isRequesting === id ? "Deleting.." : "Delete"}
+        </Text>
+      </TouchableHighlight>
+    </View>
 
 
     arrayBtn.push(btn);
@@ -34,40 +30,6 @@ const OptionComponent = ({
     }
   }
   return arrayBtn;
-  // switch (postedBySelf) {
-  //   case false:
-  //     return (
-  //       <ul
-  //         className={`${className}__options-list ${
-  //           isVisible ? "is-visible" : ""
-  //         }`}
-  //       >
-  //         {visitorLinks.map((item, index) => {
-  //           return (
-  //             <li key={index}>
-  //               <Link to={item.link}>{item.name}</Link>
-  //             </li>
-  //           );
-  //         })}
-  //       </ul>
-  //     );
-  //   case true:
-  //     return (
-  //       <ul
-  //         className={`${className}__options-list ${
-  //           isVisible ? "is-visible" : ""
-  //         }`}
-  //       >
-  //         <li>
-  //           <a onClick={() => _delete(id)}>
-  //             {deleteState.isRequesting === id ? "Deleting.." : "Delete"}
-  //           </a>
-  //         </li>
-  //       </ul>
-  //     );
-  //   default:
-  //     return null;
-  // }
 };
 
 export default OptionComponent;

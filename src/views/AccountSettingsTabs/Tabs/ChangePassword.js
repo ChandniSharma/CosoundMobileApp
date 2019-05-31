@@ -3,15 +3,7 @@ import React from "react";
 import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, FlatList, ActivityIndicator } from 'react-native';
 import styles from "../../../stylesheet/Account.style";
 import * as Animatable from 'react-native-animatable';
-
-import Icon from "react-native-vector-icons/AntDesign";
-import Icon1 from "react-native-vector-icons/Entypo";
-import Icon2 from "react-native-vector-icons/EvilIcons";
-import Icon3 from "react-native-vector-icons/Ionicons";
-
 import Validator from "../../../validator";
-
-// import { ErrorMsg, UpdateButton } from "../../Commons";
 import { isSuccess, isError } from "../../../utils";
 
 class ChangePassword extends React.PureComponent {
@@ -52,7 +44,6 @@ class ChangePassword extends React.PureComponent {
   };
 
   _submit = e => {
-    //e.preventDefault();
     if (this._isValid()) {
       const { _changePassword } = this.props;
       const { data } = this.state;
@@ -119,7 +110,6 @@ class ChangePassword extends React.PureComponent {
         
         <TouchableOpacity style={{ alignSelf: 'center', justifyContent: 'center', marginTop: '5%', width: '40%', height: '15%', borderRadius: 10, backgroundColor: '#ff277b' }}
           onPress={()=> !changePassword.isRequesting && this._submit()}
-
           // disabled={changePassword.isRequesting}
         >
           {changePassword.isRequesting ? (
@@ -130,48 +120,7 @@ class ChangePassword extends React.PureComponent {
         </TouchableOpacity>                  
       </View>
     )
-    // return (
-    //   <form className="profile-tabs__tab is-active">
-    //     <div className={"ui-group wow fadeInUp"} data-wow-delay={"0.4s"}>
-    //       <input
-    //         type={"password"}
-    //         name={"old_password"}
-    //         placeholder={"Current Password"}
-    //         value={data.old_password}
-    //         onChange={e => this._handleChange(e)}
-    //         autoComplete={"old_password"}
-    //       />
-    //       {errors.old_password && <ErrorMsg message={errors.old_password} />}
-    //     </div>
-    //     <div className={"ui-group wow fadeInUp"} data-wow-delay={"0.4s"}>
-    //       <input
-    //         type={"password"}
-    //         name={"new_password"}
-    //         placeholder={"Password"}
-    //         value={data.new_password}
-    //         onChange={e => this._handleChange(e)}
-    //         autoComplete={"new_password"}
-    //       />
-    //       {errors.new_password && <ErrorMsg message={errors.new_password} />}
-    //     </div>
-    //     <div className={"ui-group wow fadeInUp"} data-wow-delay={"0.4s"}>
-    //       <input
-    //         type={"text"}
-    //         name={"password_confirmation"}
-    //         placeholder={"Confirm Password"}
-    //         value={data.password_confirmation}
-    //         onChange={e => this._handleChange(e)}
-    //       />
-    //       {errors.password_confirmation && (
-    //         <ErrorMsg message={errors.password_confirmation} />
-    //       )}
-    //     </div>
-    //     <UpdateButton
-    //       onClick={this._submit}
-    //       loading={changePassword.isRequesting}
-    //     />
-    //   </form>
-    // );
+    
   }
 }
 

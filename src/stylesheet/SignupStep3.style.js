@@ -79,7 +79,7 @@ export default {
         marginBottom: '5%',
         fontFamily: 'Montserrat-Regular',
         fontWeight: '300',
-        textAlign:'center',
+        textAlign: 'center',
     },
 
     imgMainTitle: {
@@ -235,7 +235,7 @@ export default {
         shadowOpacity: 0.5,
         shadowRadius: 1,
         borderRadius: 8,
-        marginBottom:'2%',
+        marginBottom: '2%',
     },
 
     inputStyle: {
@@ -280,18 +280,18 @@ export default {
         fontWeight: '300',
         fontSize: 16,
         color: '#262626',
-        justifyContent:'center',
+        justifyContent: 'center',
         // paddingTop: 21,
         // paddingBottom: 20,
         // paddingLeft: 30,
         // paddingRight: 30,
     },
-    socialInput:{
+    socialInput: {
         marginLeft: '5%',
         marginRight: '2%',
         height: 60,
-       
-    
+
+
         fontFamily: 'Montserrat-Regular',
         fontWeight: '300',
         fontSize: 16,
@@ -403,17 +403,17 @@ export default {
         // marginBottom:5,
         right: '3%',
         // alignSelf: 'flex-end',
-         marginTop: '2%',
+        marginTop: '2%',
         flex: 0.15,
-        width:40,
-        height:40,
-        justifyContent:'center',
+        width: 40,
+        height: 40,
+        justifyContent: 'center',
         alignItems: 'center',
     },
     plusCircle: {
-       // color: 'gray',
+        // color: 'gray',
         // marginBottom: 5,
-       
+
     },
     viewCircleCompleted: {
         width: 30,

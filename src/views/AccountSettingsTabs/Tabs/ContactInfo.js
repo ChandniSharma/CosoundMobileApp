@@ -156,7 +156,6 @@ class ContactInfo extends React.Component {
   render() {
     const { data, errors } = this.state;
     const { user, contactInfo } = this.props;
-    console.log(" State ====", data, "Prps ======", this.props);
     return (
       <View style={{ flex: 1, marginBottom:'20%' }}>
         <TextInput
@@ -191,26 +190,10 @@ class ContactInfo extends React.Component {
           
           
         }) 
-//         :
-//         <View style={{flexDirection:'row'}}>
-
-// <TextInput
-//           style={[styles.socialInput, { flex: 0.85 }]}
-//           placeholder={'Phone Numbers'}
-//           onChangeText={val => this._handleCreatable('phone_numbers', val)}
-//           value={data.phone_numbers}
-//           name={"phone_numbers"}
-//         />
-//          {/* <TouchableHighlight onPress={() => this._addMoreSocials(item.id)} underlayColor="#25b6ad" style={[styles.plusCircleBtn]}>
-//                   <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} />
-//                 </TouchableHighlight> */}
-
-//         </View>
         }
 
         <TouchableOpacity style={{ alignSelf: 'center', justifyContent: 'center', marginTop: '5%', width: '40%', height: '15%', borderRadius: 10, backgroundColor: '#ff277b' }}
           onPress={() => !contactInfo.isRequesting && this._submit()}
-
         // disabled={changePassword.isRequesting}
         >
           {contactInfo.isRequesting ? (
@@ -221,70 +204,8 @@ class ContactInfo extends React.Component {
         </TouchableOpacity>
       </View>
     )
-    // return (
-    //   <div className="profile-tabs__tab is-active">
-    //     <div className="ui-group">
-    //       <input
-    //         type="email"
-    //         name="email"
-    //         placeholder="Email"
-    //         defaultValue={user.data.email}
-    //         disabled
-    //         style={!user.data.isConfirmed ? styles.emailNotVerified : null}
-    //       />
-    //     </div>
-    //     <div className="ui-group">
-    //       <CreatableSelect
-    //         name="phone_numbers"
-    //         placeholder={"Phones"}
-    //         selectedOption={data.phone_numbers}
-    //         handleCreatable={this._handleCreatable}
-    //       />
-    //     </div>
-    //     {data.social_links.map((item, index) => {
-    //       if (item.isVisible) {
-    //         return (
-    //           <div className={"ui-group"} data-wow-delay=".4s" key={index}>
-    //             <input
-    //               type="text"
-    //               name={item.id}
-    //               placeholder="Social Links"
-    //               onKeyPress={e => this._handleKeyPress(e)}
-    //               onChange={e => this._handleSocialLinks(e)}
-    //               value={item.value}
-    //             />
-    //             {!item.isReady && (
-    //               <Svg
-    //                 name="ico-plus"
-    //                 modClass="js-multiple-inputs-plus"
-    //                 handleClick={() => this._addMoreSocials(item.id)}
-    //               />
-    //             )}
-    //             {errors[item.id] && (
-    //               <label
-    //                 id="socialLinks-error"
-    //                 className="error ui-input__validation"
-    //                 htmlFor="socialLinks"
-    //               >
-    //                 {errors[item.id]}
-    //               </label>
-    //             )}
-    //           </div>
-    //         );
-    //       }
-    //       return null;
-    //     })}
-    // <UpdateButton
-    //   onClick={this._submit}
-    //   loading={contactInfo.isRequesting}
-    // />
-    //   </div>
-    // );
+   
   }
 }
 
 export default ContactInfo;
-
-// const styles = {
-//   emailNotVerified: { border: "1px solid #d5628c" }
-// };
