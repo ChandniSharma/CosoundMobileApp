@@ -34,7 +34,161 @@ import MarketplaceDetail from './MarketplaceDetail';
 const { deviceWidth, deviceHeight } = Dimensions.get('window');
 let screenWidth = deviceWidth - 100;
 
+class ServiceGrid extends React.PureComponent {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            isSearchbarDataShow: false,
+            activeIndex: 0,
+            isSideMenuClick: false,
+            isNotificationShow: false,
+            isDropDownclick: false,
+            isMarketDetailViewShow: false,
+            headerColorMix: ['rgb(42, 173,177)', 'rgb(131, 110, 198)', 'rgb(134, 103, 200)'],
+
+            carouselItems: [
+                {
+                    title: "Featured Recording studio",
+                    MainTitle: "The Jukebox Recording Studios London",
+                    Description: "The jukebox comes with a large live room, perfect for bands. The team at jukebox have over 40 years experience in recording rock and heavy mental musicians. "
+                },
+                {
+                    title: "Featured Photographer",
+                    MainTitle: "Let Burnett",
+                    Description: "If you are looking for a high quality stylistic imagery for your band then checkout lel's award winning portfolio here. "
+                },
+                {
+                    title: "Featured Recording studio",
+                    MainTitle: "The Jukebox Recording Studios London",
+                    Description: "The jukebox comes with a large live room, perfect for bands. The team at jukebox have over 40 years experience in recording rock and heavy mental musicians. "
+                },
+                {
+                    title: "Featured Recording studio",
+                    MainTitle: "The Jukebox Recording Studios London",
+                    Description: "The jukebox comes with a large live room, perfect for bands. The team at jukebox have over 40 years experience in recording rock and heavy mental musicians. "
+                },
+                {
+                    title: "Featured Recording studio",
+                    MainTitle: "The Jukebox Recording Studios London",
+                    Description: "The jukebox comes with a large live room, perfect for bands. The team at jukebox have over 40 years experience in recording rock and heavy mental musicians. "
+                }
+            ],
+
+            arrayPersonalRecommendations: [
+                {
+
+                    userImage: "",
+                    title: "Get you on 200 Spotify Playlists",
+                    ratingCount: '',
+                    like: "10",
+                    price: '45$',
+                    comment: "56",
+                    name: "Bryan Garza",
+                    image: require('../assets/marketGrid-3.jpg'),
+                },
+                {
+                    userImage: "",
+                    title: "Get you on 200 Spotify Playlists",
+                    ratingCount: '',
+                    like: "10",
+                    price: '45$',
+                    comment: "56",
+                    name: "Bryan Garza",
+                    image: require('../assets/marketGrid-3.jpg'),
+
+                },
+
+                {
+                    userImage: "",
+                    title: "Get you on 200 Spotify Playlists",
+                    ratingCount: '',
+                    like: "10",
+                    price: '45$',
+                    comment: "56",
+                    name: "Bryan Garza",
+                    image: require('../assets/marketGrid-3.jpg'),
+                },
+
+            ],
+        }
+    }
+
+    renderItem = (itemDetail) => {
+        let item = itemDetail.item;
+        console.log(" itemde-----", itemDetail);
+        console.log("getServiceNormalImage(item.media)===",getServiceNormalImage(item.media))
+        return (
+            <View style={{ flex: 1 }}>
+                {/* View single line */}
+                <View style={{ width: '95%', alignSelf: 'center', marginTop: '2%', height: 0.5, backgroundColor: 'lightgray' }} />
+                {/* Main service Image */}
+                <View style={{ marginTop: '2%', width: '100%' }}>
+                    <TouchableOpacity style={{ alignSelf: 'center', width: '100%' }} onPress={this.moveToMarketPlaceDetailView}>
+                        {/* <Image style={{ width: '100%' }} source={item.image} /> */}
+                        <Image style={{ width: '100%' }} source={{uri:getServiceNormalImage(item.media)}} />
+                    </TouchableOpacity>
+                </View>
+                <View style={{ flexDirection: 'row', flex: 1, marginBottom: '2%', marginTop: '2%' }}>
+                    <Image style={[styles.imgUser, { marginRight: '2%', marginLeft: '2%', marginBottom: '2%', marginTop: '2%' }]} source={{uri:getThumbnail(item.user)}} />
+                    <View style={{ flex: 0.85 }}>
+                        <TouchableOpacity style={{ marginTop: '2%' }}>
+                            <Text style={styles.textServiceTitle}>{getUsername(item.user)}</Text>
+                        </TouchableOpacity>
+                        <View style={{ flexDirection: 'row', marginTop: '5%', marginLeft: '0.5%' }}>
+                            {/* Rating view */}
+                            {/* <Text style={styles.textServiceTitle}>Star Rating </Text> */}
+                            <StarView starCount={item.review_count} />
+                            <Text style={[styles.textRatingCount, { marginLeft: '2%' }]}>{item.review_count}</Text>
+                        </View>
+                    </View>
+                </View>
+            </View>
+        )
+    }
+    
+    render() {
+      const { services, loadMore, callingAPI } = this.props;
+      const { data1, isRequesting, error } = services;
+      let data = [{"id":"90cceaa8-f95b-45c7-b47c-d758b9d8c8d2","category":{"id":3,"name":"Publishing","slug":"publishing"},"sub_category":{"id":8,"name":"Sub category 3.2","slug":"sub-category-32"},"title":"Media publishing","description":"Description of publishing service","about":"About publishing service","key_points":["Publish"],"price":49,"delivery_time":1,"delivery_time_unit":"Week","rating":0,"review_count":0,"media":[{"id":"c7f28c82-fde7-4477-ba5d-67b21cd27f08","path":"https://s3.eu-west-2.amazonaws.com/cosound-primary/services/images/YDQGkH50XTeUNylgVDmI8nCxW57fLhpSUACBO4wy.jpeg","file_type":"image","user_id":"0d1e55f9-6b06-4b6f-ad97-67bfeb5eb08e","metadata":{"isMain":true,"thumbnail_small":"https://s3.eu-west-2.amazonaws.com/cosound-primary/thumbnails/image_thumb_small_c7f28c82-fde7-4477-ba5d-67b21cd27f08.png","thumbnail_normal":"https://s3.eu-west-2.amazonaws.com/cosound-primary/thumbnails/image_thumb_normal_c7f28c82-fde7-4477-ba5d-67b21cd27f08.png"},"created_at":"2018-12-20 14:23:34"}],"is_featured":1,"user":{"id":"0d1e55f9-6b06-4b6f-ad97-67bfeb5eb08e","avatar":null,"thumbnail":null,"first_name":"Vishal","last_name":"Chhabra","type":"Musician","artist_name":"vi$hal"}}];
+  console.log("call 152 line ==",data)
+      return (
+        <View style={{flex:1}}>
+          {/*<Link
+            to={"/purchased-services"}
+            className="btn btn-primary btn-primary--red"
+          >
+            <Text>My Market</Text>
+         </Link>*/}
+        
+            <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton]}>
+                <Text style={styles.textButtonTitle} >My Market</Text>
+            </TouchableHighlight>
+            <Text style={styles.personalRecommended}> Your Personal Reccomendations</Text>
+             {/*isRequesting && !callingAPI && (
+            <Loader fill={"#53b2af"} height={"18px"} className={"playLoader"} />
+          )*/}
+  
+          {!isRequesting && !isEmpty(error) && <Text>{error.message} </Text>}
+  
+        {/*!isRequesting && isEmpty(error) && isEmpty(data) && (
+            <NoDataWithLink {...noDataProps} />
+        )*/}
+            <FlatList
+                //data={this.state.arrayPersonalRecommendations}
+                data={data}
+                renderItem={this.renderItem}
+                keyExtractor={(item, index) => index.toString()}
+            />
+  
+          {/*!isEmpty(data) && (
+            <ViewMore callingAPI={callingAPI} loadMore={loadMore} />
+          )*/}
+        </View>
+      );
+    }
+  }
+  
 export default class MarketPlaceComponent extends React.Component {
 
     constructor(props) {
@@ -127,6 +281,58 @@ export default class MarketPlaceComponent extends React.Component {
         this.setState({ isMarketDetailViewShow: true });
 
     }
+
+
+
+    _onChange = (name, value) => {
+        let text = value;
+        if (text.length > 0) {
+            this.setState({
+                isSearchbarDataShow: true,
+                searchBarBgColor: 'white',
+                searchTextColor: 'black',
+                searchIconColor: 'black'
+            })
+        } else {
+            this.setState({
+                isSearchbarDataShow: false,
+                searchBarBgColor: 'rgb(64,66, 67)',
+                searchTextColor: 'white',
+                searchIconColor: 'white',
+            })
+        }
+        this.setState(
+            {
+                [name]: value
+            },
+            () => {
+                const query = value.trim();
+                if (!isEmpty(query)) {
+                    this._search(query);
+                } else {
+                    this._resetState();
+                }
+            }
+        );
+    };
+
+    renderSearchRow = (item) => {
+        console.log(" item is ", item);
+
+        return (
+
+            <View style={{ height: 50, justifyContent: 'center' }}>
+                <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.moveToUserProfile(item.item.id)}>
+                    <View style={{ flexDirection: "row" }}>
+                        <Image style={{ width: 25, height: 25 }} />
+                        <Text style={[styles.textModalData, { marginRight: '5%', color: 'black' }]}> {getUsername(item.item)}</Text>
+
+                    </View>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+
     _renderCarouselItem(itemDetail, index) {
         console.log("itemDetail====", itemDetail)
         let item = itemDetail.item;
@@ -154,44 +360,7 @@ export default class MarketPlaceComponent extends React.Component {
             </View>
         )
     }
-    renderItem = (itemDetail) => {
-        let item = itemDetail.item;
-        console.log(" itemde-----", itemDetail);
-        return (
-            <View style={{ flex: 1 }}>
-                {/* View single line */}
-                <View style={{ width: '95%', alignSelf: 'center', marginTop: '2%', height: 0.5, backgroundColor: 'lightgray' }} />
-
-                {/* Main service Image */}
-                <View style={{ marginTop: '2%', width: '100%' }}>
-                    <TouchableOpacity style={{ alignSelf: 'center', width: '100%' }} onPress={this.moveToMarketPlaceDetailView}>
-                        <Image style={{ width: '100%' }} source={item.image} />
-                    </TouchableOpacity>
-                </View>
-
-
-                <View style={{ flexDirection: 'row', flex: 1, marginBottom: '2%', marginTop: '2%' }}>
-
-                    <Image style={[styles.imgUser, { marginRight: '2%', marginLeft: '2%', marginBottom: '2%', marginTop: '2%' }]} source={require('../assets/avatar2.jpg')} />
-
-                    <View style={{ flex: 0.85 }}>
-                        <TouchableOpacity style={{ marginTop: '2%' }}>
-                            <Text style={styles.textServiceTitle}> {item.title}</Text>
-                        </TouchableOpacity>
-                        <View style={{ flexDirection: 'row', marginTop: '5%', marginLeft: '0.5%' }}>
-                            {/* Rating view */}
-                            {/* <Text style={styles.textServiceTitle}>Star Rating </Text> */}
-                            <StarView starCount={3} />
-                            <Text style={[styles.textRatingCount, { marginLeft: '2%' }]}>5</Text>
-                        </View>
-                    </View>
-
-                </View>
-
-
-            </View>
-        )
-    }
+    
     showPopup() {
         this.setState({ isSideMenuClick: true })
         console.log(" sidemnu ", this.state.isSideMenuClick);
@@ -251,7 +420,10 @@ export default class MarketPlaceComponent extends React.Component {
                             <Text style={[styles.titleAccount, { flex: 0.9, marginTop: '0.5%', marginLeft: '5%' }]}> Graphics & Design</Text>
 
                             <View style={{ width: 30, height: 30, borderRadius: 18, marginRight: '5%', marginBottom: '5%', flex: 0.1, backgroundColor: 'white' }}>
+                                <TouchableOpacity onPress={}>
                                 <Icon1 name="down" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
+                                </TouchableOpacity>
+                               
                             </View>
 
                             {/* <Animatable.Image source={require('../../src/assets/Image/arrow_small_down.png')} style={{borderRadius:13,alignSelf:'flex-end' ,width: 26, height: 26 }} /> */}
@@ -319,7 +491,7 @@ export default class MarketPlaceComponent extends React.Component {
                                 {/* </TouchableHighlight> 
                             */}
 
-                                <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton]}>
+                                {/* <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton]}>
                                     <Text style={styles.textButtonTitle} >My Market</Text>
                                 </TouchableHighlight>
                                 <Text style={styles.personalRecommended}> Your Personal Reccomendations</Text>
@@ -327,16 +499,25 @@ export default class MarketPlaceComponent extends React.Component {
                                     data={this.state.arrayPersonalRecommendations}
                                     renderItem={this.renderItem}
                                     keyExtractor={(item, index) => index.toString()}
-                                />
-                                {/* <Paginator
+                                /> */}
+                                <Paginator
                                     isLoaderInternal
                                     services={services}
                                     component={ServiceGrid}
                                     callAPI={fetchServices}
                                     page={paginationData.page}
                                     page_count={paginationData.page_count}
-                                /> */}
+                                />
                             </View>
+
+                            {this.state.isSearchbarDataShow ?
+                        <FlatList
+                            style={styles.flatListSearchbar}
+                            data={data}
+                            renderItem={this.renderSearchRow}
+                            keyExtractor={(item, index) => index.toString()}
+                        /> : null}
+
                             <View>
                                 <CustomFooter />
                             </View>

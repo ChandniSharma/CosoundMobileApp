@@ -27,7 +27,6 @@ import StarView from './common/StarView';
 export default class MarketplaceDetail extends Component {
     fadeInMarketDetailView = () => this.refs.marketPlaceDetailViewRef.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
 
-
     constructor(props) {
         super(props);
         this.state = {
