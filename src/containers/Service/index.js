@@ -7,7 +7,7 @@ import { getValueFromParams } from "../../utils";
 
 import { serviceActions, cartActions } from "../../actions";
 
-import ServiceComponent from "../../components/ServiceComponent";
+import ServiceComponent from "./ServiceComponent";
 
 class Service extends React.PureComponent {
   componentDidMount() {

@@ -1,5 +1,8 @@
 PODS:
+  - Crashlytics (3.13.1):
+    - Fabric (~> 1.10.1)
   - DCTAuth (3.0)
+  - Fabric (1.10.1)
   - Firebase/Core (5.16.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.5.0)
@@ -64,12 +67,16 @@ PODS:
   - nanopb/encode (0.3.901)
 
 DEPENDENCIES:
+  - Crashlytics (~> 3.13.1)
   - DCTAuth (from `https://github.com/danielctull/DCTAuth.git`)
+  - Fabric (~> 1.10.1)
   - Firebase/Core
   - GoogleSignIn (~> 4.4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Crashlytics
+    - Fabric
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -91,7 +98,9 @@ CHECKOUT OPTIONS:
     :git: https://github.com/danielctull/DCTAuth.git
 
 SPEC CHECKSUMS:
+  Crashlytics: 5aa8e90dcbf2f34898b4f5a0037787531246cca0
   DCTAuth: 8add154decd00335d62917828896bba790ce47fd
+  Fabric: f6f21452846788bb44595d73e9909d79d328e617
   Firebase: 749a8ff4962f9d8c79dda1966de20f6f77583d67
   FirebaseAnalytics: d35d47c03c50c73c14a7fd31463c5775843e78a9
   FirebaseCore: ea2d1816723ef21492b8e9113303e1350db5e08c
@@ -103,6 +112,6 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 
-PODFILE CHECKSUM: eb61eb27c7407ed885a4488e38e7c68628e98432
+PODFILE CHECKSUM: f5cd06f754048666f7a565fd3d0e4e732b8dad6f
 
 COCOAPODS: 1.6.0.rc.2

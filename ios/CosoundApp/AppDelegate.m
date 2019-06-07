@@ -13,6 +13,8 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <RNGoogleSignin/RNGoogleSignin.h>
 
+#import <Crashlytics/Crashlytics.h>
+
 #define twitterConsumerKey @"";
 #define twitterConsumerSecretKey @"";
 
@@ -36,6 +38,8 @@
   [self.window makeKeyAndVisible];
   [FIRApp configure];
 
+ // [[Crashlytics sharedInstance] crash];
+  
 //  [[Twitter sharedInstance] startWithConsumerKey:@"TWITTER_CONSUMER_KEY"
 //                                  consumerSecret:@"TWITTER_CONSUMER_SECRET"];
 //

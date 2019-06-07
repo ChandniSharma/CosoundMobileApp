@@ -1185,6 +1185,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				920B55659808153E308A01CB /* [CP] Copy Pods Resources */,
 				992A38DA229C0D8700D2829D /* Embed Frameworks */,
+				99B0E32422AA9700003A08BD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1900,6 +1901,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CosoundApp/Pods-CosoundApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		99B0E32422AA9700003A08BD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
 		};
 		C8DFAC45C4E8F86035948369 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
