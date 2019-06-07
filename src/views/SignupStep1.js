@@ -84,7 +84,7 @@ export default class SignupStep1 extends Component {
                                 name={"address"}
                                 onChangeText={val => handleChange('address', val)}
                             /> */}
-                                <SelectInput style={styles.inputStyle} labelStyle={styles.locationLabel} value={data.country_id} options={this.options} onSubmitEditing={val => handleChange('country_id', val)} />
+                                <SelectInput style={styles.inputStyle} labelStyle={data.country_id? styles.locationLabel:styles.placeholderLabel}  value={data.country_id} options={this.options} onSubmitEditing={val => handleChange('country_id', val)} />
                                 {errors.country_id ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.country_id}</Animatable.Text> : null}
                                 {errors.address ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.address}</Animatable.Text> : null}
                                 <TextInput

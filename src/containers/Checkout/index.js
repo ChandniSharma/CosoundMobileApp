@@ -99,6 +99,7 @@ class Checkout extends React.PureComponent {
         onRadioSelect={this._onRadioSelect}
         confirmPayment={this._confirmPayment}
         navigation={this.props.navigation}
+        notificationCount ={this.props.notificationCount}
       />
     );
   }
@@ -109,7 +110,8 @@ const mapStateToProps = state => {
   return {
     cart: state.cart,
     placeOrder: state.placeOrder,
-    cardDetails: state.cardDetails
+    cardDetails: state.cardDetails,
+    notificationCount:state.notificationCount
   };
 };
 

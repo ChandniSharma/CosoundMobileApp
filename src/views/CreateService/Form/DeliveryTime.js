@@ -32,49 +32,49 @@ class DeliveryTime extends React.PureComponent {
       submitDeliveryTime
     } = this.props;
 
-
-    console.log(" Delivery times ===", deliveryTimes);
+    console.log(" Delivery times ===", deliveryTimes.data);
+    let deliveryTimesData = [{value:null,label:"Select Delivery Time Unit"}].concat(deliveryTimes.data);
     return (
       <View>
-       
-          <Animatable.View ref={"viewTxtInput1"}>
-            <Text style={styles.subTitle}>What would be the delivery time of your service ?</Text>
-            <TextInput
-              placeholder={'Delivery Time'}
-              onChangeText={val => handleChange('delivery_time', val)}
-              value={data.delivery_time}
-              name={"delivery_time"}
-              style={styles.inputStyle}
-            />
-            {errors.delivery_time && (
-              <Text style={styles.errorText}>{errors.delivery_time} </Text>
-            )}
-          </Animatable.View>
 
-          <Animatable.View ref={"viewTxtInput2"}>
-          <SelectInput style={styles.inputStyle}  placeholder={"Select Delivery Time Unit"} labelStyle={styles.locationLabel} value={data.delivery_time_unit} options={deliveryTimes.data} onSubmitEditing={val => handleSelect(val,"delivery_time_unit")} />
-        
-            { /* <Select
+        <Animatable.View ref={"viewTxtInput1"}>
+          <Text style={styles.subTitle}>What would be the delivery time of your service ?</Text>
+          <TextInput
+            placeholder={'Delivery Time'}
+            onChangeText={val => handleChange('delivery_time', val)}
+            value={data.delivery_time}
+            name={"delivery_time"}
+            style={styles.inputStyle}
+            keyboardType="number-pad"
+          />
+          {errors.delivery_time && (
+            <Text style={styles.errorText}>{errors.delivery_time} </Text>
+          )}
+        </Animatable.View>
+
+        <Animatable.View ref={"viewTxtInput2"}>
+
+         <SelectInput style={ styles.inputStyle} placeholder={"Select Delivery Time Unit"} labelStyle={data.delivery_time_unit ? styles.locationLabel: styles.placeholderLabel} value={data.delivery_time_unit} options={deliveryTimesData} onSubmitEditing={val => handleSelect(val, "delivery_time_unit")} />
+
+          { /* <Select
               name={"delivery_time_unit"}
               resource={deliveryTimes}
               placeholder={"Select Delivery Time Unit"}
               handleSelect={handleSelect}
               selectedId={data.delivery_time_unit}
             /> */ }
-            {errors.delivery_time_unit && (
-              <Text style={styles.errorText}>{errors.delivery_time_unit}</Text>
-            )}
+          {errors.delivery_time_unit && (
+            <Text style={styles.errorText}>{errors.delivery_time_unit}</Text>
+          )}
 
-<TouchableOpacity style={[styles.loginButton, { marginTop: '15%', justifyContent: 'center', }]}
-          onPress={()=> submitDeliveryTime()}
-           >
-              <Text style={[styles.textButtonTitle, {marginBottom:'17%'}]}>Next</Text>
-          </TouchableOpacity> 
-          
-          </Animatable.View>
+          <View style={styles.viewContainButton}>
+            <TouchableOpacity style={[styles.nextButton]}
+              onPress={() => submitDeliveryTime()}>
+              <Text style={styles.nextButtonTitle}>Next</Text>
+            </TouchableOpacity>
+          </View>
 
-        
-        
+        </Animatable.View>
       </View>
     );
   }

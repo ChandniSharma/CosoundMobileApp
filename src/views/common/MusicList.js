@@ -89,7 +89,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
     render() {
       let { current, pos } = this.state;
-      const { myMusic, postDetails, loadMore, callingAPI, page, page_count, callApi } = this.props;
+      const { myMusic, postDetails, loadMore, callingAPI, page, page_count, callAPI } = this.props;
       const { data } = myMusic;
       console.log(" data === ",myMusic);
       console.log("current====",current)
@@ -149,13 +149,13 @@ import { TouchableOpacity } from "react-native-gesture-handler";
                 keyExtractor={(item, index) => index.toString()}
             />
 
-            {!isEmpty(data) && !callingAPI && page !== page_count && !isNull(page_count) && !callApi(
+            {!isEmpty(data) && !loadMore && page !== page_count && !isNull(page_count) && 
                 <View style={styles.viewMore}>
-                    <TouchableHighlight underlayColor="#25b6ad" style={[styles.seeMoreBtn]} onPress={loadMore}>
+                    <TouchableHighlight underlayColor="#25b6ad" style={[styles.seeMoreBtn]} onPress={() => loadMore()}>
                         <Text style={styles.textViewMore} > {callingAPI ? "Fetching..." : "View More..."}</Text>
                     </TouchableHighlight>
                 </View>
-            )}
+            }
 
         </View>
         </View>

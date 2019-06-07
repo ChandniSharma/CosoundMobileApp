@@ -13,14 +13,13 @@ class UserProfile extends React.PureComponent {
     this._restCallsOnMount();
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (
-  //     getValueFromParams(prevProps.match.params, "id") !==
-  //     getValueFromParams(this.props.match.params, "id")
-  //   ) {
-  //     this._restCallsOnMount();
-  //   }
-  // }
+  componentDidUpdate(prevProps) {
+    if (this.props.navigation.state.params.id !==
+      prevProps.navigation.state.params.id
+    ) {
+      this._restCallsOnMount();
+    }
+  }
 
   _restCallsOnMount = () => {
     const { user } = this.props;

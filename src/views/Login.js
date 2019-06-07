@@ -31,11 +31,27 @@ export default class Login extends Component {
 
     fadeInDownHeader = () => this.refs.headerView.fadeInDown(1000);
 
+    moveTextUp1 = () => this.refs.viewTxtInputCat.fadeInUp(1000).then(this.moveSecondViewUp());
+
+    moveTextUp2 = () => this.refs.viewTxtInputSubCat.fadeInUp(2000).then(endState => endState.finished ? "finish " : console.log('finish not'));
+
+
     componentDidMount() {
         this.fadeInDownHeader();
-        this.fadeInMainView();
+        // this.fadeInMainView();
+      //  setTimeout(() => {
+            this.moveTextUp1();
+       // }, 300);
+        
        // this.setupGoogleSignin();
     }
+
+    moveSecondViewUp(){
+       // setTimeout(() => {
+          this.moveTextUp2();
+       // }, 5);
+      }
+
     // googleAuth() {
     //     GoogleSignin.signIn()
     //         .then((user) => {
@@ -117,6 +133,7 @@ export default class Login extends Component {
                             <Animatable.Text animation="fadeIn" style={styles.loginText}> Log in</Animatable.Text>
                             {error.message ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {error.message}</Animatable.Text> : null}
 
+<Animatable.View  ref={"viewTxtInputCat"}>
                             <TextInput
                                 style={styles.inputStyle}
                                 placeholder={'Email'}
@@ -126,6 +143,9 @@ export default class Login extends Component {
                                 onChangeText={val => handleChange('email', val)}
                             />
                             {errors.email ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.email}</Animatable.Text> : null}
+</Animatable.View>
+
+<Animatable.View ref={"viewTxtInputSubCat"}>
                             <TextInput
                                 style={styles.inputStyle}
                                 placeholder={'Password'}
@@ -137,7 +157,7 @@ export default class Login extends Component {
                             />
                             {errors.password ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.password}</Animatable.Text> : null}
 
-                        </View>
+                        {/* </View> */}
                         <View style={styles.rememberView}>
 
                             <TouchableOpacity onPress={onClickRememberMe} style={styles.tickMarkView}>
@@ -149,15 +169,17 @@ export default class Login extends Component {
 
                             </TouchableHighlight>
 
-                            <TouchableHighlight style={styles.forgotPwdBtn} onPress={navigateToForgotPassword}>
+                            <TouchableOpacity style={styles.forgotPwdBtn} onPress={navigateToForgotPassword}>
                                 <Text style={styles.forgotPwdText}> Forgot Password?</Text>
-                            </TouchableHighlight>
+                            </TouchableOpacity>
                         </View>
-
+   
                         <TouchableHighlight underlayColor="#25b6ad" onPress={onSubmit} style={[styles.loginButton]}>
-                           {(login.isRequesting || fetching) ? <ActivityIndicator color="white" />: <Text style={styles.textButtonTitle} >Login</Text>}
+                           {(login.isRequesting || fetching || this.props.cartCount.isRequesting || this.props.notificationCount.isRequesting) ? <ActivityIndicator color="white" />: <Text style={styles.textButtonTitle} >Login</Text>}
                         </TouchableHighlight>
-
+    
+    </Animatable.View>
+    </View>
                         <View style={styles.socialMediaLoginView}>
 
                             <TouchableHighlight underlayColor="#25b6ad" style={styles.buttonLeft} onPress={() => this.fBLogin()}>

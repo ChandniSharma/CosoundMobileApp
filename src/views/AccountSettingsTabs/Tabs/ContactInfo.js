@@ -49,7 +49,7 @@ class ContactInfo extends React.Component {
     });
   };
 
-  _submit = ()=> {
+  _submit = () => {
     // e.preventDefault();
 
     console.log(" Submit =========", this.state.data);
@@ -81,7 +81,7 @@ class ContactInfo extends React.Component {
   };
 
   /* creatable handler | phone_numbers */
-  _handleCreatable = ( name,value) => {
+  _handleCreatable = (name, value) => {
     const { data } = this.state;
     data[name] = value;
     this.setState({
@@ -90,7 +90,7 @@ class ContactInfo extends React.Component {
   };
 
   /* social_links handler */
-  handlePhoneNumber = (index,value) => {
+  handlePhoneNumber = (index, value) => {
     const { data } = this.state;
     data.phone_numbers[index].label = value;
     data.phone_numbers[index].value = value;
@@ -123,13 +123,13 @@ class ContactInfo extends React.Component {
   /* Add social links */
   _addMorePhoneNumbers = index => {
     const { data } = this.state;
-     
-   if(index + 1 === this.state.data.phone_numbers.length){
-    data.phone_numbers.push({label: "", value: ""})
-   }else{
-    data.phone_numbers.splice(index, 1);
-   }
-      this.setState({ data });
+
+    if (index + 1 === this.state.data.phone_numbers.length) {
+      data.phone_numbers.push({ label: "", value: "" })
+    } else {
+      data.phone_numbers.splice(index, 1);
+    }
+    this.setState({ data });
   };
 
   /**
@@ -138,11 +138,11 @@ class ContactInfo extends React.Component {
    */
   _handleKeyPress = (itemid) => {
     // if (enterPressed(e))
-     {
+    {
       this._addMorePhoneNumbers(itemid);
     }
   };
-  handleChange = (name, value)=> {
+  handleChange = (name, value) => {
     const { data } = this.state;
     data[name] = value;
     this.setState(
@@ -157,7 +157,7 @@ class ContactInfo extends React.Component {
     const { data, errors } = this.state;
     const { user, contactInfo } = this.props;
     return (
-      <View style={{ flex: 1, marginBottom:'20%' }}>
+      <View style={{ flex: 1, marginBottom: '20%' }}>
         <TextInput
           style={styles.inputStyle}
           placeholder={'Email'}
@@ -165,31 +165,29 @@ class ContactInfo extends React.Component {
           editable={false} selectTextOnFocus={false}
           name={"email"}
         />
-        { data.phone_numbers.map((item, index) => {
-            return (
-              <View
-                key={index}
-                style={[styles.viewSocial, { flexDirection: 'row', flex: 1 }]}
-              >
-                <TextInput
-                  style={[styles.socialInput, { flex: 0.85 }]}
-                  placeholder={'Phone Numbers'}
-                  onSubmitEditing={() => this._handleKeyPress(index)}
-                  onChangeText={val => this.handlePhoneNumber(index, val)}
-                  value={item.value}
-                  name={index}
-                  keyboardType='phone-pad'
-                />
-                {/* {!item.isReady && ( */}
-                <TouchableHighlight onPress={() => this._addMorePhoneNumbers(index)} underlayColor="#25b6ad" style={[styles.plusCircleBtn]}>
-                  {index + 1 === data.phone_numbers.length  ? <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} /> :<Icon1 name = "close" size={25} color="gray" style={styles.plusCircle} />}
-                </TouchableHighlight>
-                {/* )} */}
-              </View>
-            );
-          
-          
-        }) 
+        {data.phone_numbers.map((item, index) => {
+          return (
+            <View
+              key={index}
+              style={[styles.viewSocial, { flexDirection: 'row', flex: 1 }]}
+            >
+              <TextInput
+                style={[styles.socialInput, { flex: 0.85 }]}
+                placeholder={'Phone Numbers'}
+                onSubmitEditing={() => this._handleKeyPress(index)}
+                onChangeText={val => this.handlePhoneNumber(index, val)}
+                value={item.value}
+                name={index}
+                keyboardType='phone-pad'
+              />
+              {/* {!item.isReady && ( */}
+              <TouchableHighlight onPress={() => this._addMorePhoneNumbers(index)} underlayColor="#25b6ad" style={[styles.plusCircleBtn]}>
+                {index + 1 === data.phone_numbers.length ? <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} /> : <Icon1 name="close" size={25} color="gray" style={styles.plusCircle} />}
+              </TouchableHighlight>
+              {/* )} */}
+            </View>
+          );
+        })
         }
 
         <TouchableOpacity style={{ alignSelf: 'center', justifyContent: 'center', marginTop: '5%', width: '40%', height: '15%', borderRadius: 10, backgroundColor: '#ff277b' }}
@@ -204,7 +202,7 @@ class ContactInfo extends React.Component {
         </TouchableOpacity>
       </View>
     )
-   
+
   }
 }
 

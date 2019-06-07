@@ -50,6 +50,7 @@ class Cart extends React.PureComponent {
         removeFromCart={removeFromCart}
         _removeFromCart={this._removeFromCart}
         navigation={this.props.navigation}
+        notificationCount ={this.props.notificationCount}
       />
     );
   }
@@ -59,7 +60,8 @@ class Cart extends React.PureComponent {
 const mapStateToProps = state => {
   return {
     cart: state.cart,
-    removeFromCart: state.removeFromCart
+    removeFromCart: state.removeFromCart,
+    notificationCount: state.notificationCount
   };
 };
 

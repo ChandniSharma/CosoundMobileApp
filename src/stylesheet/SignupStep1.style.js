@@ -27,6 +27,13 @@ export default{
         paddingRight: 30, // to ensure the text is never behind the icon
         
       },
+      placeholderLabel:{
+        fontFamily: 'Montserrat-Regular',
+        fontWeight: '300',
+        fontSize: 16,
+        color: 'lightgray',
+        textAlign: 'left'
+    },
       locationLabel:{
        
         fontFamily:'Montserrat-Regular',

@@ -34,13 +34,14 @@ class PostStatus extends React.PureComponent {
     errors: {}
   };
 
-  componentDidUpdate() {
-    const { tempFile } = this.props;
-    if (!isNull(tempFile.file)) {
-      this.props.postStatusActions.resetTempFile();
-      this._setFileInState(tempFile.file);
-    }
-  }
+  // componentDidUpdate() {
+  //   console.log("call component did update")
+  //   const { tempFile } = this.props;
+  //   if (tempFile && !isNull(tempFile.file)) {
+  //     this.props.postStatusActions.resetTempFile();
+  //     this._setFileInState(tempFile.file);
+  //   }
+  // }
 
   /* Refs */
   _applyRef = node => {
@@ -134,7 +135,7 @@ class PostStatus extends React.PureComponent {
   _handleFileChange = (name, files) => {
    // const { name, files } = e.target;
     const { files: filesInState } = this.state;
-
+console.log("call handle file change")
     let newFiles = [...filesInState];
     each(files, file => {
       if (file) {
@@ -195,11 +196,16 @@ class PostStatus extends React.PureComponent {
    * Status submit handler
    */
   _submitPost = () => {
+    console.log("call submit post")
    // e.preventDefault();
     if (this._isValid()) {
+      console.log("call 202")
+      // e.preventDefault();
       const { body, files } = this.state;
 
       if (!isEmpty(body) || !isEmpty(files)) {
+        console.log("call 207")
+        // e.preventDefault();
         const { postStatusActions, location } = this.props;
         const { pathname } = this.props;
         const data = Object.assign({}, { body, files });
@@ -257,7 +263,7 @@ class PostStatus extends React.PureComponent {
             this.setState({
                 isClickToUpload: true,
                 filePath: source
-            });;
+            });
             this._handleFileChange("files", [response])
         }
     });

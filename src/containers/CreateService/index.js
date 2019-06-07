@@ -276,10 +276,10 @@ class CreateService extends React.Component {
    *
    * @param Event e
    */
-  _submitDeliveryTime = e => {
-   
-    // if (!this._isValid("delivery_time") || !this._isValid("delivery_time_unit"))
-    //   return false;
+  _submitDeliveryTime = () => {
+   console.log("this.state == ",this.state)
+    if (!this._isValid("delivery_time") || !this._isValid("delivery_time_unit"))
+      return false;
     return this._goToTabIndex(this.state.tabIndex + 1);
   };
 
@@ -372,6 +372,7 @@ class CreateService extends React.Component {
         submitDescription={this._submitDescription}
         submitDeliveryTime={this._submitDeliveryTime}
         navigation={this.props.navigation}
+        notificationCount ={this.props.notificationCount}
       />
     );
   }
@@ -379,7 +380,11 @@ class CreateService extends React.Component {
 
 // eslint-disable-next-line
 const mapStateToProps = state => {
-  return { categories: state.categories, publishService: state.publishService, user: state.user };
+  return { categories: state.categories, 
+    publishService: state.publishService, 
+    user: state.user,
+    notificationCount:state.notificationCount
+  };
 };
 
 // eslint-disable-next-line

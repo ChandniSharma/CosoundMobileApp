@@ -30,11 +30,13 @@ class Title extends React.PureComponent {
             />
             {errors.title && <Text style={styles.errorText}>{errors.title} </Text>}
           </View>
-          <TouchableOpacity style={[styles.loginButton, { marginTop: '15%', justifyContent: 'center', }]}
+          <View style={styles.viewContainButton}>
+          <TouchableOpacity style={styles.nextButton}
           onPress={()=> submitTitle()}
            >
-            <Text style={[styles.loginText, {marginBottom:'3%'}]}>Next</Text>
+            <Text style={[styles.nextButtonTitle]}>Next</Text>
           </TouchableOpacity>
+          </View>
         </Animatable.View>
     
     );

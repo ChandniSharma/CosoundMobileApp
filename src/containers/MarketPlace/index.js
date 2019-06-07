@@ -18,17 +18,17 @@ class MarketPlaceContainer extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    // const updateCondition =
-    //   (this.props.match.params.slug !== prevProps.match.params.slug ||
-    //     this.props.match.params.subcategorySlug !==
-    //       prevProps.match.params.subcategorySlug) &&
-    //   !isNull(this._getCategoryId());
+    const updateCondition =
+      (this.props.navigation.state.params.slug !== prevProps.navigation.state.params.slug ||
+        this.props.navigation.state.params.subcategorySlug !==
+          prevProps.navigation.state.params.subcategorySlug) &&
+      !isNull(this._getCategoryId());
 
-    // if (updateCondition) {
-    //   this._fetchServices(1).then(() => {
-    //   //  performWow(this.props.wowActions);
-    //   });
-    // }
+    if (updateCondition) {
+      this._fetchServices(1).then(() => {
+      //  performWow(this.props.wowActions);
+      });
+    }
   }
 
   /**
@@ -37,8 +37,11 @@ class MarketPlaceContainer extends React.PureComponent {
   _restCalls = () => {
     this._fetchCategories().then(() => {
       this._fetchFeaturedServices().then(() => {
+        console.log(" _fetchFeaturedServices ====")
         if (!isNull(this._getCategoryId())) {
+console.log(" Cat condition");
           this._fetchServices(1).then(() => {
+            console.log(" Fetchservice s====")
            // performWow(this.props.wowActions);
           });
         }
@@ -57,16 +60,16 @@ class MarketPlaceContainer extends React.PureComponent {
    * Get category from route :slug
    */
   _getCategoryId = () => {
-    const { headerCategories, match } = this.props;
-    return getCategoryId(headerCategories.data, match.params);
+    const { headerCategories, navigation } = this.props;
+    return getCategoryId(headerCategories.data, navigation.state.params);
   };
 
   /**
    * Get sub_category from route :subcategorySlug
    */
   _getSubCategoryId = () => {
-    const { headerCategories, match } = this.props;
-    return getSubCategoryId(headerCategories.data, match.params);
+    const { headerCategories, navigation } = this.props;
+    return getSubCategoryId(headerCategories.data, navigation.state.params);
   };
 
   /**
@@ -79,8 +82,10 @@ class MarketPlaceContainer extends React.PureComponent {
   /**
    * Fetch services for category
    */
-  _fetchServices = pageNo => {
+  _fetchServices =  pageNo => {
+    console.log("call 86")
     if (!isNull(this._getCategoryId())) {
+      console.log("call 87")
       return this.props.marketPlaceActions.fetchServices(
         this._getCategoryId(),
         this._getSubCategoryId(),
@@ -91,8 +96,8 @@ class MarketPlaceContainer extends React.PureComponent {
 
   render() {
 
-    console.log(" in market place ======");
-    const { user, services, categories, featuredServices } = this.props;
+    console.log(" in market place ======", this.props);
+    const { user, services, categories, featuredServices, headerCategories } = this.props;
 
     return (
       <MarketPlaceComponent
@@ -102,6 +107,7 @@ class MarketPlaceContainer extends React.PureComponent {
         featuredServices={featuredServices}
         fetchServices={this._fetchServices}
         navigation={this.props.navigation}
+        headerCategories={this.props.headerCategories}
       />
     );
   }
@@ -113,7 +119,8 @@ const mapStateToProps = state => {
     services: state.services,
     categories: state.categories,
     headerCategories: state.headerCategories,
-    featuredServices: state.featuredServices
+    featuredServices: state.featuredServices, 
+     
   };
 };
 

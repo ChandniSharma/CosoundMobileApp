@@ -269,11 +269,8 @@ export default class UserProfileComponent extends Component {
                         <View style={styles.viewImagesOutside}>
 
                             <View style={styles.viewImagesInside}>
-
                                 <Text style={styles.myImagesTitle}>My Images</Text>
                                 <Icon name="ios-add-circle-outline" size={30} color="purple" style={styles.plusCircle} />
-
-
                             </View>
 
                          
@@ -288,11 +285,11 @@ export default class UserProfileComponent extends Component {
                             />
 
                         </View>
-                        <PostStatus  pathName={"/profile"}/>
-                        
+                        {/* <PostStatus  pathName={"/profile"}/>
+                         */}
                         {/* <NewTest /> */}
                         <InfiniteScroller
-                            pathName={"/profile"}
+                            pathName={"/profile/:id"}
                             user={user}
                             isLoaderInternal
                             feed={userFeed}

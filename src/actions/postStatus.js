@@ -97,7 +97,6 @@ console.log("data===", data)
     const refreshThreshold = getRefreshThreshold(expiresAt);
 
     const winnowResponse = response => {
-      console.log("response === ", response);
       if (response.response) {
         const { data: error } = response.response;
         dispatch(postFailure(error));
@@ -170,14 +169,17 @@ console.log("data===", data)
               body: formData
             })
               .then(result => {
+                console.log("console responseHandler call")
                 responseHandler(result);
               })
               .catch(err => {
+                console.log("console postFailure call 176")
                 dispatch(postFailure(err));
               });
           }
         })
         .catch(e => {
+          console.log("console ostFailure call 182")
           dispatch(postFailure(e));
         });
     }
@@ -188,10 +190,12 @@ console.log("data===", data)
       body: formData
     })
       .then(response => {
-        responseHandler(response);
+        console.log("console response ", response)
+       // responseHandler(response);
       })
       .catch(err => {
-        dispatch(postFailure(err));
+        console.log("console err ")
+      //  dispatch(postFailure(err));
       });
   };
 };

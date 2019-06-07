@@ -13,17 +13,6 @@ class Keypoints extends React.Component {
     this.moveTextUp1();
   }
 
-showInputWithAddButton = (index) => {
-  let data = this.props.data;
-  let inputKey = null;
-  if(index < 2){
-  return <TouchableHighlight onPress={() => this.props.addMoreKeypoints(index)} underlayColor="#25b6ad" style={[styles.plusCircleBtn]}>
-  {index + 1 === data.key_points.length ? <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} /> : <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} />}
-  </TouchableHighlight>
-  }
-  return inputKey;
-}
-
 
   render() {
     const {
@@ -35,7 +24,7 @@ showInputWithAddButton = (index) => {
       addMoreKeypoints
     } = this.props;
 
-    
+
     return (
       <View>
         <Animatable.View ref={"viewTxtInput1"}>
@@ -44,10 +33,11 @@ showInputWithAddButton = (index) => {
             {data.key_points.map((item, index) => {
               if (item.isVisible) {
                 return (
-                  <View
-                    key={index}
-                    style={[styles.viewSocial, { flexDirection: 'row', flex: 1 }]}>
-                    { /*<input
+                  <View>
+                    <View
+                      key={index}
+                      style={[styles.viewSocial, { flexDirection: 'row', flex: 1 }]}>
+                      { /*<input
                       type="text"
                       name={item.id}
                       placeholder="Keypoints"
@@ -55,25 +45,20 @@ showInputWithAddButton = (index) => {
                       onChange={e => handleKeypoints(e)}
                       value={item.value}
                     />*/ }
-                    <TextInput
-                      style={[styles.socialInput, { flex: 0.85 }]}
-                      placeholder={'Keypoints'}
-                      onChangeText={val => handleKeypoints(item.id, val)}
-                      value={item.value}
-                      name={"description"}
-                     
-                    />
-                    {/*!item.isReady && (
-                      <Svg
-                        name="ico-plus"
-                        modClass="js-multiple-inputs-plus"
-                        handleClick={() => addMoreKeypoints(item.id)}
+                      <TextInput
+                        style={[styles.socialInput, { flex: 0.85 }]}
+                        placeholder={'Keypoints'}
+                        onChangeText={val => handleKeypoints(item.id, val)}
+                        value={item.value}
+                        name={"description"}
                       />
-                    )*/}
-{/* for adding multiple keypoints  */}
-                   {/* {this.showInputWithAddButton(index)} */}
-
-                    {errors[item.id] && <Text style={styles.errorText}>{errors[item.id]} </Text>}
+                      {!item.isReady && (
+                        <TouchableHighlight onPress={() => addMoreKeypoints(item.id)} style={[styles.plusCircleBtn]}>
+                          <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} />
+                        </TouchableHighlight>
+                      )}
+                    </View>
+                    {errors[item.id] ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors[item.id]}</Animatable.Text> : null}
                   </View>
                 );
               }
@@ -81,11 +66,13 @@ showInputWithAddButton = (index) => {
             })}
             {errors.key_points && <Text style={styles.errorText}>{errors.key_points} </Text>}
           </View>
-          <TouchableOpacity style={[styles.loginButton, { marginTop: '5%', justifyContent: 'center', }]}
-            onPress={() => submitKeypoints()}
-          >
-            <Text style={[styles.textButtonTitle, {marginBottom:'15%'}]}>Next</Text>
-          </TouchableOpacity>
+          <View style={styles.viewContainButton}>
+            <TouchableOpacity style={styles.nextButton}
+              onPress={() => submitKeypoints()}
+            >
+              <Text style={[styles.nextButtonTitle]}>Next</Text>
+            </TouchableOpacity>
+          </View>
         </Animatable.View>
       </View>
     );

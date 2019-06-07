@@ -3,7 +3,7 @@ import { Component } from "react";
 import styles from "../../stylesheet/Account.style";
 import { SafeAreaView } from 'react-navigation';
 import React from "react";
-import { FlatList, Image, ImageBackground, Text, TextInput, Modal, TouchableHighlight, View, TouchableOpacity, ScrollView, ActivityIndicator } from "react-native";
+import { FlatList, Image, ImageBackground, Text, TextInput, Modal, TouchableHighlight, View, TouchableOpacity, ScrollView, ActivityIndicator, Alert } from "react-native";
 //import { Icon, Row } from "native-base";
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
@@ -17,7 +17,7 @@ import Icon3 from "react-native-vector-icons/Ionicons";
 import Icon4 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { searchActions } from "../../actions/";
+import { searchActions, userActions } from "../../actions/";
 import { isEmpty, isNull } from "lodash";
 import Notifications from '../../containers/Notifications';
 
@@ -45,7 +45,7 @@ class SideMenu extends Component {
             visible: true,
             isNotificationShow: false,
         }
-        this.arrayData = [{ name: 'Account Settings', image: '', count: 0 }, { name: 'Plans', image: 'message', count: 0 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 },{ name: 'Music Service', image: '', count: 0 },{ name: 'Logout', image: '', count: 0 }]
+        this.arrayData = [{ name: 'Account Settings', image: '', count: 0 }, { name: 'Plans', image: 'message', count: 0 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }, { name: 'Music Service', image: '', count: 0 }, { name: 'Logout', image: '', count: 0 }]
 
     }
 
@@ -166,16 +166,16 @@ class SideMenu extends Component {
 
     // }
     moveToUserProfile(userId) {
+        console.log(" ")
         this.setState({ isDropDownclick: false });
+        this.props.hidePopup();
         this.props.navigation.navigate('UserProfile', { id: userId });
     }
 
 
     renderSearchRow = (item) => {
         console.log(" item is ", item);
-
         return (
-
             <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.moveToUserProfile(item.item.id)}>
                     <View style={{ flexDirection: "row" }}>
@@ -187,6 +187,37 @@ class SideMenu extends Component {
             </View>
         )
     }
+
+    /**
+  * Logout
+  */
+    _logout = () => {
+        const { userActions } = this.props;
+        Alert.alert(
+            'Logout',
+            'Are you sure to Logout?',
+            [
+                {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                },
+                {
+                    text: 'Ok', onPress: () => {
+                        userActions.logout().then(() => {
+                            this.props.navigation.navigate('Login');
+                        });
+                    }
+                },
+            ]
+
+
+
+        );
+
+
+    };
+
     renderModalItem = (item) => {
 
         console.log(" Props is ====== ", this.props);
@@ -240,9 +271,10 @@ class SideMenu extends Component {
                     <View style={{ flexDirection: "row" }}>
                         <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, tintColor: 'white' }} />
                         <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
-                        <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#424242', justifyContent: 'center' }}>
-                            <Text style={styles.textModalData}>{item.item.count}</Text>
-                        </View>
+                        {this.props.notificationCount.data ? <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#424242', justifyContent: 'center' }}>
+                            <Text style={styles.textModalData}>{this.props.notificationCount.data}</Text>
+                        </View> : null
+                        }
                     </View>
                 </TouchableHighlight>
             </View>
@@ -250,21 +282,21 @@ class SideMenu extends Component {
 
         } else if (item.index === 4) {
 
-
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Cart')}>
                     <View style={{ flexDirection: "row" }}>
                         <Icon name="shoppingcart" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, tintColor: 'white' }} />
                         <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
-                        <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#424242', justifyContent: 'center' }}>
-                            <Text style={styles.textModalData}>{item.item.count}</Text>
-                        </View>
+                        {this.props.cartCount.data ? <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#424242', justifyContent: 'center' }}>
+                            <Text style={styles.textModalData}>{this.props.cartCount.data}</Text>
+                        </View> : null
+                        }
                     </View>
                 </TouchableHighlight>
             </View>
 
 
-        }else if (item.index === 5) {
+        } else if (item.index === 5) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('NoService')}>
@@ -276,15 +308,19 @@ class SideMenu extends Component {
                 </TouchableHighlight>
             </View>
         }
-         else if (item.index === 6) {
+        else if (item.index === 6) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
-                <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Login')}>
-                    <View style={{ flexDirection: "row" }}>
-                        <Icon name="logout" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, color: 'white' }} />
-                        <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
+                <TouchableHighlight style={{ margin: '2%' }} onPress={() => this._logout()}>
+                    {this.props.logout.isRequesting ? <View style={{ flexDirection: "row" }}>
+                        <ActivityIndicator style={{ marginLeft: '5%', marginRight: '5%', color: 'white' }} />
+                        <Text style={[styles.textModalData, { marginRight: '5%' }]}>Please wait</Text>
+                    </View> :
+                        <View style={{ flexDirection: "row" }}>
+                            <Icon name="logout" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, color: 'white' }} />
+                            <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
 
-                    </View>
+                        </View>}
                 </TouchableHighlight>
             </View>
         }
@@ -306,7 +342,7 @@ class SideMenu extends Component {
         );
 
         const { hidePopup, user } = this.props;
-        console.log("user====", user)
+        console.log("this.props====", this.props.notificationCount, this.props.cartCount)
         return (
             <Animatable.View ref={'viewModalRef'} style={styles.viewModal}>
                 <KeyboardAwareScrollView style={{ flex: 1 }}>
@@ -326,7 +362,7 @@ class SideMenu extends Component {
                             name="query"
 
                         />
-                        
+
                     </View>
                     {/* Search bar flatlist  */}
                     {isRequesting && (
@@ -363,9 +399,9 @@ class SideMenu extends Component {
                             shadowOpacity: 0.8,
                             marginBottom: '5%',
                         }}>
-                            {/* <TouchableOpacity onPress={() => this.props.navigation.navigate('Dashboard')}> */}
+                        {/* <TouchableOpacity onPress={() => this.props.navigation.navigate('Dashboard')}> */}
 
-                           
+
                         <Image style={styles.imgUser} source={{ uri: getThumbnail(user.data) }} />
                         {/* <Image style={styles.imgUser} source={require('../../assets/avatar-main-1.jpg')} /> */}
                         {/* </TouchableOpacity> */}
@@ -384,12 +420,13 @@ class SideMenu extends Component {
                         style={styles.flatList}
                         data={this.arrayData}
                         renderItem={this.renderModalItem}
+                        extraData={this.props}
                         keyExtractor={(item, index) => index.toString()}
                     />
                 </KeyboardAwareScrollView>
-                 {/* notification view show */}
-          {/* {this.state.isNotificationShow ? <Notifications /> : null} */}
-      
+                {/* notification view show */}
+                {/* {this.state.isNotificationShow ? <Notifications /> : null} */}
+
             </Animatable.View>
 
         )
@@ -401,14 +438,20 @@ const mapStateToProps = state => {
     return {
         user: state.user,
         searchResults: state.searchResults,
-        headerCategories: state.headerCategories
+        headerCategories: state.headerCategories,
+        logout: state.logout,
+        cartCount: state.cartCount,
+        notifications: state.notifications,
+        notificationCount: state.notificationCount
+
     };
 };
 
 // eslint-disable-next-line
 const mapDispatchToProps = dispatch => {
     return {
-        searchActions: bindActionCreators(searchActions, dispatch)
+        searchActions: bindActionCreators(searchActions, dispatch),
+        userActions: bindActionCreators(userActions, dispatch),
     };
 };
 

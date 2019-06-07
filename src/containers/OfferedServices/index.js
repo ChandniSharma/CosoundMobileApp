@@ -52,6 +52,7 @@ class OfferedServices extends React.PureComponent {
         offeredServices={offeredServices}
         fetchOfferedServices={this._fetchOfferedServices}
         navigation={this.props.navigation}
+        notificationCount = {this.props.notificationCount}
       />
     );
   }
@@ -59,7 +60,9 @@ class OfferedServices extends React.PureComponent {
 
 // eslint-disable-next-line
 const mapStateToProps = state => {
-  return { offeredServices: state.offeredServices };
+  return { offeredServices: state.offeredServices,
+    notificationCount:state.notificationCount
+  };
 };
 
 // eslint-disable-next-line

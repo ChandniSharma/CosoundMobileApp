@@ -42,26 +42,31 @@ console.log(" ******** categ====", this.props, );
     let placeholderSubCat = [{"label": "Select Subcategory", value: null}];
     let subCategoriesData = placeholderSubCat.concat(subCategories.data);
 
+    console.log(" cat id ======", data.category_id);
     return (
     <View>
         <Animatable.View ref={"viewTxtInputCat"}>
         <Animatable.Text animation="fadeIn" style={[styles.textLight, { alignSelf: 'center', marginTop: '5%' }]}>What type of service are you offering?</Animatable.Text>
 
-       
-        <SelectInput style={styles.inputStyle}  placeholder={"Select Category"} labelStyle={styles.locationLabel} value={data.category_id} options={categoriesData} onSubmitEditing={val => handleSelect(val, 'category_id')} />
-                            
+        <SelectInput style={ styles.inputStyle}  placeholder={"Select Category"} labelStyle={ data.category_id === null? styles.placeholderLabel: styles.locationLabel} value={data.category_id} options={categoriesData} onSubmitEditing={val => handleSelect(val, 'category_id')} /> 
+                 
          
           {errors.category_id && <Text style={styles.errorText}>{errors.category_id}</Text>}
         </Animatable.View>
 
         <Animatable.View ref={"viewTxtInputSubCat"}>
-        <SelectInput style={styles.inputStyle} labelStyle={styles.locationLabel} value={data.sub_category_id} options={subCategoriesData} onSubmitEditing={val => handleSelect(val,'sub_category_id')} />
+
+        <SelectInput style={styles.inputStyle} labelStyle={data.sub_category_id? styles.locationLabel:styles.placeholderLabel} value={data.sub_category_id} options={subCategoriesData} onSubmitEditing={val => handleSelect(val,'sub_category_id')} />
       
-         <TouchableOpacity style={[styles.loginButton, { marginTop: '5%', justifyContent: 'center', }]}
+        {errors.sub_category_id && <Text style={styles.errorText}>{errors.sub_category_id}</Text>}
+
+        <View style={styles.viewContainButton}>
+         <TouchableOpacity style={styles.nextButton}
           onPress={()=> submitCategory()}
          >
-            <Text style={[styles.textButtonTitle, {marginBottom:'15%'}]}>Next</Text>
+            <Text style={styles.nextButtonTitle}>Next</Text>
         </TouchableOpacity>  
+        </View>
         </Animatable.View>
         </View>
     );

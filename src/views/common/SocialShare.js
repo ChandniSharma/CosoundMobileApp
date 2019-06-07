@@ -10,6 +10,9 @@ import {
   AlertIOS,
   Platform
 } from 'react-native';
+import { API_URL} from '../../constants';
+import Icon4 from "react-native-vector-icons/Entypo";
+
 import Share, {ShareSheet, Button} from 'react-native-share';
 
 export default class SocialShare extends Component {
@@ -19,63 +22,31 @@ export default class SocialShare extends Component {
       visible: false
     }
   }
-
-  componentDidMount(){
-   // this.onOpen();
+ 
+  onCancel(){
+  this.props.toggleSocial(this.props.post.id)
   }
-  onCancel() {
-    console.log("CANCEL")
-    this.setState({visible:false});
-  }
-  onOpen() {
-    console.log("OPEN")
-    this.setState({visible:true});
-  }
-
   render() {
-
+    const { show, post, toggleSocial } = this.props;
+    const url = API_URL.replace("/api", "");
+    const encoded = encodeURIComponent(post.id);
+    const urlShare = `${url}posts/${encoded}/embed`;
+   
+    //console.log(" Facebook url =======", facebookUrl, "=======");
     let shareOptions = {
-      title: "React Native",
-      message: "Hola mundo",
-      url: "http://facebook.github.io/react-native/",
-      subject: "Share Link" //  for email
+      title: "Cosound",
+      message: "Cosound",
+      url:urlShare,
+      subject: "Cosound" //  for email
     };
 
-    let shareImageBase64 = {
-      title: "React Native",
-      message: "Hola mundo",
-      url: REACT_ICON,
-      subject: "Share Link" //  for email
-    };
     return (
-      <View style={styles.container}>
+      <View style={show === post.id ? styles.containerWhenDataShow:styles.containerNoData}>
 
-
-        {/* <TouchableOpacity onPress={()=>{
-          Share.open(shareImageBase64);
-        }}>
-          <View style={styles.instructions}>
-            <Text>Simple Share Image Base 64</Text>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={()=>{
-          Share.open(shareOptions);
-        }}>
-          <View style={styles.instructions}>
-            <Text>Simple Share</Text>
-          </View>
-        </TouchableOpacity> */}
-
-        {/* <TouchableOpacity onPress={this.onOpen.bind(this)}>
-          <View style={styles.instructions}>
-            <Text>Share UI Component</Text>
-          </View>
-        </TouchableOpacity> */}
-
-        <ShareSheet visible={this.state.visible} onCancel={this.onCancel.bind(this)}>
-          <Button iconSrc={{ uri: TWITTER_ICON }}
-                  onPress={()=>{
+       <ShareSheet visible={show === post.id ? true : false} onCancel={() => toggleSocial(post.id)}>
+       
+        <Button iconSrc={{ uri: TWITTER_ICON }}
+            onPress={()=>{
               this.onCancel();
               setTimeout(() => {
                 Share.shareSingle(Object.assign(shareOptions, {
@@ -92,15 +63,7 @@ export default class SocialShare extends Component {
                 }));
               },300);
             }}>Facebook</Button>
-          <Button iconSrc={{ uri: WHATSAPP_ICON }}
-                  onPress={()=>{
-              this.onCancel();
-              setTimeout(() => {
-                Share.shareSingle(Object.assign(shareOptions, {
-                  "social": "whatsapp"
-                }));
-              },300);
-            }}>Whatsapp</Button>
+        
           <Button iconSrc={{ uri: GOOGLE_PLUS_ICON }}
                   onPress={()=>{
               this.onCancel();
@@ -110,7 +73,39 @@ export default class SocialShare extends Component {
                 }));
               },300);
             }}>Google +</Button>
-          <Button iconSrc={{ uri: EMAIL_ICON }}
+         
+        </ShareSheet>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  containerWhenDataShow: {
+    width:'100%', height:200, marginTop:'5%',
+  alignItems: 'center',backgroundColor:'white'
+  },
+  containerNoData:{
+    width:0, marginRight:0, height:0, 
+  },
+  instructions: {
+    marginTop: 20,
+    marginBottom: 20,
+  },
+
+});
+
+{/* <Button iconSrc={{ uri: WHATSAPP_ICON }}
+onPress={()=>{
+this.onCancel();
+setTimeout(() => {
+Share.shareSingle(Object.assign(shareOptions, {
+"social": "whatsapp"
+}));
+},300);
+}}>Whatsapp</Button> 
+
+ <Button iconSrc={{ uri: EMAIL_ICON }}
                   onPress={()=>{
               this.onCancel();
               setTimeout(() => {
@@ -135,6 +130,7 @@ export default class SocialShare extends Component {
                 }
               },300);
             }}>Copy Link</Button>
+
           <Button iconSrc={{ uri: MORE_ICON }}
             onPress={()=>{
               this.onCancel();
@@ -142,24 +138,9 @@ export default class SocialShare extends Component {
                 Share.open(shareOptions)
               },300);
             }}>More</Button>
-        </ShareSheet>
-      </View>
-    );
-  }
+            
+*/
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  instructions: {
-    marginTop: 20,
-    marginBottom: 20,
-  },
-});
 
 //  twitter icon
 const TWITTER_ICON = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAABvFBMVEUAAAAA//8AnuwAnOsAneoAm+oAm+oAm+oAm+oAm+kAnuwAmf8An+0AqtUAku0AnesAm+oAm+oAnesAqv8An+oAnuoAneoAnOkAmOoAm+oAm+oAn98AnOoAm+oAm+oAmuoAm+oAmekAnOsAm+sAmeYAnusAm+oAnOoAme0AnOoAnesAp+0Av/8Am+oAm+sAmuoAn+oAm+oAnOoAgP8Am+sAm+oAmuoAm+oAmusAmucAnOwAm+oAmusAm+oAm+oAm+kAmusAougAnOsAmukAn+wAm+sAnesAmeoAnekAmewAm+oAnOkAl+cAm+oAm+oAmukAn+sAmukAn+0Am+oAmOoAmesAm+oAm+oAm+kAme4AmesAm+oAjuMAmusAmuwAm+kAm+oAmuoAsesAm+0Am+oAneoAm+wAmusAm+oAm+oAm+gAnewAm+oAle0Am+oAm+oAmeYAmeoAmukAoOcAmuoAm+oAm+wAmuoAneoAnOkAgP8Am+oAm+oAn+8An+wAmusAnuwAs+YAmegAm+oAm+oAm+oAmuwAm+oAm+kAnesAmuoAmukAm+sAnukAnusAm+oAmuoAnOsAmukAqv9m+G5fAAAAlHRSTlMAAUSj3/v625IuNwVVBg6Z//J1Axhft5ol9ZEIrP7P8eIjZJcKdOU+RoO0HQTjtblK3VUCM/dg/a8rXesm9vSkTAtnaJ/gom5GKGNdINz4U1hRRdc+gPDm+R5L0wnQnUXzVg04uoVSW6HuIZGFHd7WFDxHK7P8eIbFsQRhrhBQtJAKN0prnKLvjBowjn8igenQfkQGdD8A7wAAAXRJREFUSMdjYBgFo2AUDCXAyMTMwsrGzsEJ5nBx41HKw4smwMfPKgAGgkLCIqJi4nj0SkhKoRotLSMAA7Jy8gIKing0KwkIKKsgC6gKIAM1dREN3Jo1gSq0tBF8HV1kvax6+moG+DULGBoZw/gmAqjA1Ay/s4HA3MISyrdC1WtthC9ebGwhquzsHRxBfCdUzc74Y9UFrtDVzd3D0wtVszd+zT6+KKr9UDX749UbEBgULIAbhODVHCoQFo5bb0QkXs1RAvhAtDFezTGx+DTHEchD8Ql4NCcSyoGJYTj1siQRzL/JKeY4NKcSzvxp6RmSWPVmZhHWnI3L1TlEFDu5edj15hcQU2gVqmHTa1pEXJFXXFKKqbmM2ALTuLC8Ak1vZRXRxa1xtS6q3ppaYrXG1NWjai1taCRCG6dJU3NLqy+ak10DGImx07LNFCOk2js6iXVyVzcLai7s6SWlbnIs6rOIbi8ViOifIDNx0uTRynoUjIIRAgALIFStaR5YjgAAAABJRU5ErkJggg==";

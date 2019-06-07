@@ -16,6 +16,7 @@ import Notifications from '../../../src/containers/Notifications'
 
 import TabComponent from "./TabComponent";
 import CustomFooter from "../../components/common/CustomFooter";
+import HeaderMenuAndBell from '../common/HeaderMenuAndBell';
 
 const buttonName = {
     contactInfo: "Contact Information",
@@ -112,14 +113,15 @@ class AccountSettingsTabs extends React.PureComponent {
             paymentDetails,
             _changePassword,
             uploadProfilePic,
-            navigation
+            navigation,
+            notificationCount
         } = this.props;
 
         console.log("this.props-=", this.props)
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
 
-                {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: 100, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
+                {/* {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: 100, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
                     <TouchableOpacity style={{ color: 'white', marginTop: '14%', flex: 0.1, marginLeft: '4%' }} onPress={() => this.showPopup()}>
                         <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />
                     </TouchableOpacity>
@@ -129,7 +131,11 @@ class AccountSettingsTabs extends React.PureComponent {
                     <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}>
                         {this.state.isNotificationShow ? <Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} /> : <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />}
                     </TouchableOpacity>
-                </LinearGradient> : null}
+                </LinearGradient> : null} */}
+
+                {!this.state.isSideMenuClick ? <HeaderMenuAndBell notificationCount = {notificationCount} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} onPressPopup={() => this.showPopup()} isNotificationShow={this.state.isNotificationShow} onPressBell={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })} /> : null}
+
+
 
                 <View style={{ flex: 1 }}>
                     <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)' }}>
@@ -216,7 +222,7 @@ class AccountSettingsTabs extends React.PureComponent {
 
                         {/* Side Menu button modal  */}
                         {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation} hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
-                        { (tabIndex === 0 || tabIndex === 1 || tabIndex === 2 || tabIndex === 3) && (<View style={{ marginTop: '7%' }}>
+                        {(tabIndex === 0 || tabIndex === 1 || tabIndex === 2 || tabIndex === 3) && (<View style={{ marginTop: '7%' }}>
                             <CustomFooter />
                         </View>)}
 
@@ -227,7 +233,7 @@ class AccountSettingsTabs extends React.PureComponent {
                 </View>
             </SafeAreaView>
         )
-       
+
     }
 }
 

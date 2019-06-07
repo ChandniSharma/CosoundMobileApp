@@ -189,8 +189,9 @@ const getCurrentCategory = (data, slug) => {
 const getCategoryId = (data, params) => {
   let slug = "graphic-design";
   let categoryId = null;
+  console.log(" Data ******", data,"and Prams" ,params);
   if (!isEmpty(data)) {
-    if (isEmpty(params)) {
+    if (isEmpty(params) || !params.slug) {
       const category = data.filter(o => o.slug === slug)[0];
       if (category && category.value) {
         categoryId = category.value;
@@ -202,6 +203,7 @@ const getCategoryId = (data, params) => {
         categoryId = category.value;
       }
     }
+    console.log(" cat id 206", categoryId);
   }
   return categoryId;
 };

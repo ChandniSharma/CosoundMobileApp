@@ -104,7 +104,7 @@ export default class ForgotPasswordComponent extends Component {
                         </View>
 
                     </Animatable.View>
-                    <View style={{marginTop:'12'}}>
+                    <View style={{marginTop:'12%'}}>
                     <CustomFooter />
                     </View>
                    

@@ -97,6 +97,7 @@ class AccountSettings extends React.PureComponent {
         _changePassword={this._changePassword}
         uploadProfilePic={this._uploadProfilePic}
         navigation = {this.props.navigation}
+        notificationCount={this.props.notificationCount}
       />
     );
   }
@@ -111,7 +112,8 @@ const mapStateToProps = state => {
     contactInfo: state.contactInfo,
     paymentDetails: state.paymentDetails,
     changePassword: state.changePassword,
-    user: state.user
+    user: state.user,
+    notificationCount: state.notificationCount
   };
 };
 

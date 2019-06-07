@@ -5,12 +5,15 @@ import { bindActionCreators } from "redux";
 
 import { isSuccess } from "../../utils";
 
-import { authActions } from "../../actions";
 
 import Validator from "../../validator";
 
 import Login from "../../views/Login";
-
+import {
+  authActions,
+  userActions,
+  notificationActions
+} from "../../actions";
 
 class LoginContainer extends React.PureComponent {
   state = {
@@ -155,12 +158,22 @@ class LoginContainer extends React.PureComponent {
     this.props.navigation.navigate("Signup");
   }
   _navigateToProfileview = () => {
+
+     this.props.userActions.fetchCartCount().then(() => {
+       this.props.notificationActions.fetchCount().then(()=>{
+          // this.props.navigation.navigate("Profile");
+          this.props.navigation.navigate('MarketPlaceContainer', { slug: "" });
+         // this.props.navigation.navigate("MarketPlaceContainer");
+       });
+     });
+   // this.props.navigation.navigate("Profile");
     //console.log(" MarketPlace -------");
-    //this.props.navigation.navigate("Dashboard");
-    this.props.navigation.navigate("MarketPlaceContainer");
-    //this.props.navigation.navigate("AccountSettings");
-    //this.props.navigation.navigate("CreateService");
-    // this.props.navigation.navigate("Cart");
+    
+   
+   // this.props.navigation.navigate("MarketPlaceContainer");
+  //this.props.navigation.navigate("AccountSettings");
+   // this.props.navigation.navigate("CreateService");
+    // this.props.navigation.navigate("Login");
    // this.props.navigation.navigate("Plan");
   }
   // _navigateBack =()=>{
@@ -183,6 +196,8 @@ class LoginContainer extends React.PureComponent {
         navigateToGetStartedView={this._navigateToGetStartedView}
         onClickRememberMe={this._onClickRememberMe}
         navigation={this.props.navigation}
+        cartCount={this.props.cartCount}
+        notificationCount={this.props.notificationCount}
       />
     );
   }
@@ -191,14 +206,18 @@ class LoginContainer extends React.PureComponent {
 // eslint-disable-next-line
 const mapStateToProps = state => {
   return {
-    login: state.login
+    login: state.login,
+    cartCount: state.cartCount,
+    notificationCount: state.notificationCount
   };
 };
 
 // eslint-disable-next-line
 const mapDispatchToProps = dispatch => {
   return {
-    authActions: bindActionCreators(authActions, dispatch)
+    authActions: bindActionCreators(authActions, dispatch),
+    notificationActions: bindActionCreators(notificationActions, dispatch),
+    userActions: bindActionCreators(userActions, dispatch),
   };
 };
 

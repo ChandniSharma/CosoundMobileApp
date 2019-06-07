@@ -11,7 +11,6 @@ class Price extends React.PureComponent {
 
   moveTextUp1 = () => this.refs.viewTxtInput1.fadeInUp(1000);
 
-
   componentDidMount() {
     this.moveTextUp1();
   }
@@ -33,6 +32,7 @@ class Price extends React.PureComponent {
                 value={data.price}
                 name={"price"}
                 style={styles.inputStyle}
+                keyboardType="number-pad"
               />
             {errors.price && <Text style={styles.errorText}>{errors.price} </Text>}
           </View>
@@ -40,11 +40,15 @@ class Price extends React.PureComponent {
             <Animatable.Text animation="fadeIn" style={styles.priceText}>Price will be given after a consultation</Animatable.Text>
             <Icon1 name= "checkcircleo"  style={{fontSize:25, color: '#3B93BB', marginLeft:'2%'}}/>
           </View>
-          <TouchableOpacity style={[styles.loginButton, { marginTop: '15%', justifyContent: 'center', }]}
+
+<View style={styles.viewContainButton}>
+          <TouchableOpacity style={[styles.nextButton]}
           onPress={()=> submitKeypoints()}
            >
-            <Text style={styles.loginText}>Next</Text>
+            <Text style={styles.nextButtonTitle}>Next</Text>
           </TouchableOpacity>
+          </View>
+          
         </Animatable.View>
       </View>
     );

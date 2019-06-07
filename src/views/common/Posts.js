@@ -14,6 +14,7 @@ import styles from "../../stylesheet/profile.style";
 import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, TouchableWithoutFeedback, View, TouchableOpacity, Clipboard, AlertIOS, Platform, ActivityIndicator, Alert } from "react-native";
 import { postComment } from "../../actions/post";
 import WaveForm from 'react-native-audiowaveform';
+import SocialShare from '../common/SocialShare';
 
 // import soundPlay from './SoundPlay';
 import {
@@ -34,6 +35,41 @@ var ImagePicker = require('react-native-image-picker');
 
 const config = {};
 const tracks = {};
+
+class AudioWaveFormView extends React.Component{
+    constructor(props){
+        super(props);
+        this.state ={
+            playAudio: false,
+            stopAudio: true,
+        }
+    }
+    changestate = () => {
+        this.setState({ playAudio: !this.state.playAudio });
+    }
+
+    render(){
+        return  (<View style={{ width: "100%", backgroundColor: "#d3d3d6" }}>
+        {/* <Image style={{ width: "100%", height: 50 }} source={require('../../assets/noise.gif')} /> */}
+
+        <WaveForm
+            style={{
+                flex: 1,
+                margin: 10,
+                backgroundColor: "white", height: 50
+            }}
+            onPress={() => this.changestate()}
+            source={{ uri: 'https://s3.eu-west-2.amazonaws.com/cosound-primary/uploads/audio/E6UOLuDNpwnlf9279FMEPriMZCtaXQFlfD48r0e1.mpga' }}
+            stop={this.state.stopAudio}
+            play={this.state.playAudio}
+            autoPlay={false}
+            waveFormStyle={{ waveColor: 'gray', scrubColor: 'red', width: 'auto' }}
+        />
+
+
+    </View>)
+    }
+}
 
 class Posts extends React.PureComponent {
     constructor(props) {
@@ -378,6 +414,8 @@ class Posts extends React.PureComponent {
 
         //   const currentTime = formatCurrentTime(pos);
 
+        console.log(" Source path ===========", media.path ,"Post Id ========",postId , "========");
+
         switch (media.file_type) {
             case "video":
                 return (
@@ -443,25 +481,7 @@ class Posts extends React.PureComponent {
                             <Text style={styles.musicDescription}>{title}</Text>
                         </View>
                     </View>
-                    <View style={{ width: "100%", backgroundColor: "#d3d3d6" }}>
-                        {/* <Image style={{ width: "100%", height: 50 }} source={require('../../assets/noise.gif')} /> */}
-
-                        <WaveForm
-                            style={{
-                                flex: 1,
-                                margin: 10,
-                                backgroundColor: "white", height: 50
-                            }}
-                            onPress={() => this.changestate()}
-                            source={{ uri: 'https://sample-videos.com/audio/mp3/crowd-cheering.mp3' }}
-                            stop={this.state.stopAudio}
-                            play={this.state.playAudio}
-                            autoPlay={false}
-                            waveFormStyle={{ waveColor: 'gray', scrubColor: 'red', width: 'auto' }}
-                        />
-
-
-                    </View>
+                    <AudioWaveFormView key={media.id}/>
                     <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
                         <Text style={styles.musicCurrentTime}>0.00</Text>
                         <Text style={styles.musicDuration}>{duration}</Text>
@@ -490,6 +510,7 @@ class Posts extends React.PureComponent {
         this.setState({ playAudio: !this.state.playAudio });
     }
 
+   
 
     renderPostCard = (postData) => {
         const { feed, callingAPI, _restCalls, pathName } = this.props;
@@ -628,10 +649,20 @@ class Posts extends React.PureComponent {
                         <TouchableOpacity style={{
                             flex: 1, borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", padding: 10,
                             justifyContent: 'center', alignItems: "center", height: 40
-                        }}>
-                            <Icon4 name="forward" style={{ fontSize: 20, color: "#8e8e8e" }} />
+                        }} onPress={() => this._toggleSocial(originalPost.id)}>
+                           
+                           <Icon4 name="forward" style={{ fontSize: 20, color: "#8e8e8e" }} />                            
                         </TouchableOpacity>
+                       
                     </View>
+                    <View style={{marginTop:'5%'}}>
+                    <SocialShare
+                                post={originalPost}
+                                show={showSocial}
+                                toggleSocial={this._toggleSocial}
+                            />
+                    </View>
+
                     {/* {this.viewComments()} */}
                     <PostComment user={user} post={postDetail} pathName={this.props.pathName} />
 

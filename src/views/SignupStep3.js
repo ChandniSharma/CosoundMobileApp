@@ -99,20 +99,20 @@ export default class SignupStep3Musician extends Component {
     const error = checkError(signup.error);
     const { selectedItems } = this.state;
 
-console.log(" errors ^^^^ ======", error, errors );
-    
+    console.log(" errors ^^^^ ======", error, errors);
+
     return (
       <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
         <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>
-         
+
           <Animatable.View ref={"mainView"} style={[styles.container, { width: '100%' }]}>
-          <View style={{ position: 'absolute',top:0}}>
-                            <WaveAnimation />
-                        </View>
+            <View style={{ position: 'absolute', top: 0 }}>
+              <WaveAnimation />
+            </View>
             <View>
               <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.goToTabIndex(2)} />
 
-              <Logo color={'#ffffff'} style={{ flex: 0.7, alignSelf: 'center',marginTop:'13%' }} width="230px" height="44px" />
+              <Logo color={'#ffffff'} style={{ flex: 0.7, alignSelf: 'center', marginTop: '13%' }} width="230px" height="44px" />
               {data.type === 'professional' && <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>
                 Nice! Welcome
                     </Animatable.Text>
@@ -127,7 +127,7 @@ console.log(" errors ^^^^ ======", error, errors );
                 <View style={styles.findingView}>
 
                   <TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }} onPress={this.chooseFile.bind(this)}>
-                  {/* <TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }}> */}
+                    {/* <TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }}> */}
                     {!data.url ?
                       <Icon name="camera" style={{ fontSize: 60, marginTop: '50%', color: 'gray', alignSelf: 'center', }} /> :
                       <Image
@@ -294,27 +294,30 @@ console.log(" errors ^^^^ ======", error, errors );
 
 
             {data.social_links.map((item, index) => {
+              console.log("inde+1===", index + 1, "data.social_links.length==", data.social_links, "errors==", errors)
               if (item.isVisible) {
                 return (
-                  <View
-                    key={index}
-                    style={[styles.viewSocial, { flexDirection: 'row', flex: 1 }]}
-                  >
-                    <TextInput
-                      style={[styles.socialInput, { flex: 0.85 }]}
-                      placeholder={'Social Links'}
-                      onSubmitEditing={() => handleKeyPress(item.id)}
-                      onChangeText={val => handleSocialLinks(item.id, val)}
-                      value={item.value}
-                      name={item.id}
-                    />
+                  <View>
+                    <View
+                      key={index}
+                      style={[styles.viewSocial, { flexDirection: 'row', flex: 1 }]}
+                    >
+                      <TextInput
+                        style={[styles.socialInput, { flex: 0.85 }]}
+                        placeholder={'Social Links'}
+                        onSubmitEditing={() => handleKeyPress(item.id)}
+                        onChangeText={val => handleSocialLinks(item.id, val)}
+                        value={item.value}
+                        name={item.id}
+                      />
 
-                    {/* {!item.isReady && ( */}
-                    <TouchableHighlight onPress={() => addMoreSocials(item.id)} underlayColor="#25b6ad" style={[styles.plusCircleBtn]}>
-                      <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} />
-                    </TouchableHighlight>
+                      {!item.isReady && (
+                        <TouchableHighlight onPress={() => addMoreSocials(item.id)} style={[styles.plusCircleBtn]}>
+                          <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} />
+                        </TouchableHighlight>
+                      )}
 
-                    {/* )} */}
+                    </View>
                     {errors[item.id] ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors[item.id]}</Animatable.Text> : null}
                   </View>
                 );
@@ -325,11 +328,11 @@ console.log(" errors ^^^^ ======", error, errors );
 
 
             <TouchableHighlight onPress={signUp} underlayColor="#25b6ad" style={[styles.loginButton]}>
-              <View style={{flexDirection:'row'}}>
-              <Text style={styles.textButtonTitle} >Next</Text>
-              <Icon1 name="arrowright" style={{ marginLeft: '1%', fontSize: 20, color: 'white' }} />
+              <View style={{ flexDirection: 'row' }}>
+                <Text style={styles.textButtonTitle} >Next</Text>
+                <Icon1 name="arrowright" style={{ marginLeft: '1%', fontSize: 20, color: 'white' }} />
               </View>
-             
+
 
             </TouchableHighlight>
 
@@ -370,7 +373,7 @@ console.log(" errors ^^^^ ======", error, errors );
           </Animatable.View>
           <CustomFooter />
         </KeyboardAwareScrollView>
-        
+
       </SafeAreaView>
 
     )

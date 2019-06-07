@@ -17,13 +17,7 @@ export default {
         color: '#3B93BB',
         fontFamily: 'Montserrat-light',
     },
-    updateDetailText:{
-        alignSelf:'center',
-        fontSize:14,
-        color:'white',
-        fontFamily:'Montserrat-light',
-           // fontWeight:'100',
-    },
+
     featuredText: {
         fontSize: 20,
         color: '#262626',
@@ -39,9 +33,9 @@ export default {
         width: '90%',
         height: 300,
         justifyContent: 'center',
-        alignItems: 'center', 
-        backgroundColor:'white',
-        borderRadius:20
+        alignItems: 'center',
+        backgroundColor: 'white',
+        borderRadius: 20
     },
     topUserImage: {
         marginTop: "5%",
@@ -77,10 +71,10 @@ export default {
         alignSelf: 'center'
 
     },
-    textPublish:{
-        marginTop:'10%',
+    textPublish: {
+        marginTop: '10%',
         //  marginBottom:'7%',
-       
+
         alignSelf: 'center',
         fontSize: 14,
         color: 'white',
@@ -138,6 +132,46 @@ export default {
         backgroundColor: '#ff277b',
         marginBottom: '15%',
     },
+
+    nextButton: {
+        borderRadius: 25,
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+
+        shadowColor: 'rgba(0,0,0,0.12)',
+        shadowOffset: {
+            width: 4,
+            height: 7
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        //marginBottom:'10%',
+        backgroundColor: '#ff277b',
+    },
+
+    viewContainButton: {
+        marginTop: '15%',
+        justifyContent: 'center',
+        marginBottom: '15%',
+        marginLeft: '15%',
+        marginRight: '15%'
+    },
+
+    updateDetailText: {
+        alignSelf: 'center',
+        fontSize: 14,
+        color: 'white',
+        fontFamily: 'Montserrat-light',
+        // fontWeight:'100',
+    },
+    
+    nextButtonTitle: {
+        fontSize: 16,
+        color: 'white',
+        fontWeight: '500',
+    },
+
     textButtonTitle: {
         fontSize: 16,
         color: 'white',
@@ -230,6 +264,14 @@ export default {
         color: '#262626',
         textAlign: 'left'
     },
+    placeholderLabel:{
+        fontFamily: 'Montserrat-Regular',
+        fontWeight: '300',
+        fontSize: 16,
+        color: 'lightgray',
+        textAlign: 'left'
+    },
+
     inputStyle: {
         marginLeft: '5%',
         marginRight: '5%',
@@ -253,7 +295,31 @@ export default {
         paddingLeft: 30,
         paddingRight: 30,
     },
-
+   
+    
+    inputTextAreaStyle: {
+        marginLeft: '5%',
+        marginRight: '5%',
+        height: 200,
+        backgroundColor: 'white',
+        marginTop: '5%',
+        shadowColor: 'rgba(0,0,0,0.7)',
+        shadowOffset: {
+            width: 2,
+            height: 4
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        borderRadius: 8,
+        fontFamily: 'Montserrat-Regular',
+        fontWeight: '300',
+        fontSize: 16,
+        color: '#262626',
+        paddingTop: 21,
+        paddingBottom: 20,
+        paddingLeft: 30,
+        paddingRight: 30,
+    },
 
     searchBarView: {
         flexDirection: 'row',
@@ -475,7 +541,7 @@ export default {
         // marginBottom:5,
         right: '3%',
         // alignSelf: 'flex-end',
-        marginTop: '1%',
+        marginTop: '2.5%',
         flex: 0.15,
         width: 40,
         height: 40,

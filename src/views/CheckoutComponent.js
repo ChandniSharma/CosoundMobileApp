@@ -13,6 +13,7 @@ import Icon4 from "react-native-vector-icons/MaterialIcons";
 import Hamburger from 'react-native-hamburger';
 import SideMenu from '../../src/views/common/SideMenu';
 import Logo from '../../src/views/common/logo';
+import HeaderMenuAndBell from '../../src/views/common/HeaderMenuAndBell';
 import CustomFooter from '../components/common/CustomFooter';
 import Notifications from '../containers/Notifications'
 //TabHeader
@@ -58,12 +59,11 @@ export default class CheckoutComponent extends Component {
 
       <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={{ flex: 1 }}>
 
-        {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: 100, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
+        {/* {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: 100, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
 
           <TouchableOpacity style={{ color: 'white', marginTop: '14%', flex: 0.1, marginLeft: '4%' }} onPress={() => this.showPopup()}>
             <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />
           </TouchableOpacity>
-
 
           <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
 
@@ -71,9 +71,11 @@ export default class CheckoutComponent extends Component {
           <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}>
           {this.state.isNotificationShow?<Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} />: <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />}
 
+             </TouchableOpacity>
+        </LinearGradient> : null} */}
 
-</TouchableOpacity>
-        </LinearGradient> : null}
+        {!this.state.isSideMenuClick ? <HeaderMenuAndBell notificationCount = {this.props.notificationCount} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} onPressPopup={() => this.showPopup()} isNotificationShow={this.state.isNotificationShow} onPressBell={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })} /> : null}
+
 
         <View style={{ flex: 1 }}>
           <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)' }}>

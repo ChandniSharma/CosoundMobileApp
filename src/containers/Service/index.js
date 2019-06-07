@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { isNull } from "lodash";
@@ -8,7 +7,7 @@ import { getValueFromParams } from "../../utils";
 
 import { serviceActions, cartActions } from "../../actions";
 
-import ServiceComponent from "../../components";
+import ServiceComponent from "../../components/ServiceComponent";
 
 class Service extends React.PureComponent {
   componentDidMount() {
@@ -17,8 +16,8 @@ class Service extends React.PureComponent {
 
   componentDidUpdate(prevProps) {
     if (
-      getValueFromParams(prevProps.match.params, "id") !==
-      getValueFromParams(this.props.match.params, "id")
+      getValueFromParams(prevProps.navigation.state.params, "id") !==
+      getValueFromParams(this.props.navigation.state.params, "id")
     ) {
       this._restCalls();
     }
@@ -40,7 +39,7 @@ class Service extends React.PureComponent {
    * Get service_id from params
    */
   _getServiceId = () => {
-    return getValueFromParams(this.props.match.params, "id");
+    return getValueFromParams(this.props.navigation.state.params, "id");
   };
 
   /**
@@ -99,9 +98,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default withRouter(
-  connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(Service)
-);
+  )(Service);

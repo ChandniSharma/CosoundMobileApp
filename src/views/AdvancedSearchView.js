@@ -12,10 +12,12 @@ import Notifications from '../containers/Notifications';
 import BackButton from './common/BackButton';
 import LinearGradient from 'react-native-linear-gradient';
 import Logo from './common/logo';
+
 import Icon from "react-native-vector-icons/AntDesign";
 import Icon1 from "react-native-vector-icons/Entypo";
 import Icon2 from "react-native-vector-icons/EvilIcons";
 import Icon3 from "react-native-vector-icons/Ionicons";
+import HeaderMenuAndBell from './common/HeaderMenuAndBell';
 
 export default class AdvanceSearchView extends Component {
     constructor(props) {
@@ -127,6 +129,8 @@ export default class AdvanceSearchView extends Component {
                     </TouchableOpacity>
                 </LinearGradient>
 
+
+                 {/* <HeaderMenuAndBell notificationCount = {this.props.notificationCount} colors={['rgb(42, 173,177)', 'rgb(131, 110, 198)', 'rgb(134, 103, 200)']} isBackButtonShow = {true} goBack={() => this.props.navigation.goBack(null)} onPressPopup={() => this.showPopup()} isNotificationShow={this.state.isNotificationShow} onPressBell={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })} />  */}
 
 
                {!this.state.isNotificationShow? <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9}}>

@@ -10,6 +10,7 @@ import Icon3 from "react-native-vector-icons/Ionicons";
 import Hamburger from 'react-native-hamburger';
 import SideMenu from '../common/SideMenu';
 import Logo from '../common/logo';
+import HeaderMenuAndBell from '../common/HeaderMenuAndBell';
 import Notifications from '../../containers/Notifications';
 import SettingsHeader from "../common/SettingsHeader";
 const { height, width } = Dimensions.get('window');
@@ -59,7 +60,7 @@ class CreateServiceComponent extends React.Component {
     return (
       <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={{ flex: 1 }}>
 
-        {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: 100, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
+        {/* {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: 100, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
 
           <TouchableOpacity style={{ color: 'white', marginTop: '14%', flex: 0.1, marginLeft: '4%' }} onPress={() => this.showPopup()}>
             <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />
@@ -72,7 +73,10 @@ class CreateServiceComponent extends React.Component {
           <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow, isSideMenuClick: false })}>
           {this.state.isNotificationShow?<Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} />: <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />}
           </TouchableOpacity>
-        </LinearGradient> : null}
+        </LinearGradient> : null} */}
+
+        {!this.state.isSideMenuClick ? <HeaderMenuAndBell notificationCount = {this.props.notificationCount} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} onPressPopup={() => this.showPopup()} isNotificationShow={this.state.isNotificationShow} onPressBell={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })} /> : null}
+
 
         <View style={{ flex: 1 }}>
           <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)',overflow: 'scroll' }}>
@@ -91,22 +95,18 @@ class CreateServiceComponent extends React.Component {
               </View>
               <View style={{flex:0.5, marginBottom:'10%'}}>
                 <CreateServiceForm {...this.props} />
-
               </View>
-
             </View>
-
 
             { /* <FormToast /> */}
             {/* Side Menu button modal  */}
             {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation}  hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
 
-            <View style={{marginTop:'10%'}}>
+            {/* <View style={{marginTop:'10%'}}>
               <CustomFooter />
-            </View>
+            </View> */}
 
           </KeyboardAwareScrollView>
-
 
 
           {/* notification view show */}

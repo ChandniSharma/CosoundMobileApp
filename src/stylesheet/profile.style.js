@@ -8,6 +8,11 @@ let top;
 const statusBarHeight = Platform.OS === 'ios' ? 0 : 0;
 
 export default {
+    errorText: {
+        margin: '2%',
+        color: 'red',
+        alignSelf: 'center',
+    },
      seeMoreBtn:{
         marginTop:'1%',
         marginBottom:'1%',

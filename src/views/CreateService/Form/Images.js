@@ -140,16 +140,16 @@ class Images extends React.Component {
           )}
         </View>
 
-        <View style={{ marginTop: '5%', marginBottom: '5%' }}>
+        <View style={styles.viewContainButton}>
 
 
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate('Dashboard')}
-            style={{ alignSelf: 'center', justifyContent: 'center', width: '40%', borderRadius: 10, backgroundColor: '#ff277b', height: 60 }}
+            style={ styles.nextButton}
           // disabled={changePassword.isRequesting}
           >
 
-            <Text style={styles.updateDetailText}>publish Service</Text>
+            <Text style={styles.nextButtonTitle}>publish Service</Text>
 
           </TouchableOpacity>
         </View>
