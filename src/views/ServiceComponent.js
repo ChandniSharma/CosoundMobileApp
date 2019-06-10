@@ -89,7 +89,10 @@ export default class ServiceComponent extends Component {
     fadeInMarketDetailView = () => this.refs.marketPlaceDetailViewRef.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
 
     componentDidMount = () => {
-        this.fadeInMarketDetailView();
+        setTimeout(() => {
+             this.fadeInMarketDetailView();
+        }, 10);
+       
     };
 
     renderItem = () => {
@@ -115,6 +118,7 @@ export default class ServiceComponent extends Component {
             <View style={styles.ViewSingleLine} />
         </View>)
     }
+
     render() {
         const {
             id,
@@ -128,7 +132,15 @@ export default class ServiceComponent extends Component {
           const breadCrumbArray = getBreadCrumbsForService(data);
           const mobile = isMobile();
           const tab = isTab();
-      
+          console.log("review====", reviews)
+          console.log("data.key_points==", data)
+//         return (
+//             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
+//                 <View>
+//                     <Text>dfsdsdfs</Text>
+//                 </View>
+//                 </SafeAreaView>
+// );
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
 
@@ -147,7 +159,7 @@ export default class ServiceComponent extends Component {
                     </TouchableOpacity>
                 </LinearGradient> : null} */}
 
-{!this.state.isSideMenuClick ? <HeaderMenuAndBell notificationCount = {this.props.notificationCount} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} onPressPopup={() => this.showPopup()} isNotificationShow={this.state.isNotificationShow} onPressBell={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })} /> : null}
+{!this.state.isSideMenuClick ? <HeaderMenuAndBell colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} onPressPopup={() => this.showPopup()} isNotificationShow={this.state.isNotificationShow} onPressBell={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })} /> : null}
 
 
                 {/* Top view Graphic design which will open modal view by side button click */}
@@ -169,7 +181,7 @@ export default class ServiceComponent extends Component {
 
                 <KeyboardAwareScrollView onScroll={this._onScroll} style={{ backgroundColor: 'rgb(245, 245,245)' }}>
 
-                    <Animatable.View ref={'marketPlaceDetailViewRef'} style={{ flex: 1, backgroundColor: '245, 245, 245' }}>
+                    <Animatable.View ref={'marketPlaceDetailViewRef'} style={{ flex: 1, backgroundColor: 'rgb(245, 245, 245)' }}>
 
                         {/*  top 3 btns  */}
                         <View>
@@ -217,11 +229,19 @@ export default class ServiceComponent extends Component {
 
                         <View style={{ backgroundColor: 'white', marginBottom: '5%', marginTop: '5%',  flex: 0.1 }}>
                             <Text style={[styles.textListTitle, { height: 50 }]}> About this Job </Text>
-                            <Text style={[styles.textJobDescription, { height: 200 }]}> I can list your Pop track on 30 highly subscribed playlists! Each of the playlists has around 700 - 2000 active subscribers and are often played in bars and clubs around the Shoreditch area. These playlists only have 30/40 songs in each, so you're much more likely to be heard.
-
-I'm looking forward to working with you!! Please drop me a message so that I can listen to the song(s) before hand! </Text>
+                            <Text style={[styles.textJobDescription, { height: 200 }]}>{data.about}</Text>
                         </View>
                         <View style={{  flex: 0.15 }}>
+
+                        {/* <Paginator
+                            page_count={paginationData.page_count}
+                            component={ServiceReview}
+                            page={paginationData.page}
+                            callAPI={fetchReviews}
+                            reviews={reviews}
+                            isLoaderInternal
+                        /> */}
+
                             <View style={{ backgroundColor: 'white', alignSelf: 'center', borderRadius: 20, marginBottom: '5%', width: '90%', alignItems:'center' }}>
 
                             <Image source={require('../assets/avatar2.jpg')} style={{ width: 90, height: 90, borderRadius: 45, alignSelf:'center', marginTop:'5%' }} />
@@ -242,7 +262,14 @@ I'm looking forward to working with you!! Please drop me a message so that I can
 
                                 <View style={[styles.viewSubtotal, { width: '100%', marginTop: '5%', height: 140, justifyContent: 'center', alignItems: 'center' }]}>
                                     <Text style={[styles.textServiceTitle, { marginBottom: '2%' }]}>Service</Text>
-
+                                    { data && data.key_points &&
+              !isNull(data.key_points) &&
+              data.key_points.map((item, index) => {
+                return (<View style={{ flexDirection: 'row', marginBottom: '2%', marginTop: '2%', marginLeft: '20%', marginRight: '20%' }}>
+                <Icon1 name="checkcircle" style={{ fontSize: 20, color: 'rgb(59, 206, 53)', marginRight: '5%' }} />
+                <Text style={[styles.textDays, { marginBottom: '2%', flex: 0.9, alignSelf: 'flex-start' }]}>{item}</Text>
+            </View>)
+              })}
                                     <View style={{ flexDirection: 'row', marginBottom: '2%', marginTop: '2%', marginLeft: '20%', marginRight: '20%' }}>
                                         <Icon1 name="checkcircle" style={{ fontSize: 20, color: 'rgb(59, 206, 53)', marginRight: '5%' }} />
                                         <Text style={[styles.textDays, { marginBottom: '2%', flex: 0.9, alignSelf: 'flex-start' }]}>Your music on 30 top playlists</Text>

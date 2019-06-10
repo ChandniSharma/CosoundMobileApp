@@ -48,7 +48,7 @@ import ImagesTemp from './src/views/CreateService/Form/ImagesTemp'
 import PurchasedServicesComponent from './src/views/PurchasedServicesComponent';
 //import audioWave from './src/views/common/audioWaveView';
 import MarketPlaceContainer from './src/containers/MarketPlace';
-//import Service from './src/containers/Service';
+import Service from './src/containers/Service';
 
 const AppStackNavigator = createStackNavigator({
     Home: { screen: Home },
@@ -86,7 +86,7 @@ const AppStackNavigator = createStackNavigator({
     UserProfile: { screen: UserProfile },
     // SoundPlay:{screen:SoundPlay},
     MarketPlaceContainer: { screen: MarketPlaceContainer },
-   // Service: { screen: Service },
+    Service: { screen: Service },
 }, {
         // initialRouteName: 'MarketplaceDetail',
         initialRouteName: 'Login',

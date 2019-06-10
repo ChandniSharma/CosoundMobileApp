@@ -348,7 +348,7 @@ export default {
         height: 100,
         justifyContent: "flex-start",
         fontSize: 16,
-        color: "#d3d3d3",
+        color: "#262626",
 
         fontFamily: 'Montserrat-Regular'
     },

@@ -7,7 +7,7 @@ import { getValueFromParams } from "../../utils";
 
 import { serviceActions, cartActions } from "../../actions";
 
-import ServiceComponent from "./ServiceComponent";
+import ServiceComponent from "../../views/ServiceComponent";
 
 class Service extends React.PureComponent {
   componentDidMount() {
@@ -65,8 +65,8 @@ class Service extends React.PureComponent {
   };
 
   render() {
-    const { match, service, reviews, addToCart } = this.props;
-    const { params } = match;
+    const { navigation, service, reviews, addToCart } = this.props;
+    const { params } = navigation.state;
     return (
       <ServiceComponent
         id={params.id}

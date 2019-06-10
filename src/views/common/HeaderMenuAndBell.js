@@ -45,9 +45,10 @@ class HeaderMenuAndBell extends Component {
 
                 <View style={{ flex: 0.3 }} />
                 <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={onPressBell}>
-                    {isNotificationShow ? <Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} /> : <View>
+                    {isNotificationShow ? <Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} /> : 
+                    <View style={{flexDirection:'row'}}>
+                        <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', fontSize: 40, tintColor: 'white' }} />
                         <View style={styles.redDot}/>
-                    <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />
                     </View> }
                 </TouchableOpacity>
             </LinearGradient>
@@ -83,9 +84,9 @@ const styles = {
     redDot: {
         width: 14,
         height: 14,
-        backgroundColor: '#25b6ad',
+        backgroundColor: '#ff277b',
         borderRadius: 7,
-        marginRight:'2%',
+        marginLeft:'-45%',
         marginBottom:'-25%',
     },
     textDull: {

@@ -59,6 +59,14 @@ let screenWidth = deviceWidth - 100;
         }
     }
 
+    moveToMarketPlaceDetailView = (item) => {
+        console.log(" move to Detail view ", item);
+        //this.setState({ isMarketDetailViewShow: true });
+        // return `/marketplace/${item.category.slug}/${item.sub_category.slug}/${item.id
+        //   }`;
+        this.props.navigation.navigate('Service', { slug: item.category.slug, subcategorySlug: item.sub_category.slug, id: item.id});
+    }
+
     renderItem = (itemDetail) => {
         let item = itemDetail.item;
         return (
@@ -67,7 +75,7 @@ let screenWidth = deviceWidth - 100;
                 <View style={{ width: '95%', alignSelf: 'center', marginTop: '2%', height: 0.5, backgroundColor: 'lightgray' }} />
                 {/* Main service Image */}
                 <View style={{ marginTop: '2%', width: '100%' }}>
-                    <TouchableOpacity style={{ alignSelf: 'center', width: '100%' }} onPress={this.moveToMarketPlaceDetailView}>
+                    <TouchableOpacity style={{ alignSelf: 'center', width: '100%' }} onPress={() => this.moveToMarketPlaceDetailView(item)}>
                         {/* <Image style={{ width: '100%' }} source={item.image} /> */}
                         <Image style={{ width: '100%', height: 200 }} source={{ uri: getServiceNormalImage(item.media) }} />
                     </TouchableOpacity>
@@ -327,8 +335,9 @@ let screenWidth = deviceWidth - 100;
         const { isRequesting, error, data } = featuredServices;
         console.log("data====", data)
         let slug = "";
-        current = getCurrentCategory(headerCategories.data, slug);
-
+        
+        current = getCurrentCategory(headerCategories.data, this.props.navigation.state.params.slug);
+console.log(this.props.navigation.state.params,"current ==== ", current)
         return (
 
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
@@ -377,11 +386,11 @@ let screenWidth = deviceWidth - 100;
                             {/* <Image source={require('../assets/leftarrow.png')} /> */}
                             {/* </TouchableHighlight> */}
 
-                            <View style={{ alignSelf: 'center', flex: 0.4, width: '80%', borderRadius: 20, marginBottom: '3%', flexDirection: 'row' }}>
+                            <View style={{ alignSelf: 'center', flex: 0.4, width: '80%', borderRadius: 20, marginBottom: '3%', flexDirection: 'row',  }}>
 
 
                                 {isRequesting && (
-                                    <ActivityIndicator color="gray" style={{alignSelf:'center'}}/>
+                                    <ActivityIndicator color="gray" style={{ marginLeft:'50%'}}/>
                                 )}
                                 {!isRequesting && !isEmpty(error) && error.message && (
                                     <Text style={styles.errorText}>{error.message} </Text>
