@@ -2090,7 +2090,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CosoundApp/CosoundApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: community of sound limited (94W363WF54)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
@@ -2127,7 +2127,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kkpl.CosoundApp;
 				PRODUCT_NAME = CosoundApp;
-				PROVISIONING_PROFILE_SPECIFIER = CosoundDistProfile;
+				PROVISIONING_PROFILE_SPECIFIER = CosoundDevProfile;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -2139,7 +2139,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CosoundApp/CosoundApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: community of sound limited (94W363WF54)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 94W363WF54;
@@ -2175,7 +2175,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kkpl.CosoundApp;
 				PRODUCT_NAME = CosoundApp;
-				PROVISIONING_PROFILE_SPECIFIER = CosoundDistProfile;
+				PROVISIONING_PROFILE_SPECIFIER = CosoundDevProfile;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

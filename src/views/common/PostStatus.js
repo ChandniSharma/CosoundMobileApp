@@ -134,25 +134,27 @@ class PostStatus extends React.PureComponent {
    */
   _handleFileChange = (name, files) => {
    // const { name, files } = e.target;
-    const { files: filesInState } = this.state;
-console.log("call handle file change")
-    let newFiles = [...filesInState];
-    each(files, file => {
-      if (file) {
-        const id = getUniqueId();
-        newFiles = [
-          ...newFiles,
-          {
-            id,
-            file
-          }
-        ];
-        this._setUrl(file, id);
-      }
-    });
-    this.setState({
-      [name]: [...newFiles]
-    });
+   // const { files: filesInState } = this.state;
+    console.log("..........................",files);
+    //console.log("call handle file change")
+      //console()
+    let newFiles = [files];
+    // each(files, file => {
+    //   if (file) {
+    //     const id = getUniqueId();
+    //     newFiles = [
+    //       ...newFiles,
+    //       {
+    //         id,
+    //         file
+    //       }
+    //     ];
+    //     this._setUrl(file, id);
+    //   }
+    // });
+    // this.setState({
+    //   [name]: [...newFiles]
+    // });
   };
 
   /**
@@ -262,15 +264,16 @@ console.log("call handle file change")
 
             this.setState({
                 isClickToUpload: true,
-                filePath: source
+                filePath: source.uri
             });
-            this._handleFileChange("files", [response])
+            this._handleFileChange("files", response.uri)
         }
     });
 };
   render() {
     const { body, current, urls, errors } = this.state;
     const { postStatus } = this.props;
+    console.log("profile pathh ..................",this.state.filePath)
 
       return (
         <View>
@@ -295,7 +298,7 @@ console.log("call handle file change")
 
             <Image
                 source={{
-                    uri: 'data:image/jpeg;base64,' + this.state.filePath.data,
+                    uri: this.state.filePath,
                 }}
                 style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
             />:<View /> }

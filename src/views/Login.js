@@ -12,6 +12,7 @@ import { checkError } from "../utils";
 import Logo from './common/logo';
 import BackButton from './common/BackButton';
 import WaveAnimation from './common/WaveAnimation';
+import GoogleSignIn from './common/GooglesignIn';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import Icon1 from 'react-native-vector-icons/Entypo';
 var FBLoginButton = require('../views/common/FBLoginButton');
@@ -80,9 +81,9 @@ export default class Login extends Component {
     //     }
     // }
     fBLogin() {
-        LoginManager.logOut();
+        //LoginManager.logOut();
         console.log(" in fb login button clcick ed");
-        LoginManager.setLoginBehavior('browser');
+       // LoginManager.setLoginBehavior('browser');
         LoginManager.logInWithReadPermissions(['public_profile']).then(
             function (result) {
                 if (result.isCancelled) {
@@ -197,13 +198,16 @@ export default class Login extends Component {
                             </TouchableHighlight>
                         </View>
 
-                        <View style={styles.viewCenterButton}>
-                            {/* <GoogleSigninButton
+                        <GoogleSignIn/>
+
+
+                        {/*<View style={styles.viewCenterButton}>
+                             <GoogleSigninButton
                                 style={{ width: 192, height: 48 }}
                                 size={GoogleSigninButton.Size.Wide}
                                 color={GoogleSigninButton.Color.Dark}
                                 onPress={this._signIn}
-                                disabled={this.state.isSigninInProgress} /> */}
+                                disabled={this.state.isSigninInProgress} />
                             <TouchableHighlight underlayColor="#25b6ad" style={styles.buttonCenter} onPress={()=>this.googleLogin()}>
                                 <View style={{flexDirection:'row'}}>
                             <Icon1 name="google-" style={{fontSize:20, color:'rgb(234,67,54)', marginRight:'2%'}}/>
@@ -211,7 +215,7 @@ export default class Login extends Component {
                             </View>
                               
                         </TouchableHighlight>
-                        </View>
+                        </View>*/}
 
 
                     </Animatable.View>
