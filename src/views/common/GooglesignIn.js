@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, AsyncStorage, Easing } from 'react-native';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
-
+import styles from '../../stylesheet/login.style';
+import Icon1 from 'react-native-vector-icons/Entypo';
 let iosGoogleClientId = '298981634092-uc33t6lv321lem1vl9pgbpvou482c07a.apps.googleusercontent.com';
 export default class GoogleLogin extends Component{
 
@@ -59,10 +60,19 @@ export default class GoogleLogin extends Component{
 
  render(){
      return(
-         <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-             <TouchableOpacity onPress={()=>this._signIn()}>
-                 <Text> google login </Text>
-             </TouchableOpacity>
+         <View style={styles.viewCenterButton}>
+             {/*<GoogleSigninButton
+                 style={{ width: 192, height: 48 }}
+                 size={GoogleSigninButton.Size.Wide}
+                 color={GoogleSigninButton.Color.Dark}
+                 onPress={this._signIn}/>*/}
+             <TouchableHighlight underlayColor="#25b6ad" style={styles.buttonCenter} onPress={()=>this._signIn()}>
+                 <View style={{flexDirection:'row'}}>
+                     <Icon1 name="google-" style={{fontSize:20, color:'rgb(234,67,54)', marginRight:'2%'}}/>
+                     <Text style={styles.googlePlusText}>Google login</Text>
+                 </View>
+
+             </TouchableHighlight>
          </View>
 
      )
