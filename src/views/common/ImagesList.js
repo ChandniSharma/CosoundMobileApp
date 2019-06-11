@@ -86,7 +86,7 @@ export default class ImagesList extends Component {
      const { photoIndex, isOpen } = this.state;
      const { loadMore, callingAPI, myImages, page,
         callAPI,
-        callApi,
+        
         page_count, } = this.props;
      const { data } = myImages;
   
@@ -102,13 +102,13 @@ export default class ImagesList extends Component {
                     keyExtractor={(item, index) => index.toString()}
                 />
             
-                {!isEmpty(data) && !callingAPI && page !== page_count && !isNull(page_count) && !callApi (
+                {!isEmpty(data) && !callingAPI && page !== page_count && !isNull(page_count) && 
                     <View style={styles.viewMoreImage}>
                         <TouchableHighlight underlayColor="#25b6ad" style={[styles.seeMoreBtn]} onPress={loadMore}>
                             <Text style={styles.textViewMore} > {callingAPI ? "Fetching..." : "View More..."}</Text>
                         </TouchableHighlight>
                     </View>
-                )}
+                }
             </View>
         </View>
       );

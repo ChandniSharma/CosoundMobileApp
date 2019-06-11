@@ -16,6 +16,7 @@ export default class PlayVideo extends Component {
                 paused={true}
                 repeat={false} 
                 style={{width:'100%', height:200}} 
+                controlTimeout={200000000}
                 // poster={require('../../assets/homepage-video-placeholder.jpg')}
             />
             </View>

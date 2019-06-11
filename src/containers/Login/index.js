@@ -161,8 +161,8 @@ class LoginContainer extends React.PureComponent {
 
      this.props.userActions.fetchCartCount().then(() => {
        this.props.notificationActions.fetchCount().then(()=>{
-          // this.props.navigation.navigate("Profile");
-          this.props.navigation.navigate('MarketPlaceContainer', { slug: "" });
+           this.props.navigation.navigate("Profile");
+         // this.props.navigation.navigate('MarketPlaceContainer', { slug: "" });
          // this.props.navigation.navigate("MarketPlaceContainer");
        });
      });
