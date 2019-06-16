@@ -168,9 +168,19 @@ export const changePassword = data => {
 export const uploadProfilePic = (name, file) => {
   /* FormData construct */
   const formData = new FormData();
-  formData.append([name], file);
-  /* FormData construct */
+  console.log(" 171 file ***", file);
 
+  formData.append([name], {
+    name: file.fileName,
+    type: file.type,
+    uri:
+      file.uri.replace("file://", "")
+  });
+  console.log(" 173 file ***", file[0]);
+
+  //formData.append([name], file);
+  /* FormData construct */
+  console.log(" 173 form data ", formData);
   const endpoint = "update/avatar";
   return {
     [CALL_API]: {

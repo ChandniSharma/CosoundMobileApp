@@ -31,11 +31,22 @@ import {
 export const signup = data => {
   /* FormData construct */
   const formData = new FormData();
+  console.log("data====",data)
   each(data, (value, key) => {
-    formData.append([key], value);
+    console.log("avtar===key ==",key, "value==",value)
+    if(key === "avatar"){
+      console.log("value.fileName==",value.fileName, value.uri)
+      formData.append("avatar", {
+        name: value.fileName,
+        type: value.type,
+        uri: value.uri.replace("file://", "")
+      });
+    }else{
+      formData.append([key], value);
+    }
   });
   /* FormData construct */
-
+console.log("formdata===",formData);
   const endpoint = "register";
   return {
     [CALL_API]: {

@@ -87,6 +87,7 @@ const AppStackNavigator = createStackNavigator({
     // SoundPlay:{screen:SoundPlay},
     MarketPlaceContainer: { screen: MarketPlaceContainer },
     Service: { screen: Service },
+  
 }, {
         // initialRouteName: 'MarketplaceDetail',
         initialRouteName: 'Login',

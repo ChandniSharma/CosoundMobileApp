@@ -62,18 +62,22 @@ export const details = (state = initialState.details, action) => {
 export const profilePic = (state = initialState.profilePic, action) => {
   switch (action.type) {
     case UPDATE_AVATAR_REQUEST:
+        console.log(" 66 ---- actio");
+
       return Object.assign({}, state, {
         isRequesting: true,
         data: {},
         error: {}
       });
     case UPDATE_AVATAR_SUCCESS:
+      console.log(" 74 ---- action", action);
       return Object.assign({}, state, {
         data: action.data,
         isRequesting: false,
         error: {}
       });
     case UPDATE_AVATAR_FAILURE:
+        console.log(" 81 ---- action", action);
       return Object.assign({}, state, {
         error: action.error,
         isRequesting: false

@@ -36,18 +36,18 @@ class SignUpContainer extends React.Component {
       longitude: 37.090240,
       latitude: -95.712891,
       type: "",
-      postal_code:"",
+      postal_code:"123456",
       avatar: null,
       url: null,
       email: "",
       password: "",
-      first_name: "",
-      last_name: "",
+      first_name: "Test",
+      last_name: "Last test",
       dob: null,
       artist_name: "",
       genres: [],
       social_links: formatLinks([], getRemainingArray(5, 0)),
-      country_id: ''
+      country_id: '1'
     },
     errors: {}
   };
@@ -316,9 +316,9 @@ console.log(" data ===", this.state.data, field);
           if (valid && this._isValidSocials()) {
       const { data } = this.state;
       console.log(" Data avtar ", data);
-      return fixRotationOfFile(data.avatar).then(blob => {
+     // return fixRotationOfFile(data.avatar).then(blob => {
        console.log(" in image return ");
-        data.avatar = blob;
+     //   data.avatar = blob;
        // const genres = JSON.stringify(extractValue(data.genres));
         const genres = data.genres;
         const social_links = JSON.stringify(extractValue(data.social_links));
@@ -329,7 +329,7 @@ console.log(" data ===", this.state.data, field);
         });
         console.log(" 328 ", signUpData);
         return this.props.authActions.signup(signUpData).then(() => {
-          console.log(" Success ", this.props);
+          console.log(" Success at 332 ", this.props);
           if (isSuccess(this.props.signup)) {
 
             console.log(" Success ", this.props.signup);
@@ -337,7 +337,7 @@ console.log(" data ===", this.state.data, field);
             //return history.push("/suggestions");
           }
         });
-      });
+     // });
     }
   };
 

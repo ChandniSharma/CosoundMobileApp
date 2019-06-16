@@ -8,7 +8,7 @@ import { SafeAreaView } from 'react-navigation';
 import React from "react";
 import styles from '../stylesheet/marketPlace.style';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { ActivityIndicator, FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity, Clipboard, AlertIOS, Platform, StyleSheet, Dimensions } from "react-native";
+import { ActivityIndicator, FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity, Clipboard, AlertIOS, Platform, StyleSheet, Dimensions, Animated,Easing } from "react-native";
 import { Icon } from "native-base";
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
@@ -168,7 +168,9 @@ let screenWidth = deviceWidth - 100;
             isDropDownclick: false,
             isMarketDetailViewShow: false,
             headerColorMix: ['rgb(42, 173,177)', 'rgb(131, 110, 198)', 'rgb(134, 103, 200)'],
+             isClockWise:false,
         }
+         this.spinValue = new Animated.Value(0);
     }
 
     fadeInMainView = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
@@ -179,9 +181,24 @@ let screenWidth = deviceWidth - 100;
 
     fadeInUpGraphicDesign = () => this.refs.flatListGraphicDesign.fadeInUp(1000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
 
+
     componentDidMount = () => {
+    	 this.spinValue = new Animated.Value(0);
         this.fadeInMainView();
     };
+
+spinIcon() {
+        
+        Animated.timing(
+            this.spinValue,
+            {
+                toValue: 1,
+                duration: 200,
+                easing: Easing.linear
+            }
+        ).start();
+        this.setState({isClockWise:!this.state.isClockWise});
+    }
 
     moveToMarketPlaceDetailView = () => {
         console.log(" move to Detail view ");
@@ -225,6 +242,16 @@ let screenWidth = deviceWidth - 100;
     moveToView(itemId) {
         console.log(" view id is =======", itemId);
         this.props.navigation.navigate('MarketPlaceContainer', { slug: itemId });
+
+        Animated.timing(
+            this.spinValue,
+            {
+                toValue: 1,
+                duration: 200,
+                easing: Easing.linear
+            }
+        ).start();
+
         this.setState({ isGraphicDesignPopupShow: false });
 
         setTimeout(() => {
@@ -364,8 +391,35 @@ console.log(this.props.navigation.state.params,"current ==== ", current)
                             <Text style={[styles.titleAccount, { flex: 0.9, marginTop: '0.5%', marginLeft: '5%' }]}>  {!isNull(current) && current.label && current.label} </Text>
                             <View style={{ width: 30, height: 30, borderRadius: 18, marginRight: '5%', marginBottom: '5%', flex: 0.1, backgroundColor: 'white' }}>
                                 <TouchableOpacity onPress={this.showGraphicDesignPopup}>
-                                    {this.state.isGraphicDesignPopupShow ? <Icon1 name="up" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} /> : <Icon1 name="down" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />}
-                                </TouchableOpacity>
+
+                                    {/* {this.state.isGraphicDesignPopupShow ? <Icon1 name="up" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} /> : <Icon1 name="down" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />} */}
+
+                                    {this.state.isGraphicDesignPopupShow
+                                                            ? <Animated.View style={{ transform: [
+                                                                                {rotate: this.spinValue.interpolate({
+                                                                                    inputRange: [0, 1],
+                                                                                    outputRange: ['0deg', '180deg']
+                                                                                })
+                                                                                }
+                                                                            ],
+                                                                            }}>
+                                                                                <Icon1 name="up" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
+                                                                                </Animated.View>
+                                                                            : <Animated.View  style={{
+                                                                                
+                                                                                transform: [
+                                                                                    {rotate: this.spinValue.interpolate({
+                                                                                        inputRange: [0, 1],
+                                                                                        outputRange: ['180deg', '0deg']
+                                                                                    })
+                                                                                    }
+                                                                                ],
+                                                                       }}>
+                        <Icon1 name="down" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
+                       
+                        </Animated.View> }
+
+                            </TouchableOpacity>
                             </View>
                             {/* <Animatable.Image source={require('../../src/assets/Image/arrow_small_down.png')} style={{borderRadius:13,alignSelf:'flex-end' ,width: 26, height: 26 }} /> */}
                         </View>

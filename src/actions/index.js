@@ -16,7 +16,7 @@ import * as marketPlaceActions from "./marketPlace";
 import * as userServicesActions from "./userServices";
 import * as notificationActions from "./notifications";
 
-import { adminUserActions, adminMarketplaceActions } from "./admin";
+import {  adminMarketplaceActions } from "./admin";
 
 export {
   wowActions,
@@ -30,7 +30,7 @@ export {
   serviceActions,
   paymentActions,
   userFeedActions,
-  adminUserActions,
+  
   postStatusActions,
   suggestionActions,
   userProfileActions,

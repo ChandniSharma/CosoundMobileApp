@@ -10,8 +10,6 @@ import * as avatar from "../assets/avatar1.jpg";
 
 
 const getThumbnail = data => {
-
-  console.log(" in image func ====", data);
   return !isEmpty(data) && data.thumbnail && !isNull(data.thumbnail)
     ? data.thumbnail
     : !isEmpty(data) && data.avatar && !isNull(data.avatar)
@@ -66,7 +64,7 @@ const enterPressed = e => {
 };
 
 const formatPhoneNumbers = phoneNumbers => {
-  console.log(" phone n0 ******", phoneNumbers);
+ 
   return !isNull(phoneNumbers) && phoneNumbers.length > 0
     ? phoneNumbers.map(item => {
         let newItem = { label: "", value: "" };
@@ -189,7 +187,7 @@ const getCurrentCategory = (data, slug) => {
 const getCategoryId = (data, params) => {
   let slug = "graphic-design";
   let categoryId = null;
-  console.log(" Data ******", data,"and Prams" ,params);
+  
   if (!isEmpty(data)) {
     if (isEmpty(params) || !params.slug) {
       const category = data.filter(o => o.slug === slug)[0];
@@ -203,7 +201,7 @@ const getCategoryId = (data, params) => {
         categoryId = category.value;
       }
     }
-    console.log(" cat id 206", categoryId);
+  
   }
   return categoryId;
 };

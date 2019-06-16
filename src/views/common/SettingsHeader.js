@@ -44,9 +44,8 @@ export default class SettingsHeader extends Component {
           <View style={styles.findingView}>
 
             <TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }} onPress={this.chooseFile.bind(this)}>
-              {profilePic && profilePic.isRequesting ?
-                <Icon name="camera" style={{ fontSize: 60, marginTop: '50%', color: 'gray', alignSelf: 'center', }} /> :
-                <Image
+              {profilePic.isRequesting ? <ActivityIndicator color="gray" size={"large"} style={{marginTop: '50%'}}/>
+                :<Image
                   source={{
                     uri: getThumbnail(user.data)
                   }}
@@ -68,7 +67,7 @@ export default class SettingsHeader extends Component {
   chooseFile = () => {
     var options = {
       title: 'Image',
-
+      // mediaType: 'video', 
       storageOptions: {
         skipBackup: true,
         path: 'images',
@@ -92,9 +91,10 @@ export default class SettingsHeader extends Component {
         let source = response;
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-        this.props.handleFileChange('avatar', 'data:image/jpeg;base64,' + source.data)
-
+// 'data:image/jpeg;base64,' + source.data
+console.log("source.uri=====", source);
+        this.props.uploadProfilePic('avatar', source)
+     
       }
     });
   };

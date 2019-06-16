@@ -68,22 +68,23 @@ export const submit = (data, pathname) => {
   return (dispatch, getState) => {
     dispatch(submitingPost());
     const formData = new FormData();
-console.log("data===", data)
-// formData.append("files[]", {
-//   name: data.files[0].file.fileName,
-//   type: data.files[0].file.type,
-//   uri:
-//     data.files[0].file.uri.replace("file://", "")
-// });
-    each(data, (value, key) => {
-      if (key === "files") {
-        each(value, item => {
-          formData.append("files[]", item.file);
-        });
-      } else {
-        formData.append([key], value);
-      }
+    console.log("data=== at 71 line no===", data)
+    formData.append("files[]", {
+      name: data.files[1].file.fileName,
+      type: data.files[1].file.type,
+      uri:data.files[1].file.uri.replace("file://", "")
     });
+    // each(data, (value, key) => {
+    //   if (key === "files") {
+    //     each(value, item => {
+    //       if(item.file){
+    //         formData.append("files[]", item.file);
+    //       }
+    //     });
+    //   } else {
+    //     formData.append([key], value);
+    //   }
+    // });
     const endpoint = `${API_URL}posts`;
     const { token, expiresAt } = getState().user;
 
@@ -113,28 +114,35 @@ console.log("data===", data)
     };
 
     const responseHandler = response => {
+
+   console.log("response.status===",response.status)
       if (response.status >= 400) {
         response.json().then(error => {
           dispatch(postFailure(error));
         });
       } else {
+       
+        console.log(" 125 ===response", response, "respo data ===", response.json());
+        
         response.json().then(resp => {
+          console.log("resp===",resp)
           let mediaTypes = [];
           if (resp.data.media && !isNull(resp.data.media)) {
             mediaTypes = resp.data.media.map(item => {
               return item.file_type;
             });
           }
-
+console.log("pathname==", pathname)
           if (pathname === "/profile") {
             dispatch(userFeedActions.fetchFeed(1)).then(() => {
-              dispatch(wowActions.sync());
+              console.log("call userfeed 133")
+             // dispatch(wowActions.sync());
             });
 
             dispatch(addToMediaList(resp.data, pathname));
           } else if (pathname === "/") {
             dispatch(feedActions.fetchFeed(1)).then(() => {
-              dispatch(wowActions.sync());
+            //  dispatch(wowActions.sync());
             });
           }
 
@@ -157,6 +165,7 @@ console.log("data===", data)
       return refreshToken(token)
         .then(response => {
           response = winnowResponse(response);
+
           if (response && response.data) {
             dispatch({ type: SET_TOKEN, data: response.data });
             headers = {
@@ -190,12 +199,12 @@ console.log("data===", data)
       body: formData
     })
       .then(response => {
-        console.log("console response ", response)
-       // responseHandler(response);
+        console.log("console response******* ", response)
+        responseHandler(response);
       })
       .catch(err => {
         console.log("console err ")
-      //  dispatch(postFailure(err));
+        dispatch(postFailure(err));
       });
   };
 };

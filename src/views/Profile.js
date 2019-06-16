@@ -189,7 +189,7 @@ export default class ProfileComponent extends Component {
             userFeedActions
         } = this.props;
         const { paginationData } = userFeed;
-        console.log("props in profile page: ", this.props)
+        
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
 
@@ -271,14 +271,15 @@ export default class ProfileComponent extends Component {
                             <View style={{ width: "100%", justifyContent: "center", flexDirection: "row" }}>
 
                                 <Text style={styles.myMusicTitle}>My Music</Text>
-
-                                <Icon name="ios-add-circle-outline" size={30} color="purple" style={styles.plusCircle} />
+                                <TouchableOpacity>
+                                     <Icon name="ios-add-circle-outline" size={30} color="purple" style={styles.plusCircle} />
+                                </TouchableOpacity>
                             </View>
 
                             <View style={styles.midView}>
 
                             </View>
-                            {/* <MusicList /> */}
+                          
                            <Paginator 
                                 isLoaderInternal
                                 myMusic={myMusic}
@@ -288,9 +289,9 @@ export default class ProfileComponent extends Component {
                                 page_count={myMusic.paginationData.page_count}
                             /> 
                         </View>
+ 
 
-
-                        <View style={styles.viewImagesOutside}>
+                        {/* <View style={styles.viewImagesOutside}>
 
                             <View style={styles.viewImagesInside}>
 
@@ -301,7 +302,7 @@ export default class ProfileComponent extends Component {
                             </View>
 
 
-                            {/* <ImagesList /> */}
+                       
                             <Paginator
                                 isLoaderInternal
                                 myImages={myImages}
@@ -311,8 +312,11 @@ export default class ProfileComponent extends Component {
                                 page_count={myImages.paginationData.page_count}
                             />
 
-                        </View>
-                        <PostStatus pathName={"/profile"} />
+                        </View> */}
+                        <PostStatus 
+                        pathName={"/profile"} 
+                        restCallsOnMount = {this.props.restCallsOnMount}
+                        />
 
                         {/* <NewTest /> */}
                         <InfiniteScroller
@@ -326,6 +330,7 @@ export default class ProfileComponent extends Component {
                             page={paginationData.page}
                             shouldCallAPIInitially={false}
                             page_count={paginationData.page_count}
+                           restCallsOnMount = {this.props.restCallsOnMount}
                         />
 
                     </View>
@@ -351,7 +356,7 @@ export default class ProfileComponent extends Component {
                     </Animatable.View> : null}
 
                 {/* Side Menu button modal  */}
-                {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation} hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
+                {this.state.isSideMenuClick ? <SideMenu isProfile={true} navigation={this.props.navigation} hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
 
             </SafeAreaView>
 

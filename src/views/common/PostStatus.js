@@ -22,6 +22,7 @@ import Icon4 from "react-native-vector-icons/Entypo";
 var ImagePicker = require('react-native-image-picker');
 import RenderTempFile from './RenderTempFile';
 
+console.disableYellowBox = true;
 class PostStatus extends React.PureComponent {
   node = null;
   audioNode = null;
@@ -31,7 +32,8 @@ class PostStatus extends React.PureComponent {
     urls: [],
     types: [],
     files: [],
-    errors: {}
+    errors: {},
+    isRequested: false,
   };
 
   // componentDidUpdate() {
@@ -95,6 +97,7 @@ class PostStatus extends React.PureComponent {
    * Reset Post Status Form
    */
   _resetState = () => {
+    console.log("call reset state")
     this.setState(
       {
         current: "music",
@@ -133,28 +136,28 @@ class PostStatus extends React.PureComponent {
    * File Input handler
    */
   _handleFileChange = (name, files) => {
-   // const { name, files } = e.target;
-   // const { files: filesInState } = this.state;
+   
+   const { files: filesInState } = this.state;
     console.log("..........................",files);
     //console.log("call handle file change")
       //console()
     let newFiles = [files];
-    // each(files, file => {
-    //   if (file) {
-    //     const id = getUniqueId();
-    //     newFiles = [
-    //       ...newFiles,
-    //       {
-    //         id,
-    //         file
-    //       }
-    //     ];
-    //     this._setUrl(file, id);
-    //   }
-    // });
-    // this.setState({
-    //   [name]: [...newFiles]
-    // });
+    each(files, file => {
+      if (file) {
+        const id = getUniqueId();
+        newFiles = [
+          ...newFiles,
+          {
+            id,
+            file
+          }
+        ];
+        this._setUrl(file, id);
+      }
+    });
+    this.setState({
+      [name]: [...newFiles]
+    });
   };
 
   /**
@@ -198,9 +201,11 @@ class PostStatus extends React.PureComponent {
    * Status submit handler
    */
   _submitPost = () => {
+    this.setState({isRequested:true});
     console.log("call submit post")
    // e.preventDefault();
-    if (this._isValid()) {
+   //this._isValid()
+    if (true) {
       console.log("call 202")
       // e.preventDefault();
       const { body, files } = this.state;
@@ -211,9 +216,13 @@ class PostStatus extends React.PureComponent {
         const { postStatusActions, location } = this.props;
         const { pathname } = this.props;
         const data = Object.assign({}, { body, files });
-
-        postStatusActions.submit(data, pathname).then(() => {
-          this._resetState();
+console.log("pathname === ", pathname)
+        postStatusActions.submit(data, "/profle").then(() => {
+          console.log("call 217 line nu")
+         //this.props.restCallsOnMount();
+         // this._resetState();
+          this.setState({isRequested:false});
+         
         });
       }
     }
@@ -224,14 +233,15 @@ class PostStatus extends React.PureComponent {
 
       if(!this.state.isClickToUpload){
           this.setState({isClickToUpload:true})
-          this.chooseFile()
+          this.chooseFile(type)
       }
      
   }
 
-  chooseFile = () => {
+  chooseFile = (type) => {
     var options = {
         title: 'Image',
+        mediaType: type === 'music'?'audio': type, 
         storageOptions: {
             skipBackup: true,
             path: 'images',
@@ -240,13 +250,12 @@ class PostStatus extends React.PureComponent {
 
     ImagePicker.showImagePicker(options, response => {
 
-
         if (response.didCancel) {
 
             this.setState({
                 isClickToUpload: false
             })
-        } else if (response.error) {
+        }else if (response.error) {
 
             this.setState({
                 isClickToUpload: false
@@ -266,14 +275,14 @@ class PostStatus extends React.PureComponent {
                 isClickToUpload: true,
                 filePath: source.uri
             });
-            this._handleFileChange("files", response.uri)
+           // this._handleFileChange("files", response.uri)
+           this._handleFileChange("files", [response])
         }
     });
 };
   render() {
     const { body, current, urls, errors } = this.state;
     const { postStatus } = this.props;
-    console.log("profile pathh ..................",this.state.filePath)
 
       return (
         <View>
@@ -327,7 +336,7 @@ class PostStatus extends React.PureComponent {
     <View style={styles.viewPostButton}>
         <TouchableHighlight style={[styles.postButton]} onPress={this._submitPost}>
             <View style={{ flexDirection: 'row' }}>
-              {postStatus.isRequesting? <ActivityIndicator color='gray' />:<Text style={styles.textLoginButtonTitle}>Post</Text>}
+              {this.state.isRequested? <ActivityIndicator color='gray' />:<Text style={styles.textLoginButtonTitle}>Post</Text>}
                 
                 <Icon1 name="arrowright" style={{ marginLeft: '1%', fontSize: 20, color: 'rgb(255, 38, 123)' }} />
             </View>

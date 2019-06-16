@@ -55,28 +55,29 @@ export default class SignupStep3Musician extends Component {
       },
     };
 
-    // ImagePicker.showImagePicker(options, response => {
-    //   // console.log('Response = =============', response);
+    ImagePicker.showImagePicker(options, response => {
+      // console.log('Response = =============', response);
 
-    //   if (response.didCancel) {
-    //     // console.log('User cancelled image picker');
+      if (response.didCancel) {
+        // console.log('User cancelled image picker');
 
-    //   } else if (response.error) {
-    //     console.log('ImagePicker Error: ', response.error);
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
 
-    //   } else if (response.customButton) {
-    //     // console.log('User tapped custom button: ', response.customButton);
-    //     alert(response.customButton);
+      } else if (response.customButton) {
+        // console.log('User tapped custom button: ', response.customButton);
+        alert(response.customButton);
 
-    //   } else {
-    //     let source = response;
-    //     // You can also display the image using data:
-    //     // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-    //     this.props.handleFileChange('avatar', 'data:image/jpeg;base64,' + source.data)
-
-    //   }
-    // });
+      } else {
+        let source = response;
+        // You can also display the image using data:
+        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+    //    this.props.uploadProfilePic('avatar', source)
+      // this.props.handleFileChange('avatar', 'data:image/jpeg;base64,' + source.data)
+      console.log(" imge picker =======", source);
+       this.props.handleFileChange("avatar", source)
+      }
+    });
   };
 
   render() {
@@ -99,7 +100,8 @@ export default class SignupStep3Musician extends Component {
     const error = checkError(signup.error);
     const { selectedItems } = this.state;
 
-    console.log(" errors ^^^^ ======", error, errors);
+
+    console.log(" Data in render  =======", data);
 
     return (
       <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
@@ -132,7 +134,7 @@ export default class SignupStep3Musician extends Component {
                       <Icon name="camera" style={{ fontSize: 60, marginTop: '50%', color: 'gray', alignSelf: 'center', }} /> :
                       <Image
                         source={{
-                          uri: data.url,
+                          uri: data.url.uri,
                         }}
                         style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
                       />}
@@ -294,7 +296,7 @@ export default class SignupStep3Musician extends Component {
 
 
             {data.social_links.map((item, index) => {
-              console.log("inde+1===", index + 1, "data.social_links.length==", data.social_links, "errors==", errors)
+              // console.log("inde+1===", index + 1, "data.social_links.length==", data.social_links, "errors==", errors)
               if (item.isVisible) {
                 return (
                   <View>
@@ -312,9 +314,9 @@ export default class SignupStep3Musician extends Component {
                       />
 
                       {!item.isReady && (
-                        <TouchableHighlight onPress={() => addMoreSocials(item.id)} style={[styles.plusCircleBtn]}>
+                        <TouchableOpacity onPress={() => addMoreSocials(item.id)} style={[styles.plusCircleBtn]}>
                           <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} />
-                        </TouchableHighlight>
+                        </TouchableOpacity>
                       )}
 
                     </View>

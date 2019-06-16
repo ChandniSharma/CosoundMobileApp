@@ -53,18 +53,21 @@ class AccountSettings extends React.PureComponent {
     return this.props.userActions.changePassword(data);
   };
 
-  _uploadProfilePic = e => {
-    const { name, files } = e.target;
-    if (files[0]) {
+  _uploadProfilePic = (name, files) => {
+    console.log("name===", name, "FILE++",files)
+  //  const { name, files } = e.target;
+    if (files) {
       const { userActions } = this.props;
-      return fixRotationOfFile(files[0]).then(blob => {
-        userActions.uploadProfilePic(name, blob).then(() => {
+     // return fixRotationOfFile(files).then(blob => {
+        console.log(" 62 ");
+        userActions.uploadProfilePic(name, files).then(() => {
+          console.log(" 64");
           if (isError(this.props.profilePic)) {
             alert(this.props.profilePic.error.message)
             //return toast.error(this.props.profilePic.error.message);
           }
         });
-      });
+     // });
     }
   };
 

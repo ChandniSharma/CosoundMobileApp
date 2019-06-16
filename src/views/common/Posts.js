@@ -396,9 +396,10 @@ class Posts extends React.PureComponent {
     }
 
     _renderSingleImage = media => {
+        console.log("_renderSingleImage")
         return (
-            <View>
-                <Image source={{
+            <View >
+                <Image style={{width:'100%', height:225, borderRadius:10}} source={{
                     uri:
                         !isNull(media.metadata) && media.metadata.thumbnail_normal
                             ? media.metadata.thumbnail_normal
@@ -414,7 +415,7 @@ class Posts extends React.PureComponent {
 
         //   const currentTime = formatCurrentTime(pos);
 
-        console.log(" Source path ===========", media.path ,"Post Id ========",postId , "========");
+        console.log(" Source path ===========", media ,"Post Id ========",postId , "========");
 
         switch (media.file_type) {
             case "video":
@@ -490,9 +491,10 @@ class Posts extends React.PureComponent {
                 </View>)
 
             case "image":
+                console.log(" 493 image section");
                 return (
                     <View>
-                        <Image source={{
+                        <Image style={{width:'100%', height:225, borderRadius:10}} source={{
                             uri: !isNull(media.metadata) && media.metadata.thumbnail_normal
                                 ? media.metadata.thumbnail_normal
                                 : media.path
@@ -513,6 +515,7 @@ class Posts extends React.PureComponent {
    
 
     renderPostCard = (postData) => {
+        
         const { feed, callingAPI, _restCalls, pathName } = this.props;
         const { user, like, deletePost, repost } = this.props;
         const { isVisible, showSocial } = this.state;
@@ -539,7 +542,7 @@ class Posts extends React.PureComponent {
 
         let postDetail = postData.item;
 
-        console.log(" :popst -=====", like, like.isRequesting, this.state.currentLikePostId, postDetail.id);
+       // console.log(" :popst -=====", like, like.isRequesting, this.state.currentLikePostId, postDetail.id);
         const postedBySelf = postDetail.user_id === user.data.id;
         const originalPost = getPost(postDetail);
         const { images, notImages } = formatPostMedia(originalPost.media);

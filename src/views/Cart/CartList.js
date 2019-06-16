@@ -6,34 +6,51 @@ import { getServiceThumbnail } from "../../utils";
 import StarView from '../common/StarView';
 import { noDataProps } from "./data";
 import CardOptions from "./CardOptions";
+import * as Animatable from 'react-native-animatable';
+import IconAntDesign from "react-native-vector-icons/AntDesign";
+
+
+fadeInUpPopup = () => this.refs.viewpopup.fadeInUp(1000);
 
 class CartList extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      isVisible: false
+      isVisible: false,
+      isDeletePopupShow: false,
     }
+  }
+
+  showDeletePopup = () => {
+    console.log(" show delete popup ");
+    let isDeletePopupShow = this.state.isDeletePopupShow;
+    this.setState({ isDeletePopupShow: !isDeletePopupShow });
   }
 
   renderCartItem = (itemDetail) => {
     let item = itemDetail.item;
     const { isVisible } = this.state;
+    console.log("isDeletePopupShow===",this.state.isDeletePopupShow)
     const { removeFromCart, _removeFromCart } = this.props;
     return (
-      <View style={{ flex: 1 }}>
-        {/* View single line */}
+      <View style={{ flex: 1 , backgroundColor:'red'}}>
         <View style={{ width: '95%', alignSelf: 'center', marginTop: '2%', height: 0.5, backgroundColor: 'lightgray' }} />
+
+        <TouchableOpacity onPress={() => this.showDeletePopup()}>
+          <IconAntDesign name="ellipsis1" style={{ marginTop: '2%', right: '5%', fontSize: 25, color: 'lightGray', alignSelf: 'flex-end' }} />
+        </TouchableOpacity>
+
 
         {/* Main service Image */}
         <TouchableOpacity style={{ alignSelf: 'center', width: 100, height: 100, marginTop: '5%', marginBottom: '2%', }}>
           <Image style={{ alignSelf: 'center', width: 100, height: 100, borderRadius: 10 }} source={{ uri: getServiceThumbnail(item.media) }} />
         </TouchableOpacity>
 
-        <View style={{ flexDirection: 'row', flex: 1, marginBottom: '2%', marginTop: '2%' }}>
+        <View style={{ flexDirection: 'row', flex: 1, marginBottom: '2%', marginTop: '2%', backgroundColor:'red' }}>
 
           <Image style={[styles.imgUser, { marginRight: '2%', marginLeft: '2%', marginBottom: '2%', marginTop: '2%' }]} source={{ uri: getServiceThumbnail(item.media) }} />
 
-          <View style={{ flex: 0.85 }}>
+          <View style={{ flex: 0.85, backgroundColor:'orange' }}>
             <TouchableOpacity style={{ marginTop: '2%' }}>
               <Text style={styles.textServiceTitle}> {item.title}</Text>
             </TouchableOpacity>
@@ -47,16 +64,21 @@ class CartList extends React.PureComponent {
           <Text style={[styles.textPrice, { flex: 0.15 }]}>${item.price}  </Text>
         </View>
 
-        <CardOptions
-          id={item.id}
-          postedBySelf={true}
-          isVisible={isVisible}
-          className={"cart-item"}
-          _delete={_removeFromCart}
-          deleteState={removeFromCart}
-          toggleVisible={this._toggleVisible}
-        />
+
+       {this.state.isDeletePopupShow?
+              <CardOptions
+                        id={item.id}
+                        postedBySelf={true}
+                        isVisible={isVisible}
+                        className={"cart-item"}
+                        _delete={_removeFromCart}
+                        deleteState={removeFromCart}
+                        toggleVisible={this._toggleVisible}
+                      />
+                :null}
       </View>
+
+
     )
   }
 
@@ -96,6 +118,7 @@ class CartList extends React.PureComponent {
             data={cart.data}
             renderItem={this.renderCartItem}
             keyExtractor={(item, index) => index.toString()}
+            extraData={this.state}
           />
 
           {!isEmpty(data) && !callingAPI && page !== page_count && !isNull(page_count) && !callApi(

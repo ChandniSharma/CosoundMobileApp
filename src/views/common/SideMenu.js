@@ -45,7 +45,7 @@ class SideMenu extends Component {
             visible: true,
             isNotificationShow: false,
         }
-        this.arrayData = [{ name: 'Account Settings', image: '', count: 0 }, { name: 'Plans', image: 'message', count: 0 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }, { name: 'Music Service', image: '', count: 0 }, { name: 'Logout', image: '', count: 0 }]
+        this.arrayData = [{ name: 'MarketPlace', image: '', count: 0 }, { name: 'Plans', image: 'message', count: 0 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }, { name: 'Music Service', image: '', count: 0 }, { name: 'Logout', image: '', count: 0 }]
 
     }
 
@@ -62,7 +62,7 @@ class SideMenu extends Component {
     componentDidMount() {
         setTimeout(() => {
             this.zoomInPopup();
-        }, 5);
+        }, 0.9);
     }
 
     /**
@@ -171,7 +171,14 @@ class SideMenu extends Component {
         this.props.hidePopup();
         this.props.navigation.navigate('UserProfile', { id: userId });
     }
-
+    moveToProfileView(){
+        if(this.props.isProfile){
+            this.props.hidePopup();
+        }else{
+            this.props.navigation.navigate('Profile')
+        }
+         
+    }
 
     renderSearchRow = (item) => {
         console.log(" item is ", item);
@@ -210,27 +217,20 @@ class SideMenu extends Component {
                     }
                 },
             ]
-
-
-
         );
-
-
     };
+
 
     renderModalItem = (item) => {
 
-        console.log(" Props is ====== ", this.props);
         let icon = "";
         let viewNotification = <View />
 
         let viewComplete = <View />
 
-
-
         if (item.index === 0) {
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
-                <TouchableHighlight underlayColor='' style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('AccountSettings')}>
+                <TouchableHighlight underlayColor='' style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('MarketPlaceContainer', { slug: "" })}>
                     <View style={{ flexDirection: "row" }}>
                         <Icon4 name="briefcase-outline" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, color: 'white' }} />
                         <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
@@ -254,7 +254,7 @@ class SideMenu extends Component {
         } else if (item.index === 2) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
-                <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Profile')}>
+                <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.moveToProfileView()}>
                     <View style={{ flexDirection: "row" }}>
                         <Icon name="user" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, tintColor: 'white' }} />
                         <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
