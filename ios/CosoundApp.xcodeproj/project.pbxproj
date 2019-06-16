@@ -616,6 +616,7 @@
 		99619153228C787000AA6572 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		99619154228C787000AA6572 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		996823D2228FB90600C60E68 /* CosoundApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = CosoundApp.entitlements; path = CosoundApp/CosoundApp.entitlements; sourceTree = "<group>"; };
+		997E169A22B66763009A1ED6 /* libBugsnagReactNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBugsnagReactNative.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		99982F5322828814008E843E /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.otf"; sourceTree = "<group>"; };
 		99982F5422828814008E843E /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Thin.ttf"; sourceTree = "<group>"; };
 		99982F5522828815008E843E /* Montserrat-Hairline.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Hairline.otf"; sourceTree = "<group>"; };
@@ -829,6 +830,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				997E169A22B66763009A1ED6 /* libBugsnagReactNative.a */,
 				2D219AF1229974CB00E554BF /* Lottie.framework */,
 				99619152228C786F00AA6572 /* FBSDKCoreKit.framework */,
 				99619154228C787000AA6572 /* FBSDKLoginKit.framework */,

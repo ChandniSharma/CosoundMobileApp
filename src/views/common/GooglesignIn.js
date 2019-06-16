@@ -11,6 +11,7 @@ export default class GoogleLogin extends Component{
     }
 
     _signIn = async () => {
+        return;
         console.log("Entered ************************************** 1",)
         try {
             console.log("Enterend ************************************** 2",)

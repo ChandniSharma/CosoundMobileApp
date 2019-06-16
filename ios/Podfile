@@ -16,7 +16,10 @@ pod 'Crashlytics', '~> 3.13.1'
 #pod 'RNGoogleSignin', :path => "rnfolder/node_modules/react-native-google-signin"
 
   
-  pod 'react-native-image-resizer', :path => '../node_modules/react-native-image-resizer'
+  # pod 'react-native-image-resizer', :path => '../node_modules/react-native-image-resizer'
+
+  #pod 'BugsnagReactNative', :path => '../node_modules/bugsnag-react-native'
+
 
   target 'CosoundAppTests' do
     inherit! :search_paths

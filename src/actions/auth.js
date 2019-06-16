@@ -34,7 +34,7 @@ export const signup = data => {
   console.log("data====",data)
   each(data, (value, key) => {
     console.log("avtar===key ==",key, "value==",value)
-    if(key === "avatar"){
+    if(key === "avatar" && value && value.fileName){
       console.log("value.fileName==",value.fileName, value.uri)
       formData.append("avatar", {
         name: value.fileName,

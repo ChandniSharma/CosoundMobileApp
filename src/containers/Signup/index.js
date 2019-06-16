@@ -36,18 +36,18 @@ class SignUpContainer extends React.Component {
       longitude: 37.090240,
       latitude: -95.712891,
       type: "",
-      postal_code:"123456",
+      postal_code:"",
       avatar: null,
       url: null,
       email: "",
       password: "",
-      first_name: "Test",
-      last_name: "Last test",
+      first_name: "",
+      last_name: "",
       dob: null,
       artist_name: "",
       genres: [],
       social_links: formatLinks([], getRemainingArray(5, 0)),
-      country_id: '1'
+      country_id: ''
     },
     errors: {}
   };

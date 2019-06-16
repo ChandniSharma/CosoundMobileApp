@@ -55,6 +55,8 @@ export default class ProfileComponent extends Component {
             counter: 0,
             timer: null,
             isNotificationShow: false,
+           current:'image',
+
         }
     }
 
@@ -137,6 +139,66 @@ export default class ProfileComponent extends Component {
         }
         return arrayBtn;
     }
+
+    onClickMusicVideoImage(type) {
+        this.setState({current:type});
+    
+          if(!this.state.isClickToUpload){
+              this.setState({isClickToUpload:true})
+              this.chooseFile(type)
+          }
+         
+      }
+
+      chooseFile = (type) => {
+        var options = {
+            title: 'Image',
+            mediaType: type === 'music'?'audio': type, 
+            storageOptions: {
+                skipBackup: true,
+                path: 'images',
+            },
+        };
+    
+        ImagePicker.showImagePicker(options, response => {
+    
+            if (response.didCancel) {
+    
+                this.setState({
+                    isClickToUpload: false
+                })
+            }else if (response.error) {
+    
+                this.setState({
+                    isClickToUpload: false
+                })
+            } else if (response.customButton) {
+    
+                alert(response.customButton);
+                this.setState({
+                    isClickToUpload: false
+                })
+            } else {
+                let source = response;
+                // You can also display the image using data:
+                // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+    
+                // this.setState({
+                //     isClickToUpload: true,
+                //     filePath: source.uri
+                // });
+               // this._handleFileChange("files", response.uri)
+               //this._handleFileChange("files", [response])
+
+              
+    if (response) {
+      const { userFeedActions } = this.props;
+      userFeedActions.setTemporaryFile(response);
+    }
+            }
+        });
+    }; 
+
     renderItem = (music) => {
 
         return (
@@ -291,13 +353,15 @@ export default class ProfileComponent extends Component {
                         </View>
  
 
-                        {/* <View style={styles.viewImagesOutside}>
+                        <View style={styles.viewImagesOutside}>
 
                             <View style={styles.viewImagesInside}>
 
                                 <Text style={styles.myImagesTitle}>My Images</Text>
-                                <Icon name="ios-add-circle-outline" size={30} color="purple" style={styles.plusCircle} />
+                                <TouchableOpacity onPress={() => this.onClickMusicVideoImage('image')}>
 
+                                <Icon name="ios-add-circle-outline" size={30} color="purple" style={styles.plusCircle} />
+</TouchableOpacity>
 
                             </View>
 
@@ -312,7 +376,7 @@ export default class ProfileComponent extends Component {
                                 page_count={myImages.paginationData.page_count}
                             />
 
-                        </View> */}
+                        </View>
                         <PostStatus 
                         pathName={"/profile"} 
                         restCallsOnMount = {this.props.restCallsOnMount}

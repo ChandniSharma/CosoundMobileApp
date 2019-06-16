@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, ActivityIndicator } from 'react-native';
 //import SvgUri from 'react-native-svg-uri';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../stylesheet/SignupStep3.style';
@@ -330,9 +330,9 @@ export default class SignupStep3Musician extends Component {
 
 
             <TouchableHighlight onPress={signUp} underlayColor="#25b6ad" style={[styles.loginButton]}>
-              <View style={{ flexDirection: 'row' }}>
-                <Text style={styles.textButtonTitle} >Next</Text>
-                <Icon1 name="arrowright" style={{ marginLeft: '1%', fontSize: 20, color: 'white' }} />
+              <View style={{ flexDirection: 'row', }}>
+          {signup.isRequesting ?<ActivityIndicator color="white" style={{marginTop:25}} />: <Text style={styles.textButtonTitle} >Next</Text> }
+                <Icon1 name="arrowright" style={{ marginLeft: '1%', fontSize: 20, color: 'white' }} /> 
               </View>
 
 

@@ -81,6 +81,7 @@ export default class Login extends Component {
     //     }
     // }
     fBLogin() {
+        return;
         //LoginManager.logOut();
         console.log(" in fb login button clcick ed");
        // LoginManager.setLoginBehavior('browser');
@@ -102,7 +103,7 @@ export default class Login extends Component {
 
     }
     twitterLogin(){
-
+ 
     }
     render() {
         const { data, errors, handleChange, login, onSubmit, fetching, navigateToForgotPassword, navigateToGetStartedView, onClickRememberMe } = this.props;
