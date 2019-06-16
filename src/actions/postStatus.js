@@ -70,8 +70,8 @@ export const submit = (data, pathname) => {
     const formData = new FormData();
     console.log("data=== at 71 line no===", data)
     formData.append("files[]", {
-      name: data.files[1].file.fileName,
-      type: data.files[1].file.type,
+      name: data.files[1].name,
+      type: data.files[1].type,
       uri:data.files[1].file.replace("file://", "")
     });
     // each(data, (value, key) => {
