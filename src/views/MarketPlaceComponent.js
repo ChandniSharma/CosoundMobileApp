@@ -326,7 +326,9 @@ spinIcon() {
 
 
     showPopup() {
-        this.setState({ isSideMenuClick: true })
+        this.setState({ isSideMenuClick: true,
+        isNotificationShow:false
+        })
         console.log(" sidemnu ", this.state.isSideMenuClick);
         // setTimeout(() => {
         //     this.zoomInPopup();
@@ -380,7 +382,7 @@ console.log(this.props.navigation.state.params,"current ==== ", current)
                     </TouchableOpacity>
                 </LinearGradient> : null} */}
 
-                {!this.state.isSideMenuClick ? <HeaderMenuAndBell notificationCount={this.props.notificationCount} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} onPressPopup={() => this.showPopup()} isNotificationShow={this.state.isNotificationShow} onPressBell={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })} /> : null}
+                {!this.state.isSideMenuClick ? <HeaderMenuAndBell notificationCount={this.props.notificationCount} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} onPressPopup={() => this.showPopup()} isNotificationShow={this.state.isNotificationShow} onPressBell={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}  /> : null}
 
 
                 {/* Top view Graphic design which will open modal view by side button click */}

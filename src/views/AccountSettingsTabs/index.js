@@ -85,7 +85,9 @@ class AccountSettingsTabs extends React.PureComponent {
     }
 
     showPopup() {
-        this.setState({ isSideMenuClick: true })
+        this.setState({ isSideMenuClick: true,
+            isNotificationShow: false
+         })
         console.log(" sidemnu ", this.state.isSideMenuClick);
     }
     hidePopup() {

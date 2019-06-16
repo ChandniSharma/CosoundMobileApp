@@ -94,6 +94,18 @@ export default class ServiceComponent extends Component {
         }, 10);
        
     };
+    hidePopup() {
+        this.setState({ isSideMenuClick: false })
+    }
+    hideNotificationView(){
+        this.setState({isNotificationShow: false})
+    }
+    
+    showPopup() {
+        this.setState({ isSideMenuClick: true,
+            isNotificationShow: false })
+        console.log(" sidemnu ", this.state.isSideMenuClick);
+    }
 
     renderItem = () => {
         return (
