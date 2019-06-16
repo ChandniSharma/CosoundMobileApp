@@ -338,9 +338,7 @@ export default class ProfileComponent extends Component {
                                 </TouchableOpacity> */}
                             </View>
 
-                            <View style={styles.midView}>
-
-                            </View>
+        
                           
                            <Paginator 
                                 isLoaderInternal
