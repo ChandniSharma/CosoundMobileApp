@@ -136,7 +136,9 @@ class PostStatus extends React.PureComponent {
         body: "",
         urls: [],
         files: [],
-        types: []
+        types: [],
+        filePath:undefined,
+        isRequested:false,
       },
       () => {
         // if (!isNull(this.node)) {
@@ -246,14 +248,14 @@ class PostStatus extends React.PureComponent {
         console.log("call 207")
         // e.preventDefault();
         const { postStatusActions, location } = this.props;
-        const { pathname } = this.props;
+
         const data = Object.assign({}, { body, files });
-        console.log("pathname === ", pathname)
+        console.log("pathname === ", data)
         postStatusActions.submit(data, "/profle").then(() => {
           console.log("call 217 line nu")
           this.props.restCallsOnMount();
           this._resetState();
-          this.setState({ isRequested: false });
+          //this.setState({ filePath: undefined });
 
         });
       }
@@ -303,12 +305,13 @@ class PostStatus extends React.PureComponent {
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
+        console.log(source.uri)
         this.setState({
           isClickToUpload: true,
           filePath: source.uri
         });
         // this._handleFileChange("files", response.uri)
-        this._handleFileChange("files", [response])
+        this._handleFileChange("files", [response.uri])
       }
     });
   };
@@ -316,6 +319,7 @@ class PostStatus extends React.PureComponent {
     const { body, current, urls, errors } = this.state;
     const { postStatus } = this.props;
     console.log(" urls in render++++++++ ", urls);
+    console.log(this.state.filePath)
     return (
       <View>
         <View style={styles.viewWriteSomething}>

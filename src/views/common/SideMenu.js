@@ -144,7 +144,7 @@ class SideMenu extends Component {
 
     fadeInDown = () => this.refs.userImageView.fadeInDown(1000);
 
-    zoomInPopup = () => this.refs.viewModalRef.zoomIn().then(endState => console.log(" now end zoomin"));
+    zoomInPopup = () => this.refs.viewModalRef.zoomIn(500).then(endState => console.log(" now end zoomin"));
 
     // onChangeSearchText = (text) => {
     //     console.log(" Lenth ===", text.length, "text ==", text);

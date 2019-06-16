@@ -72,7 +72,7 @@ export const submit = (data, pathname) => {
     formData.append("files[]", {
       name: data.files[1].file.fileName,
       type: data.files[1].file.type,
-      uri:data.files[1].file.uri.replace("file://", "")
+      uri:data.files[1].file.replace("file://", "")
     });
     // each(data, (value, key) => {
     //   if (key === "files") {
