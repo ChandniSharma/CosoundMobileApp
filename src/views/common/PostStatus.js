@@ -180,7 +180,7 @@ class PostStatus extends React.PureComponent {
       if (file) {
         const id = getUniqueId();
         const type = this.state.current;
-        const name = 'image.png';
+        const name = id+'.png';
         newFiles = [
           ...newFiles,
           {
