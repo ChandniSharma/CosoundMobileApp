@@ -34,6 +34,7 @@ class PostStatus extends React.PureComponent {
     files: [],
     errors: {},
     isRequested: false,
+    isComponentUpdate: false,
   };
 
   // componentDidUpdate() {
@@ -45,10 +46,41 @@ class PostStatus extends React.PureComponent {
   //   }
   // }
 
+  // componentWillReceiveProps(nextprops, props) {
+  //   if (nextprops.tempFile != props.tempFile) {
+
+  //     const { tempFile } = nextprops;
+  //     if (!isNull(tempFile.file && !this.state.isComponentUpdate)) {
+
+  //       console.log(" 52 call component did update", tempFile);
+
+  //       this.props.postStatusActions.resetTempFile();
+  //       this._setFileInState(tempFile.file);
+  //       this.setState({ isComponentUpdate: true });
+  //     }
+  //     this.props.postStatusActions.resetTempFile();
+  //   }
+  // }
+
+  // componentDidUpdate() {
+  //   const { tempFile } = this.props;
+  //   if (!isNull(tempFile.file && !this.state.isComponentUpdate)) {
+
+  //     console.log(" 52 call component did update", tempFile);
+
+  //     this.props.postStatusActions.resetTempFile();
+  //     this._setFileInState(tempFile.file);
+  //     this.setState({ isComponentUpdate: true });
+  //   }
+  //   this.props.postStatusActions.resetTempFile();
+
+  // }
+
   /* Refs */
   _applyRef = node => {
     this.node = node;
   };
+
 
   _applyAudioRef = node => {
     this.audioNode = node;
@@ -136,11 +168,11 @@ class PostStatus extends React.PureComponent {
    * File Input handler
    */
   _handleFileChange = (name, files) => {
-   
-   const { files: filesInState } = this.state;
-    console.log("..........................",files);
+
+    const { files: filesInState } = this.state;
+    console.log("..........................", files);
     //console.log("call handle file change")
-      //console()
+    //console()
     let newFiles = [files];
     each(files, file => {
       if (file) {
@@ -201,10 +233,10 @@ class PostStatus extends React.PureComponent {
    * Status submit handler
    */
   _submitPost = () => {
-    this.setState({isRequested:true});
+    this.setState({ isRequested: true });
     console.log("call submit post")
-   // e.preventDefault();
-   //this._isValid()
+    // e.preventDefault();
+    //this._isValid()
     if (true) {
       console.log("call 202")
       // e.preventDefault();
@@ -216,134 +248,134 @@ class PostStatus extends React.PureComponent {
         const { postStatusActions, location } = this.props;
         const { pathname } = this.props;
         const data = Object.assign({}, { body, files });
-console.log("pathname === ", pathname)
+        console.log("pathname === ", pathname)
         postStatusActions.submit(data, "/profle").then(() => {
           console.log("call 217 line nu")
-         //this.props.restCallsOnMount();
-         // this._resetState();
-          this.setState({isRequested:false});
-         
+          this.props.restCallsOnMount();
+          this._resetState();
+          this.setState({ isRequested: false });
+
         });
       }
     }
   };
-  
-  onClickMusicVideoImage(type) {
-    this.setState({current:type});
 
-      if(!this.state.isClickToUpload){
-          this.setState({isClickToUpload:true})
-          this.chooseFile(type)
-      }
-     
+  onClickMusicVideoImage(type) {
+    this.setState({ current: type });
+
+    if (!this.state.isClickToUpload) {
+      this.setState({ isClickToUpload: true })
+      this.chooseFile(type)
+    }
+
   }
 
   chooseFile = (type) => {
     var options = {
-        title: 'Image',
-        mediaType: type === 'music'?'audio': type, 
-        storageOptions: {
-            skipBackup: true,
-            path: 'images',
-        },
+      title: 'Image',
+      mediaType: type === 'music' ? 'audio' : type,
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
     };
 
     ImagePicker.showImagePicker(options, response => {
 
-        if (response.didCancel) {
+      if (response.didCancel) {
 
-            this.setState({
-                isClickToUpload: false
-            })
-        }else if (response.error) {
+        this.setState({
+          isClickToUpload: false
+        })
+      } else if (response.error) {
 
-            this.setState({
-                isClickToUpload: false
-            })
-        } else if (response.customButton) {
+        this.setState({
+          isClickToUpload: false
+        })
+      } else if (response.customButton) {
 
-            alert(response.customButton);
-            this.setState({
-                isClickToUpload: false
-            })
-        } else {
-            let source = response;
-            // You can also display the image using data:
-            // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+        alert(response.customButton);
+        this.setState({
+          isClickToUpload: false
+        })
+      } else {
+        let source = response;
+        // You can also display the image using data:
+        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
-            this.setState({
-                isClickToUpload: true,
-                filePath: source.uri
-            });
-           // this._handleFileChange("files", response.uri)
-           this._handleFileChange("files", [response])
-        }
+        this.setState({
+          isClickToUpload: true,
+          filePath: source.uri
+        });
+        // this._handleFileChange("files", response.uri)
+        this._handleFileChange("files", [response])
+      }
     });
-};
+  };
   render() {
     const { body, current, urls, errors } = this.state;
     const { postStatus } = this.props;
-
-      return (
-        <View>
+    console.log(" urls in render++++++++ ", urls);
+    return (
+      <View>
         <View style={styles.viewWriteSomething}>
-        <TextInput
-        placeholder="Share your thoughts, music or inspiration.."
+          <TextInput
+            placeholder="Share your thoughts, music or inspiration.."
             style={styles.textWriteSomething}
             onChangeText={(text) => this._handleChange("body", text)}
             value={body}
-        />
+          />
           {errors.body && <Text>{errors.body}</Text>}
           {errors.files && <Text>{errors.files}</Text>}
 
           <RenderTempFile
-              urls={urls}
-              applyRef={this._applyRef}
-              applyAudioRef={this._applyAudioRef}
-              removeMedia={this._removeMedia}
-            />
+            urls={urls}
+            applyRef={this._applyRef}
+            applyAudioRef={this._applyAudioRef}
+            removeMedia={this._removeMedia}
+          />
 
-        {this.state.filePath ?
+          {this.state.filePath ?
 
             <Image
-                source={{
-                    uri: this.state.filePath,
-                }}
-                style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
-            />:<View /> }
-        <View style={styles.midView}>
-            {this.state.current==='music' ? <View style={{ backgroundColor: 'rgb(140,91,203)', height: 1, width: '30%', marginRight: '5%' }} /> : <View style={{ backgroundColor: 'transparent', height: 1, width: '30%', marginRight: '5%' }} />}
+              source={{
+                uri: this.state.filePath,
+              }}
+              style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
+            /> : <View />}
+          <View style={styles.midView}>
+            {this.state.current === 'music' ? <View style={{ backgroundColor: 'rgb(140,91,203)', height: 1, width: '30%', marginRight: '5%' }} /> : <View style={{ backgroundColor: 'transparent', height: 1, width: '30%', marginRight: '5%' }} />}
 
-            {this.state.current==='video' ? <View style={{ backgroundColor: '#20ACAC', height: 1, width: '30%', marginRight: '5%' }} /> : <View style={{ backgroundColor: 'transparent', height: 1, width: '30%', marginRight: '5%' }} />}
+            {this.state.current === 'video' ? <View style={{ backgroundColor: '#20ACAC', height: 1, width: '30%', marginRight: '5%' }} /> : <View style={{ backgroundColor: 'transparent', height: 1, width: '30%', marginRight: '5%' }} />}
 
-            {this.state.current==='image' ? <View style={{ backgroundColor: 'rgb(40,190,167)', height: 1, width: '30%' }} /> : <View style={{ backgroundColor: 'transparent', height: 1, width: '30%', marginRight: '5%' }} />}
-        </View>
-        <View style={styles.viewBottomContent}>
+            {this.state.current === 'image' ? <View style={{ backgroundColor: 'rgb(40,190,167)', height: 1, width: '30%' }} /> : <View style={{ backgroundColor: 'transparent', height: 1, width: '30%', marginRight: '5%' }} />}
+          </View>
+          <View style={styles.viewBottomContent}>
             <TouchableOpacity style={{ paddingLeft: 5, paddingRight: 15, width: '30%', flexDirection: 'row' }} onPress={() => this.onClickMusicVideoImage('music')}>
-                <Icon3 name="music" style={[styles.music, { fontSize: 30, color: 'rgb(140,91,203)' }]} />
-                <Text style={[styles.music, { marginTop: '5%' }]}>Music</Text>
+              <Icon3 name="music" style={[styles.music, { fontSize: 30, color: 'rgb(140,91,203)' }]} />
+              <Text style={[styles.music, { marginTop: '5%' }]}>Music</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{ paddingLeft: 5, paddingRight: 15, width: '30%', flexDirection: 'row' }} onPress={() => this.onClickMusicVideoImage('video')}>
-                <Icon4 name="video-camera" style={[styles.video, { fontSize: 30, color: '#20ACAC' }]} />
-                <Text style={[styles.video, { marginTop: '5%' }]}>Video</Text>
+              <Icon4 name="video-camera" style={[styles.video, { fontSize: 30, color: '#20ACAC' }]} />
+              <Text style={[styles.video, { marginTop: '5%' }]}>Video</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{ paddingLeft: 5, width: '30%', flexDirection: 'row' }} onPress={() => this.onClickMusicVideoImage('image')} >
-                <Icon3 name="image" style={[styles.imageIcon, { fontSize: 30, color: 'rgb(40,190,167)' }]} />
-                <Text style={[styles.Images, { marginTop: '5%' }]}>Images</Text>
+              <Icon3 name="image" style={[styles.imageIcon, { fontSize: 30, color: 'rgb(40,190,167)' }]} />
+              <Text style={[styles.Images, { marginTop: '5%' }]}>Images</Text>
             </TouchableOpacity>
+          </View>
         </View>
-    </View>
-    <View style={styles.viewPostButton}>
-        <TouchableHighlight style={[styles.postButton]} onPress={this._submitPost}>
+        <View style={styles.viewPostButton}>
+          <TouchableHighlight style={[styles.postButton]} onPress={this._submitPost}>
             <View style={{ flexDirection: 'row' }}>
-              {this.state.isRequested? <ActivityIndicator color='gray' />:<Text style={styles.textLoginButtonTitle}>Post</Text>}
-                
-                <Icon1 name="arrowright" style={{ marginLeft: '1%', fontSize: 20, color: 'rgb(255, 38, 123)' }} />
+              {this.state.isRequested ? <ActivityIndicator color='gray' /> : <Text style={styles.textLoginButtonTitle}>Post</Text>}
+
+              <Icon1 name="arrowright" style={{ marginLeft: '1%', fontSize: 20, color: 'rgb(255, 38, 123)' }} />
             </View>
-        </TouchableHighlight>
+          </TouchableHighlight>
+        </View>
       </View>
-    </View>
-      )
+    )
   }
 }
 
@@ -351,7 +383,7 @@ console.log("pathname === ", pathname)
 const mapStateToProps = state => {
   return {
     postStatus: state.postStatus,
-    tempFile: state.tempFileƒ
+    tempFile: state.tempFile
   };
 };
 
@@ -363,7 +395,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(PostStatus);
+  mapStateToProps,
+  mapDispatchToProps
+)(PostStatus);
 

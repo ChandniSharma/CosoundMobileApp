@@ -333,9 +333,9 @@ export default class ProfileComponent extends Component {
                             <View style={{ width: "100%", justifyContent: "center", flexDirection: "row" }}>
 
                                 <Text style={styles.myMusicTitle}>My Music</Text>
-                                <TouchableOpacity>
+                                {/* <TouchableOpacity>
                                      <Icon name="ios-add-circle-outline" size={30} color="purple" style={styles.plusCircle} />
-                                </TouchableOpacity>
+                                </TouchableOpacity> */}
                             </View>
 
                             <View style={styles.midView}>
@@ -358,10 +358,10 @@ export default class ProfileComponent extends Component {
                             <View style={styles.viewImagesInside}>
 
                                 <Text style={styles.myImagesTitle}>My Images</Text>
-                                <TouchableOpacity onPress={() => this.onClickMusicVideoImage('image')}>
+                                {/* <TouchableOpacity onPress={() => this.onClickMusicVideoImage('image')}>
 
                                 <Icon name="ios-add-circle-outline" size={30} color="purple" style={styles.plusCircle} />
-</TouchableOpacity>
+                                </TouchableOpacity> */}
 
                             </View>
 
