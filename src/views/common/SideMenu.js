@@ -45,7 +45,7 @@ class SideMenu extends Component {
             visible: true,
             isNotificationShow: false,
         }
-        this.arrayData = [{ name: 'MarketPlace', image: '', count: 0 }, { name: 'Plans', image: 'message', count: 0 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }, { name: 'Music Service', image: '', count: 0 }, { name: 'Logout', image: '', count: 0 }]
+        this.arrayData = [{ name: 'MarketPlace', image: '', count: 0 }, { name: 'Plans', image: 'message', count: 0 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }, { name: 'Music Service', image: '', count: 0 }, { name: 'Account Settings', image: '', count: 0 },{ name: 'Logout', image: '', count: 0 }]
 
     }
 
@@ -230,7 +230,14 @@ class SideMenu extends Component {
 
         if (item.index === 0) {
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
-                <TouchableHighlight underlayColor='' style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('MarketPlaceContainer', { slug: "" })}>
+                <TouchableHighlight underlayColor='' style={{ margin: '2%' }} onPress={() => 
+                {
+                    this.props.navigation.navigate('MarketPlaceContainer', { slug: "" })
+                    setTimeout(() => {
+                        this.props.hidePopup();
+                    }, 5);
+                }
+                    }>
                     <View style={{ flexDirection: "row" }}>
                         <Icon4 name="briefcase-outline" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, color: 'white' }} />
                         <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
@@ -242,7 +249,11 @@ class SideMenu extends Component {
         } else if (item.index === 1) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
-                <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Plans')}>
+                <TouchableHighlight style={{ margin: '2%' }} onPress={() => 
+                    {this.props.navigation.navigate('Plans');
+                    this.props.hidePopup();
+                     }
+                    }>
                     <View style={{ flexDirection: "row" }}>
                         <Icon4 name="message-outline" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, color: 'white' }} />
                         <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
@@ -309,6 +320,18 @@ class SideMenu extends Component {
             </View>
         }
         else if (item.index === 6) {
+
+            viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
+                <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('AccountSettings')}>
+                <View style={{ flexDirection: "row" }}>
+                        <Icon name="setting" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, color: 'white' }} />
+                        <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
+
+                    </View>
+                </TouchableHighlight>
+            </View>
+        }
+        else if (item.index === 7) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableHighlight style={{ margin: '2%' }} onPress={() => this._logout()}>
