@@ -89,7 +89,7 @@ export default class ProfileComponent extends Component {
         this.fadeInDown();
         // this.fadeInUpPostOptionView();
     }
-    _navigateToAdvanceSearchView() {
+    _navigateToAdvanceSearchView =() => {
         this.props.navigation.navigate("AdvancedSearchView");
     }
 

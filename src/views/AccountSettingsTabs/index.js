@@ -224,7 +224,7 @@ class AccountSettingsTabs extends React.PureComponent {
 
                         {/* Side Menu button modal  */}
                         {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation} hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
-                        {(tabIndex === 0 || tabIndex === 1 || tabIndex === 2 || tabIndex === 3) && (<View style={{ marginTop: '7%' }}>
+                        {((tabIndex === 0 || tabIndex === 1 || tabIndex === 2 || tabIndex === 3) && !this.state.isSideMenuClick) && (<View style={{ marginTop: '7%' }}>
                             <CustomFooter />
                         </View>)}
 

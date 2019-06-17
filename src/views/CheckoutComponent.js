@@ -78,7 +78,7 @@ export default class CheckoutComponent extends Component {
 
 
         <View style={{ flex: 1 }}>
-          <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)' }}>
+        {!this.state.isNotificationShow? <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)' }}>
             <View style={{ flex: 0.4, marginBottom: '5%' }}>
 
 
@@ -190,14 +190,18 @@ export default class CheckoutComponent extends Component {
             <View style={{ flex: 0.3 }}>
             <CustomFooter />
             </View>
-           
-          </KeyboardAwareScrollView>
-
-          {/* Side Menu button modal  */}
+            {/* Side Menu button modal  */}
           {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation}  hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
 
-          {/* notification view show */}
-          {this.state.isNotificationShow ? <Notifications navigation={navigation} hidePopup={() => this.hideNotificationView()} /> : null}
+          </KeyboardAwareScrollView>
+          :
+                
+          <View>
+        <Notifications navigation={navigation} hidePopup={() => this.hideNotificationView()} /></View> }
+
+         
+
+         
         </View>
        
       </SafeAreaView>

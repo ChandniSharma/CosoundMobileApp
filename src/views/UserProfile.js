@@ -65,7 +65,7 @@ export default class UserProfileComponent extends Component {
         this.fadeInDown();
         // this.fadeInUpPostOptionView();
     }
-    _navigateToAdvanceSearchView() {
+    _navigateToAdvanceSearchView =() =>{
          this.props.navigation.navigate("AdvancedSearchView");
     }
   
@@ -248,12 +248,12 @@ export default class UserProfileComponent extends Component {
 
                                 <Text style={styles.myMusicTitle}>My Music</Text>
 
-                                <Icon name="ios-add-circle-outline" size={30} color="purple" style={styles.plusCircle} />
+                                {/* <Icon name="ios-add-circle-outline" size={30} color="purple" style={styles.plusCircle} /> */}
                             </View>
 
-                            <View style={styles.midView}>
+                            {/* <View style={styles.midView} /> */}
 
-                            </View>
+                            
                             {/* <MusicList /> */}
                             <Paginator
                                 isLoaderInternal
@@ -270,7 +270,7 @@ export default class UserProfileComponent extends Component {
 
                             <View style={styles.viewImagesInside}>
                                 <Text style={styles.myImagesTitle}>My Images</Text>
-                                <Icon name="ios-add-circle-outline" size={30} color="purple" style={styles.plusCircle} />
+                                {/* <Icon name="ios-add-circle-outline" size={30} color="purple" style={styles.plusCircle} /> */}
                             </View>
 
                          
@@ -300,8 +300,6 @@ export default class UserProfileComponent extends Component {
                             shouldCallAPIInitially={false}
                             page_count={paginationData.page_count}
                         />
-
-                      
 
                     </View>
                     {!userFeed.isRequesting && <CustomFooter />}

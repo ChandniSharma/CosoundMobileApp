@@ -81,7 +81,7 @@ class Cart extends React.PureComponent {
         <View style={{ flex: 1 }}>
           {!this.state.isNotificationShow ? <KeyboardAwareScrollView style={{ backgroundColor: 'white' }}>
             {/* <Text style={[styles.titleAccount, {marginTop:'2%', marginLeft:'2%'} ]}>Your Service</Text> */}
-            <View style={{ flex: 0.5 }}>
+            <View style={{ flex: 0.2 }}>
               <Paginator
                 isLoaderInternal
                 cart={cart}
@@ -95,7 +95,7 @@ class Cart extends React.PureComponent {
               />
 
             </View>
-            <View style={{ flex: 0.3 }}>
+            <View style={{ flex: 0.6 }}>
               <Sidebar cart={cart} navigation={this.props.navigation} />
             </View>
             <View style={{ flex: 0.2 }}>

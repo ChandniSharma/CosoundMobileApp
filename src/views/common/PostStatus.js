@@ -179,14 +179,17 @@ class PostStatus extends React.PureComponent {
     each(files, file => {
       if (file) {
         const id = getUniqueId();
+        const type = this.state.current;
+        const name = id+'.png';
         newFiles = [
           ...newFiles,
           {
             id,
-            file
+            file,
+            type,name
           }
         ];
-        this._setUrl(file, id);
+        this._setUrl(file, id,type);
       }
     });
     this.setState({
@@ -209,7 +212,7 @@ class PostStatus extends React.PureComponent {
             {
               id,
               url,
-              type: file.type
+              type: this.state.current
             }
           ]
         },
@@ -253,7 +256,7 @@ class PostStatus extends React.PureComponent {
         console.log("pathname === ", data)
         postStatusActions.submit(data, "/profle").then(() => {
           console.log("call 217 line nu")
-          this.props.restCallsOnMount();
+              //this.props.restCallsOnMount();
           this._resetState();
           //this.setState({ filePath: undefined });
 
