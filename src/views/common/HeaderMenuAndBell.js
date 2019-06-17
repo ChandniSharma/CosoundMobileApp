@@ -37,7 +37,7 @@ class HeaderMenuAndBell extends Component {
         return (
             <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={colors} style={{ flexDirection: 'row', height: 100, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
                {isBackButtonShow?  <BackButton style={{ fontSize: 30, marginTop: '10%', marginLeft: '4%' }} onPress={() => this.props.navigation.goBack(null)} /> : <TouchableOpacity style={{ color: 'white', marginTop: '14%', flex: 0.1, marginLeft: '4%' }} onPress={onPressPopup}>
-                    <Hamburger color="white" active={false} type="spinCross" onPress={onPressPopup} />
+                    <Hamburger color="white" active={false} type="spinCross" onPress={() = { onPressPopup; onPressBell } />
                 </TouchableOpacity>} 
                
 
