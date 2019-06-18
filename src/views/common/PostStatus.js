@@ -26,6 +26,7 @@ console.disableYellowBox = true;
 class PostStatus extends React.PureComponent {
   node = null;
   audioNode = null;
+  photos= [];
   state = {
     current: "music",
     body: "",
@@ -33,6 +34,7 @@ class PostStatus extends React.PureComponent {
     types: [],
     files: [],
     errors: {},
+    filePaths : [],
     isRequested: false,
     isComponentUpdate: false,
   };
@@ -130,6 +132,7 @@ class PostStatus extends React.PureComponent {
    */
   _resetState = () => {
     console.log("call reset state")
+    this.photos = [];
     this.setState(
       {
         current: "music",
@@ -137,8 +140,10 @@ class PostStatus extends React.PureComponent {
         urls: [],
         files: [],
         types: [],
+        filePaths:[],
         filePath:undefined,
         isRequested:false,
+        isClickToUpload:false,
       },
       () => {
         // if (!isNull(this.node)) {
@@ -177,24 +182,28 @@ class PostStatus extends React.PureComponent {
     //console()
     let newFiles = [files];
     each(files, file => {
+
       if (file) {
         const id = getUniqueId();
-        const type = this.state.current;
+        const type = file.type;
         const name = id+'.png';
-        newFiles = [
-          ...newFiles,
-          {
-            id,
-            file,
-            type,name
-          }
-        ];
+        const uri = file.filePath.replace("file://", "");
+        newFiles =
+            {
+              id,
+              uri,
+              type,
+              name
+            };
+
+        this.setState(prevState => ({
+          files: [...prevState.files, newFiles]
+        }))
         this._setUrl(file, id,type);
       }
     });
-    this.setState({
-      [name]: [...newFiles]
-    });
+
+
   };
 
   /**
@@ -212,7 +221,7 @@ class PostStatus extends React.PureComponent {
             {
               id,
               url,
-              type: this.state.current
+
             }
           ]
         },
@@ -249,6 +258,8 @@ class PostStatus extends React.PureComponent {
 
       if (!isEmpty(body) || !isEmpty(files)) {
         console.log("call 207")
+        console.log(files)
+
         // e.preventDefault();
         const { postStatusActions, location } = this.props;
 
@@ -309,20 +320,29 @@ class PostStatus extends React.PureComponent {
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
         console.log(source.uri)
+        let filePath = source.uri;
         this.setState({
-          isClickToUpload: true,
-          filePath: source.uri
+          isClickToUpload: false,
         });
+        this.setState(prevState => ({
+          filePaths: [...prevState.filePaths, filePath]
+        }))
+        let data = {
+          filePath: filePath,
+          type: this.state.current
+        };
+        this.photos.push(data);
+
         // this._handleFileChange("files", response.uri)
-        this._handleFileChange("files", [response.uri])
+        this._handleFileChange("files", this.photos)
       }
     });
   };
   render() {
     const { body, current, urls, errors } = this.state;
     const { postStatus } = this.props;
-    console.log(" urls in render++++++++ ", urls);
-    console.log(this.state.filePath)
+
+
     return (
       <View>
         <View style={styles.viewWriteSomething}>
@@ -342,14 +362,17 @@ class PostStatus extends React.PureComponent {
             removeMedia={this._removeMedia}
           />
 
-          {this.state.filePath ?
+          {this.state.filePaths.map((filepath,index)=>{
+            return(
+                <Image
+                    source={{
+                      uri: filepath,
+                    }}
+                    style={{ alignSelf:'center',width: "90%", height: 200, margin:10,padding:5 }}
+                />
+            )
 
-            <Image
-              source={{
-                uri: this.state.filePath,
-              }}
-              style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
-            /> : <View />}
+          })}
           <View style={styles.midView}>
             {this.state.current === 'music' ? <View style={{ backgroundColor: 'rgb(140,91,203)', height: 1, width: '30%', marginRight: '5%' }} /> : <View style={{ backgroundColor: 'transparent', height: 1, width: '30%', marginRight: '5%' }} />}
 
