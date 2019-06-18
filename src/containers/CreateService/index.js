@@ -203,20 +203,20 @@ class CreateService extends React.Component {
    * File handler
    *
    */
-  _handleFileChange = event => {
-    const { name, files } = event.target;
-    if (files[0]) {
+  _handleFileChange = (name, files) => {
+   // const { name, files } = event.target;
+    if (files) {
       const { data } = this.state;
-      data[name] = files[0];
+      data[name] = files;
       this.setState(
         {
           data
         },
         () => {
           if (name === "image") {
-            return this._setUrl(files[0], "url");
+            return this._setUrl(files, "url");
           }
-          return this._setUrl(files[0], `${name}Url`);
+          return this._setUrl(files, `${name}Url`);
         }
       );
     }
@@ -310,14 +310,17 @@ class CreateService extends React.Component {
    *
    * @param Event e
    */
-  _publishService = e => {
-   
-    if (!this._isValid()) return false;
+  _publishService = () => {
+   console.log("call ps",this._isValid())
+    if (!this._isValid()) 
+    return false;
+console.log("call valid")
     const publishData = formatPublishServicedata(this.state.data);
-
+console.log("call 319 =====sss",publishData);
     this.props.userServicesActions.publishService(publishData).then(() => {
       const { publishService } = this.props;
       const { error, data, isRequesting } = publishService;
+      console.log("call publishService==",publishService)
 
       if (!isEmpty(error) && error.message && !isRequesting) {
         alert(error.message);
@@ -326,6 +329,7 @@ class CreateService extends React.Component {
 
       if (isEmpty(error) && !isEmpty(data) && !isRequesting) {
         //return history.push("/offered-services");
+        this.props.navigation.navigate('NoService');
       }
     });
   };

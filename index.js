@@ -49,11 +49,14 @@ import PurchasedServicesComponent from './src/views/PurchasedServicesComponent';
 //import audioWave from './src/views/common/audioWaveView';
 import MarketPlaceContainer from './src/containers/MarketPlace';
 import Service from './src/containers/Service';
+import Chat from './src/views/Chat';
+
 // import { Client } from 'bugsnag-react-native';
 // const bugsnag = new Client("f222428bf3f339bca63b207187ca1bf1");
 
 const AppStackNavigator = createStackNavigator({
     Home: { screen: Home },
+    Chat: { screen: Chat },
     Login: { screen: Login },
     ForgotPassword: { screen: ForgotPassword },
     // RecoverPwd: { screen: RecoverPwd },

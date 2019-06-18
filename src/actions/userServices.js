@@ -24,10 +24,25 @@ export const publishService = data => {
   each(data, (value, key) => {
     if (key === "featured_images") {
       each(value, item => {
-        formData.append("featured_images[]", item);
+        console.log("call action 27==",item.fileName)
+        formData.append("featured_images[]", {
+          name: item.fileName,
+          type: item.type,
+          uri: item.uri.replace("file://", "")
+        });
       });
     } else {
-      formData.append([key], value);
+      if(key === "image"){
+        console.log("call action 35==",value.fileName)
+        formData.append([key], {
+          name: value.fileName,
+          type: value.type,
+          uri: value.uri.replace("file://", "")
+        });
+      }else{
+        formData.append([key], value);
+      }
+      
     }
   });
   /* FormData construct */

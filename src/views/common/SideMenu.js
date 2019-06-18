@@ -11,7 +11,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 
 import Logo from '../common/logo';
 import Icon from "react-native-vector-icons/AntDesign";
-import Icon1 from "react-native-vector-icons/Entypo";
+import IconEntypo from "react-native-vector-icons/Entypo";
 import Icon2 from "react-native-vector-icons/EvilIcons";
 import Icon3 from "react-native-vector-icons/Ionicons";
 import Icon4 from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -45,7 +45,7 @@ class SideMenu extends Component {
             visible: true,
             isNotificationShow: false,
         }
-        this.arrayData = [{ name: 'MarketPlace', image: '', count: 0 }, { name: 'Plans', image: 'message', count: 0 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }, { name: 'Music Service', image: '', count: 0 }, { name: 'Account Settings', image: '', count: 0 },{ name: 'Logout', image: '', count: 0 }]
+        this.arrayData = [{ name: 'Home', image: '', count: 0 },{ name: 'MarketPlace', image: '', count: 0 }, { name: 'Plans', image: 'message', count: 0 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }, { name: 'Music Service', image: '', count: 0 }, { name: 'Account Settings', image: '', count: 0 },{ name: 'Chat', image: '', count: 0 },{ name: 'Logout', image: '', count: 0 }]
 
     }
 
@@ -166,7 +166,6 @@ class SideMenu extends Component {
 
     // }
     moveToUserProfile(userId) {
-        console.log(" ")
         this.setState({ isDropDownclick: false });
         this.props.hidePopup();
         this.props.navigation.navigate('UserProfile', { id: userId });
@@ -227,8 +226,23 @@ class SideMenu extends Component {
         let viewNotification = <View />
 
         let viewComplete = <View />
-
         if (item.index === 0) {
+
+            viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
+                <TouchableHighlight style={{ margin: '2%' }} onPress={() => 
+                    {this.props.navigation.navigate('Dashboard');
+                    this.props.hidePopup();
+                     }
+                    }>
+                    <View style={{ flexDirection: "row" }}>
+                        <Icon name="home" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, color: 'white' }} />
+                        <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
+
+                    </View>
+                </TouchableHighlight>
+            </View>
+
+        } else  if (item.index === 1) {
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableHighlight underlayColor='' style={{ margin: '2%' }} onPress={() => 
                 {
@@ -246,7 +260,7 @@ class SideMenu extends Component {
                 </TouchableHighlight>
             </View>
 
-        } else if (item.index === 1) {
+        } else if (item.index === 2) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableHighlight style={{ margin: '2%' }} onPress={() => 
@@ -262,7 +276,7 @@ class SideMenu extends Component {
                 </TouchableHighlight>
             </View>
 
-        } else if (item.index === 2) {
+        } else if (item.index === 3) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.moveToProfileView()}>
@@ -274,7 +288,7 @@ class SideMenu extends Component {
                 </TouchableHighlight>
             </View>
 
-        } else if (item.index === 3) {
+        } else if (item.index === 4) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.showNotification()}>
@@ -291,7 +305,7 @@ class SideMenu extends Component {
             </View>
 
 
-        } else if (item.index === 4) {
+        } else if (item.index === 5) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Cart')}>
@@ -307,7 +321,7 @@ class SideMenu extends Component {
             </View>
 
 
-        } else if (item.index === 5) {
+        } else if (item.index === 6) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('NoService')}>
@@ -319,7 +333,7 @@ class SideMenu extends Component {
                 </TouchableHighlight>
             </View>
         }
-        else if (item.index === 6) {
+        else if (item.index === 7) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('AccountSettings')}>
@@ -331,7 +345,19 @@ class SideMenu extends Component {
                 </TouchableHighlight>
             </View>
         }
-        else if (item.index === 7) {
+        else if (item.index === 8) {
+
+            viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
+                <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Chat')}>
+                <View style={{ flexDirection: "row" }}>
+                        <IconEntypo name="chat" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, color: 'white' }} />
+                        <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
+
+                    </View>
+                </TouchableHighlight>
+            </View>
+        }
+        else if (item.index === 9) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableHighlight style={{ margin: '2%' }} onPress={() => this._logout()}>
@@ -365,7 +391,6 @@ class SideMenu extends Component {
         );
 
         const { hidePopup, user } = this.props;
-        console.log("this.props====", this.props.notificationCount, this.props.cartCount)
         return (
             <Animatable.View ref={'viewModalRef'} style={styles.viewModal}>
                 <KeyboardAwareScrollView style={{ flex: 1 }}>

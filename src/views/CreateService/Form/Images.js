@@ -2,7 +2,7 @@ import React from "react";
 import { isNull } from "lodash";
 
 // import { ErrorMsg, Svg, Loader, SubmitButtonDiv } from "../../Commons";
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, ActivityIndicator } from 'react-native';
 import styles from '../../../stylesheet/createservice.style';
 import * as Animatable from 'react-native-animatable';
 import { Icon } from "native-base";
@@ -28,7 +28,7 @@ class Images extends React.Component {
   componentDidMount() {
     this.moveViewUp1();
   }
-  chooseFile = () => {
+  chooseFile = (name) => {
     var options = {
       title: 'Image',
 
@@ -45,7 +45,7 @@ class Images extends React.Component {
         // console.log('User cancelled image picker');
 
       } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
+        console.log('ImagePicker Error;: ', response.error);
 
       } else if (response.customButton) {
         // console.log('User tapped custom button: ', response.customButton);
@@ -55,9 +55,8 @@ class Images extends React.Component {
         let source = response;
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-        // this.props.handleFileChange('avatar', 'data:image/jpeg;base64,' + source.data)
-
+        console.log(" name ===", name)
+        this.props.handleFileChange(name, source)
       }
     });
   };
@@ -72,6 +71,7 @@ class Images extends React.Component {
       handleFileChange
     } = this.props;
 
+    console.log(" data is =====", data);
     return (
       <Animatable.View ref={'view1'} style={{ height: 1700 }}>
 
@@ -83,16 +83,16 @@ class Images extends React.Component {
 
           <View style={{ marginTop: 10 }}>
 
-            <TouchableOpacity style={styles.findingView} onPress={this.chooseFile.bind(this)}>
-              {/* {!data.url ? */}
-              <Icon name="camera" style={{ fontSize: 60, color: 'gray', alignSelf: 'center', }} />
+            <TouchableOpacity style={styles.findingView} onPress={() => this.chooseFile("image")}>
+              {!data.image ?
+                <Icon name="camera" style={{ fontSize: 60, color: 'gray', alignSelf: 'center', }} />
 
-              {/* : <Image
-                source={{
-                  uri: data.url,
-                }}
-                style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
-              />} */}
+                : <Image
+                  source={{
+                    uri: data.image.uri,
+                  }}
+                  style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
+                />}
 
             </TouchableOpacity>
           </View>
@@ -100,23 +100,59 @@ class Images extends React.Component {
           <Text style={[styles.featuredText, { marginTop: '10%', alignSelf: 'center' }]}> Featured picture </Text>
 
           <View style={{ marginTop: 10, marginBottom: 10 }}>
-            <TouchableOpacity style={styles.viewAddImage} onPress={this.chooseFile.bind(this)}>
-              <Icon2 name="pluscircleo" style={{ alignSelf: 'center', fontSize: 45, color: '#20ACAC' }} />
+            <TouchableOpacity style={styles.viewAddImage} onPress={() => this.chooseFile("featuredImage_1")}>
+
+              {!data.featuredImage_1 ?
+                <Icon2 name="pluscircleo" style={{ alignSelf: 'center', fontSize: 45, color: '#20ACAC' }} />
+
+                : <Image
+                  source={{
+                    uri: data.featuredImage_1.uri,
+                  }}
+                  style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
+                />}
             </TouchableOpacity>
           </View>
           <View style={{ marginTop: 10, marginBottom: 10 }}>
-            <TouchableOpacity style={styles.viewAddImage} onPress={this.chooseFile.bind(this)}>
-              <Icon2 name="pluscircleo" style={{ alignSelf: 'center', fontSize: 45, color: '#20ACAC' }} />
+            <TouchableOpacity style={styles.viewAddImage} onPress={() => this.chooseFile("featuredImage_2")}>
+
+              {!data.featuredImage_2 ?
+                <Icon2 name="pluscircleo" style={{ alignSelf: 'center', fontSize: 45, color: '#20ACAC' }} />
+
+                : <Image
+                  source={{
+                    uri: data.featuredImage_2.uri,
+                  }}
+                  style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
+                />}
             </TouchableOpacity>
           </View>
           <View style={{ marginTop: 10, marginBottom: 10 }}>
-            <TouchableOpacity style={styles.viewAddImage} onPress={this.chooseFile.bind(this)}>
-              <Icon2 name="pluscircleo" style={{ alignSelf: 'center', fontSize: 45, color: '#20ACAC' }} />
+            <TouchableOpacity style={styles.viewAddImage} onPress={() => this.chooseFile("featuredImage_3")}>
+
+              {!data.featuredImage_3 ?
+                <Icon2 name="pluscircleo" style={{ alignSelf: 'center', fontSize: 45, color: '#20ACAC' }} />
+
+                : <Image
+                  source={{
+                    uri: data.featuredImage_3.uri,
+                  }}
+                  style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
+                />}
             </TouchableOpacity>
           </View>
           <View style={{ marginTop: 10, marginBottom: 10 }}>
-            <TouchableOpacity style={styles.viewAddImage} onPress={this.chooseFile.bind(this)}>
-              <Icon2 name="pluscircleo" style={{ alignSelf: 'center', fontSize: 45, color: '#20ACAC' }} />
+            <TouchableOpacity style={styles.viewAddImage} onPress={() => this.chooseFile("featuredImage_4")}>
+
+              {!data.featuredImage_4 ?
+                <Icon2 name="pluscircleo" style={{ alignSelf: 'center', fontSize: 45, color: '#20ACAC' }} />
+
+                : <Image
+                  source={{
+                    uri: data.featuredImage_4.uri,
+                  }}
+                  style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
+                />}
             </TouchableOpacity>
           </View>
 
@@ -144,13 +180,13 @@ class Images extends React.Component {
 
 
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('Dashboard')}
-            style={ styles.nextButton}
+            onPress={() => _publishService()}
+            style={styles.nextButton}
           // disabled={changePassword.isRequesting}
           >
 
-            <Text style={styles.nextButtonTitle}>publish Service</Text>
-
+           {publishService.isRequesting?<ActivityIndicator color="white" />:<Text style={styles.nextButtonTitle}>publish Service</Text>
+           }
           </TouchableOpacity>
         </View>
 
@@ -179,7 +215,7 @@ class Images extends React.Component {
 
   //           <View style={styles.findingView}>
 
-  //             <TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }} onPress={this.chooseFile.bind(this)}>
+  //             <TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }} onPress={() => this.chooseFile("image")}>
   //               {/* {!data.url ? */}
   //                 <Icon name="camera" style={{ fontSize: 60, marginTop: '50%', color: 'gray', alignSelf: 'center', }} /> :
   //                 {/* <Image
