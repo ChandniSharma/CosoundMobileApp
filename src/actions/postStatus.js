@@ -69,22 +69,14 @@ export const submit = (data, pathname) => {
     dispatch(submitingPost());
     const formData = new FormData();
     console.log("data=== at 71 line no===", data)
-    formData.append("files[]", {
-      name: data.files[1].name,
-      type: data.files[1].type,
-      uri:data.files[1].file.replace("file://", "")
+      let body = data.body;
+    formData.append("body", {
+        body
     });
-    // each(data, (value, key) => {
-    //   if (key === "files") {
-    //     each(value, item => {
-    //       if(item.file){
-    //         formData.append("files[]", item.file);
-    //       }
-    //     });
-    //   } else {
-    //     formData.append([key], value);
-    //   }
-    // });
+    each(data.files, (value, key) => {
+        formData.append("files[]", value);
+
+    });
     const endpoint = `${API_URL}posts`;
     const { token, expiresAt } = getState().user;
 
