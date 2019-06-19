@@ -170,13 +170,27 @@ export const uploadProfilePic = (name, file) => {
   const formData = new FormData();
   console.log(" 171 file ***", file);
 
-  formData.append([name], {
-    name: file.fileName,
-    type: file.type,
-    uri:
-      file.uri.replace("file://", "")
-  });
-  console.log(" 173 file ***", file[0]);
+  console.log("value.fileName==",file)
+      const id = `${new Date().getTime()}${Math.random()}`;
+      const type = "image";
+      const filename = id+'.png';
+      const uri = file.replace("file://", "");
+     
+      formData.append([name], {
+        name: filename,
+        type: type,
+        uri: uri
+      });
+
+
+
+
+  // formData.append([name], {
+  //   name: file.fileName,
+  //   type: file.type,
+  //   uri:
+  //     file.uri.replace("file://", "")
+  // });
 
   //formData.append([name], file);
   /* FormData construct */

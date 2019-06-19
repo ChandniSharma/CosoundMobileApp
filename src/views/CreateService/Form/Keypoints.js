@@ -53,9 +53,9 @@ class Keypoints extends React.Component {
                         name={"description"}
                       />
                       {!item.isReady && (
-                        <TouchableHighlight onPress={() => addMoreKeypoints(item.id)} style={[styles.plusCircleBtn]}>
+                        <TouchableOpacity onPress={() => addMoreKeypoints(item.id)} style={[styles.plusCircleBtn]}>
                           <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} />
-                        </TouchableHighlight>
+                        </TouchableOpacity>
                       )}
                     </View>
                     {errors[item.id] ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors[item.id]}</Animatable.Text> : null}

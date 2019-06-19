@@ -26,7 +26,7 @@ console.disableYellowBox = true;
 class PostStatus extends React.PureComponent {
   node = null;
   audioNode = null;
-  photos= [];
+  photos = [];
   state = {
     current: "music",
     body: "",
@@ -34,7 +34,7 @@ class PostStatus extends React.PureComponent {
     types: [],
     files: [],
     errors: {},
-    filePaths : [],
+    filePaths: [],
     isRequested: false,
     isComponentUpdate: false,
   };
@@ -140,10 +140,10 @@ class PostStatus extends React.PureComponent {
         urls: [],
         files: [],
         types: [],
-        filePaths:[],
-        filePath:undefined,
-        isRequested:false,
-        isClickToUpload:false,
+        filePaths: [],
+        filePath: undefined,
+        isRequested: false,
+        isClickToUpload: false,
       },
       () => {
         // if (!isNull(this.node)) {
@@ -186,20 +186,25 @@ class PostStatus extends React.PureComponent {
       if (file) {
         const id = getUniqueId();
         const type = file.type;
-        const name = id+'.png';
+        let mediaExtension = '.png';
+        if (type === 'video') {
+          mediaExtension = '.MOV'
+        }
+
+        const name = id + mediaExtension;
         const uri = file.filePath.replace("file://", "");
         newFiles =
-            {
-              id,
-              uri,
-              type,
-              name
-            };
+          {
+            id,
+            uri,
+            type,
+            name
+          };
 
         this.setState(prevState => ({
           files: [...prevState.files, newFiles]
         }))
-        this._setUrl(file, id,type);
+        this._setUrl(file, id, type);
       }
     });
 
@@ -211,25 +216,38 @@ class PostStatus extends React.PureComponent {
    *
    */
 
-  _setUrl = (file, id) => {
+  _setUrl = (file, id, type) => {
 
-    fileReader(file).then(url => {
-      this.setState(
-        {
-          urls: [
-            ...this.state.urls,
-            {
-              id,
-              url,
+    this.setState(
+      {
+        urls: [
+          ...this.state.urls,
+          {
+            id,
+            file,
+            type
 
-            }
-          ]
-        },
-        () => {
-          this._isValid("files");
-        }
-      );
-    });
+          }
+        ]
+      })
+
+    // fileReader(file).then(url => {
+    // this.setState(
+    //   {
+    //     urls: [
+    //       ...this.state.urls,
+    //       {
+    //         id,
+    //         url,
+
+    //       }
+    //     ]
+    //   })
+    //     () => {
+    //       this._isValid("files");
+    //     }
+    //   );
+    // });
   };
 
   _removeMedia = id => {
@@ -267,7 +285,7 @@ class PostStatus extends React.PureComponent {
         console.log("pathname === ", data)
         postStatusActions.submit(data, "/profle").then(() => {
           console.log("call 217 line nu")
-              //this.props.restCallsOnMount();
+          //this.props.restCallsOnMount();
           this._resetState();
           //this.setState({ filePath: undefined });
 
@@ -331,7 +349,9 @@ class PostStatus extends React.PureComponent {
           filePath: filePath,
           type: this.state.current
         };
+
         this.photos.push(data);
+
 
         // this._handleFileChange("files", response.uri)
         this._handleFileChange("files", this.photos)
@@ -362,7 +382,8 @@ class PostStatus extends React.PureComponent {
             removeMedia={this._removeMedia}
           />
 
-          {this.state.filePaths.map((filepath,index)=>{
+          {/* {this.state.filePaths.map((filepath,index)=>{
+
             return(
                 <Image
                     source={{
@@ -372,7 +393,7 @@ class PostStatus extends React.PureComponent {
                 />
             )
 
-          })}
+          })} */}
           <View style={styles.midView}>
             {this.state.current === 'music' ? <View style={{ backgroundColor: 'rgb(140,91,203)', height: 1, width: '30%', marginRight: '5%' }} /> : <View style={{ backgroundColor: 'transparent', height: 1, width: '30%', marginRight: '5%' }} />}
 

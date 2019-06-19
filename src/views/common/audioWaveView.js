@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   waveform: {
     flex: 1,
     margin: 10,
-    backgroundColor: "pink"
+    //backgroundColor: "pink"
   },
   welcome: {
     flex: 0.2,

@@ -53,10 +53,11 @@ class Images extends React.Component {
 
       } else {
         let source = response;
+        let filePath = source.uri;
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
         console.log(" name ===", name)
-        this.props.handleFileChange(name, source)
+        this.props.handleFileChange(name, filePath)
       }
     });
   };
@@ -89,9 +90,9 @@ class Images extends React.Component {
 
                 : <Image
                   source={{
-                    uri: data.image.uri,
+                    uri: data.image,
                   }}
-                  style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
+                  style={{ width: 100, height: 100, borderRadius: 50 }}
                 />}
 
             </TouchableOpacity>
@@ -107,7 +108,7 @@ class Images extends React.Component {
 
                 : <Image
                   source={{
-                    uri: data.featuredImage_1.uri,
+                    uri: data.featuredImage_1,
                   }}
                   style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
                 />}
@@ -121,7 +122,7 @@ class Images extends React.Component {
 
                 : <Image
                   source={{
-                    uri: data.featuredImage_2.uri,
+                    uri: data.featuredImage_2,
                   }}
                   style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
                 />}
@@ -135,7 +136,7 @@ class Images extends React.Component {
 
                 : <Image
                   source={{
-                    uri: data.featuredImage_3.uri,
+                    uri: data.featuredImage_3,
                   }}
                   style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
                 />}
@@ -149,7 +150,7 @@ class Images extends React.Component {
 
                 : <Image
                   source={{
-                    uri: data.featuredImage_4.uri,
+                    uri: data.featuredImage_4,
                   }}
                   style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
                 />}
@@ -177,8 +178,6 @@ class Images extends React.Component {
         </View>
 
         <View style={styles.viewContainButton}>
-
-
           <TouchableOpacity
             onPress={() => _publishService()}
             style={styles.nextButton}

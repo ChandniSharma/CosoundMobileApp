@@ -117,7 +117,7 @@ export default class Account extends Component {
     }
     onClickMobBottom = () => {
 
-        let button = <TouchableOpacity style={{ width: 200, height: 40, backgroundColor: 'pink' }} onPress={this.removeMobileNumber()}>
+        let button = <TouchableOpacity style={{ width: 200, height: 40 }} onPress={this.removeMobileNumber()}>
             <View>
                 <Text>{this.state.mobileNumber}</Text>
             </View>

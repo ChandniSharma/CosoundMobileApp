@@ -24,21 +24,44 @@ export const publishService = data => {
   each(data, (value, key) => {
     if (key === "featured_images") {
       each(value, item => {
-        console.log("call action 27==",item.fileName)
+
+        let id = `${new Date().getTime()}${Math.random()}`;
+        let type = "image";
+        let filename = id+'.png';
+        let uri = item.replace("file://", "");
+       
         formData.append("featured_images[]", {
-          name: item.fileName,
-          type: item.type,
-          uri: item.uri.replace("file://", "")
+          name: filename,
+          type: type,
+          uri: uri
         });
+  
+        // console.log("call action 27==",item.fileName)
+        // formData.append("featured_images[]", {
+        //   name: item.fileName,
+        //   type: item.type,
+        //   uri: item.uri.replace("file://", "")
+        // });
       });
     } else {
       if(key === "image"){
-        console.log("call action 35==",value.fileName)
+        console.log("call action 48==",value)
+        let id = `${new Date().getTime()}${Math.random()}`;
+        let type = "image";
+        let filename = id+'.png';
+        let uri = value.replace("file://", "");
+       
         formData.append([key], {
-          name: value.fileName,
-          type: value.type,
-          uri: value.uri.replace("file://", "")
+          name: filename,
+          type: type,
+          uri: uri
         });
+  
+        // formData.append([key], {
+        //   name: value.fileName,
+        //   type: value.type,
+        //   uri: value.uri.replace("file://", "")
+        // });
       }else{
         formData.append([key], value);
       }

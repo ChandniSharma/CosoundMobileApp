@@ -32,15 +32,24 @@ export const signup = data => {
   /* FormData construct */
   const formData = new FormData();
   console.log("data====",data)
+
   each(data, (value, key) => {
     console.log("avtar===key ==",key, "value==",value)
-    if(key === "avatar" && value && value.fileName){
-      console.log("value.fileName==",value.fileName, value.uri)
+
+    if(key === "avatar" && value){
+
+      console.log("value.fileName==",value)
+      const id = `${new Date().getTime()}${Math.random()}`;
+      const type = "image";
+      const name = id+'.png';
+      const uri = value.replace("file://", "");
+     
       formData.append("avatar", {
-        name: value.fileName,
-        type: value.type,
-        uri: value.uri.replace("file://", "")
+        name: name,
+        type: type,
+        uri: uri
       });
+
     }else{
       formData.append([key], value);
     }

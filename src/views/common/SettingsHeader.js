@@ -7,6 +7,7 @@ import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import { getThumbnail, getUsername, getUserInfo } from "../../utils";
 import Icon from 'react-native-vector-icons/Entypo';
+import { file } from "@babel/types";
 var ImagePicker = require('react-native-image-picker');
 
 export default class SettingsHeader extends Component {
@@ -44,12 +45,12 @@ export default class SettingsHeader extends Component {
           <View style={styles.findingView}>
 
             {profilePic?<TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }} onPress={this.chooseFile.bind(this)}>
-              {profilePic.isRequesting ? <ActivityIndicator color="gray" size={"large"} style={{marginTop: '50%'}}/>
+              {profilePic.isRequesting ? <ActivityIndicator color="gray" size={"large"} style={{marginTop: '85%'}}/>
                 :<Image
                   source={{
                     uri: getThumbnail(user.data)
                   }}
-                  style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
+                  style={{ width: 100, height: 100, borderRadius: 50, marginTop: '30%' }}
                 />
               }
             </TouchableOpacity>:<Image
@@ -94,11 +95,12 @@ export default class SettingsHeader extends Component {
 
       } else {
         let source = response;
+        let filePath = source.uri;
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
 // 'data:image/jpeg;base64,' + source.data
-console.log("source.uri=====", source);
-        this.props.uploadProfilePic('avatar', source)
+
+        this.props.uploadProfilePic('avatar', filePath)
      
       }
     });

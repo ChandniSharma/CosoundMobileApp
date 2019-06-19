@@ -70,12 +70,13 @@ export default class SignupStep3Musician extends Component {
 
       } else {
         let source = response;
+        let filePath = source.uri;
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
     //    this.props.uploadProfilePic('avatar', source)
       // this.props.handleFileChange('avatar', 'data:image/jpeg;base64,' + source.data)
-      console.log(" imge picker =======", source);
-       this.props.handleFileChange("avatar", source)
+      console.log(" imge picker =======", filePath);
+       this.props.handleFileChange("avatar", filePath)
       }
     });
   };
@@ -134,7 +135,7 @@ export default class SignupStep3Musician extends Component {
                       <Icon name="camera" style={{ fontSize: 60, marginTop: '50%', color: 'gray', alignSelf: 'center', }} /> :
                       <Image
                         source={{
-                          uri: data.url.uri,
+                          uri: data.url,
                         }}
                         style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
                       />}

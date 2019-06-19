@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Entypo';
 import PlayVideo from '../common/PlayVideo';
 import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity, Clipboard, AlertIOS, Platform } from "react-native";
 
+
 // import { CloseIcon } from "../../components/Commons/";
 
 const RenderTempFile = ({ urls, applyRef, applyAudioRef, removeMedia }) => {
@@ -43,6 +44,7 @@ const RenderMedia = ({
   removeMedia,
   applyAudioRef
 }) => {
+  console.log(" ============in temp ", primaryType, "item ===",item.file.filePath);
   switch (primaryType) {
     case "image":
       return (
@@ -53,11 +55,12 @@ const RenderMedia = ({
             <Icon name="circle-with-cross" style={{ fontSize: 20 }} />
           </TouchableOpacity>
           <View style={styles.content}>
-            <Image source={{ uri: item.url }} />
+            <Image source={{ uri: item.file.filePath.replace("file://", "") }} style={{ alignSelf:'center',width: "90%", height: 200, margin:10,padding:5 }}/>
           </View>
         </View>
       );
     case "video":
+      console.log(" in video =====", item);
       return (
         <View>
           <TouchableOpacity style={{ width: 30, height: 30 }} onPress={() => removeMedia(item.id)}>
@@ -76,7 +79,7 @@ const RenderMedia = ({
             //     ? media.metadata.thumbnail
             //     : poster
             // }
-            uri={item.url}//{JSON.stringify(media)}
+            uri={item.file.filePath}//{JSON.stringify(media)}
             // options={JSON.stringify(config)}
             // tracks={JSON.stringify(tracks)}
             parentComponent="renderTempFile"
@@ -104,7 +107,7 @@ const styles = {
   wrapper: {
 
     flex: 1,
-    backgroundColor: 'pink'
+    
   },
   main: { margin: '5%' },
   content: {
