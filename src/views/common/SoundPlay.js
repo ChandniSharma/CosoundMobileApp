@@ -8,6 +8,7 @@ export default class SoundPlay extends Component {
   componentDidMount() {
     MusicControl.enableBackgroundMode(true);
  
+    this.playSound();
     // on iOS, pause playback during audio interruptions (incoming calls) and resume afterwards.
     // As of {{ INSERT NEXT VERSION HERE}} works for android aswell.
     MusicControl.handleAudioInterruptions(true);
@@ -57,6 +58,7 @@ export default class SoundPlay extends Component {
     MusicControl.on('closeNotification', ()=> {
       this.props.dispatch(onAudioEnd());
     })
+    
 }
 
   playSound() {
@@ -92,17 +94,20 @@ export default class SoundPlay extends Component {
 
     return (
       <View style={{justifyContent: 'center', backgroundColor:'pink', flex:1}}>
+        <Text> This is text liabrary </Text>
         <Video source={{uri: "file:///Chandni/Songs/gullal.mp3" }}
                        ref="audio"
                        volume={5.0}
                        muted={false}
-                       //paused={paused}
-                       playInBackground={true}
-                       playWhenInactive={true}
+                     //  paused={paused}
+                       playInBackground={false}
+                       playWhenInactive={false}
                       //  onProgress={this.onPlayProgress}
                       //  onEnd={this.onPlayEnd}
                        resizeMode="cover"
-                       repeat={false}/>
+                       repeat={false}
+                       style={{width:'100%', height:400, backgroundColor:'orange'}}
+                       />
       </View>
 
 

@@ -1,6 +1,7 @@
-import React from "react";
+import React,{Component} from "react";
 import { isNull } from "lodash";
 import Icon from 'react-native-vector-icons/Entypo';
+import WaveForm from 'react-native-audiowaveform';
 import PlayVideo from '../common/PlayVideo';
 import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity, Clipboard, AlertIOS, Platform } from "react-native";
 
@@ -37,14 +38,29 @@ const RenderTempFile = ({ urls, applyRef, applyAudioRef, removeMedia }) => {
 
 export default RenderTempFile;
 
-const RenderMedia = ({
+
+class RenderMedia extends Component{
+  constructor(props){
+    super(props);
+    this.state ={
+        playAudio: false,
+        stopAudio: true,
+    }
+}
+changestate = () => {
+    this.setState({ playAudio: !this.state.playAudio, stopAudio: !this.state.stopAudio });
+}
+render(){
+ const {
   item,
   applyRef,
   primaryType,
   removeMedia,
   applyAudioRef
-}) => {
-  console.log(" ============in temp ", primaryType, "item ===",item.file.filePath);
+ } = this.props;
+
+console.log(" ============in temp ", primaryType, "item ===",item.file.filePath);
+
   switch (primaryType) {
     case "image":
       return (
@@ -87,21 +103,34 @@ const RenderMedia = ({
         </View>
 
       );
-    case "audio":
+    case "music":
       return (
         <View>
           <TouchableOpacity style={{ width: 30, height: 30 }} onPress={() => removeMedia(item.id)}>
             <Icon name="circle-with-cross" style={{ fontSize: 20 }} />
           </TouchableOpacity>
 
-          <Text>Render Temp Audio file</Text>
-
+          <WaveForm
+            style={{
+                flex: 1,
+                margin: 10,
+                backgroundColor: "white", height: 50
+            }}
+            onPress={() => this.changestate()}
+            source={{ uri: 'https://s3.eu-west-2.amazonaws.com/cosound-primary/uploads/audio/E6UOLuDNpwnlf9279FMEPriMZCtaXQFlfD48r0e1.mpga' }}
+            //source={{ uri: item.file.filePath }}
+            stop={this.state.stopAudio}
+            play={this.state.playAudio}
+            autoPlay={false}
+            waveFormStyle={{ waveColor: 'gray', scrubColor: 'red', width: 'auto' }}
+        />
         </View>
       );
     default:
       return null;
   }
 };
+}
 
 const styles = {
   wrapper: {

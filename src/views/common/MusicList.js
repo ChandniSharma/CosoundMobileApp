@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { isEmpty, isNull } from "lodash";
 import * as Animatable from 'react-native-animatable';
 import { Icon } from "native-base";
-//import WaveForm from 'react-native-audiowaveform';
+import WaveForm from 'react-native-audiowaveform';
 
 import styles from "../../stylesheet/profile.style";
 import { getDuration, getTrackName, getMetadata, formatCurrentTime } from "../../utils";
@@ -19,8 +19,9 @@ import { TouchableOpacity } from "react-native-gesture-handler";
           volume: 8,
           isActive: false,
           isPlaying: false,
-          loading: true
-         
+          loading: true,
+          playAudio: false,
+          stopAudio: true,
         }
     } 
 
@@ -86,6 +87,9 @@ import { TouchableOpacity } from "react-native-gesture-handler";
       current
     });
   };
+  changestate = () => {
+    this.setState({ playAudio: !this.state.playAudio, stopAudio: !this.state.stopAudio });
+}
 
     render() {
       let { current, pos } = this.state;
@@ -123,17 +127,18 @@ import { TouchableOpacity } from "react-native-gesture-handler";
                 </View>
                 <View style={styles.viewMusicImage}>
                     {/* <Image style={styles.musicAnimatedImg} source={require('../../assets/noise.gif')} /> */}
-                    {/* <WaveForm
+                    <WaveForm
                             style={{flex: 1,
                                 margin: 10,
                                 backgroundColor: "white",height:50}}
                             onPress={()=>this.changestate()}
-                            source={require('../assets/the_sentence.mp3')}
+                            source={{ uri: 'https://s3.eu-west-2.amazonaws.com/cosound-primary/uploads/audio/E6UOLuDNpwnlf9279FMEPriMZCtaXQFlfD48r0e1.mpga' }}
+                            // source={require('../assets/the_sentence.mp3')}
                             stop={this.state.stopAudio}
                             play={this.state.playAudio}
                             autoPlay={false}
                             waveFormStyle={{waveColor:'lightgray', scrubColor:'purple',width:'auto'}}
-                        /> */}
+                        />
 
                 </View>
                 <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>

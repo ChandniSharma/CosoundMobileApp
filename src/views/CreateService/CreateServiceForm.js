@@ -11,7 +11,7 @@ import {
 } from "./Form";
 
 const CreateServiceForm = ({ tabIndex, ...rest }) => {
-  switch (6) {
+  switch (tabIndex) {
     case 0:
       return <CategoryForm {...rest} />;
     case 1:

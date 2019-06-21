@@ -33,7 +33,7 @@ import AdvancedSearchView from './src/views/AdvancedSearchView';
 import AccountSettings from './src/containers/AccountSettings';
 import Suggestions from './src/containers/Suggestions';
 import SocialShare from './src/views/common/SocialShare';
-//import SoundPlay from './src/views/common/SoundPlay';
+//import TrackPlayerClass from './src/views/common/TrackPlayerClass';
 import PlayVideo from './src/views/common/PlayVideo';
 import TestFB from './src/views/animation';
 import Cart from './src/containers/Cart';
@@ -89,7 +89,7 @@ const AppStackNavigator = createStackNavigator({
     PurchasedServicesComponent: { screen: PurchasedServicesComponent },
     // audioWave:{screen:audioWave},
     UserProfile: { screen: UserProfile },
-    // SoundPlay:{screen:SoundPlay},
+   // TrackPlayerClass:{screen:TrackPlayerClass},
     MarketPlaceContainer: { screen: MarketPlaceContainer },
     Service: { screen: Service },
   
