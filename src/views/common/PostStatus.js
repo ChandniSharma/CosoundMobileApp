@@ -187,8 +187,8 @@ class PostStatus extends React.PureComponent {
         const id = getUniqueId();
         let mediaExtension = '.png';
 
-        if (type === 'video') {
-          mediaExtension = '.mov'
+        if (file.type === 'video') {
+          mediaExtension = '.mp4'
         }
         const type = file.type === "video"? 'video/mp4':file.type;
         

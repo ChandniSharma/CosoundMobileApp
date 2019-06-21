@@ -101,6 +101,7 @@ export const submit = (data, pathname) => {
           dispatch(postFailure(error));
           return false;
         }
+        console.log("cal 104 = ", response);
         return response;
       }
     };
@@ -108,6 +109,7 @@ export const submit = (data, pathname) => {
     const responseHandler = response => {
 
    console.log("response.status===",response.status)
+   conosle.log("response at 112 line ==",response.json())
       if (response.status >= 400) {
         response.json().then(error => {
           dispatch(postFailure(error));
@@ -190,8 +192,10 @@ console.log("pathname==", pathname)
       headers,
       body: formData
     })
+    .then(response => response.json()) 
       .then(response => {
         console.log("console response******* ", response)
+       // console.log("response at 197 line ==",response.json());
         responseHandler(response);
       })
       .catch(err => {

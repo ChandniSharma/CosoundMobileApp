@@ -50,6 +50,9 @@ import PurchasedServicesComponent from './src/views/PurchasedServicesComponent';
 import MarketPlaceContainer from './src/containers/MarketPlace';
 import Service from './src/containers/Service';
 import Chat from './src/views/Chat';
+//import SoundPlayer from '/src/views/common/SoundPlayer';
+import PlayAudioClass from './src/views/PlayAudioClass';
+
 
 // import { Client } from 'bugsnag-react-native';
 // const bugsnag = new Client("f222428bf3f339bca63b207187ca1bf1");
@@ -87,7 +90,7 @@ const AppStackNavigator = createStackNavigator({
     CheckoutComponent: { screen: CheckoutComponent },
     ImagesTemp: { screen: ImagesTemp },
     PurchasedServicesComponent: { screen: PurchasedServicesComponent },
-    // audioWave:{screen:audioWave},
+    PlayAudioClass:{screen:PlayAudioClass},
     UserProfile: { screen: UserProfile },
    // TrackPlayerClass:{screen:TrackPlayerClass},
     MarketPlaceContainer: { screen: MarketPlaceContainer },
@@ -95,7 +98,7 @@ const AppStackNavigator = createStackNavigator({
   
 }, {
         // initialRouteName: 'MarketplaceDetail',
-        initialRouteName: 'Login',
+        initialRouteName: 'PlayAudioClass',
         gesturesEnabled: false,
         headerMode: 'none',
     })
