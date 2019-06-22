@@ -284,7 +284,7 @@ class PostStatus extends React.PureComponent {
 
         const data = Object.assign({}, { body, files });
         console.log("pathname === ", data)
-        postStatusActions.submit(data, "/profle").then(() => {
+        postStatusActions.submit(data, this.props.pathName).then(() => {
           console.log("call 217 line nu")
           //this.props.restCallsOnMount();
           this._resetState();
@@ -353,8 +353,8 @@ class PostStatus extends React.PureComponent {
 
         this.photos.push(data);
 
-
         // this._handleFileChange("files", response.uri)
+        
         this._handleFileChange("files", this.photos)
       }
     });
@@ -362,7 +362,6 @@ class PostStatus extends React.PureComponent {
   render() {
     const { body, current, urls, errors } = this.state;
     const { postStatus } = this.props;
-
 
     return (
       <View>

@@ -252,6 +252,7 @@ export default class ProfileComponent extends Component {
         } = this.props;
         const { paginationData } = userFeed;
         
+        console.log(" user feed is === ******", userFeed);
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
 

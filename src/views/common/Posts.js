@@ -15,6 +15,8 @@ import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, 
 import { postComment } from "../../actions/post";
 import WaveForm from 'react-native-audiowaveform';
 import SocialShare from '../common/SocialShare';
+import PlayAudioClass from '../../views/PlayAudioClass';
+
 
 // import soundPlay from './SoundPlay';
 import {
@@ -51,8 +53,11 @@ class AudioWaveFormView extends React.Component{
     render(){
         return  (<View style={{ width: "100%", backgroundColor: "#d3d3d6" }}>
         {/* <Image style={{ width: "100%", height: 50 }} source={require('../../assets/noise.gif')} /> */}
+        <PlayAudioClass 
+          source={{ uri: current.path }}
 
-        <WaveForm
+         />
+        {/* <WaveForm
             style={{
                 flex: 1,
                 margin: 10,
@@ -64,7 +69,7 @@ class AudioWaveFormView extends React.Component{
             play={this.state.playAudio}
             autoPlay={false}
             waveFormStyle={{ waveColor: 'gray', scrubColor: 'red', width: 'auto' }}
-        />
+        /> */}
 
 
     </View>)
@@ -482,7 +487,12 @@ class Posts extends React.PureComponent {
                             <Text style={styles.musicDescription}>{title}</Text>
                         </View>
                     </View>
-                    <AudioWaveFormView key={media.id}/>
+                    {/* Chandni */}
+                     <PlayAudioClass 
+          source={media.path}
+
+         />
+                    {/* <AudioWaveFormView key={media.id}/> */}
                     <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
                         <Text style={styles.musicCurrentTime}>0.00</Text>
                         <Text style={styles.musicDuration}>{duration}</Text>

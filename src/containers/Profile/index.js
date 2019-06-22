@@ -61,7 +61,7 @@ class Profile extends React.PureComponent {
 
     return (
       <ProfileComponent
-      navigation={navigation}
+        navigation={navigation}
         user={user}
         myMusic={myMusic}
         userFeed={userFeed}

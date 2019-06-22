@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Entypo';
 import WaveForm from 'react-native-audiowaveform';
 import PlayVideo from '../common/PlayVideo';
 import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity, Clipboard, AlertIOS, Platform } from "react-native";
+import PlayAudioClass from "../PlayAudioClass";
 
 
 // import { CloseIcon } from "../../components/Commons/";
@@ -104,13 +105,19 @@ console.log(" ============in temp ", primaryType, "item ===",item.file.filePath)
 
       );
     case "music":
+     
       return (
         <View>
           <TouchableOpacity style={{ width: 30, height: 30 }} onPress={() => removeMedia(item.id)}>
             <Icon name="circle-with-cross" style={{ fontSize: 20 }} />
           </TouchableOpacity>
 
-          <WaveForm
+          <PlayAudioClass 
+          source={{ uri: item.file.filePath }}
+
+         />
+
+          {/* <WaveForm
             style={{
                 flex: 1,
                 margin: 10,
@@ -123,7 +130,7 @@ console.log(" ============in temp ", primaryType, "item ===",item.file.filePath)
             play={this.state.playAudio}
             autoPlay={false}
             waveFormStyle={{ waveColor: 'gray', scrubColor: 'red', width: 'auto' }}
-        />
+        /> */}
         </View>
       );
     default:

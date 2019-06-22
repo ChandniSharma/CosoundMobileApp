@@ -5,7 +5,7 @@ import { isEmpty, isNull } from "lodash";
 import * as Animatable from 'react-native-animatable';
 import { Icon } from "native-base";
 import WaveForm from 'react-native-audiowaveform';
-
+import PlayAudioClass from '../PlayAudioClass';
 import styles from "../../stylesheet/profile.style";
 import { getDuration, getTrackName, getMetadata, formatCurrentTime } from "../../utils";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -126,8 +126,12 @@ import { TouchableOpacity } from "react-native-gesture-handler";
                     </View>
                 </View>
                 <View style={styles.viewMusicImage}>
+                <PlayAudioClass 
+          source={current.path}
+
+         />
                     {/* <Image style={styles.musicAnimatedImg} source={require('../../assets/noise.gif')} /> */}
-                    <WaveForm
+                    {/* <WaveForm
                             style={{flex: 1,
                                 margin: 10,
                                 backgroundColor: "white",height:50}}
@@ -138,7 +142,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
                             play={this.state.playAudio}
                             autoPlay={false}
                             waveFormStyle={{waveColor:'lightgray', scrubColor:'purple',width:'auto'}}
-                        />
+                        /> */}
 
                 </View>
                 <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>

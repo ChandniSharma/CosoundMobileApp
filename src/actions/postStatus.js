@@ -107,16 +107,17 @@ export const submit = (data, pathname) => {
     };
 
     const responseHandler = response => {
-
+  console.log("response at 110===",response)
    console.log("response.status===",response.status)
-   conosle.log("response at 112 line ==",response.json())
+   //conosle.log("response at 112 line ==",response.json())
       if (response.status >= 400) {
+        console.log("call 114")
         response.json().then(error => {
           dispatch(postFailure(error));
         });
       } else {
        
-        console.log(" 125 ===response", response, "respo data ===", response.json());
+       // console.log(" 125 ===response", response, "respo data ===", response.json());
         
         response.json().then(resp => {
           console.log("resp===",resp)
@@ -126,7 +127,7 @@ export const submit = (data, pathname) => {
               return item.file_type;
             });
           }
-console.log("pathname==", pathname)
+   console.log("pathname==", pathname)
           if (pathname === "/profile") {
             dispatch(userFeedActions.fetchFeed(1)).then(() => {
               console.log("call userfeed 133")
@@ -192,7 +193,7 @@ console.log("pathname==", pathname)
       headers,
       body: formData
     })
-    .then(response => response.json()) 
+   // .then(response => response.json()) 
       .then(response => {
         console.log("console response******* ", response)
        // console.log("response at 197 line ==",response.json());

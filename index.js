@@ -97,8 +97,8 @@ const AppStackNavigator = createStackNavigator({
     Service: { screen: Service },
   
 }, {
-        // initialRouteName: 'MarketplaceDetail',
-        initialRouteName: 'PlayAudioClass',
+        initialRouteName: 'Login',
+      //  initialRouteName: 'PlayAudioClass',
         gesturesEnabled: false,
         headerMode: 'none',
     })

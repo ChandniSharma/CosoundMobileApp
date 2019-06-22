@@ -708,7 +708,7 @@ export default class DashboardComponent extends Component {
                             <Text style={styles.textUserName}>{getUsername(user.data)}</Text>
                             <Text style={{ fontSize: 18 }}>{getUserInfo(user.data)}</Text>
                         </View>
-                        <PostStatus  pathName={"/profile"}/>
+                        <PostStatus  pathName={"/"}/>
                         { /*  */}
                         {/* <View style={styles.viewWriteSomething}>
                             <TextInput
