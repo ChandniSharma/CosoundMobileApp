@@ -22,7 +22,7 @@ export default class PlayAudioClass extends Component {
       console.log(" play audio =====");
 
       let songDuration;
-      const url = this.props.source; //'file:///Chandni/Songs/hear_sentence.mp3';
+      const url = 'file:///Chandni/Songs/hear_sentence.mp3'; // this.props.source; //'file:///Chandni/Songs/hear_sentence.mp3';
 
       AudioPlayer.prepare(url, () => {
         AudioPlayer.play();
@@ -62,8 +62,8 @@ export default class PlayAudioClass extends Component {
             </TouchableOpacity>
           </View>
           
-          {this.state.isPlay?<View style={{marginTop:'5%'}}>
-            <Image source={require('../../src/assets/noise.gif')} style={{marginLeft:'-20%', tintColor:'red'}}/>
+          {this.state.isPlay?<View style={{marginTop:'15%'}}>
+            <Image source={require('../../src/assets/noise.gif')} style={{marginLeft:'-20%', tintColor:'red', height:50}}/>
           </View>:<View />}
           
         </View>

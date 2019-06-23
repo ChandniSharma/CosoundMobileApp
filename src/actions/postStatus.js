@@ -70,9 +70,9 @@ export const submit = (data, pathname) => {
     const formData = new FormData();
     console.log("data=== at 71 line no===", data)
       let body = data.body;
-    formData.append("body", {
+    formData.append("body", 
         body
-    });
+);
     each(data.files, (value, key) => {
         formData.append("files[]", value);
 

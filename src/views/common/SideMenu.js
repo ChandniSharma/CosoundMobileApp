@@ -45,7 +45,7 @@ class SideMenu extends Component {
             visible: true,
             isNotificationShow: false,
         }
-        this.arrayData = [{ name: 'Home', image: '', count: 0 },{ name: 'MarketPlace', image: '', count: 0 }, { name: 'Plans', image: 'message', count: 0 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }, { name: 'Music Service', image: '', count: 0 }, { name: 'Account Settings', image: '', count: 0 },{ name: 'Chat', image: '', count: 0 },{ name: 'Logout', image: '', count: 0 }]
+        this.arrayData = [{ name: 'Home', image: '', count: 0 },{ name: 'MarketPlace', image: '', count: 0 }, { name: 'Plans', image: 'message', count: 0 }, { name: 'Profile', image: '', count: 0 }, { name: 'Notifications', image: 'bell', count: 24 }, { name: 'Cart', image: '', count: 2 }, { name: 'Account Settings', image: '', count: 0 },{ name: 'Chat', image: '', count: 0 },{ name: 'Logout', image: '', count: 0 }]
 
     }
 
@@ -321,19 +321,20 @@ class SideMenu extends Component {
             </View>
 
 
-        } else if (item.index === 6) {
+        } 
+        // else if (item.index === 6) {
 
-            viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
-                <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('NoService')}>
-                    <View style={{ flexDirection: "row" }}>
-                        <Icon name="customerservice" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, color: 'white' }} />
-                        <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
+        //     viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
+        //         <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('NoService')}>
+        //             <View style={{ flexDirection: "row" }}>
+        //                 <Icon name="customerservice" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, color: 'white' }} />
+        //                 <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
 
-                    </View>
-                </TouchableHighlight>
-            </View>
-        }
-        else if (item.index === 7) {
+        //             </View>
+        //         </TouchableHighlight>
+        //     </View>
+        // }
+        else if (item.index === 6) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('AccountSettings')}>
@@ -345,7 +346,7 @@ class SideMenu extends Component {
                 </TouchableHighlight>
             </View>
         }
-        else if (item.index === 8) {
+        else if (item.index === 7) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('Chat')}>
@@ -357,7 +358,7 @@ class SideMenu extends Component {
                 </TouchableHighlight>
             </View>
         }
-        else if (item.index === 9) {
+        else if (item.index === 8) {
 
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableHighlight style={{ margin: '2%' }} onPress={() => this._logout()}>

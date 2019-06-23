@@ -464,7 +464,7 @@ class Posts extends React.PureComponent {
                             }}
                                 source={require('../../assets/homepage-video-placeholder.jpg')}>
                             </Image>
-                            <Image style={{
+                            {/* <Image style={{
                                 width: 60,
                                 height: 60,
                                 borderRadius: 10,
@@ -480,7 +480,7 @@ class Posts extends React.PureComponent {
                                 zIndex: 999
                             }}
                                 source={require('../../assets/close.png')}>
-                            </Image>
+                            </Image> */}
                         </View>
                         <View style={{ flex: 6 }}>
                             <Text style={styles.musicTitle}>{artistName}</Text>
@@ -609,7 +609,7 @@ class Posts extends React.PureComponent {
                     <View style={{ marginTop: "5%", marginBottom: "5%", width: "100%", justifyContent: "center", height: 0.5, backgroundColor: "#d3d3d3" }}>
                     </View>
                     <View >
-                        <Text style={styles.musicDescription}>{originalPost.body}</Text>
+                        <Text style={[styles.musicDescription, {paddingBottom: "5%"} ]}>{originalPost.body}</Text>
 
                     </View>
                     {!isEmpty(images) && images.length === 1 ? (

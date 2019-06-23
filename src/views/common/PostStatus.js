@@ -203,7 +203,9 @@ class PostStatus extends React.PureComponent {
           };
 
         this.setState(prevState => ({
-          files: [...prevState.files, newFiles]
+          files: [
+          //  ...prevState.files, 
+            newFiles]
         }))
         this._setUrl(file, id, type);
       }
@@ -222,7 +224,7 @@ class PostStatus extends React.PureComponent {
     this.setState(
       {
         urls: [
-          ...this.state.urls,
+        //  ...this.state.urls,
           {
             id,
             file,
