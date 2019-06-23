@@ -19,7 +19,6 @@ export default class FBLoginButton extends Component {
           readPermissions={["public_profile email"]}
           onLoginFinished={
             (error, result) => {
-              console.log(" result is ===", result)
               if (error) {
                 alert("Login failed with error: " + error.message);
               } else if (result.isCancelled) {

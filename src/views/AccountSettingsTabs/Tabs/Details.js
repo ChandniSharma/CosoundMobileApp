@@ -204,8 +204,6 @@ class Details extends React.PureComponent {
     } = this.props;
 
     const { data, errors } = this.state;
-
-    console.log(" Errors =====", errors);
     // const { details, genres } = this.props;
     const error = checkError(details.error);
 

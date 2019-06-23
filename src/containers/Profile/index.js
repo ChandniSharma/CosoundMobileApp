@@ -22,7 +22,6 @@ class Profile extends React.PureComponent {
     this._fetchMyMusic(1).then(() => {
       this._fetchMyImages(1).then(() => {
         this._fetchFeed(1).then(() => {
-          console.log("25===", this.props)
         //  performWow(this.props.wowActions);
         });
       });

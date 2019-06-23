@@ -19,7 +19,6 @@ export default class PlayAudioClass extends Component {
 
     this.setState({ isPlay: !this.state.isPlay });
     if (!this.state.isPlay) {
-      console.log(" play audio =====");
 
       let songDuration;
       const url = 'file:///Chandni/Songs/hear_sentence.mp3'; // this.props.source; //'file:///Chandni/Songs/hear_sentence.mp3';
@@ -28,14 +27,12 @@ export default class PlayAudioClass extends Component {
         AudioPlayer.play();
 
         AudioPlayer.getDuration((duration) => {
-          console.log("Duration is =====", duration);
           songDuration = duration;
         });
         setInterval(() => {
           AudioPlayer.getCurrentTime((currentTime) => {
 
             if (currentTime === songDuration) {
-              console.log("Now stop the player ===");
               AudioPlayer.stop();
             }
           });

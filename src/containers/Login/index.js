@@ -67,7 +67,6 @@ class LoginContainer extends React.PureComponent {
   };
 
   _onClickRememberMe = () => {
-    console.log("_onClickRememberMe");
     let data = this.state.data;
     data.rememberMe = !data.rememberMe;
 
@@ -99,7 +98,6 @@ class LoginContainer extends React.PureComponent {
 
   saveCredentials = async () => {
     const { data } = this.state;
-    console.log(" data from loign veiw ", data);
 
     if (data.rememberMe) {
       await AsyncStorage.setItem('email', data.email);
@@ -119,7 +117,6 @@ class LoginContainer extends React.PureComponent {
     if (valid) {
       const { data } = this.state;
       return this.props.authActions.login(data).then(() => {
-        console.log("login success ", this.props);
         if (isSuccess(this.props.login)) {
 
           this.saveCredentials();
@@ -167,9 +164,7 @@ class LoginContainer extends React.PureComponent {
          //this.props.navigation.navigate("AccountSettings");
        });
      });
-   // this.props.navigation.navigate("Profile");
-    //console.log(" MarketPlace -------");
-    
+   // this.props.navigation.navigate("Profile");    
    
    // this.props.navigation.navigate("MarketPlaceContainer");
   //this.props.navigation.navigate("AccountSettings");

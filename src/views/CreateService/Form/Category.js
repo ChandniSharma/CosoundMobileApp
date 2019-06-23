@@ -31,10 +31,7 @@ moveSecondViewUp(){
       submitCategory
     } = this.props;
 
-console.log(" ******** categ====", this.props, );
-
     const subCategories = getSubcategories(data.category_id, categories.data);
-    console.log("subCategories===", subCategories)
 
     let placeholder = [{"label": "Select Category", value: null}];
     let categoriesData = placeholder.concat(categories.data);
@@ -42,7 +39,6 @@ console.log(" ******** categ====", this.props, );
     let placeholderSubCat = [{"label": "Select Subcategory", value: null}];
     let subCategoriesData = placeholderSubCat.concat(subCategories.data);
 
-    console.log(" cat id ======", data.category_id);
     return (
     <View>
         <Animatable.View ref={"viewTxtInputCat"}>

@@ -114,7 +114,6 @@ class NoService extends Component {
     showPopup() {
         this.setState({ isSideMenuClick: true ,
             isNotificationShow: false})
-        console.log(" sidemnu ", this.state.isSideMenuClick);
         // setTimeout(() => {
         //     this.zoomInPopup();
         // }, 10);
@@ -131,7 +130,6 @@ class NoService extends Component {
         //     mobileNumber: value,
         //     isBottomMobileShow: true
         // });
-        console.log(" value =====", value, this.state.isBottomMobileShow)
 
     }
     onClickMobBottom = () => {
@@ -144,8 +142,6 @@ class NoService extends Component {
 
         this.arrayMobileNumber.push(this.state.mobileNumber);
         this.arrayButtons.push(button);
-
-        console.log(" array of no. ", this.arrayMobileNumber, "ary btn ", this.arrayButtons);
         this.setState({
             isBottomMobileShow: false,
             mobileNumber: ''
@@ -162,8 +158,6 @@ class NoService extends Component {
 
     }
     renderSearchRow = (item) => {
-        console.log(" item is ", item);
-
         return (
 
             <View style={{ height: 50, justifyContent: 'center' }}>
@@ -179,7 +173,6 @@ class NoService extends Component {
     }
 
     renderModalItem = (item) => {
-        console.log(" item is ", item);
         let icon = "";
         let viewNotification = <View />
         let view
@@ -220,7 +213,6 @@ class NoService extends Component {
         )
     }
     renderItem = (item, ) => {
-        console.log(" item is ", item);
         let index = item.index;
         let icon = "";
 

@@ -39,7 +39,6 @@ class Cart extends React.PureComponent {
   showPopup() {
     this.setState({ isSideMenuClick: true ,
       isNotificationShow: false})
-    console.log(" sidemnu ", this.state.isSideMenuClick);
     // setTimeout(() => {
     //     this.zoomInPopup();
     // }, 10);
@@ -54,8 +53,6 @@ class Cart extends React.PureComponent {
   render() {
     const { cart, fetchCart, _removeFromCart, removeFromCart, notificationCount } = this.props;
     const { paginationData } = cart;
-
-    console.log(" cart props===", this.props)
 
     return (
       <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>

@@ -180,7 +180,6 @@ class SideMenu extends Component {
     }
 
     renderSearchRow = (item) => {
-        console.log(" item is ", item);
         return (
             <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.moveToUserProfile(item.item.id)}>

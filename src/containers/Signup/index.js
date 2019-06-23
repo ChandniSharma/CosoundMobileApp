@@ -107,7 +107,6 @@ class SignUpContainer extends React.Component {
       this.state.data,
       field
     );
-console.log(" data ===", this.state.data, field);
     const { isValid, errors } = validate;
     this.setState({ errors });
     return isValid;
@@ -250,9 +249,7 @@ console.log(" data ===", this.state.data, field);
    */
   _setUrl = (file, name) => {
 
-    console.log( "File =====", file )
     fileReader(file).then(url => {
-      console.log( "url =====", url )
       const { data } = this.state;
       data[name] = url;
       this.setState({ data });
@@ -283,11 +280,9 @@ console.log(" data ===", this.state.data, field);
   _confirmLocation = event => {
     event.preventDefault();
     if (!this._isValid("country_id") || !this._isValid("address") || !this._isValid("postal_code")) {
-      console.log("invalid")
       return false;
     }
     const { tabIndex } = this.state;
-    console.log("valid")
     this._goToTabIndex(tabIndex + 1);
   };
 
@@ -311,28 +306,19 @@ console.log(" data ===", this.state.data, field);
    */
   _signUp = () => {
     const valid = this._isValid();
-    
-    console.log(" valid== singipp ", valid,"_isValidSocials" ,this._isValidSocials() )
-          if (valid && this._isValidSocials()) {
+      if (valid && this._isValidSocials()) {
       const { data } = this.state;
-      console.log(" Data avtar ", data);
      // return fixRotationOfFile(data.avatar).then(blob => {
-       console.log(" in image return ");
      //   data.avatar = blob;
        // const genres = JSON.stringify(extractValue(data.genres));
         const genres = data.genres;
         const social_links = JSON.stringify(extractValue(data.social_links));
-        console.log(" social link =====", social_links);
         const signUpData = Object.assign({}, data, {
           genres,
           social_links
         });
-        console.log(" 328 ", signUpData);
         return this.props.authActions.signup(signUpData).then(() => {
-          console.log(" Success at 332 ", this.props);
           if (isSuccess(this.props.signup)) {
-
-            console.log(" Success ", this.props.signup);
             this.props.navigation.navigate("Suggestions");
             //return history.push("/suggestions");
           }

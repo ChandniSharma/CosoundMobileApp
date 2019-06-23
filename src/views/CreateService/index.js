@@ -43,9 +43,7 @@ class CreateServiceComponent extends React.Component {
     }
   }
   showPopup() {
-    this.setState({ isSideMenuClick: true,isNotificationShow: false })
-    console.log(" sidemnu ", this.state.isSideMenuClick);
-    
+    this.setState({ isSideMenuClick: true,isNotificationShow: false })    
   }
   hidePopup() {
     this.setState({ isSideMenuClick: false,

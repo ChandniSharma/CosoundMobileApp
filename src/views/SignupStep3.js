@@ -56,16 +56,12 @@ export default class SignupStep3Musician extends Component {
     };
 
     ImagePicker.showImagePicker(options, response => {
-      // console.log('Response = =============', response);
 
       if (response.didCancel) {
-        // console.log('User cancelled image picker');
 
       } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
 
       } else if (response.customButton) {
-        // console.log('User tapped custom button: ', response.customButton);
         alert(response.customButton);
 
       } else {
@@ -75,7 +71,6 @@ export default class SignupStep3Musician extends Component {
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
     //    this.props.uploadProfilePic('avatar', source)
       // this.props.handleFileChange('avatar', 'data:image/jpeg;base64,' + source.data)
-      console.log(" imge picker =======", filePath);
        this.props.handleFileChange("avatar", filePath)
       }
     });
@@ -100,9 +95,6 @@ export default class SignupStep3Musician extends Component {
     const hasFile = !isNull(data.url);
     const error = checkError(signup.error);
     const { selectedItems } = this.state;
-
-
-    console.log(" Data in render  =======", data);
 
     return (
       <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
@@ -297,7 +289,6 @@ export default class SignupStep3Musician extends Component {
 
 
             {data.social_links.map((item, index) => {
-              // console.log("inde+1===", index + 1, "data.social_links.length==", data.social_links, "errors==", errors)
               if (item.isVisible) {
                 return (
                   <View>

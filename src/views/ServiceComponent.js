@@ -104,7 +104,6 @@ export default class ServiceComponent extends Component {
     showPopup() {
         this.setState({ isSideMenuClick: true,
             isNotificationShow: false })
-        console.log(" sidemnu ", this.state.isSideMenuClick);
     }
 
     renderItem = () => {
@@ -144,8 +143,6 @@ export default class ServiceComponent extends Component {
           const breadCrumbArray = getBreadCrumbsForService(data);
           const mobile = isMobile();
           const tab = isTab();
-          console.log("review====", reviews)
-          console.log("data.key_points==", data)
 //         return (
 //             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
 //                 <View>

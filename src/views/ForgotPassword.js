@@ -36,7 +36,6 @@ export default class ForgotPasswordComponent extends Component {
           forgotPassword,
           isShowLoader,
           } = this.props;
-          console.log("ForgetPassword===",forgotPassword)
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>

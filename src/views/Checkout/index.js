@@ -51,7 +51,6 @@ class Checkout extends React.PureComponent {
   showPopup() {
     this.setState({ isSideMenuClick: true,
       isNotificationShow: false })
-    console.log(" sidemnu ", this.state.isSideMenuClick);
     // setTimeout(() => {
     //     this.zoomInPopup();
     // }, 10);

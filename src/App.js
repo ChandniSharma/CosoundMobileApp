@@ -43,7 +43,6 @@ class App extends React.PureComponent {
     _restCalls = () => {
         if (!isNull(this.props.user.token)) {
             const refreshThreshold = getRefreshThreshold(this.props.user.expiresAt);
-            console.log("refreshThreshold on refresh", refreshThreshold);
             if (!refreshThreshold) {
                 return this.props.userActions.fetchAuthUser().then(() => {
                     return this.props.userActions.fetchCartCount().then(() => {
@@ -78,7 +77,6 @@ class App extends React.PureComponent {
      */
     _checkIfRefreshed = () => {
         const refreshThreshold = getRefreshThreshold(this.props.user.expiresAt);
-        console.log("checking in interval on refresh", refreshThreshold);
         if (!refreshThreshold) {
             clearInterval(this.checkIfRefreshedInterval._id);
             this._restCalls();

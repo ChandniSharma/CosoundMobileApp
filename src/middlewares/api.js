@@ -55,7 +55,6 @@ export default ({ getState }) => next => action => {
     ? getRefreshThreshold(expiresAt)
     : false;
   const token = typeof searchToken !== "undefined" ? searchToken : stateToken;
-  console.log("refreshthreshold in calling api", refreshThreshold);
 
   if (refreshThreshold) {
     return refreshToken(token)

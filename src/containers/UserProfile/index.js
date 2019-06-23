@@ -95,8 +95,6 @@ class UserProfile extends React.PureComponent {
       userProfileFeed
     } = this.props;
     //const { params } = match;
-
-   console.log(" param ====",this.props.navigation )
    
     return (
       <UserProfileComponent

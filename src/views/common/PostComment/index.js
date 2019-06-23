@@ -157,7 +157,6 @@ class PostComment extends React.Component {
     const { post, user, postComment, fetchComment, deleteComment } = this.props;
     const { comment, showComments } = this.state;
     const { paginationData } = fetchComment;
-    console.log(" showcome ====", showComments);
     return (
       <View style={{ flex: 1 }}>
         <View>

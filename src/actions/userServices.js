@@ -36,7 +36,6 @@ export const publishService = data => {
           uri: uri
         });
   
-        // console.log("call action 27==",item.fileName)
         // formData.append("featured_images[]", {
         //   name: item.fileName,
         //   type: item.type,
@@ -45,7 +44,6 @@ export const publishService = data => {
       });
     } else {
       if(key === "image"){
-        console.log("call action 48==",value)
         let id = `${new Date().getTime()}${Math.random()}`;
         let type = "image";
         let filename = id+'.png';

@@ -131,7 +131,6 @@ class PostStatus extends React.PureComponent {
    * Reset Post Status Form
    */
   _resetState = () => {
-    console.log("call reset state")
     this.photos = [];
     this.setState(
       {
@@ -177,7 +176,6 @@ class PostStatus extends React.PureComponent {
   _handleFileChange = (name, files) => {
 
     const { files: filesInState } = this.state;
-    console.log("..........................", files);
     //console.log("call handle file change")
     //console()
     let newFiles = [files];
@@ -269,25 +267,19 @@ class PostStatus extends React.PureComponent {
    */
   _submitPost = () => {
     this.setState({ isRequested: true });
-    console.log("call submit post")
     // e.preventDefault();
     //this._isValid()
     if (true) {
-      console.log("call 202")
       // e.preventDefault();
       const { body, files } = this.state;
 
       if (!isEmpty(body) || !isEmpty(files)) {
-        console.log("call 207")
-        console.log(files)
 
         // e.preventDefault();
         const { postStatusActions, location } = this.props;
 
         const data = Object.assign({}, { body, files });
-        console.log("pathname === ", data)
         postStatusActions.submit(data, this.props.pathName).then(() => {
-          console.log("call 217 line nu")
           //this.props.restCallsOnMount();
           this._resetState();
           //this.setState({ filePath: undefined });
@@ -339,8 +331,6 @@ class PostStatus extends React.PureComponent {
         let source = response;
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-        console.log(source.uri)
         let filePath = source.uri;
         this.setState({
           isClickToUpload: false,

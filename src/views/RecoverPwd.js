@@ -24,7 +24,6 @@ export default class RecoverPwd extends Component {
             handleChange,
             resetPassword
           } = this.props;
-          console.log("resetPassword===",resetPassword)
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 <ScrollView>

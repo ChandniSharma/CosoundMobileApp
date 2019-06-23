@@ -60,7 +60,6 @@ class AccountSettingsTabs extends React.PureComponent {
         //   }
     }
     renderItem = (item, ) => {
-        console.log(" item is ", item);
         let index = item.index;
         let icon = "";
 
@@ -88,7 +87,6 @@ class AccountSettingsTabs extends React.PureComponent {
         this.setState({ isSideMenuClick: true,
             isNotificationShow: false
          })
-        console.log(" sidemnu ", this.state.isSideMenuClick);
     }
     hidePopup() {
         this.setState({ isSideMenuClick: false })
@@ -119,7 +117,6 @@ class AccountSettingsTabs extends React.PureComponent {
             notificationCount
         } = this.props;
 
-        console.log("this.props-=", this.props)
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
 

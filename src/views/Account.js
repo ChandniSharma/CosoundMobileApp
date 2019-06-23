@@ -95,7 +95,6 @@ export default class Account extends Component {
     }
     showPopup() {
         this.setState({ isSideMenuClick: true })
-        console.log(" sidemnu ", this.state.isSideMenuClick);
         // setTimeout(() => {
         //     this.zoomInPopup();
         // }, 10);
@@ -112,7 +111,6 @@ export default class Account extends Component {
         //     mobileNumber: value,
         //     isBottomMobileShow: true
         // });
-        console.log(" value =====", value, this.state.isBottomMobileShow)
 
     }
     onClickMobBottom = () => {
@@ -126,7 +124,6 @@ export default class Account extends Component {
         this.arrayMobileNumber.push(this.state.mobileNumber);
         this.arrayButtons.push(button);
 
-        console.log(" array of no. ", this.arrayMobileNumber, "ary btn ", this.arrayButtons);
         this.setState({
             isBottomMobileShow: false,
             mobileNumber: ''
@@ -137,7 +134,6 @@ export default class Account extends Component {
 
     }
     renderSearchRow = (item) => {
-        console.log(" item is ", item);
 
         return (
 
@@ -157,7 +153,6 @@ export default class Account extends Component {
       }
 
     renderModalItem = (item) => {
-        console.log(" item is ", item);
         let icon = "";
         let viewNotification = <View />
         let view
@@ -198,7 +193,6 @@ export default class Account extends Component {
         )
     }
     renderItem = (item, ) => {
-        console.log(" item is ", item);
         let index = item.index;
         let icon = "";
 

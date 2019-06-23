@@ -58,7 +58,6 @@ export const fetchCartCount = () => {
 
 export const fetchMyMusic = pageNo => {
   const endpoint = `uploads/audio?page=${pageNo}`;
-  console.log("call fetchMyMusic")
   return {
     [CALL_API]: {
       types: [
@@ -168,9 +167,6 @@ export const changePassword = data => {
 export const uploadProfilePic = (name, file) => {
   /* FormData construct */
   const formData = new FormData();
-  console.log(" 171 file ***", file);
-
-  console.log("value.fileName==",file)
       const id = `${new Date().getTime()}${Math.random()}`;
       const type = "image";
       const filename = id+'.png';
@@ -194,7 +190,6 @@ export const uploadProfilePic = (name, file) => {
 
   //formData.append([name], file);
   /* FormData construct */
-  console.log(" 173 form data ", formData);
   const endpoint = "update/avatar";
   return {
     [CALL_API]: {

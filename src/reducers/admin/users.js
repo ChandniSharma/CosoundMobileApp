@@ -12,14 +12,12 @@ import {
 export const users = (state = initialState.users, action) => {
   switch (action.type) {
     case ADMIN_USERS_REQUEST:
-      console.log("page no", action.pageNo);
       return Object.assign({}, state, {
         data: action.pageNo === 1 ? [] : state.data,
         isRequesting: true,
         error: {}
       });
     case ADMIN_USERS_SUCCESS:
-      console.log("response", action.data.data);
       return Object.assign({}, state, {
         data: [...state.data, ...action.data.data],
         paginationData: {

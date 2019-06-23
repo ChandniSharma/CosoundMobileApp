@@ -66,7 +66,6 @@ class CommentList extends React.PureComponent {
       callApi
     } = this.props;
     const { data } = fetchComment;
-    console.log(" comment list data ===", data);
     return (
 
       <View>

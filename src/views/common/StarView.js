@@ -25,7 +25,6 @@ export default class StarView extends React.Component {
         )
     }
     ratingCompleted(rating) {
-        console.log("Rating is: " + rating)
     }
 }
 

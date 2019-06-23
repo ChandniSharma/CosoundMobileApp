@@ -60,7 +60,6 @@ let screenWidth = deviceWidth - 100;
     }
 
     moveToMarketPlaceDetailView = (item) => {
-        console.log(" move to Detail view ", item);
         //this.setState({ isMarketDetailViewShow: true });
         // return `/marketplace/${item.category.slug}/${item.sub_category.slug}/${item.id
         //   }`;
@@ -108,8 +107,6 @@ let screenWidth = deviceWidth - 100;
        
         const { data, isRequesting, error } = services;
         // const { isRequesting, data } = headerCategories;
-
-         console.log("headerCategories =====", services);
        // let data = [{ "id": "90cceaa8-f95b-45c7-b47c-d758b9d8c8d2", "category": { "id": 3, "name": "Publishing", "slug": "publishing" }, "sub_category": { "id": 8, "name": "Sub category 3.2", "slug": "sub-category-32" }, "title": "Media publishing", "description": "Description of publishing service", "about": "About publishing service", "key_points": ["Publish"], "price": 49, "delivery_time": 1, "delivery_time_unit": "Week", "rating": 0, "review_count": 0, "media": [{ "id": "c7f28c82-fde7-4477-ba5d-67b21cd27f08", "path": "https://s3.eu-west-2.amazonaws.com/cosound-primary/services/images/YDQGkH50XTeUNylgVDmI8nCxW57fLhpSUACBO4wy.jpeg", "file_type": "image", "user_id": "0d1e55f9-6b06-4b6f-ad97-67bfeb5eb08e", "metadata": { "isMain": true, "thumbnail_small": "https://s3.eu-west-2.amazonaws.com/cosound-primary/thumbnails/image_thumb_small_c7f28c82-fde7-4477-ba5d-67b21cd27f08.png", "thumbnail_normal": "https://s3.eu-west-2.amazonaws.com/cosound-primary/thumbnails/image_thumb_normal_c7f28c82-fde7-4477-ba5d-67b21cd27f08.png" }, "created_at": "2018-12-20 14:23:34" }], "is_featured": 1, "user": { "id": "0d1e55f9-6b06-4b6f-ad97-67bfeb5eb08e", "avatar": null, "thumbnail": null, "first_name": "Vishal", "last_name": "Chhabra", "type": "Musician", "artist_name": "vi$hal" } }];
         return (
             <View style={{ flex: 1 }}>
@@ -201,7 +198,6 @@ spinIcon() {
     }
 
     moveToMarketPlaceDetailView = () => {
-        console.log(" move to Detail view ");
         //this.setState({ isMarketDetailViewShow: true });
         // return `/marketplace/${item.category.slug}/${item.sub_category.slug}/${item.id
         //   }`;
@@ -240,7 +236,6 @@ spinIcon() {
         );
     };
     moveToView(itemId) {
-        console.log(" view id is =======", itemId);
         this.props.navigation.navigate('MarketPlaceContainer', { slug: itemId });
 
         Animated.timing(
@@ -280,8 +275,6 @@ spinIcon() {
 
     renderSearchRow = (itemDetail) => {
         let item = itemDetail.item;
-        console.log(" item is ", item);
-
         return (
             <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.moveToView(item.slug)}>
@@ -296,7 +289,6 @@ spinIcon() {
     }
 
     _renderCarouselItem(itemDetail, index) {
-        console.log("itemDetail====", itemDetail)
         let item = itemDetail.item;
         //let item = itemDetail;
         return (
@@ -329,7 +321,6 @@ spinIcon() {
         this.setState({ isSideMenuClick: true,
         isNotificationShow:false
         })
-        console.log(" sidemnu ", this.state.isSideMenuClick);
         // setTimeout(() => {
         //     this.zoomInPopup();
         // }, 10);
@@ -362,11 +353,9 @@ spinIcon() {
         const { user, services, fetchServices, featuredServices, headerCategories } = this.props;
         const paginationData = services;
         const { isRequesting, error, data } = featuredServices;
-        console.log("data====", data)
         let slug = "";
         
         current = getCurrentCategory(headerCategories.data, this.props.navigation.state.params.slug);
-console.log(this.props.navigation.state.params,"current ==== ", current)
         return (
 
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>

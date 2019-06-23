@@ -32,7 +32,6 @@ class DeliveryTime extends React.PureComponent {
       submitDeliveryTime
     } = this.props;
 
-    console.log(" Delivery times ===", deliveryTimes.data);
     let deliveryTimesData = [{value:null,label:"Select Delivery Time Unit"}].concat(deliveryTimes.data);
     return (
       <View>

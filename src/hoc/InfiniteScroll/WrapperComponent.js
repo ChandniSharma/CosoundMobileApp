@@ -15,7 +15,6 @@ const WrapperComponent = props => {
   // if (isLoaderInternal)
   //   return <props.component {...props} callingAPI={callingAPI} />;
 
-  console.log(" in wrapper =====", props);
   return (
     // <View>
     //             <Text>Hello in Wrapper  </Text>

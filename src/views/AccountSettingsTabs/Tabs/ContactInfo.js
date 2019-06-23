@@ -52,7 +52,6 @@ class ContactInfo extends React.Component {
   _submit = () => {
     // e.preventDefault();
 
-    console.log(" Submit =========", this.state.data);
     if (this._isValidSocials()) {
       this.setState({ errors: {} });
       const { _updateUser, user } = this.props;

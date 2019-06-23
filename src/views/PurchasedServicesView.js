@@ -61,7 +61,6 @@ class PurchasedServicesView extends React.PureComponent {
         //   }
     }
     renderItem = (item, ) => {
-        console.log(" item is ", item);
         let index = item.index;
         let icon = "";
 
@@ -90,7 +89,6 @@ class PurchasedServicesView extends React.PureComponent {
     showPopup() {
         this.setState({ isSideMenuClick: true,
             isNotificationShow: false })
-        console.log(" sidemnu ", this.state.isSideMenuClick);
     }
     hidePopup() {
         this.setState({ isSideMenuClick: false })
@@ -123,7 +121,6 @@ class PurchasedServicesView extends React.PureComponent {
             navigation
         } = this.props;
 
-        console.log("this.props-=", this.props)
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
 

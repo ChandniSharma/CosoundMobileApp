@@ -23,7 +23,6 @@ class Suggestions extends React.PureComponent {
      this.setState({
       isShowSuggestion : true
      })
-     console.log("fetch suggestion===")
     });
 
     if (signup.data.message) {
@@ -37,9 +36,7 @@ class Suggestions extends React.PureComponent {
    */
   _fetchSuggestions = pageNo => {
     const { suggestionActions, user } = this.props;
-    console.log("user====",user)
     if (!isNull(user.token)) {
-      console.log("calling 42====")
       return suggestionActions.fetchSuggestions(pageNo);
     }
   };

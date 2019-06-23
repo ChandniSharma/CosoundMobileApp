@@ -51,7 +51,6 @@ export default class SignupStep5 extends Component {
 
     renderItem = (itemDetails) => {
         let item = itemDetails.item; //this.state.arrayArtistData[index];
-        console.log("item====", item.img)
         return (
 
             <View>

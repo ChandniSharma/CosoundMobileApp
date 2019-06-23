@@ -15,7 +15,6 @@ class SuggestionWraper extends React.Component {
 
     const { follow, callAPI, followUser, suggestions, loadMore, callingAPI, isShowSuggestion, navigate } = this.props;
     const { paginationData } = suggestions;
-    console.log("isShowSuggestion====", isShowSuggestion, "suggestions.isRequesting=", suggestions.isRequesting, "callingAPI===", callingAPI)
     return (
 
       <View style={{ flex: 1 }}>

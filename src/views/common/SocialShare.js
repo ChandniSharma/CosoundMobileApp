@@ -32,7 +32,6 @@ export default class SocialShare extends Component {
     const encoded = encodeURIComponent(post.id);
     const urlShare = `${url}posts/${encoded}/embed`;
    
-    //console.log(" Facebook url =======", facebookUrl, "=======");
     let shareOptions = {
       title: "Cosound",
       message: "Cosound",

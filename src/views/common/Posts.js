@@ -199,7 +199,6 @@ class Posts extends React.PureComponent {
         }
     }
     componentDidMount() {
-        console.log(" post ======", this.props);
     }
 
     /**
@@ -282,7 +281,6 @@ class Posts extends React.PureComponent {
 
 
     _showPostOptions = (postId) => {
-        console.log(" Post option view =====");
         this.setState({ isPostOptionShow: postId });
         this.forceUpdate();
     }
@@ -401,7 +399,6 @@ class Posts extends React.PureComponent {
     }
 
     _renderSingleImage = media => {
-        console.log("_renderSingleImage")
         return (
             <View >
                 <Image style={{width:'100%', height:225, borderRadius:10}} source={{
@@ -419,9 +416,6 @@ class Posts extends React.PureComponent {
     _renderPostBody = (media, postId) => {
 
         //   const currentTime = formatCurrentTime(pos);
-
-        console.log(" Source path ===========", media ,"Post Id ========",postId , "========");
-
         switch (media.file_type) {
             case "video":
                 return (
@@ -501,7 +495,6 @@ class Posts extends React.PureComponent {
                 </View>)
 
             case "image":
-                console.log(" 493 image section");
                 return (
                     <View>
                         <Image style={{width:'100%', height:225, borderRadius:10}} source={{
@@ -551,8 +544,6 @@ class Posts extends React.PureComponent {
         };
 
         let postDetail = postData.item;
-
-       // console.log(" :popst -=====", like, like.isRequesting, this.state.currentLikePostId, postDetail.id);
         const postedBySelf = postDetail.user_id === user.data.id;
         const originalPost = getPost(postDetail);
         const { images, notImages } = formatPostMedia(originalPost.media);

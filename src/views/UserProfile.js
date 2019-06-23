@@ -72,7 +72,6 @@ export default class UserProfileComponent extends Component {
 
     showPopup() {
         this.setState({ isSideMenuClick: true })
-        console.log(" sidemnu ", this.state.isSideMenuClick);
 
     }
     hidePopup() {
@@ -165,7 +164,6 @@ export default class UserProfileComponent extends Component {
             userFeedActions
         } = this.props;
         const { paginationData } = userFeed;
-        console.log("props in profile page: ", this.props)
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
 

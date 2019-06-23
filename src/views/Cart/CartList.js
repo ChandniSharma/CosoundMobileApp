@@ -22,7 +22,6 @@ class CartList extends React.PureComponent {
   }
 
   showDeletePopup = () => {
-    console.log(" show delete popup ");
     let isDeletePopupShow = this.state.isDeletePopupShow;
     this.setState({ isDeletePopupShow: !isDeletePopupShow });
   }
@@ -30,7 +29,6 @@ class CartList extends React.PureComponent {
   renderCartItem = (itemDetail) => {
     let item = itemDetail.item;
     const { isVisible } = this.state;
-    console.log("isDeletePopupShow===",this.state.isDeletePopupShow)
     const { removeFromCart, _removeFromCart } = this.props;
     return (
       <View style={{  height:300}}>

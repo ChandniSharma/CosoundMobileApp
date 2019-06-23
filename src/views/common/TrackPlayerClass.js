@@ -12,7 +12,6 @@ export default class TrackPlayerClass extends Component {
        
     }
     startPlayer =() =>{
-      console.log(" start player ");
        // Creates the player
        TrackPlayer.setupPlayer().then(async () => {
 

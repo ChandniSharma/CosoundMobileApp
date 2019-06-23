@@ -188,7 +188,6 @@ export default class DashboardComponent extends Component {
     }
     showPopup() {
         this.setState({ isSideMenuClick: true })
-        console.log(" sidemnu ", this.state.isSideMenuClick);
         // setTimeout(() => {
         //     this.zoomInPopup();
         // }, 10);
@@ -210,20 +209,16 @@ export default class DashboardComponent extends Component {
         };
 
         ImagePicker.showImagePicker(options, response => {
-            console.log('Response = ', response);
 
             if (response.didCancel) {
-                console.log('User cancelled image picker');
                 this.setState({
                     isImageLoadedFromLiab: false
                 })
             } else if (response.error) {
-                console.log('ImagePicker Error: ', response.error);
                 this.setState({
                     isImageLoadedFromLiab: false
                 })
             } else if (response.customButton) {
-                console.log('User tapped custom button: ', response.customButton);
                 alert(response.customButton);
                 this.setState({
                     isImageLoadedFromLiab: false
@@ -668,7 +663,6 @@ export default class DashboardComponent extends Component {
             userFeedActions
         } = this.props;
         const { paginationData } = userFeed;
-        console.log("props in profile page: ", this.props)
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
 

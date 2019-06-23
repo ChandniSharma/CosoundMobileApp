@@ -68,7 +68,6 @@ export const submit = (data, pathname) => {
   return (dispatch, getState) => {
     dispatch(submitingPost());
     const formData = new FormData();
-    console.log("data=== at 71 line no===", data)
       let body = data.body;
     formData.append("body", 
         body
@@ -85,7 +84,6 @@ export const submit = (data, pathname) => {
       Accept: "application/json",
       Authorization: `Bearer ${token}`
     };
-    console.log("formData === ", formData);
 
     const refreshThreshold = getRefreshThreshold(expiresAt);
 
@@ -101,36 +99,27 @@ export const submit = (data, pathname) => {
           dispatch(postFailure(error));
           return false;
         }
-        console.log("cal 104 = ", response);
         return response;
       }
     };
 
     const responseHandler = response => {
-  console.log("response at 110===",response)
-   console.log("response.status===",response.status)
    //conosle.log("response at 112 line ==",response.json())
       if (response.status >= 400) {
-        console.log("call 114")
         response.json().then(error => {
           dispatch(postFailure(error));
         });
       } else {
-       
-       // console.log(" 125 ===response", response, "respo data ===", response.json());
-        
+               
         response.json().then(resp => {
-          console.log("resp===",resp)
           let mediaTypes = [];
           if (resp.data.media && !isNull(resp.data.media)) {
             mediaTypes = resp.data.media.map(item => {
               return item.file_type;
             });
           }
-   console.log("pathname==", pathname)
           if (pathname === "/profile") {
             dispatch(userFeedActions.fetchFeed(1)).then(() => {
-              console.log("call userfeed 133")
              // dispatch(wowActions.sync());
             });
 
@@ -173,17 +162,14 @@ export const submit = (data, pathname) => {
               body: formData
             })
               .then(result => {
-                console.log("console responseHandler call")
                 responseHandler(result);
               })
               .catch(err => {
-                console.log("console postFailure call 176")
                 dispatch(postFailure(err));
               });
           }
         })
         .catch(e => {
-          console.log("console ostFailure call 182")
           dispatch(postFailure(e));
         });
     }
@@ -195,12 +181,9 @@ export const submit = (data, pathname) => {
     })
    // .then(response => response.json()) 
       .then(response => {
-        console.log("console response******* ", response)
-       // console.log("response at 197 line ==",response.json());
         responseHandler(response);
       })
       .catch(err => {
-        console.log("console err ")
         dispatch(postFailure(err));
       });
   };

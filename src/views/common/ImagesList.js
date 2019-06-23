@@ -55,9 +55,7 @@ export default class ImagesList extends Component {
   };
       
     renderImage = (image) => {
-        console.log(" Imge is =====", image);
         const thumbnail = getImageThumbnail(image.item);
-        console.log(" thumnail ====", thumbnail);
 
         // () => _toggleLightbox(index)
         return (

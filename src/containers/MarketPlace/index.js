@@ -13,7 +13,6 @@ import MarketPlaceComponent from "../../views/MarketPlaceComponent";
 class MarketPlaceContainer extends React.PureComponent {
   state = {};
   componentDidMount() {
-    console.log(" in market place ======");
     this._restCalls();
   }
 
@@ -37,11 +36,8 @@ class MarketPlaceContainer extends React.PureComponent {
   _restCalls = () => {
     this._fetchCategories().then(() => {
       this._fetchFeaturedServices().then(() => {
-        console.log(" _fetchFeaturedServices ====")
         if (!isNull(this._getCategoryId())) {
-console.log(" Cat condition");
           this._fetchServices(1).then(() => {
-            console.log(" Fetchservice s====")
            // performWow(this.props.wowActions);
           });
         }
@@ -83,9 +79,7 @@ console.log(" Cat condition");
    * Fetch services for category
    */
   _fetchServices =  pageNo => {
-    console.log("call 86")
     if (!isNull(this._getCategoryId())) {
-      console.log("call 87")
       return this.props.marketPlaceActions.fetchServices(
         this._getCategoryId(),
         this._getSubCategoryId(),
@@ -96,7 +90,6 @@ console.log(" Cat condition");
 
   render() {
 
-    console.log(" in market place ======", this.props);
     const { user, services, categories, featuredServices, headerCategories } = this.props;
 
     return (

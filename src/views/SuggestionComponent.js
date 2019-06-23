@@ -6,7 +6,6 @@ import { Paginator } from "../hoc/";
 
 class SuggestionComponent extends React.Component {
   render() {
-    console.log("props====", this.props)
     const { follow, callAPI, followUser, suggestions, isShowSuggestion, navigate } = this.props;
     const { paginationData } = suggestions;
     return (

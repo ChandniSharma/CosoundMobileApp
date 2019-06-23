@@ -15,7 +15,6 @@ export default class NoDataWithLink extends Component{
             noDataDesc,
             noDataMessage,
             linkName } = this.props;
-            console.log("this.props===", this.props)
         return(
             <View style={{ alignSelf: 'center', marginTop: '10%', flex: 0.7 }}>
             <View style={{ alignSelf: 'center' }}>

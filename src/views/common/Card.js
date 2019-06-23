@@ -3,8 +3,6 @@ import {StyleSheet, Image, Text, View} from 'react-native'
 import image from '../../assets/Image/back.png'
 
 export default Card = (props) => {
-  console.log(props)
-  console.log('sdajsd hjs')
   return <View style={styles.container}>
     <Image
       source={require('../../assets/Image/back.png')}

@@ -62,7 +62,6 @@ class ForgotPassword extends React.PureComponent {
    */
   _onSubmit = e => {
     const valid = this._isValid();
-    console.log(" _onSubmit ", this.state);
     if (valid) {
       this.setState({isShowLoader:true})
 

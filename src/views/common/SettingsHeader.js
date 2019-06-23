@@ -81,16 +81,12 @@ export default class SettingsHeader extends Component {
     };
 
     ImagePicker.showImagePicker(options, response => {
-      // console.log('Response = =============', response);
 
       if (response.didCancel) {
-        // console.log('User cancelled image picker');
 
       } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
 
       } else if (response.customButton) {
-        // console.log('User tapped custom button: ', response.customButton);
         alert(response.customButton);
 
       } else {

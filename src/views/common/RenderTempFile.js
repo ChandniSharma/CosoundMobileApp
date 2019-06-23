@@ -60,8 +60,6 @@ render(){
   applyAudioRef
  } = this.props;
 
-console.log(" ============in temp ", primaryType, "item ===",item.file.filePath);
-
   switch (primaryType) {
     case "image":
       return (
@@ -77,7 +75,6 @@ console.log(" ============in temp ", primaryType, "item ===",item.file.filePath)
         </View>
       );
     case "video":
-      console.log(" in video =====", item);
       return (
         <View>
           <TouchableOpacity style={{ width: 30, height: 30 }} onPress={() => removeMedia(item.id)}>

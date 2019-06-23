@@ -54,14 +54,11 @@ class AccountSettings extends React.PureComponent {
   };
 
   _uploadProfilePic = (name, files) => {
-    console.log("name===", name, "FILE++",files)
   //  const { name, files } = e.target;
     if (files) {
       const { userActions } = this.props;
      // return fixRotationOfFile(files).then(blob => {
-        console.log(" 62 ");
         userActions.uploadProfilePic(name, files).then(() => {
-          console.log(" 64");
           if (isError(this.props.profilePic)) {
             alert(this.props.profilePic.error.message)
             //return toast.error(this.props.profilePic.error.message);

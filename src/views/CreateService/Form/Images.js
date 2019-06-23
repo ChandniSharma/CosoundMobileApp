@@ -39,16 +39,12 @@ class Images extends React.Component {
     };
 
     ImagePicker.showImagePicker(options, response => {
-      // console.log('Response = =============', response);
 
       if (response.didCancel) {
-        // console.log('User cancelled image picker');
 
       } else if (response.error) {
-        console.log('ImagePicker Error;: ', response.error);
 
       } else if (response.customButton) {
-        // console.log('User tapped custom button: ', response.customButton);
         alert(response.customButton);
 
       } else {
@@ -56,7 +52,6 @@ class Images extends React.Component {
         let filePath = source.uri;
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-        console.log(" name ===", name)
         this.props.handleFileChange(name, filePath)
       }
     });
@@ -72,7 +67,6 @@ class Images extends React.Component {
       handleFileChange
     } = this.props;
 
-    console.log(" data is =====", data);
     return (
       <Animatable.View ref={'view1'} style={{ height: 1700 }}>
 

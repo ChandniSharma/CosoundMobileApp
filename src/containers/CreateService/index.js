@@ -277,7 +277,6 @@ class CreateService extends React.Component {
    * @param Event e
    */
   _submitDeliveryTime = () => {
-   console.log("this.state == ",this.state)
     if (!this._isValid("delivery_time") || !this._isValid("delivery_time_unit"))
       return false;
     return this._goToTabIndex(this.state.tabIndex + 1);
@@ -311,16 +310,12 @@ class CreateService extends React.Component {
    * @param Event e
    */
   _publishService = () => {
-   console.log("call ps",this._isValid())
     if (!this._isValid()) 
     return false;
-console.log("call valid")
     const publishData = formatPublishServicedata(this.state.data);
-console.log("call 319 =====sss",publishData);
     this.props.userServicesActions.publishService(publishData).then(() => {
       const { publishService } = this.props;
       const { error, data, isRequesting } = publishService;
-      console.log("call publishService==",publishService)
 
       if (!isEmpty(error) && error.message && !isRequesting) {
         alert(error.message);

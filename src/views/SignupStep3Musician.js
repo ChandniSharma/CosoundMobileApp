@@ -55,20 +55,16 @@ export default class SignupStep3 extends Component {
     };
 
     ImagePicker.showImagePicker(options, response => {
-      console.log('Response = ', response);
 
       if (response.didCancel) {
-        console.log('User cancelled image picker');
         this.setState({
           isImageLoadedFromLiab: false
         })
       } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
         this.setState({
           isImageLoadedFromLiab: false
         })
       } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
         alert(response.customButton);
         this.setState({
           isImageLoadedFromLiab: false
@@ -86,7 +82,6 @@ export default class SignupStep3 extends Component {
   };
 
   addDatePicker = () => {
-    console.log(" add date picker ");
     this.setState({ isShowDatePicker: true })
   }
 

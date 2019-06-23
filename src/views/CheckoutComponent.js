@@ -45,7 +45,6 @@ export default class CheckoutComponent extends Component {
   }
   showPopup() {
     this.setState({ isSideMenuClick: true })
-    console.log(" sidemnu ", this.state.isSideMenuClick);
   }
   hidePopup() {
     this.setState({ isSideMenuClick: false })

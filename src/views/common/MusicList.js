@@ -57,7 +57,6 @@ import { TouchableOpacity } from "react-native-gesture-handler";
    
 
     renderItem = (music) => {
-      console.log(" music is ====", music);
       let { current } = this.state;
      let style = { paddin: 10 };
      if(current.id === music.item.id){
@@ -95,8 +94,6 @@ import { TouchableOpacity } from "react-native-gesture-handler";
       let { current, pos } = this.state;
       const { myMusic, postDetails, loadMore, callingAPI, page, page_count, callAPI } = this.props;
       const { data } = myMusic;
-      console.log(" data === ",myMusic);
-      console.log("current====",current)
 
       const { duration, albumart, album, artistName, title } = getMetadata(
         current

@@ -31,14 +31,9 @@ import {
 export const signup = data => {
   /* FormData construct */
   const formData = new FormData();
-  console.log("data====",data)
-
   each(data, (value, key) => {
-    console.log("avtar===key ==",key, "value==",value)
-
+    
     if(key === "avatar" && value){
-
-      console.log("value.fileName==",value)
       const id = `${new Date().getTime()}${Math.random()}`;
       const type = "image";
       const name = id+'.png';
@@ -55,7 +50,6 @@ export const signup = data => {
     }
   });
   /* FormData construct */
-console.log("formdata===",formData);
   const endpoint = "register";
   return {
     [CALL_API]: {
