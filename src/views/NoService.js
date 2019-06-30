@@ -427,14 +427,14 @@ class NoService extends Component {
                                     </View>
                                 </TouchableOpacity>
 
-                                <View style={styles.viewDropDown}>
+                                {/* <View style={styles.viewDropDown}>
                                     <FlatList
                                         style={styles.flatList}
                                         data={this.dropDownOptions}
                                         renderItem={this.renderItem}
                                         keyExtractor={(item, index) => index.toString()}
                                     />
-                                </View>
+                                </View> */}
                             </View> : null}
                         <View style={{marginTop:'22%'}}>
                             <CustomFooter />

@@ -39,6 +39,7 @@ export default class Login extends Component {
 
     componentDidMount() {
         this.fadeInDownHeader();
+
         // this.fadeInMainView();
       //  setTimeout(() => {
             this.moveTextUp1();

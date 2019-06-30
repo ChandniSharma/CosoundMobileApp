@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 // performWow
@@ -7,7 +6,7 @@ import { getSortString } from "../../utils";
 
 import { userServicesActions } from "../../actions";
 
-import OfferedServicesComponent from "../../views/OfferedServicesComponent";
+import OfferedServicesComponent from "../../views/OfferedServices";
 
 class OfferedServices extends React.PureComponent {
   componentDidMount() {
@@ -61,7 +60,8 @@ class OfferedServices extends React.PureComponent {
 // eslint-disable-next-line
 const mapStateToProps = state => {
   return { offeredServices: state.offeredServices,
-    notificationCount:state.notificationCount
+    notificationCount:state.notificationCount,
+    user: state.user
   };
 };
 
@@ -72,7 +72,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default withRouter(
+export default (
   connect(
     mapStateToProps,
     mapDispatchToProps

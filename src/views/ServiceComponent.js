@@ -23,6 +23,8 @@ import Logo from './common/logo';
 import HeaderMenuAndBell from './common/HeaderMenuAndBell';
 import Carousel from 'react-native-snap-carousel';
 import StarView from './common/StarView';
+import SideMenu from '../../src/views/common/SideMenu';
+
 
 import {
     isTab,
@@ -47,8 +49,13 @@ export default class ServiceComponent extends Component {
             isDropDownclick: false,
             isMarketDetailViewShow: false,
             headerColorMix: ['rgb(42, 173,177)', 'rgb(131, 110, 198)', 'rgb(134, 103, 200)'],
+            serviceImage:'',
+            
         },
-            this.arrayComments = [
+        this.setState({
+            serviceImage: getServiceImage(this.props.service.data.media)
+        })    
+        this.arrayComments = [
                 {
 
                     userImage: "",
@@ -71,7 +78,6 @@ export default class ServiceComponent extends Component {
                     image: require('../assets/marketGrid-3.jpg'),
 
                 },
-
                 {
                     userImage: "",
                     title: "Get you on 200 Spotify Playlists",
@@ -89,9 +95,9 @@ export default class ServiceComponent extends Component {
     fadeInMarketDetailView = () => this.refs.marketPlaceDetailViewRef.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
 
     componentDidMount = () => {
-        setTimeout(() => {
-             this.fadeInMarketDetailView();
-        }, 10);
+        // setTimeout(() => {
+        //      this.fadeInMarketDetailView();
+        // }, 10);
        
     };
     hidePopup() {
@@ -120,7 +126,6 @@ export default class ServiceComponent extends Component {
                         <StarView starCount={3} />
                         <Text style={[styles.textRatingCount, { marginLeft: '2%'}]}>5</Text>
                     </View>
-
                 </View>
                 <Text style={[styles.commentTime,{ flex:0.15}]}>21 h ago</Text>
             </View>
@@ -150,28 +155,13 @@ export default class ServiceComponent extends Component {
 //                 </View>
 //                 </SafeAreaView>
 // );
+
+//return null;
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
 
-                {/* {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: '10%', width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
-
-                    <TouchableOpacity style={{ color: 'white', marginTop: '20%', flex: 0.15, height: 38, }} onPress={() => this.showPopup()}>
-                        <Hamburger color="white" style={{ paddingTop: '12%', }} active={false} type="spinCross" onPress={() => this.showPopup()} />
-                    </TouchableOpacity>
-
-
-                    <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
-
-                    <View style={{ flex: 0.3 }} />
-                    <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}>
-                        {this.state.isNotificationShow ? <Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} /> : <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />}
-                    </TouchableOpacity>
-                </LinearGradient> : null} */}
-
-{!this.state.isSideMenuClick ? <HeaderMenuAndBell colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} onPressPopup={() => this.showPopup()} isNotificationShow={this.state.isNotificationShow} onPressBell={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })} /> : null}
-
-
-                {/* Top view Graphic design which will open modal view by side button click */}
+            {!this.state.isSideMenuClick ? <HeaderMenuAndBell colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} onPressPopup={() => this.showPopup()} isNotificationShow={this.state.isNotificationShow} onPressBell={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })} /> : null}
+                        
                 <View style={{ marginTop: '2%', marginBottom: '2%' }}>
 
                     <TouchableOpacity onPress={() => this.setState({ isDropDownclick: true })}>
@@ -183,16 +173,16 @@ export default class ServiceComponent extends Component {
                                 <Icon1 name="down" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
                             </View>
 
-                            {/* <Animatable.Image source={require('../../src/assets/Image/arrow_small_down.png')} style={{borderRadius:13,alignSelf:'flex-end' ,width: 26, height: 26 }} /> */}
                         </View>
                     </TouchableOpacity>
                 </View>
+
+               
 
                 <KeyboardAwareScrollView onScroll={this._onScroll} style={{ backgroundColor: 'rgb(245, 245,245)' }}>
 
                     <Animatable.View ref={'marketPlaceDetailViewRef'} style={{ flex: 1, backgroundColor: 'rgb(245, 245, 245)' }}>
 
-                        {/*  top 3 btns  */}
                         <View>
                         <View style={{ flexDirection: 'row', flex: 0.1,height:40,paddingTop:'5%' }}>
                             
@@ -217,13 +207,11 @@ export default class ServiceComponent extends Component {
                             </View>
                             </View>
                         </View>
-                        {/*  top 3 btns  */}
-
-
+                    
                         <View style={[styles.viewBackground, {flex: 0.2,} ]}>
                             <View style={{ marginTop: '2%', width: '100%' }}> 
-                                <Image style={{ width: '100%' }} source={{uri: getServiceImage(data.media)}} />
-                            </View>
+        {this.state.serviceImage ? <Image style={{ width:100, height:100 }} source={{uri: this.state.serviceImage}} /> : <Image style={{ width:100, height:100 }} /> }
+                                                            </View>
 
                             <Text style={styles.textSpotify}> {data.title} </Text>
                             <Text style={styles.textListTitle}> {data.description} </Text>
@@ -242,15 +230,6 @@ export default class ServiceComponent extends Component {
                         </View>
                         <View style={{  flex: 0.15 }}>
 
-                        {/* <Paginator
-                            page_count={paginationData.page_count}
-                            component={ServiceReview}
-                            page={paginationData.page}
-                            callAPI={fetchReviews}
-                            reviews={reviews}
-                            isLoaderInternal
-                        /> */}
-
                             <View style={{ backgroundColor: 'white', alignSelf: 'center', borderRadius: 20, marginBottom: '5%', width: '90%', alignItems:'center' }}>
 
                             <Image source={require('../assets/avatar2.jpg')} style={{ width: 90, height: 90, borderRadius: 45, alignSelf:'center', marginTop:'5%' }} />
@@ -260,16 +239,13 @@ export default class ServiceComponent extends Component {
                                 <Text style={styles.textUserDescription}> Spotify Playlists Curator</Text>
 
                                 <View style={{ marginTop: '10%',marginBottom:'5%'  }}>
-                                    {/* Rating view */}
-                                    {/* <Text style={styles.textServiceTitle}>Star Rating </Text> */}
                                     <StarView starCount={3} />
                                    
                                 </View>
 
                                 <View style={styles.ViewSingleLine} />
-                                {/* Service summary  */}
-
-                                <View style={[styles.viewSubtotal, { width: '100%', marginTop: '5%', height: 140, justifyContent: 'center', alignItems: 'center' }]}>
+                               
+                                {/* <View style={[styles.viewSubtotal, { width: '100%', marginTop: '5%', height: 140, justifyContent: 'center', alignItems: 'center' }]}>
                                     <Text style={[styles.textServiceTitle, { marginBottom: '2%' }]}>Service</Text>
                                     { data && data.key_points &&
               !isNull(data.key_points) &&
@@ -294,11 +270,10 @@ export default class ServiceComponent extends Component {
                                         <Text style={[styles.textSubtotal, { marginBottom: '2%', flex: 0.9, alignSelf: 'flex-start' }]}>A full report at the end!</Text>
                                     </View>
 
-                                </View>
+                                </View> */}
 
                                 <View style={styles.ViewSingleLine} />
 
-                                {/* View Total */}
                                 <View style={[styles.viewTotal, { width: '100%', marginBottom: '5%', marginTop: '5%', height: 70, alignItems: 'center' }]}>
 
                                     <View style={{ marginTop: '2%', marginBottom: '5%', marginLeft: "15%",
@@ -310,7 +285,6 @@ export default class ServiceComponent extends Component {
                                     </View>
                                 </View>
 
-                                {/* Temp fhoe showing button */}
                                 <View style={{ marginBottom: '15%',marginLeft: "15%",
         marginRight: "15%", }}>
                                 <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton]}>
@@ -322,9 +296,6 @@ export default class ServiceComponent extends Component {
                             </View>
                         </View>
 
-
-
-                        {/* Button and Star */}
                         <View style={{ marginTop: '2%', marginBottom: '5%', marginLeft:'15%', marginRight:'15%' }}>
                             <TouchableHighlight underlayColor="#25b6ad" style={[styles.recentButton]}>
                                 <View style={{flexDirection:'row',  height:50, justifyContent:'center'}}>
@@ -334,15 +305,10 @@ export default class ServiceComponent extends Component {
                             </TouchableHighlight>
                             </View>
                             <View style={{ flexDirection: 'row', marginTop: '5%', alignSelf:'center'}}>
-                                {/* Rating view */}
-                                {/* <Text style={styles.textServiceTitle}>Star Rating </Text> */}
                                 <StarView starCount={3} />
                                 <Text style={[styles.textRatingCount]}>5</Text>
                             </View>
                        
-
-
-
                         <View style={{ flex: 0.4, marginBottom: '2%' }}>
                             <FlatList
                                 data={this.arrayComments}
@@ -353,6 +319,14 @@ export default class ServiceComponent extends Component {
 
                     </Animatable.View>
                 </KeyboardAwareScrollView>
+         
+                {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation} hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
+
+ {/* notification view show */}
+ {this.state.isNotificationShow ?<View style={{marginTop:'25%', position:'absolute'}}>
+                     <Notifications navigation={this.props.navigation} hidePopup={() => this.hideNotificationView()} /> 
+                </View>: null}
+
             </SafeAreaView>
         )
     }

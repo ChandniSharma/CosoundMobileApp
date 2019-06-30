@@ -390,28 +390,26 @@ export default {
         alignItems: 'center'
     },
     viewDropDown: {
-         marginTop: '5%',
-        backgroundColor: 'yellow',
+        // marginTop: '35%',
+        backgroundColor: 'white',
         width: deviceWidth,
         // height: deviceHeight - 400,
         alignItems: 'center',
         justifyContent: 'center',
-
+zIndex:99999
     },
     viewModalAccount: {
-        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+        backgroundColor: 'rgba(0,0,0,0.6)',
         width: deviceWidth,
         height: deviceHeight - 44,
-        position: 'absolute',
-        top:0,
-        bottom:0,
+        position: 'absolute'
     },
     flatList: {
         width: '100%',
         marginBottom:'10%',
-       
+        backgroundColor:'red',
         //height: deviceHeight-300,
-        zIndex:-99999,
+        zIndex:99999,
     },
     flatListSearchbar:{
         width: '90%',

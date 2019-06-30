@@ -17,6 +17,7 @@ import SettingsHeader from '../views/common/SettingsHeader';
 import Notifications from '../../src/containers/Notifications';
 import CustomFooter from '../components/common/CustomFooter'
 import * as Animatable from 'react-native-animatable';
+import ServiceDropDownView from './common/ServiceDropDownView';
 
 // import { SettingsHeader, TabHeader, FormToast } from "../Commons";
 // import TabComponent from "./TabComponent";
@@ -213,7 +214,7 @@ class PurchasedServicesComponent extends React.PureComponent {
                             {/* <SvgUri width="200" height="200" source={require('../assets/Image/SVG/sprite.svg')} /> */}
 
 
-                            <Animatable.View
+                            {/* <Animatable.View
                                 ref={'userImageView'}
                                 style={{
                                     marginTop: "5%",
@@ -230,8 +231,8 @@ class PurchasedServicesComponent extends React.PureComponent {
                                     marginBottom: '5%',
                                 }}>
                                 {/* <Image style={styles.imgUser} source={getThumbnail(user.data)} /> */}
-                                <Image style={styles.imgUser} source={require('../assets/avatar-main-1.jpg')} />
-                            </Animatable.View>
+                                {/* <Image style={styles.imgUser} source={require('../assets/avatar-main-1.jpg')} />
+                            </Animatable.View> */} 
                             <Text style={styles.textUserName}> Lois Stokes </Text>
                         </LinearGradient>
               {/* <SettingsHeader
@@ -255,7 +256,7 @@ class PurchasedServicesComponent extends React.PureComponent {
                 </View>
                 </TouchableOpacity>
 
-                <View style={{ flexDirection: 'row', alignSelf:'flex-end', marginRight:'5%' }}>
+                {/* <View style={{ flexDirection: 'row', alignSelf:'flex-end', marginRight:'5%' }}>
                   <Text>Sort By:</Text>
                   <View>
                     <TouchableOpacity onPress={this.showSortValuePopup.bind(this)}>
@@ -264,7 +265,6 @@ class PurchasedServicesComponent extends React.PureComponent {
                   </View>
                 </View>
 
-                {/* View Sort By */}
                 {this.state.isSortValuePopupShow ? <View style={styles.viewSort}>
                   <TouchableHighlight underlayColor="#20ACAC" style={styles.buttonSort1} onPress={this.selectSortValue.bind(this)}>
                     <Text style={styles.popupText}>Name</Text>
@@ -277,7 +277,7 @@ class PurchasedServicesComponent extends React.PureComponent {
                   <TouchableHighlight underlayColor="#20ACAC" style={styles.buttonSort3} onPress={this.selectSortValue.bind(this)}>
                     <Text style={styles.popupText}>Value</Text>
                   </TouchableHighlight>
-                </View> : null}
+                </View> : null} */}
 
 
                
@@ -288,30 +288,23 @@ class PurchasedServicesComponent extends React.PureComponent {
  
                 </View>
                 {this.state.isDropDownclick ?
-                  <View style={styles.viewModalAccount}>
-
-                    <TouchableOpacity style={{ marginTop: '54.0%', backgroundColor: 'white', height: 40 }} onPress={() => this.setState({ isDropDownclick: false })}>
-                      <View style={{ flexDirection: 'row', height: 50, marginTop: '2%' }}>
-                        <Icon3 name="ios-settings" style={{ marginLeft: '2%', marginBottom: '1%', flex: 0.1, color: 'rgb(140,91,204)', fontSize: 25 }} />
-                        <Text style={[styles.titleAccount, { flex: 0.8 }]}> Account Settings</Text>
-                        <View style={{ width: 30, height: 30, borderRadius: 18, marginRight: '5%', marginBottom: '5%', flex: 0.1, backgroundColor: 'white', borderColor: '#8E8E8E', borderWidth: 0.3 }}>
-                          <Icon name="up" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
-                        </View>
-
-                      </View>
-                    </TouchableOpacity>
-
-                    <View style={styles.viewDropDown}>
-                      <FlatList
-                        style={styles.flatList}
-                        data={this.dropDownOptions}
-                        renderItem={this.renderItem}
-                        keyExtractor={(item, index) => index.toString()}
-                      />
-                    </View>
-                  </View> : null}
+                 <ServiceDropDownView />
+                 
+                  // <View style={styles.viewModalAccount}>
+                  //   <TouchableOpacity style={{ marginTop: '54.0%', backgroundColor: 'white', height: 40 }} onPress={() => this.setState({ isDropDownclick: false })}>
+                  //     <View style={{ flexDirection: 'row', height: 50, marginTop: '2%' }}>
+                  //       <Icon3 name="ios-settings" style={{ marginLeft: '2%', marginBottom: '1%', flex: 0.1, color: 'rgb(140,91,204)', fontSize: 25 }} />
+                  //       <Text style={[styles.titleAccount, { flex: 0.8 }]}> Account Settings</Text>
+                  //       <View style={{ width: 30, height: 30, borderRadius: 18, marginRight: '5%', marginBottom: '5%', flex: 0.1, backgroundColor: 'white', borderColor: '#8E8E8E', borderWidth: 0.3 }}>
+                  //         <Icon name="up" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
+                  //       </View>
+                  //     </View>
+                  //   </TouchableOpacity>
+                  // </View> 
+                  : null}
 
                   <FlatList
+                  style={styles.flatList}
           renderItem={this.renderServiceItem}
           extraData={this.props}
           data={this.arrayData}

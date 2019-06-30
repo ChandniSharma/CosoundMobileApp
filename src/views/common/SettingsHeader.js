@@ -44,13 +44,13 @@ export default class SettingsHeader extends Component {
 
           <View style={styles.findingView}>
 
-            {profilePic?<TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }} onPress={this.chooseFile.bind(this)}>
+            {profilePic?<TouchableOpacity style={{ marginTop: '20%', height: 200, width: 100 }} onPress={this.chooseFile.bind(this)}>
               {profilePic.isRequesting ? <ActivityIndicator color="gray" size={"large"} style={{marginTop: '85%'}}/>
                 :<Image
                   source={{
                     uri: getThumbnail(user.data)
                   }}
-                  style={{ width: 100, height: 100, borderRadius: 50, marginTop: '30%' }}
+                  style={{ width: 100, height: 100, borderRadius: 50, marginTop: '20%' }}
                 />
               }
             </TouchableOpacity>:<Image

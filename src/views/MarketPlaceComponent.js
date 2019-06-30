@@ -60,6 +60,9 @@ let screenWidth = deviceWidth - 100;
     }
 
     moveToMarketPlaceDetailView = (item) => {
+
+        console.log(" $$$$$$$$$ market placeDetail movement ", item);
+
         //this.setState({ isMarketDetailViewShow: true });
         // return `/marketplace/${item.category.slug}/${item.sub_category.slug}/${item.id
         //   }`;
@@ -198,6 +201,7 @@ spinIcon() {
     }
 
     moveToMarketPlaceDetailView = () => {
+        console.log(" @@@@ market place detail view ");
         //this.setState({ isMarketDetailViewShow: true });
         // return `/marketplace/${item.category.slug}/${item.sub_category.slug}/${item.id
         //   }`;

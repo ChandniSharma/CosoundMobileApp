@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 //performWow,
@@ -7,7 +6,7 @@ import { getSortString } from "../../utils";
 
 import { userServicesActions } from "../../actions";
 
-import PurchasedServicesComponent from "../../views/PurchasedServicesComponent";
+import PurchasedServicesComponent from "../../views/PurchasedServices";
 
 class PurchasedServices extends React.PureComponent {
   state = {};
@@ -60,7 +59,10 @@ class PurchasedServices extends React.PureComponent {
 
 // eslint-disable-next-line
 const mapStateToProps = state => {
-  return { purchasedServices: state.purchasedServices };
+  return { 
+    purchasedServices: state.purchasedServices,
+    user: state.user 
+  };
 };
 
 // eslint-disable-next-line
@@ -70,7 +72,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default withRouter(
+export default (
   connect(
     mapStateToProps,
     mapDispatchToProps

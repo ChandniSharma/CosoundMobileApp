@@ -44,18 +44,20 @@ import Checkout from './src/views/Checkout';
 import GooglesignIn from './src/views/common/GooglesignIn';
 import CreateService from './src/containers/CreateService';
 import CheckoutComponent from './src/views/CheckoutComponent';
-import ImagesTemp from './src/views/CreateService/Form/ImagesTemp'
-import PurchasedServicesComponent from './src/views/PurchasedServicesComponent';
+// import PurchasedServicesComponent from './src/views/PurchasedServicesComponent';
 //import audioWave from './src/views/common/audioWaveView';
+import PurchasedServices from './src/containers/PurchasedServices';
+
 import MarketPlaceContainer from './src/containers/MarketPlace';
 import Service from './src/containers/Service';
 import Chat from './src/views/Chat';
 //import SoundPlayer from '/src/views/common/SoundPlayer';
 import PlayAudioClass from './src/views/PlayAudioClass';
+import OfferedServices from './src/containers/OfferedServices';
 
-
-// import { Client } from 'bugsnag-react-native';
-// const bugsnag = new Client("f222428bf3f339bca63b207187ca1bf1");
+import { Client } from 'bugsnag-react-native';
+// import { offeredServices } from './src/actions/userServices';
+const bugsnag = new Client("f222428bf3f339bca63b207187ca1bf1");
 
 const AppStackNavigator = createStackNavigator({
     Home: { screen: Home },
@@ -83,19 +85,18 @@ const AppStackNavigator = createStackNavigator({
     Cart: { screen: Cart },
     StarView: { screen: StarView },
     Sidebar: { screen: Sidebar },
-    NoService: { screen: NoService },
+    Service: { screen: Service },// Market place detail 
     GooglesignIn: { screen: GooglesignIn },
     Checkout: { screen: Checkout },
-    CreateService: { screen: CreateService },
     CheckoutComponent: { screen: CheckoutComponent },
-    ImagesTemp: { screen: ImagesTemp },
-    PurchasedServicesComponent: { screen: PurchasedServicesComponent },
     PlayAudioClass:{screen:PlayAudioClass},
     UserProfile: { screen: UserProfile },
    // TrackPlayerClass:{screen:TrackPlayerClass},
-    MarketPlaceContainer: { screen: MarketPlaceContainer },
-    Service: { screen: Service },
-  
+    MarketPlaceContainer: { screen: MarketPlaceContainer }, // Market place list 
+    CreateService: { screen: CreateService }, // Link to create service in 5 steps 
+    NoService: { screen: NoService },  // Link to added new services 
+    PurchasedServices: { screen: PurchasedServices },//List of services 
+    OfferedServices:{screen:OfferedServices},
 }, {
         initialRouteName: 'Login',
       //  initialRouteName: 'PlayAudioClass',
@@ -106,6 +107,15 @@ const AppStackNavigator = createStackNavigator({
 const RootNavigator = createAppContainer(AppStackNavigator)
 export default RootNavigator
 class CoSoundApp extends Component {
+    componentDidCatch(error, info) {
+       // console.log("error===",error, "info===",info)
+        // bugsnag.notify({error: error, info:info});
+        bugsnag.notify(error);
+        
+        
+
+      //  this.setState({hasError: true});
+      }
     render() {
         return (
             <Provider store={store}>

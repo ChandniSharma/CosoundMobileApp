@@ -9,12 +9,14 @@ import { serviceActions, cartActions } from "../../actions";
 
 import ServiceComponent from "../../views/ServiceComponent";
 
+
 class Service extends React.PureComponent {
   componentDidMount() {
     this._restCalls();
   }
 
   componentDidUpdate(prevProps) {
+   
     if (
       getValueFromParams(prevProps.navigation.state.params, "id") !==
       getValueFromParams(this.props.navigation.state.params, "id")
@@ -29,7 +31,8 @@ class Service extends React.PureComponent {
   _restCalls = () => {
     if (!isNull(this._getServiceId())) {
       this._fetchService(this._getServiceId()).then(() => {
-       // performWow(this.props.wowActions);
+       
+      console.log(" Fetch reviews .... ");
         this._fetchReviews(1);
       });
     }
