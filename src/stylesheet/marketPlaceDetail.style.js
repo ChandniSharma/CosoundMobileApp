@@ -162,7 +162,9 @@ export default {
         marginLeft: '5%',
         marginRight: '5%',
         textAlign: 'justify',
-        lineHeight: 20
+        lineHeight: 20,
+        marginTop:'2%',
+        marginBottom:'2%'
     },
     viewSubtotal: {
 

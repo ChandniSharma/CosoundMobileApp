@@ -40,24 +40,28 @@ export default class SettingsHeader extends Component {
 
       <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.headerColorMix} style={{ width: '100%', height: '100%' }}>
 
-        <Animatable.View ref={'userImageView'} style={{ marginBottom: '5%', marginTop: '5%' }}>
+        <Animatable.View ref={'userImageView'} style={{ marginBottom: '5%', marginTop: '5%', justifyContent: 'center', }}>
 
           <View style={styles.findingView}>
 
-            {profilePic?<TouchableOpacity style={{ marginTop: '20%', height: 200, width: 100 }} onPress={this.chooseFile.bind(this)}>
-              {profilePic.isRequesting ? <ActivityIndicator color="gray" size={"large"} style={{marginTop: '85%'}}/>
+            {profilePic?
+            <View >
+            <TouchableOpacity style={{  height: 200, width: 100, justifyContent:'center' }} onPress={this.chooseFile.bind(this)}>
+              {profilePic.isRequesting ? <ActivityIndicator color="gray" size={"large"} />
                 :<Image
                   source={{
                     uri: getThumbnail(user.data)
                   }}
-                  style={{ width: 100, height: 100, borderRadius: 50, marginTop: '20%' }}
+                  style={{ width: 100, height: 100, borderRadius: 50}}
                 />
               }
-            </TouchableOpacity>:<Image
+            </TouchableOpacity>
+            </View>
+            :<Image
                   source={{
                     uri: getThumbnail(user.data)
                   }}
-                  style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
+                  style={{ width: 100, height: 100, borderRadius: 50 }}
                 />}
 
           </View>

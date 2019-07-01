@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import { isEmpty } from "lodash";
 import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, FlatList, ActivityIndicator } from 'react-native';
  import styles from "../../../stylesheet/serviceList.style";
+ import {  getServiceThumbnail } from "../../../utils";
 
 import SortList from '../../common/SortList';
 import NoDataWithLink from '../../common/NoDataWithLink';
@@ -10,24 +11,37 @@ import * as Animatable from 'react-native-animatable'
 
 export default class ServiceListing extends Component {
 
-  fadeInUp = () => this.refs.viewServiceCard.fadeInUp(1000);
+  fadeInUpMainView = () => this.refs.viewServiceCard.fadeInUp(1000);
+  fadeInUpList = () => this.refs.viewList.fadeInUp(2000);
 
   componentDidMount() {
     if(!isEmpty(this.props.services.data)){
-      this.fadeInUp();
+      setTimeout(() => {
+        this.fadeInUpMainView();
+      }, 100);
+      // setTimeout(() => {
+      //   this.fadeInUpList();
+      //  }, 800);
+    
     }
   }
+
+   getServiceLink = (item, id = null) => {
+    console.log("item 30==sss===",item)
+    this.props.navigation.navigate('Service', { slug: item.category.slug, subcategorySlug: item.sub_category.slug, id: item.id});
+
+  };
 
   renderServiceItem = (itemDetail) => {
 
     let item = itemDetail.item;
+    console.log("item===",item)
     return (
       <View>
-
-        <TouchableHighlight>
+        <TouchableOpacity onPress={() => this.getServiceLink(item)}>
           <View>
             <View style={{ flexDirection: 'row' }}>
-              <Image style={{ marginLeft: '2%', marginTop: '2%' }} source={require('../../../assets/avatar3.jpg')} />
+              <Image style={{ marginLeft: '2%', marginTop: '2%', width: 100, height: 100, borderRadius: 10  }} source={{uri :getServiceThumbnail(item.media)}} />
               <View style={{ margin: '2%', flex: 1 }}>
 
                 <Text style={[styles.textSubTitleNotSelected, { flex: 0.8, color: item.is_read ? "#20acac" : "#8e5acd" }]}>{item.title} </Text>
@@ -39,7 +53,7 @@ export default class ServiceListing extends Component {
             </View>
             <View style={{ width: '80%', height: 1, backgroundColor: 'rgba(38,38,38, 0.52)', marginTop: '2%', alignSelf: 'center' }} />
           </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>)
   }
 
@@ -53,12 +67,13 @@ export default class ServiceListing extends Component {
       loadMore,
       noDataDesc,
       callingAPI,
-      noDataMessage
+      noDataMessage,
+      navigation
     } = this.props;
 
     const { data, isRequesting, error } = services;
     return (
-      <View>
+      <Animatable.View ref={'viewServiceCard'}>
         {isRequesting && !callingAPI && (
           <ActivityIndicator color="gray" size="large" style={{ marginTop: '10%' }} />
         )}
@@ -73,10 +88,13 @@ export default class ServiceListing extends Component {
             linkName={linkName}
             noDataDesc={noDataDesc}
             noDataMessage={noDataMessage}
+            navigation ={navigation}
+            
           />
+        
         )}
         {!isEmpty(data) && (
-          <Animatable.View ref={'viewServiceCard'}>
+          <Animatable.View ref={'viewList'}>
 
             <FlatList
               renderItem={this.renderServiceItem}
@@ -98,15 +116,18 @@ export default class ServiceListing extends Component {
         {!isEmpty(data) &&
           <View style={styles.viewMore}>
             <TouchableHighlight underlayColor="#25b6ad" style={[styles.seeMoreBtn]} onPress={() => loadMore()}>
-              <Text style={styles.textViewMore} > {callingAPI ? "Fetching..." : "View More..."}</Text>
+              <Text style={styles.textSeeMoreBtnTitle} > {callingAPI ? "Fetching..." : "View More..."}</Text>
             </TouchableHighlight>
           </View>
         }
-        {!isEmpty(data) && <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton, { marginTop: '5%', justifyContent: 'center', }]} onPress={() => this.props.navigation.navigate("CreateService")}>
-          <Text style={[styles.textButtonTitle, { marginBottom: '15%' }]} >Create Service</Text>
-        </TouchableHighlight>}
+     
 
-      </View>
+        {!isEmpty(data) && <View style={{ marginTop: '5%',   marginLeft: "15%", marginRight: "15%",marginBottom: '15%',}}>
+        <TouchableHighlight underlayColor="#25b6ad" style={[styles.serviceTitleBtn]} onPress={() => this.props.navigation.navigate("CreateService")}>
+                <Text style={[styles.textCreateService]} >Create Service</Text>
+            </TouchableHighlight>
+        </View>}
+      </Animatable.View>
     );
   }
 };

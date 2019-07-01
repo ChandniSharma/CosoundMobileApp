@@ -266,15 +266,15 @@ const getBreadCrumbsForService = data => {
   let links = [];
   if (!isEmpty(data)) {
     const category = {
-      link: getCategoryLink(data),
+      link: data,
       name: data.category.name
     };
     const subCategory = {
-      link: getSubCategoryLink(data),
+      link: data,
       name: data.sub_category.name
     };
     const product = {
-      link: getServiceLink(data),
+      link: data,
       name: data.title
     };
 

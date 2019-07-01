@@ -362,7 +362,7 @@ class SideMenu extends Component {
             viewComplete = <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableHighlight style={{ margin: '2%' }} onPress={() => this.props.navigation.navigate('PurchasedServices')}>
                 <View style={{ flexDirection: "row" }}>
-                        <IconEntypo name="chat" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, color: 'white' }} />
+                        <Icon4 name="music-box-outline" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 18, color: 'white' }} />
                         <Text style={[styles.textModalData, { marginRight: '5%' }]}>{item.item.name}</Text>
 
                     </View>

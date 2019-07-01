@@ -12,6 +12,11 @@ export default {
     container: {
         flex: 1,
     },
+    viewMore: {
+        padding: 10,
+        justifyContent: "center",
+        alignItems: "center",
+    },
     topUserImage:{
         marginTop: "5%",
         width: 100,
@@ -26,6 +31,31 @@ export default {
         shadowOpacity: 0.8,
         marginBottom: '5%',
     },
+    textSeeMoreBtnTitle: {
+        fontSize: 16,
+        color:'#ff277b',
+        fontWeight:'500',
+        
+    },
+    seeMoreBtn: {
+        borderRadius: 25,
+        height: 50,
+
+        alignItems: 'center',
+        justifyContent: 'center',
+
+        shadowColor: 'rgba(0,0,0,0.12)',
+        shadowOffset: {
+            width: .4,
+            height: .11
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+
+        //marginBottom:'10%',
+       // backgroundColor: '#ff277b'
+    },
+
     buttonSort1:{
         height:40,
      //    shadowColor: 'rgba(0,0,0,1)',
@@ -145,6 +175,30 @@ export default {
         //marginBottom:'10%',
         backgroundColor: '#ff277b',
         marginBottom:'15%',
+    },
+    serviceTitleBtn:{
+        borderRadius: 25,
+        height: 50,
+
+        alignItems: 'center',
+        justifyContent: 'center',
+      
+        shadowColor: 'rgba(0,0,0,0.12)',
+        shadowOffset: {
+            width: .4,
+            height: .11
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        justifyContent: 'center',
+        //marginBottom:'10%',
+        backgroundColor: '#ff277b',
+        
+    },
+    textCreateService:{
+        fontSize: 16,
+        color:'white',
+        fontWeight:'500',
     },
     textButtonTitle: {
         fontSize: 16,

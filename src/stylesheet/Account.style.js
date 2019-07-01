@@ -127,6 +127,25 @@ export default {
         color: 'rgba(38, 38, 38, 0.52)',
         fontFamily: 'Montserrat-light',
     },
+    serviceTitleBtn:{
+        borderRadius: 25,
+        height: 50,
+
+        alignItems: 'center',
+        justifyContent: 'center',
+      
+        shadowColor: 'rgba(0,0,0,0.12)',
+        shadowOffset: {
+            width: .4,
+            height: .11
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 1,
+        justifyContent: 'center',
+        //marginBottom:'10%',
+        backgroundColor: '#ff277b',
+        
+    },
     loginButton: {
         borderRadius: 25,
         height: 50,
@@ -154,7 +173,7 @@ export default {
         // marginBottom:'15%'
     },
     findingView: {
-        backgroundColor: 'white',
+        backgroundColor: 'red',
         width: 100,
         height: 100,
         borderRadius: 50,

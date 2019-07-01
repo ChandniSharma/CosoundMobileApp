@@ -3,5 +3,5 @@ export const noDataProps = {
   noDataMessage: "You don't offer any services :(",
   noDataDesc: "Want to create your first one now?",
   linkName: "Create Service",
-  link: "/create-service"
+  link: "CreateService"
 };
