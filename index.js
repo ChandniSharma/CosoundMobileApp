@@ -43,7 +43,7 @@ import NoService from './src/views/NoService';
 import Checkout from './src/views/Checkout';
 import GooglesignIn from './src/views/common/GooglesignIn';
 import CreateService from './src/containers/CreateService';
-import CheckoutComponent from './src/views/CheckoutComponent';
+import CheckoutComponent from './src/views/CheckoutComponent'; // payment options
 // import PurchasedServicesComponent from './src/views/PurchasedServicesComponent';
 //import audioWave from './src/views/common/audioWaveView';
 import PurchasedServices from './src/containers/PurchasedServices';
@@ -54,12 +54,15 @@ import Chat from './src/views/Chat';
 //import SoundPlayer from '/src/views/common/SoundPlayer';
 import PlayAudioClass from './src/views/PlayAudioClass';
 import OfferedServices from './src/containers/OfferedServices';
+import Payments from './src/views/PaymentDetails';
 
 import { Client } from 'bugsnag-react-native';
+import { paymentDetails } from './src/reducers/payment';
 // import { offeredServices } from './src/actions/userServices';
 const bugsnag = new Client("f222428bf3f339bca63b207187ca1bf1");
 
 const AppStackNavigator = createStackNavigator({
+    Payments:{screen:Payments},
     Home: { screen: Home },
     Chat: { screen: Chat },
     Login: { screen: Login },

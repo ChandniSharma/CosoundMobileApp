@@ -19,15 +19,27 @@ export default class SignupSuggestions extends Component {
     constructor(props) {
         super(props);
     }
-    fadeInMain = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+   // fadeInMain = () => this.refs.mainView.fadeIn(1000).then(this.fadeInView2())
 
-    fadeInView1 = () => this.refs.view1.fadeIn().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
-    fadeInView2 = () => this.refs.view2.fadeIn().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
-    // bounce = () => this.view.bounce(800).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
+    // fadeInView1 = () => this.refs.view1.fadeInUp().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+    // fadeInView2 = () => this.refs.view2.fadeInUp().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+    // // bounce = () => this.view.bounce(800).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
 
+    
+      fadeInView2 = () => this.refs.view2.fadeInUp().then(setTimeout(() => {
+        this.fadeInView3();
+      }, 2))
+    
+      fadeInView3 = () => this.refs.view3.fadeInUp().then(setTimeout(() => {
+        this.fadeInView4();
+      }, 2))
+
+     
+      fadeInView4 = () => this.refs.view4.fadeInUp().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+    
     componentDidMount() {
-        this.fadeInMain();
-        this.fadeInView2();
+        //this.fadeInMain();
+         this.fadeInView2();
     }
     personAddOrNot() {
         this.setState({ isPersonAdd: !this.state.isPersonAdd });
@@ -100,17 +112,23 @@ export default class SignupSuggestions extends Component {
 
 
                             <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Here are suggested connections ..</Animatable.Text>
-                            <Animatable.View ref={'view2'} style={styles.viewDescription}>
+                            <Animatable.View ref={'view2'} >
+                            <View ref={'view2'} style={styles.viewDescription}>
                                 <Text style={styles.textMusicDescription2}>We think these suggestions are going to  help you move forward! </Text>
-                            </Animatable.View>
+                            </View>
                             <Text style={styles.textTitle}> Artist/Musicians</Text>
+                            </Animatable.View>
+
+                            <Animatable.View ref={'view3'} >
                             {isEmpty(data) && (
                                 <View>
                                     <Text style={styles.textTitle}> We didn't find anyone to suggest</Text>
                                     <Text style={styles.textTitle}> Click Done to enter</Text>
                                 </View>
                             )}
+                           </Animatable.View>
                         </View>
+                        <Animatable.View ref={'view4'} >
                         <FlatList
                             style={styles.flatListStyle}
                             data={data}
@@ -130,6 +148,7 @@ export default class SignupSuggestions extends Component {
                                 <Text style={styles.textButtonTitle} >Done</Text>
                             </TouchableHighlight>
                         </View>
+                        </Animatable.View >
                         <CustomFooter />
                     </Animatable.View>
                 </ScrollView>

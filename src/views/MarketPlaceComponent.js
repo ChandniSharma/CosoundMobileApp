@@ -171,11 +171,13 @@ let screenWidth = deviceWidth - 100;
          this.spinValue = new Animated.Value(0);
     }
 
-    fadeInMainView = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+    fadeInMainView = () => this.refs.mainView.fadeInUp(1000).then(setTimeout(() => {
+        this.fadeInUpGraphicDesign()
+    }, 200))
 
     fadeInMarketDetailView = () => this.refs.marketPlaceDetailViewRef.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
 
-    fadeInDownGraphicDesign = () => this.refs.flatListGraphicDesign.fadeInDown(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+   // fadeInDownGraphicDesign = () => this.refs.flatListGraphicDesign.fadeInDown(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
 
     fadeInUpGraphicDesign = () => this.refs.flatListGraphicDesign.fadeInUp(1000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
 

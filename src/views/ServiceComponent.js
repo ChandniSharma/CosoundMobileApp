@@ -94,10 +94,33 @@ export default class ServiceComponent extends Component {
 
     fadeInMarketDetailView = () => this.refs.marketPlaceDetailViewRef.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
 
+moveViewUp1 = () => this.refs.view1.fadeInUp(1000).then(setTimeout(() => {
+    this.moveViewUp2();
+  }, 100));
+
+moveViewUp2 = () => this.refs.view2.fadeInUp(1000).then(setTimeout(() => {
+    this.moveViewUp3();
+  }, 500));
+
+ moveViewUp3 = () => this.refs.view3.fadeInUp(1000).then(setTimeout(() => {
+    this.moveViewUp4();
+  }, 500));
+
+ moveViewUp4 = () => this.refs.view4.fadeInUp(1000).then(setTimeout(() => {
+    this.moveViewUp5();
+  }, 500));
+
+  moveViewUp5 = () => this.refs.view5.fadeInUp(1000).then(setTimeout(() => {
+    this.moveViewUp6();
+  }, 500));
+
+ moveViewUp6 = () => this.refs.view6.fadeInUp(1000).then(endState => endState.finished ? "finish " : console.log('finish not'));
+
     componentDidMount = () => {
         // setTimeout(() => {
         //      this.fadeInMarketDetailView();
         // }, 10);
+         this.moveViewUp1();
 
     };
     hidePopup() {
@@ -193,9 +216,9 @@ export default class ServiceComponent extends Component {
 
                 <KeyboardAwareScrollView onScroll={this._onScroll} style={{ backgroundColor: 'rgb(245, 245,245)' }}>
 
-                    <Animatable.View ref={'marketPlaceDetailViewRef'} style={{ flex: 1, backgroundColor: 'rgb(245, 245, 245)' }}>
+                    <View style={{ flex: 1, backgroundColor: 'rgb(245, 245, 245)' }}>
 
-                        <View>
+                        <Animatable.View ref={'view1'}>
                             <View style={{ flexDirection: 'row', flex: 0.1, height: 40, paddingTop: '5%' }}>
                             {breadCrumbArray.map((item, index) => {
                                 return(
@@ -222,9 +245,9 @@ export default class ServiceComponent extends Component {
                                 //     </TouchableOpacity>
                                 // </View> */}
                             </View>
-                        </View>
+                        </Animatable.View>
 
-                        <View style={[styles.viewBackground, { flex: 0.2, }]}>
+                       <Animatable.View ref={'view2'} style={[styles.viewBackground, { flex: 0.2, }]}>
                             <View style={{ marginTop: '2%', width: '100%' }}>
                                 { data.media ? <Image style={{ width: '100%', height: 200 ,alignSelf:'center' }} source={{ uri: getServiceImage(data.media) }} /> :null}
                             </View>
@@ -238,13 +261,13 @@ export default class ServiceComponent extends Component {
                                     data.delivery_time_unit
                                     }`} </Text>
                             </View>
-                        </View>
+                        </Animatable.View>
 
-                        <View style={{ backgroundColor: 'white', marginBottom: '5%', marginTop: '5%', flex: 0.1 }}>
+                        <Animatable.View ref={'view3'} style={{ backgroundColor: 'white', marginBottom: '5%', marginTop: '5%', flex: 0.1 }}>
                             <Text style={[styles.textListTitle, { height: 50 }]}> About this Job </Text>
                             <Text style={[styles.textJobDescription]}>{data.about}</Text>
-                        </View>
-                        <View style={{ flex: 0.15 }}>
+                        </Animatable.View>
+                        <Animatable.View ref={'view4'} style={{ flex: 0.15 }}>
 
                             <View style={{ backgroundColor: 'white', alignSelf: 'center', borderRadius: 20, marginBottom: '5%', width: '90%', alignItems: 'center' }}>
 
@@ -307,14 +330,16 @@ export default class ServiceComponent extends Component {
                                     marginBottom: '15%', marginLeft: "15%",
                                     marginRight: "15%",
                                 }}>
-                                    <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton]}>
+                                    <TouchableHighlight onPress={() => _addToCart()}  underlayColor="#25b6ad" style={[styles.loginButton]}>
                                         <Text style={[styles.ProcessBtnTitle]}>Process to Order</Text>
                                     </TouchableHighlight>
                                 </View>
 
 
                             </View>
-                        </View>
+                        </Animatable.View>
+
+                        <Animatable.View ref={'view5'} >
 
                         <View style={{ marginTop: '2%', marginBottom: '5%', marginLeft: '15%', marginRight: '15%' }}>
                             <TouchableHighlight underlayColor="#25b6ad" style={[styles.recentButton]}>
@@ -324,11 +349,12 @@ export default class ServiceComponent extends Component {
                                 </View>
                             </TouchableHighlight>
                         </View>
-                        <View style={{ flexDirection: 'row', marginTop: '5%', alignSelf: 'center' }}>
+                        <View style={{ flexDirection: 'row', marginTop: '5%', alignSelf: 'center', justifyContent:'center' }}>
                             <StarView starCount={3} />
                             <Text style={[styles.textRatingCount]}>5</Text>
                         </View>
-
+                        </Animatable.View>
+                        <Animatable.View ref={'view6'} >
                         <View style={{ flex: 0.4, marginBottom: '2%' }}>
                             <FlatList
                                 data={this.arrayComments}
@@ -336,8 +362,8 @@ export default class ServiceComponent extends Component {
                                 keyExtractor={(item, index) => index.toString()}
                             />
                         </View>
-
-                    </Animatable.View>
+                        </Animatable.View>
+                    </View>
                 </KeyboardAwareScrollView>
 
                 {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation} hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}

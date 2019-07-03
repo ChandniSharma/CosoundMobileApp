@@ -17,10 +17,23 @@ export default class SignupStep2 extends Component {
     constructor(props) {
         super(props);
     }
-    fadeInMain = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"));
-    fadeIn = () => this.refs.titleText.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
-    fadeIn = () => this.refs.view1.fadeIn().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
-    fadeIn = () => this.refs.view2.fadeIn().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+    fadeInMain = () => this.refs.mainView.fadeIn(1000).then(setTimeout(() => {
+        this.fadeInView1();
+    }, 10));
+    // fadeInDownLogo =() => this.refs.logoView.fadeInDown(1000).then(setTimeout(() => {
+    //     this.fadeInView1();
+    // }, 20));
+
+    fadeInView1 = () => this.refs.view1.fadeInUp().then(setTimeout(() => {
+        this.fadeInView2();
+    }, 30))
+    fadeInView2 = () => this.refs.view2.fadeInUp().then(setTimeout(() => {
+        this.fadeInUpProgressView();
+    }, 60))
+
+    fadeInUpProgressView = () => this.refs.progressView.fadeInUp().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+
+   
     componentDidMount() {
         this.fadeInMain();
     }
@@ -37,9 +50,10 @@ export default class SignupStep2 extends Component {
                         </View>
                         <View>
                             <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.goToTabIndex(1)} />
+                           <Animatable.View ref={'logoView'} style={{alignSelf:'center', width:'70%'}}>
                             <Logo color={'#ffffff'} style={styles.imgMainTitle} width="230px" height="44px" />
-
-                            <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Are you...</Animatable.Text>
+                            </Animatable.View>
+                            <Animatable.Text animation="fadeInUp" style={styles.textWelcome}>Are you...</Animatable.Text>
 
                             <Animatable.View ref={'view1'} style={{ marginBottom: '5%' }}>
                                 <TouchableHighlight onPress={() => handleChange('type', 'musician')} underlayColor="white" style={[styles.bigButton]}>
@@ -64,7 +78,7 @@ export default class SignupStep2 extends Component {
 
                         {/* Progress bar  */}
 
-                        <View ref={'progressBarView'} style={[styles.viewProgressbar]}>
+                        <Animatable.View ref={'progressView'} style={[styles.viewProgressbar]}>
                             <View style={styles.viewSelected}>
                                 <View style={styles.viewCircleCompleted}>
                                     <Image style={styles.imgTickMarkInCompleted} source={require('../assets/tickMark.png')} />
@@ -94,7 +108,7 @@ export default class SignupStep2 extends Component {
                                 <Text style={styles.textNotSelected}>Meet the music</Text>
                             </View>
 
-                        </View>
+                        </Animatable.View>
 
                     </Animatable.View>
                     <CustomFooter />

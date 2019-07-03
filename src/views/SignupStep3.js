@@ -32,10 +32,19 @@ export default class SignupStep3Musician extends Component {
   }
   fadeInMain = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
 
-  //fadeInProgressBarView = () => this.refs.progressBarView.fadeIn(2000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+  fadeInView1 = () => this.refs.view1.fadeInUp().then(setTimeout(() => {
+    this.fadeInView2();
+  }, 30))
+  fadeInView2 = () => this.refs.view2.fadeInUp().then(setTimeout(() => {
+    this.fadeInUpProgressView();
+  }, 60))
+
+  fadeInUpProgressView = () => this.refs.progressView.fadeInUp().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+
 
   componentDidMount() {
-    this.fadeInMain();
+    // this.fadeInMain();
+    this.fadeInView1();
     this.props.fetchGenres();
     //  this.fadeInProgressBarView();
   }
@@ -69,9 +78,9 @@ export default class SignupStep3Musician extends Component {
         let filePath = source.uri;
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-    //    this.props.uploadProfilePic('avatar', source)
-      // this.props.handleFileChange('avatar', 'data:image/jpeg;base64,' + source.data)
-       this.props.handleFileChange("avatar", filePath)
+        //    this.props.uploadProfilePic('avatar', source)
+        // this.props.handleFileChange('avatar', 'data:image/jpeg;base64,' + source.data)
+        this.props.handleFileChange("avatar", filePath)
       }
     });
   };
@@ -104,40 +113,44 @@ export default class SignupStep3Musician extends Component {
             <View style={{ position: 'absolute', top: 0 }}>
               <WaveAnimation />
             </View>
-            <View>
-              <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.goToTabIndex(2)} />
+            {/* <View> */}
+            <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.goToTabIndex(2)} />
 
-              <Logo color={'#ffffff'} style={{ flex: 0.7, alignSelf: 'center', marginTop: '13%' }} width="230px" height="44px" />
-              {data.type === 'professional' && <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>
-                Nice! Welcome
+            <Logo color={'#ffffff'} style={{ flex: 0.7, alignSelf: 'center', marginTop: '13%' }} width="230px" height="44px" />
+            {data.type === 'professional' && <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>
+              Nice! Welcome
                     </Animatable.Text>
-              }
+            }
 
-              {data.type === 'musician' && <Animatable.Text animation="fadeInDown" style={styles.textWelcome}> Awesome, You're a musician
+            {data.type === 'musician' && <Animatable.Text animation="fadeInUp" style={styles.textWelcome}> Awesome, You're a musician
                     </Animatable.Text>
-              }
+            }
 
-              <Animatable.View ref={'view1'} style={{ marginBottom: '5%' }}>
+            <Animatable.View ref={'view1'} style={{ marginBottom: '5%' }}>
 
-                <View style={styles.findingView}>
 
-                  <TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }} onPress={this.chooseFile.bind(this)}>
+
+              <View style={styles.findingView}>
+                <View style={{ alignSelf: 'center', width: 100, height: 100, borderRadius: 50, justifyContent: 'center', }}>
+                  <TouchableOpacity style={{ justifyContent: 'center', }} onPress={this.chooseFile.bind(this)}>
                     {/* <TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }}> */}
                     {!data.url ?
-                      <Icon name="camera" style={{ fontSize: 60, marginTop: '50%', color: 'gray', alignSelf: 'center', }} /> :
+                      <Icon name="camera" style={{ fontSize: 60, color: 'gray', alignSelf: 'center', }} /> :
                       <Image
                         source={{
                           uri: data.url,
                         }}
-                        style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
+                        style={{ width: 100, height: 100, borderRadius: 50 }}
                       />}
 
                   </TouchableOpacity>
-
                 </View>
-              </Animatable.View>
-              <Animatable.Text animation="fadeIn" style={styles.loginText}> Upload Photo</Animatable.Text>
+              </View>
+              <Animatable.Text style={styles.loginText}> Upload Photo</Animatable.Text>
 
+            </Animatable.View>
+
+            <Animatable.View ref={'view2'}>
               <TextInput
                 style={styles.inputStyle}
                 placeholder={'Email'}
@@ -191,147 +204,149 @@ export default class SignupStep3Musician extends Component {
                 name={"last_name"}
               />
               {errors.last_name ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.last_name}</Animatable.Text> : null}
-            </View>
 
-            <DatePicker
-              style={styles.datePickerStyle}
-              date={data.dob}
-              mode="date"
-              placeholder="Date of Birth"
-              format="DD-MM-YYYY"
-              //minDate="2016-05-01"
-              maxDate={new Date()}
-              confirmBtnText="Confirm"
-              cancelBtnText="Cancel"
-              customStyles={{
-                dateIcon: {
-                  position: 'absolute',
-                  left: -20,
-                  top: -1,
-                  marginLeft: -20,
-                  width: 35,
-                  height: 35
-                },
-                dateInput: {
-                  // marginLeft: 36,
-                  marginBottom: 15,
-                  shadowColor: 'rgba(0,0,0,0.7)',
-                  shadowOffset: {
-                    width: 2,
-                    height: 4
+
+              <DatePicker
+                style={styles.datePickerStyle}
+                date={data.dob}
+                mode="date"
+                placeholder="Date of Birth"
+                format="DD-MM-YYYY"
+                //minDate="2016-05-01"
+                maxDate={new Date()}
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                customStyles={{
+                  dateIcon: {
+                    position: 'absolute',
+                    left: -20,
+                    top: -1,
+                    marginLeft: -20,
+                    width: 35,
+                    height: 35
                   },
-                  shadowOpacity: 0.5,
-                  shadowRadius: 1,
-                  borderRadius: 8,
-                  backgroundColor: 'white',
-                  // marginLeft: '5%',
-                  // marginRight:'5%',
-                  height: 60,
-                  width: deviceWidth,
-                  fontFamily: 'Montserrat-Regular',
-                  fontWeight: '300',
-                  fontSize: 16,
-                  color: '#262626',
+                  dateInput: {
+                    // marginLeft: 36,
+                    marginBottom: 15,
+                    shadowColor: 'rgba(0,0,0,0.7)',
+                    shadowOffset: {
+                      width: 2,
+                      height: 4
+                    },
+                    shadowOpacity: 0.5,
+                    shadowRadius: 1,
+                    borderRadius: 8,
+                    backgroundColor: 'white',
+                    // marginLeft: '5%',
+                    // marginRight:'5%',
+                    height: 60,
+                    width: deviceWidth,
+                    fontFamily: 'Montserrat-Regular',
+                    fontWeight: '300',
+                    fontSize: 16,
+                    color: '#262626',
 
+                  }
+                  // ... You can check the source to find the other keys.
+                }}
+                onDateChange={(date) =>
+                  handleDateChange(date)
                 }
-                // ... You can check the source to find the other keys.
-              }}
-              onDateChange={(date) =>
-                handleDateChange(date)
-              }
-            />
+              />
 
-            <TextInput
-              style={styles.inputStyle}
-              placeholder={'Artist Name'}
-              onChangeText={val => handleChange('artist_name', val)}
-              value={data.artist_name}
-              name={"artist_name"}
-            />
-            {errors.artist_name ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.artist_name}</Animatable.Text> : null}
-            {error &&
-              error.error &&
-              error.error.artist_name &&
-              error.error.artist_name.map((item, index) => {
-                return <Animatable.Text animation="fadeIn" style={styles.errorText} key={index}> {item}</Animatable.Text>;
-              })}
+              <TextInput
+                style={styles.inputStyle}
+                placeholder={'Artist Name'}
+                onChangeText={val => handleChange('artist_name', val)}
+                value={data.artist_name}
+                name={"artist_name"}
+              />
+              {errors.artist_name ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.artist_name}</Animatable.Text> : null}
+              {error &&
+                error.error &&
+                error.error.artist_name &&
+                error.error.artist_name.map((item, index) => {
+                  return <Animatable.Text animation="fadeIn" style={styles.errorText} key={index}> {item}</Animatable.Text>;
+                })}
 
-            <MultiSelect
-              styleDropdownMenu={styles.multiSelectDownStyle}
-              styleInputGroup={styles.multiSelectStyle}
-              styleMainWrapper={{ marginLeft: '5%', marginRight: '5%', marginTop: '5%' }}
-              styleListContainer={styles.multiSelectListStyle}
-              hideTags
-              items={genres.data}
-              uniqueKey="value"
-              ref={(component) => { this.multiSelect = component }}
-              onSelectedItemsChange={(selectedItems) => handleMultiSelect(selectedItems, 'genres')}
-              selectedItems={data.genres}
-              selectText="Select Genres"
-              searchInputPlaceholderText="Select Genres"
-              onChangeInput={(text) => console.log(text)}
-              altFontFamily="Montserrat-light"
-              tagRemoveIconColor="black"
-              tagBorderColor="#CCC"
-              tagTextColor="#black"
-              selectedItemTextColor="rgb(60, 205, 53)"
-              selectedItemIconColor="rgb(60, 205, 53)"
-              itemTextColor="#000"
-              displayKey="label"
-              searchInputStyle={{ color: '#CCC' }}
-              submitButtonColor="#ff277b"
-              submitButtonText="Submit"
-              name="genres"
-            />
-            <View>
-              {this.multiSelect && this.multiSelect.getSelectedItemsExt(data.genres)}
-            </View>
-
-
-            {data.social_links.map((item, index) => {
-              if (item.isVisible) {
-                return (
-                  <View>
-                    <View
-                      key={index}
-                      style={[styles.viewSocial, { flexDirection: 'row', flex: 1 }]}
-                    >
-                      <TextInput
-                        style={[styles.socialInput, { flex: 0.85 }]}
-                        placeholder={'Social Links'}
-                        onSubmitEditing={() => handleKeyPress(item.id)}
-                        onChangeText={val => handleSocialLinks(item.id, val)}
-                        value={item.value}
-                        name={item.id}
-                      />
-
-                      {!item.isReady && (
-                        <TouchableOpacity onPress={() => addMoreSocials(item.id)} style={[styles.plusCircleBtn]}>
-                          <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} />
-                        </TouchableOpacity>
-                      )}
-
-                    </View>
-                    {errors[item.id] ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors[item.id]}</Animatable.Text> : null}
-                  </View>
-                );
-              }
-              return null;
-            })}
-
-
-
-            <TouchableHighlight onPress={signUp} underlayColor="#25b6ad" style={[styles.loginButton]}>
-              <View style={{ flexDirection: 'row', }}>
-          {signup.isRequesting ?<ActivityIndicator color="white" style={{marginTop:25}} />: <Text style={styles.textButtonTitle} >Next</Text> }
-                <Icon1 name="arrowright" style={{ marginLeft: '1%', fontSize: 20, color: 'white' }} /> 
+              <MultiSelect
+                styleDropdownMenu={styles.multiSelectDownStyle}
+                styleInputGroup={styles.multiSelectStyle}
+                styleMainWrapper={{ marginLeft: '5%', marginRight: '5%', marginTop: '5%' }}
+                styleListContainer={styles.multiSelectListStyle}
+                hideTags
+                items={genres.data}
+                uniqueKey="value"
+                ref={(component) => { this.multiSelect = component }}
+                onSelectedItemsChange={(selectedItems) => handleMultiSelect(selectedItems, 'genres')}
+                selectedItems={data.genres}
+                selectText="Select Genres"
+                searchInputPlaceholderText="Select Genres"
+                onChangeInput={(text) => console.log(text)}
+                altFontFamily="Montserrat-light"
+                tagRemoveIconColor="black"
+                tagBorderColor="#CCC"
+                tagTextColor="#black"
+                selectedItemTextColor="rgb(60, 205, 53)"
+                selectedItemIconColor="rgb(60, 205, 53)"
+                itemTextColor="#000"
+                displayKey="label"
+                searchInputStyle={{ color: '#CCC' }}
+                submitButtonColor="#ff277b"
+                submitButtonText="Submit"
+                name="genres"
+              />
+              <View>
+                {this.multiSelect && this.multiSelect.getSelectedItemsExt(data.genres)}
               </View>
 
 
-            </TouchableHighlight>
+              {data.social_links.map((item, index) => {
+                if (item.isVisible) {
+                  return (
+                    <View>
+                      <View
+                        key={index}
+                        style={[styles.viewSocial, { flexDirection: 'row', flex: 1 }]}
+                      >
+                        <TextInput
+                          style={[styles.socialInput, { flex: 0.85 }]}
+                          placeholder={'Social Links'}
+                          onSubmitEditing={() => handleKeyPress(item.id)}
+                          onChangeText={val => handleSocialLinks(item.id, val)}
+                          value={item.value}
+                          name={item.id}
+                        />
+
+                        {!item.isReady && (
+                          <TouchableOpacity onPress={() => addMoreSocials(item.id)} style={[styles.plusCircleBtn]}>
+                            <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} />
+                          </TouchableOpacity>
+                        )}
+
+                      </View>
+                      {errors[item.id] ? <Animatable.Text animation="fadeIn" style={styles.errorText}> {errors[item.id]}</Animatable.Text> : null}
+                    </View>
+                  );
+                }
+                return null;
+              })}
+
+
+              <View style={styles.viewContainButton}>
+                <TouchableHighlight onPress={signUp} underlayColor="#25b6ad" style={[styles.loginButton]}>
+                {signup.isRequesting ? <ActivityIndicator color="white" /> :<View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                   <Text style={styles.textButtonTitle} >Next</Text>
+                    <Icon1 name="arrowright" style={{ marginLeft: '1%', fontSize: 20, color: 'white' }} />
+                  </View>}
+                </TouchableHighlight>
+              </View>
+
+              {/* </View> */}
+            </Animatable.View>
 
             {/* Bottom progress view  */}
-            <View ref={'progressBarView'} style={[styles.viewProgressbar]}>
+            <Animatable.View ref={'progressView'} style={[styles.viewProgressbar]}>
               <View style={styles.viewSelected}>
                 <View style={styles.viewCircleCompleted}>
                   <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />
@@ -361,7 +376,7 @@ export default class SignupStep3Musician extends Component {
                 </View>
                 <Text style={styles.textNotSelected}>Meet the music</Text>
               </View>
-            </View>
+            </Animatable.View>
 
 
           </Animatable.View>

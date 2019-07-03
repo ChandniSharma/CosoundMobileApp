@@ -23,8 +23,18 @@ export default class SignupStep5 extends Component {
     fadeIn = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
     fadeIn = () => this.refs.titleText.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
 
-    fadeIn = () => this.refs.view1.fadeIn().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
-    fadeIn = () => this.refs.view2.fadeIn().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+
+
+    fadeInView1 = () => this.refs.view1.fadeInUp().then(setTimeout(() => {
+        this.fadeInView2();
+      }, 30))
+      fadeInView2 = () => this.refs.view2.fadeInUp().then(setTimeout(() => {
+        this.fadeInUpProgressView();
+      }, 60))
+    
+      fadeInUpProgressView = () => this.refs.progressView.fadeInUp().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+    
+
 
     // bounce = () => this.view.bounce(800).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
 
@@ -74,7 +84,7 @@ export default class SignupStep5 extends Component {
 
                         {/* Progress bar  */}
 
-                        <View ref={'progressBarView'} style={[styles.viewProgressbar]}>
+                        <Animatable.View ref={'progressView'} style={[styles.viewProgressbar]}>
 
                             <View style={styles.viewSelected}>
                                 <View style={styles.viewCircleCompleted}>
@@ -108,7 +118,7 @@ export default class SignupStep5 extends Component {
                                 <Text style={styles.textSelected}>Meet the music</Text>
                             </View>
 
-                        </View>
+                        </Animatable.View>
 
                        
                     </Animatable.View>

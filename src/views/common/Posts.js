@@ -198,7 +198,12 @@ class Posts extends React.PureComponent {
 
         }
     }
+    fadeInUpRow = () => this.refs.viewRow.fadeInUp(1000);
     componentDidMount() {
+        // setTimeout(() => {
+        //     this.fadeInUpRow();
+        // }, 1000);
+       
     }
 
     /**
@@ -552,6 +557,7 @@ class Posts extends React.PureComponent {
         // Action, delete option if self created profile
 
         return (
+            <Animatable.View ref={'viewRow'}>
             <TouchableWithoutFeedback onPress={() => this.setState({ isPostOptionShow: false })}>
                 <View style={{
                     width: "100%",
@@ -680,6 +686,7 @@ class Posts extends React.PureComponent {
                     }
                 </View>
             </TouchableWithoutFeedback>
+            </Animatable.View>
         )
     };
 

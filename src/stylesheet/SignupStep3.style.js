@@ -377,14 +377,19 @@ export default {
         alignSelf: 'flex-end',
         height: 20
     },
+    viewContainButton:{
+        marginLeft: "15%",
+        marginRight: "15%",
+        marginTop: '5%',
+        marginBottom: '5%',
+    },
     loginButton: {
         borderRadius: 25,
         height: 50,
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'center',
-        marginLeft: "15%",
-        marginRight: "15%",
+       
         shadowColor: 'rgba(0,0,0,0.12)',
         shadowOffset: {
             width: .4,
@@ -392,11 +397,8 @@ export default {
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
-
         //marginBottom:'10%',
         backgroundColor: '#ff277b',
-        marginTop: '5%',
-        marginBottom: '5%',
     },
     plusCircleBtn: {
         // color: '#8E5ACD',
@@ -545,7 +547,7 @@ export default {
         fontWeight: '500',
         height: 30,
         alignSelf: 'center',
-        marginTop: '20%',
+        // marginTop: '20%',
     },
     viewShareButtons: {
         flexDirection: 'row',

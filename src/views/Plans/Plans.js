@@ -31,14 +31,20 @@ export default class SignupStep5 extends Component {
     }
     fadeInMain = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
 
-    fadeInView1 = () => this.refs.view1.fadeIn().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
-    fadeInView2 = () => this.refs.view2.fadeIn().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+    fadeInView1 = () => this.refs.view1.fadeInUp().then(setTimeout(() => {
+        this.fadeInView2();
+    }, 30))
+    fadeInView2 = () => this.refs.view2.fadeInUp().then(setTimeout(() => {
+        this.fadeInView3();
+    }, 60))
+
+    fadeInView3 = () => this.refs.view3.fadeInUp().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
 
     // bounce = () => this.view.bounce(800).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
 
     componentDidMount() {
-        this.fadeInMain();
-        this.fadeInView2();
+        //  this.fadeInMain();
+        this.fadeInView1();
     }
     personAddOrNot() {
 
@@ -90,48 +96,49 @@ export default class SignupStep5 extends Component {
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 <ScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 1 }}>
                     <Animatable.View ref={"mainView"} style={{ flex: 0.9 }}>
-                    <View style={{ position: 'absolute',top:0}}>
+                        <View style={{ position: 'absolute', top: 0 }}>
                             <WaveAnimation />
                         </View>
                         {/* <CustomHeader /> */}
                         <View style={{ backgroundColor: 'transparent' }}>
                             <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.navigation.goBack()} />
-                            <Logo color={'#ffffff'} style={{flex: 0.7, alignSelf: 'center',marginTop:'13%'}} width="230px" height="44px" />
+                            <Logo color={'#ffffff'} style={{ flex: 0.7, alignSelf: 'center', marginTop: '13%' }} width="230px" height="44px" />
 
                             {/* <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../../assets/cosoundTitle.png')} /> */}
                             <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Please Select Plan...</Animatable.Text>
 
-                            <Animatable.View ref={'view2'} style={styles.viewDescription}>
+                            <Animatable.View ref={'view1'} style={styles.viewDescription}>
 
                                 <Text style={styles.textMusicDescription2}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </Text>
                             </Animatable.View>
                         </View>
-                        <FlatList
-                            style={styles.flatListStyle}
-                            data={this.state.arrayArtistData}
-                            renderItem={this.renderItem}
-                            scrollEnabled={false}
-                        />
-
-
-                        {this.state.isFeatureTableVisible ? <View>
-                            <Text style={styles.premimumFeatureTitle}> Premium Features for Professionals</Text>
-
-                            <Text style={styles.premiumFeatureDescription}> Lorem ipsum dolor sit amet, consectetur adipisicing elit</Text>
+                        <Animatable.View ref={"view2"}>
                             <FlatList
                                 style={styles.flatListStyle}
                                 data={this.state.arrayArtistData}
-                                renderItem={this.renderItemFeatures}
+                                renderItem={this.renderItem}
                                 scrollEnabled={false}
                             />
+                        </Animatable.View>
+                        <Animatable.View ref={"view3"}>
+                            {this.state.isFeatureTableVisible ? <View>
+                                <Text style={styles.premimumFeatureTitle}> Premium Features for Professionals</Text>
 
-                            <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton]}>
-                                <Text style={styles.textContinueBtnTitle}>Continue</Text>
-                            </TouchableHighlight>
-                        </View> : null}
+                                <Text style={styles.premiumFeatureDescription}> Lorem ipsum dolor sit amet, consectetur adipisicing elit</Text>
+                                <FlatList
+                                    style={styles.flatListStyle}
+                                    data={this.state.arrayArtistData}
+                                    renderItem={this.renderItemFeatures}
+                                    scrollEnabled={false}
+                                />
 
+                                <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton]}>
+                                    <Text style={styles.textContinueBtnTitle}>Continue</Text>
+                                </TouchableHighlight>
+                            </View> : null}
 
-                       
+                        </Animatable.View>
+
                     </Animatable.View>
                     <CustomFooter />
                 </ScrollView>

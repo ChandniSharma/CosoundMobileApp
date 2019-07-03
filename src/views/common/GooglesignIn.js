@@ -4,14 +4,15 @@ import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 import styles from '../../stylesheet/login.style';
 import Icon1 from 'react-native-vector-icons/Entypo';
 let iosGoogleClientId = '298981634092-uc33t6lv321lem1vl9pgbpvou482c07a.apps.googleusercontent.com';
+let iosClientId = '298981634092-ce8c0ihrsfcaddkfs2otm9tm29hscaf3.apps.googleusercontent.com';
 export default class GoogleLogin extends Component{
 
-    componentWillMount(): void {
+    componentWillMount() {
         this.setupGoogleSignin();
     }
 
     _signIn = async () => {
-        return;
+      //  return;
         console.log("Entered ************************************** 1",)
         try {
             console.log("Enterend ************************************** 2",)
@@ -20,6 +21,8 @@ export default class GoogleLogin extends Component{
             const userInfo = await GoogleSignin.signIn();
             console.log("USerINfdoL************************************** ",userInfo)
             this.setState({ userInfo:userInfo });
+            this.props.navigation.navigate('Signup',userInfo );
+            
         } catch (error) {
             if (error.code === statusCodes.SIGN_IN_CANCELLED) {
                 // user cancelled the login flow
@@ -45,9 +48,10 @@ export default class GoogleLogin extends Component{
                 scopes: ['https://www.googleapis.com/auth/userinfo.profile','https://www.googleapis.com/auth/drive.readonly'],
                 forceConsentPrompt: true,
                 offlineAccess: true,
-                webClientId: "298981634092-uc33t6lv321lem1vl9pgbpvou482c07a.apps.googleusercontent.com",
+                webClientId: '298981634092-hn0s9ii0g5qpk65v0q58jb132sq7r2j0.apps.googleusercontent.com',
+                // webClientId: "298981634092-uc33t6lv321lem1vl9pgbpvou482c07a.apps.googleusercontent.com",
                 // Repleace with your webClientId generated from Firebase console
-                iosClientId: iosGoogleClientId,
+                iosClientId: iosClientId,
                 // webClientId: settings.webClientId,x
             });
 
@@ -61,7 +65,7 @@ export default class GoogleLogin extends Component{
 
  render(){
      return(
-         <View style={styles.viewCenterButton}>
+         <View style={{flex:1, justifyContent:'center'}}>
              {/*<GoogleSigninButton
                  style={{ width: 192, height: 48 }}
                  size={GoogleSigninButton.Size.Wide}

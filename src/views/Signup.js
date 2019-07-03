@@ -6,6 +6,8 @@ import SignupStep3 from "./SignupStep3";
 
 class Signup extends React.Component {
   render() {
+
+    console.log(" signup in render ");
     const {
       data,
       signup,

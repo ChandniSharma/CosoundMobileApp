@@ -62,6 +62,7 @@ class Service extends React.PureComponent {
   _addToCart = () => {
     if (!isNull(this._getServiceId())) {
       this.props.cartActions.toggle(this._getServiceId()).then(() => {
+        this.props.navigation.navigate("Cart");
        // return history.push("/cart");
       });
     }

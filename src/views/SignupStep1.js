@@ -22,7 +22,13 @@ export default class SignupStep1 extends Component {
         super(props);
         this.options = countries;
     }
-    fadeIn = () => this.refs.mainView.fadeIn(1000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+    
+    fadeIn = () => this.refs.mainView.fadeIn(1000).then(setTimeout(() => {
+        this.fadeInDownLogo();
+    }, 10))
+
+    fadeInDownLogo =() => this.refs.logoView.fadeInDown(1000).then(console.log(" finish "));
+
     fadeIn = () => this.refs.titleText.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
     bounceInTxt = () => this.refs.viewTxtInput.bounceIn(2000).then(endState => endState.finished ? "finish " : console.log('finish not'));
     bounceInBtn = () => this.refs.viewBtn.bounceIn(2000).then(endState => console.log(endState.finished ? " bounceInFinish" : "cancel bounceIn"))
@@ -39,6 +45,7 @@ export default class SignupStep1 extends Component {
         this.bounceInTxt();
         this.bounceInBtn();
         this.fadeInProgressBarView();
+        this.fadeInDownLogo();
         // this.fadeInDownHeader();
         //this.fadeInMainView();
     }
@@ -68,12 +75,14 @@ export default class SignupStep1 extends Component {
                         </View>
                         <View>
                             <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', marginLeft: '4%' }} onPress={() => this.props.navigation.goBack()} />
+                            <Animatable.View ref={'logoView'} style={{alignSelf:'center', width:'70%'}}>
+
                             <Logo color={'#ffffff'} style={{ flex: 0.7, alignSelf: 'center', }} width="260px" height="100px" />
+                            </Animatable.View>
+                            <Animatable.Text animation="fadeInUp" style={styles.textWelcome}> Welcome, user!</Animatable.Text>
 
-                            <Animatable.Text animation="fadeInDown" style={styles.textWelcome}> Welcome, user!</Animatable.Text>
-
-                            <Animatable.Text animation="fadeInDown" style={styles.textMusicDescription}> The music industry network and</Animatable.Text>
-                            <Animatable.Text animation="fadeInDown" style={styles.textMusicDescription2}>marketplace</Animatable.Text>
+                            <Animatable.Text animation="fadeInUp" style={styles.textMusicDescription}> The music industry network and</Animatable.Text>
+                            <Animatable.Text animation="fadeInUp" style={styles.textMusicDescription2}>marketplace</Animatable.Text>
 
                             <Animatable.View ref={"viewTxtInput"}>
 

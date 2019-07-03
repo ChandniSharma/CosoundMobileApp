@@ -82,7 +82,7 @@ export default class Login extends Component {
     //     }
     // }
     fBLogin() {
-        return;
+       // return;
         //LoginManager.logOut();
         console.log(" in fb login button clcick ed");
        // LoginManager.setLoginBehavior('browser');

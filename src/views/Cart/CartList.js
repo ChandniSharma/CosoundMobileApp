@@ -20,6 +20,15 @@ class CartList extends React.PureComponent {
       isDeletePopupShow: false,
     }
   }
+  fadeInView1 = () => this.refs.view1.fadeInUp(1000).then(setTimeout(() => {
+    this.fadeInView2()
+}, 10))
+
+fadeInView2 = () => this.refs.view2.fadeInUp(1000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+
+  componentDidMount(){
+      this.fadeInView1()
+  }
 
   showDeletePopup = () => {
     let isDeletePopupShow = this.state.isDeletePopupShow;
@@ -31,7 +40,7 @@ class CartList extends React.PureComponent {
     const { isVisible } = this.state;
     const { removeFromCart, _removeFromCart } = this.props;
     return (
-      <View style={{  height:300}}>
+      <View style={{ height: 300 }}>
         <View style={{ width: '95%', alignSelf: 'center', marginTop: '2%', height: 0.5, backgroundColor: 'lightgray' }} />
 
         <TouchableOpacity onPress={() => this.showDeletePopup()}>
@@ -44,7 +53,7 @@ class CartList extends React.PureComponent {
           <Image style={{ alignSelf: 'center', width: 100, height: 100, borderRadius: 10 }} source={{ uri: getServiceThumbnail(item.media) }} />
         </TouchableOpacity>
 
-        <View style={{ flexDirection: 'row', flex: 1, marginBottom: '2%', marginTop: '2%'}}>
+        <View style={{ flexDirection: 'row', flex: 1, marginBottom: '2%', marginTop: '2%' }}>
 
           <Image style={[styles.imgUser, { marginRight: '2%', marginLeft: '2%', marginBottom: '2%', marginTop: '2%' }]} source={{ uri: getServiceThumbnail(item.media) }} />
 
@@ -63,17 +72,17 @@ class CartList extends React.PureComponent {
         </View>
 
 
-       {this.state.isDeletePopupShow?
-              <CardOptions
-                        id={item.id}
-                        postedBySelf={true}
-                        isVisible={isVisible}
-                        className={"cart-item"}
-                        _delete={_removeFromCart}
-                        deleteState={removeFromCart}
-                        toggleVisible={this._toggleVisible}
-                      />
-                :null}
+        {this.state.isDeletePopupShow ?
+          <CardOptions
+            id={item.id}
+            postedBySelf={true}
+            isVisible={isVisible}
+            className={"cart-item"}
+            _delete={_removeFromCart}
+            deleteState={removeFromCart}
+            toggleVisible={this._toggleVisible}
+          />
+          : null}
       </View>
 
 
@@ -94,10 +103,10 @@ class CartList extends React.PureComponent {
     const { isRequesting, data, error } = cart;
 
     return (
-      <View style={{ width: '100%', flex:1}}>
+      <View style={{ width: '100%', flex: 1 }}>
         <View>
           <Text style={[styles.titleAccount, { marginTop: '5%', marginLeft: '2%' }]}>Your Cart</Text>
-          <View>
+          <Animatable.View ref={"view1"}>
             {isRequesting && !callingAPI && (
               <ActivityIndicator color='gray' style={{ marginTop: '10%', alignSelf: 'center' }} />
             )}
@@ -111,14 +120,15 @@ class CartList extends React.PureComponent {
                 </TouchableOpacity>
               </View>
             )}
-          </View>
-          <FlatList
-            data={cart.data}
-            renderItem={this.renderCartItem}
-            keyExtractor={(item, index) => index.toString()}
-            extraData={this.state}
-          />
-
+          </Animatable.View>
+          <Animatable.View ref={"view2"}>
+            <FlatList
+              data={cart.data}
+              renderItem={this.renderCartItem}
+              keyExtractor={(item, index) => index.toString()}
+              extraData={this.state}
+            />
+          </Animatable.View>
           {/* {!isEmpty(data) && !callingAPI && page !== page_count && !isNull(page_count) && !callApi(
             <View style={styles.viewMoreImage}>
               <TouchableHighlight underlayColor="#25b6ad" style={[styles.seeMoreBtn]} onPress={loadMore}>

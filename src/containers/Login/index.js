@@ -151,17 +151,18 @@ class LoginContainer extends React.PureComponent {
     this.props.navigation.navigate("ForgotPassword");
   }
   _navigateToGetStartedView = () => {
-    //this.props.navigation.navigate("SignupStep1");
+  //  this.props.navigation.navigate("SignupStep1");
     this.props.navigation.navigate("Signup");
   }
   _navigateToProfileview = () => {
 
      this.props.userActions.fetchCartCount().then(() => {
        this.props.notificationActions.fetchCount().then(()=>{
-         // this.props.navigation.navigate("Dashboard");
-      // this.props.navigation.navigate("PurchasedServices");
+          this.props.navigation.navigate("Payments");
+
+      // this.props.navigation.navigate("Dashboard");
         // this.props.navigation.navigate("OfferedServices");
-          this.props.navigation.navigate('MarketPlaceContainer', { slug: "" });
+        //  this.props.navigation.navigate('MarketPlaceContainer', { slug: "" });
          //this.props.navigation.navigate("AccountSettings");
        });
      });
@@ -171,7 +172,7 @@ class LoginContainer extends React.PureComponent {
   //this.props.navigation.navigate("AccountSettings");
    // this.props.navigation.navigate("CreateService");
     // this.props.navigation.navigate("Login");
-   // this.props.navigation.navigate("Plan");
+    //this.props.navigation.navigate("Plan");
   }
   // _navigateBack =()=>{
   //   this.props.navigation.goBack();

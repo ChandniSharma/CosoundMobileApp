@@ -27,9 +27,9 @@ export default class AdvanceSearchView extends Component {
             isRememberMe: false,
             isClick: false,
             isNotificationShow: false,
-            email:'',
-            password:'', 
-            genres:'',
+            email: '',
+            password: '',
+            genres: '',
         }
 
         this.arrayNotificationData = [
@@ -50,13 +50,28 @@ export default class AdvanceSearchView extends Component {
             },
         ]
     }
-    fadeIn = () => this.refs.mainView.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+
+    fadeInView1 = () => this.refs.view1.fadeInUp(1000).then(setTimeout(() => {
+        this.fadeInView2();
+    }, 10));
+
+    fadeInView2 = () => this.refs.view2.fadeInUp().then(setTimeout(() => {
+        this.fadeInView3();
+    }, 30))
+    fadeInView3 = () => this.refs.view3.fadeInUp().then(setTimeout(() => {
+        this.fadeInView4();
+    }, 50))
+
+    fadeInView4 = () => this.refs.view4.fadeInUp().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+
+
+    // fadeIn = () => this.refs.mainView.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
     fadeInUp = () => this.refs.notificationView.fadeInUp(500).then(endState => console.log(" end state"))
     // bounceInUp = () => this.refs.audio.bounceInUp(300).then(endState => endState.finished ?this.flipFirst():null);
 
 
     componentDidMount() {
-         this.fadeIn();
+        this.fadeInView1();
 
     }
     onClickRememberMe = () => {
@@ -124,87 +139,92 @@ export default class AdvanceSearchView extends Component {
                     <View style={{ flex: 0.3 }} />
                     <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}>
 
-                        {this.state.isNotificationShow?<Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} />:<Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />}
-                        
+                        {this.state.isNotificationShow ? <Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} /> : <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />}
+
                     </TouchableOpacity>
                 </LinearGradient>
 
 
-                 {/* <HeaderMenuAndBell notificationCount = {this.props.notificationCount} colors={['rgb(42, 173,177)', 'rgb(131, 110, 198)', 'rgb(134, 103, 200)']} isBackButtonShow = {true} goBack={() => this.props.navigation.goBack(null)} onPressPopup={() => this.showPopup()} isNotificationShow={this.state.isNotificationShow} onPressBell={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })} />  */}
+                {/* <HeaderMenuAndBell notificationCount = {this.props.notificationCount} colors={['rgb(42, 173,177)', 'rgb(131, 110, 198)', 'rgb(134, 103, 200)']} isBackButtonShow = {true} goBack={() => this.props.navigation.goBack(null)} onPressPopup={() => this.showPopup()} isNotificationShow={this.state.isNotificationShow} onPressBell={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })} />  */}
 
 
-               {!this.state.isNotificationShow? <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9}}>
+                {!this.state.isNotificationShow ? <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>
 
                     <Animatable.View ref={"mainView"} style={styles.container}>
 
-                        <Animatable.Text animation="fadeIn" style={styles.loginText}>Advanced Search</Animatable.Text>
-
-                        <Text style={styles.textSideTitle}> I'm looking for:</Text>
-                        <TextInput
-                            style={styles.inputStyle}
-                            placeholder={'Studio Engineers'}
-                            onChangeText={(text) => this.setState({ email: text })}
-                            // value={data.email}
-                            name={"email"}
+                        <Animatable.Text animation="fadeInUp" style={styles.loginText}>Advanced Search</Animatable.Text>
+                        <Animatable.View ref={"view1"}>
+                            <Text style={styles.textSideTitle}> I'm looking for:</Text>
+                            <TextInput
+                                style={styles.inputStyle}
+                                placeholder={'Studio Engineers'}
+                                onChangeText={(text) => this.setState({ email: text })}
+                                // value={data.email}
+                                name={"email"}
                             // onChangeText={val => handleChange('email', val)}
-                        />
-                        {/* {errors.email?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.email}</Animatable.Text>:null} */}
+                            />
+                            {/* {errors.email?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.email}</Animatable.Text>:null} */}
+                        </Animatable.View>
 
-                        <Text style={styles.textSideTitle}> Location (optional)</Text>
+                        <Animatable.View ref={"view2"}>
+                            <Text style={styles.textSideTitle}> Location (optional)</Text>
 
-                        <TextInput
-                            style={styles.inputStyle}
-                            placeholder={'San Diego'}
+                            <TextInput
+                                style={styles.inputStyle}
+                                placeholder={'San Diego'}
 
-                            onChangeText={(text) => this.setState({ password: text })}
-                            // onChangeText={val => handleChange('password', val)}
-                            // value={data.password}
-                            name={"password"}
-                        />
-                        {/* {errors.password?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.password}</Animatable.Text>:null} */}
+                                onChangeText={(text) => this.setState({ password: text })}
+                                // onChangeText={val => handleChange('password', val)}
+                                // value={data.password}
+                                name={"password"}
+                            />
+                            {/* {errors.password?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.password}</Animatable.Text>:null} */}
+                        </Animatable.View>
+                        <Animatable.View ref={"view3"}>
+                            <Text style={styles.textSideTitle}> Genres (optional)</Text>
 
-                        <Text style={styles.textSideTitle}> Genres (optional)</Text>
+                            <TextInput
+                                style={styles.inputStyle}
+                                placeholder={'Search genres'}
 
-                        <TextInput
-                            style={styles.inputStyle}
-                            placeholder={'Search genres'}
-
-                            onChangeText={(text) => this.setState({ password: text })}
-                            // onChangeText={val => handleChange('password', val)}
-                            // value={data.password}
-                            name={"password"}
-                        />
+                                onChangeText={(text) => this.setState({ password: text })}
+                                // onChangeText={val => handleChange('password', val)}
+                                // value={data.password}
+                                name={"password"}
+                            />
+                        </Animatable.View>
                         {/* </View> */}
-                        <View style={styles.rememberView}>
+                        <Animatable.View ref={"view4"}>
+                            <View style={styles.rememberView}>
 
-                            <TouchableOpacity onPress={this.onClickRememberMe} style={styles.tickMarkView}>
-                                {this.state.isRememberMe ? <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} /> : <Image />}
-                            </TouchableOpacity>
+                                <TouchableOpacity onPress={this.onClickRememberMe} style={styles.tickMarkView}>
+                                    {this.state.isRememberMe ? <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} /> : <Image />}
+                                </TouchableOpacity>
 
-                            <TouchableHighlight underlayColor='rgb(245,245,245)' onPress={this.onClickRememberMe} style={styles.rememberBtn}>
-                                {this.state.isRememberMe ? <Text style={[styles.rememberText]}>Is a service provider (optional)</Text> : <Text style={styles.rememberTextNotSelected}>Is a service provider (optional)</Text>}
+                                <TouchableHighlight underlayColor='rgb(245,245,245)' onPress={this.onClickRememberMe} style={styles.rememberBtn}>
+                                    {this.state.isRememberMe ? <Text style={[styles.rememberText]}>Is a service provider (optional)</Text> : <Text style={styles.rememberTextNotSelected}>Is a service provider (optional)</Text>}
 
+                                </TouchableHighlight>
+                            </View>
+
+                            <TouchableHighlight underlayColor="#25b6ad" onPress={this.onSubmit} style={[styles.loginButton]}>
+                                <Text style={styles.textButtonTitle} >Search</Text>
                             </TouchableHighlight>
-                        </View>
-
-                        <TouchableHighlight underlayColor="#25b6ad" onPress={this.onSubmit} style={[styles.loginButton]}>
-                            <Text style={styles.textButtonTitle} >Search</Text>
-                        </TouchableHighlight>
-
+                        </Animatable.View>
 
                     </Animatable.View>
 
-                    
-                     <View style={{flex:0.1, marginTop:'12%'}}>
-                     <CustomFooter />
-                         </View>
-                   
 
-                </KeyboardAwareScrollView>:
-                
-        <View>
-            <Notifications /></View> 
-        }
+                    <View style={{ flex: 0.1, marginTop: '12%' }}>
+                        <CustomFooter />
+                    </View>
+
+
+                </KeyboardAwareScrollView> :
+
+                    <View>
+                        <Notifications /></View>
+                }
 
 
 

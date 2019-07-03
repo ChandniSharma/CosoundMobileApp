@@ -39,10 +39,15 @@ class SignUpContainer extends React.Component {
       postal_code:"",
       avatar: null,
       url: null,
-      email: "",
+    //  email: this.props.navigation.state.params.email?this.props.navigation.state.params.email:'',
+      email: '',
+
       password: "",
-      first_name: "",
-      last_name: "",
+      // first_name: this.props.navigation.state.params.givenName?this.props.navigation.state.params.givenName:'',
+      // last_name: this.props.navigation.state.params.familyName?this.props.navigation.state.params.familyName:'',
+      first_name: '',
+      last_name: '',
+
       dob: null,
       artist_name: "",
       genres: [],
@@ -53,6 +58,8 @@ class SignUpContainer extends React.Component {
   };
 
   componentDidMount() {
+
+   // console.log(" Navigation param====", this.state.navigation.state);
     const { socialUserData } = this.props;
 
     if (!isEmpty(socialUserData.data)) {
