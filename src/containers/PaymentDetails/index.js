@@ -8,7 +8,7 @@ import { paymentActions } from "../../actions";
 import Validator from "../../validator";
 import { isSuccess, isError, formatExpiryDate, history } from "../../utils";
 
-import Payments from "../../views/Payments";
+import PaymentsComponent from "../../views/PaymentDetails";
 
 class Payment extends React.PureComponent {
   state = {
@@ -108,9 +108,10 @@ class Payment extends React.PureComponent {
     const { paymentDetails } = this.props;
     const { data, errors, mask } = this.state;
     return (
-      <Payments
+      <PaymentsComponent
         data={data}
         mask={mask}
+        error={""}
         errors={errors}
         submit={this._submit}
         paymentDetails={paymentDetails}

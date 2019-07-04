@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, FlatList } from 'react-native';
+import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, FlatList, ActivityIndicator } from 'react-native';
 //import SvgUri from 'react-native-svg-uri';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from '../../stylesheet/PaymentDetail.style';
@@ -20,17 +20,14 @@ import Icon3 from "react-native-vector-icons/Ionicons";
 
 import { checkError } from "../../utils";
 
-class Payments extends React.PureComponent {
+class PaymentsComponent extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-
-      isRememberMe: false,
+     
       isClick: false,
       isNotificationShow: false,
-      email: '',
-      password: '',
-      genres: '',
+     
     }
   }
   // fadeIn = () => this.refs.mainView.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
@@ -44,18 +41,18 @@ class Payments extends React.PureComponent {
     this.fadeInView3();
   }, 30))
   fadeInView3 = () => this.refs.view3.fadeInUp().then(setTimeout(() => {
-    this.fadeInView4();
+   // this.fadeInView4();
   }, 60))
 
-  fadeInView4 = () => this.refs.view4.fadeInUp().then(setTimeout(() => {
-    this.fadeInView5();
-  }, 30))
+  // fadeInView4 = () => this.refs.view4.fadeInUp().then(setTimeout(() => {
+  //   this.fadeInView5();
+  // }, 30))
 
-  fadeInView5 = () => this.refs.view5.fadeInUp().then(setTimeout(() => {
-    this.fadeInView6();
-  }, 30))
+  // fadeInView5 = () => this.refs.view5.fadeInUp().then(setTimeout(() => {
+  //   this.fadeInView6();
+  // }, 30))
 
-  fadeInView6 = () => this.refs.view6.fadeInUp().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
+  // fadeInView6 = () => this.refs.view6.fadeInUp().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
 
 
   componentDidMount() {
@@ -92,7 +89,8 @@ class Payments extends React.PureComponent {
       errors,
       submit,
       handleChange,
-      paymentDetails
+      paymentDetails,
+      error
     } = this.props;
     //const error = checkError(paymentDetails.error);
     const formatChars = {
@@ -131,14 +129,13 @@ console.log("****** Card number is =====", data);
             <TextInput
               style={styles.inputStyle}
               placeholder={'XXXX XXXX XXXX XXXX'}
-              onChangeText={handleChange}
-              // value={data.number}
+              value={data.number}
               name={"number"}
-            // onChangeText={val => handleChange('email', val)}
+              onChangeText={val => handleChange('number', val)}
             />
           </Animatable.View>
 
-          {/* {errors.number && <Text style={styles.errorText}>{errors.number}</Text>}
+           {/* {errors && errors.number && <Text style={styles.errorText}>{errors.number}</Text>}
           {error &&
             error.error &&
             error.error.number &&
@@ -151,13 +148,13 @@ console.log("****** Card number is =====", data);
               style={styles.inputStyle}
               placeholder={"MM/YY"}
               onChange={handleChange}
-              // value={data.expiry_date}
+               value={data.expiry_date}
               name={"expiry_date"}
-            // onChangeText={val => handleChange('email', val)}
+             onChangeText={val => handleChange('expiry_date', val)}
             />
           </Animatable.View>
 
-          {/* {errors.expiry_date && (
+          {/* {errors && errors.expiry_date && (
             <Text style={styles.errorText}>{errors.expiry_date} </Text>
           )}
           {error &&
@@ -177,41 +174,39 @@ console.log("****** Card number is =====", data);
             <TextInput
               style={styles.inputStyle}
               placeholder={'CVC'}
-              onChange={handleChange}
-              // value={data.cvc}
+               value={data.cvc}
               name={"CVC"}
-            // onChangeText={val => handleChange('email', val)}
+             onChangeText={val => handleChange('CVC', val)}
             />
           </Animatable.View>
-          {/* {errors.cvc && <Text style={styles.errorText}>{errors.cvc} </Text>}
-          {error &&
+          {/* {errors && errors.cvc && <Text style={styles.errorText}>{errors.cvc} </Text>}
+           {error &&
             error.error &&
             error.error.cvc &&
             error.error.cvc.map((item, index) => {
               return <Text>{item} </Text>;
-            })} */}
+            })}  */}
           <Animatable.View ref={'view5'} style={[styles.rememberView, {backgroundColor:'red'}]}>
            
 
-              <TouchableOpacity onPress={this.onClickRememberMe} style={styles.tickMarkView}>
-                {this.state.isRememberMe ? <Image style={styles.imgTickMark} source={require('../../assets/tickMark.png')} /> : <Image />}
+              <TouchableOpacity onPress={()=>handleChange('remember', !data.remember )} style={styles.tickMarkView}>
+                {data.remember ? <Image style={styles.imgTickMark} source={require('../../assets/tickMark.png')} /> : <Image />}
               </TouchableOpacity>
 
-              <TouchableHighlight underlayColor='rgb(245,245,245)' onPress={this.onClickRememberMe} style={styles.rememberBtn}>
-                {this.state.isRememberMe ?
+               
                    <Text style={[styles.description, {backgroundColor:'blue'}]}> Lorem ipsum dolor sit amet, consectetur adipisicing elit,
                            sed do eiusmod tempor incididunt ut labore et dolore magna
-               aliqua. Ut enim ad minim</Text> : <Text style={styles.description}>Is a service provider (optional)</Text>}
+               aliqua. Ut enim ad minim</Text> 
 
-              </TouchableHighlight>
             
 
-          </Animatable.View>
+          </Animatable.View> 
 
           <Animatable.View ref={'view6'}>
-            <TouchableHighlight underlayColor="#25b6ad" onPress={this.onSubmit} style={[styles.loginButton]}>
+            {data.isRequesting  ? <ActivityIndicator color="white"  />
+            :<TouchableHighlight underlayColor="#25b6ad" onPress={submit} style={[styles.loginButton]}>
               <Text style={styles.textButtonTitle} >Pay</Text>
-            </TouchableHighlight>
+          </TouchableHighlight> }
           </Animatable.View>
 
           <View style={{ flex: 0.1, marginTop: '12%' }}>
@@ -225,7 +220,7 @@ console.log("****** Card number is =====", data);
   }
 }
 
-export default Payments;
+export default PaymentsComponent;
 
 // {
 //   <View style={{flex:1}}>

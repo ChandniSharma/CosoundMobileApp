@@ -54,7 +54,8 @@ import Chat from './src/views/Chat';
 //import SoundPlayer from '/src/views/common/SoundPlayer';
 import PlayAudioClass from './src/views/PlayAudioClass';
 import OfferedServices from './src/containers/OfferedServices';
-import Payments from './src/views/PaymentDetails';
+import Payments from './src/containers/PaymentDetails';
+
 
 import { Client } from 'bugsnag-react-native';
 import { paymentDetails } from './src/reducers/payment';
