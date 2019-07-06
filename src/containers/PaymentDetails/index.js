@@ -49,8 +49,8 @@ class Payment extends React.PureComponent {
     return isValid;
   };
 
-  _submit = e => {
-    e.preventDefault();
+  _submit = () => {
+   
     if (this._isValid()) {
       const { paymentActions } = this.props;
       const { data } = this.state;
@@ -68,7 +68,7 @@ class Payment extends React.PureComponent {
       paymentActions.save(paymentData).then(() => {
         const { paymentDetails } = this.props;
         if (isSuccess(paymentDetails)) {
-          return history.push("/checkout");
+          return this.props.navigation.navigate('Checkout');
         }
 
         if (isError(paymentDetails)) {
@@ -80,8 +80,8 @@ class Payment extends React.PureComponent {
     }
   };
 
-  _handleChange = e => {
-    const { name, value } = e.target;
+  _handleChange = (name, value) => {
+    // const { name, value } = e.target;
     const { data, mask } = this.state;
     if (name === "remember") {
       data[name] = !data[name];
@@ -116,6 +116,7 @@ class Payment extends React.PureComponent {
         submit={this._submit}
         paymentDetails={paymentDetails}
         handleChange={this._handleChange}
+        navigation={this.props.navigation}
       />
     );
   }

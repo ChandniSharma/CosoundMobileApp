@@ -55,7 +55,7 @@ export default class ProfileComponent extends Component {
             counter: 0,
             timer: null,
             isNotificationShow: false,
-           current:'image',
+            current: 'image',
 
         }
     }
@@ -75,10 +75,14 @@ export default class ProfileComponent extends Component {
 
     }
 
-    fadeInDown = () => this.refs.userImageView.fadeInDown(1000).then(endState => this.fadeInPremiumView())
+    fadeInDown = () => this.refs.userImageView.fadeInDown(800).then(endState => this.fadeInPremiumView())
     fadeInUpBottomView = () => this.refs.viewBottomWhenScroll.slideInUp(50).then(endState => console.log(endState.finished ? 'Finished up' : 'Cancelled upping '));
-    fadeInDownBottomView = () => this.refs.viewBottomWhenScroll.slideInDown(1000).then(endState => console.log(endState.finished ? " finished downing the view" : 'not down view'));
-    fadeInPremiumView = () => this.refs.viewPremium.fadeIn();
+    fadeInDownBottomView = () => this.refs.viewBottomWhenScroll.slideInDown(800).then(endState => console.log(endState.finished ? " finished downing the view" : 'not down view'));
+    fadeInPremiumView = () => this.refs.viewPremium.fadeInDown(800).then(this.fadeInUpUserNameView());
+    
+    fadeInUpUserNameView = () => this.refs.viewUserName.fadeInUp(1000).then(this.fadeInUpViewMyMusic());
+    fadeInUpViewMyMusic = () => this.refs.viewMyMusic.fadeInUp(1000).then(this.fadeInUpViewMyImage());
+    fadeInUpViewMyImage = () => this.refs.viewMyImage.fadeInUp(1000);
 
     // fadeInUpPostOptionView = () => this.refs.viewPostOption.fadeInUp(1000);
 
@@ -89,7 +93,7 @@ export default class ProfileComponent extends Component {
         this.fadeInDown();
         // this.fadeInUpPostOptionView();
     }
-    _navigateToAdvanceSearchView =() => {
+    _navigateToAdvanceSearchView = () => {
         this.props.navigation.navigate("AdvancedSearchView");
     }
 
@@ -139,39 +143,39 @@ export default class ProfileComponent extends Component {
     }
 
     onClickMusicVideoImage(type) {
-        this.setState({current:type});
-    
-          if(!this.state.isClickToUpload){
-              this.setState({isClickToUpload:true})
-              this.chooseFile(type)
-          }
-         
-      }
+        this.setState({ current: type });
 
-      chooseFile = (type) => {
+        if (!this.state.isClickToUpload) {
+            this.setState({ isClickToUpload: true })
+            this.chooseFile(type)
+        }
+
+    }
+
+    chooseFile = (type) => {
         var options = {
             title: 'Image',
-            mediaType: type === 'music'?'audio': type, 
+            mediaType: type === 'music' ? 'audio' : type,
             storageOptions: {
                 skipBackup: true,
                 path: 'images',
             },
         };
-    
+
         ImagePicker.showImagePicker(options, response => {
-    
+
             if (response.didCancel) {
-    
+
                 this.setState({
                     isClickToUpload: false
                 })
-            }else if (response.error) {
-    
+            } else if (response.error) {
+
                 this.setState({
                     isClickToUpload: false
                 })
             } else if (response.customButton) {
-    
+
                 alert(response.customButton);
                 this.setState({
                     isClickToUpload: false
@@ -180,22 +184,22 @@ export default class ProfileComponent extends Component {
                 let source = response;
                 // You can also display the image using data:
                 // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-    
+
                 // this.setState({
                 //     isClickToUpload: true,
                 //     filePath: source.uri
                 // });
-               // this._handleFileChange("files", response.uri)
-               //this._handleFileChange("files", [response])
+                // this._handleFileChange("files", response.uri)
+                //this._handleFileChange("files", [response])
 
-              
-    if (response) {
-      const { userFeedActions } = this.props;
-      userFeedActions.setTemporaryFile(response);
-    }
+
+                if (response) {
+                    const { userFeedActions } = this.props;
+                    userFeedActions.setTemporaryFile(response);
+                }
             }
         });
-    }; 
+    };
 
     renderItem = (music) => {
 
@@ -249,7 +253,7 @@ export default class ProfileComponent extends Component {
             userFeedActions
         } = this.props;
         const { paginationData } = userFeed;
-        
+
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
 
@@ -297,9 +301,10 @@ export default class ProfileComponent extends Component {
                             {/* <Image style={styles.imgUser} source={require('../assets/avatar-main-1.jpg')} /> */}
 
                         </Animatable.View>
-
-                        <Text style={[styles.textUserName, { marginTop: '10%', alignSelf: 'center' }]}>{getUsername(user.data)}</Text>
-                        <Text style={[styles.textDesignation, { marginBottom: '10%', alignSelf: 'center' }]}>{getUserInfo(user.data)}</Text>
+                        <Animatable.View ref={'viewUserName'}>
+                            <Text style={[styles.textUserName, { marginTop: '10%', alignSelf: 'center' }]}>{getUsername(user.data)}</Text>
+                            <Text style={[styles.textDesignation, { marginBottom: '10%', alignSelf: 'center' }]}>{getUserInfo(user.data)}</Text>
+                        </Animatable.View>
 
                         {/* <View style={styles.viewLoginButton}>
                             <TouchableHighlight underlayColor="black" style={[styles.loginButton]}>
@@ -315,7 +320,7 @@ export default class ProfileComponent extends Component {
 
                         {/* <SoundCloudWaveform waveformUrl="https://w1.sndcdn.com/PP3Eb34ToNki_m.png" setTime={this.setTime}
                                             percentPlayed={this.state.counter} percentPlayable={1} /> */}
-                        <View style={{
+                        <Animatable.View ref={'viewMyMusic'} style={{
                             width: "100%",
                             backgroundColor: "white",
                             marginTop: 10,
@@ -336,20 +341,20 @@ export default class ProfileComponent extends Component {
                                 </TouchableOpacity> */}
                             </View>
 
-        
-                          
-                           <Paginator 
+
+
+                            <Paginator
                                 isLoaderInternal
                                 myMusic={myMusic}
                                 component={MusicList}
                                 callAPI={fetchMyMusic}
                                 page={myMusic.paginationData.page}
                                 page_count={myMusic.paginationData.page_count}
-                            /> 
-                        </View>
- 
+                            />
+                        </Animatable.View>
 
-                        <View style={styles.viewImagesOutside}>
+
+                        <Animatable.View ref={'viewMyImage'} style={styles.viewImagesOutside}>
 
                             <View style={styles.viewImagesInside}>
 
@@ -360,9 +365,6 @@ export default class ProfileComponent extends Component {
                                 </TouchableOpacity> */}
 
                             </View>
-
-
-                       
                             <Paginator
                                 isLoaderInternal
                                 myImages={myImages}
@@ -371,15 +373,15 @@ export default class ProfileComponent extends Component {
                                 page={myImages.paginationData.page}
                                 page_count={myImages.paginationData.page_count}
                             />
+                        </Animatable.View>
 
-                        </View>
-                        <PostStatus 
-                        pathName={"/profile"} 
-                        restCallsOnMount = {this.props.restCallsOnMount}
+                        <PostStatus
+                            pathName={"/profile"}
+                            restCallsOnMount={this.props.restCallsOnMount}
                         />
 
                         {/* <NewTest /> */}
-                        <InfiniteScroller
+                        <Paginator
                             pathName={"/profile"}
                             user={user}
                             isLoaderInternal
@@ -390,8 +392,21 @@ export default class ProfileComponent extends Component {
                             page={paginationData.page}
                             shouldCallAPIInitially={false}
                             page_count={paginationData.page_count}
-                           restCallsOnMount = {this.props.restCallsOnMount}
+                            restCallsOnMount={this.props.restCallsOnMount}
                         />
+                        {/* <InfiniteScroller
+                            pathName={"/profile"}
+                            user={user}
+                            isLoaderInternal
+                            feed={userFeed}
+                            component={Posts}
+                            callAPI={fetchFeed}
+                            _restCalls={_restCalls}
+                            page={paginationData.page}
+                            shouldCallAPIInitially={false}
+                            page_count={paginationData.page_count}
+                            restCallsOnMount={this.props.restCallsOnMount}
+                        /> */}
 
                     </View>
                     {!userFeed.isRequesting ? <View>

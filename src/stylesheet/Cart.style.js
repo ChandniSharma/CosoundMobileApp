@@ -107,14 +107,19 @@ export default {
         alignItems: 'center',
         justifyContent: 'center'
     },
+    viewLoginButton:{
+        marginLeft: "15%",
+        marginRight: "15%",
+        marginBottom:'10%',
+        marginTop: '2%' 
+    },
     loginButton: {
         borderRadius: 25,
         height: 40,
        
         alignItems: 'center',
         justifyContent: 'center',
-        // marginLeft: "15%",
-        // marginRight: "15%",
+        
         shadowColor: 'rgba(0,0,0,0.12)',
         shadowOffset: {
             width: .4,
@@ -123,7 +128,7 @@ export default {
         shadowOpacity: 0.5,
         shadowRadius: 1,
         alignSelf:'center',
-        //marginBottom:'10%',
+        //
         backgroundColor: '#ff277b'
     },
     imgSideTitle: {

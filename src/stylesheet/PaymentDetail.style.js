@@ -69,32 +69,24 @@ export default {
 
     loginText: {
         marginTop: '10%',
-       
+
         alignSelf: 'center',
         fontSize: 26,
         color: '#262626',
         fontFamily: 'Montserrat-light',
         // fontWeight:'100',
     },
-    subTitle:{
-       
+    subTitle: {
+
         marginTop: '5%',
-        marginBottom:'5%',
+        marginBottom: '5%',
         alignSelf: 'center',
         fontSize: 15,
         color: 'rgba(38, 38, 38, 0.52)',
         fontFamily: 'Montserrat-light',
 
     },
-    description:{
-        marginTop: '20%',
-        marginBottom: '10%',
-        alignSelf: 'center',
-        fontSize: 14,
-        color: '#262626',
-        fontFamily: 'Montserrat-light',
-  
-    }, 
+   
     textSideTitle: {
         fontSize: 14,
         fontFamily: 'Montserrat-light',
@@ -136,13 +128,15 @@ export default {
         marginBottom: '5%',
         marginLeft: '5%',
         marginRight: '5%',
-        height: 150,
+
+        justifyContent: 'center',
     },
     tickMarkView: {
         width: 204,
         height: 24,
-        flex: 0.05,
-        marginRight: '3%',
+        flex: 0.08,
+        marginRight: '2%',
+        marginLeft:'1%',
         borderColor: 'gray',
         borderWidth: .2,
         shadowColor: 'rgba(0,0,0,1)',
@@ -159,6 +153,18 @@ export default {
     imgTickMark: {
         width: 24,
         height: 24
+    },
+    description: {
+
+        alignSelf: 'center',
+        fontSize: 14,
+        color: '#262626',
+        fontFamily: 'Montserrat-light',
+        //marginRight:'2%',
+        marginTop: '5%',
+        marginLeft: '2%',
+        height: 100,
+        flex: 0.9
     },
     rememberBtn: {
         flex: 0.45,

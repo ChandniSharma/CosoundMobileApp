@@ -45,7 +45,7 @@ class Sidebar extends React.PureComponent {
               //   className="btn btn-primary btn-primary--red"
               // >
               // </Link>
-              <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton, {marginTop:'2%'}]} onPress={()=> this.props.navigation.navigate('CheckoutComponent')}>
+              <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton, {marginTop:'2%'}]} onPress={()=> this.props.navigation.navigate('Checkout')}>
                 <Text style={[styles.textButtonTitle, {marginLeft:'10%', marginRight:'10%'}]}>Proceed to payment</Text>
           </TouchableHighlight>
             )}

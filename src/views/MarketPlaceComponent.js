@@ -200,8 +200,10 @@ spinIcon() {
         this.setState({isClockWise:!this.state.isClockWise});
     }
 
-    moveToMarketPlaceDetailView = () => {
+    moveToMarketPlaceDetailView = (item) => {
         console.log(" @@@@ market place detail view ");
+        this.props.navigation.navigate('Service', { slug: item.category.slug, subcategorySlug: item.sub_category.slug, id: item.id});
+
         //this.setState({ isMarketDetailViewShow: true });
         // return `/marketplace/${item.category.slug}/${item.sub_category.slug}/${item.id
         //   }`;
@@ -292,7 +294,7 @@ spinIcon() {
         )
     }
 
-    _renderCarouselItem(itemDetail, index) {
+    _renderCarouselItem =(itemDetail, index)=> {
         let item = itemDetail.item;
         //let item = itemDetail;
         return (

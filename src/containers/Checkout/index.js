@@ -1,4 +1,5 @@
 import React from "react";
+import {Alert} from 'react-native';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 //import { confirmAlert } from "react-confirm-alert";
@@ -46,45 +47,51 @@ class Checkout extends React.PureComponent {
     return this.props.cartActions.fetch(pageNo);
   };
 
-  _confirmPayment = e => {
-    e.preventDefault();
-    alert("Need to use reat native confirm box");
-    // const { cardDetails, marketPlaceActions } = this.props;
-    // confirmAlert({
-    //   title: "Confirm to pay",
-    //   message: `Do you want to continue with ${
-    //     getCardDetails(cardDetails.data).brand
-    //   } card ${getCardDetails(cardDetails.data).number}`,
-    //   buttons: [
-    //     {
-    //       label: "Yes",
-    //       onClick: () => {
-    //         marketPlaceActions.placeOrder().then(() => {
-    //           const { placeOrder } = this.props;
-    //           if (isSuccess(placeOrder)) {
-    //             history.push("/purchased-services");
-    //           }
-    //           if (isError(placeOrder)) {
-    //             alert(placeOrder.error.message);
-    //            // toast.error(placeOrder.error.message);
-    //           }
-    //         });
-    //       }
-    //     },
-    //     {
-    //       label: "Change Card",
-    //       onClick: () => {
-    //         history.push("/pay");
-    //       }
-    //     },
-    //     {
-    //       label: "Cancel",
-    //       onClick: () => {}
-    //     }
-    //   ]
-    // });
-  };
+  _confirmPayment = () => {
+  
 
+     const { cardDetails, marketPlaceActions } = this.props;
+
+
+     Alert.alert(
+      'Confirm to pay',
+      `Do you want to continue with ${
+             getCardDetails(cardDetails.data).brand
+         } card ${getCardDetails(cardDetails.data).number}`,
+      [
+       
+        {text: 'Yes', onPress: () => {
+          marketPlaceActions.placeOrder().then(() => {
+            const { placeOrder } = this.props;
+            if (isSuccess(placeOrder)) {
+              this.props.navigation.navigate('PurchasedServices')
+             
+            }
+            if (isError(placeOrder)) {
+              alert(placeOrder.error.message);
+             // toast.error(placeOrder.error.message);
+            }
+          });
+        },
+      },
+      {
+        text: 'Change Card',
+        onPress: () => {
+          this.props.navigation.navigate('Payments')
+         
+        },
+        style: 'cancel',
+      },
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      ],
+      {cancelable: false},
+    );
+
+  }
   render() {
     const { cart, user, cardDetails, placeOrder } = this.props;
     const { payment } = this.state;

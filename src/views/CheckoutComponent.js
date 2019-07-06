@@ -21,10 +21,10 @@ import Notifications from '../containers/Notifications'
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { SafeAreaView } from 'react-navigation';
 import CardView from '../views/common/CardView';
-import { getServiceLink, getThumbnail, getServiceThumbnail } from "../utils";
-import Card from "../views/common/CardView";
 import SidebarCheckout from "./Checkout/SideBarCheckout";
+import { isNull } from "lodash";
 
+import { getThumbnail, getCardDetails, getCardIcon } from "../utils";
 export default class CheckoutComponent extends Component {
   constructor(props) {
     super(props);
@@ -53,7 +53,18 @@ export default class CheckoutComponent extends Component {
     this.setState({ isNotificationShow: true, isSideMenuClick: false })
   }
   render() {
-    const {navigation} = this.props;
+   
+      const {
+        user,
+        cart,
+        payment,
+        placeOrder,
+        cardDetails,
+        onRadioSelect,
+        confirmPayment,
+        navigation
+      } = this.props;
+    
     return (
 
       <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={{ flex: 1 }}>
@@ -109,15 +120,23 @@ export default class CheckoutComponent extends Component {
               <CardView>
 
                 <View style={{ flexDirection: 'row',  marginTop: '5%', marginBottom: '5%', }}>
-                  <TouchableOpacity style={[styles.circleButton, {marginLeft:'5%'} ]} >
+                  <TouchableOpacity style={[styles.circleButton, {marginLeft:'5%', justifyContent:'center'} ]} >
                     {/* <Icon name="checkcircleo" style={{ fontSize: '', marginLeft: '5%', }} /> */}
+                    {getCardDetails(cardDetails.data)? <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} /> : <Image />}
+
                   </TouchableOpacity>
 
                   {/* <Image source={{uri:getCardIcon(cardDetails.data)}} /> this will replace user image*/}
 
                   <Icon name="creditcard" style={{marginLeft: '2%',fontSize:25}}/>
                   {/* <Image style={{ marginLeft: '2%', width: 80, height: 80, borderRadius: 40 }} source={{ uri: getThumbnail(user.data) }} />  */}
-                  <Text style={[styles.subTitle, { marginLeft: '2%', }]}>Credit Card</Text>
+                  {!getCardDetails(cardDetails.data)? <Text style={[styles.subTitle, { marginLeft: '2%', }]}>Card</Text>
+                  :<View style={{flexDirection:'row', flex:1}}> 
+                     <Text style={[styles.subTitle, { marginLeft: '2%',flex:0.8 }]}>{getCardDetails(cardDetails.data).type}</Text>
+                    <Text style={[styles.subTitle, { right: '2%', flex:0.3}]}>{getCardDetails(cardDetails.data).number}</Text>
+                    </View> 
+                  }
+                 
 
                 </View>
                 {/* Single line row */}
@@ -183,7 +202,14 @@ export default class CheckoutComponent extends Component {
             </View>
 
             <View style={{ marginTop: '20%', flex: 0.3 }}>
-              <SidebarCheckout />
+              <SidebarCheckout  
+                cart={cart}
+                payment={payment}
+                placeOrder={placeOrder}
+                confirmPayment={confirmPayment}
+                cardExists={!isNull(getCardDetails(cardDetails.data).number)}
+                navigation ={navigation}
+             />
 
             </View>
             <View style={{ flex: 0.3 }}>

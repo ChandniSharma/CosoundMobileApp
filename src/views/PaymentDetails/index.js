@@ -16,6 +16,7 @@ import Icon from "react-native-vector-icons/AntDesign";
 import Icon1 from "react-native-vector-icons/Entypo";
 import Icon2 from "react-native-vector-icons/EvilIcons";
 import Icon3 from "react-native-vector-icons/Ionicons";
+import { TextInputMask } from 'react-native-masked-text'
 
 
 import { checkError } from "../../utils";
@@ -24,10 +25,10 @@ class PaymentsComponent extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-     
+
       isClick: false,
       isNotificationShow: false,
-     
+
     }
   }
   // fadeIn = () => this.refs.mainView.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
@@ -41,7 +42,7 @@ class PaymentsComponent extends React.PureComponent {
     this.fadeInView3();
   }, 30))
   fadeInView3 = () => this.refs.view3.fadeInUp().then(setTimeout(() => {
-   // this.fadeInView4();
+    // this.fadeInView4();
   }, 60))
 
   // fadeInView4 = () => this.refs.view4.fadeInUp().then(setTimeout(() => {
@@ -97,7 +98,7 @@ class PaymentsComponent extends React.PureComponent {
       d: "[0-9]",
       s: "[0-1]"
     };
-console.log("****** Card number is =====", data); 
+    console.log("****** Card number is =====", data);
     return (
       <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
 
@@ -126,17 +127,23 @@ console.log("****** Card number is =====", data);
           </Animatable.View>
 
           <Animatable.View ref={'view2'}>
-            <TextInput
+
+            <TextInputMask
               style={styles.inputStyle}
-              placeholder={'XXXX XXXX XXXX XXXX'}
+              type={'credit-card'}
+              options={{
+                obfuscated: false,
+                issuer: 'visa-or-mastercard'
+              }}
               value={data.number}
-              name={"number"}
               onChangeText={val => handleChange('number', val)}
+              placeholder={'XXXX XXXX XXXX XXXX'}
+
             />
           </Animatable.View>
 
-           {/* {errors && errors.number && <Text style={styles.errorText}>{errors.number}</Text>}
-          {error &&
+          {errors && errors.number && <Text style={styles.errorText}>{errors.number}</Text>}
+          {/* {error &&
             error.error &&
             error.error.number &&
             error.error.number.map((item, index) => {
@@ -144,20 +151,22 @@ console.log("****** Card number is =====", data);
             })} */}
 
           <Animatable.View ref={'view3'}>
-            <TextInput
+            <TextInputMask
               style={styles.inputStyle}
+              type={'datetime'}
+              options={{
+                format: 'MM/YY'
+              }}
+              value={data.expiry_date}
+              onChangeText={val => handleChange('expiry_date', val)}
               placeholder={"MM/YY"}
-              onChange={handleChange}
-               value={data.expiry_date}
-              name={"expiry_date"}
-             onChangeText={val => handleChange('expiry_date', val)}
             />
           </Animatable.View>
 
-          {/* {errors && errors.expiry_date && (
+          {errors && errors.expiry_date && (
             <Text style={styles.errorText}>{errors.expiry_date} </Text>
           )}
-          {error &&
+          {/* {error &&
             error.error &&
             error.error.exp_month &&
             error.error.exp_month.map((item, index) => {
@@ -171,42 +180,47 @@ console.log("****** Card number is =====", data);
             })} */}
 
           <Animatable.View ref={'view4'}>
-            <TextInput
+
+            <TextInputMask
               style={styles.inputStyle}
+              type={'custom'}
+              options={{
+                mask: '999'
+              }}
               placeholder={'CVC'}
-               value={data.cvc}
-              name={"CVC"}
-             onChangeText={val => handleChange('CVC', val)}
+              value={data.cvc}
+              name={"cvc"}
+              onChangeText={val => handleChange('cvc', val)}
             />
           </Animatable.View>
-          {/* {errors && errors.cvc && <Text style={styles.errorText}>{errors.cvc} </Text>}
-           {error &&
+          {errors && errors.cvc && <Text style={styles.errorText}>{errors.cvc} </Text>}
+          {/* {error &&
             error.error &&
             error.error.cvc &&
             error.error.cvc.map((item, index) => {
               return <Text>{item} </Text>;
             })}  */}
-          <Animatable.View ref={'view5'} style={[styles.rememberView, {backgroundColor:'red'}]}>
-           
+          <Animatable.View ref={'view5'} style={[styles.rememberView]}>
 
-              <TouchableOpacity onPress={()=>handleChange('remember', !data.remember )} style={styles.tickMarkView}>
-                {data.remember ? <Image style={styles.imgTickMark} source={require('../../assets/tickMark.png')} /> : <Image />}
-              </TouchableOpacity>
+            <TouchableOpacity onPress={() => handleChange('remember', !data.remember)} style={styles.tickMarkView}>
+              {data.remember ? <Image style={styles.imgTickMark} source={require('../../assets/tickMark.png')} /> : <Image />}
+            </TouchableOpacity>
 
-               
-                   <Text style={[styles.description, {backgroundColor:'blue'}]}> Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                           sed do eiusmod tempor incididunt ut labore et dolore magna
-               aliqua. Ut enim ad minim</Text> 
 
-            
+            <Text style={[styles.description]}>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+               aliqua. Ut enim ad Ankit</Text>
 
-          </Animatable.View> 
+
+
+          </Animatable.View>
 
           <Animatable.View ref={'view6'}>
-            {data.isRequesting  ? <ActivityIndicator color="white"  />
-            :<TouchableHighlight underlayColor="#25b6ad" onPress={submit} style={[styles.loginButton]}>
-              <Text style={styles.textButtonTitle} >Pay</Text>
-          </TouchableHighlight> }
+            {data.isRequesting ? <ActivityIndicator color="white" />
+              : <TouchableHighlight underlayColor="#25b6ad" onPress={submit} style={[styles.loginButton]}>
+                <Text style={styles.textButtonTitle} >Pay</Text>
+              </TouchableHighlight>}
           </Animatable.View>
 
           <View style={{ flex: 0.1, marginTop: '12%' }}>

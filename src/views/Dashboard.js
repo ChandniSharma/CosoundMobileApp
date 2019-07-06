@@ -156,7 +156,7 @@ export default class DashboardComponent extends Component {
     }
 
 
-    fadeInDown = () => this.refs.userImageView.fadeInDown(1000).then(endState => this.fadeInPremiumView())
+    fadeInDown = () => this.refs.userImageView.fadeInDown(1000).then(this.fadeInUpUserNameView())
     zoomInPopup = () => this.refs.viewModalRef.zoomIn().then(endState => console.log(" now end zoomin"));
 
     fadeInUpBottomView = () => this.refs.viewBottomWhenScroll.slideInUp(50).then(endState => console.log(endState.finished ? 'Finished up' : 'Cancelled upping '));
@@ -164,6 +164,8 @@ export default class DashboardComponent extends Component {
     fadeInDownBottomView = () => this.refs.viewBottomWhenScroll.slideInDown(1000).then(endState => console.log(endState.finished ? " finished downing the view" : 'not down view'));
 
     fadeInPremiumView = () => this.refs.viewPremium.fadeIn();
+
+    fadeInUpUserNameView = () => this.refs.viewUserName.fadeInUp(1500);
 
     // fadeInUpPostOptionView = () => this.refs.viewPostOption.fadeInUp(1000);
 
@@ -698,10 +700,12 @@ export default class DashboardComponent extends Component {
                             <Image style={styles.imgUser} source={{ uri: getThumbnail(user.data) }} />
                             {/* <Image style={styles.imgUser} source={require('../assets/avatar-main-1.jpg')} /> */}
                         </Animatable.View>
-                        <View style={{ alignItems: "center", marginTop: 25 }}>
+                       
+                        <Animatable.View ref={'viewUserName'} style={{ alignItems: "center", marginTop: 25 }}>
                             <Text style={styles.textUserName}>{getUsername(user.data)}</Text>
                             <Text style={{ fontSize: 18 }}>{getUserInfo(user.data)}</Text>
-                        </View>
+                        </Animatable.View>
+
                         <PostStatus  pathName={"/"}/>
                         { /*  */}
                         {/* <View style={styles.viewWriteSomething}>
@@ -761,7 +765,20 @@ export default class DashboardComponent extends Component {
                             />
                         </View> */}
                         {/* <NewTest /> */}
-                        <InfiniteScroller
+                        <Paginator
+                                pathName={"/"}
+                                user={user}
+                                isLoaderInternal
+                                feed={userFeed}
+                                component={Posts}
+                                callAPI={fetchFeed}
+                                _restCalls={_restCalls}
+                                page={paginationData.page}
+                                shouldCallAPIInitially={false}
+                                page_count={paginationData.page_count}
+                            />
+
+                        {/* <InfiniteScroller
                             pathName={"/"}
                             user={user}
                             isLoaderInternal
@@ -772,7 +789,8 @@ export default class DashboardComponent extends Component {
                             page={paginationData.page}
                             shouldCallAPIInitially={false}
                             page_count={paginationData.page_count}
-                        />
+                        /> */}
+
 
                      
                     </View>

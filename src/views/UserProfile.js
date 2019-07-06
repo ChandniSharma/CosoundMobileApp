@@ -286,7 +286,19 @@ export default class UserProfileComponent extends Component {
                         {/* <PostStatus  pathName={"/profile"}/>
                          */}
                         {/* <NewTest /> */}
-                        <InfiniteScroller
+                        {/* <InfiniteScroller
+                            pathName={"/profile/:id"}
+                            user={user}
+                            isLoaderInternal
+                            feed={userFeed}
+                            component={Posts}
+                            callAPI={fetchFeed}
+                            _restCalls={_restCalls}
+                            page={paginationData.page}
+                            shouldCallAPIInitially={false}
+                            page_count={paginationData.page_count}
+                        /> */}
+                        <Paginator
                             pathName={"/profile/:id"}
                             user={user}
                             isLoaderInternal
@@ -298,7 +310,6 @@ export default class UserProfileComponent extends Component {
                             shouldCallAPIInitially={false}
                             page_count={paginationData.page_count}
                         />
-
                     </View>
                     {!userFeed.isRequesting && <CustomFooter />}
                 </KeyboardAwareScrollView>

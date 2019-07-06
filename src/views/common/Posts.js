@@ -16,7 +16,7 @@ import { postComment } from "../../actions/post";
 import WaveForm from 'react-native-audiowaveform';
 import SocialShare from '../common/SocialShare';
 import PlayAudioClass from '../../views/PlayAudioClass';
-
+import RenderPostRow from './RenderPostRow';
 
 // import soundPlay from './SoundPlay';
 import {
@@ -293,6 +293,9 @@ class Posts extends React.PureComponent {
     _showCommentList() {
         this.setState({ isCommentTableShow: !this.state.isCommentTableShow });
     }
+    closePostOption = () => {
+        this.setState({ isPostOptionShow: false });
+    }
 
     renderCommentItem = (item) => {
         return (
@@ -380,22 +383,22 @@ class Posts extends React.PureComponent {
         this.offset = currentOffset;
     };
 
-    postOptionView(postedBySelf, id) {
+    postOptionView = (postedBySelf, id) =>{
 
         let arrayPostOptions = ["All", "Copy Link", "Unfollow User", 'Share', 'Report Post'];
         let arrayBtn = []
         if (postedBySelf) {
-            let btn = <TouchableHighlight onPress={() => this._deletePost(id)} underlayColor="#8e8e8e" style={{ marginTop: '2%', height: 40 }}>
+            let btn = <TouchableOpacity onPress={() => this._deletePost(id)} underlayColor="#8e8e8e" style={{ marginTop: '2%', height: 40 }}>
                 <Text style={styles.postOptionText}>{this.props.deletePost.isRequesting === id ? "Deleting.." : "Delete"}
                 </Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
             arrayBtn.push(btn);
 
         } else {
             for (let i = 0; i < arrayPostOptions.length; i++) {
-                let btn = <TouchableHighlight underlayColor="#8e8e8e" style={{ marginTop: '2%', height: 40 }}>
+                let btn = <TouchableOpacity underlayColor="#8e8e8e" style={{ marginTop: '2%', height: 40 }}>
                     <Text style={styles.postOptionText}>  {arrayPostOptions[i]} </Text>
-                </TouchableHighlight>
+                </TouchableOpacity>
                 arrayBtn.push(btn);
             }
         }
@@ -526,7 +529,15 @@ class Posts extends React.PureComponent {
         
         const { feed, callingAPI, _restCalls, pathName } = this.props;
         const { user, like, deletePost, repost } = this.props;
-        const { isVisible, showSocial } = this.state;
+        const { isVisible, showSocial, isPostOptionShow } = this.state;
+
+        console.log(" delete post i render **********", deletePost);
+
+
+     return(
+        <RenderPostRow closePostOption={this.closePostOption} isPostOptionShow={isPostOptionShow} user={user} like={like} repost={repost} showSocial ={showSocial} postData={postData} _renderPostBody={this._renderPostBody} _renderSingleImage={this._renderSingleImage} postOptionView={this.postOptionView} _onScroll={this._onScroll} viewComments={this.viewComments} renderCommentItem={this.renderCommentItem} _showCommentList={this._showCommentList} _showPostOptions={this._showPostOptions} _confirmRepost={this._confirmRepost}  _likePost={this._likePost} _toggleSocial={this._toggleSocial} _toggleVisible={this._toggleVisible}  />
+
+     );
 
         let post = {
             item:
@@ -557,7 +568,7 @@ class Posts extends React.PureComponent {
         // Action, delete option if self created profile
 
         return (
-            <Animatable.View ref={'viewRow'}>
+            <Animatable.View>
             <TouchableWithoutFeedback onPress={() => this.setState({ isPostOptionShow: false })}>
                 <View style={{
                     width: "100%",
@@ -691,13 +702,14 @@ class Posts extends React.PureComponent {
     };
 
     render() {
-        const { feed, callingAPI, _restCalls } = this.props;
+        const { feed, callingAPI, _restCalls , loadMore, page, page_count} = this.props;
         const { user, like, deletePost, repost } = this.props;
         const { isVisible, showSocial } = this.state;
         const extraData = {
             ...this.state,
             ...this.props
         };
+        console.log("load more===",loadMore);
         return (
             <React.Fragment>
                 {feed.isRequesting && !callingAPI && (
@@ -715,8 +727,17 @@ class Posts extends React.PureComponent {
                         extraData={extraData}
                         renderItem={this.renderPostCard}
                         keyExtractor={(item, index) => index.toString()}
+                    
                     />
                 </View>
+                
+                {!isEmpty(feed.data) && 
+                <View style={styles.viewMore}>
+                    <TouchableOpacity underlayColor="#25b6ad" style={[styles.seeMoreTemp]} onPress={() => loadMore()}>
+                        <Text style={styles.textViewMore} > {callingAPI ? "Fetching..." : "View More..."}</Text>
+                    </TouchableOpacity>
+                </View>
+            }
             </React.Fragment>
         );
     }

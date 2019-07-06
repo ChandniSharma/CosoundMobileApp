@@ -39,6 +39,11 @@ class PostStatus extends React.PureComponent {
     isComponentUpdate: false,
   };
 
+  fadeInUpMainView = () => this.refs.viewMain.fadeInUp(1000);
+
+  componentDidMount(){
+    this.fadeInUpMainView();
+  }
   // componentDidUpdate() {
   //   console.log("call component did update")
   //   const { tempFile } = this.props;
@@ -356,7 +361,7 @@ class PostStatus extends React.PureComponent {
     const { postStatus } = this.props;
 
     return (
-      <View>
+      <Animatable.View ref={"viewMain"}>
         <View style={styles.viewWriteSomething}>
           <TextInput
             placeholder="Share your thoughts, music or inspiration.."
@@ -417,7 +422,7 @@ class PostStatus extends React.PureComponent {
             </View>
           </TouchableHighlight>
         </View>
-      </View>
+      </Animatable.View>
     )
   }
 }

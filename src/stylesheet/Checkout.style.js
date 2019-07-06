@@ -12,6 +12,10 @@ export default {
     container: {
         flex: 1,
     },
+    imgTickMark:{
+        width:24,
+        height:24
+    },
     priceText:{
         fontSize:16,
         color:'3B93BB',

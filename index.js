@@ -40,7 +40,7 @@ import Cart from './src/containers/Cart';
 import StarView from './src/views/common/StarView';
 import Sidebar from './src/views/Checkout/SideBarCheckout';
 import NoService from './src/views/NoService';
-import Checkout from './src/views/Checkout';
+import Checkout from './src/containers/Checkout';
 import GooglesignIn from './src/views/common/GooglesignIn';
 import CreateService from './src/containers/CreateService';
 import CheckoutComponent from './src/views/CheckoutComponent'; // payment options
@@ -92,7 +92,7 @@ const AppStackNavigator = createStackNavigator({
     Service: { screen: Service },// Market place detail 
     GooglesignIn: { screen: GooglesignIn },
     Checkout: { screen: Checkout },
-    CheckoutComponent: { screen: CheckoutComponent },
+   // CheckoutComponent: { screen: CheckoutComponent },
     PlayAudioClass:{screen:PlayAudioClass},
     UserProfile: { screen: UserProfile },
    // TrackPlayerClass:{screen:TrackPlayerClass},
