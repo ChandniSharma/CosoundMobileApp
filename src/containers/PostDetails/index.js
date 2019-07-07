@@ -3,11 +3,8 @@ import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { isNull } from "lodash";
-// performWow,
 import { getValueFromParams } from "../../utils";
-
 import { postActions } from "../../actions";
-
 import PostDetailsComponent from "../../views/PostDetailsComponent";
 
 class PostDetails extends React.PureComponent {
@@ -21,7 +18,6 @@ class PostDetails extends React.PureComponent {
 
     if (!isNull(id)) {
       this._fetchPostDetails(id, !isNull(user.token)).then(() => {
-        // performWow(this.props.wowActions);
       });
     }
   };

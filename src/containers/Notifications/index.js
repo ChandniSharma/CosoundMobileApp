@@ -1,51 +1,28 @@
 import React from "react";
-//import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { isNull } from "lodash";
 import NotificationComponent from '../../views/common/Notifications';
 
 import {
-  history,
   isSuccess,
- // performWow,
   getRefreshThreshold,
   resetNotification
 } from "../../utils";
 
 import {
- // wowActions,
   authActions,
   userActions,
   notificationActions
 } from "../../actions";
 
-// import { FallBackLoader } from "./components/Commons";
-
-// const Layout = React.lazy(() => import("./components/Layout"));
-// const AdminLayout = React.lazy(() => import("./components/AdminPanel/Layout"));
-
-// import {
-//   routes,
-//   errorRoutes,
-//   adminRoutes,
-//   privateRoutes
-// } from "./constants/routes";
-// import { setInterval } from "timers";
-
 class Notifications extends React.PureComponent {
   checkIfRefreshedInterval = null;
   
-  componentDidMount() {
-   
-    this._hideSpinner();
+  componentDidMount() {   
     this._restCalls();
-
-   // this.props.wowActions.initialize();
   }
 
-  
- 
   _restCalls = () => {
     if (!isNull(this.props.user.token)) {
       const refreshThreshold = getRefreshThreshold(this.props.user.expiresAt);
@@ -90,22 +67,11 @@ class Notifications extends React.PureComponent {
   };
 
   /**
-   * Hide spinner from index.html
-   */
-  _hideSpinner = () => {
-    // const spinner = document.getElementById("spinner");
-    // if (spinner && !spinner.hasAttribute("hidden")) {
-    //   spinner.setAttribute("hidden", "true");
-    // }
-  };
-
-  /**
    * Logout
    */
   _logout = () => {
     const { userActions } = this.props;
     userActions.logout().then(() => {
-     // performWow(this.props.wowActions);
     });
   };
 
@@ -114,148 +80,24 @@ class Notifications extends React.PureComponent {
       user,
       logout,
       cartCount,
-     // wowActions,
       userActions,
       headerCategories,
       notificationCount
     } = this.props;
-return(
-  
-    <NotificationComponent 
-    user={user}
-    logout={logout}
-    cartCount={cartCount}
-    _logout={this._logout}
-    headerCategories={headerCategories}
-    notificationCount={notificationCount}
-    fetchNotifications={this._fetchNotifications}
-    navigation ={this.props.navigation}
-
-    />
-)
-
-    // return (
-    //   <Router history={history}>
-    //     <React.Suspense fallback={<FallBackLoader />}>
-    //       <Layout
-            // user={user}
-            // logout={logout}
-            // cartCount={cartCount}
-            // _logout={this._logout}
-            // headerCategories={headerCategories}
-            // notificationCount={notificationCount}
-            // fetchNotifications={this._fetchNotifications}
-    //       >
-    //         <Switch>
-    //           {routes.map((item, index) => {
-    //             const {
-    //               component: Component,
-    //               fallbackComponent: FallBackComponent
-    //             } = item;
-
-    //             return (
-    //               <Route
-    //                 key={index}
-    //                 exact
-    //                 path={item.path}
-    //                 render={props =>
-    //                   item.path === "/" ? (
-    //                     !isNull(user.token) ? (
-    //                       <Component user={user} wowActions={wowActions} />
-    //                     ) : (
-    //                       <FallBackComponent wowActions={wowActions} />
-    //                     )
-    //                   ) : (
-    //                     <Component
-    //                       {...props}
-    //                       user={user}
-    //                       wowActions={wowActions}
-    //                       userActions={userActions}
-    //                     />
-    //                   )
-    //                 }
-    //               />
-    //             );
-    //           })}
-
-    //           {privateRoutes.map((item, index) => {
-    //             return (
-    //               <PrivateRoute
-    //                 exact
-    //                 user={user}
-    //                 key={index}
-    //                 path={item.path}
-    //                 wowActions={wowActions}
-    //                 userActions={userActions}
-    //                 component={item.component}
-    //               />
-    //             );
-    //           })}
-
-    //           {adminRoutes.map((item, index) => {
-    //             return (
-    //               <AdminRoute
-    //                 exact
-    //                 user={user}
-    //                 key={index}
-    //                 path={item.path}
-    //                 wowActions={wowActions}
-    //                 userActions={userActions}
-    //                 component={item.component}
-    //                 wrapperClass={item.wrapperClass}
-    //               />
-    //             );
-    //           })}
-
-    //           {errorRoutes.map((item, index) => {
-    //             const Component = item.component;
-    //             return (
-    //               <Route
-    //                 key={index}
-    //                 path={item.path}
-    //                 render={() => <Component wowActions={wowActions} />}
-    //               />
-    //             );
-    //           })}
-    //         </Switch>
-    //       </Layout>
-    //     </React.Suspense>
-    //   </Router>
-    // );
+    return(
+      <NotificationComponent 
+        user={user}
+        logout={logout}
+        cartCount={cartCount}
+        _logout={this._logout}
+        headerCategories={headerCategories}
+        notificationCount={notificationCount}
+        fetchNotifications={this._fetchNotifications}
+        navigation ={this.props.navigation}
+        />
+    )
   }
 }
-
-// const PrivateRoute = ({ component: Component, ...rest }) => {
-//   return (
-//     <Route
-//       {...rest}
-//       render={props =>
-//         !isNull(rest.user.token) ? (
-//           <Component {...props} {...rest} />
-//         ) : (
-//           <Redirect to="/login" />
-//         )
-//       }
-//     />
-//   );
-// };
-
-// const AdminRoute = ({ component: Component, ...rest }) => {
-//   return (
-//     <Route
-//       {...rest}
-//       render={props =>
-//         !isNull(rest.user.token) && rest.user.data.is_admin ? (
-//           <AdminLayout wrapperClass={rest.wrapperClass}>
-//             <Component {...props} {...rest} />
-//           </AdminLayout>
-//         ) : (
-//           <Redirect to="/login" />
-//         )
-//       }
-//     />
-//   );
-// };
 
 // eslint-disable-next-line
 
@@ -276,7 +118,6 @@ const mapDispatchToProps = dispatch => {
     notificationActions: bindActionCreators(notificationActions, dispatch),
     authActions: bindActionCreators(authActions, dispatch),
     userActions: bindActionCreators(userActions, dispatch),
-   // wowActions: bindActionCreators(wowActions, dispatch)
   };
 };
 

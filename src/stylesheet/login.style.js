@@ -1,13 +1,4 @@
-import { Dimensions, Platform } from "react-native";
-
-const { height, width } = Dimensions.get('window');
-const deviceHeight = height;
-let deviceWidth = width;
-let top;
-const statusBarHeight = Platform.OS === 'ios' ? 0 : 0;
-
-export default{
-    
+export default {
     errorText:{
         margin:'2%',
         color:'red',
@@ -18,17 +9,12 @@ export default{
     },
     leftView:{
         marginTop:'13%',
-    // alignSelf:'flex-end',
         flex:0.5,
-       // backgroundColor:'red'
     },
-
     imgSideTitle: {
         color: 'white',
-       // fontSize: 21,
         margin: '2%',
         alignSelf: 'flex-start',
-      //  fontFamily: 'Montserrat-Bold',
         flex: 0.3,
         width:50,
         height:40
@@ -36,15 +22,13 @@ export default{
     textDull:{
         color:'rgba(255,255,255,0.72)',
         fontFamily:'Montserrat-Regular',
-       // fontWeight:'200',
         fontSize:12,
-         alignSelf:'flex-end',
+        alignSelf:'flex-end',
         marginRight:'5%'
     },
     getStarted:{
         color:'white',
         fontFamily:'Montserrat-Regular',
-        //fontWeight:'200',
         fontSize:14,
         marginRight:'5%',
         alignSelf:'flex-end',
@@ -56,9 +40,7 @@ export default{
         fontSize:30,
         color:'white',
         fontFamily:'Montserrat-Regular',
-       // fontWeight:'100',
     },
-    
     inputStyle:{
       marginLeft: '5%',
       marginRight:'5%',
@@ -83,9 +65,7 @@ export default{
         paddingRight: 30 ,
     },
     viewForgotPwd:{
-
     },
-    
     rememberView:{
         flexDirection: 'row', 
         flex:1,
@@ -94,8 +74,6 @@ export default{
         marginLeft:'5%',
         marginRight:'5%',
         height:30,
-       // backgroundColor:'pink'
-
     },
     tickMarkView:{
         width:20,
@@ -123,16 +101,13 @@ export default{
         flex:0.45,
         marginTop:'1%',
         height:20
-      //  backgroundColor:'green',
     },
     rememberText:{
         color: 'rgb(37,182,173)'
     },
     forgotPwdBtn:{
         flex:0.5,
-        //alignSelf:'flex-end',
         marginTop:'1%',
-       
     },
     forgotPwdText:{
        alignSelf: 'flex-end',
@@ -153,15 +128,12 @@ export default{
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
-        
-        //marginBottom:'10%',
         backgroundColor: '#ff277b'
     },
     socialMediaLoginView:{
         flexDirection: 'row',
         marginTop: '20%',
         marginBottom: '2%',
-       // backgroundColor:'yellow',
         flex:1,
         height:60,
         marginLeft:'5%',
@@ -177,21 +149,18 @@ export default{
         fontFamily:'Montserrat-Hairline',
         color:'#1CA1F3',
         fontSize:16,
-         fontWeight:'300',
-       
+        fontWeight:'300',
     },
     googlePlusText:{
         color:'#EA4336',
         fontSize:16,
         fontFamily:'Montserrat-Hairline',
         fontWeight:'300',
-       
     },
     buttonLeft: {
         borderRadius: 22,
         height: 55,
         flex: 0.5,
-        // alignItems: 'center',
         justifyContent: 'center',
         shadowColor: 'rgba(0,0,0,0.12)',
         shadowOffset: {
@@ -204,7 +173,6 @@ export default{
         marginRight:'2%'
     },
     viewCenterButton:{
-     
     },
     buttonCenter: {
         borderRadius: 22,
@@ -221,8 +189,6 @@ export default{
         shadowRadius: 1,
         backgroundColor: 'white',
         alignSelf:'center',
-       
-        
     },
     buttonRight: {
         borderRadius: 22,
@@ -244,24 +210,20 @@ export default{
         fontSize: 16,
         color:'white',
         fontWeight:'500',
-        
     },
     viewShareButtons: {
         flexDirection: 'row',
         alignSelf: 'flex-end',
         flex:0.4,
-       
         height:50,
         marginBottom:'5%',
         marginLeft:'13%',
         marginRight:'2%'
     },
     textColorTemp:{
-       // color: 'white',
     },
     textBottomMark: {
         marginTop: 20,
-       // marginBottom: 20,
         fontSize: 14,
         color: 'white',
         marginLeft: '5%',
@@ -270,15 +232,12 @@ export default{
     shareButtons: {
         width: 15,
         height: 15,
-       
     },
     viewBottom:{
         flex:0.1,
         marginBottom:0,
         backgroundColor:'black',
-       //alignItems: 'space-between',
        justifyContent:'center',
        flexDirection:'row',
-    }
-    
+    }    
 }

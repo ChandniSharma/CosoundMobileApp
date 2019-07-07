@@ -1,11 +1,5 @@
 import { Dimensions } from "react-native";
 
-const { height, width } = Dimensions.get('window');
-const deviceHeight = height;
-let deviceWidth = width;
-let top;
-
-
 export default {
     container: {
         flex: 1,
@@ -13,16 +7,13 @@ export default {
     },
     imgSideTitle: {
         color: 'white',
-       // fontSize: 21,
         margin: '2%',
         alignSelf: 'flex-start',
-      //  fontFamily: 'Montserrat-Bold',
         flex: 0.3,
         width:50,
         height:40
     },
     imgBottomCosound: {
-        // flex:0.3,
         alignSelf: 'flex-start',
         width:120,
         height:30,
@@ -50,7 +41,6 @@ export default {
         marginBottom:'5%',
         fontFamily: 'Montserrat-Light',
     },
-
     textTitleCosoundBottom: {
         fontSize: 20,
         alignSelf: 'flex-start',
@@ -69,7 +59,6 @@ export default {
         color:'rgba(38,38,38,0.52)',
         fontFamily:'Montserrat-Regular',
         fontWeight:'300',
-        
     },
     mobileImage: {
         alignSelf: 'center',
@@ -86,14 +75,12 @@ export default {
     textFooterTitle: {
         marginTop: '4%',
         marginBottom: '4%',
-
         fontSize: 16,
         fontFamily:'Montserrat-Regular',
         fontWeight:'300',
         color:'rgba(255,255,255,0.52)',
     },
     btnMenuBar: {
-        // alignSelf: 'flex-end',
         top:'1%',
         right:'4%',
         justifyContent: 'center',
@@ -107,7 +94,6 @@ export default {
         height: 40,
     },
     textBottomDescription: {
-
         fontSize: 14,
         marginLeft: '5%',
         fontFamily:'Montserrat-Regular',
@@ -134,7 +120,6 @@ export default {
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'center',
-        // margin: '10%',
         shadowColor: 'rgba(0,0,0,1)',
         shadowOffset: {
             width: .5,
@@ -145,7 +130,6 @@ export default {
         backgroundColor:'white',
         marginLeft: "1%",
         marginRight:"5%",
-        
     },
     signupButton: {
         borderRadius: 22,
@@ -173,10 +157,8 @@ export default {
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
-        //margin: '15%',
         width:200,
         height:129,
-       // alignSelf:'center',
         marginRight:20,
         marginTop:'10%',
         marginBottom:'10%',
@@ -210,15 +192,12 @@ export default {
         fontSize: 14,
         color: 'white',
         marginLeft: '5%',
-        
     },
     shareButtons: {
         width: 15,
         height: 15,
-       
     },
     viewFooterText: {
-        // marginTop: "20%",
         marginLeft: '5%',
     },
 };

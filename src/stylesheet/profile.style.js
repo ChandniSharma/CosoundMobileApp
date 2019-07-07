@@ -1,11 +1,7 @@
-import { Dimensions, Platform } from "react-native";
-import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
-
-const { height, width } = Dimensions.get('window');
-const deviceHeight = height;
+import { Dimensions } from "react-native";
+import { scale, verticalScale } from 'react-native-size-matters';
+const { width } = Dimensions.get('window');
 let deviceWidth = width;
-let top;
-const statusBarHeight = Platform.OS === 'ios' ? 0 : 0;
 
 export default {
     errorText: {
@@ -30,8 +26,6 @@ export default {
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
-        
-        //marginBottom:'10%',
         backgroundColor: 'white'
     },
     seeMoreTemp:{
@@ -42,8 +36,8 @@ export default {
         flex: 0.3,
         alignItems: 'center',
         justifyContent: 'center',
-         marginLeft: "15%",
-         marginRight:"15%",
+        marginLeft: "15%",
+        marginRight:"15%",
         shadowColor: 'rgba(0,0,0,0.12)',
         shadowOffset: {
             width: .4,
@@ -51,8 +45,6 @@ export default {
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
-        
-        //marginBottom:'10%',
         backgroundColor: 'transparant'
     },
     container: {
@@ -60,10 +52,8 @@ export default {
     },
     imgSideTitle: {
         color: 'white',
-       // fontSize: 21,
         margin: '2%',
         alignSelf: 'flex-start',
-      //  fontFamily: 'Montserrat-Bold',
         flex: 0.3,
         width:50,
         height:40
@@ -72,9 +62,8 @@ export default {
        margin:'5%',
     },
     imgMainTitle:{
-      alignSelf:'center',
-      margin:'5%',
-
+        alignSelf:'center',
+        margin:'5%',
     },
     viewTopBackground: {
         width: deviceWidth+80,
@@ -86,13 +75,11 @@ export default {
         alignSelf:'center',
     },
     searchView: {
-        
         marginTop:60,
         alignSelf:'flex-end',
         marginRight:10,
         justifyContent: 'center',
-       flex: 0.2,
-      
+        flex: 0.2, 
         width: 40,
         height: 40,
     },
@@ -113,19 +100,16 @@ export default {
         fontSize: 14,
         fontFamily: 'Montserrat-regular',
     },
-
     textUserName: {
         color: '#262626',
         fontSize: 34,
         fontFamily: 'Montserrat-regular',
     },
-
     textDesignation: {
         color: 'rgba(38,38,38,0.52)',
         fontSize: 14,
         fontFamily: 'Montserrat-light',
     },
-
     textConnection: {
         color: 'rgba(38,38,38,0.52)',
         fontSize: 14,
@@ -214,15 +198,11 @@ export default {
     musicPlus:
     {
         flex: 1,
-        // color:"#262626",
         color: 'purple',
         fontSize: 30,
         fontFamily: 'Montserrat-Regular',
-        //marginBottom:10,
-       // backgroundColor:'red',
         alignSelf:'center',
         paddingBottom:5
-        
     },
     plusCircle: {
         color: '#8E5ACD',
@@ -258,7 +238,6 @@ export default {
         marginTop: 5,
         fontFamily: 'Montserrat-light',
     },
-
     musicDuration: {
         flex: 1.5,
         color: "#262626",
@@ -280,7 +259,6 @@ export default {
         fontSize: 12,
         color: "#262626",
         fontFamily: 'Montserrat-light',
-
     },
     viewMore: {
         padding: 10,
@@ -295,7 +273,6 @@ export default {
         fontSize: 14,
         fontFamily: 'Montserrat-light',
     },
-
     viewImagesOutside: {
         width: "100%",
         backgroundColor: "white",
@@ -309,7 +286,6 @@ export default {
         shadowOpacity: 0.2,
     },
     viewImagesInside: { width: "100%", justifyContent: "center", flexDirection: "row" },
-
     myImagesTitle:
     {
         flex: 9,
@@ -318,14 +294,12 @@ export default {
         marginTop: 5,
         fontFamily: 'Montserrat-Regular',
     },
-
     myImagePlus: {
         flex: 1,
         color: "#262626",
         fontSize: 30,
         fontFamily: 'Montserrat-Regular',
     },
-
     videoPlaceholder: {
         width: 100,
         height: 100,
@@ -370,7 +344,6 @@ export default {
         justifyContent: "flex-start",
         fontSize: 16,
         color: "#262626",
-
         fontFamily: 'Montserrat-Regular'
     },
     textUserName: {
@@ -378,18 +351,14 @@ export default {
         color: "#262626",
         fontFamily: 'Montserrat-Regular'
     },
-
     textStyle: {
         height: 100, justifyContent: "flex-start", padding: 10,
         fontSize: 16,
         color: "#262626",
-
         fontFamily: 'Montserrat-Regular'
     },
     music: {
         color: "#262626", fontSize: 14, paddingLeft: 5,
-       
-       
     },
     video: {
          fontSize: 14, paddingLeft: 5
@@ -426,7 +395,6 @@ export default {
         width: 160,
         alignItems: 'center',
         justifyContent: 'center',
-        // margin: '10%',
         shadowColor: 'rgba(0,0,0,1)',
         shadowOffset: {
             width: .5,
@@ -436,16 +404,13 @@ export default {
         shadowRadius: 1,
         backgroundColor: 'white',
         marginRight: 10,
-
     },
-
     viewPostButton: {
         flex: 1,
         marginTop: '4%',
         marginBottom: "7%",
         marginLeft: "10%",
         padding: 10
-
     },
     postButton: {
         alignSelf: "flex-end",
@@ -455,7 +420,6 @@ export default {
         width: 120,
         alignItems: 'center',
         justifyContent: 'center',
-        // margin: '10%',
         shadowColor: 'rgba(0,0,0,1)',
         shadowOffset: {
             width: .5,
@@ -479,7 +443,6 @@ export default {
         width: 100,
         alignItems: 'center',
         justifyContent: 'center',
-        // margin: '10%',
         shadowColor: 'rgba(0,0,0,1)',
         shadowOffset: {
             width: .5,
@@ -492,7 +455,6 @@ export default {
     textLoginButtonTitle: {
         fontSize: 16,
         color: 'rgb(255, 38, 123)',
-
     },
     imageSendArraow: {
         width: 20,
@@ -512,10 +474,10 @@ export default {
     bottom:0
  },
  imgUserInBottom:{
-   width: 60,
-   height: 60, 
-   borderRadius: 30,
-   marginRight:'5%'
+    width: 60,
+    height: 60, 
+    borderRadius: 30,
+    marginRight:'5%'
  },
  imgUserInComments:{
     width: 50,
@@ -526,44 +488,33 @@ export default {
  userNameInBottom:{
     fontSize: 20,
     color: "#262626",
-
     fontFamily: 'Montserrat-Regular'
  },
  JobDetailInBottom:{
-     marginTop:'2%',
+    marginTop:'2%',
     fontSize: 12,
     color: "rgba(38,38,38,0.52)",
     fontFamily: 'Montserrat-light'
  },
  menuIcon:{
-   margin:'30%',
-
+    margin:'30%',
  },
  textTitle: {
-    // marginTop: '2%',
-    // marginBottom: '2%',
     alignSelf: 'center',
     fontSize: 24,
     color: '#262626',
     fontFamily: 'Montserrat-light',
-    // fontWeight:'100',
 },
 textSubTitleNotSelected: {
-    // marginTop: '20%',
-    // marginBottom: '10%',
     fontSize: 15,
     color: '262626',
     fontFamily: 'Montserrat-light',
     marginLeft:5,
-    // fontWeight:'100',
 },
 textSubtitleSelected: {
-    // marginTop: '20%',
-    // marginBottom: '10%',
     fontSize: 16,
     color: '#8E5ACD',
     fontFamily: 'Montserrat-light',
-    // marginLeft: '2%',
     alignSelf:'flex-start',
 },
 textDescComment: {
@@ -573,7 +524,6 @@ textDescComment: {
     marginLeft:'1%',
     marginTop:'2%',
     marginRight:'5%',
-
 },
 textNotificationTime: {
     fontSize: 12,

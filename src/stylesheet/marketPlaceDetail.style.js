@@ -1,17 +1,7 @@
-
-import { Dimensions, Platform } from "react-native";
-
-const { height, width } = Dimensions.get('window');
-const deviceHeight = height;
-let deviceWidth = width;
-
 export default {
-
-
     container: {
         flex: 1,
     },
-
     textSpotify: {
         fontSize: 18,
         color: 'rgba(38, 38, 38, 0.52)',
@@ -26,7 +16,6 @@ export default {
         marginLeft: '5%',
         marginTop: '3%',
         marginBottom: '5%',
-
     },
     textPrice: {
         fontSize: 34,
@@ -48,7 +37,6 @@ export default {
         fontFamily: 'Montserrat-light',
         marginLeft: '5%',
         marginBottom: '3%',
-        //padding: '5%',
     },
     titleMainCarousel: {
         color: 'white',
@@ -65,7 +53,6 @@ export default {
         marginLeft: '5%',
         marginBottom: '5%',
         marginRight: '5%',
-
     },
     personalRecommended: {
         marginTop: '5%',
@@ -83,7 +70,6 @@ export default {
         textDecorationLine: 'underline',
         marginLeft: '2%',
         marginRight: '2%'
-
     },
     textPersonName: {
         color: '#262626',
@@ -96,7 +82,6 @@ export default {
         color: 'rgba(38, 38, 38, 0.52)',
         fontSize: 14,
         fontFamily: 'Montserrat-Regular',
-
     },
     textButtonTitle: {
         color: '#262626',
@@ -113,7 +98,6 @@ export default {
         color: '#262626',
         fontSize: 14,
         fontFamily: 'Montserrat-light',
-        // marginLeft:'-5%'
     },
     commentorName: {
         color: '#262626',
@@ -167,14 +151,6 @@ export default {
         marginBottom:'2%'
     },
     viewSubtotal: {
-
-        // shadowColor: 'rgba(0,0,0,0.12)',
-        // shadowOffset: {
-        //     width: 0.9,
-        //     height: 1
-        // },
-        // shadowOpacity: 0.6,
-        // shadowRadius: 3,
         backgroundColor: 'white'
     },
     viewBackground: {
@@ -225,17 +201,13 @@ export default {
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
-
-        //marginBottom:'10%',
         backgroundColor: '#ff277b'
     },
     recentButton: {
         borderRadius: 25,
         height: 50,
-
         alignItems: 'center',
         justifyContent: 'center',
-
         shadowColor: 'rgba(0,0,0,0.12)',
         shadowOffset: {
             width: .4,
@@ -243,17 +215,13 @@ export default {
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
-
-        //marginBottom:'10%',
         backgroundColor: 'white',
     },
     loginButton: {
         borderRadius: 25,
         height: 50,
-
         alignItems: 'center',
         justifyContent: 'center',
-
         shadowColor: 'rgba(0,0,0,0.12)',
         shadowOffset: {
             width: .4,
@@ -266,10 +234,8 @@ export default {
     btnMessageSeller: {
         borderRadius: 25,
         height: 50,
-
         alignItems: 'center',
         justifyContent: 'center',
-
         shadowColor: 'rgba(0,0,0,0.12)',
         shadowOffset: {
             width: .4,
@@ -277,8 +243,6 @@ export default {
         },
         shadowOpacity: 0.8,
         shadowRadius: 1,
-
-        //marginBottom:'10%',
         backgroundColor: 'rgb(245, 245, 245)'
     }
 }

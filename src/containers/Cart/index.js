@@ -1,13 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
-//import { performWow } from "../../utils";
-
 import { cartActions } from "../../actions";
-
 import CartComponent from "../../views/Cart";
-import AccountSetCartComponenttingsTabs from "../../views/CartComponent";
 
 class Cart extends React.PureComponent {
   componentDidMount() {
@@ -19,7 +14,6 @@ class Cart extends React.PureComponent {
    */
   _restCalls = () => {
     this._fetchCart(1).then(() => {
-      //performWow(this.props.wowActions);
     });
   };
 

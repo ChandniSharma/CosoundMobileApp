@@ -1,11 +1,3 @@
-import { Dimensions, Platform } from "react-native";
-
-const { height, width } = Dimensions.get('window');
-const deviceHeight = height;
-let deviceWidth = width;
-let top;
-const statusBarHeight = Platform.OS === 'ios' ? 0 : 0;
-
 export default {
     container: {
         flex: 1,
@@ -83,7 +75,6 @@ export default {
         fontSize: 16,
         color:'#ff277b',
         fontWeight:'500',
-        
     },
     loginButton:{
         borderRadius: 25,
@@ -102,7 +93,6 @@ export default {
         shadowRadius: 1,
         marginTop:'2%',
         marginBottom:'2%',
-        //marginBottom:'10%',
         backgroundColor: '#ff277b'
     },
     seeMoreBtn:{
@@ -122,8 +112,6 @@ export default {
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
-        
-        //marginBottom:'10%',
         backgroundColor: 'white'
     },
     itemView: {
@@ -146,21 +134,18 @@ export default {
 
     },
     viewSingleLine:{
-      height:1,
-      width:'80%',
-      alignSelf:'center',
-      backgroundColor:'rgba(38,38,38,0.52)',
-      marginTop:'2%',
-      marginBottom:'2%',
-
-      
+        height:1,
+        width:'80%',
+        alignSelf:'center',
+        backgroundColor:'rgba(38,38,38,0.52)',
+        marginTop:'2%',
+        marginBottom:'2%',
     },
     viewArtistPhoto: {
         width: 50,
         height: 50,
         borderRadius: 25,
         backgroundColor: 'transparant',
-        // borderColor: 'gray',
         borderWidth: .2,
         shadowColor: 'rgba(0,0,0,0.7)',
         shadowOffset: {
@@ -246,6 +231,4 @@ export default {
         tintColor: 'rgb(60,205,53)',
         alignSelf: 'center',
     },
-
-
 }

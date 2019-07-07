@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-//import { toast } from "react-toastify";
 
 import { paymentActions } from "../../actions";
 
@@ -74,14 +73,12 @@ class Payment extends React.PureComponent {
         if (isError(paymentDetails)) {
           alert(paymentDetails.error.message);
           return false;
-          //return toast.error(paymentDetails.error.message);
         }
       });
     }
   };
 
   _handleChange = (name, value) => {
-    // const { name, value } = e.target;
     const { data, mask } = this.state;
     if (name === "remember") {
       data[name] = !data[name];

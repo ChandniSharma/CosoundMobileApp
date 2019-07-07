@@ -2,29 +2,19 @@ import React from "react";
 import { isEmpty, each } from "lodash";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
 import {
-  history,
   isSuccess,
   fileReader,
- // performWow,
   formatLinks,
-  enterPressed,
   extractValue,
   validateLinks,
   formatLinksState,
   formatLinksSelect,
-  fixRotationOfFile,
   getRemainingArray
 } from "../../utils";
-
 import Validator from "../../validator";
-
 import { authActions, genreActions } from "../../actions";
-
 import Signup from "../../views/Signup";
-
-
 
 class SignUpContainer extends React.Component {
   state = {
@@ -41,13 +31,11 @@ class SignUpContainer extends React.Component {
       url: null,
     //  email: this.props.navigation.state.params.email?this.props.navigation.state.params.email:'',
       email: '',
-
       password: "",
       // first_name: this.props.navigation.state.params.givenName?this.props.navigation.state.params.givenName:'',
       // last_name: this.props.navigation.state.params.familyName?this.props.navigation.state.params.familyName:'',
       first_name: '',
       last_name: '',
-
       dob: null,
       artist_name: "",
       genres: [],
@@ -58,10 +46,7 @@ class SignUpContainer extends React.Component {
   };
 
   componentDidMount() {
-
-   // console.log(" Navigation param====", this.state.navigation.state);
     const { socialUserData } = this.props;
-
     if (!isEmpty(socialUserData.data)) {
       this._setSocialData(socialUserData.data);
     }
@@ -182,7 +167,6 @@ class SignUpContainer extends React.Component {
    *
    */
   _handleFileChange = (name, file) => {
-    // const { name, files } = event.target;
     if (file) {
       const { data } = this.state;
       data[name] = file;
@@ -314,10 +298,7 @@ class SignUpContainer extends React.Component {
   _signUp = () => {
     const valid = this._isValid();
       if (valid && this._isValidSocials()) {
-      const { data } = this.state;
-     // return fixRotationOfFile(data.avatar).then(blob => {
-     //   data.avatar = blob;
-       // const genres = JSON.stringify(extractValue(data.genres));
+        const { data } = this.state;
         const genres = data.genres;
         const social_links = JSON.stringify(extractValue(data.social_links));
         const signUpData = Object.assign({}, data, {
@@ -327,10 +308,8 @@ class SignUpContainer extends React.Component {
         return this.props.authActions.signup(signUpData).then(() => {
           if (isSuccess(this.props.signup)) {
             this.props.navigation.navigate("Suggestions");
-            //return history.push("/suggestions");
           }
         });
-     // });
     }
   };
 

@@ -1,13 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
-//import { performWow } from "../../utils";
-
 import { authActions } from "../../actions";
-
 import Validator from "../../validator";
-
 import ForgotPasswordComponent from "../../views/ForgotPassword";
 
 class ForgotPassword extends React.PureComponent {
@@ -64,10 +59,8 @@ class ForgotPassword extends React.PureComponent {
     const valid = this._isValid();
     if (valid) {
       this.setState({isShowLoader:true})
-
       const { data } = this.state;
       this._callForgot(data).then(() => {
-       // performWow(this.props.wowActions);
       });
     }
   };
@@ -78,7 +71,6 @@ class ForgotPassword extends React.PureComponent {
   _callForgot = data => {
     const { authActions } = this.props;
     this.setState({isShowLoader:false})
-
     return authActions.forgotPassword(data);
   };
 

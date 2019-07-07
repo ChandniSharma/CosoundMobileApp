@@ -1,11 +1,8 @@
-import { Dimensions, Platform } from "react-native";
-import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
-
+import { Dimensions } from "react-native";
+import { scale, verticalScale } from 'react-native-size-matters';
 const { height, width } = Dimensions.get('window');
 const deviceHeight = height;
 let deviceWidth = width;
-let top;
-const statusBarHeight = Platform.OS === 'ios' ? 0 : 0;
 
 export default {
 
@@ -28,13 +25,6 @@ export default {
     },
     buttonSort1: {
         height: 40,
-        //    shadowColor: 'rgba(0,0,0,1)',
-        //    shadowOffset: {
-        //        width: .5,
-        //        height: .5
-        //    },
-        //    shadowOpacity: 0.5,
-        //    shadowRadius: 1,
         justifyContent: 'center',
         backgroundColor: 'white',
         borderTopLeftRadius: 10,
@@ -43,25 +33,11 @@ export default {
     },
     buttonSort: {
         height: 40,
-        //    shadowColor: 'rgba(0,0,0,1)',
-        //    shadowOffset: {
-        //        width: .5,
-        //        height: .5
-        //    },
-        //    shadowOpacity: 0.5,
-        //    shadowRadius: 1,
         justifyContent: 'center',
         backgroundColor: 'white',
     },
     buttonSort3: {
         height: 40,
-        //    shadowColor: 'rgba(0,0,0,1)',
-        //    shadowOffset: {
-        //        width: .5,
-        //        height: .5
-        //    },
-        //    shadowOpacity: 0.5,
-        //    shadowRadius: 1,
         justifyContent: 'center',
         backgroundColor: 'white',
         borderBottomLeftRadius: 10,
@@ -96,16 +72,13 @@ export default {
         fontSize: 14,
         color: 'white',
         fontFamily: 'Montserrat-light',
-        // fontWeight:'100',
     },
     loginText: {
-        // marginTop:'5%',
         marginBottom: '5%',
         alignSelf: 'center',
         fontSize: 14,
         color: 'white',
         fontFamily: 'Montserrat-light',
-        // fontWeight:'100',
     },
     noServiceText: {
         marginBottom: '5%',
@@ -142,14 +115,11 @@ export default {
         shadowOpacity: 0.5,
         shadowRadius: 1,
         justifyContent: 'center',
-        //marginBottom:'10%',
         backgroundColor: '#ff277b',
-        
     },
     loginButton: {
         borderRadius: 25,
         height: 50,
-
         alignItems: 'center',
         justifyContent: 'center',
         marginLeft: "15%",
@@ -161,8 +131,6 @@ export default {
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
-
-        //marginBottom:'10%',
         backgroundColor: '#ff277b',
         marginBottom: '15%',
     },
@@ -170,7 +138,6 @@ export default {
         fontSize: 16,
         color: 'white',
         fontWeight: '500',
-        // marginBottom:'15%'
     },
     findingView: {
         backgroundColor: 'red',
@@ -183,10 +150,8 @@ export default {
     },
     imgSideTitle: {
         color: 'white',
-        // fontSize: 21,
         margin: '2%',
         alignSelf: 'flex-start',
-        //  fontFamily: 'Montserrat-Bold',
         flex: 0.3,
         width: 50,
         height: 40
@@ -195,8 +160,6 @@ export default {
         color: '#262626',
         fontSize: 14,
         fontFamily: 'Montserrat-light',
-        // marginLeft:'-5%'
-
     },
     findingView: {
         backgroundColor: 'white',
@@ -213,7 +176,6 @@ export default {
         marginRight: '2%',
         justifyContent: 'center',
         alignItems: 'center',
-        // backgroundColor:'green'
     },
     textSettings: {
         color: 'rgba(38,38,38,0.52)',
@@ -227,7 +189,6 @@ export default {
         color: 'rgba(38,38,38,0.52)',
         fontSize: 14,
         fontFamily: 'Montserrat-light',
-
     },
     textPremium: {
         color: '#319B9D',
@@ -241,7 +202,6 @@ export default {
     imgMainTitle: {
         alignSelf: 'center',
         margin: '5%',
-
     },
     datePickerStyle: {
         marginLeft: '15%',
@@ -251,7 +211,6 @@ export default {
         alignSelf: 'center',
         backgroundColor: 'transparant',
         marginTop: '5%',
-
         fontFamily: 'Montserrat-Regular',
         fontWeight: '300',
         fontSize: 16,
@@ -262,7 +221,6 @@ export default {
         paddingRight: 30,
     },
     locationLabel: {
-
         fontFamily: 'Montserrat-Regular',
         fontWeight: '300',
         fontSize: 16,
@@ -292,14 +250,11 @@ export default {
         paddingLeft: 30,
         paddingRight: 30,
     },
-
-
     searchBarView: {
         flexDirection: 'row',
         margin: '5%',
         height: 60,
         borderRadius: 25,
-
     },
     inputSearchStyle: {
         height: 60,
@@ -309,10 +264,6 @@ export default {
         width: '70%',
         color: 'black',
         marginLeft: '15%',
-        // paddingTop: 21,
-        // paddingBottom: 20,
-        // paddingLeft: 30,
-        // paddingRight: 30,
     },
     btnBottomMob: {
         marginLeft: '5%',
@@ -329,9 +280,7 @@ export default {
         borderRadius: 8,
     },
     viewForgotPwd: {
-
     },
-
     rememberView: {
         flexDirection: 'row',
         flex: 1,
@@ -340,8 +289,6 @@ export default {
         marginLeft: '5%',
         marginRight: '5%',
         height: 30,
-        // backgroundColor:'pink'
-
     },
     imgMenuBar: {
         width: 40,
@@ -353,16 +300,8 @@ export default {
         width: '100%',
         height: 300,
     },
-    searchView: {
-        // alignSelf: 'flex-end',
-        // marginRight:5,
-        // justifyContent: 'center',
-        // width: 30,
-        // height: 30,
-
-    },
+    searchView: {},
     bckgndImage: {
-
     },
     imgMenuBar: {
         width: 40,
@@ -373,7 +312,6 @@ export default {
     viewBottomContent: {
         flexDirection: 'row',
         height: 30,
-
     },
     bellButton: {
         width: 64,
@@ -381,7 +319,6 @@ export default {
         right: '5%',
         alignSelf: 'flex-end',
         marginTop: '5%',
-
     },
     bellIcon: {
         width: 64,
@@ -396,7 +333,6 @@ export default {
     textUserName: {
         color: '#ffffff',
         fontSize: 34,
-        // fontFamily: 'Montserrat-regular',
         marginBottom: '10%',
         alignSelf: 'center',
     },
@@ -410,13 +346,10 @@ export default {
         alignItems: 'center'
     },
     viewDropDown: {
-        // marginTop: '35%',
         backgroundColor: 'white',
         width: deviceWidth,
-        // height: deviceHeight - 400,
         alignItems: 'center',
         justifyContent: 'center',
-
     },
     viewModalAccount: {
         backgroundColor: 'rgba(0,0,0,0.6)',
@@ -427,18 +360,15 @@ export default {
     flatList: {
         width: '100%',
         marginBottom: '10%'
-        //height: deviceHeight-300,
     },
     flatListSearchbar: {
         width: '90%',
-
         backgroundColor: 'white',
         borderRadius: 15,
         marginTop: -20,
         alignSelf: 'center'
     },
     viewModal: {
-        //top:-100,
         backgroundColor: 'black',
         width: deviceWidth,
         height: deviceHeight,
@@ -458,22 +388,18 @@ export default {
         alignSelf: 'center',
         justifyContent: 'center',
         marginBottom: '2%',
-        // backgroundColor:'pink'
     },
-
     errorText: {
         margin: '2%',
         color: 'red',
         alignSelf: 'center',
     },
-
     textModalData: {
         color: 'white',
         fontSize: 12,
         fontFamily: 'Montserrat-light',
         alignSelf: 'center'
     },
-
     viewSocial: {
         marginLeft: '5%',
         marginRight: '5%',
@@ -493,31 +419,18 @@ export default {
         fontSize: 16,
         color: '#262626',
         justifyContent: 'center',
-        // paddingTop: 21,
-        // paddingBottom: 20,
-        // paddingLeft: 30,
-        // paddingRight: 30,
     },
     socialInput: {
         marginLeft: '5%',
         marginRight: '2%',
         height: 60,
-
-
         fontFamily: 'Montserrat-Regular',
         fontWeight: '300',
         fontSize: 16,
         color: '#262626',
-        // paddingTop: 21,
-        // paddingBottom: 20,
-        // paddingLeft: 30,
-        // paddingRight: 30,
     },
     plusCircleBtn: {
-        // color: '#8E5ACD',
-        // marginBottom:5,
         right: '3%',
-        // alignSelf: 'flex-end',
         marginTop: '1%',
         flex: 0.15,
         width: 40,
@@ -525,18 +438,12 @@ export default {
         justifyContent: 'center',
         alignItems: 'center',
     },
-    plusCircle: {
-        // color: 'gray',
-        // marginBottom: 5,
-
-    },
+    plusCircle: {},
     viewCircleCompleted: {
         width: 30,
         height: 30,
         borderRadius: 15,
         backgroundColor: 'rgb(41,139,139)',
-        // borderColor: 'gray',
-        // borderWidth: .2,
         shadowColor: 'rgba(0,0,0,0.7)',
         shadowOffset: {
             width: .5,
@@ -545,11 +452,9 @@ export default {
         shadowOpacity: 0.5,
         shadowRadius: 1,
         marginTop: '-2%',
-        // marginLeft:'-%',
         zIndex: 999,
     },
     multiSelectDownStyle: {
-        // marginTop:'6%',
         height: 60,
         backgroundColor: 'white',
         marginRight: '2%',

@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from "react";
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import styles from "../../../stylesheet/Account.style";
 import * as Animatable from 'react-native-animatable';
 import Validator from "../../../validator";

@@ -1,12 +1,9 @@
 import React from "react";
-import {View, Text} from 'react-native';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { isNull } from "lodash";
-import { performWow, getValueFromParams } from "../../utils";
 import { userProfileActions } from "../../actions";
 import UserProfileComponent from "../../views/UserProfile";
-import Account from '../../views/AcTry';
 
 class UserProfile extends React.PureComponent {
   componentDidMount() {
@@ -27,11 +24,9 @@ class UserProfile extends React.PureComponent {
 
     if (!isNull(id)) {
       this._fetchUser(id, !isNull(user.token)).then(() => {
-      //  performWow(wowActions);
         this._fetchUserMusic(1).then(() => {
           this._fetchUserImages(1).then(() => {
             this._fetchUserFeed(1).then(() => {
-             // performWow(wowActions);
             });
           });
         });
@@ -42,7 +37,6 @@ class UserProfile extends React.PureComponent {
   _restCalls = () => {
     if (!isNull(this._getUserId())) {
       this._fetchUserFeed(1).then(() => {
-       // performWow(this.props.wowActions);
       });
     }
   };
@@ -88,17 +82,14 @@ class UserProfile extends React.PureComponent {
   
   render() {
     const {
-      match,
       userMusic,
       userImages,
       userProfile,
       userProfileFeed
     } = this.props;
-    //const { params } = match;
    
     return (
       <UserProfileComponent
-
         id={this.props.navigation.state.params.id}
         user={userProfile}
         myMusic={userMusic}

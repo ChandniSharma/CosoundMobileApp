@@ -1,19 +1,13 @@
 import React from "react";
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableHighlight, Image, TouchableOpacity, FlatList } from 'react-native';
 import styles from "../../stylesheet/Account.style";
 import { SafeAreaView } from 'react-navigation';
-import LinearGradient from 'react-native-linear-gradient';
-import Logo from '../common/logo';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Icon from "react-native-vector-icons/AntDesign";
-import Icon1 from "react-native-vector-icons/Entypo";
-import Icon2 from "react-native-vector-icons/EvilIcons";
 import Icon3 from "react-native-vector-icons/Ionicons";
-import Hamburger from 'react-native-hamburger';
 import SideMenu from '../common/SideMenu';
 import SettingsHeader from '../common/SettingsHeader';
 import Notifications from '../../../src/containers/Notifications'
-
 import TabComponent from "./TabComponent";
 import CustomFooter from "../../components/common/CustomFooter";
 import HeaderMenuAndBell from '../common/HeaderMenuAndBell';
@@ -53,12 +47,7 @@ class AccountSettingsTabs extends React.PureComponent {
     showNotification() {
         this.setState({ isNotificationShow: true, isSideMenuClick: false })
     }
-    onClickSettingsButton(name) {
-        //   switch(name){
-        //       case buttonName.contactInfo:
-        //          this.setState({isContactInfoClick:true})
-        //   }
-    }
+    
     renderItem = (item, ) => {
         let index = item.index;
         let icon = "";
@@ -71,7 +60,6 @@ class AccountSettingsTabs extends React.PureComponent {
             icon = <Icon name="customerservice" style={{ flex: 0.1, color: 'rgb(59, 147, 187)', marginRight: '3%', fontSize: 18 }} />
         }
         return (
-
             <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.setState({ isDropDownclick: false })}>
                     <View style={{ flexDirection: "row" }}>
@@ -96,12 +84,10 @@ class AccountSettingsTabs extends React.PureComponent {
     }
     _navigateToNotificationView() {
         this.setState({ isNotificationShow: true })
-        //this.props.navigation.navigate('Notification');
     }
     render() {
         const {
             user,
-            tabs,
             genres,
             details,
             tabIndex,
@@ -119,22 +105,7 @@ class AccountSettingsTabs extends React.PureComponent {
 
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
-
-                {/* {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: 100, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
-                    <TouchableOpacity style={{ color: 'white', marginTop: '14%', flex: 0.1, marginLeft: '4%' }} onPress={() => this.showPopup()}>
-                        <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />
-                    </TouchableOpacity>
-
-                    <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
-                    <View style={{ flex: 0.3 }} />
-                    <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}>
-                        {this.state.isNotificationShow ? <Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} /> : <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />}
-                    </TouchableOpacity>
-                </LinearGradient> : null} */}
-
                 {!this.state.isSideMenuClick ? <HeaderMenuAndBell notificationCount = {notificationCount} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} onPressPopup={() => this.showPopup()} isNotificationShow={this.state.isNotificationShow} onPressBell={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })} /> : null}
-
-
 
                 <View style={{ flex: 1 }}>
                     <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)' }}>
@@ -154,8 +125,6 @@ class AccountSettingsTabs extends React.PureComponent {
                                 <View style={{ width: 30, height: 30, borderRadius: 18, marginRight: '5%', marginBottom: '5%', flex: 0.1, backgroundColor: 'white' }}>
                                     <Icon name="down" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
                                 </View>
-
-                                {/* <Animatable.Image source={require('../../src/assets/Image/arrow_small_down.png')} style={{borderRadius:13,alignSelf:'flex-end' ,width: 26, height: 26 }} /> */}
                             </View>
                         </TouchableOpacity>
                         <View style={{ flexDirection: "row", alignSelf: 'center', marginTop: '2%', flex: 0.1 }}>
@@ -205,7 +174,6 @@ class AccountSettingsTabs extends React.PureComponent {
                                         <View style={{ width: 30, height: 30, borderRadius: 18, marginRight: '5%', marginBottom: '5%', flex: 0.1, backgroundColor: 'white', borderColor: '#8E8E8E', borderWidth: 0.3 }}>
                                             <Icon name="up" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
                                         </View>
-
                                     </View>
                                 </TouchableOpacity>
 
@@ -227,12 +195,10 @@ class AccountSettingsTabs extends React.PureComponent {
 
                     </KeyboardAwareScrollView>
                     {/* notification view show */}
-
                     {this.state.isNotificationShow ? <Notifications navigation={navigation} hidePopup={() => this.hideNotificationView()} /> : null}
                 </View>
             </SafeAreaView>
         )
-
     }
 }
 

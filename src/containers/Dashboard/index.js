@@ -2,14 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { isNull } from "lodash";
-
-//import { client } from "../../services";
-
 import { feedActions, postStatusActions } from "../../actions";
-
 import DashboardComponent from "../../views/Dashboard";
-
-//import { performWow } from "../../utils";
 
 class Dashboard extends React.PureComponent {
   subscription = null;
@@ -20,9 +14,7 @@ class Dashboard extends React.PureComponent {
 
     const { user } = this.props;
     //const {  data } = user;
-
     /* getstream.io subscribe */
-
     // if (get_stream_token && get_stream_token.timeline && data.id) {
     //   const timeline = client.feed(
     //     "timeline",

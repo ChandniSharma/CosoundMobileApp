@@ -1,24 +1,17 @@
 import React from "react";
-//import { toast } from "react-toastify";
 import { isEmpty } from "lodash";
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableHighlight, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import styles from "../../../stylesheet/Account.style";
-import * as Animatable from 'react-native-animatable';
-import MultiSelect from 'react-native-multiple-select';
 import { Icon } from "native-base";
 import Icon1 from "react-native-vector-icons/AntDesign";
 
-//import { Svg, UpdateButton, CreatableSelect } from "../../Commons";
 import {
   isError,
   isSuccess,
   extractIds,
   formatLinks,
   extractValue,
-  enterPressed,
   validateLinks,
-  formatLinksState,
-  formatLinksSelect,
   getRemainingArray,
   formatPhoneNumbers
 } from "../../../utils";
@@ -50,13 +43,10 @@ class ContactInfo extends React.Component {
   };
 
   _submit = () => {
-    // e.preventDefault();
-
     if (this._isValidSocials()) {
       this.setState({ errors: {} });
       const { _updateUser, user } = this.props;
       const { data } = this.state;
-
       const requestBody = Object.assign({}, user.data, {
         phone_numbers: extractValue(data.phone_numbers),
         social_links: extractValue(data.social_links),
@@ -68,12 +58,10 @@ class ContactInfo extends React.Component {
         const { contactInfo } = this.props;
         if (isSuccess(contactInfo)) {
           alert("Contact info updated");
-          // return toast.info("Contact info updated");
         }
 
         if (isError(contactInfo)) {
           alert(contactInfo.error.message);
-          // return toast.error(contactInfo.error.message);
         }
       });
     }
@@ -136,7 +124,6 @@ class ContactInfo extends React.Component {
    *
    */
   _handleKeyPress = (itemid) => {
-    // if (enterPressed(e))
     {
       this._addMorePhoneNumbers(itemid);
     }
@@ -179,11 +166,9 @@ class ContactInfo extends React.Component {
                 name={index}
                 keyboardType='phone-pad'
               />
-              {/* {!item.isReady && ( */}
               <TouchableHighlight onPress={() => this._addMorePhoneNumbers(index)} underlayColor="#25b6ad" style={[styles.plusCircleBtn]}>
                 {index + 1 === data.phone_numbers.length ? <Icon name="ios-add-circle-outline" size={30} color="gray" style={styles.plusCircle} /> : <Icon1 name="close" size={25} color="gray" style={styles.plusCircle} />}
               </TouchableHighlight>
-              {/* )} */}
             </View>
           );
         })
@@ -191,7 +176,6 @@ class ContactInfo extends React.Component {
 
         <TouchableOpacity style={{ alignSelf: 'center', justifyContent: 'center', marginTop: '5%', width: '40%', height: '15%', borderRadius: 10, backgroundColor: '#ff277b' }}
           onPress={() => !contactInfo.isRequesting && this._submit()}
-        // disabled={changePassword.isRequesting}
         >
           {contactInfo.isRequesting ? (
             <ActivityIndicator color='white' />
@@ -201,7 +185,6 @@ class ContactInfo extends React.Component {
         </TouchableOpacity>
       </View>
     )
-
   }
 }
 

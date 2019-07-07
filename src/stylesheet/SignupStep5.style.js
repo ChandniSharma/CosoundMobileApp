@@ -1,13 +1,4 @@
-import { Dimensions, Platform } from "react-native";
-
-const { height, width } = Dimensions.get('window');
-const deviceHeight = height;
-let deviceWidth = width;
-let top;
-const statusBarHeight = Platform.OS === 'ios' ? 0 : 0;
-
 export default {
-
     errorText: {
         margin: '2%',
         color: 'red',
@@ -20,7 +11,6 @@ export default {
         marginTop: '15%',
         alignSelf: 'flex-end',
         flex: 0.4,
-        // backgroundColor:'red'
     },
     findingView: {
         backgroundColor: 'white',
@@ -33,10 +23,8 @@ export default {
     },
     imgSideTitle: {
         color: 'white',
-        // fontSize: 21,
         margin: '2%',
         alignSelf: 'flex-start',
-        //  fontFamily: 'Montserrat-Bold',
         flex: 0.3,
         width: 50,
         height: 40
@@ -44,13 +32,11 @@ export default {
     textDull: {
         color: 'rgba(255,255,255,0.72)',
         fontFamily: 'Montserrat-Regular',
-        // fontWeight:'200',
         fontSize: 12,
     },
     getStarted: {
         color: 'white',
         fontFamily: 'Montserrat-Regular',
-        //fontWeight:'200',
         fontSize: 14,
         marginRight: '5%',
         alignSelf: 'flex-end',
@@ -62,9 +48,7 @@ export default {
         fontSize: 30,
         color: 'white',
         fontFamily: 'Montserrat-Regular',
-        // fontWeight:'100',
     },
-
     inputStyle: {
         marginLeft: '5%',
         marginRight: '5%',
@@ -89,17 +73,14 @@ export default {
         paddingRight: 30,
     },
     viewForgotPwd: {
-
     },
     viewSelected: {
         marginLeft: '24.5%',
         flexDirection: 'row'
     },
     viewNotSelected: {
-        // alignSelf:'center',
         marginLeft: '22.5%',
         flexDirection: 'row',
-
     },
     viewProgressbar: {
         marginTop: '5%',
@@ -156,12 +137,10 @@ export default {
         zIndex: 999,
         marginLeft: '3%'
     },
-
     viewSingleLine: {
         width: '3.5%',
         height: '22%',
         backgroundColor: 'rgb(225,225,225)',
-
         marginLeft: '27%',
         marginTop: '-2%',
         zIndex: -999,
@@ -193,14 +172,12 @@ export default {
         flex: 0.45,
         marginTop: '1%',
         height: 20
-        //  backgroundColor:'green',
     },
     rememberText: {
         color: 'rgb(37,182,173)'
     },
     forgotPwdBtn: {
         flex: 0.5,
-        //alignSelf:'flex-end',
         marginTop: '1%',
     },
     forgotPwdText: {
@@ -225,7 +202,6 @@ export default {
         shadowOpacity: 0.5,
         shadowRadius: 1,
         borderWidth: 0.3,
-        //marginBottom:'10%',
         backgroundColor: 'rgba(255,255,255,0.7)',
         marginTop: "5%",
         marginBottom: '5%',
@@ -235,7 +211,6 @@ export default {
         flexDirection: 'row',
         marginTop: '20%',
         marginBottom: '2%',
-        // backgroundColor:'yellow',
         flex: 1,
         height: 60,
         marginLeft: '5%',
@@ -252,14 +227,12 @@ export default {
         color: '#1CA1F3',
         fontSize: 16,
         fontWeight: '300',
-
     },
     googlePlusText: {
         color: '#EA4336',
         fontSize: 16,
         fontFamily: 'Montserrat-Hairline',
         fontWeight: '300',
-
     },
     buttonLeft: {
         borderRadius: 22,
@@ -295,8 +268,6 @@ export default {
         shadowRadius: 1,
         backgroundColor: 'white',
         alignSelf: 'center',
-
-
     },
     buttonRight: {
         borderRadius: 22,
@@ -322,17 +293,14 @@ export default {
         alignSelf: 'center',
     },
     viewButton: {
-        //backgroundColor:'pink',
         flex: 1,
         justifyContent: 'center',
-
     },
     musician: {
         width: 40,
         height: 60,
         alignSelf: 'center',
         marginBottom: '1%'
-
     },
     industryProfessional: {
         width: 59,
@@ -344,18 +312,15 @@ export default {
         flexDirection: 'row',
         alignSelf: 'flex-end',
         flex: 0.4,
-
         height: 50,
         marginBottom: '5%',
         marginLeft: '13%',
         marginRight: '2%'
     },
     textColorTemp: {
-        // color: 'white',
     },
     textBottomMark: {
         marginTop: 20,
-        // marginBottom: 20,
         fontSize: 14,
         color: 'white',
         marginLeft: '5%',
@@ -364,15 +329,11 @@ export default {
     shareButtons: {
         width: 15,
         height: 15,
-
     },
     viewBottom: {
-        //flex:0.1,
-        // marginTop:'5%',
         position: 'absolute',
         bottom: '0.1%',
         backgroundColor: 'black',
-        //alignItems: 'space-between',
         justifyContent: 'center',
         flexDirection: 'row',
     },
@@ -400,8 +361,6 @@ export default {
     textMusicDescription2: {
         color: 'rgba(255,255,255,0.52)',
         fontSize: 14,
-        // alignSelf:'center',
-
         marginTop: '1%',
         marginBottom: '5%',
         fontFamily: 'Montserrat-Light',
@@ -416,7 +375,6 @@ export default {
     imageSearchIcon: {
         width: 56,
         height: 56,
-
     },
     textCompleted: {
         marginLeft: '5%',
@@ -440,7 +398,6 @@ export default {
         shadowOpacity: 0.5,
         shadowRadius: 1,
         marginTop: '-2%',
-        // marginLeft:'-%',
         zIndex: 999,
     },
     viewSingleLineFilled: {

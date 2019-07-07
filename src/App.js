@@ -19,17 +19,6 @@ import {
     notificationActions
 } from "./actions";
 
-//import { FallBackLoader } from "./components/Commons";
-
-//const Layout = React.lazy(() => import("./components/Layout"));
-//const AdminLayout = React.lazy(() => import("./components/AdminPanel/Layout"));
-
-import {
-    routes,
-    errorRoutes,
-    adminRoutes,
-    privateRoutes
-} from "./constants/routes";
 import { setInterval } from "timers";
 
 class App extends React.PureComponent {
@@ -37,7 +26,6 @@ class App extends React.PureComponent {
     componentDidMount() {
         this._hideSpinner();
         this._restCalls();
-        // this.props.wowActions.initialize();
     }
 
     _restCalls = () => {

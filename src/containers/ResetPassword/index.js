@@ -1,13 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
 import { arrayToObject } from "../../utils";
-
 import { authActions } from "../../actions";
-
 import Validator from "../../validator";
-
 import RecoverPwd from "../../views/RecoverPwd";
 
 class ResetPassword extends React.Component {
@@ -28,8 +24,6 @@ class ResetPassword extends React.Component {
 
   componentDidMount() {
     const { location } = this.props;
-   // const { search } = location;
-   // this._performAction(search);
   }
 
   _performAction = search => {
@@ -89,17 +83,12 @@ class ResetPassword extends React.Component {
    * On Submit
    */
   _onSubmit = e => {
-   // alert("password changed 99");
-    //e.preventDefault();
     const valid = this._isValid();
     if (valid) {
       const { data } = this.state;
       this._callReset(data).then(() => {
-       // alert("Password reset successfully.")
-        //performWow(this.props.wowActions);
       });
     }else{
-     // alert("Invalid");
     }
   };
 

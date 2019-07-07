@@ -1,19 +1,12 @@
 import React from "react";
-
 import { Paginator } from "../../hoc";
 import CartList from "./CartList";
 import Sidebar from "./Sidebar";
-import { View, TouchableOpacity } from "react-native";
+import { View } from "react-native";
 import styles from "../../stylesheet/Cart.style";
 import { SafeAreaView } from 'react-navigation';
-import LinearGradient from 'react-native-linear-gradient';
-import Logo from '../common/logo';
 import HeaderMenuAndBell from '../common/HeaderMenuAndBell';
-
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import Icon from "react-native-vector-icons/AntDesign";
-import Icon2 from "react-native-vector-icons/EvilIcons";
-import Hamburger from 'react-native-hamburger';
 import SideMenu from '../common/SideMenu';
 import Notifications from '../../../src/containers/Notifications'
 import CustomFooter from '../../components/common/CustomFooter';
@@ -39,10 +32,6 @@ class Cart extends React.PureComponent {
   showPopup() {
     this.setState({ isSideMenuClick: true ,
       isNotificationShow: false})
-    // setTimeout(() => {
-    //     this.zoomInPopup();
-    // }, 10);
-
   }
   hidePopup() {
     this.setState({ isSideMenuClick: false })
@@ -56,28 +45,9 @@ class Cart extends React.PureComponent {
 
     return (
       <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
-
-        {/* {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: 100, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
-
-          <TouchableOpacity style={{ color: 'white', marginTop: '14%', flex: 0.1, marginLeft: '4%' }} onPress={() => this.showPopup()}>
-            <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />
-          </TouchableOpacity>
-          <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
-          <View style={{ flex: 0.3 }} />
-          <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}>
-            {this.state.isNotificationShow ? <Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} /> : <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />}
-
-          </TouchableOpacity>
-        </LinearGradient> : null} */}
-
-
-
         {!this.state.isSideMenuClick ? <HeaderMenuAndBell notificationCount={notificationCount} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} onPressPopup={() => this.showPopup()} isNotificationShow={this.state.isNotificationShow} onPressBell={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })} /> : null}
-
-
         <View style={{ flex: 1 }}>
           {!this.state.isNotificationShow ? <KeyboardAwareScrollView style={{ backgroundColor: 'white' }}>
-            {/* <Text style={[styles.titleAccount, {marginTop:'2%', marginLeft:'2%'} ]}>Your Service</Text> */}
             <View style={{ flex: 0.2 }}>
               <Paginator
                 isLoaderInternal
@@ -90,7 +60,6 @@ class Cart extends React.PureComponent {
                 page_count={paginationData.page_count}
                 navigation={this.props.navigation}
               />
-
             </View>
             <View style={{ flex: 0.6 }}>
               <Sidebar cart={cart} navigation={this.props.navigation} />
@@ -98,7 +67,6 @@ class Cart extends React.PureComponent {
             <View style={{ flex: 0.2 }}>
               <CustomFooter />
             </View>
-
           </KeyboardAwareScrollView> :
             <View>
               <Notifications hidePopup={() => this.hideNotificationView()} />

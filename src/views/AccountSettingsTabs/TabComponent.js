@@ -1,7 +1,5 @@
 import React from "react";
-
-
-import { ContactInfo, Details, ChangePassword, Payment, NotFound } from "./Tabs";
+import { ContactInfo, Details, ChangePassword, NotFound } from "./Tabs";
 
 const TabComponent = ({ tabIndex, ...rest }) => {
   switch (tabIndex) {

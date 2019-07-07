@@ -1,10 +1,6 @@
-import { Dimensions, Platform } from "react-native";
-
-const { height, width } = Dimensions.get('window');
-const deviceHeight = height;
+import { Dimensions } from "react-native";
+const { width } = Dimensions.get('window');
 let deviceWidth = width;
-let top;
-const statusBarHeight = Platform.OS === 'ios' ? 0 : 0;
 
 export default {
     container: {
@@ -16,12 +12,6 @@ export default {
         height:40,
         marginTop:'10%',
     },
-    // imgMainTitle: {
-    //     alignSelf: 'center',
-    //     width: 200,
-    //     height: 40,
-    //     marginTop: '25%',
-    // },
     textWelcome: {
         color: 'white',
         fontSize: 28,
@@ -41,7 +31,6 @@ export default {
         color: 'rgba(255,255,255,0.52)',
         fontSize: 16,
         alignSelf: 'center',
-       
         marginTop: '1%',
         marginBottom: '5%',
         fontFamily: 'Montserrat-Light',
@@ -83,22 +72,20 @@ export default {
         fontSize: 16,
         color:'white',
         fontWeight:'500',
-        marginBottom:'7%'
-        
+        marginBottom:'7%' 
     },
     textContinueBtnTitle:{
-            fontSize: 16,
-            color:'white',
-            fontWeight:'500',
-            height:30,
-            alignSelf:'center',
-            marginTop:'20%',
+        fontSize: 16,
+        color:'white',
+        fontWeight:'500',
+        height:30,
+        alignSelf:'center',
+        marginTop:'20%',
     },
     textSeeMoreBtnTitle: {
         fontSize: 16,
         color:'#ff277b',
         fontWeight:'500',
-        
     },
     loginButton:{
         borderRadius: 25,
@@ -117,12 +104,10 @@ export default {
         shadowRadius: 1,
         marginTop:'2%',
         marginBottom:'2%',
-        //marginBottom:'10%',
         backgroundColor: '#ff277b'
     },
     selectPlanBtnPurple:{
         marginTop:'-5%',
-       
         borderRadius: 25,
         height: 50,
         flex: 0.3,
@@ -137,8 +122,6 @@ export default {
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
-        
-        //marginBottom:'10%',
         backgroundColor: 'rgb(130, 98,203)'
     },
     selectPlanBtnGreen:{
@@ -158,8 +141,6 @@ export default {
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
-        
-        //marginBottom:'10%',
         backgroundColor: 'rgb(49, 155,157)'
     },
     itemView: {
@@ -182,19 +163,16 @@ export default {
 
     },
     viewSingleLine:{
-      height:1,
-      width:'80%',
-      alignSelf:'center',
-      backgroundColor:'rgba(38,38,38,0.52)',
-      marginTop:'2%',
-      marginBottom:'2%',
-
-      
+        height:1,
+        width:'80%',
+        alignSelf:'center',
+        backgroundColor:'rgba(38,38,38,0.52)',
+        marginTop:'2%',
+        marginBottom:'2%',      
     },
     viewArtistPhoto: {
         width: 150,
         height: 150,
-        
         backgroundColor: 'transparant',
         borderColor: 'gray',
         borderWidth: .2,
@@ -210,14 +188,10 @@ export default {
         justifyContent: "center",
         marginTop: '5%',
         marginBottom: '5%',
-
-        // marginLeft:'-%',
-
     },
     imageArtist: {
         width: 140,
         height: 140,
-       // borderRadius: 20,
     },
     artistName: {
         color: '#262626',
@@ -237,15 +211,12 @@ export default {
         lineHeight: 22,
         marginLeft:'5%',
         marginRight:'5%',
-
     },
-
     premimumFeatureTitle:{
         color:'#20ACAC',
         fontSize:30,
         alignSelf:'center',
     },
-
     premiumFeatureDescription:{
         color:'rgba(38, 38, 38, 0.52)',
         fontSize:14,
@@ -254,7 +225,6 @@ export default {
         marginRight:'5%',
         fontFamily: 'Montserrat-Light',
     },
-
     featureView:{
         backgroundColor:'white',
         width:100,
@@ -269,7 +239,6 @@ export default {
         height:56,
         
     },
-
     fatureName: {
         color: '#262626',
         fontSize: 15,
@@ -293,8 +262,8 @@ export default {
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'center',
-         marginLeft: "15%",
-         marginRight:"15%",
+        marginLeft: "15%",
+        marginRight:"15%",
         shadowColor: 'rgba(0,0,0,0.12)',
         shadowOffset: {
             width: .4,
@@ -302,8 +271,6 @@ export default {
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
-        
-        //marginBottom:'10%',
         backgroundColor: '#ff277b',
         marginTop:'5%',
         marginBottom:'5%',

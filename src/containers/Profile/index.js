@@ -1,13 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
-//import { performWow } from "../../utils";
-
 import { userFeedActions, userActions } from "../../actions";
-
 import ProfileComponent from "../../views/Profile";
-
 
 class Profile extends React.PureComponent {
   componentDidMount() {
@@ -22,7 +17,6 @@ class Profile extends React.PureComponent {
     this._fetchMyMusic(1).then(() => {
       this._fetchMyImages(1).then(() => {
         this._fetchFeed(1).then(() => {
-        //  performWow(this.props.wowActions);
         });
       });
     });
@@ -30,7 +24,6 @@ class Profile extends React.PureComponent {
 
   _restCalls = () => {
     this._fetchFeed(1).then(() => {
-     // performWow(this.props.wowActions);
     });
   };
 

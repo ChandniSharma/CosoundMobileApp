@@ -1,20 +1,15 @@
-import React, {useEffect} from "react";
+import React from "react";
 import OptionComponent from "./OptionComponent";
 import { View, TouchableOpacity } from "react-native";
 import * as Animatable from 'react-native-animatable';
-//import console = require("console");
 
 fadeInUpPopup = () => this.refs.viewpopup.fadeInUp(1000);
 
-
-
 const CardOptions = ({
-
   className,
   toggleVisible,
   ...rest
 }) => {
-
   
   return (
     <View style={{ flex: 1, position: 'absolute', marginTop: 40, right: '2%', width: 100, height: 50}}>

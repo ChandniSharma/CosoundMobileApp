@@ -2,11 +2,8 @@ import React from "react";
 import { isNull } from "lodash";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
 import { getCategoryId, getSubCategoryId } from "../../utils";
-
 import {marketPlaceActions } from "../../actions";
-
 import MarketPlaceComponent from "../../views/MarketPlaceComponent";
 
 
@@ -22,10 +19,8 @@ class MarketPlaceContainer extends React.PureComponent {
         this.props.navigation.state.params.subcategorySlug !==
           prevProps.navigation.state.params.subcategorySlug) &&
       !isNull(this._getCategoryId());
-
     if (updateCondition) {
       this._fetchServices(1).then(() => {
-      //  performWow(this.props.wowActions);
       });
     }
   }
@@ -38,7 +33,6 @@ class MarketPlaceContainer extends React.PureComponent {
       this._fetchFeaturedServices().then(() => {
         if (!isNull(this._getCategoryId())) {
           this._fetchServices(1).then(() => {
-           // performWow(this.props.wowActions);
           });
         }
       });

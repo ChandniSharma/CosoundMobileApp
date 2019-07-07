@@ -1,14 +1,4 @@
-import { Dimensions, Platform } from "react-native";
-
-const { height, width } = Dimensions.get('window');
-const deviceHeight = height;
-let deviceWidth = width;
-let top;
-const statusBarHeight = Platform.OS === 'ios' ? 0 : 0;
-
-export default{
-
-
+export default {
     container: {
         flex: 1,
     },
@@ -16,7 +6,6 @@ export default{
         flex:1, 
         zIndex: 1
       },
-    
     viewUserPhoto:{
         marginTop:"30%",
         height:80,width:80,
@@ -36,16 +25,13 @@ export default{
     },
     imgSideTitle: {
         color: 'white',
-       // fontSize: 21,
         margin: '2%',
         alignSelf: 'flex-start',
-      //  fontFamily: 'Montserrat-Bold',
         flex: 0.3,
         width:50,
         height:40
     },
     btnMenuBar: {
-        // alignSelf: 'flex-end',
         top:'1%',
         right:'4%',
         justifyContent: 'center',
@@ -62,7 +48,6 @@ export default{
         marginLeft:"10%",
         marginRight:"10%",
         padding:10
-
     },
     loginButton: {
         padding:5,
@@ -71,7 +56,6 @@ export default{
         width:160,
         alignItems: 'center',
         justifyContent: 'center',
-        // margin: '10%',
         shadowColor: 'rgba(0,0,0,1)',
         shadowOffset: {
             width: .5,
@@ -81,16 +65,13 @@ export default{
         shadowRadius: 1,
         backgroundColor:'white',
         marginRight:10,
-
     },
-
     viewPostButton: {
         flex: 1,
         marginTop:'4%',
         marginBottom:"7%",
         marginLeft:"10%",
         padding:10
-
     },
     postButton: {
         alignSelf:"flex-end",
@@ -100,7 +81,6 @@ export default{
         width:120,
         alignItems: 'center',
         justifyContent: 'center',
-        // margin: '10%',
         shadowColor: 'rgba(0,0,0,1)',
         shadowOffset: {
             width: .5,
@@ -117,7 +97,6 @@ export default{
         width:100,
         alignItems: 'center',
         justifyContent: 'center',
-        // margin: '10%',
         shadowColor: 'rgba(0,0,0,1)',
         shadowOffset: {
             width: .5,
@@ -126,13 +105,9 @@ export default{
         shadowOpacity: 0.5,
         shadowRadius: 1,
         backgroundColor:'white',
-
-
     },
     textLoginButtonTitle: {
         fontSize: 16,
         color:'rgb(33,180,174)',
     },
-
-
 }

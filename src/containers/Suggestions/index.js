@@ -1,13 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-//import { toast } from "react-toastify";
 import { isNull } from "lodash";
-
-//import { performWow } from "../../utils";
-
 import { suggestionActions, userActions } from "../../actions";
-
 import SuggestionComponent from "../../views/SuggestionComponent";
 
 class Suggestions extends React.PureComponent {
@@ -19,7 +14,6 @@ class Suggestions extends React.PureComponent {
     const { wowActions, signup } = this.props;
 
     this._fetchSuggestions(1).then(() => {
-     // performWow(wowActions);
      this.setState({
       isShowSuggestion : true
      })
@@ -27,7 +21,6 @@ class Suggestions extends React.PureComponent {
 
     if (signup.data.message) {
       alert(signup.data.message);
-      //return toast.info(signup.data.message);
     }
   }
 

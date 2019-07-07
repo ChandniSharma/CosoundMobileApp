@@ -1,10 +1,3 @@
-
-import { Dimensions, Platform } from "react-native";
-
-const { height, width } = Dimensions.get('window');
-const deviceHeight = height;
-let deviceWidth = width;
-
 export default {
     viewMoreImage: { padding: 10, marginTop: 10, justifyContent: "center", alignItems: "center" },
     textViewMore: {
@@ -32,13 +25,11 @@ export default {
         fontSize: 16,
         color: 'white',
         fontWeight: '500',
-
     },
     textPrice: {
         color: "#262626",
         fontSize: 14,
         fontFamily: 'Montserrat-light',
-        
     },
     ViewSingleLine: {
         shadowColor: 'rgba(0,0,0)',
@@ -60,10 +51,8 @@ export default {
     },
     flatListSearchbar: {
         width: '100%',
-        //height:'40%',
         color: 'white',
         borderRadius: 15,
-       // marginTop: -20,
         alignSelf: 'center',
         shadowColor: 'rgba(0,0,0,0.12)',
         shadowOffset: {
@@ -72,7 +61,6 @@ export default {
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
-
     },
     graphicDesignPopup: {
         position: "absolute",
@@ -95,7 +83,6 @@ export default {
         fontFamily: 'Montserrat-light',
         marginLeft: '5%',
         marginBottom: '3%',
-        //padding: '5%',
     },
     titleMainCarousel: {
         color: 'white',
@@ -112,7 +99,6 @@ export default {
         marginLeft: '5%',
         marginBottom: '5%',
         marginRight: '5%',
-
     },
     personalRecommended: {
         marginTop: '5%',
@@ -127,16 +113,12 @@ export default {
         color: '#262626',
         fontSize: 14,
         fontFamily: 'Montserrat-light',
-        // marginLeft:'-5%'
-
     },
     seeMoreBtn: {
         borderRadius: 25,
         height: 50,
-
         alignItems: 'center',
         justifyContent: 'center',
-
         shadowColor: 'rgba(0,0,0,0.12)',
         shadowOffset: {
             width: .4,
@@ -144,8 +126,6 @@ export default {
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
-
-        //marginBottom:'10%',
         backgroundColor: '#ff277b'
     },
     loginButton: {
@@ -163,8 +143,6 @@ export default {
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
-
-        //marginBottom:'10%',
         backgroundColor: '#ff277b'
     },
 }

@@ -2,13 +2,9 @@ import React from "react";
 import { isNull } from "lodash";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-//performWow, 
-import { isError, fixRotationOfFile } from "../../utils";
-
+import { isError } from "../../utils";
 import { userActions, genreActions } from "../../actions";
-
 import AccountSettingsTabs from "../../views/AccountSettingsTabs";
-//import Account from "../../views/Account";
 
 const tabs = [
   { id: 0, name: "Contact information" },
@@ -40,8 +36,6 @@ class AccountSettings extends React.PureComponent {
       {
         tabIndex
       }
-     // },
-      //() => performWow(this.props.wowActions)
     );
   };
 
@@ -54,17 +48,13 @@ class AccountSettings extends React.PureComponent {
   };
 
   _uploadProfilePic = (name, files) => {
-  //  const { name, files } = e.target;
     if (files) {
       const { userActions } = this.props;
-     // return fixRotationOfFile(files).then(blob => {
         userActions.uploadProfilePic(name, files).then(() => {
           if (isError(this.props.profilePic)) {
             alert(this.props.profilePic.error.message)
-            //return toast.error(this.props.profilePic.error.message);
           }
         });
-     // });
     }
   };
 
@@ -82,7 +72,6 @@ class AccountSettings extends React.PureComponent {
 
     return (
       <AccountSettingsTabs
-      
         tabs={tabs}
         user={user}
         genres={genres}

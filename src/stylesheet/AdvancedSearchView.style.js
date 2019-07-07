@@ -1,13 +1,8 @@
-import { Dimensions, Platform } from "react-native";
-
+import { Dimensions } from "react-native";
 const { height, width } = Dimensions.get('window');
 const deviceHeight = height;
 let deviceWidth = width;
-let top;
-const statusBarHeight = Platform.OS === 'ios' ? 0 : 0;
-
 export default {
-
     errorText: {
         margin: '2%',
         color: 'red',
@@ -19,7 +14,6 @@ export default {
     containerNotification: {
         flex: 1,
         position: 'absolute',
-        // marginTop:44,
         width: deviceWidth,
         height: deviceHeight - 44,
         backgroundColor: 'rgb(255, 255,255)',
@@ -29,15 +23,12 @@ export default {
         marginTop: '15%',
         alignSelf: 'flex-end',
         flex: 0.4,
-        // backgroundColor:'red'
     },
 
     imgSideTitle: {
         color: 'white',
-        // fontSize: 21,
         margin: '2%',
         alignSelf: 'flex-start',
-        //  fontFamily: 'Montserrat-Bold',
         flex: 0.3,
         width: 50,
         height: 40
@@ -45,26 +36,21 @@ export default {
     textDull: {
         color: 'rgba(255,255,255,0.72)',
         fontFamily: 'Montserrat-Regular',
-        // fontWeight:'200',
         fontSize: 12,
     },
     getStarted: {
         color: 'white',
         fontFamily: 'Montserrat-Regular',
-        //fontWeight:'200',
         fontSize: 14,
         marginRight: '5%',
         alignSelf: 'flex-end',
     },
 
     noNotificationText: {
-
-        // marginBottom:'10%',
         alignSelf: 'center',
         fontSize: 24,
         color: '#262626',
         fontFamily: 'Montserrat-light',
-        // fontWeight:'100',
     },
 
     loginText: {
@@ -74,7 +60,6 @@ export default {
         fontSize: 24,
         color: '#262626',
         fontFamily: 'Montserrat-light',
-        // fontWeight:'100',
     },
     textSideTitle: {
         fontSize: 14,
@@ -109,7 +94,6 @@ export default {
     viewForgotPwd: {
 
     },
-
     rememberView: {
         flexDirection: 'row',
         flex: 1,
@@ -145,23 +129,17 @@ export default {
         flex: 0.45,
         marginTop: '1%',
         height: 20
-        //  backgroundColor:'green',
     },
     rememberText: {
         color: 'rgb(37,182,173)',
         width: 300,
-
     },
     rememberTextNotSelected: {
-
         width: 300,
-        //backgroundColor:'red',
     },
     forgotPwdBtn: {
         flex: 0.5,
-        //alignSelf:'flex-end',
         marginTop: '1%',
-
     },
     forgotPwdText: {
         alignSelf: 'flex-end',
@@ -171,7 +149,6 @@ export default {
         borderRadius: 25,
         height: 50,
         width: '50%',
-        //flex: 0.8,
         alignItems: 'center',
         justifyContent: 'center',
         marginLeft: "15%",
@@ -184,14 +161,12 @@ export default {
         shadowOpacity: 0.5,
         shadowRadius: 1,
         alignSelf: 'center',
-        //marginBottom:'10%',
         backgroundColor: '#ff277b'
     },
     socialMediaLoginView: {
         flexDirection: 'row',
         marginTop: '20%',
         marginBottom: '2%',
-        // backgroundColor:'yellow',
         flex: 1,
         height: 60,
         marginLeft: '5%',
@@ -208,14 +183,12 @@ export default {
         color: '#1CA1F3',
         fontSize: 16,
         fontWeight: '300',
-
     },
     googlePlusText: {
         color: '#EA4336',
         fontSize: 16,
         fontFamily: 'Montserrat-Hairline',
         fontWeight: '300',
-
     },
     buttonLeft: {
         borderRadius: 22,
@@ -251,8 +224,6 @@ export default {
         shadowRadius: 1,
         backgroundColor: 'white',
         alignSelf: 'center',
-
-
     },
     buttonRight: {
         borderRadius: 22,
@@ -274,24 +245,19 @@ export default {
         fontSize: 16,
         color: 'white',
         fontWeight: '500',
-
     },
     viewShareButtons: {
         flexDirection: 'row',
         alignSelf: 'flex-end',
         flex: 0.4,
-
         height: 50,
         marginBottom: '5%',
         marginLeft: '13%',
         marginRight: '2%'
     },
-    textColorTemp: {
-        // color: 'white',
-    },
+    textColorTemp: { },
     textBottomMark: {
         marginTop: 20,
-        // marginBottom: 20,
         fontSize: 14,
         color: 'white',
         marginLeft: '5%',
@@ -300,50 +266,36 @@ export default {
     shareButtons: {
         width: 15,
         height: 15,
-
     },
     viewBottom: {
         flex: 0.1,
         marginBottom: 0,
         backgroundColor: 'black',
-        //alignItems: 'space-between',
         justifyContent: 'center',
         flexDirection: 'row',
     },
-
     // Notification view styles 
-
     topView: {
         backgroundColor: 'rgb(245,245,245)',
         height: '5%',
         width: '100%',
         justifyContent: 'center',
     },
-
     textTitle: {
-        // marginTop: '2%',
-        // marginBottom: '2%',
         alignSelf: 'center',
         fontSize: 24,
         color: '#262626',
         fontFamily: 'Montserrat-light',
-        // fontWeight:'100',
     },
     textSubTitleNotSelected: {
-        // marginTop: '20%',
-        // marginBottom: '10%',
         fontSize: 16,
         color: '#20ACAC',
         fontFamily: 'Montserrat-light',
-        // fontWeight:'100',
     },
     textSubtitleSelected: {
-        // marginTop: '20%',
-        // marginBottom: '10%',
         fontSize: 16,
         color: '#8E5ACD',
         fontFamily: 'Montserrat-light',
-        // marginLeft: '2%',
         alignSelf: 'flex-start',
     },
     textDescription: {
@@ -356,7 +308,6 @@ export default {
         fontSize: 12,
         color: 'rgba(38,38,38,0.52)',
         fontFamily: 'Montserrat-light',
-
         right: '2%'
     },
 

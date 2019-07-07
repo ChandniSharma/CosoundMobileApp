@@ -9,7 +9,6 @@ import CardOptions from "./CardOptions";
 import * as Animatable from 'react-native-animatable';
 import IconAntDesign from "react-native-vector-icons/AntDesign";
 
-
 fadeInUpPopup = () => this.refs.viewpopup.fadeInUp(1000);
 
 class CartList extends React.PureComponent {
@@ -47,23 +46,19 @@ fadeInView2 = () => this.refs.view2.fadeInUp(1000).then(endState => console.log(
           <IconAntDesign name="ellipsis1" style={{ marginTop: '2%', right: '5%', fontSize: 25, color: 'lightGray', alignSelf: 'flex-end' }} />
         </TouchableOpacity>
 
-
         {/* Main service Image */}
         <TouchableOpacity style={{ alignSelf: 'center', width: 100, height: 100, marginTop: '1%', marginBottom: '2%', }}>
           <Image style={{ alignSelf: 'center', width: 100, height: 100, borderRadius: 10 }} source={{ uri: getServiceThumbnail(item.media) }} />
         </TouchableOpacity>
 
         <View style={{ flexDirection: 'row', flex: 1, marginBottom: '2%', marginTop: '2%' }}>
-
           <Image style={[styles.imgUser, { marginRight: '2%', marginLeft: '2%', marginBottom: '2%', marginTop: '2%' }]} source={{ uri: getServiceThumbnail(item.media) }} />
-
           <View style={{ flex: 0.85 }}>
             <TouchableOpacity style={{ marginTop: '2%' }}>
               <Text style={styles.textServiceTitle}> {item.title}</Text>
             </TouchableOpacity>
             <View style={{ flexDirection: 'row', marginTop: '5%', marginLeft: '0.5%' }}>
               {/* Rating view */}
-              {/* <Text style={styles.textServiceTitle}>Star Rating </Text> */}
               <StarView starCount={item.review_count} />
               <Text style={[styles.textRatingCount, { marginLeft: '2%' }]}>{item.review_count}</Text>
             </View>
@@ -84,8 +79,6 @@ fadeInView2 = () => this.refs.view2.fadeInUp(1000).then(endState => console.log(
           />
           : null}
       </View>
-
-
     )
   }
 

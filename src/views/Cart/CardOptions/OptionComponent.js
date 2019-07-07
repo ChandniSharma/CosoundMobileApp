@@ -18,7 +18,6 @@ const OptionComponent = ({
       </TouchableHighlight>
     </View>
 
-
     arrayBtn.push(btn);
 
   } else {

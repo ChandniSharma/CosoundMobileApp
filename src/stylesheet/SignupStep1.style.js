@@ -1,13 +1,4 @@
-import { Dimensions, Platform } from "react-native";
-
-const { height, width } = Dimensions.get('window');
-const deviceHeight = height;
-let deviceWidth = width;
-let top;
-const statusBarHeight = Platform.OS === 'ios' ? 0 : 0;
-
-export default{
-    
+export default {
     errorText:{
         margin:'2%',
         color:'red',
@@ -35,7 +26,6 @@ export default{
         textAlign: 'left'
     },
       locationLabel:{
-       
         fontFamily:'Montserrat-Regular',
         fontWeight:'300',
         fontSize:16,
@@ -46,15 +36,12 @@ export default{
         marginTop:'15%',
         alignSelf:'flex-end',
         flex:0.4,
-       // backgroundColor:'red'
     },
 
     imgSideTitle: {
         color: 'white',
-       // fontSize: 21,
         margin: '2%',
         alignSelf: 'flex-start',
-      //  fontFamily: 'Montserrat-Bold',
         flex: 0.3,
         width:50,
         height:40
@@ -62,13 +49,11 @@ export default{
     textDull:{
         color:'rgba(255,255,255,0.72)',
         fontFamily:'Montserrat-Regular',
-       // fontWeight:'200',
         fontSize:12,
     },
     getStarted:{
         color:'white',
         fontFamily:'Montserrat-Regular',
-        //fontWeight:'200',
         fontSize:14,
         marginRight:'5%',
         alignSelf:'flex-end',
@@ -80,7 +65,6 @@ export default{
         fontSize:30,
         color:'white',
         fontFamily:'Montserrat-Regular',
-       // fontWeight:'100',
     },
     
     inputStyle:{
@@ -114,22 +98,20 @@ export default{
         flexDirection:'row'
    },
    viewNotSelected:{
-       // alignSelf:'center',
-       marginLeft:'22.5%',
+        marginLeft:'22.5%',
         flexDirection:'row',
-        
    },
    viewProgressbar:{
-      marginTop:'5%',
-      marginBottom:'5%',
-      height:500,
+        marginTop:'5%',
+        marginBottom:'5%',
+        height:500,
    },
     textSelected:{
-      marginLeft:'5%',
-      marginTop:'2.5%',
-      fontFamily:'Montserrat-light',
-      fontSize:20,
-      color: 'black',//'#2A8B8B',
+        marginLeft:'5%',
+        marginTop:'2.5%',
+        fontFamily:'Montserrat-light',
+        fontSize:20,
+        color: 'black',//'#2A8B8B',
     },
     textNotSelected:{
         marginLeft:'5%',
@@ -163,11 +145,7 @@ export default{
         backgroundColor:'white',
         borderColor: 'rgb(225,225,225)',
         borderWidth: 3,
-       
         marginLeft:'4%',
-        //marginTop:'-2%'
-        // marginLeft:'-%',
-       
     },
     viewSingleLine:{
         width:'1.9%',
@@ -175,7 +153,6 @@ export default{
         backgroundColor:'rgb(225,225,225)',
         marginLeft:'28.5%'
     },
-    
     tickMarkView:{
         width:20,
         height:20,
@@ -203,16 +180,13 @@ export default{
         flex:0.45,
         marginTop:'1%',
         height:20
-      //  backgroundColor:'green',
     },
     rememberText:{
         color: 'rgb(37,182,173)'
     },
     forgotPwdBtn:{
         flex:0.5,
-        //alignSelf:'flex-end',
         marginTop:'1%',
-       
     },
     forgotPwdText:{
        alignSelf: 'flex-end',
@@ -233,8 +207,6 @@ export default{
         },
         shadowOpacity: 0.5,
         shadowRadius: 1,
-        
-        //marginBottom:'10%',
         backgroundColor: '#ff277b',
         marginTop:"5%",
         marginBottom:'5%',
@@ -244,31 +216,28 @@ export default{
         flexDirection: 'row',
         marginTop: '20%',
         marginBottom: '2%',
-       // backgroundColor:'yellow',
         flex:1,
         height:60,
         marginLeft:'5%',
         marginRight:'5%',
     },
     fbText:{
-      color:'#4867AA',
-      fontFamily:'Montserrat-Hairline',
-      fontSize:16,
-         fontWeight:'300',
+        color:'#4867AA',
+        fontFamily:'Montserrat-Hairline',
+        fontSize:16,
+        fontWeight:'300',
     },
     twitterText:{
         fontFamily:'Montserrat-Hairline',
         color:'#1CA1F3',
         fontSize:16,
-         fontWeight:'300',
-       
+        fontWeight:'300',
     },
     googlePlusText:{
         color:'#EA4336',
         fontSize:16,
         fontFamily:'Montserrat-Hairline',
         fontWeight:'300',
-       
     },
     buttonLeft: {
         borderRadius: 22,
@@ -304,8 +273,6 @@ export default{
         shadowRadius: 1,
         backgroundColor: 'white',
         alignSelf:'center',
-       
-        
     },
     buttonRight: {
         borderRadius: 22,
@@ -329,24 +296,20 @@ export default{
         fontWeight:'500',
         alignSelf:'center',
         marginBottom:'14%'
-    
     },
     viewShareButtons: {
         flexDirection: 'row',
         alignSelf: 'flex-end',
         flex:0.4,
-       
         height:50,
         marginBottom:'5%',
         marginLeft:'13%',
         marginRight:'2%'
     },
     textColorTemp:{
-       // color: 'white',
     },
     textBottomMark: {
         marginTop: 20,
-       // marginBottom: 20,
         fontSize: 14,
         color: 'white',
         marginLeft: '5%',
@@ -355,15 +318,13 @@ export default{
     shareButtons: {
         width: 15,
         height: 15,
-       
     },
     viewBottom:{
         flex:0.1,
         marginBottom:0,
         backgroundColor:'black',
-       //alignItems: 'space-between',
-       justifyContent:'center',
-       flexDirection:'row',
+        justifyContent:'center',
+        flexDirection:'row',
     },
     imgMainTitle:{
         alignSelf: 'center',
@@ -395,5 +356,4 @@ export default{
         marginBottom:'5%',
         fontFamily: 'Montserrat-Light',
     },
-    
 }

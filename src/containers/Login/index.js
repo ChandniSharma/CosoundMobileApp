@@ -2,12 +2,8 @@ import React from "react";
 import { AsyncStorage } from 'react-native';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
 import { isSuccess } from "../../utils";
-
-
 import Validator from "../../validator";
-
 import Login from "../../views/Login";
 import {
   authActions,
@@ -118,10 +114,8 @@ class LoginContainer extends React.PureComponent {
       const { data } = this.state;
       return this.props.authActions.login(data).then(() => {
         if (isSuccess(this.props.login)) {
-
           this.saveCredentials();
           this._navigateToProfileview();
-          //this._navigateToDashboard();
         }
       });
     }
@@ -151,33 +145,15 @@ class LoginContainer extends React.PureComponent {
     this.props.navigation.navigate("ForgotPassword");
   }
   _navigateToGetStartedView = () => {
-  //  this.props.navigation.navigate("SignupStep1");
     this.props.navigation.navigate("Signup");
   }
   _navigateToProfileview = () => {
-
      this.props.userActions.fetchCartCount().then(() => {
        this.props.notificationActions.fetchCount().then(()=>{
-        
-
        this.props.navigation.navigate("Dashboard");
-         //this.props.navigation.navigate("Checkout");
-        //  this.props.navigation.navigate('MarketPlaceContainer', { slug: "" });
-         //this.props.navigation.navigate("AccountSettings");
-       });
      });
-   // this.props.navigation.navigate("Profile");    
-   
-   // this.props.navigation.navigate("MarketPlaceContainer");
-  //this.props.navigation.navigate("AccountSettings");
-   // this.props.navigation.navigate("CreateService");
-    // this.props.navigation.navigate("Login");
-    //this.props.navigation.navigate("Plan");
+    });
   }
-  // _navigateBack =()=>{
-  //   this.props.navigation.goBack();
-
-  // }
   render() {
     const { data, errors, fetching } = this.state;
     const { login } = this.props;

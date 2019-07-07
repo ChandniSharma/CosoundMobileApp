@@ -2,21 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { isNull } from "lodash";
-// performWow, history,
 import { getValueFromParams } from "../../utils";
-
 import { serviceActions, cartActions } from "../../actions";
-
 import ServiceComponent from "../../views/ServiceComponent";
-
 
 class Service extends React.PureComponent {
   componentDidMount() {
     this._restCalls();
   }
 
-  componentDidUpdate(prevProps) {
-   
+  componentDidUpdate(prevProps) {   
     if (
       getValueFromParams(prevProps.navigation.state.params, "id") !==
       getValueFromParams(this.props.navigation.state.params, "id")
@@ -31,9 +26,7 @@ class Service extends React.PureComponent {
   _restCalls = () => {
     if (!isNull(this._getServiceId())) {
       this._fetchService(this._getServiceId()).then(() => {
-       
-      console.log(" Fetch reviews .... ");
-        this._fetchReviews(1);
+      this._fetchReviews(1);
       });
     }
   };
@@ -62,8 +55,7 @@ class Service extends React.PureComponent {
   _addToCart = () => {
     if (!isNull(this._getServiceId())) {
       this.props.cartActions.toggle(this._getServiceId()).then(() => {
-        this.props.navigation.navigate("Cart");
-       // return history.push("/cart");
+      this.props.navigation.navigate("Cart");
       });
     }
   };

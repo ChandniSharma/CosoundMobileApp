@@ -1,24 +1,14 @@
 import React from "react";
 import moment from "moment";
 import { each, isNull } from "lodash";
-//import DatePicker from "react-datepicker";
-//import { toast } from "react-toastify";
 import DatePicker from 'react-native-datepicker';
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import styles from "../../../stylesheet/Account.style";
 import MultiSelect from 'react-native-multiple-select';
 import * as Animatable from 'react-native-animatable';
 import SelectInput from 'react-native-select-input-ios'
 import { countries } from '../../../utils/countries';
-
 import Validator from "../../../validator";
-
-// import {
-//   ErrorMsg,
-//   MultiSelect,
-//   UpdateButton,
-//   PlacesAutocomplete
-// } from "../../Commons";
 import { extractValue, checkError, isError, isSuccess } from "../../../utils";
 
 class Details extends React.PureComponent {
@@ -101,8 +91,6 @@ class Details extends React.PureComponent {
    * On Submit
    */
   _submit = () => {
-    //  e.preventDefault();
-
     if (this._isValid()) {
       const { _updateUser, user } = this.props;
       const { data } = this.state;
@@ -123,12 +111,10 @@ class Details extends React.PureComponent {
         const { details } = this.props;
         if (isSuccess(details)) {
           alert("Details updated");
-          //return toast.info("Details updated");
         }
 
         if (isError(details)) {
           alert(details.error.message);
-          //return toast.error(details.error.message);
         }
       });
     }
@@ -204,12 +190,10 @@ class Details extends React.PureComponent {
     } = this.props;
 
     const { data, errors } = this.state;
-    // const { details, genres } = this.props;
     const error = checkError(details.error);
 
     return (
       <View style={{ height: '100%', marginBottom: '15%' }}>
-
         <TextInput
           style={styles.inputStyle}
           placeholder={'Bio'}
@@ -217,7 +201,6 @@ class Details extends React.PureComponent {
           value={data.bio}
           name={"bio"}
         />
-
         <TextInput
           style={styles.inputStyle}
           placeholder={'First Name'}
@@ -240,14 +223,12 @@ class Details extends React.PureComponent {
           value={data.last_name}
           name={"last_name"}
         />
-
         <DatePicker
           style={styles.datePickerStyle}
           date={data.dob}
           mode="date"
           placeholder="Date of Birth"
           format="DD-MM-YYYY"
-          //minDate="2016-05-01"
           maxDate={new Date()}
           confirmBtnText="Confirm"
           cancelBtnText="Cancel"
@@ -261,7 +242,6 @@ class Details extends React.PureComponent {
               height: 35
             },
             dateInput: {
-              // marginLeft: 36,
               marginBottom: 15,
               shadowColor: 'rgba(0,0,0,0.7)',
               shadowOffset: {
@@ -272,10 +252,7 @@ class Details extends React.PureComponent {
               shadowRadius: 1,
               borderRadius: 8,
               backgroundColor: 'white',
-              // marginLeft: '5%',
-              // marginRight:'5%',
               height: 60,
-              // width: deviceWidth,
               fontFamily: 'Montserrat-Regular',
               fontWeight: '300',
               fontSize: 16,
@@ -355,7 +332,6 @@ class Details extends React.PureComponent {
           <TouchableOpacity
             onPress={() => !details.isRequesting && this._submit()}
             style={{ alignSelf: 'center', justifyContent: 'center', width: '40%', borderRadius: 10, backgroundColor: '#ff277b', height: 60 }}
-          // disabled={changePassword.isRequesting}
           >
             {details.isRequesting ? (
               <ActivityIndicator color='gray' />

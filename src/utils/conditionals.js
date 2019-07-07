@@ -1,11 +1,6 @@
 /* eslint-disable */
 import { isNull, isEmpty, each } from "lodash";
-//import { toast } from "react-toastify";
-
-//import { bgRequiredDomains } from "../constants/pathConstants";
-
 import { jsUcfirst } from "./index";
-
 import * as avatar from "../assets/avatar1.jpg";
 
 
@@ -47,7 +42,6 @@ const checkError = error => {
 
 const checkAuth = user => {
   if (isNull(user.token)) {
-   // toast.error("Log in to continue");
     return false;
   }
   return true;

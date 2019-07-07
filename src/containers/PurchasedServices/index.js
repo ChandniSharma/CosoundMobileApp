@@ -1,11 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-//performWow,
 import { getSortString } from "../../utils";
-
 import { userServicesActions } from "../../actions";
-
 import PurchasedServicesComponent from "../../views/PurchasedServices";
 
 class PurchasedServices extends React.PureComponent {
@@ -19,7 +16,6 @@ class PurchasedServices extends React.PureComponent {
    */
   _restCalls = () => {
     this._fetchPurchasedServices(1).then(() => {
-     // performWow(this.props.wowActions);
     });
   };
 
@@ -30,7 +26,6 @@ class PurchasedServices extends React.PureComponent {
    */
   _sort = type => {
     this._fetchPurchasedServices(1, type).then(() => {
-     // performWow(this.props.wowActions);
     });
   };
 

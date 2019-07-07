@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { isEmpty } from "lodash";
 
 import {
-  //history,
   fileReader,
   performWow,
   formatLinks,
@@ -17,11 +16,8 @@ import {
 } from "../../utils";
 
 import Validator from "../../validator";
-
 import { marketPlaceActions, userServicesActions } from "../../actions";
-
 import CreateServiceComponent from "../../views/CreateService";
-//import { toast } from "react-toastify";
 
 class CreateService extends React.Component {
   state = {
@@ -104,7 +100,6 @@ class CreateService extends React.Component {
    * @param String name
    */
   _handleSelect = (value, name) => {
-    //const { value } = selectedOption;
     const { data } = this.state;
     data[name] = value;
     if (name === "category_id") {
@@ -124,8 +119,6 @@ class CreateService extends React.Component {
    * @param event
    */
   _handleChange = (name,value) => {
-    // const { name, value } = event.target;
-
     const { data } = this.state;
     data[name] = value;
     this.setState(
@@ -140,7 +133,6 @@ class CreateService extends React.Component {
    * Social links handler
    */
   _handleKeypoints = (name,value) => {
-    // const { name, value } = e.target;
     const { data } = this.state;
     const id = Number(name);
     const keypoints = formatLinksState(data.key_points, id, value);

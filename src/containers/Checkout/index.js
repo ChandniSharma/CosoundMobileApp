@@ -2,14 +2,8 @@ import React from "react";
 import {Alert} from 'react-native';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-//import { confirmAlert } from "react-confirm-alert";
-//import { toast } from "react-toastify";
-//import "react-confirm-alert/src/react-confirm-alert.css";
-
 import { cartActions, paymentActions, marketPlaceActions } from "../../actions";
-// history,
 import { getCardDetails, isSuccess, isError } from "../../utils";
-
 import CheckoutComponent from "../../views/CheckoutComponent";
 
 class Checkout extends React.PureComponent {
@@ -69,7 +63,6 @@ class Checkout extends React.PureComponent {
             }
             if (isError(placeOrder)) {
               alert(placeOrder.error.message);
-             // toast.error(placeOrder.error.message);
             }
           });
         },
