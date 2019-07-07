@@ -325,11 +325,9 @@ const getServiceImage = media => {
   each(media, item => {
     if (item.metadata && item.metadata.isMain) {
       url = item.path;
-      console.log(" url & media is ====", url, media );
       return false;
     }
   });
-  console.log(" url & media is  ********====", url, media);
   return url;
 };
 

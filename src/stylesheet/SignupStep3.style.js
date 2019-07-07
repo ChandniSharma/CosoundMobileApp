@@ -4,7 +4,6 @@ const deviceHeight = height;
 let deviceWidth = width;
 let topOfBtn = '30%';
 
-console.log(" device heigh is ===", deviceHeight);
 if (deviceHeight >= 667 && deviceHeight < 736) {
     topOfBtn = '40%'
 } else if (deviceHeight >= 736 && deviceHeight < 812) {

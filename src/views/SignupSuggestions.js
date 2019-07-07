@@ -36,7 +36,6 @@ export default class SignupSuggestions extends Component {
 
     _navigateToProfileView = () => {
         const { navigate } = this.props;
-        console.log(" this,props ",this.props);
         navigate.navigate('Profile');
     }
 

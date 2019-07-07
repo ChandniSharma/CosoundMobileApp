@@ -166,7 +166,6 @@ export function requiredIf(field) {
 }
 
 export function zipcode(field) {
-  console.log(" in zip code rule filed ",field);
   return (value, data) => {
     if (data) {
       const trimmedValue = value.trim();
