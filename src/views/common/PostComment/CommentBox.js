@@ -1,6 +1,5 @@
 import React from "react";
 import { isNull } from "lodash";
-
 import { refactorCarbonDate, getThumbnail } from "../../../utils";
 import styles from "../../../stylesheet/profile.style";
 import { Image, Text, TouchableHighlight, View } from "react-native";
@@ -15,10 +14,7 @@ class CommentBox extends React.PureComponent {
   };
 
   render() {
-    const { comment, deleteComment, _deleteComment, user, item } = this.props;
-    const { isVisible } = this.state;
-    const postedBySelf = comment.user_id === user.data.id;
-
+    const { comment, user } = this.props;
     return (
       <View>
         <TouchableHighlight onPress={this.onClickNotification}>
@@ -31,7 +27,6 @@ class CommentBox extends React.PureComponent {
               <View style={{ flex: 0.9 }}>
                 <Text style={[styles.textSubTitleNotSelected]}>{`${comment.first_name} ${!isNull(comment.last_name) ? comment.last_name : ""}`} </Text>
                 <Text style={styles.textDescComment}> {comment.body}</Text>
-
               </View>
               {/* {this.state.isClick? <Text style={styles.textSubtitleSelected}>Viewed your profile </Text>
           :  <Text style={styles.textSubTitleNotSelected}> Viewed your profile </Text>} */}

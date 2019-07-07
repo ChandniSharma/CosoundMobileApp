@@ -1,44 +1,27 @@
 import { isNull, isEmpty } from "lodash";
-
-import { getServiceNormalImage, getServiceLink } from "../utils";
-import { connect } from "react-redux";
-
-import { Component } from "react";
+import { getServiceNormalImage } from "../utils";
 import { SafeAreaView } from 'react-navigation';
 import React from "react";
 import styles from '../stylesheet/marketPlace.style';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { ActivityIndicator, FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity, Clipboard, AlertIOS, Platform, StyleSheet, Dimensions, Animated,Easing } from "react-native";
-import { Icon } from "native-base";
 import * as Animatable from 'react-native-animatable';
-import LinearGradient from 'react-native-linear-gradient';
-import { getThumbnail, getUsername, getUserInfo, getCurrentCategory } from "../utils";
-import { Paginator, InfiniteScroller } from "../hoc";
-import MusicList from './common/MusicList';
-import ImagesList from './common/ImagesList';
-import Posts from './common/Posts';
-import Hamburger from 'react-native-hamburger';
+import { getThumbnail, getUsername, getCurrentCategory } from "../utils";
+import { Paginator } from "../hoc";
 import Icon1 from "react-native-vector-icons/AntDesign";
-import Icon2 from "react-native-vector-icons/EvilIcons";
 import Icon3 from "react-native-vector-icons/FontAwesome";
-import Icon4 from "react-native-vector-icons/Ionicons";
-import WaveForm from 'react-native-audiowaveform';
-import SoundCloudWaveform from 'react-native-soundcloud-waveform';
 import Notifications from '../containers/Notifications'
-import Logo from './common/logo';
 import HeaderMenuAndBell from './common/HeaderMenuAndBell';
 import SideMenu from '../../src/views/common/SideMenu';
-
 import Carousel from 'react-native-snap-carousel';
 import StarView from './common/StarView';
 import CustomFooter from '../components/common/CustomFooter';
 import MarketplaceDetail from './ServiceComponent';
 import NoDataWithLink from '../../src/views/common/NoDataWithLink';
 
-const { deviceWidth, deviceHeight } = Dimensions.get('window');
-let screenWidth = deviceWidth - 100;
+const { deviceWidth } = Dimensions.get('window');
 
- const noDataProps = {
+const noDataProps = {
     noDataMessage: "No services in this category yet :(",
     noDataDesc: "Want to create your service now?",
     linkName: "Create Service",
@@ -60,10 +43,6 @@ let screenWidth = deviceWidth - 100;
     }
 
     moveToMarketPlaceDetailView = (item) => {
-
-        //this.setState({ isMarketDetailViewShow: true });
-        // return `/marketplace/${item.category.slug}/${item.sub_category.slug}/${item.id
-        //   }`;
         this.props.navigation.navigate('Service', { slug: item.category.slug, subcategorySlug: item.sub_category.slug, id: item.id});
     }
 
@@ -105,29 +84,18 @@ let screenWidth = deviceWidth - 100;
 
     render() {
         const { services, loadMore, callingAPI, page, page_count, navigation } = this.props;
-       
         const { data, isRequesting, error } = services;
-        // const { isRequesting, data } = headerCategories;
-       // let data = [{ "id": "90cceaa8-f95b-45c7-b47c-d758b9d8c8d2", "category": { "id": 3, "name": "Publishing", "slug": "publishing" }, "sub_category": { "id": 8, "name": "Sub category 3.2", "slug": "sub-category-32" }, "title": "Media publishing", "description": "Description of publishing service", "about": "About publishing service", "key_points": ["Publish"], "price": 49, "delivery_time": 1, "delivery_time_unit": "Week", "rating": 0, "review_count": 0, "media": [{ "id": "c7f28c82-fde7-4477-ba5d-67b21cd27f08", "path": "https://s3.eu-west-2.amazonaws.com/cosound-primary/services/images/YDQGkH50XTeUNylgVDmI8nCxW57fLhpSUACBO4wy.jpeg", "file_type": "image", "user_id": "0d1e55f9-6b06-4b6f-ad97-67bfeb5eb08e", "metadata": { "isMain": true, "thumbnail_small": "https://s3.eu-west-2.amazonaws.com/cosound-primary/thumbnails/image_thumb_small_c7f28c82-fde7-4477-ba5d-67b21cd27f08.png", "thumbnail_normal": "https://s3.eu-west-2.amazonaws.com/cosound-primary/thumbnails/image_thumb_normal_c7f28c82-fde7-4477-ba5d-67b21cd27f08.png" }, "created_at": "2018-12-20 14:23:34" }], "is_featured": 1, "user": { "id": "0d1e55f9-6b06-4b6f-ad97-67bfeb5eb08e", "avatar": null, "thumbnail": null, "first_name": "Vishal", "last_name": "Chhabra", "type": "Musician", "artist_name": "vi$hal" } }];
         return (
             <View style={{ flex: 1 }}>
-                {/*<Link
-            to={"/purchased-services"}
-            className="btn btn-primary btn-primary--red"
-          >
-            <Text>My Market</Text>
-         </Link>*/}
-
                 <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton]}>
                     <Text style={styles.textButtonTitle} >My Market</Text>
                 </TouchableHighlight>
                 <Text style={styles.personalRecommended}> Your Personal Reccomendations</Text>
                 {isRequesting && !callingAPI && (
             <ActivityIndicator color="gray" style={{alignSelf:'center'}}/>
-          )}
+            )}
 
                 {!isRequesting && !isEmpty(error) && <Text>{error.message} </Text>}
-
                 {!isRequesting && isEmpty(error) && isEmpty(data) && (
                 <View>
                     <NoDataWithLink navigation={navigation} {...noDataProps} />
@@ -138,10 +106,6 @@ let screenWidth = deviceWidth - 100;
                     renderItem={this.renderItem}
                     keyExtractor={(item, index) => index.toString()}
                 />
-
-                {/*!isEmpty(data) && (
-                    <ViewMore callingAPI={callingAPI} loadMore={loadMore} />
-                )*/}
                 {!isEmpty(data) && !callingAPI && page !== page_count && !isNull(page_count) && !callApi(
                     <View style={styles.viewMoreImage}>
                         <TouchableHighlight underlayColor="#25b6ad" style={[styles.seeMoreBtn]} onPress={loadMore}>
@@ -155,7 +119,6 @@ let screenWidth = deviceWidth - 100;
 }
 
  export default class MarketPlaceComponent extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -177,18 +140,14 @@ let screenWidth = deviceWidth - 100;
 
     fadeInMarketDetailView = () => this.refs.marketPlaceDetailViewRef.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
 
-   // fadeInDownGraphicDesign = () => this.refs.flatListGraphicDesign.fadeInDown(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
-
     fadeInUpGraphicDesign = () => this.refs.flatListGraphicDesign.fadeInUp(1000).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
-
 
     componentDidMount = () => {
     	 this.spinValue = new Animated.Value(0);
         this.fadeInMainView();
     };
 
-spinIcon() {
-        
+    spinIcon() {
         Animated.timing(
             this.spinValue,
             {
@@ -201,13 +160,7 @@ spinIcon() {
     }
 
     moveToMarketPlaceDetailView = (item) => {
-        console.log(" @@@@ market place detail view ");
         this.props.navigation.navigate('Service', { slug: item.category.slug, subcategorySlug: item.sub_category.slug, id: item.id});
-
-        //this.setState({ isMarketDetailViewShow: true });
-        // return `/marketplace/${item.category.slug}/${item.sub_category.slug}/${item.id
-        //   }`;
-       // this.props.navigation.navigate('Service', { slug: item.category.slug, subcategorySlug: item.sub_category.slug, id: item.id});
     }
 
     _onChange = (name, value) => {
@@ -285,9 +238,7 @@ spinIcon() {
             <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.moveToView(item.slug)}>
                     <View style={{ flexDirection: "row" }}>
-
                         <Text style={[styles.textModalData, { marginRight: '5%', color: 'black' }]}> {item.label}</Text>
-
                     </View>
                 </TouchableOpacity>
             </View>
@@ -296,7 +247,6 @@ spinIcon() {
 
     _renderCarouselItem =(itemDetail, index)=> {
         let item = itemDetail.item;
-        //let item = itemDetail;
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', borderRadius: 20, }}>
                 <ImageBackground source={{
@@ -327,27 +277,12 @@ spinIcon() {
         this.setState({ isSideMenuClick: true,
         isNotificationShow:false
         })
-        // setTimeout(() => {
-        //     this.zoomInPopup();
-        // }, 10);
-
     }
     hidePopup() {
         this.setState({ isSideMenuClick: false })
     }
     handleSnapToItem(index) {
         this.setState({ numberValue: String(index + 1) });
-        //    let temp;
-        //    if (this.state.numberValue >= 0) {
-        //        temp = "0" + String(this.state.numberValue)
-        //    } else {
-        //        temp = "01"
-        //    }
-
-        // this.textAnimated = <Animatable.Text animation="fadeInUp" style={styleText.textTopNumber}> {this.textCombineValue} </Animatable.Text>
-
-
-        // }
     }
     showNotification() {
         this.setState({ isNotificationShow: true, isSideMenuClick: false })
@@ -365,92 +300,55 @@ spinIcon() {
         return (
 
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
-
-                {/* {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: '10%', width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
-                    <TouchableOpacity style={{ color: 'white', marginTop: '20%', flex: 0.15, height: 38, }} onPress={() => this.showPopup()}>
-                        <Hamburger color="white" style={{ paddingTop: '12%', }} active={false} type="spinCross" onPress={() => this.showPopup()} />
-                    </TouchableOpacity>
-                    <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
-                    <View style={{ flex: 0.3 }} />
-                    <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}>
-                        {this.state.isNotificationShow ? <Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} /> : <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />}
-                    </TouchableOpacity>
-                </LinearGradient> : null} */}
-
                 {!this.state.isSideMenuClick ? <HeaderMenuAndBell notificationCount={this.props.notificationCount} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} onPressPopup={() => this.showPopup()} isNotificationShow={this.state.isNotificationShow} onPressBell={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}  /> : null}
-
-
                 {/* Top view Graphic design which will open modal view by side button click */}
                 <View style={{ marginTop: '2%', marginBottom: '2%' }}>
-
                     <TouchableOpacity onPress={() => this.setState({ isDropDownclick: true })}>
                         <View style={{ flexDirection: 'row' }}>
                             <Text style={[styles.titleAccount, { flex: 0.9, marginTop: '0.5%', marginLeft: '5%' }]}>  {!isNull(current) && current.label && current.label} </Text>
                             <View style={{ width: 30, height: 30, borderRadius: 18, marginRight: '5%', marginBottom: '5%', flex: 0.1, backgroundColor: 'white' }}>
                                 <TouchableOpacity onPress={this.showGraphicDesignPopup}>
-
-                                    {/* {this.state.isGraphicDesignPopupShow ? <Icon1 name="up" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} /> : <Icon1 name="down" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />} */}
-
                                     {this.state.isGraphicDesignPopupShow
-                                                            ? <Animated.View style={{ transform: [
-                                                                                {rotate: this.spinValue.interpolate({
-                                                                                    inputRange: [0, 1],
-                                                                                    outputRange: ['0deg', '180deg']
-                                                                                })
-                                                                                }
-                                                                            ],
-                                                                            }}>
-                                                                                <Icon1 name="up" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
-                                                                                </Animated.View>
-                                                                            : <Animated.View  style={{
-                                                                                
-                                                                                transform: [
-                                                                                    {rotate: this.spinValue.interpolate({
-                                                                                        inputRange: [0, 1],
-                                                                                        outputRange: ['180deg', '0deg']
-                                                                                    })
-                                                                                    }
-                                                                                ],
-                                                                       }}>
+            ? <Animated.View style={{ transform: [
+                                {rotate: this.spinValue.interpolate({
+                                    inputRange: [0, 1],
+                                    outputRange: ['0deg', '180deg']
+                                })
+                                }
+                            ],
+                            }}>
+                                <Icon1 name="up" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
+                                </Animated.View>
+                            : <Animated.View  style={{
+                                
+                                transform: [
+                                    {rotate: this.spinValue.interpolate({
+                                        inputRange: [0, 1],
+                                        outputRange: ['180deg', '0deg']
+                                    })
+                                    }
+                                ],
+                        }}>
                         <Icon1 name="down" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
-                       
                         </Animated.View> }
-
                             </TouchableOpacity>
                             </View>
                             {/* <Animatable.Image source={require('../../src/assets/Image/arrow_small_down.png')} style={{borderRadius:13,alignSelf:'flex-end' ,width: 26, height: 26 }} /> */}
                         </View>
                     </TouchableOpacity>
                 </View>
-
-
                 <KeyboardAwareScrollView onScroll={this._onScroll} style={{ backgroundColor: 'rgb(245, 245,245)' }}>
                     {this.state.isMarketDetailViewShow ? <Animatable.View style={{ backgroundColor: 'white', flex: 1, marginTop: '20%' }}>
                         <MarketplaceDetail />
                     </Animatable.View> :
                         <Animatable.View ref={'mainView'} style={{ backgroundColor: 'white', flex: 1 }} >
-
-                            {/* <TouchableHighlight
-                            onPress={
-                                () => { this.carousel._snapToItem(this.state.activeIndex - 1) }
-                            }>
-                            {/* <Image source={require('../assets/leftarrow.png')} /> */}
-                            {/* </TouchableHighlight> */}
-
                             <View style={{ alignSelf: 'center', flex: 0.4, width: '80%', borderRadius: 20, marginBottom: '3%', flexDirection: 'row',  }}>
-
-
                                 {isRequesting && (
                                     <ActivityIndicator color="gray" style={{ marginLeft:'50%'}}/>
                                 )}
                                 {!isRequesting && !isEmpty(error) && error.message && (
                                     <Text style={styles.errorText}>{error.message} </Text>
                                 )}
-
-                                {/* {!isRequesting && data.data && isEmpty(data.data) && isEmpty(error) && (
-                                <NoData {...noDataProps} />
-                                )}  */}
-
                                 {!isRequesting && data && data.data && !isEmpty(data.data) && (
                                     <Carousel
                                         layout={'default'} layoutCardOffset={`18`}
@@ -460,7 +358,6 @@ spinIcon() {
                                         itemWidth={400}
                                         renderItem={this._renderCarouselItem}
                                         onSnapToItem={index => this.setState({ activeIndex: index })}
-                                    // onSnapToItem={this.handleSnapToItem.bind(this)}
                                     />
                                 )}
                             </View>
@@ -476,15 +373,12 @@ spinIcon() {
                                     navigation={this.props.navigation}
                                 />
                             </View>
-
                             <View>
                                 <CustomFooter />
                             </View>
                         </Animatable.View>}
                     {/* Show popup of market place  */}
-
                 </KeyboardAwareScrollView>
-
                 {this.state.isGraphicDesignPopupShow ?
                     <Animatable.View ref={'flatListGraphicDesign'} style={styles.graphicDesignPopup}>
                         {isRequesting ? (
@@ -496,7 +390,6 @@ spinIcon() {
                             keyExtractor={(item, index) => index.toString()}
                         />) : null}
                     </Animatable.View> : <Animatable.View ref={'flatListGraphicDesign'} />}
-
                 {/* Side Menu button modal  */}
                 {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation} hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
 
@@ -504,7 +397,6 @@ spinIcon() {
                 {this.state.isNotificationShow ?<View style={{marginTop:'25%', position:'absolute'}}>
                      <Notifications navigation={this.props.navigation} hidePopup={() => this.hideNotificationView()} /> 
                 </View>: null}
-
             </SafeAreaView>
         );
     }

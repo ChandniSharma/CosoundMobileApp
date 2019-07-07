@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions } from 'react-native';
-import * as Animatable from 'react-native-animatable';
+import { View, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import Logo from './logo';
 import Icon2 from "react-native-vector-icons/EvilIcons";
 import Hamburger from 'react-native-hamburger';
 import Icon from "react-native-vector-icons/AntDesign";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-
 
 class HeaderMenuAndBell extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -32,16 +27,13 @@ class HeaderMenuAndBell extends Component {
     }
 
     render() {
-        const { colors, onPressPopup, onPressBell, isNotificationShow, notificationCount, isBackButtonShow } = this.props;
+        const { colors, onPressPopup, onPressBell, isNotificationShow, isBackButtonShow } = this.props;
         return (
             <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={colors} style={{ flexDirection: 'row', height: 100, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
                {isBackButtonShow?  <BackButton style={{ fontSize: 30, marginTop: '10%', marginLeft: '4%' }} onPress={() => this.props.navigation.goBack(null)} /> : <TouchableOpacity style={{ color: 'white', marginTop: '14%', flex: 0.1, marginLeft: '4%' }} onPress={onPressPopup}>
                     <Hamburger color="white" active={false} type="spinCross" onPress={onPressPopup} />
                 </TouchableOpacity>} 
-               
-
                 <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
-
                 <View style={{ flex: 0.3 }} />
                 <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={onPressBell}>
                     {isNotificationShow ? <Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} /> : 
@@ -72,10 +64,8 @@ const mapStateToProps = state => {
 const styles = {
     imgSideTitle: {
         color: 'white',
-        // fontSize: 21,
         margin: '2%',
         alignSelf: 'flex-start',
-        //  fontFamily: 'Montserrat-Bold',
         flex: 0.3,
         width: 50,
         height: 40
@@ -91,13 +81,11 @@ const styles = {
     textDull: {
         color: 'rgba(255,255,255,0.72)',
         fontFamily: 'Montserrat-Regular',
-        // fontWeight:'200',
         fontSize: 12,
     },
     getStarted: {
         color: 'white',
         fontFamily: 'Montserrat-Regular',
-        //fontWeight:'200',
         fontSize: 14,
         marginRight: '5%',
         alignSelf: 'flex-end',
@@ -108,7 +96,6 @@ const styles = {
         right: '5%',
         alignSelf: 'flex-end',
         marginTop: '5%',
-
     },
     bellIcon: {
         width: 64,

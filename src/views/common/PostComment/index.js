@@ -1,6 +1,5 @@
 /* eslint-disable */
 import React from "react";
-// import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { isNull, min } from "lodash";
@@ -8,18 +7,13 @@ import styles from "../../../stylesheet/profile.style";
 import { Text, TextInput, View, TouchableOpacity, ActivityIndicator } from "react-native";
 import Icon3 from "react-native-vector-icons/FontAwesome";
 import Icon6 from "react-native-vector-icons/AntDesign";
-
 import { postActions } from "../../../actions";
-
 import {
   checkAuth,
   getPathname,
-  getThumbnail,
   readableCount
 } from "../../../utils";
-
 import Validator from "../../../validator";
-
 import { Paginator } from "../../../hoc";
 import CommentList from "./CommentList";
 
@@ -30,7 +24,6 @@ class PostComment extends React.Component {
     isCommentTableShow: true,
 
   };
-
   componentDidUpdate() {
     const { fetchComment, post } = this.props;
     const { showComments } = this.state;
@@ -83,11 +76,8 @@ class PostComment extends React.Component {
    *
    */
   _handleKeyPress = () => {
-    // if (e.charCode === 13 || e.keyCode === 13) {
-    //   e.preventDefault();
     this._submit();
   }
-  // };
 
   _resetState = () => {
     this.setState({ comment: "", showComments: true });
@@ -98,7 +88,7 @@ class PostComment extends React.Component {
    *
    */
   _submit = () => {
-    const { user, pathName, match } = this.props;
+    const { user, pathName } = this.props;
     const auth = checkAuth(user);
     if (auth) {
       const path = pathName;
@@ -120,7 +110,6 @@ class PostComment extends React.Component {
    */
   _fetchComments = (pageNo, id = null) => {
     const { postActions, fetchComment } = this.props;
-
     if (isNull(id)) {
       id = fetchComment.postId;
     }
@@ -150,9 +139,6 @@ class PostComment extends React.Component {
       postActions.deleteComment(post.id, commentId, minId, path);
     }
   };
-  //   _showCommentList() {
-  //     this.setState({ isCommentTableShow: !this.state.isCommentTableShow });
-  // }
   render() {
     const { post, user, postComment, fetchComment, deleteComment } = this.props;
     const { comment, showComments } = this.state;
@@ -167,22 +153,17 @@ class PostComment extends React.Component {
               borderRadius: 20, borderWidth: 1, borderColor: "#d3d3d3", justifyContent: 'center',
               alignItems: "center", flexDirection: 'row', height: 40, width: 160
             }} onPress={() => this._toggleComments(post.id)}>
-
               <Icon3 name="comment" style={{ fontSize: 20, color: "#8e8e8e", marginLeft: '2%', marginRight: '2%' }} />
               <Text style={[styles.textCommentCount, { marginRight: '2%' }]}>{`${readableCount(post.comment_count)} comments`}</Text>
               <View style={{
                 flex: 1, borderRadius: 60, borderWidth: 1, borderColor: "#d3d3d3",
                 justifyContent: 'center', alignItems: "center", height: 40, width: 60, marginTop: '2%'
               }}>
-                {/* {fetchComment.isRequesting !== post.id && !showComments  ? <Icon6 name="down" style={{ fontSize:20, color: "#d3d3d3" }} />:null} */}
-
                 {fetchComment.isRequesting === post.id && !showComments ? (
                   <ActivityIndicator color="gray" />
                 ) :
                   <Icon6 name={showComments ? "up" : "down"} style={{ fontSize: 18, color: "#8e8e8e" }} />
                 }
-
-
               </View>
             </TouchableOpacity>
             <View style={{ flex: 1, height: 1, backgroundColor: "#d3d3d3" }} />
@@ -201,11 +182,8 @@ class PostComment extends React.Component {
               _deleteComment={this._deleteComment}
               page_count={paginationData.page_count}
             />
-
           </View> : null}
         </View>
-
-
         <TextInput
           style={styles.textWriteSomething}
           onChangeText={(text) => this._handleChange('comment', text)}
@@ -215,7 +193,6 @@ class PostComment extends React.Component {
           onSubmitEditing={() => this._handleKeyPress()}
         />
       </View>
-
     );
   }
 }

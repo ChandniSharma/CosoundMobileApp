@@ -1,34 +1,27 @@
 
 import { Component } from "react";
 import styles from "../../stylesheet/Account.style";
-import { SafeAreaView } from 'react-navigation';
 import React from "react";
-import { FlatList, Image, ImageBackground, Text, TextInput, Modal, TouchableHighlight, View, TouchableOpacity, ScrollView, ActivityIndicator, Alert } from "react-native";
-//import { Icon, Row } from "native-base";
+import { FlatList, Image, Text, TextInput, TouchableHighlight, View, TouchableOpacity, ActivityIndicator, Alert } from "react-native";
 import * as Animatable from 'react-native-animatable';
-import LinearGradient from 'react-native-linear-gradient';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-
 import Logo from '../common/logo';
 import Icon from "react-native-vector-icons/AntDesign";
 import IconEntypo from "react-native-vector-icons/Entypo";
 import Icon2 from "react-native-vector-icons/EvilIcons";
-import Icon3 from "react-native-vector-icons/Ionicons";
 import Icon4 from 'react-native-vector-icons/MaterialCommunityIcons';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { searchActions, userActions } from "../../actions/";
 import { isEmpty, isNull } from "lodash";
-import Notifications from '../../containers/Notifications';
 
 import {
-    getSubcategories, getThumbnail, getUsername, getUserInfo, isError,
+    getThumbnail, getUsername, isError,
     getSearchType,
     getSearchPlaceholder,
     getCategoryDataFromPath
 } from "../../utils";
 
-import SearchBar from 'react-native-search-bar'
 import Hamburger from 'react-native-hamburger';
 
 class SideMenu extends Component {

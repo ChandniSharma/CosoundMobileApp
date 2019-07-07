@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, TouchableOpacity, Image } from 'react-native';
 import AudioPlayer from 'react-native-play-audio';
 import IconAntdesign from 'react-native-vector-icons/AntDesign';
 
@@ -12,7 +12,6 @@ export default class PlayAudioClass extends Component {
   }
 
   componentDidMount() {
-    // this.playAudioFile();
   }
 
   onClickPlay = () => {
@@ -58,11 +57,9 @@ export default class PlayAudioClass extends Component {
               {!this.state.isPlay?<IconAntdesign name="playcircleo" style={{fontSize:30, marginLeft:'5%'}} />:<IconAntdesign name="pausecircle"  style={{fontSize:30, marginLeft:'5%'}} />}
             </TouchableOpacity>
           </View>
-          
           {this.state.isPlay?<View style={{marginTop:'15%'}}>
             <Image source={require('../../src/assets/noise.gif')} style={{marginLeft:'-20%', tintColor:'red', height:50}}/>
           </View>:<View />}
-          
         </View>
       </View>
     )

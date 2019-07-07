@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, ScrollView, FlatList, ActivityIndicator } from 'react-native';
-//import SvgUri from 'react-native-svg-uri';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { View, Text, TouchableHighlight, Image, TouchableOpacity, Dimensions, ScrollView, FlatList, ActivityIndicator } from 'react-native';
 import styles from '../stylesheet/signupSuggestions.style';
-import RecoverPwd from './RecoverPwd';
 import * as Animatable from 'react-native-animatable';
 import { SafeAreaView } from 'react-navigation';
 import CustomFooter from '../components/common/CustomFooter';
@@ -13,34 +10,26 @@ import WaveAnimation from './common/WaveAnimation';
 import BackButton from './common/BackButton';
 import Logo from './common/logo';
 
-const { width, height } = Dimensions.get('window');
-
 export default class SignupSuggestions extends Component {
     constructor(props) {
         super(props);
     }
-   // fadeInMain = () => this.refs.mainView.fadeIn(1000).then(this.fadeInView2())
+   
+    fadeInView2 = () => this.refs.view2.fadeInUp().then(setTimeout(() => {
+    this.fadeInView3();
+    }, 2))
 
-    // fadeInView1 = () => this.refs.view1.fadeInUp().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
-    // fadeInView2 = () => this.refs.view2.fadeInUp().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
-    // // bounce = () => this.view.bounce(800).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
+    fadeInView3 = () => this.refs.view3.fadeInUp().then(setTimeout(() => {
+    this.fadeInView4();
+    }, 2))
 
     
-      fadeInView2 = () => this.refs.view2.fadeInUp().then(setTimeout(() => {
-        this.fadeInView3();
-      }, 2))
-    
-      fadeInView3 = () => this.refs.view3.fadeInUp().then(setTimeout(() => {
-        this.fadeInView4();
-      }, 2))
+    fadeInView4 = () => this.refs.view4.fadeInUp().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
 
-     
-      fadeInView4 = () => this.refs.view4.fadeInUp().then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
-    
     componentDidMount() {
-        //this.fadeInMain();
-         this.fadeInView2();
+        this.fadeInView2();
     }
+
     personAddOrNot() {
         this.setState({ isPersonAdd: !this.state.isPersonAdd });
     }
@@ -50,6 +39,7 @@ export default class SignupSuggestions extends Component {
         console.log(" this,props ",this.props);
         navigate.navigate('Profile');
     }
+
     renderItem = (renderItem) => {
         const {
             suggestions,
@@ -79,11 +69,11 @@ export default class SignupSuggestions extends Component {
                             </View>
                         )
                     }
-
                 </TouchableOpacity>
-
-            </View>)
+            </View>
+        )
     }
+
     render() {
         const {
             follow,
@@ -95,22 +85,14 @@ export default class SignupSuggestions extends Component {
         const { data, paginationData } = suggestions;
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
-
                 <ScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 1 }}>
-
                     <Animatable.View ref={"mainView"} style={{ flex: 0.9 }}>
-
                     <View style={{ position: 'absolute',top:0}}>
                             <WaveAnimation />
                         </View>
-
                         <View>
-
-                        {/* <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.navigation.goBack()} /> */}
                             <Logo color={'#ffffff'} style={{ flex: 0.7, alignSelf: 'center',marginTop:'13%' }} width="230px" height="44px" />
- <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.navigate.goBack()} />
-
-
+                            <BackButton style={{ fontSize: 30, marginTop: '10%', alignSelf: 'flex-start', position: 'absolute', marginLeft: '4%' }} onPress={() => this.props.navigate.goBack()} />
                             <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Here are suggested connections ..</Animatable.Text>
                             <Animatable.View ref={'view2'} >
                             <View ref={'view2'} style={styles.viewDescription}>
@@ -118,7 +100,6 @@ export default class SignupSuggestions extends Component {
                             </View>
                             <Text style={styles.textTitle}> Artist/Musicians</Text>
                             </Animatable.View>
-
                             <Animatable.View ref={'view3'} >
                             {isEmpty(data) && (
                                 <View>
@@ -152,6 +133,7 @@ export default class SignupSuggestions extends Component {
                         <CustomFooter />
                     </Animatable.View>
                 </ScrollView>
-            </SafeAreaView>)
+            </SafeAreaView>
+        )
     }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity,Dimensions, AsyncStorage, StyleSheet } from 'react-native';
+import { View, Dimensions, StyleSheet } from 'react-native';
 import Animation from 'lottie-react-native';
 import anim from '../../../assets/animation-w800-h600.json';
 
@@ -13,7 +13,7 @@ export default class WaveAnimation extends Component{
       }
 
     render() {
-    return (
+      return (
       <View style={styles.container}>
         <View>
           <Animation
@@ -29,20 +29,16 @@ export default class WaveAnimation extends Component{
             loop={true}
             source={anim}
           />
-
         </View>
-
       </View>
-        )
-    }
+    )
+  }
 }
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      // justifyContent: 'center',
       alignItems: 'center',
-       backgroundColor: 'transparent'
+      backgroundColor: 'transparent'
     },
-   
   });

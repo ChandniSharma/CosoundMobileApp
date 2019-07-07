@@ -1,8 +1,6 @@
 import React from "react";
 import * as Animatable from 'react-native-animatable';
-
-// import { ErrorMsg, SubmitButtonDiv } from "../../Commons";
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import styles from '../../../stylesheet/createservice.style';
 
 class DescriptionForm extends React.PureComponent {
@@ -24,9 +22,7 @@ class DescriptionForm extends React.PureComponent {
     const { data, errors, handleChange, submitDescription } = this.props;
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-
       <View>
-
         <Animatable.View ref={"viewTxtInput1"}>
           <Text style={[styles.subTitle, { marginLeft: '5%', marginRight: '5%', textAlign: 'center', }]}>
             Nice… describe your service in more detail! (give as much
@@ -41,14 +37,6 @@ class DescriptionForm extends React.PureComponent {
             numberOfLines = {5}
             style={styles.inputTextAreaStyle}
           />
-          { /*  <TextInput
-              style={styles.inputStyle}
-              placeholder={'Artist Name'}
-              onChangeText={val => handleChange('artist_name', val)}
-              value={data.artist_name}
-              name={"artist_name"}
-            />  */}
-
           {errors.description && <Text style={styles.errorText}>{errors.description} </Text>}
         </Animatable.View>
         <Animatable.View ref={"viewTxtInput2"}>
@@ -61,18 +49,7 @@ class DescriptionForm extends React.PureComponent {
             numberOfLines = {5}
             style={styles.inputTextAreaStyle}
           />
-          { /* <textarea
-              type="text"
-              name="about"
-              placeholder="Write about your service"
-              autoexpand={"true"}
-              rows="7"
-              data-min-rows="7"
-              value={data.about}
-              onChange={e => handleChange(e)}
-            /> */ }
           {errors.about && <Text style={styles.errorText}>{errors.about} </Text>}
-
           <View style={styles.viewContainButton}>
             <TouchableOpacity style={styles.nextButton}
               onPress={() => submitDescription()}
@@ -80,9 +57,7 @@ class DescriptionForm extends React.PureComponent {
               <Text style={[styles.nextButtonTitle]}>Next</Text>
             </TouchableOpacity>
           </View>
-
         </Animatable.View>
-       
       </View>
       </TouchableWithoutFeedback>
     );

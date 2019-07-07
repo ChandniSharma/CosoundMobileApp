@@ -1,16 +1,13 @@
 import React from "react";
 import { isEmpty } from "lodash";
 import styles from "../../../stylesheet/profile.style";
-import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, TouchableWithoutFeedback, View, TouchableOpacity, Clipboard, AlertIOS, Platform, ActivityIndicator } from "react-native";
-
-// import { ViewMore } from "../../../components/Commons";
+import { FlatList, Text, TouchableHighlight, View } from "react-native";
 import CommentBox from "./CommentBox";
 
 class CommentList extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-
       arrayCommentData: [
         {
           title: "Devin Richardson",
@@ -34,10 +31,6 @@ class CommentList extends React.PureComponent {
     let item = itemDetail.item
     const {
       user,
-      loadMore,
-      callingAPI,
-      showComments,
-      fetchComment,
       deleteComment,
       _deleteComment
     } = this.props;
@@ -54,20 +47,15 @@ class CommentList extends React.PureComponent {
   }
   render() {
     const {
-      user,
       loadMore,
       callingAPI,
-      showComments,
       fetchComment,
-      deleteComment,
-      _deleteComment,
       page,
       page_count,
       callApi
     } = this.props;
     const { data } = fetchComment;
     return (
-
       <View>
         <FlatList
           data={data}

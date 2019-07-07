@@ -1,5 +1,4 @@
 import React from "react";
-
 import SignupSuggestions from "./SignupSuggestions";
 import SignupStep5 from "./SignupStep5";
 import { View } from "native-base";
@@ -12,22 +11,16 @@ class SuggestionWraper extends React.Component {
   }
 
   render() {
-
     const { follow, callAPI, followUser, suggestions, loadMore, callingAPI, isShowSuggestion, navigate } = this.props;
-    const { paginationData } = suggestions;
     return (
-
       <View style={{ flex: 1 }}>
         {suggestions.isRequesting && !callingAPI && <SignupStep5 />}
         {!suggestions.isRequesting && !isEmpty(suggestions.error) && (
           <View>{suggestions.error.message} </View>
         )}
-
         {!suggestions.isRequesting && !isEmpty(suggestions.error) && (
           <View>{suggestions.error.message} </View>
         )}
-        {/* {this.signupViewLoad()} */}
-
         {isShowSuggestion && <SignupSuggestions
           follow={follow}
           followUser={followUser}
@@ -37,7 +30,6 @@ class SuggestionWraper extends React.Component {
           navigate={navigate}
         />
         }
-
       </View>
     )
   }

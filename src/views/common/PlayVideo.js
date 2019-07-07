@@ -1,12 +1,8 @@
-import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity, StyleSheet } from "react-native";
-
+import { View, StyleSheet } from "react-native";
 import React, { Component } from "react";
-//import Video from 'react-native-video';
-
 import VideoPlayer from 'react-native-video-controls';
 
 export default class PlayVideo extends Component {
-
     render() {
         const source = this.props.sources;
         return (
@@ -17,12 +13,10 @@ export default class PlayVideo extends Component {
                 repeat={false} 
                 style={{width:'100%', height:200}} 
                 controlTimeout={200000000}
-                // poster={require('../../assets/homepage-video-placeholder.jpg')}
             />
             </View>
         )
     }
-
 }
 
 var styles = StyleSheet.create({

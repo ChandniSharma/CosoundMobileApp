@@ -2,9 +2,7 @@ import { FlatList, Image, Text, View, TouchableHighlight } from "react-native";
 import React, {Component} from "react";
 import { connect } from "react-redux";
 import { isEmpty, isNull } from "lodash";
-import * as Animatable from 'react-native-animatable';
 import { Icon } from "native-base";
-import WaveForm from 'react-native-audiowaveform';
 import PlayAudioClass from '../PlayAudioClass';
 import styles from "../../stylesheet/profile.style";
 import { getDuration, getTrackName, getMetadata, formatCurrentTime } from "../../utils";
@@ -53,29 +51,25 @@ import { TouchableOpacity } from "react-native-gesture-handler";
           }
         }
     }
-
-   
-
     renderItem = (music) => {
       let { current } = this.state;
-     let style = { paddin: 10 };
-     if(current.id === music.item.id){
-      style = { paddin: 10, color: "#7373c6", fontWeight: 500 };
-     }
-        return (
-      
-            <TouchableOpacity onPress={() =>this._setCurrent(music.item)} style={{style}}>
-                <View style={{ flexDirection: "row" }}>
-                    <View style={{ flex: 9, flexDirection: "row" }}>
-                        <Text style={styles.songTitle}>{music.index+1}.</Text>
-                        <Text style={styles.songTitle}>  {  getTrackName(music.index, music.item.metadata)  }</Text>
-                    </View>
-                    <Text style={styles.songDuration}> {  getDuration(music.item.metadata)  } </Text>
-                </View>
-                <View style={{ marginTop: "5%", marginBottom: "5%", width: "100%", justifyContent: "center", height: 0.5, backgroundColor: "#d3d3d3" }}>
-                </View>
-            </TouchableOpacity>
-        )
+      let style = { paddin: 10 };
+      if(current.id === music.item.id){
+        style = { paddin: 10, color: "#7373c6", fontWeight: 500 };
+      }
+      return (
+          <TouchableOpacity onPress={() =>this._setCurrent(music.item)} style={{style}}>
+              <View style={{ flexDirection: "row" }}>
+                  <View style={{ flex: 9, flexDirection: "row" }}>
+                      <Text style={styles.songTitle}>{music.index+1}.</Text>
+                      <Text style={styles.songTitle}>  {  getTrackName(music.index, music.item.metadata)  }</Text>
+                  </View>
+                  <Text style={styles.songDuration}> {  getDuration(music.item.metadata)  } </Text>
+              </View>
+              <View style={{ marginTop: "5%", marginBottom: "5%", width: "100%", justifyContent: "center", height: 0.5, backgroundColor: "#d3d3d3" }}>
+              </View>
+          </TouchableOpacity>
+      )
     };
 
   /**
@@ -92,10 +86,9 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
     render() {
       let { current, pos } = this.state;
-      const { myMusic, postDetails, loadMore, callingAPI, page, page_count, callAPI } = this.props;
+      const { myMusic, loadMore, callingAPI, page, page_count } = this.props;
       const { data } = myMusic;
-
-      const { duration, albumart, album, artistName, title } = getMetadata(
+      const { duration, album, title } = getMetadata(
         current
       );
       const currentTime = formatCurrentTime(pos);
@@ -118,29 +111,13 @@ import { TouchableOpacity } from "react-native-gesture-handler";
                         <Text style={styles.musicTitle}> {`${!isNull(album) ? album : ""} ${
                   !isNull(title) ? ` - ${title}` : ""
                 }`}</Text>
-
-                        <Text style={styles.musicDescription}>Of Monsters and Men - Dirty Paws (Kygo remix)</Text>
+                      <Text style={styles.musicDescription}>Of Monsters and Men - Dirty Paws (Kygo remix)</Text>
                     </View>
                 </View>
                 <View style={styles.viewMusicImage}>
                 <PlayAudioClass 
-          source={current.path}
-
-         />
-                    {/* <Image style={styles.musicAnimatedImg} source={require('../../assets/noise.gif')} /> */}
-                    {/* <WaveForm
-                            style={{flex: 1,
-                                margin: 10,
-                                backgroundColor: "white",height:50}}
-                            onPress={()=>this.changestate()}
-                            source={{ uri: 'https://s3.eu-west-2.amazonaws.com/cosound-primary/uploads/audio/E6UOLuDNpwnlf9279FMEPriMZCtaXQFlfD48r0e1.mpga' }}
-                            // source={require('../assets/the_sentence.mp3')}
-                            stop={this.state.stopAudio}
-                            play={this.state.playAudio}
-                            autoPlay={false}
-                            waveFormStyle={{waveColor:'lightgray', scrubColor:'purple',width:'auto'}}
-                        /> */}
-
+                  source={current.path}
+                />
                 </View>
                 <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>
                     <Text style={styles.musicCurrentTime}>{duration}</Text>
@@ -148,13 +125,11 @@ import { TouchableOpacity } from "react-native-gesture-handler";
                 </View>
             </View>
         )}
-
             <FlatList
                 data={data}
                 renderItem={this.renderItem}
                 keyExtractor={(item, index) => index.toString()}
             />
-
             {!isEmpty(data) && !loadMore && page !== page_count && !isNull(page_count) && 
                 <View style={styles.viewMore}>
                     <TouchableHighlight underlayColor="#25b6ad" style={[styles.seeMoreBtn]} onPress={() => loadMore()}>
@@ -162,7 +137,6 @@ import { TouchableOpacity } from "react-native-gesture-handler";
                     </TouchableHighlight>
                 </View>
             }
-
         </View>
         </View>
       );

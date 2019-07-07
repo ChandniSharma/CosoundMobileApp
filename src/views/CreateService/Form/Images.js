@@ -1,8 +1,5 @@
 import React from "react";
-import { isNull } from "lodash";
-
-// import { ErrorMsg, Svg, Loader, SubmitButtonDiv } from "../../Commons";
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, ActivityIndicator } from 'react-native';
+import { View, Text, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
 import styles from '../../../stylesheet/createservice.style';
 import * as Animatable from 'react-native-animatable';
 import { Icon } from "native-base";
@@ -13,17 +10,11 @@ class Images extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
       isShowDatePicker: true,
-
     }
   }
 
-
   moveViewUp1 = () => this.refs.view1.fadeInUp(2000);
-  // moveViewUp2= () => this.refs.view2.fadeInUp(2000).then(this.moveViewUp3());
-  // moveViewUp3= () => this.refs.view3.fadeInUp(2000).then(this.moveViewUp4());
-  // moveViewUp4= () => this.refs.view4.fadeInUp(2000);
 
   componentDidMount() {
     this.moveViewUp1();
@@ -74,14 +65,10 @@ class Images extends React.Component {
           <Text style={[styles.addPictureText, { marginTop: '10%', alignSelf: 'center', }]}>
             Add some pictures to your service!
         </Text>
-
-
           <View style={{ marginTop: 10 }}>
-
             <TouchableOpacity style={styles.findingView} onPress={() => this.chooseFile("image")}>
               {!data.image ?
                 <Icon name="camera" style={{ fontSize: 60, color: 'gray', alignSelf: 'center', }} />
-
                 : <Image
                   source={{
                     uri: data.image,
@@ -91,12 +78,9 @@ class Images extends React.Component {
 
             </TouchableOpacity>
           </View>
-
           <Text style={[styles.featuredText, { marginTop: '10%', alignSelf: 'center' }]}> Featured picture </Text>
-
           <View style={{ marginTop: 10, marginBottom: 10 }}>
             <TouchableOpacity style={styles.viewAddImage} onPress={() => this.chooseFile("featuredImage_1")}>
-
               {!data.featuredImage_1 ?
                 <Icon2 name="pluscircleo" style={{ alignSelf: 'center', fontSize: 45, color: '#20ACAC' }} />
 
@@ -110,10 +94,8 @@ class Images extends React.Component {
           </View>
           <View style={{ marginTop: 10, marginBottom: 10 }}>
             <TouchableOpacity style={styles.viewAddImage} onPress={() => this.chooseFile("featuredImage_2")}>
-
               {!data.featuredImage_2 ?
                 <Icon2 name="pluscircleo" style={{ alignSelf: 'center', fontSize: 45, color: '#20ACAC' }} />
-
                 : <Image
                   source={{
                     uri: data.featuredImage_2,
@@ -124,10 +106,8 @@ class Images extends React.Component {
           </View>
           <View style={{ marginTop: 10, marginBottom: 10 }}>
             <TouchableOpacity style={styles.viewAddImage} onPress={() => this.chooseFile("featuredImage_3")}>
-
               {!data.featuredImage_3 ?
                 <Icon2 name="pluscircleo" style={{ alignSelf: 'center', fontSize: 45, color: '#20ACAC' }} />
-
                 : <Image
                   source={{
                     uri: data.featuredImage_3,
@@ -138,10 +118,8 @@ class Images extends React.Component {
           </View>
           <View style={{ marginTop: 10, marginBottom: 10 }}>
             <TouchableOpacity style={styles.viewAddImage} onPress={() => this.chooseFile("featuredImage_4")}>
-
               {!data.featuredImage_4 ?
                 <Icon2 name="pluscircleo" style={{ alignSelf: 'center', fontSize: 45, color: '#20ACAC' }} />
-
                 : <Image
                   source={{
                     uri: data.featuredImage_4,
@@ -150,19 +128,7 @@ class Images extends React.Component {
                 />}
             </TouchableOpacity>
           </View>
-
-          { /* <input
-          type="file"
-          name="image"
-          id="image"
-          onChange={handleFileChange}
-          accept="image/png, image/jpeg"
-        /> */ }
           <View>
-            { /* 
-            <img src={data.url} alt="photo-uploader__placeholder" />
-            <Svg name="ico-camera" />
-          */ }
           </View>
           {errors.image && (
             <Animatable.Text animation="fadeIn" style={styles.errorText}>
@@ -170,337 +136,18 @@ class Images extends React.Component {
             </Animatable.Text>
           )}
         </View>
-
         <View style={styles.viewContainButton}>
           <TouchableOpacity
             onPress={() => _publishService()}
             style={styles.nextButton}
-          // disabled={changePassword.isRequesting}
           >
-
            {publishService.isRequesting?<ActivityIndicator color="white" />:<Text style={styles.nextButtonTitle}>publish Service</Text>
            }
           </TouchableOpacity>
         </View>
-
-
       </Animatable.View>
     )
   }
-
-  // render1() {
-  //   const {
-  //     data,
-  //     errors,
-  //     publishService,
-  //     _publishService,
-  //     handleFileChange
-  //   } = this.props;
-
-  //   return (
-  //     <Animatable.View>
-
-  //       <View>
-  //         <Text style={styles.subTitle}>
-  //           Add some pictures to your service!
-  //           </Text>
-  //         <Animatable.View ref={'view1'} style={{ marginBottom: '5%' }}>
-
-  //           <View style={styles.findingView}>
-
-  //             <TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }} onPress={() => this.chooseFile("image")}>
-  //               {/* {!data.url ? */}
-  //                 <Icon name="camera" style={{ fontSize: 60, marginTop: '50%', color: 'gray', alignSelf: 'center', }} /> :
-  //                 {/* <Image
-  //                   source={{
-  //                     uri: data.url,
-  //                   }}
-  //                   style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
-  //                 />} */}
-
-  //             </TouchableOpacity>
-
-  //           </View>
-  //         </Animatable.View>
-
-  //         { /* <input
-  //             type="file"
-  //             name="image"
-  //             id="image"
-  //             onChange={handleFileChange}
-  //             accept="image/png, image/jpeg"
-  //           /> */ }
-  //         <View>
-  //           { /* 
-  //               <img src={data.url} alt="photo-uploader__placeholder" />
-  //               <Svg name="ico-camera" />
-  //             */ }
-  //         </View>
-  //         {errors.image && (
-  //           <Animatable.Text animation="fadeIn" style={styles.errorText}>
-  //             {errors.image}
-  //           </Animatable.Text>
-  //         )}
-  //       </View>
-  //       <View>
-  //         <Animatable.Text animation="fadeIn">
-  //           Featured picture
-  //           </Animatable.Text>
-  //         <View>
-  //           <View>
-  //             <View>
-  //               { /*
-  //                    <input
-  //                   type="file"
-  //                   name="featuredImage_1"
-  //                   id="featuredImage_1"
-  //                   onChange={handleFileChange}
-  //                   accept="image/png, image/jpeg"
-  //                 />
-
-  //                 */}
-  //               <View >
-  //                 { /*
-  //                   <img
-  //                     src={data.featuredImage_1Url}
-  //                     alt="photo-uploader__placeholder"
-  //                   />
-  //                   <Svg name="ico-uploader-add" />
-  //                   */}
-  //               </View>
-  //             </View>
-  //           </View>
-
-  //           <View>
-  //             <View>
-  //               { /* <input
-  //                   type="file"
-  //                   name="featuredImage_2"
-  //                   id="featuredImage_2"
-  //                   onChange={handleFileChange}
-  //                   accept="image/png, image/jpeg"
-  //                 /> */}
-  //               <View>
-  //                 { /* <img
-  //                     src={data.featuredImage_2Url}
-  //                     alt="photo-uploader__placeholder"
-  //                   />
-  //                   <Svg name="ico-uploader-add" />
-  //                 */ }
-  //               </View>
-  //             </View>
-  //           </View>
-
-  //           { /*
-  //             <View>
-  //               <View>
-  //                 <input
-  //                   type="file"
-  //                   name="featuredImage_3"
-  //                   id="featuredImage_3"
-  //                   onChange={handleFileChange}
-  //                   accept="image/png, image/jpeg"
-  //                 />
-  //                 <View className="photo-uploader__placeholder">
-  //                   <img
-  //                     src={data.featuredImage_3Url}
-  //                     alt="photo-uploader__placeholder"
-  //                   />
-  //                   <Svg name="ico-uploader-add" />
-  //                 </View>
-  //               </View>
-  //             </View>
-
-  //             <View className="services-create__images-col">
-  //               <View
-  //                 className={`photo-uploader photo-uploader--boxed ${
-  //                   !isNull(data.featuredImage_4Url) ? "has-file" : ""
-  //                 }`}
-  //               >
-  //                 <input
-  //                   type="file"
-  //                   name="featuredImage_4"
-  //                   id="featuredImage_4"
-  //                   onChange={handleFileChange}
-  //                   accept="image/png, image/jpeg"
-  //                 />
-  //                 <label htmlFor="featuredImage_4">
-  //                   <View className="photo-uploader__placeholder">
-  //                     <img
-  //                       src={data.featuredImage_4Url}
-  //                       alt="photo-uploader__placeholder"
-  //                     />
-  //                     <Svg name="ico-uploader-add" />
-  //                   </View>
-  //                 </label>
-  //               </View>
-  //             </View>
-  //           */ }
-  //         </View>
-  //       </View>
-  //       <TouchableOpacity style={[styles.loginButton, { marginTop: '15%', justifyContent: 'center', }]}
-  //         onPress={() => submitDescription()}
-  //       >
-  //         <Text style={styles.loginText}>Publish Service</Text>
-  //       </TouchableOpacity>
-
-  //     </Animatable.View>
-  //   );
-
-  //   // return (
-  //   //   <div className="services-create__step is-active" data-step="7">
-  //   //     <form className="services-create__form services-create__form--full">
-  //   //       <div
-  //   //         className={`photo-uploader photo-uploader--top-label wow fadeInUp ${
-  //   //           !isNull(data.url) ? "has-file" : ""
-  //   //         }`}
-  //   //         data-wow-delay=".4s"
-  //   //         style={{ zIndex: 2 }}
-  //   //       >
-  //   //         <div className="photo-uploader__name">
-  //   //           Add some pictures to your service!
-  //   //         </div>
-  //   //         <input
-  //   //           type="file"
-  //   //           name="image"
-  //   //           id="image"
-  //   //           onChange={handleFileChange}
-  //   //           accept="image/png, image/jpeg"
-  //   //         />
-  //   //         <label htmlFor="image">
-  //   //           <div className="photo-uploader__placeholder">
-  //   //             <img src={data.url} alt="photo-uploader__placeholder" />
-  //   //             <Svg name="ico-camera" />
-  //   //           </div>
-  //   //         </label>
-  //   //         {errors.image && (
-  //   //           <ErrorMsg
-  //   //             message={errors.image}
-  //   //             style={{ textAlign: "center" }}
-  //   //           />
-  //   //         )}
-  //   //       </div>
-  //   //       <div
-  //   //         className="services-create__images wow fadeInUp"
-  //   //         data-wow-delay=".5s"
-  //   //       >
-  //   //         <div className="services-create__section-title">
-  //   //           Featured picture
-  //   //         </div>
-  //   //         <div className="services-create__images-wrap">
-  //   //           <div className="services-create__images-col">
-  //   //             <div
-  //   //               className={`photo-uploader photo-uploader--boxed ${
-  //   //                 !isNull(data.featuredImage_1Url) ? "has-file" : ""
-  //   //               }`}
-  //   //             >
-  //   //               <input
-  //   //                 type="file"
-  //   //                 name="featuredImage_1"
-  //   //                 id="featuredImage_1"
-  //   //                 onChange={handleFileChange}
-  //   //                 accept="image/png, image/jpeg"
-  //   //               />
-  //   //               <label htmlFor="featuredImage_1">
-  //   //                 <div className="photo-uploader__placeholder">
-  //   //                   <img
-  //   //                     src={data.featuredImage_1Url}
-  //   //                     alt="photo-uploader__placeholder"
-  //   //                   />
-  //   //                   <Svg name="ico-uploader-add" />
-  //   //                 </div>
-  //   //               </label>
-  //   //             </div>
-  //   //           </div>
-
-  //   //           <div className="services-create__images-col">
-  //   //             <div
-  //   //               className={`photo-uploader photo-uploader--boxed ${
-  //   //                 !isNull(data.featuredImage_2Url) ? "has-file" : ""
-  //   //               }`}
-  //   //             >
-  //   //               <input
-  //   //                 type="file"
-  //   //                 name="featuredImage_2"
-  //   //                 id="featuredImage_2"
-  //   //                 onChange={handleFileChange}
-  //   //                 accept="image/png, image/jpeg"
-  //   //               />
-  //   //               <label htmlFor="featuredImage_2">
-  //   //                 <div className="photo-uploader__placeholder">
-  //   //                   <img
-  //   //                     src={data.featuredImage_2Url}
-  //   //                     alt="photo-uploader__placeholder"
-  //   //                   />
-  //   //                   <Svg name="ico-uploader-add" />
-  //   //                 </div>
-  //   //               </label>
-  //   //             </div>
-  //   //           </div>
-
-  //   //           <div className="services-create__images-col">
-  //   //             <div
-  //   //               className={`photo-uploader photo-uploader--boxed ${
-  //   //                 !isNull(data.featuredImage_3Url) ? "has-file" : ""
-  //   //               }`}
-  //   //             >
-  //   //               <input
-  //   //                 type="file"
-  //   //                 name="featuredImage_3"
-  //   //                 id="featuredImage_3"
-  //   //                 onChange={handleFileChange}
-  //   //                 accept="image/png, image/jpeg"
-  //   //               />
-  //   //               <label htmlFor="featuredImage_3">
-  //   //                 <div className="photo-uploader__placeholder">
-  //   //                   <img
-  //   //                     src={data.featuredImage_3Url}
-  //   //                     alt="photo-uploader__placeholder"
-  //   //                   />
-  //   //                   <Svg name="ico-uploader-add" />
-  //   //                 </div>
-  //   //               </label>
-  //   //             </div>
-  //   //           </div>
-
-  //   //           <div className="services-create__images-col">
-  //   //             <div
-  //   //               className={`photo-uploader photo-uploader--boxed ${
-  //   //                 !isNull(data.featuredImage_4Url) ? "has-file" : ""
-  //   //               }`}
-  //   //             >
-  //   //               <input
-  //   //                 type="file"
-  //   //                 name="featuredImage_4"
-  //   //                 id="featuredImage_4"
-  //   //                 onChange={handleFileChange}
-  //   //                 accept="image/png, image/jpeg"
-  //   //               />
-  //   //               <label htmlFor="featuredImage_4">
-  //   //                 <div className="photo-uploader__placeholder">
-  //   //                   <img
-  //   //                     src={data.featuredImage_4Url}
-  //   //                     alt="photo-uploader__placeholder"
-  //   //                   />
-  //   //                   <Svg name="ico-uploader-add" />
-  //   //                 </div>
-  //   //               </label>
-  //   //             </div>
-  //   //           </div>
-  //   //         </div>
-  //   //       </div>
-  //   //       <SubmitButtonDiv
-  //   //         wow={".5s"}
-  //   //         className="services-create"
-  //   //         onClick={_publishService}
-  //   //         loading={publishService.isRequesting}
-  //   //         loaderComponent={<Loader fill={"#ffffff"} height={"21px"} />}
-  //   //         buttonText={<span>Publish Service</span>}
-  //   //       />
-  //   //     </form>
-  //   //   </div>
-  //   // );
-  // }
 }
 
 export default Images;

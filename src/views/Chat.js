@@ -1,33 +1,23 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, FlatList } from 'react-native';
-//import SvgUri from 'react-native-svg-uri';
+import { View, TouchableOpacity, Dimensions } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../stylesheet/AdvancedSearchView.style';
-import RecoverPwd from './RecoverPwd';
-import * as Animatable from 'react-native-animatable';
 import { SafeAreaView } from 'react-navigation';
 import CustomFooter from '../components/common/CustomFooter';
-import CustomHeader from '../components/common/CustomHeader';
 import Notifications from '../containers/Notifications';
 import BackButton from './common/BackButton';
 import LinearGradient from 'react-native-linear-gradient';
 import Logo from './common/logo';
-
 import Icon from "react-native-vector-icons/AntDesign";
-import Icon1 from "react-native-vector-icons/Entypo";
 import Icon2 from "react-native-vector-icons/EvilIcons";
-import Icon3 from "react-native-vector-icons/Ionicons";
-import HeaderMenuAndBell from './common/HeaderMenuAndBell';
 import { GiftedChat } from 'react-native-gifted-chat';
 
-
-const { height, width } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 export default class Chat extends Component {
     constructor(props) {
         super(props);
         this.state = {
             messages: [],
-
             isRememberMe: false,
             isClick: false,
             isNotificationShow: false,
@@ -36,23 +26,6 @@ export default class Chat extends Component {
             genres: '',
         }
         this.onSend = this.onSend.bind(this);
-        this.arrayNotificationData = [
-            {
-                title: "Viewed your profile",
-                time: '1 days ago',
-                description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-            },
-            {
-                title: "Viewed your profile",
-                time: '1 days ago',
-                description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-            },
-            {
-                title: "Viewed your profile",
-                time: '1 days ago',
-                description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-            },
-        ]
     }
     
     componentWillMount() {
@@ -107,43 +80,20 @@ export default class Chat extends Component {
             this.fadeInUp
         }, 200);
     }
-    // render() {
-    //     return (
-    //       <GiftedChat
-    //         messages={this.state.messages}
-    //         onSend={this.onSend}
-    //         user={{
-    //           _id: 1,
-    //         }}
-    //       />
-    //     );
-    //   }
 
     render() {
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
-
                 <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={['rgb(42, 173,177)', 'rgb(131, 110, 198)', 'rgb(134, 103, 200)']} style={{ flexDirection: 'row', height: 100, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
-
                     <BackButton style={{ fontSize: 30, marginTop: '10%', marginLeft: '4%' }} onPress={() => this.props.navigation.goBack(null)} />
-
-
                     <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" />
-
                     <View style={{ flex: 0.3 }} />
                     <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })}>
-
                         {this.state.isNotificationShow ? <Icon name="close" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 38, tintColor: 'white' }} /> : <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />}
-
                     </TouchableOpacity>
                 </LinearGradient>
-
-
-                {/* <HeaderMenuAndBell notificationCount = {this.props.notificationCount} colors={['rgb(42, 173,177)', 'rgb(131, 110, 198)', 'rgb(134, 103, 200)']} isBackButtonShow = {true} goBack={() => this.props.navigation.goBack(null)} onPressPopup={() => this.showPopup()} isNotificationShow={this.state.isNotificationShow} onPressBell={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })} />  */}
-
-
                 {!this.state.isNotificationShow ? <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>
-<View style={{height:height-250}}>
+                <View style={{height:height-250}}>
                    <GiftedChat
                         messages={this.state.messages}
                         onSend={this.onSend}
@@ -155,25 +105,16 @@ export default class Chat extends Component {
                         showUserAvatar={true}
                         showAvatarForEveryMessage={true}
                     />
-
-</View>
-                   
+                   </View>
                     <View style={{ flex: 0.1, marginTop: '12%' }}>
                         <CustomFooter />
                     </View>
-
-
                 </KeyboardAwareScrollView> :
-
-                    <View>
-                        <Notifications /></View>
+                <View>
+                <Notifications />
+                </View>
                 }
-
             </SafeAreaView>
-
         )
     }
 }
-
-{/* */ }
-                // </View> */}

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {  StyleSheet, Text, View } from "react-native";
-
 import WaveformWrapper from "./WaveformWrapper";
 export default class audioWave extends Component {
   render() {
@@ -8,7 +7,6 @@ export default class audioWave extends Component {
       <View style={styles.container}>
         <Text style={styles.welcome}>react-native-audiowaveform for React Native</Text>
         <Text style={styles.welcome}>by Otomogroove 2018</Text>
-
         <WaveformWrapper
           autoPlay={false}
           style={styles.waveform}
@@ -20,7 +18,6 @@ export default class audioWave extends Component {
           style={styles.waveform}
           waveFormStyle={{ waveColor: "lightsteelblue", scrubColor: "white" }}
           source={{uri:"file:///Chandni/Songs/Tera%20Saath%20Hai%20To%20Mujhe%20Kya%20Kami%20Hai%20-Sharma%20Music%20Center%20Malpura.mp3"}}
-    
         />
       </View>
     );
@@ -37,7 +34,6 @@ const styles = StyleSheet.create({
   waveform: {
     flex: 1,
     margin: 10,
-    //backgroundColor: "pink"
   },
   welcome: {
     flex: 0.2,

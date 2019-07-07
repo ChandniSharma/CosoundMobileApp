@@ -1,13 +1,10 @@
 import React from "react";
 import { isNull } from "lodash";
 import { connect } from "react-redux";
-// import { withRouter } from "react-router";
 import { bindActionCreators } from "redux";
 import styles from '../../../stylesheet/AdvancedSearchView.style'
 import { View, Text } from 'react-native';
-import { client } from "../../../services";
-import { isSuccess, resetNotification, history } from "../../../utils";
-
+import { isSuccess, resetNotification } from "../../../utils";
 import { notificationActions } from "../../../actions";
 import * as Animatable from 'react-native-animatable';
 import { Paginator } from "../../../hoc";
@@ -20,12 +17,10 @@ class Notifications extends React.PureComponent {
 
   componentDidMount() {
     const { user } = this.props;
-    const { data } = user;
     this.fadeInUp();
     this.props.fetchNotifications();
 
     /* getstream.io notification subscribe */
-
     // if (get_stream_token && get_stream_token.notification && data.id) {
     //   const notification = client.feed(
     //     "notification",
@@ -47,12 +42,10 @@ class Notifications extends React.PureComponent {
 
   /* cancel subscribe on unmount */
   componentWillUnmount() {
-
     if (!isNull(this.subscription)) {
       this.subscription.cancel();
     }
     this.fadeInDown();
-
   }
 
   /**
@@ -82,7 +75,7 @@ class Notifications extends React.PureComponent {
   };
 
   render() {
-    const { show, notifications, scroll } = this.props;
+    const { notifications } = this.props;
     const { paginationData } = notifications;
 
     return (

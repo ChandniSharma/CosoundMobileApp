@@ -2,19 +2,10 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { LoginButton } from 'react-native-fbsdk';
 
-
-// const FBSDK = require('react-native-fbsdk');
-// const {
-//   LoginManager,
-// } = FBSDK;
-    
-
-
 export default class FBLoginButton extends Component {
   render() {
     return (
-      <View>
-        
+      <View>        
         <LoginButton
           readPermissions={["public_profile email"]}
           onLoginFinished={

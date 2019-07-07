@@ -1,22 +1,15 @@
-import React, { Component } from "react";
+import Reac from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { isEmpty, isNull, each } from "lodash";
+import { isEmpty, each } from "lodash";
 import Validator from "../../validator";
 import { postStatusActions } from "../../actions";
-import { fileReader, isError, getUniqueId } from "../../utils";
+import { isError, getUniqueId } from "../../utils";
 
 import styles from "../../stylesheet/profile.style";
-import { SafeAreaView } from 'react-navigation';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import homeStyle from "../../stylesheet/home.style";
-import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity, Clipboard, AlertIOS, Platform, ActivityIndicator } from "react-native";
-import { Icon } from "native-base";
+import { Text, TextInput, TouchableHighlight, View, TouchableOpacity, ActivityIndicator } from "react-native";
 import * as Animatable from 'react-native-animatable';
-import LinearGradient from 'react-native-linear-gradient';
-import Hamburger from 'react-native-hamburger';
 import Icon1 from "react-native-vector-icons/AntDesign";
-import Icon2 from "react-native-vector-icons/EvilIcons";
 import Icon3 from "react-native-vector-icons/FontAwesome";
 import Icon4 from "react-native-vector-icons/Entypo";
 var ImagePicker = require('react-native-image-picker');
@@ -179,22 +172,16 @@ class PostStatus extends React.PureComponent {
    * File Input handler
    */
   _handleFileChange = (name, files) => {
-
     const { files: filesInState } = this.state;
-    //console.log("call handle file change")
-    //console()
     let newFiles = [files];
     each(files, file => {
-
       if (file) {
         const id = getUniqueId();
         let mediaExtension = '.png';
-
         if (file.type === 'video') {
           mediaExtension = '.mp4'
         }
         const type = file.type === "video"? 'video/mp4':file.type;
-        
         const name = id + mediaExtension;
         const uri = file.filePath.replace("file://", "");
         newFiles =
@@ -213,8 +200,6 @@ class PostStatus extends React.PureComponent {
         this._setUrl(file, id, type);
       }
     });
-
-
   };
 
   /**
@@ -223,7 +208,6 @@ class PostStatus extends React.PureComponent {
    */
 
   _setUrl = (file, id, type) => {
-
     this.setState(
       {
         urls: [
@@ -272,23 +256,13 @@ class PostStatus extends React.PureComponent {
    */
   _submitPost = () => {
     this.setState({ isRequested: true });
-    // e.preventDefault();
-    //this._isValid()
     if (true) {
-      // e.preventDefault();
       const { body, files } = this.state;
-
       if (!isEmpty(body) || !isEmpty(files)) {
-
-        // e.preventDefault();
         const { postStatusActions, location } = this.props;
-
         const data = Object.assign({}, { body, files });
         postStatusActions.submit(data, this.props.pathName).then(() => {
-          //this.props.restCallsOnMount();
-          this._resetState();
-          //this.setState({ filePath: undefined });
-
+        this._resetState();
         });
       }
     }
@@ -296,12 +270,10 @@ class PostStatus extends React.PureComponent {
 
   onClickMusicVideoImage(type) {
     this.setState({ current: type });
-
     if (!this.state.isClickToUpload) {
       this.setState({ isClickToUpload: true })
       this.chooseFile(type)
     }
-
   }
 
   chooseFile = (type) => {
@@ -315,19 +287,15 @@ class PostStatus extends React.PureComponent {
     };
 
     ImagePicker.showImagePicker(options, response => {
-
       if (response.didCancel) {
-
         this.setState({
           isClickToUpload: false
         })
       } else if (response.error) {
-
         this.setState({
           isClickToUpload: false
         })
       } else if (response.customButton) {
-
         alert(response.customButton);
         this.setState({
           isClickToUpload: false
@@ -347,19 +315,13 @@ class PostStatus extends React.PureComponent {
           filePath: filePath,
           type: this.state.current
         };
-
-        this.photos.push(data);
-
-        // this._handleFileChange("files", response.uri)
-        
+        this.photos.push(data);        
         this._handleFileChange("files", this.photos)
       }
     });
   };
   render() {
-    const { body, current, urls, errors } = this.state;
-    const { postStatus } = this.props;
-
+    const { body, urls, errors } = this.state;
     return (
       <Animatable.View ref={"viewMain"}>
         <View style={styles.viewWriteSomething}>
@@ -371,26 +333,12 @@ class PostStatus extends React.PureComponent {
           />
           {errors.body && <Text>{errors.body}</Text>}
           {errors.files && <Text>{errors.files}</Text>}
-
           <RenderTempFile
             urls={urls}
             applyRef={this._applyRef}
             applyAudioRef={this._applyAudioRef}
             removeMedia={this._removeMedia}
           />
-
-          {/* {this.state.filePaths.map((filepath,index)=>{
-
-            return(
-                <Image
-                    source={{
-                      uri: filepath,
-                    }}
-                    style={{ alignSelf:'center',width: "90%", height: 200, margin:10,padding:5 }}
-                />
-            )
-
-          })} */}
           <View style={styles.midView}>
             {this.state.current === 'music' ? <View style={{ backgroundColor: 'rgb(140,91,203)', height: 1, width: '30%', marginRight: '5%' }} /> : <View style={{ backgroundColor: 'transparent', height: 1, width: '30%', marginRight: '5%' }} />}
 
@@ -417,7 +365,6 @@ class PostStatus extends React.PureComponent {
           <TouchableHighlight style={[styles.postButton]} onPress={this._submitPost}>
             <View style={{ flexDirection: 'row' }}>
               {this.state.isRequested ? <ActivityIndicator color='gray' /> : <Text style={styles.textLoginButtonTitle}>Post</Text>}
-
               <Icon1 name="arrowright" style={{ marginLeft: '1%', fontSize: 20, color: 'rgb(255, 38, 123)' }} />
             </View>
           </TouchableHighlight>

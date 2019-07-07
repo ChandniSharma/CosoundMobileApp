@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions } from 'react-native';
-//import SvgUri from 'react-native-svg-uri';
+import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../stylesheet/SignupStep3Musician.style';
-
 import * as Animatable from 'react-native-animatable';
 import { SafeAreaView } from 'react-navigation';
 import CustomFooter from '../components/common/CustomFooter'
-import CustomHeader from '../components/common/CustomHeader'
 import WaveAnimation from './common/WaveAnimation';
-import BackButton from './common/BackButton';
-
 var ImagePicker = require('react-native-image-picker');
 
 export default class SignupStep3 extends Component {
@@ -71,8 +66,6 @@ export default class SignupStep3 extends Component {
         })
       } else {
         let source = response;
-        // You can also display the image using data:
-        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
         this.setState({
           isImageLoadedFromLiab: true,
           filePath: source
@@ -86,24 +79,18 @@ export default class SignupStep3 extends Component {
   }
 
   render() {
-
-
     return (
       <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
-        <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>
-         
+        <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)', flex: 0.9 }}>   
           <Animatable.View ref={"mainView"} style={[styles.container, { width: '100%' }]}>
           <View style={{ position: 'absolute',top:0}}>
-                            <WaveAnimation />
-                        </View>
+              <WaveAnimation />
+          </View>
             <View>
               <Animatable.Image animation="fadeInDown" style={styles.imgMainTitle} source={require('../assets/cosoundTitle.png')} />
               <Animatable.Text animation="fadeInDown" style={styles.textWelcome}>Nice Welcome!</Animatable.Text>
-
               <Animatable.View ref={'view1'} style={{ marginBottom: '5%' }}>
-
                 <View style={styles.findingView}>
-
                   <TouchableOpacity style={{ marginTop: '30%', height: 200, width: 100 }} onPress={this.chooseFile.bind(this)}>
                     {!this.state.isImageLoadedFromLiab ?
                       <Icon name="camera" style={{ fontSize: 60, marginTop: '50%', color: 'gray', alignSelf: 'center', }} /> :
@@ -113,45 +100,26 @@ export default class SignupStep3 extends Component {
                         }}
                         style={{ width: 100, height: 100, borderRadius: 50, marginTop: '33.5%' }}
                       />}
-
                   </TouchableOpacity>
-
                 </View>
               </Animatable.View>
               <Animatable.Text animation="fadeIn" style={styles.loginText}> Upload Photo</Animatable.Text>
-
               <TextInput
                 style={styles.inputStyle}
                 placeholder={'First Name'}
-              //onChangeText={(text) => this.setState({ email: text })}
-              // value={data.email}
-              // name={"email"}
-              // onChangeText={val => handleChange('email', val)}
               />
-              {/* {errors.email?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.email}</Animatable.Text>:null} */}
               <TextInput
                 style={styles.inputStyle}
                 placeholder={'Last Name'}
                 secureTextEntry={true}
-              //onChangeText={(text) => this.setState({ password: text })}
-              // onChangeText={val => handleChange('password', val)}
-              // value={data.password}
-              // name={"password"}
               />
-              {/* {errors.password?<Animatable.Text animation="fadeIn" style={styles.errorText}> {errors.password}</Animatable.Text>:null} */}
             </View>
-            {/* <View style={{flexDirection:'row',marginLeft: '5%', marginRight: '5%',flex:1, alignItems: 'space-between',}}> */}
-            {/* <TouchableOpacity  style={styles.inputStyle} onPress={this.addDatePicker}>
-                     <Text> {this.state.date} </Text>
-                     </TouchableOpacity> */}
             {this.state.isShowDatePicker ? <DatePicker
               style={styles.datePickerStyle}
               date={this.state.date}
               mode="date"
               placeholder="select date"
               format="DD-MM-YYYY"
-              //minDate="2016-05-01"
-              // maxDate="2016-06-01"
               confirmBtnText="Confirm"
               cancelBtnText="Cancel"
               customStyles={{
@@ -164,7 +132,6 @@ export default class SignupStep3 extends Component {
                   height: 35
                 },
                 dateInput: {
-                  // marginLeft: 36,
                   marginBottom: 15,
                   shadowColor: 'rgba(0,0,0,0.7)',
                   shadowOffset: {
@@ -175,8 +142,6 @@ export default class SignupStep3 extends Component {
                   shadowRadius: 1,
                   borderRadius: 8,
                   backgroundColor: 'white',
-                  // marginLeft: '5%',
-                  // marginRight:'5%',
                   height: 60,
                   width: deviceWidth,
                   fontFamily: 'Montserrat-Regular',
@@ -184,79 +149,28 @@ export default class SignupStep3 extends Component {
                   fontSize: 16,
                   color: '#262626',
                 }
-                // ... You can check the source to find the other keys.
               }}
               onDateChange={(date) => { this.setState({ date: date }) }}
             /> : null}
-            {/* <TextInput
-                              style={styles.inputStyle}
-                              placeholder={'Date'}
-                            
-                              //onChangeText={(text) => this.setState({ password: text })}
-                              // onChangeText={val => handleChange('password', val)}
-                              // value={data.password}
-                              // name={"password"}
-                          />
-                           */}
-            {/* <TextInput
-                              style={styles.inputStyleCenter}
-                              placeholder={'Month'}
-                             
-                              //onChangeText={(text) => this.setState({ password: text })}
-                              // onChangeText={val => handleChange('password', val)}
-                              // value={data.password}
-                              // name={"password"}
-                          />
-                          <TextInput
-                              style={styles.inputStyleRight}
-                              placeholder={'Year'}
-                              //onChangeText={(text) => this.setState({ password: text })}
-                              // onChangeText={val => handleChange('password', val)}
-                              // value={data.password}
-                              // name={"password"}
-                          /> */}
-            {/* </View> */}
             <TextInput
               style={styles.inputStyle}
               placeholder={'Job Title'}
-
-            //onChangeText={(text) => this.setState({ password: text })}
-            // onChangeText={val => handleChange('password', val)}
-            // value={data.password}
-            // name={"password"}
             />
-
             <TextInput
               style={styles.inputStyle}
               placeholder={'Music Genres'}
-
-            //onChangeText={(text) => this.setState({ password: text })}
-            // onChangeText={val => handleChange('password', val)}
-            // value={data.password}
-            // name={"password"}
             >
-              <Image style={styles.imageSearchIcon} source={require('../assets/suggestions-search.png')} />
-
+            <Image style={styles.imageSearchIcon} source={require('../assets/suggestions-search.png')} />
             </TextInput>
-
             <TextInput
               style={styles.inputStyle}
               placeholder={'Social links'}
-
-            //onChangeText={(text) => this.setState({ password: text })}
-            // onChangeText={val => handleChange('password', val)}
-            // value={data.password}
-            // name={"password"}
             >
-              <Image style={styles.imageSearchIcon} source={require('../assets/suggestions-search.png')} />
-
+            <Image style={styles.imageSearchIcon} source={require('../assets/suggestions-search.png')} />
             </TextInput>
-
-
             <TouchableHighlight onPress={this.navigateToSignupStep5} underlayColor="#25b6ad" style={[styles.loginButton]}>
               <Text style={styles.textButtonTitle} >Next -></Text>
             </TouchableHighlight>
-
             <View ref={'progressBarView'} style={[styles.viewProgressbar]}>
               <View style={styles.viewSelected}>
                 <View style={styles.viewCircleCompleted}>
@@ -265,7 +179,6 @@ export default class SignupStep3 extends Component {
                 <Text style={styles.textCompleted}>Choose Location</Text>
               </View>
               <View style={styles.viewSingleLineFilled}></View>
-
               <View style={styles.viewSelected}>
                 <View style={styles.viewCircleCompleted}>
                   <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />
@@ -273,7 +186,6 @@ export default class SignupStep3 extends Component {
                 <Text style={styles.textCompleted}>Profession</Text>
               </View>
               <View style={styles.viewSingleLineFilled}></View>
-
               <View style={styles.viewNotSelected}>
                 <View style={styles.viewCircleFilled}>
                   <Image style={styles.imgTickMark} source={require('../assets/tickMark.png')} />
@@ -281,25 +193,16 @@ export default class SignupStep3 extends Component {
                 <Text style={styles.textSelected}>Tell us more</Text>
               </View>
               <View style={styles.viewSingleLine}></View>
-
               <View style={styles.viewNotSelected}>
                 <View style={styles.viewCircleEmpty}>
                 </View>
                 <Text style={styles.textNotSelected}>Meet the music</Text>
               </View>
             </View>
-
-
-
           </Animatable.View>
-
         </KeyboardAwareScrollView>
         <CustomFooter />
       </SafeAreaView>
-
     )
   }
 }
-
-
-                // </View> */}

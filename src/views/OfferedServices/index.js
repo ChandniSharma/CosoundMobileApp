@@ -11,7 +11,7 @@ import SideMenu from '../common/SideMenu';
 import Icon3 from "react-native-vector-icons/Ionicons";
 import Icon from "react-native-vector-icons/AntDesign";
 
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import styles from '../../stylesheet/createservice.style';
 import ServiceDropDownView from '../common/ServiceDropDownView';
 import HeaderMenuAndBell from '../common/HeaderMenuAndBell';

@@ -1,26 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity,Dimensions, AsyncStorage } from 'react-native';
+import { View } from 'react-native';
 
 import Svg,{
-    Circle,
-    Ellipse,
     G,
-    TSpan,
-    TextPath,
     Path,
-    Polygon,
-    Polyline,
-    Line,
-    Rect,
-    Use,
-    Symbol,
     Defs,
     LinearGradient,
-    RadialGradient,
     Stop,
-    ClipPath,
-    Pattern,
-    Mask,
 } from 'react-native-svg';
 
 export default class Wave extends Component {
@@ -31,10 +17,8 @@ export default class Wave extends Component {
     render(){
         const { style, color, width, height } = this.props;
         return (
-            <View style={style}>
-     
-
-            <Svg
+        <View style={style}>
+        <Svg
         version="1.1"
         id="Logo"
         xmlns="http://www.w3.org/2000/svg"

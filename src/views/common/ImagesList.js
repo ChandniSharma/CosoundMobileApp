@@ -9,27 +9,7 @@ export default class ImagesList extends Component {
         super(props);
         this.state = {
             photoIndex: 0,
-            isOpen: false,
-            images: [
-                {
-                    image: require('../../assets/homepage-video-placeholder.jpg')
-                },
-                {
-                    image: require('../../assets/homepage-video-placeholder.jpg')
-                },
-                {
-                    image: require('../../assets/homepage-video-placeholder.jpg')
-                },
-                {
-                    image: require('../../assets/homepage-video-placeholder.jpg')
-                },
-                {
-                    image: require('../../assets/homepage-video-placeholder.jpg')
-                },
-                {
-                    image: require('../../assets/homepage-video-placeholder.jpg')
-                },
-            ]
+            isOpen: false
         }
     }
 
@@ -56,8 +36,6 @@ export default class ImagesList extends Component {
       
     renderImage = (image) => {
         const thumbnail = getImageThumbnail(image.item);
-
-        // () => _toggleLightbox(index)
         return (
             <View style={{ padding: 10 }}>
                 <Image style={{
@@ -80,12 +58,8 @@ export default class ImagesList extends Component {
 
 
     render() {
-
-     const { photoIndex, isOpen } = this.state;
      const { loadMore, callingAPI, myImages, page,
-        callAPI,
-        
-        page_count, } = this.props;
+       page_count, } = this.props;
      const { data } = myImages;
   
       return (
@@ -99,7 +73,6 @@ export default class ImagesList extends Component {
                     renderItem={this.renderImage}
                     keyExtractor={(item, index) => index.toString()}
                 />
-            
                 {!isEmpty(data) && !callingAPI && page !== page_count && !isNull(page_count) && 
                     <View style={styles.viewMoreImage}>
                         <TouchableHighlight underlayColor="#25b6ad" style={[styles.seeMoreBtn]} onPress={loadMore}>

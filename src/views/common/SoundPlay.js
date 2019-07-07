@@ -1,5 +1,4 @@
-import { FlatList, Image, ImageBackground, Text, TextInput, TouchableHighlight, View, TouchableOpacity, StyleSheet } from "react-native";
-
+import { Text, View } from "react-native";
 import React, { Component } from "react";
 import MusicControl from 'react-native-music-control';
 import Video from 'react-native-video';
@@ -7,7 +6,7 @@ import Video from 'react-native-video';
 export default class SoundPlay extends Component {
   componentDidMount() {
     MusicControl.enableBackgroundMode(true);
- 
+
     this.playSound();
     // on iOS, pause playback during audio interruptions (incoming calls) and resume afterwards.
     // As of {{ INSERT NEXT VERSION HERE}} works for android aswell.
@@ -96,24 +95,21 @@ export default class SoundPlay extends Component {
       <View style={{justifyContent: 'center', backgroundColor:'pink', flex:1}}>
         <Text> This is text liabrary </Text>
         <Video source={{uri: "file:///Chandni/Songs/gullal.mp3" }}
-                       ref="audio"
-                       volume={5.0}
-                       muted={false}
-                     //  paused={paused}
-                       playInBackground={false}
-                       playWhenInactive={false}
-                      //  onProgress={this.onPlayProgress}
-                      //  onEnd={this.onPlayEnd}
-                       resizeMode="cover"
-                       repeat={false}
-                       style={{width:'100%', height:400, backgroundColor:'orange'}}
-                       />
+          ref="audio"
+          volume={5.0}
+          muted={false}
+          //  paused={paused}
+          playInBackground={false}
+          playWhenInactive={false}
+          //  onProgress={this.onPlayProgress}
+          //  onEnd={this.onPlayEnd}
+          resizeMode="cover"
+          repeat={false}
+          style={{width:'100%', height:400, backgroundColor:'orange'}}
+          />
       </View>
-
-
     )
   }
-
 }
 
 

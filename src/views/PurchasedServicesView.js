@@ -1,25 +1,13 @@
 import React from "react";
-import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, Image, TouchableOpacity, FlatList } from 'react-native';
 import styles from "../stylesheet/Account.style";
 import { SafeAreaView } from 'react-navigation';
-import LinearGradient from 'react-native-linear-gradient';
-import Logo from '../views/common/logo';
 import HeaderMenuAndBell from '../views/common/HeaderMenuAndBell';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Icon from "react-native-vector-icons/AntDesign";
-import Icon1 from "react-native-vector-icons/Entypo";
-import Icon2 from "react-native-vector-icons/EvilIcons";
 import Icon3 from "react-native-vector-icons/Ionicons";
-import Hamburger from 'react-native-hamburger';
 import SideMenu from '../views/common/SideMenu';
-import SettingsHeader from '../views/common/SettingsHeader';
 import Notifications from '../../src/containers/Notifications';
-
-// import { SettingsHeader, TabHeader, FormToast } from "../Commons";
-// import TabComponent from "./TabComponent";
-// import { purchasedServices } from "../reducers/userService";
-
-//  import { settingsHeaders } from "../constants/tabs";
 
 const buttonName = {
     contactInfo: "Contact Information",
@@ -54,11 +42,7 @@ class PurchasedServicesView extends React.PureComponent {
 
     }
     onClickSettingsButton(name) {
-        //   switch(name){
-        //       case buttonName.contactInfo:
-        //          this.setState({isContactInfoClick:true})
-
-        //   }
+        
     }
     renderItem = (item, ) => {
         let index = item.index;
@@ -71,14 +55,11 @@ class PurchasedServicesView extends React.PureComponent {
         } else {
             icon = <Icon name="customerservice" style={{ flex: 0.1, color: 'rgb(59, 147, 187)', marginRight: '3%', fontSize: 18 }} />
         }
-        return (
-          
+        return (          
             <View style={{ height: 50, justifyContent: 'center' }}>
                 <TouchableOpacity style={{ margin: '2%' }} onPress={() => this.setState({ isDropDownclick: false })}>
                     <View style={{ flexDirection: "row" }}>
-
                         {icon}
-
                         <Text style={styles.textAccountPopup}>{item.item.name}</Text>
                     </View>
                 </TouchableOpacity>
@@ -98,118 +79,70 @@ class PurchasedServicesView extends React.PureComponent {
     }
     _navigateToNotificationView() {
         this.setState({isNotificationShow: true})
-        //this.props.navigation.navigate('Notification');
     }
     showNotification() {
         this.setState({ isNotificationShow: true, isSideMenuClick: false })
       }
     render() {
         const {
-            user,
-            tabs,
-            genres,
-            details,
-            tabIndex,
-            switchTab,
-            profilePic,
-            contactInfo,
-            _updateUser,
-            changePassword,
-            paymentDetails,
-            _changePassword,
-            uploadProfilePic,
-            navigation
+              navigation
         } = this.props;
 
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
-
-                {/* {!this.state.isSideMenuClick ? <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} style={{ flexDirection: 'row', height: 100, width: '100%', alignItems: 'space-between', justifyContent: 'center' }}>
-
-                    <TouchableOpacity style={{ color: 'white', marginTop: '14%', flex: 0.1, marginLeft: '4%' }} onPress={() => this.showPopup()}>
-                        <Hamburger color="white" active={false} type="spinCross" onPress={() => this.showPopup()} />
-                    </TouchableOpacity>
-
- 
-                    <Logo color={'#ffffff'} style={{ flex: 0.7, marginLeft: '25%' }} width="130px" height="44px" /> 
-
-                    <View style={{ flex: 0.3 }} />
-                    <TouchableOpacity style={[styles.searchView, { flex: 0.2, alignSelf: 'flex-end', marginRight: '5%' }]} onPress={()=>this.setState({isNotificationShow: !this.state.isNotificationShow})}>
-                        <Icon2 name="bell" color="white" style={{ marginLeft: '5%', marginTop: '2%', marginRight: '5%', fontSize: 40, tintColor: 'white' }} />
-                    </TouchableOpacity>
-                </LinearGradient> : null} */}
-
-                {!this.state.isSideMenuClick ? <HeaderMenuAndBell notificationCount = {this.props.notificationCount} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} onPressPopup={() => this.showPopup()} isNotificationShow={this.state.isNotificationShow} onPressBell={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })} /> : null}
-
-
-                <View style={{ flex: 1 }}>
+            {!this.state.isSideMenuClick ? <HeaderMenuAndBell notificationCount = {this.props.notificationCount} colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} onPressPopup={() => this.showPopup()} isNotificationShow={this.state.isNotificationShow} onPressBell={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })} /> : null}
+            <View style={{ flex: 1 }}>
                 <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)' }}>
-
-<View style={{flex:0.3, backgroundColor:'red'}}>
-                {/* <SettingsHeader
-                    user={user}
-                    profilePic={profilePic}
-                    uploadProfilePic={uploadProfilePic}
-                    uploadable={true}
-                /> */}
-         </View>       
-         <View style={{ marginTop:'2%',marginBottom: '2%', flex:0.1 }}>
-         <TouchableOpacity  onPress={() => this.setState({ isDropDownclick: true })}>
-                    <View style={{ flexDirection: 'row' }}>
-                        <Icon3 name="ios-settings" style={{ marginLeft: '2%', marginBottom: '1%', flex: 0.1, color: 'rgb(140,91,204)', fontSize: 25 }} />
-                        <Text style={[styles.titleAccount, { flex: 0.8, marginTop: '0.5%' }]}> Account Settings</Text>
-
-                        <View style={{ width: 30, height: 30, borderRadius: 18, marginRight: '5%', marginBottom: '5%', flex: 0.1, backgroundColor: 'white' }}>
-                            <Icon name="down" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
-                        </View>
-
-                        {/* <Animatable.Image source={require('../../src/assets/Image/arrow_small_down.png')} style={{borderRadius:13,alignSelf:'flex-end' ,width: 26, height: 26 }} /> */}
+                <View style={{flex:0.3, backgroundColor:'red'}}>
+            </View>       
+            <View style={{ marginTop:'2%',marginBottom: '2%', flex:0.1 }}>
+            <TouchableOpacity  onPress={() => this.setState({ isDropDownclick: true })}>
+                <View style={{ flexDirection: 'row' }}>
+                    <Icon3 name="ios-settings" style={{ marginLeft: '2%', marginBottom: '1%', flex: 0.1, color: 'rgb(140,91,204)', fontSize: 25 }} />
+                    <Text style={[styles.titleAccount, { flex: 0.8, marginTop: '0.5%' }]}> Account Settings</Text>
+                    <View style={{ width: 30, height: 30, borderRadius: 18, marginRight: '5%', marginBottom: '5%', flex: 0.1, backgroundColor: 'white' }}>
+                        <Icon name="down" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
                     </View>
-                </TouchableOpacity>
-         </View>
-                
-             
-              
-                {/* Notification view */}
-                <View style={{ flex:0.4 }}>
-                   
                 </View>
-                {this.state.isDropDownclick ?
-                    <View style={styles.viewModalAccount}>
+            </TouchableOpacity>
+            </View>
+            <View style={{ flex:0.4 }}>
+            </View>
+            {this.state.isDropDownclick ?
+                <View style={styles.viewModalAccount}>
 
-                        <TouchableOpacity style={{ marginTop: '54.0%', backgroundColor: 'white', height: 40 }} onPress={() => this.setState({ isDropDownclick: false })}>
-                            <View style={{ flexDirection: 'row', height: 50, marginTop: '2%' }}>
-                                <Icon3 name="ios-settings" style={{ marginLeft: '2%', marginBottom: '1%', flex: 0.1, color: 'rgb(140,91,204)', fontSize: 25 }} />
-                                <Text style={[styles.titleAccount, { flex: 0.8 }]}> Account Settings</Text>
-                                <View style={{ width: 30, height: 30, borderRadius: 18, marginRight: '5%', marginBottom: '5%', flex: 0.1, backgroundColor: 'white', borderColor: '#8E8E8E', borderWidth: 0.3 }}>
-                                    <Icon name="up" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
-                                </View>
-
+                    <TouchableOpacity style={{ marginTop: '54.0%', backgroundColor: 'white', height: 40 }} onPress={() => this.setState({ isDropDownclick: false })}>
+                        <View style={{ flexDirection: 'row', height: 50, marginTop: '2%' }}>
+                            <Icon3 name="ios-settings" style={{ marginLeft: '2%', marginBottom: '1%', flex: 0.1, color: 'rgb(140,91,204)', fontSize: 25 }} />
+                            <Text style={[styles.titleAccount, { flex: 0.8 }]}> Account Settings</Text>
+                            <View style={{ width: 30, height: 30, borderRadius: 18, marginRight: '5%', marginBottom: '5%', flex: 0.1, backgroundColor: 'white', borderColor: '#8E8E8E', borderWidth: 0.3 }}>
+                                <Icon name="up" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
                             </View>
-                        </TouchableOpacity>
 
-                        <View style={styles.viewDropDown}>
-                            <FlatList
-                                style={styles.flatList}
-                                data={this.dropDownOptions}
-                                renderItem={this.renderItem}
-                                keyExtractor={(item, index) => index.toString()}
-                            />
                         </View>
-                    </View> : null}
-                
-                 {/* Side Menu button modal  */}
-                 {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation}  hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
-                       
-                </KeyboardAwareScrollView>
-                {/* notification view show */}
-                {this.state.isNotificationShow ? <Notifications navigation={navigation} hidePopup={()=>this.hideNotificationView()} />:null}
-                </View>
+                    </TouchableOpacity>
+
+                    <View style={styles.viewDropDown}>
+                        <FlatList
+                            style={styles.flatList}
+                            data={this.dropDownOptions}
+                            renderItem={this.renderItem}
+                            keyExtractor={(item, index) => index.toString()}
+                        />
+                    </View>
+                </View> : null}
+            
+                {/* Side Menu button modal  */}
+                {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation}  hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
+                    
+            </KeyboardAwareScrollView>
+            {/* notification view show */}
+            {this.state.isNotificationShow ? <Notifications navigation={navigation} hidePopup={()=>this.hideNotificationView()} />:null}
+            </View>
             </SafeAreaView>
         )
     
     }
 }
 
-export default PurchasedServicesView
-;
+export default PurchasedServicesView;

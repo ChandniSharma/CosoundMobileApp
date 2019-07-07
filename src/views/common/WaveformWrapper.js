@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import WaveForm from "react-native-audiowaveform";
 
 export default class WaveformWrapper extends Component {

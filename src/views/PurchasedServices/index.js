@@ -1,23 +1,18 @@
 import React from "react";
-
 import { Paginator } from "../../hoc";
 import { SafeAreaView } from 'react-navigation';
-
 import ServiceListing from "../common/ServiceListing";
 import SettingsHeader from "../common/SettingsHeader";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import SideMenu from '../common/SideMenu';
-// import { servicesHeaders } from "../../constants/tabs";
 import { noDataProps } from "./data";
 import Icon3 from "react-native-vector-icons/Ionicons";
 import Icon from "react-native-vector-icons/AntDesign";
-
 import { View, Text, TouchableHighlight, Image, TextInput, TouchableOpacity, Dimensions } from 'react-native';
 import styles from '../../stylesheet/createservice.style';
 import ServiceDropDownView from '../common/ServiceDropDownView';
 import HeaderMenuAndBell from '../common/HeaderMenuAndBell';
 import Notifications from '../../../src/containers/Notifications'
-
 
 class PurchasedServicesComponent extends React.PureComponent {
   constructor(props) {
@@ -50,7 +45,6 @@ class PurchasedServicesComponent extends React.PureComponent {
   }
   _navigateToNotificationView() {
       this.setState({ isNotificationShow: true })
-      //this.props.navigation.navigate('Notification');
   }
   closePopup=() =>{
     this.setState({ isDropDownclick: !this.state.isDropDownclick })
@@ -66,35 +60,25 @@ class PurchasedServicesComponent extends React.PureComponent {
     const { paginationData } = purchasedServices;
     return (
       <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
-
-{!this.state.isSideMenuClick ? <HeaderMenuAndBell colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} onPressPopup={() => this.showPopup()} isNotificationShow={this.state.isNotificationShow} onPressBell={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })} /> : null}
-
-<View style={{ flex: 1 }}>
-                    <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)' }}>
-                
+      {!this.state.isSideMenuClick ? <HeaderMenuAndBell colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} onPressPopup={() => this.showPopup()} isNotificationShow={this.state.isNotificationShow} onPressBell={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })} /> : null}
+       <View style={{ flex: 1 }}>
+        <KeyboardAwareScrollView style={{ backgroundColor: 'rgb(245,245,245)' }}>
         <View style={{ flex: 0.3, backgroundColor: 'red' }}>
-                            <SettingsHeader
-                                user={user}
-                                navigation ={this.props.navigation}
-                                // profilePic={profilePic}
-                                // uploadProfilePic={uploadProfilePic}
-                                // uploadable={true}
-                            />
-                        </View>
-         
+            <SettingsHeader
+                user={user}
+                navigation ={this.props.navigation}
+            />
+          </View>
           <View>
-            {/* Router tabs */}
-            {/*<TabHeader headers={servicesHeaders} />*/}
-            {/* Router tabs end */}
             <TouchableOpacity style={{ backgroundColor: 'white', height: 40, marginBottom:'2%' }} onPress={() => this.setState({ isDropDownclick: true })}>
-                      <View style={{ flexDirection: 'row', height: 50, marginTop: '2%' }}>
-                        <Icon3 name="ios-settings" style={{ marginLeft: '2%', marginBottom: '1%', flex: 0.1, color: 'rgb(140,91,204)', fontSize: 25 }} />
-                        <Text style={[styles.titleAccount, { flex: 0.8 }]}> Purchased Services</Text>
-                        <View style={{ width: 30, height: 30, borderRadius: 18, marginRight: '5%', marginBottom: '5%', flex: 0.1, backgroundColor: 'white', borderColor: '#8E8E8E', borderWidth: 0.3 }}>
-                          <Icon name="up" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
-                        </View>
-                      </View>
-                    </TouchableOpacity>
+              <View style={{ flexDirection: 'row', height: 50, marginTop: '2%' }}>
+                <Icon3 name="ios-settings" style={{ marginLeft: '2%', marginBottom: '1%', flex: 0.1, color: 'rgb(140,91,204)', fontSize: 25 }} />
+                <Text style={[styles.titleAccount, { flex: 0.8 }]}> Purchased Services</Text>
+                <View style={{ width: 30, height: 30, borderRadius: 18, marginRight: '5%', marginBottom: '5%', flex: 0.1, backgroundColor: 'white', borderColor: '#8E8E8E', borderWidth: 0.3 }}>
+                  <Icon name="up" color='#8E8E8E' style={{ fontSize: 15, alignSelf: 'center', marginTop: '22%', fontWeight: 'bold' }} />
+                </View>
+              </View>
+            </TouchableOpacity>
             <Paginator
               sort={sort}
               isLoaderInternal
@@ -111,8 +95,7 @@ class PurchasedServicesComponent extends React.PureComponent {
           </KeyboardAwareScrollView>
           {this.state.isNotificationShow ? <Notifications navigation={navigation} hidePopup={() => this.hideNotificationView()} /> : null}
           {this.state.isSideMenuClick ? <SideMenu navigation={this.props.navigation} hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
-
-          </View>
+        </View>
       </SafeAreaView>
     );
   }

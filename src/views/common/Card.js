@@ -1,6 +1,5 @@
 import React from 'react'
 import {StyleSheet, Image, Text, View} from 'react-native'
-import image from '../../assets/Image/back.png'
 
 export default Card = (props) => {
   return <View style={styles.container}>
@@ -15,9 +14,7 @@ export default Card = (props) => {
         personality, and he's more than a little lonely.</Text>
     </View>
   </View>
-
 }
-
 
 const styles = StyleSheet.create({
   container: {

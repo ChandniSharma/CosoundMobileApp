@@ -181,18 +181,6 @@ export default class ProfileComponent extends Component {
                     isClickToUpload: false
                 })
             } else {
-                let source = response;
-                // You can also display the image using data:
-                // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-                // this.setState({
-                //     isClickToUpload: true,
-                //     filePath: source.uri
-                // });
-                // this._handleFileChange("files", response.uri)
-                //this._handleFileChange("files", [response])
-
-
                 if (response) {
                     const { userFeedActions } = this.props;
                     userFeedActions.setTemporaryFile(response);
@@ -306,20 +294,6 @@ export default class ProfileComponent extends Component {
                             <Text style={[styles.textDesignation, { marginBottom: '10%', alignSelf: 'center' }]}>{getUserInfo(user.data)}</Text>
                         </Animatable.View>
 
-                        {/* <View style={styles.viewLoginButton}>
-                            <TouchableHighlight underlayColor="black" style={[styles.loginButton]}>
-                                <Text style={styles.textLoginButtonTitle}>Follow</Text>
-                            </TouchableHighlight>
-                            <TouchableHighlight underlayColor="black" style={[styles.imageButton]}>
-                                <Image style={styles.imageSendArraow} source={require('../assets/sendArrow.png')} />
-                            </TouchableHighlight>
-                        </View> */}
-
-
-
-
-                        {/* <SoundCloudWaveform waveformUrl="https://w1.sndcdn.com/PP3Eb34ToNki_m.png" setTime={this.setTime}
-                                            percentPlayed={this.state.counter} percentPlayable={1} /> */}
                         <Animatable.View ref={'viewMyMusic'} style={{
                             width: "100%",
                             backgroundColor: "white",
@@ -334,14 +308,8 @@ export default class ProfileComponent extends Component {
                         }}>
 
                             <View style={{ width: "100%", justifyContent: "center", flexDirection: "row" }}>
-
                                 <Text style={styles.myMusicTitle}>My Music</Text>
-                                {/* <TouchableOpacity>
-                                     <Icon name="ios-add-circle-outline" size={30} color="purple" style={styles.plusCircle} />
-                                </TouchableOpacity> */}
                             </View>
-
-
 
                             <Paginator
                                 isLoaderInternal
@@ -355,15 +323,8 @@ export default class ProfileComponent extends Component {
 
 
                         <Animatable.View ref={'viewMyImage'} style={styles.viewImagesOutside}>
-
                             <View style={styles.viewImagesInside}>
-
                                 <Text style={styles.myImagesTitle}>My Images</Text>
-                                {/* <TouchableOpacity onPress={() => this.onClickMusicVideoImage('image')}>
-
-                                <Icon name="ios-add-circle-outline" size={30} color="purple" style={styles.plusCircle} />
-                                </TouchableOpacity> */}
-
                             </View>
                             <Paginator
                                 isLoaderInternal
@@ -394,20 +355,6 @@ export default class ProfileComponent extends Component {
                             page_count={paginationData.page_count}
                             restCallsOnMount={this.props.restCallsOnMount}
                         />
-                        {/* <InfiniteScroller
-                            pathName={"/profile"}
-                            user={user}
-                            isLoaderInternal
-                            feed={userFeed}
-                            component={Posts}
-                            callAPI={fetchFeed}
-                            _restCalls={_restCalls}
-                            page={paginationData.page}
-                            shouldCallAPIInitially={false}
-                            page_count={paginationData.page_count}
-                            restCallsOnMount={this.props.restCallsOnMount}
-                        /> */}
-
                     </View>
                     {!userFeed.isRequesting ? <View>
                         <CustomFooter />
@@ -415,11 +362,10 @@ export default class ProfileComponent extends Component {
                         <View />}
                 </KeyboardAwareScrollView> :
                     <View>
-                        <Notifications /></View>}
-
+                        <Notifications />
+                    </View>}
                 {this.state.isBottomViewShow ?
                     <Animatable.View ref={"viewBottomWhenScroll"} style={styles.viewBottomWhenScroll}>
-
                         <View style={{ flexDirection: 'row', margin: '2%' }}>
                             <Image style={styles.imgUserInBottom} source={{ uri: getThumbnail(user.data) }} />
                             <View>
@@ -427,15 +373,10 @@ export default class ProfileComponent extends Component {
                                 <Text style={styles.JobDetailInBottom}>{getUserInfo(user.data)}</Text>
                             </View>
                         </View>
-
                     </Animatable.View> : null}
-
                 {/* Side Menu button modal  */}
                 {this.state.isSideMenuClick ? <SideMenu isProfile={true} navigation={this.props.navigation} hidePopup={() => this.hidePopup()} showNotification={() => this.showNotification()} /> : null}
-
             </SafeAreaView>
-
-
         )
     }
 }
