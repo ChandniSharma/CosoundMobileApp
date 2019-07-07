@@ -7,7 +7,6 @@ import * as Animatable from 'react-native-animatable';
 import { SafeAreaView } from 'react-navigation';
 import CustomFooter from '../components/common/CustomFooter'
 import { checkError } from "../utils";
-import { isNull } from "lodash";
 import MultiSelect from 'react-native-multiple-select';
 import DatePicker from 'react-native-datepicker';
 import WaveAnimation from './common/WaveAnimation';
