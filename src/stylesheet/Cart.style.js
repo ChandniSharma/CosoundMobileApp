@@ -51,6 +51,8 @@ export default {
         fontSize: 16,
         color: 'white',
         fontWeight: '500',
+        paddingLeft:'5%',
+        paddingRight:'5%'
     },
     textCartButtonTitle: {
         color: '#ff277b',

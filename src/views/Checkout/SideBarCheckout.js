@@ -54,14 +54,14 @@ class SidebarCheckout extends React.PureComponent {
           {/* View Total */}
           <View style={[styles.viewTotal, { width: '100%', marginBottom: '5%', marginTop: '5%', height: 70, justifyContent: 'center', alignItems: 'center' }]}>
             <View style={{ flexDirection: 'row', marginLeft: '20%', marginRight: '20%', alignSelf: 'center' }}>
-              <Text style={[styles.textSubtotalValue, { flex: 0.5, }]}>Total</Text>
+              <Text style={[styles.textSubtotalValue, { flex: 0.5,paddingLeft:'2%' }]}>Total</Text>
               <Text style={[styles.textSubtotalValue, { flex: 0.5, }]}>${cart.total} </Text>
             </View>
           </View>
           {cart.total ? 
-            <View>
-              <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton, { marginTop: '2%' }]} onPress={() => this.onClickPlaceOrder()}>
-                <Text style={[styles.textButtonTitle, { marginLeft: '10%', marginRight: '10%' }]} >Place payment</Text>
+            <View style={{ marginTop: '2%', marginBottom:'10%'}}>
+              <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton]} onPress={() => this.onClickPlaceOrder()}>
+                <Text style={[styles.textButtonTitle]} >Place payment</Text>
               </TouchableHighlight>
             </View>
           :<View />

@@ -11,12 +11,16 @@ import Notifications from '../containers/Notifications'
 import HeaderMenuAndBell from './common/HeaderMenuAndBell';
 import StarView from './common/StarView';
 import SideMenu from '../../src/views/common/SideMenu';
+import ServiceReview from './ServiceReview';
+import { Paginator } from "../hoc";
 import {
     isTab,
     isMobile,
     getServiceImage,
     getBreadCrumbsForService,
+    getThumbnail, getUsername, getUserInfo
 } from "../utils";
+import { isNull } from "lodash";
 
 export default class ServiceComponent extends Component {
     fadeInMarketDetailView = () => this.refs.marketPlaceDetailViewRef.fadeIn(500).then(endState => console.log(endState.finished ? 'fadein finished' : " cancelled"))
@@ -88,35 +92,24 @@ export default class ServiceComponent extends Component {
       }
     }
 
-    renderItem = () => {
-        return (
-            <View style={{ backgroundColor: 'white' }}>
-                <View style={{ flexDirection: 'row', flex: 1, marginLeft: '5%', marginRight: '5%', marginTop: '5%' }}>
-                    <Image source={require('../assets/avatar2.jpg')} style={{ width: 50, height: 50, borderRadius: 25 }} />
-                    <View style={{ flex: 0.85 }}>
-                        <Text style={styles.commentorName}> Patrick Watkins</Text>
-                        <View style={{ flexDirection: 'row', marginTop: '2%', marginLeft: '0.5%' }}>
-                           <StarView starCount={3} />
-                            <Text style={[styles.textRatingCount, { marginLeft: '2%' }]}>5</Text>
-                        </View>
-                    </View>
-                    <Text style={[styles.commentTime, { flex: 0.15 }]}>21 h ago</Text>
-                </View>
-                <Text style={styles.commentDescription}> My spotify plays went THROUGH THE ROOF! Chester is a really great guy, and delivered exactly what he promised.</Text>
-                <View style={styles.ViewSingleLine} />
-            </View>
-        )
-    }
-
     render() {
+        
         const {
+            id,
             service,
+            reviews,
+            addToCart,
             _addToCart,
-        } = this.props;
-        const { data } = service;
-        const breadCrumbArray = getBreadCrumbsForService(data);
-        const tab = isTab();
-    
+            fetchReviews
+          } = this.props;
+          const { data } = service;
+          const breadCrumbArray = getBreadCrumbsForService(data);
+          const { paginationData } = reviews;
+          const user = {
+            data: data.user
+          };
+          console.log("user===",user, "User name in render ======", getUsername(user));
+          console.log("this.props==",this.props)
         return (
             <SafeAreaView forceInset={{ top: 'never', bottom: 'never' }} style={styles.container}>
                 {!this.state.isSideMenuClick ? <HeaderMenuAndBell colors={this.state.isBottomViewShow ? this.state.headerColor : this.state.headerColorMix} onPressPopup={() => this.showPopup()} isNotificationShow={this.state.isNotificationShow} onPressBell={() => this.setState({ isNotificationShow: !this.state.isNotificationShow })} /> : null}
@@ -165,19 +158,28 @@ export default class ServiceComponent extends Component {
                         </Animatable.View>
                         <Animatable.View ref={'view3'} style={{ backgroundColor: 'white', marginBottom: '5%', marginTop: '5%', flex: 0.1 }}>
                             <Text style={[styles.textListTitle, { height: 50 }]}> About this Job </Text>
-                            <Text style={[styles.textJobDescription]}>{data.about}</Text>
+                            <Text style={[styles.textJobDescription, {flex:1}]}>{data.about}</Text>
                         </Animatable.View>
                         <Animatable.View ref={'view4'} style={{ flex: 0.15 }}>
                             <View style={{ backgroundColor: 'white', alignSelf: 'center', borderRadius: 20, marginBottom: '5%', width: '90%', alignItems: 'center' }}>
-                                <Image source={require('../assets/avatar2.jpg')} style={{ width: 90, height: 90, borderRadius: 45, alignSelf: 'center', marginTop: '5%' }} />
-                                <Text style={[styles.titleAccount, { alignSelf: 'center', marginBottom: '2%', marginTop: '4%' }]}>Chester Parsons</Text>
-                                <Text style={styles.textUserDescription}> Spotify Playlists Curator</Text>
+                                <Image source={{uri : getThumbnail(user)}} style={{ width: 90, height: 90, borderRadius: 45, alignSelf: 'center', marginTop: '5%' }} />
+                                <Text style={[styles.titleAccount, { alignSelf: 'center', marginBottom: '2%', marginTop: '4%' }]}>{getUsername(user)}</Text>
+                                <Text style={styles.textUserDescription}> {getUserInfo(user)}</Text>
                                 <View style={{ marginTop: '10%', marginBottom: '5%' }}>
-                                    <StarView starCount={3} />
+                                    <StarView starCount={4} />
                                 </View>
                                 <View style={styles.ViewSingleLine} />
                                 <View style={styles.ViewSingleLine} />
-                                <View style={[styles.viewTotal, { width: '100%', marginBottom: '5%', marginTop: '5%', height: 70, alignItems: 'center' }]}>
+                                <View style={[styles.viewTotal, { width: '100%', marginBottom: '5%', marginTop: '5%', height: 200, alignItems: 'center' }]}>
+
+                                <View><Text style={{marginTop:'1%', marginBottom:'1%',}}>Service</Text></View>
+                                <View>
+                                    {data.key_points &&
+                                    !isNull(data.key_points) &&
+                                    data.key_points.map((item, index) => {
+                                        return <Text>{item}</Text>;
+                                    })}
+                                </View>
                                     <View style={{
                                         marginTop: '2%', marginBottom: '5%', marginLeft: "15%",
                                         marginRight: "15%",
@@ -206,19 +208,22 @@ export default class ServiceComponent extends Component {
                                 </View>
                             </TouchableHighlight>
                         </View>
-                        <View style={{ flexDirection: 'row', marginTop: '5%', alignSelf: 'center', justifyContent:'center' }}>
-                            <StarView starCount={3} />
-                            <Text style={[styles.textRatingCount]}>5</Text>
+                        <View style={{ flexDirection: 'row', marginTop: '5%', alignSelf: 'center', justifyContent:'center',backgroundColor:'red' }}>
+                            <StarView starCount={data.review_count} />
+                            <Text style={[styles.textRatingCount, {marginTop:'-6.5%'}]}>{data.review_count} Reviews</Text>
                         </View>
                         </Animatable.View>
                         <Animatable.View ref={'view6'} >
-                        <View style={{ flex: 0.4, marginBottom: '2%' }}>
-                            <FlatList
-                                data={this.arrayComments}
-                                renderItem={this.renderItem}
-                                keyExtractor={(item, index) => index.toString()}
-                            />
-                        </View>
+                       
+                        <Paginator
+                            page_count={paginationData.page_count}
+                            component={ServiceReview}
+                            page={paginationData.page}
+                            callAPI={fetchReviews}
+                            reviews={reviews}
+                            isLoaderInternal
+                        />
+
                         </Animatable.View>
                     </View>
                 </KeyboardAwareScrollView>

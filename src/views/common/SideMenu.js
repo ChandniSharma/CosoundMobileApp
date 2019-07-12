@@ -400,7 +400,6 @@ class SideMenu extends Component {
             <Animatable.View ref={'viewModalRef'} style={styles.viewModal}>
                 <KeyboardAwareScrollView style={{ flex: 1 }}>
                     <TouchableHighlight style={{ color: 'white', marginTop: '9%', marginLeft: '5%', width: 50, height: 35 }} onPress={hidePopup}>
-
                         <Hamburger color="white" active={true} type="spinCross" onPress={hidePopup} />
                     </TouchableHighlight>
 

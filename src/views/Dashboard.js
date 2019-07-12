@@ -4,7 +4,7 @@ import styles from "../stylesheet/profile.style";
 import { SafeAreaView } from 'react-navigation';
 import React from "react";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { TextInput, TouchableHighlight, View, TouchableOpacity } from "react-native";
+import { TextInput, TouchableHighlight, View, TouchableOpacity, Image, Text } from "react-native";
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import { getThumbnail, getUsername, getUserInfo } from "../utils";

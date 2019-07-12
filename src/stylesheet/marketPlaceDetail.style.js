@@ -145,8 +145,8 @@ export default {
         fontFamily: 'Montserrat-light',
         marginLeft: '5%',
         marginRight: '5%',
-        textAlign: 'justify',
-        lineHeight: 20,
+        // textAlign: 'justify',
+        // lineHeight: 20,
         marginTop:'2%',
         marginBottom:'2%'
     },

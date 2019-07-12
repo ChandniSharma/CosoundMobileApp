@@ -19,6 +19,11 @@ const getImageThumbnail = item => {
 };
 
 const getUsername = data => {
+  console.log(" data in getusrnma==========", data);
+  if(data && data.first_name){
+    console.log("line number 23==",  data.first_name)
+  }
+  
   return `${data.first_name ? data.first_name : ""} ${
     data.last_name && !isNull(data.last_name) ? data.last_name : ""
   }`;

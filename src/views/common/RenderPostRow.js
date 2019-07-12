@@ -91,12 +91,12 @@ export default class RenderPostRow extends Component{
                     ) : !isEmpty(images) && images.length > 1 ? (
                         <View>
                             {images.map(item => {
-                                return _renderPostBody(item, post.id);
+                                return _renderPostBody(item, "");
                             })}
                         </View>
                     ) : null}
                     {notImages.map(item => {
-                        return _renderPostBody(item, post.id);
+                        return _renderPostBody(item, "");
                     })}
 
                     <View style={{ width: "100%", justifyContent: "center", flexDirection: "row", marginTop: "5%", marginBottom: "5%" }}>

@@ -87,7 +87,7 @@ const noDataProps = {
         const { data, isRequesting, error } = services;
         return (
             <View style={{ flex: 1 }}>
-                <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton]}>
+                <TouchableHighlight underlayColor="#25b6ad" style={[styles.loginButton]} onPress={()=> this.props.navigation.navigate('PurchasedServices')}>
                     <Text style={styles.textButtonTitle} >My Market</Text>
                 </TouchableHighlight>
                 <Text style={styles.personalRecommended}> Your Personal Reccomendations</Text>
@@ -248,12 +248,15 @@ const noDataProps = {
     _renderCarouselItem =(itemDetail, index)=> {
         let item = itemDetail.item;
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', borderRadius: 20, }}>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <ImageBackground source={{
                     uri: getServiceNormalImage(
                         item.media
                     )
-                }} style={{ width: 500, height: 500 }}>
+                }} 
+                style={{ width: 500, height: 500, borderRadius:20 }}
+                imageStyle={{ borderRadius: 20 }}
+                >
                     <View style={{ backgroundColor: 'rgba(0,0,0,0.6)', width: '100%', height: '100%', borderRadius: 20, alignItems: 'center' }}>
                         <View style={{ width: '60%', height: '100%', marginRight: '10%' }}>
                             <Text style={styles.titleCarousel} >{item.category.name}</Text>
@@ -342,7 +345,7 @@ const noDataProps = {
                         <MarketplaceDetail />
                     </Animatable.View> :
                         <Animatable.View ref={'mainView'} style={{ backgroundColor: 'white', flex: 1 }} >
-                            <View style={{ alignSelf: 'center', flex: 0.4, width: '80%', borderRadius: 20, marginBottom: '3%', flexDirection: 'row',  }}>
+                            <View style={{ backgroundColor:'red',alignSelf: 'center', flex: 0.4, width: '80%',marginBottom: '3%', flexDirection: 'row',  }}>
                                 {isRequesting && (
                                     <ActivityIndicator color="gray" style={{ marginLeft:'50%'}}/>
                                 )}
@@ -350,15 +353,17 @@ const noDataProps = {
                                     <Text style={styles.errorText}>{error.message} </Text>
                                 )}
                                 {!isRequesting && data && data.data && !isEmpty(data.data) && (
-                                    <Carousel
-                                        layout={'default'} layoutCardOffset={`18`}
-                                        ref={ref => this.carousel = ref}
-                                        data={data.data}
-                                        sliderWidth={350}
-                                        itemWidth={400}
-                                        renderItem={this._renderCarouselItem}
-                                        onSnapToItem={index => this.setState({ activeIndex: index })}
-                                    />
+                                    // <View style={{borderRadius:20, backgroundColor:'pink' }} >
+                                        <Carousel
+                                            layout={'default'} layoutCardOffset={`18`}
+                                            ref={ref => this.carousel = ref}
+                                            data={data.data}
+                                            sliderWidth={350}
+                                            itemWidth={400}
+                                            renderItem={this._renderCarouselItem}
+                                            onSnapToItem={index => this.setState({ activeIndex: index })}
+                                        />
+                                    // </View>
                                 )}
                             </View>
 
