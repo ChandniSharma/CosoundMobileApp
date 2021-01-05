@@ -8,7 +8,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "blueimp-load-image": "^2.21.0",
     "bugsnag-react-native": "^2.21.1",
     "es6-symbol": "^3.1.1",
